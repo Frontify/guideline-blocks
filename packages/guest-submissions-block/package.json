@@ -33,11 +33,12 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.67",
-        "@frontify/fondue": "12.0.0-beta.275",
-        "@frontify/fondue-tokens": "3.1.0",
+        "@frontify/fondue": "12.0.0-beta.300",
+        "@frontify/fondue-tokens": "3.3.0-next.5",
         "@frontify/guideline-blocks-settings": "0.27.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "@udecode/plate": "^21.5.0"
     }
 }

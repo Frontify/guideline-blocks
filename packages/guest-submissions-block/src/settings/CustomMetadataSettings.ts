@@ -85,10 +85,13 @@ const settingsEntry = (id: string, metaDataEntry: MetadataProps, index: number, 
 
 export const defineCustomMetadataEntries = (libraries: Library[]): SettingBlock[] => {
     return libraries
-        .map(({ customMetadataProperties, id }: Library, parentIndex: number) => {
-            return customMetadataProperties.map((metaDataEntry: MetadataProps, index: number) =>
-                settingsEntry(id, metaDataEntry, index, parentIndex)
-            );
+        .map((library: Library, parentIndex: number) => {
+            if (!!library && library.customMetadataProperties) {
+                return library.customMetadataProperties.map((metaDataEntry: MetadataProps, index: number) =>
+                    settingsEntry(library.id, metaDataEntry, index, parentIndex)
+                );
+            }
+            return [];
         })
         .flat(1);
 };

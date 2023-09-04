@@ -55,10 +55,20 @@ export const Metadata: FC<
     const validateFormOrTriggerError = useFormValidation(formValues);
 
     const handleInputChange = ({ id, value }: OnChangeProps) => {
-        setFormValues((prevState) => ({
-            ...prevState,
-            [id]: value,
-        }));
+        if (Array.isArray(value)) {
+            const multiSelectProps = value as { propertyId: string; value: string }[];
+            const multiSelectData = multiSelectProps.map((item) => item.value);
+
+            setFormValues((prevState) => ({ ...initialValues, ...prevState, [id]: multiSelectData }));
+        } else {
+            setFormValues((prevState) => {
+                return {
+                    ...initialValues,
+                    ...prevState,
+                    [id]: value,
+                };
+            });
+        }
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

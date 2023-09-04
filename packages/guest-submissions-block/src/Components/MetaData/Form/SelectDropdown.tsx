@@ -9,18 +9,17 @@ import { FormLabel } from './FormLabel';
 export const SelectDropdown = ({
     id,
     isRequired,
-    defaultValue,
     name,
     onChange,
     validation,
     type: { options },
 }: MetadataProps & FormUtilities) => {
-    const initialValue =
-        typeof defaultValue === 'object' && defaultValue !== null && 'id' in defaultValue && 'value' in defaultValue
-            ? defaultValue.value
-            : '';
+    // const initialValue =
+    //     typeof defaultValue === 'object' && defaultValue !== null && 'id' in defaultValue && 'value' in defaultValue
+    //         ? defaultValue.id
+    //         : '';
 
-    const [activeItemId, setActiveItemId] = useState<string | number | undefined>(initialValue);
+    const [activeItemId, setActiveItemId] = useState<string | number | undefined>();
 
     const onInput = (activeItemId: string | number | undefined) => {
         setActiveItemId(activeItemId);

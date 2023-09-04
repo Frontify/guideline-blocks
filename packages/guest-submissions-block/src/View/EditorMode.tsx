@@ -32,16 +32,24 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                 (submission) => submission.projectId === blockSettings.assetSubmission
             );
 
-            if (assetSubmissionRequestMetadataConfig) {
+            if (!!assetSubmissionRequestMetadataConfig) {
                 const libraryMetadataResponse = await getLibraryById(assetSubmissionRequestMetadataConfig?.projectId);
                 setLibraryMetadata((prev) => {
-                    if (prev?.customMetadataProperties === libraryMetadataResponse.customMetadataProperties) {
+                    if (
+                        libraryMetadataResponse &&
+                        libraryMetadataResponse.customMetadataProperties &&
+                        prev?.customMetadataProperties === libraryMetadataResponse.customMetadataProperties
+                    ) {
                         return prev;
                     }
                     return libraryMetadataResponse;
                 });
 
-                if (libraryMetadataResponse.customMetadataProperties !== assetSubmissionMetadataConfig) {
+                if (
+                    libraryMetadataResponse &&
+                    libraryMetadataResponse.customMetadataProperties &&
+                    libraryMetadataResponse.customMetadataProperties !== assetSubmissionMetadataConfig
+                ) {
                     await setBlockSettings({
                         assetSubmissionMetadataConfig: libraryMetadataResponse.customMetadataProperties,
                     });
@@ -84,7 +92,11 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                         onSubmit={() => null}
                         appBridge={appBridge}
                         blockSettings={blockSettings}
-                        assetSubmissionMetadataConfig={libraryMetadata ? libraryMetadata.customMetadataProperties : []}
+                        assetSubmissionMetadataConfig={
+                            libraryMetadata && libraryMetadata.customMetadataProperties
+                                ? libraryMetadata.customMetadataProperties
+                                : []
+                        }
                     />
                 </LegacyStack>
             </div>

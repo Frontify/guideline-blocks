@@ -9,17 +9,16 @@ import { FormLabel } from './FormLabel';
 export const MultiSelectDropdown = ({
     id,
     isRequired,
-    defaultValue,
     name,
     onChange,
     validation,
     type: { options },
 }: MetadataProps & FormUtilities) => {
-    const initialValue =
-        typeof defaultValue === 'object' && defaultValue !== null && 'id' in defaultValue && 'value' in defaultValue
-            ? [defaultValue.value]
-            : [];
-    const [activeItemKeys, setActiveItemKeys] = useState<(string | number)[]>(initialValue);
+    // const initialValue =
+    //     typeof defaultValue === 'object' && defaultValue !== null && 'id' in defaultValue && 'value' in defaultValue
+    //         ? [defaultValue.value]
+    //         : [];
+    const [activeItemKeys, setActiveItemKeys] = useState<(string | number)[]>([]);
 
     const onInput = (value: (string | number)[]) => {
         setActiveItemKeys(value);
@@ -42,6 +41,7 @@ export const MultiSelectDropdown = ({
                 items={options ?? []}
                 onSelectionChange={onInput}
                 placeholder={name}
+                enablePortal={false}
             />
         </div>
     );
