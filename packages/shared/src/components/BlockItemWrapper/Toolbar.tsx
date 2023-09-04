@@ -3,6 +3,7 @@
 import React from 'react';
 import {
     ActionMenu,
+    FOCUS_VISIBLE_STYLE,
     Flyout,
     IconDotsHorizontal16,
     LegacyTooltip,
@@ -16,7 +17,7 @@ import { DEFAULT_DRAGGING_TOOLTIP, DEFAULT_DRAG_TOOLTIP } from './constants';
 const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging, isFlyoutDisabled }: ToolbarProps) => {
     return (
         <div data-test-id="block-item-wrapper-toolbar" className="tw-flex tw-justify-end">
-            <div className="tw-bg-white tw-text-box-selected-inverse tw-pointer-events-auto tw-flex tw-flex-shrink-0 tw-gap-[2px] tw-px-[1px] tw-spacing tw-items-center tw-h-7 tw-self-start tw-border tw-border-box-selected-inverse tw-rounded">
+            <div className="tw-bg-white tw-isolate tw-text-box-selected-inverse tw-pointer-events-auto tw-flex tw-flex-shrink-0 tw-gap-[2px] tw-px-[1px] tw-spacing tw-items-center tw-h-7 tw-self-start tw-border tw-border-box-selected-inverse tw-rounded">
                 {items.map((item, i) =>
                     'draggableProps' in item ? (
                         <LegacyTooltip
@@ -37,7 +38,8 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                                     data-test-id="block-item-wrapper-toolbar-btn"
                                     {...item.draggableProps}
                                     className={joinClassNames([
-                                        'tw-bg-base tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm',
+                                        'tw-bg-base tw-relative tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm focus-visible:tw-z-10',
+                                        FOCUS_VISIBLE_STYLE,
                                         isDragging
                                             ? 'tw-cursor-grabbing tw-bg-box-selected-pressed'
                                             : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
@@ -60,7 +62,10 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                                 <button
                                     data-test-id="block-item-wrapper-toolbar-btn"
                                     onClick={item.onClick}
-                                    className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm"
+                                    className={joinClassNames([
+                                        'tw-bg-base tw-relative hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm focus-visible:tw-z-10',
+                                        FOCUS_VISIBLE_STYLE,
+                                    ])}
                                 >
                                     {item.icon}
                                 </button>
@@ -69,7 +74,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                     )
                 )}
                 {flyoutItems.length > 0 && (
-                    <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6">
+                    <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6 tw-relative">
                         <Flyout
                             isOpen={isFlyoutOpen && !isDragging}
                             isTriggerDisabled={isFlyoutDisabled}
@@ -88,7 +93,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                                     triggerElement={
                                         <div
                                             data-test-id="block-item-wrapper-toolbar-flyout"
-                                            className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm"
+                                            className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-relative tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm"
                                         >
                                             <IconDotsHorizontal16 />
                                         </div>
