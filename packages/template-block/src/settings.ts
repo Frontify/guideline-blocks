@@ -17,13 +17,13 @@ import {
     PreviewDisplayType,
     PreviewHeightType,
     PreviewType,
-    SETTING_ID,
     TextPositioningType,
     TextRatioType,
     cardPaddingValues,
     cornerRadiusValues,
     previewHeightValues,
 } from './types';
+import { SETTING_ID } from './constants';
 import { defineSettings } from '@frontify/guideline-blocks-settings';
 
 const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 250, green: 250, blue: 250, alpha: 1, name: 'Background Default' };

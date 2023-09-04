@@ -24,7 +24,6 @@ import {
 import { getRgbaString } from '../utils';
 import { useCallback, useState } from 'react';
 import {
-    SETTING_ID,
     Settings,
     cornerRadiusValues,
     previewDisplayValues,
@@ -32,6 +31,7 @@ import {
     previewImageAnchoringValues,
     textPositioningToFlexDirection,
 } from '../types';
+import { SETTING_ID } from '../constants';
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;

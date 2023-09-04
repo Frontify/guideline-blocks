@@ -10,28 +10,19 @@ import {
 } from '@frontify/app-bridge';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    PreviewType,
-    SETTING_ID,
-    Settings,
-    cardPaddingValues,
-    cornerRadiusValues,
-    textPositioningToFlexDirection,
-} from './types';
+import { PreviewType, Settings, cardPaddingValues, cornerRadiusValues, textPositioningToFlexDirection } from './types';
+import { GAP, SETTING_ID } from './constants';
 import { Button, ButtonEmphasis, Color, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
-// import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { getRgbaString } from './utils';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 
-const GAP = '32px';
-
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
-    const [lastErrorMessage, setLastErrorMessage] = useState<string>('');
+    const [lastErrorMessage, setLastErrorMessage] = useState('');
     const isEditing = useEditorState(appBridge);
-    const blockId = appBridge.getBlockId().toString();
+    const blockId = appBridge.getBlockId();
     const { blockTemplates, updateTemplateIdsFromKey /*errorMessage*/ } = useBlockTemplates(appBridge);
 
     const {
@@ -59,11 +50,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         textAnchoringVertical,
     } = blockSettings;
 
-    const [templateTitle, setTemplateTitle] = useState<string | undefined>(title || undefined);
-    const [templateDescription, setTemplateDescription] = useState<string | undefined>(description || undefined);
-    const [templatePageCount, setTemplatePageCount] = useState<number>(
-        selectedTemplate ? selectedTemplate.pages.length : 0
-    );
+    const [templateTitle, setTemplateTitle] = useState(title ?? '');
+    const [templateDescription, setTemplateDescription] = useState(description ?? '');
+    const [templatePageCount, setTemplatePageCount] = useState(selectedTemplate ? selectedTemplate.pages.length : 0);
 
     const hasPreview = useCallback(() => preview !== PreviewType.None, [preview]);
     const flexDirection = hasPreview() ? textPositioningToFlexDirection[textPositioning] : 'row';
