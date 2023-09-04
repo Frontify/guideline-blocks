@@ -21,16 +21,18 @@ import {
 import { Button, ButtonEmphasis, Color, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
 // import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { getRgbaString } from './utils';
-import { Preview } from './components/Preview';
+import { TemplatePreview } from './components/TemplatePreview';
+import { AlertError } from './components/AlertError';
 
 const GAP = '32px';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
+    const [lastErrorMessage, setLastErrorMessage] = useState<string>('');
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
-    const { blockTemplates, updateTemplateIdsFromKey } = useBlockTemplates(appBridge);
+    const { blockTemplates, updateTemplateIdsFromKey /*errorMessage*/ } = useBlockTemplates(appBridge);
 
     const {
         title,
@@ -87,6 +89,14 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         [setSelectedTemplate]
     );
 
+    // useEffect(() => {
+    //     if (errorMessage !== '') {
+    //         setLastErrorMessage(errorMessage);
+    //         updateTemplateTitle('');
+    //         updateTemplateDescription('');
+    //     }
+    // }, [errorMessage]);
+
     useEffect(() => {
         if (blockTemplates[SETTING_ID]) {
             updateSelectedTemplate(blockTemplates[SETTING_ID]);
@@ -135,6 +145,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             : cardPaddingValues[cardPaddingSimple],
                     }}
                 >
+                    {/*{isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}*/}
                     <div
                         className="tw-flex"
                         style={{
@@ -144,12 +155,13 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         }}
                     >
                         {hasPreview() && (
-                            <Preview
+                            <TemplatePreview
                                 appBridge={appBridge}
                                 template={selectedTemplate}
                                 onUpdateTemplate={updateTemplateIdsFromKey}
                                 onUpdateTemplateTitle={updateTemplateTitle}
                                 onUpdateTemplateDescription={updateTemplateDescription}
+                                onError={setLastErrorMessage}
                             />
                         )}
                         <div
@@ -199,6 +211,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     data-test-id="template-block-new-publication-btn"
                                     emphasis={ButtonEmphasis.Default}
                                     onClick={handleNewPublication}
+                                    disabled={!selectedTemplate}
                                 >
                                     Use this Template
                                 </Button>

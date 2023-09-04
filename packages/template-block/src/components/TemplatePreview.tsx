@@ -33,21 +33,23 @@ import {
     textPositioningToFlexDirection,
 } from '../types';
 
-export type PreviewProps = {
+export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     template: Template | null;
     onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
     onUpdateTemplateTitle: (value: string) => void;
     onUpdateTemplateDescription: (value: string) => void;
+    onError: (message: string) => void;
 };
 
-export const Preview = ({
+export const TemplatePreview = ({
     appBridge,
     template,
     onUpdateTemplate,
     onUpdateTemplateTitle,
     onUpdateTemplateDescription,
-}: PreviewProps) => {
+    onError,
+}: TemplatePreviewProps) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -88,15 +90,19 @@ export const Preview = ({
     };
 
     const onTemplateSelected = useCallback(async (result: TemplateLegacy) => {
-        await onUpdateTemplate(SETTING_ID, [result.id]);
+        try {
+            await onUpdateTemplate(SETTING_ID, [result.id]);
 
-        updateBlockSettings({
-            ...blockSettings,
-            template: result,
-            templateId: result.id,
-        }).then(() => {
-            updateTemplateTitleAndDescription(result);
-        });
+            updateBlockSettings({
+                ...blockSettings,
+                template: result,
+                templateId: result.id,
+            }).then(() => {
+                updateTemplateTitleAndDescription(result);
+            });
+        } catch (error) {
+            onError(error as string);
+        }
 
         appBridge.closeTemplateChooser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
