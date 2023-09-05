@@ -19,6 +19,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';

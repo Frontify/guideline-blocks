@@ -22,7 +22,6 @@ module.exports = {
     content: [
         'src/**/*.{ts,tsx}',
         '../shared/src/**/*.{ts,tsx}',
-        'node_modules/@frontify/guideline-blocks-settings/dist/**/*.es*.js',
     ],
     corePlugins: {
         preflight: false,

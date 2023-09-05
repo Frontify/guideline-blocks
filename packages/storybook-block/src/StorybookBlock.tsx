@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';

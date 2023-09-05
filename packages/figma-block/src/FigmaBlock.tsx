@@ -15,6 +15,7 @@ import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-se
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import ReferenceErrorMessage from './ReferenceErrorMessage';

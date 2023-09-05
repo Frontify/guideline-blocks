@@ -4,6 +4,7 @@ import { useBlockSettings } from '@frontify/app-bridge';
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { BlockSettings } from './types';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 

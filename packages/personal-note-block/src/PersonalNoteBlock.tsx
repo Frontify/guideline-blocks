@@ -17,6 +17,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import { Settings, paddingStyleMap } from './types';

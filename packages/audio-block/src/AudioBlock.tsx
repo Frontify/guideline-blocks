@@ -25,6 +25,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { AUDIO_ID } from './settings';

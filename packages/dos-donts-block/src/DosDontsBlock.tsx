@@ -23,6 +23,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {

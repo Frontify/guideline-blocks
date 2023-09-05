@@ -14,6 +14,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { CSSProperties, ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { CalloutIcon } from './components/CalloutIcon';
 import { getTextColor } from './helpers/getTextColor';
 import { ICON_ASSET_ID } from './settings';

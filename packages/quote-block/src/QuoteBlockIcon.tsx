@@ -4,6 +4,7 @@ import { Asset } from '@frontify/app-bridge';
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
 

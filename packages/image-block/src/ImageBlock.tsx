@@ -12,6 +12,7 @@ import {
 } from '@frontify/app-bridge';
 
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';

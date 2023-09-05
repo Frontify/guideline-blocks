@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
 import { ColorKitBlock } from './ColorKitBlock';
 import { settings } from './settings';

@@ -6,6 +6,7 @@ import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, Tex
 import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import { Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';

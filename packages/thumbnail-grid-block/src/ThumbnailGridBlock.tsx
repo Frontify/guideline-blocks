@@ -5,6 +5,7 @@ import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/c
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
 import {
     Asset,
