@@ -16,7 +16,13 @@ import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
-import { BlockItemWrapper, BlockProps, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
+import {
+    BlockItemWrapper,
+    BlockProps,
+    TextStyles,
+    convertToRteValue,
+    hasRichTextValue,
+} from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
@@ -27,7 +33,6 @@ import {
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
-    TextStyles,
 } from '@frontify/fondue';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 

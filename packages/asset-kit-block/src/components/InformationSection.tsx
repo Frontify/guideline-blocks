@@ -8,12 +8,12 @@ import {
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
-    TextStyles,
     UnderlinePlugin,
 } from '@frontify/fondue';
 import {
     RichTextEditor,
     TextStylePluginsWithoutImage,
+    TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,

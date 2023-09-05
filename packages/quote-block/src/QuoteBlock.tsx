@@ -5,10 +5,8 @@ import {
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
-    RichTextEditor,
     StrikethroughPlugin,
     TextStylePlugin,
-    TextStyles,
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
@@ -16,7 +14,9 @@ import {
 import {
     AllTextStylePlugins,
     BlockProps,
+    RichTextEditor,
     THEME_PREFIX,
+    TextStyles,
     convertToRteValue,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
@@ -109,12 +109,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     >
                         <RichTextEditor
                             id={appBridge.getBlockId().toString()}
-                            border={false}
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                             onTextChange={onChangeContent}
                             plugins={customPlugins}
-                            readonly={!isEditing}
+                            isEditing={isEditing}
                         />
                     </div>
                     {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
