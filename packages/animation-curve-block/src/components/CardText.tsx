@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 
 import {
     RichTextEditor,
+    TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
-import { TextStyles } from '@frontify/fondue';
+} from '@frontify/guideline-blocks-settings';
 
 import { CardTextProps } from '../types';
 import { getTitlePlugin } from '../helpers';

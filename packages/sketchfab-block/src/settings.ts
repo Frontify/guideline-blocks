@@ -7,12 +7,13 @@ import {
     NotificationBlockDividerPosition,
     NotificationStyleType,
     SettingBlock,
+    getBorderRadiusSettings,
+    getBorderSettings,
     maximumNumericalRule,
     minimumNumericalOrPixelOrAutoRule,
     minimumNumericalRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { parseSketchfabSettingsUrl, pitchRule, sketchfabUrlRule, yawRule } from './helpers';
 import {
     SketchfabAccount,

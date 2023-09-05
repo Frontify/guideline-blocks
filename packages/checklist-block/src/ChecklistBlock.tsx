@@ -13,12 +13,12 @@ import {
     OrderableList,
     OrderableListItem,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { ProgressHeader } from './components/ProgressHeader';

@@ -4,11 +4,12 @@ import {
     IconEnum,
     appendUnit,
     defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 

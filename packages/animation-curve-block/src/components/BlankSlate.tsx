@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { IconPlus24, generateRandomId } from '@frontify/fondue';
-import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurve, BlankSlateProps } from '../types';
 import { BLANK_SLATE_INITIAL_HEIGHT, DEFAULT_ANIMATION_FUNCTION } from '../constants';

@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Color, Radius } from '@frontify/guideline-blocks-settings';
 import { CSSProperties, ReactNode } from 'react';
 
 export const FIRST_ASSET_ID = 'firstAsset';

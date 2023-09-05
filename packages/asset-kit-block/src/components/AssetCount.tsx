@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockStyles, TextStyles, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, TextStyles, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 import { AssetCountProps } from '../types';
 

@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import '@frontify/fondue-tokens/styles';
+import '@frontify/guideline-blocks-settings/styles';
+
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
-import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { RemoveButton } from './components/RemoveButton';
@@ -23,7 +24,6 @@ import { addMissingUrlProtocol } from './utils/addMissingUrlProtocol';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 

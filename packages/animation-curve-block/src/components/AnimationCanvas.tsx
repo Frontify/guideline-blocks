@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { toHexString } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
 import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';

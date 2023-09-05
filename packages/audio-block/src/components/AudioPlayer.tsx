@@ -8,7 +8,7 @@ import {
     IconTrashBin16,
     LoadingCircle,
 } from '@frontify/fondue';
-import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 
 type AudioPlayerProps = {

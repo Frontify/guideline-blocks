@@ -13,7 +13,7 @@ import {
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 
 import { DragHandle } from './DragHandle';
 import { TooltipContent } from './TooltipContent';

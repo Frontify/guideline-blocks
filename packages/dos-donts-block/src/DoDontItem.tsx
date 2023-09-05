@@ -18,7 +18,7 @@ import {
     hasRichTextValue,
     joinClassNames,
     toRgbaString,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import autosize from 'autosize';
 import React, { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';

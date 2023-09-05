@@ -10,18 +10,20 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
-    EditAltTextFlyout,
+    BlockProps,
+    TextStyles,
     convertToRteValue,
     hasRichTextValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
 import {
@@ -31,7 +33,6 @@ import {
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
-    TextStyles,
 } from '@frontify/fondue';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 

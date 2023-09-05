@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHexString } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 import { ColorTooltipProps } from '../types';
 import { EditAndDeleteColorBox } from './';

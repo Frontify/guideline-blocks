@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHexString } from '@frontify/guideline-blocks-settings';
 import { useRef } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';

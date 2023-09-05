@@ -25,7 +25,7 @@ import {
     ButtonPlugin,
     LinkPlugin,
     toRgbaString,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
 
@@ -57,8 +57,8 @@ titlePlugins
     .setPlugin(markStylesPlugins)
     .setPlugin([...alignmentPlugins, new ResetFormattingPlugin()]);
 
-export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
-    new PluginComposer()
+export const getCaptionPlugins = (appBridge: AppBridgeBlock) => {
+    return new PluginComposer()
         .setPlugin(textStylePlugins)
         .setPlugin([
             ...markStylesPlugins,
@@ -73,6 +73,7 @@ export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
             new OrderedListPlugin(),
             new ResetFormattingPlugin(),
         ]);
+};
 
 export const getTotalImagePadding = (blockSettings: Settings): CSSProperties => {
     const border = blockSettings.hasBorder ? blockSettings.borderWidth?.replace('px', '') : undefined;

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
-import { BlockStyles, joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CSSProperties, FC, Fragment, useContext } from 'react';

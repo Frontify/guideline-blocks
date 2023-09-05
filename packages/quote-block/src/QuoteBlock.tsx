@@ -5,18 +5,24 @@ import {
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
-    RichTextEditor,
     StrikethroughPlugin,
     TextStylePlugin,
-    TextStyles,
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { AllTextStylePlugins, THEME_PREFIX, convertToRteValue, toRgbaString } from '@frontify/guideline-blocks-shared';
+
+import {
+    AllTextStylePlugins,
+    BlockProps,
+    RichTextEditor,
+    THEME_PREFIX,
+    TextStyles,
+    convertToRteValue,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
 import { LineType, QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
@@ -103,12 +109,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     >
                         <RichTextEditor
                             id={appBridge.getBlockId().toString()}
-                            border={false}
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                             onTextChange={onChangeContent}
                             plugins={customPlugins}
-                            readonly={!isEditing}
+                            isEditing={isEditing}
                         />
                     </div>
                     {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}

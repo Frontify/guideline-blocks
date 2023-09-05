@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 

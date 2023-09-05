@@ -1,21 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+import { Color } from '@frontify/fondue';
+
 import {
+    BlockProps,
     BorderStyle,
     Padding,
     Radius,
+    RichTextEditor,
     borderStyleMap,
     getDefaultPluginsWithLinkChooser,
     isDark,
     radiusStyleMap,
     toRgbaString,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import { Settings, paddingStyleMap } from './types';
@@ -109,10 +111,9 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             <RichTextEditor
                 id={`${appBridge.getBlockId().toString()}-title`}
                 value={note}
-                border={false}
                 onTextChange={saveNote}
                 placeholder="Write personal note here ..."
-                readonly={!isEditing}
+                isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         </div>

@@ -5,6 +5,7 @@ import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/c
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
 import {
     Asset,
@@ -16,9 +17,8 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';

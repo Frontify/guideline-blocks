@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react18';
 import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { Radius } from '@frontify/guideline-blocks-shared';
+import { Radius } from '@frontify/guideline-blocks-settings';
 
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 

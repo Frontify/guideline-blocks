@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { defineSettings } from '@frontify/guideline-blocks-settings';
 import {
     Radius,
+    defineSettings,
     getBackgroundSettings,
     getBorderRadiusSettings,
     getBorderSettings,
     getGutterSettings,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 
 const COLUMNS_ID = 'columns';
 const LINE_COLOR_ID = 'lineColor';

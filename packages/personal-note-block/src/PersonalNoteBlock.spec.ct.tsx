@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { BorderStyle } from '@frontify/guideline-blocks-shared';
+import { BorderStyle } from '@frontify/guideline-blocks-settings';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PersonalNoteBlock } from './PersonalNoteBlock';
 

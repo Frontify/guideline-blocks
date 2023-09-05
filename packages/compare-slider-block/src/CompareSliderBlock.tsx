@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
-import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     AssetChooserObjectType,
     FileExtensionSets,
@@ -13,7 +12,6 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import {
     Alignment,
@@ -33,7 +31,7 @@ import {
     StrikethroughWrapper,
     UploadView,
 } from './components';
-import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
+import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);

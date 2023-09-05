@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconCaretLeft16, IconCaretLeft32, IconCaretRight16, IconCaretRight32 } from '@frontify/fondue';
-import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
 import { Alignment, Handle, HandleProps } from '../../types';

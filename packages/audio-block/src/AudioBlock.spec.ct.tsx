@@ -5,7 +5,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
 import { AUDIO_ID } from './settings';
-import { Security } from '@frontify/guideline-blocks-shared';
+import { Security } from '@frontify/guideline-blocks-settings';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';

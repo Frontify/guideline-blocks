@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GutterSpacing } from '@frontify/guideline-blocks-shared';
+import { GutterSpacing } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     columnGutterCustom: string;

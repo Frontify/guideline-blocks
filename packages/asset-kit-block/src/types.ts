@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, Asset, BulkDownloadState } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
 export type Settings = {

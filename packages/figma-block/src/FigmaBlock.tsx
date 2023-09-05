@@ -9,14 +9,13 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Color } from '@frontify/guideline-blocks-settings';
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
+import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import ReferenceErrorMessage from './ReferenceErrorMessage';

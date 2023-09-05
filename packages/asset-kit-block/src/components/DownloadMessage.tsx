@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-shared';
+import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-settings';
 import { LoadingCircle } from '@frontify/fondue';
 import { DownloadMessageProps } from '../types';
 import { BulkDownloadState } from '@frontify/app-bridge';

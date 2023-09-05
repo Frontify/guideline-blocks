@@ -3,7 +3,7 @@
 import type { Asset } from '@frontify/app-bridge';
 import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
+
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
