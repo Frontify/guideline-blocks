@@ -277,7 +277,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         )}
                         <div className="tw-w-full tw-flex tw-items-center">
                             <span
-                                className="a-h3"
                                 style={{
                                     marginBottom: 0,
                                     marginTop: 0,
@@ -298,6 +297,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                             marginTop: 0,
                                             color: headingColor,
                                             '--placeholder-color': headingColor,
+                                            '-webkit-text-fill-color': headingColor,
                                         } as CSSProperties
                                     }
                                     value={title}
