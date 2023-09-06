@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { Asset, useAssetChooser, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import {
     IconArrowCircleUp20,
     IconArrowMove16,
@@ -74,6 +74,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const doColorString = toRgbaString(doColor);
         const dontColorString = toRgbaString(dontColor);
         const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+        const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
         const { itemImages } = blockAssets;
         const titleRef = useRef<HTMLTextAreaElement>(null);
 
@@ -96,7 +97,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         };
 
         const onOpenAssetChooser = () => {
-            appBridge.openAssetChooser(
+            openAssetChooser(
                 (result: Asset[]) => {
                     setIsUploadLoading(true);
                     const imageId = result[0]?.id;
@@ -106,7 +107,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         onChangeItem(id, imageId, 'imageId');
                         setIsUploadLoading(false);
                     });
-                    appBridge.closeAssetChooser();
+                    closeAssetChooser();
                 },
                 {
                     multiSelection: false,

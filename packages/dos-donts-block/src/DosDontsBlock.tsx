@@ -4,6 +4,7 @@ import {
     Asset,
     AssetChooserObjectType,
     rgbStringToRgbObject,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -45,6 +46,7 @@ export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
@@ -297,11 +299,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         borderWidth,
     });
 
-    const openAssetChooser = () => {
-        appBridge.openAssetChooser(
+    const onOpenAssetChooser = () => {
+        openAssetChooser(
             (result) => {
                 setSelectedAssets(result);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 multiSelection: true,
@@ -361,7 +363,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 secondaryLabel="Or drop them here"
                                 icon={<IconPlus20 />}
                                 onUploadClick={openFileDialog}
-                                onAssetChooseClick={openAssetChooser}
+                                onAssetChooseClick={onOpenAssetChooser}
                                 onDrop={setSelectedFiles}
                                 isLoading={isUploadLoading}
                             />

@@ -6,6 +6,7 @@ import { ReactCompareSlider } from 'react-compare-slider';
 import {
     AssetChooserObjectType,
     FileExtensionSets,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -35,6 +36,7 @@ import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontif
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
@@ -165,8 +167,8 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(key, [id]);
     };
 
-    const openAssetChooser = (slot: SliderImageSlot) => {
-        appBridge.openAssetChooser(
+    const onOpenAssetChooser = (slot: SliderImageSlot) => {
+        openAssetChooser(
             async (result) => {
                 if (slot === SliderImageSlot.First) {
                     setIsFirstAssetLoading(true);
@@ -174,7 +176,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     setIsSecondAssetLoading(true);
                 }
                 updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [result[0].id]);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 objectTypes: [AssetChooserObjectType.ImageVideo],
@@ -312,7 +314,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     alignment={alignment}
                     isFirstAssetLoading={isFirstAssetLoading}
                     isSecondAssetLoading={isSecondAssetLoading}
-                    openAssetChooser={openAssetChooser}
+                    openAssetChooser={onOpenAssetChooser}
                     startDragAndDropUpload={startDragAndDropUpload}
                     startFileDialogUpload={startFileDialogUpload}
                     firstAssetPreviewUrl={firstAssetPreviewUrl}
@@ -354,7 +356,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     {isEditing && (
                         <EditorOverlay
                             alignment={alignment}
-                            openAssetChooser={openAssetChooser}
+                            openAssetChooser={onOpenAssetChooser}
                             startFileDialogUpload={startFileDialogUpload}
                             firstAsset={firstAsset}
                             secondAsset={secondAsset}

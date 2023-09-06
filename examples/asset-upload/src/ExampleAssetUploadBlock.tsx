@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import type { Asset } from '@frontify/app-bridge';
-import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { useAssetChooser, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -11,6 +11,7 @@ import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
 
     // Manual upload demo
     const [loading, setLoading] = useState(false);
@@ -40,11 +41,11 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
 
     // Asset chooser demo
     const onOpenAssetChooser = () => {
-        appBridge.openAssetChooser(
+        openAssetChooser(
             (result: Asset[]) => {
                 const resultId = result[0].id;
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
