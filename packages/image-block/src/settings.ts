@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
+
 import {
     AssetChooserObjectType,
     IconEnum,
@@ -8,15 +9,13 @@ import {
     NotificationStyleType,
     appendUnit,
     defineSettings,
-    numericalOrPixelRule,
-    presetCustomValue,
-} from '@frontify/guideline-blocks-settings';
-import {
     getBorderRadiusSettings,
     getBorderSettings,
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
-} from '@frontify/guideline-blocks-shared';
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
 import { Alignment, CaptionPosition, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
@@ -40,6 +39,19 @@ export const settings = defineSettings({
                     size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
+                },
+                {
+                    id: 'hasLink',
+                    type: 'switch',
+                    label: 'Link',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'linkObject',
+                            type: 'link',
+                            clearable: true,
+                        },
+                    ],
                 },
             ],
         },

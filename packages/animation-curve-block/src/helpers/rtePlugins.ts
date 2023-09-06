@@ -14,7 +14,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
 } from '@frontify/fondue';
-import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-shared';
+import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-settings';
 
 export const getTitlePlugin = () => {
     return new PluginComposer()

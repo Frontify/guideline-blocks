@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { Radius } from '@frontify/guideline-blocks-shared';
+import { Radius } from '@frontify/guideline-blocks-settings';
 
 export type BlockProps = {
     appBridge: AppBridgeBlock;

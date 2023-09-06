@@ -4,24 +4,27 @@ import {
     Asset,
     AssetChooserObjectType,
     FileExtensionSets,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
-    EditAltTextFlyout,
+    BlockProps,
+    TextStyles,
     convertToRteValue,
     hasRichTextValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
 import {
@@ -31,12 +34,12 @@ import {
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
-    TextStyles,
 } from '@frontify/fondue';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
@@ -58,12 +61,12 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         setIsLoading(false);
     };
 
-    const openAssetChooser = () => {
-        appBridge.openAssetChooser(
+    const onOpenAssetChooser = () => {
+        openAssetChooser(
             async (result) => {
                 setIsLoading(true);
                 updateImage(result[0]);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 selectedValueId: blockAssets[IMAGE_ID]?.[0]?.id,
@@ -135,7 +138,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                 {
                                     title: 'Replace with asset',
                                     icon: <IconImageStack20 />,
-                                    onClick: openAssetChooser,
+                                    onClick: onOpenAssetChooser,
                                 },
                             ],
                             [
@@ -176,7 +179,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                             loading={isLoading}
                             onUploadClick={openFileDialog}
                             onFilesDrop={onFilesDrop}
-                            onAssetChooseClick={openAssetChooser}
+                            onAssetChooseClick={onOpenAssetChooser}
                         />
                     )
                 )}

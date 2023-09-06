@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { toHexString } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateLevelOfLast, prepareGradientColors } from '../helpers';

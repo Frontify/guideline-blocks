@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconPlus24 } from '@frontify/fondue';
-import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { Alignment, SliderImageSlot, UploadViewProps } from '../../types';
 
 export const UploadView = ({

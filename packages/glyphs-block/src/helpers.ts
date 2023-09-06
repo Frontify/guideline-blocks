@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Choice } from '@frontify/guideline-blocks-settings';
 import { ApiFontStyle } from './types';
-import { Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { Choice, Radius, radiusStyleMap } from '@frontify/guideline-blocks-settings';
 
 export const getFonts = async (projectId: number): Promise<Choice[]> => {
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);

@@ -1,8 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/fondue';
-import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import {
+    Choice,
+    appendUnit,
+    defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-settings';
 import { getFontWeights, getFonts } from './helpers';
 
 export const DEFAULT_CHARS =

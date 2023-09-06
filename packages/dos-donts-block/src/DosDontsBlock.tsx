@@ -4,20 +4,27 @@ import {
     Asset,
     AssetChooserObjectType,
     rgbStringToRgbObject,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
+
 import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockInjectButton, joinClassNames, useDndSensors } from '@frontify/guideline-blocks-shared';
+import {
+    BlockInjectButton,
+    BlockProps,
+    THEME_PREFIX,
+    joinClassNames,
+    useDndSensors,
+} from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
@@ -32,7 +39,6 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -40,6 +46,7 @@ export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
@@ -292,11 +299,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         borderWidth,
     });
 
-    const openAssetChooser = () => {
-        appBridge.openAssetChooser(
+    const onOpenAssetChooser = () => {
+        openAssetChooser(
             (result) => {
                 setSelectedAssets(result);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 multiSelection: true,
@@ -356,7 +363,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 secondaryLabel="Or drop them here"
                                 icon={<IconPlus20 />}
                                 onUploadClick={openFileDialog}
-                                onAssetChooseClick={openAssetChooser}
+                                onAssetChooseClick={onOpenAssetChooser}
                                 onDrop={setSelectedFiles}
                                 isLoading={isUploadLoading}
                             />

@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -18,9 +19,12 @@ import {
     IconPlus12,
     Palette,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-shared';
+
+import {
+    BlockProps,
+    joinClassNames,
+    mapAppBridgeColorPalettesToFonduePalettes,
+} from '@frontify/guideline-blocks-settings';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
@@ -58,7 +62,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
-        setColorPickerPalettes(mapColorPalettes(appBridgePalettes));
+        setColorPickerPalettes(mapAppBridgeColorPalettesToFonduePalettes(appBridgePalettes));
     }, [appBridgePalettes, appBridge]);
 
     const { customHeight, heightInput, heightSlider } = blockSettings;

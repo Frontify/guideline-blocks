@@ -5,6 +5,7 @@ import {
     AssetChooserObjectType,
     FileExtension,
     FileExtensionSets,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -12,20 +13,20 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import {
+    BlockProps,
     DownloadButton,
     RichTextEditor,
     TextStyles,
     convertToRteValue,
-    downloadAsset,
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { AUDIO_ID } from './settings';
@@ -38,6 +39,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
@@ -56,12 +58,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         setIsLoading(false);
     };
 
-    const openAssetChooser = () => {
-        appBridge.openAssetChooser(
+    const onOpenAssetChooser = () => {
+        openAssetChooser(
             async (result) => {
                 setIsLoading(true);
                 updateAudioAsset(result[0]);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 selectedValueId: blockAssets[AUDIO_ID]?.[0]?.id,
@@ -115,14 +117,14 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     isEditing={isEditing}
                     isLoading={isLoading}
                     openFileDialog={openFileDialog}
-                    openAssetChooser={openAssetChooser}
+                    openAssetChooser={onOpenAssetChooser}
                     onRemoveAsset={onRemoveAsset}
                 />
             ) : (
                 isEditing && (
                     <UploadPlaceholder
                         onUploadClick={openFileDialog}
-                        onAssetChooseClick={openAssetChooser}
+                        onAssetChooseClick={onOpenAssetChooser}
                         onFilesDrop={onFilesDrop}
                         loading={isLoading}
                     />

@@ -10,7 +10,8 @@ import {
     IconTrashBin16,
     merge,
 } from '@frontify/fondue';
-import { BlockItemWrapper, EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
 import { SortableThumbnailItemProps, ThumbnailItemProps } from '../../types';

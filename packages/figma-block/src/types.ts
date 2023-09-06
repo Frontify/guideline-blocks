@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/guideline-blocks-settings';
-import { Radius } from '@frontify/guideline-blocks-shared';
+import { Color, Radius } from '@frontify/guideline-blocks-settings';
 
 export enum BlockPreview {
     Image = 'image',

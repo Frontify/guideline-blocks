@@ -2,7 +2,7 @@
 
 import { CaptionPosition, HorizontalAlignment, Settings, ThumbnailStylesProps, VerticalAlignment } from '../types';
 import { merge } from '@frontify/fondue';
-import { getBorderStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { getBorderStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
 const mapCaptionPositionClasses: Record<CaptionPosition, string> = {

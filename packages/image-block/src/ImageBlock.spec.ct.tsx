@@ -12,7 +12,7 @@ import {
     mapCaptionPositionClasses,
     ratioValues,
 } from './types';
-import { Security } from '@frontify/guideline-blocks-shared';
+import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';

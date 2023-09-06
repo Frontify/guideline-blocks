@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconInfo20, IconLightbulb20, IconMegaphone20 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 import { Icon } from '../types';
 

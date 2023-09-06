@@ -8,16 +8,16 @@ import {
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
-    TextStyles,
     UnderlinePlugin,
 } from '@frontify/fondue';
 import {
     RichTextEditor,
     TextStylePluginsWithoutImage,
+    TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { useMemo } from 'react';
 import { InformationSectionProps } from '../types';
 

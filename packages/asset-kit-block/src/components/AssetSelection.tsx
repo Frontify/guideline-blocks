@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { IconPlus24 } from '@frontify/fondue';
 import { useEffect, useState } from 'react';
 import { ASSET_SETTINGS_ID } from '../settings';
-import { AssetChooserObjectType, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { AssetChooserObjectType, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { AssetSelectionProps } from '../types';
 
 export const AssetSelection = ({
@@ -15,6 +15,7 @@ export const AssetSelection = ({
     saveDownloadUrl,
     currentAssets,
 }: AssetSelectionProps) => {
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true });
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -22,13 +23,13 @@ export const AssetSelection = ({
     });
 
     const onOpenAssetChooser = () => {
-        appBridge.openAssetChooser(
+        openAssetChooser(
             (assetsObject) => {
                 setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
                 saveDownloadUrl('');
                 addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 multiSelection: true,

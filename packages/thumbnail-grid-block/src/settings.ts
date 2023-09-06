@@ -4,17 +4,15 @@ import {
     IconEnum,
     appendUnit,
     defineSettings,
+    getBackgroundSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getGutterSettings,
     maximumNumericalOrPercentOrAutoRule,
     minimumNumericalOrPercentRule,
     numericalOrPercentRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import {
-    getBackgroundSettings,
-    getBorderRadiusSettings,
-    getBorderSettings,
-    getGutterSettings,
-} from '@frontify/guideline-blocks-shared';
 import { CaptionPosition, HorizontalAlignment, VerticalAlignment } from './types';
 
 const IMAGE_POSITION_CHOICE_ID = 'imagePosition';

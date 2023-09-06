@@ -6,14 +6,13 @@ import { useSortable } from '@dnd-kit/sortable';
 import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge } from '@frontify/fondue';
 import {
     BlockItemWrapper,
-    CssValueDisplay,
     getBackgroundColorStyles,
     getBorderStyles,
     getRadiusStyles,
     hasRichTextValue,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
-
+} from '@frontify/guideline-blocks-settings';
+import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
 import { AnimationCurve, CardProps, SortableCardProps } from '../types';
 import { DEFAULT_ANIMATION_CANVAS_VIEWBOX } from '../constants';
 import { AnimationCanvas, AnimationCurveFlyout, CardText } from './';
@@ -112,7 +111,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         onMouseEnter={!isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
                         onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
-                            (hasBackground || hasBorder) && 'tw-overflow-hidden',
                             (textShown || hasParameter) && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative tw-bg-base',
                         ])}
@@ -145,12 +143,15 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         />
                         <div
                             data-test-id="animation-curves-canvas-wrapper"
-                            className={merge([(hasBorder || hasBackground) && 'tw-px-5 tw-py-4'])}
+                            className={merge([
+                                (hasBorder || hasBackground) && 'tw-px-5 tw-py-4',
+                                hasBorder && '!tw-rounded-b-none',
+                            ])}
                             style={{
-                                ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
-                                ...(hasBackground &&
-                                    !hasBorder &&
-                                    getRadiusStyles(radiusChoice, hasRadius, radiusValue)),
+                                ...(hasBackground && {
+                                    ...getBackgroundColorStyles(backgroundColor),
+                                    ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
+                                }),
                             }}
                         >
                             <AnimationCanvas
@@ -172,6 +173,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         </div>
                         {textShown && (
                             <CardText
+                                id={animationCurve.id}
                                 appBridge={appBridge}
                                 title={title ?? ''}
                                 description={description ?? ''}

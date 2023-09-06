@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16 } from '@frontify/fondue';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { Alignment, EditorOverlayProps, SliderImageSlot } from '../../types';
 
 export const EditorOverlay = ({

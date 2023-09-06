@@ -8,10 +8,10 @@ import {
     IconEnum,
     appendUnit,
     defineSettings,
+    getBorderRadiusSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 
 import { BlockPreview, HeightChoices } from './types';
 
