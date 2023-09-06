@@ -163,7 +163,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)',
         );
     });
 
@@ -191,7 +191,7 @@ describe('Gradient Block', () => {
             cy.wrap(badge).should(
                 'have.css',
                 'top',
-                `${TargetForMultiLevelGradient[index] * HEIGHT_OF_SQUARE_BADGE}px`
+                `${TargetForMultiLevelGradient[index] * HEIGHT_OF_SQUARE_BADGE}px`,
             );
         });
     });
@@ -281,7 +281,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 0, 0) 50%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 0, 0) 50%, rgb(255, 255, 255) 100%)',
         );
     });
 
@@ -321,7 +321,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 255) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 255) 25%, rgb(255, 255, 255) 100%)',
         );
     });
 
@@ -340,7 +340,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
         );
     });
 
@@ -405,7 +405,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)',
         );
     });
 
@@ -421,7 +421,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)',
         );
 
         cy.get(SquareBadgesSelector).each((badge, index) => {
@@ -443,7 +443,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)',
         );
         cy.get(SquareBadgesSelector).each((badge, index) => {
             cy.wrap(badge).should('have.css', 'left', '0px');

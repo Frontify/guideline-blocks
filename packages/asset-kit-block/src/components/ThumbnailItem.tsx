@@ -30,7 +30,7 @@ export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onRe
             },
             {
                 objectTypes: [AssetChooserObjectType.ImageVideo],
-            }
+            },
         );
     };
 

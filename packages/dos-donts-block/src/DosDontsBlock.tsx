@@ -209,7 +209,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onChangeLocalItem = (itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
-            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
+            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item)),
         );
     };
 
@@ -308,7 +308,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {
                 multiSelection: true,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
-            }
+            },
         );
     };
 

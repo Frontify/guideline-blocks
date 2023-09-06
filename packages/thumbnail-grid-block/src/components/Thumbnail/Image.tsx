@@ -31,34 +31,29 @@ export const Image = ({
 }: ImageProps) => (
     <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper={!image}>
         {image ? (
-            <>
-                {isLoading ? (
-                    <div className="tw-w-full tw-aspect-square tw-grid tw-justify-center tw-items-center tw-bg-base-alt tw-border tw-border-blank-state-line tw-rounded tw-p-4 tw-text-text-weak tw-cursor-none tw-pointer-events-none">
-                        <LoadingCircle />
-                    </div>
-                ) : (
-                    <img
-                        data-test-id="thumbnail-image"
-                        className="tw-object-scale-down"
-                        style={thumbnailStyles.imageStyles}
-                        loading="lazy"
-                        src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
-                        alt={altText || undefined}
-                    />
-                )}
-            </>
-        ) : (
-            <>
-                {isEditing && (
-                    <UploadPlaceholder
-                        width={thumbnailStyles.width}
-                        isLoading={isLoading}
-                        openFileDialog={onOpenFileDialog}
-                        onFilesDrop={(files) => onFilesDrop(files, id)}
-                        openAssetChooser={onAssetChooserClick}
-                    />
-                )}
-            </>
-        )}
+            isLoading ? (
+                <div className="tw-w-full tw-aspect-square tw-grid tw-justify-center tw-items-center tw-bg-base-alt tw-border tw-border-blank-state-line tw-rounded tw-p-4 tw-text-text-weak tw-cursor-none tw-pointer-events-none">
+                    <LoadingCircle />
+                </div>
+            ) : (
+                <img
+                    data-test-id="thumbnail-image"
+                    className="tw-object-scale-down"
+                    style={thumbnailStyles.imageStyles}
+                    loading="lazy"
+                    src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
+                    alt={altText || undefined}
+                />
+            )
+        ) : // eslint-disable-next-line unicorn/no-nested-ternary
+        isEditing ? (
+            <UploadPlaceholder
+                width={thumbnailStyles.width}
+                isLoading={isLoading}
+                openFileDialog={onOpenFileDialog}
+                onFilesDrop={(files) => onFilesDrop(files, id)}
+                openAssetChooser={onAssetChooserClick}
+            />
+        ) : null}
     </ImageWrapper>
 );

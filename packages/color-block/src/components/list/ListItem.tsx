@@ -104,7 +104,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     if (!isEditing && !mappedColorSpace.value) {
-                        return <></>;
+                        return null;
                     }
 
                     return (

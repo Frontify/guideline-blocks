@@ -1,16 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { ThumbnailStylesProps } from '../../types';
 import { merge } from '@frontify/fondue';
 
 type ImageWrapperProps = {
-    children: ReactElement;
+    children: ReactNode;
     thumbnailStyles: ThumbnailStylesProps;
     placeholderWrapper?: boolean;
 };
 
-export const ImageWrapper = ({ children, thumbnailStyles, placeholderWrapper }: ImageWrapperProps) => {
+export const ImageWrapper = ({ children, thumbnailStyles, placeholderWrapper }: ImageWrapperProps): ReactElement => {
     const { width, alignmentClassNames, imageIsAboveOrBelow } = thumbnailStyles;
     return (
         <div

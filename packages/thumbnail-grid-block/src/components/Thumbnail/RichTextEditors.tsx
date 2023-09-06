@@ -36,7 +36,7 @@ export const RichTextEditors = ({
                 />
             </div>
         ),
-        [id, title, isEditing, updateItemWith]
+        [id, title, isEditing, updateItemWith],
     );
     const memoizedDescription = useMemo(
         () => (
@@ -49,7 +49,7 @@ export const RichTextEditors = ({
                 placeholder="Add a description"
             />
         ),
-        [id, description, isEditing, updateItemWith, appBridge]
+        [id, description, isEditing, updateItemWith, appBridge],
     );
 
     return (

@@ -122,48 +122,41 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                 ) : (
                     <div style={{ height: activeHeight }}>{iframe}</div>
                 )
-            ) : (
-                <>
-                    {isEditing ? (
-                        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
-                            <div
-                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
-                                data-test-id="storybook-empty-wrapper"
+            ) : // eslint-disable-next-line unicorn/no-nested-ternary
+            isEditing ? (
+                <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
+                    <div
+                        className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
+                        data-test-id="storybook-empty-wrapper"
+                    >
+                        <IconStorybook size={IconSize.Size32} />
+                        <div className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}>
+                            <FormControl
+                                helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                                style={
+                                    !isValidStorybookUrl(submittedUrl)
+                                        ? FormControlStyle.Danger
+                                        : FormControlStyle.Primary
+                                }
                             >
-                                <IconStorybook size={IconSize.Size32} />
-                                <div
-                                    className={`tw-w-full tw-max-w-sm ${
-                                        !isValidStorybookUrl(submittedUrl) && 'tw-pt-6'
-                                    }`}
-                                >
-                                    <FormControl
-                                        helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
-                                        style={
-                                            !isValidStorybookUrl(submittedUrl)
-                                                ? FormControlStyle.Danger
-                                                : FormControlStyle.Primary
-                                        }
-                                    >
-                                        <TextInput
-                                            value={input}
-                                            onChange={setInput}
-                                            onEnterPressed={saveInputLink}
-                                            placeholder={URL_INPUT_PLACEHOLDER}
-                                        />
-                                    </FormControl>
-                                </div>
-                                <Button onClick={saveInputLink}>Confirm</Button>
-                            </div>
-                        </Resizeable>
-                    ) : (
-                        <div
-                            className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
-                            style={{ height: activeHeight }}
-                        >
-                            No Storybook-URL defined.
+                                <TextInput
+                                    value={input}
+                                    onChange={setInput}
+                                    onEnterPressed={saveInputLink}
+                                    placeholder={URL_INPUT_PLACEHOLDER}
+                                />
+                            </FormControl>
                         </div>
-                    )}
-                </>
+                        <Button onClick={saveInputLink}>Confirm</Button>
+                    </div>
+                </Resizeable>
+            ) : (
+                <div
+                    className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
+                    style={{ height: activeHeight }}
+                >
+                    No Storybook-URL defined.
+                </div>
             )}
         </div>
     );
