@@ -23,7 +23,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId();
-    const { blockTemplates, updateTemplateIdsFromKey /*errorMessage*/ } = useBlockTemplates(appBridge);
+    const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
         title,
@@ -52,14 +52,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const [templateTitle, setTemplateTitle] = useState(title ?? '');
     const [templateDescription, setTemplateDescription] = useState(description ?? '');
-    const [templatePageCount, setTemplatePageCount] = useState(selectedTemplate ? selectedTemplate.pages.length : 0);
 
-    const hasPreview = useCallback(() => preview !== PreviewType.None, [preview]);
-    const flexDirection = hasPreview() ? textPositioningToFlexDirection[textPositioning] : 'row';
-    const isRows = useCallback(
-        () => hasPreview() && (flexDirection === 'row' || flexDirection === 'row-reverse'),
-        [flexDirection, hasPreview]
-    );
+    const hasPreview = preview !== PreviewType.None;
+    const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
+    const isRows = hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
 
     const updateTemplateTitle = (value: string) => {
         setTemplateTitle(value);
@@ -73,18 +69,22 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const updateSelectedTemplate = useCallback(
         (templates: Template[]) => {
-            templates.map((template) => setSelectedTemplate(template));
+            const lastTemplate = templates.pop();
+
+            if (lastTemplate) {
+                setSelectedTemplate(lastTemplate);
+            }
         },
         [setSelectedTemplate]
     );
 
-    // useEffect(() => {
-    //     if (errorMessage !== '') {
-    //         setLastErrorMessage(errorMessage);
-    //         updateTemplateTitle('');
-    //         updateTemplateDescription('');
-    //     }
-    // }, [errorMessage]);
+    useEffect(() => {
+        if (error !== null) {
+            setLastErrorMessage(error);
+            updateTemplateTitle('');
+            updateTemplateDescription('');
+        }
+    }, [error]);
 
     useEffect(() => {
         if (blockTemplates[SETTING_ID]) {
@@ -92,14 +92,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, [blockTemplates, updateSelectedTemplate]);
 
-    useEffect(() => {
-        if (selectedTemplate) {
-            setTemplatePageCount(selectedTemplate.pages.length);
-        }
-    }, [description, selectedTemplate, title]);
-
-    const onChangeSetting = (key: string, value: string) => {
-        updateBlockSettings({ ...blockSettings, [key]: value });
+    const onChangeSetting = async <Key extends keyof Settings>(key: Key, value: Settings[Key]) => {
+        await updateBlockSettings({ ...blockSettings, [key]: value });
     };
 
     const handleNewPublication = () => {
@@ -114,9 +108,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div data-test-id="template-block">
-            {!selectedTemplate && !isEditing ? (
-                <div></div>
-            ) : (
+            {selectedTemplate || isEditing ? (
                 <div
                     className="tw-border tw-border-black-20"
                     style={{
@@ -134,16 +126,16 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             : cardPaddingValues[cardPaddingSimple],
                     }}
                 >
-                    {/*{isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}*/}
+                    {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
                     <div
                         className="tw-flex"
                         style={{
                             flexDirection,
                             gap: GAP,
-                            alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
+                            alignItems: isRows ? textAnchoringHorizontal : textAnchoringVertical,
                         }}
                     >
-                        {hasPreview() && (
+                        {hasPreview && (
                             <TemplatePreview
                                 appBridge={appBridge}
                                 template={selectedTemplate}
@@ -154,9 +146,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         <div
-                            className={merge(['tw-flex', isRows() && hasPreview() ? 'tw-flex-col' : 'tw-flex-row'])}
+                            className={merge(['tw-flex', isRows && hasPreview ? 'tw-flex-col' : 'tw-flex-row'])}
                             style={{
-                                width: isRows() && hasPreview() ? `${textRatio}%` : '100%',
+                                width: isRows && hasPreview ? `${textRatio}%` : '100%',
                                 gap: GAP,
                             }}
                         >
@@ -175,7 +167,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         </Heading>
                                     )}
                                     <div>
-                                        <Text size={'small'}>{templatePageCount} pages</Text>
+                                        <Text size="small">{selectedTemplate?.pages.length ?? 0} pages</Text>
                                     </div>
                                 </div>
                                 {isEditing ? (
@@ -208,7 +200,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     </div>
                 </div>
-            )}
+            ) : null}
         </div>
     );
 };
