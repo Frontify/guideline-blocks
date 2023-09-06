@@ -11,6 +11,7 @@ import {
     Asset,
     AssetChooserObjectType,
     FileExtensionSets,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -27,7 +28,7 @@ import { Grid, ImageWrapper, Item, RichTextEditors, SortableItem, UploadPlacehol
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [itemsState, setItemsState] = useState(blockSettings.items ?? []);
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
@@ -36,11 +37,12 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
     const [uploadId, setUploadId] = useState<string | undefined>(undefined);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
-    const openAssetChooser = (id?: string) => {
-        appBridge.openAssetChooser(
+
+    const onOpenAssetChooser = (id?: string) => {
+        openAssetChooser(
             async (uploadResults: Asset[]) => {
                 updateImages([...uploadResults], id);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 multiSelection: id ? false : true,
@@ -155,7 +157,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         showGrabHandle: isEditing && itemsState.length > 1,
         setUploadedId: setUploadId,
         onFilesDrop,
-        openAssetChooser,
+        openAssetChooser: onOpenAssetChooser,
         openFileDialog,
         onRemoveAsset,
         updateItemWith,
@@ -213,7 +215,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             isLoading={loadingIds.includes('placeholder')}
                             openFileDialog={openFileDialog}
                             onFilesDrop={onFilesDrop}
-                            openAssetChooser={openAssetChooser}
+                            openAssetChooser={onOpenAssetChooser}
                         />
                     </ImageWrapper>
                     <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />

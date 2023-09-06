@@ -10,7 +10,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
-import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 import { getImageStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
@@ -23,6 +23,7 @@ type ImageProps = {
 };
 
 export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
+    const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
     const { isFocused, focusProps } = useFocusRing();
@@ -59,7 +60,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
                             {Image}
                         </a>
                     ) : (
-                        <button {...props} onClick={() => appBridge.openAssetViewer(image.token)}>
+                        <button {...props} onClick={() => open(image)}>
                             {Image}
                         </button>
                     )}
