@@ -216,7 +216,12 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             openAssetChooser={openAssetChooser}
                         />
                     </ImageWrapper>
-                    <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />
+                    <RichTextEditors
+                        id="placeholder"
+                        isEditing={isEditing}
+                        updateItemWith={updateItemWith}
+                        appBridge={appBridge}
+                    />
                 </div>
             )}
         </Grid>
