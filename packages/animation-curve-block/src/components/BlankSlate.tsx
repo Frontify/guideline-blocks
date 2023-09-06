@@ -69,6 +69,7 @@ export const BlankSlate = ({
             </div>
 
             <CardText
+                id={animationCurve.id}
                 appBridge={appBridge}
                 title={title}
                 description={description}
