@@ -107,9 +107,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     return (
-        <div data-test-id="template-block">
+        <div data-test-id="template-block-container">
             {selectedTemplate || isEditing ? (
                 <div
+                    data-test-id="template-block"
                     className="tw-border tw-border-black-20"
                     style={{
                         backgroundColor: hasCardBackgroundColor
@@ -155,36 +156,47 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <div className="tw-grow tw-min-w-0">
                                 <div className="tw-mb-2">
                                     {isEditing ? (
-                                        <TextInput
-                                            id={`${blockId}-title`}
-                                            value={templateTitle}
-                                            placeholder={isEditing ? 'Template Name' : undefined}
-                                            onChange={updateTemplateTitle}
-                                        />
+                                        <span data-test-id="template-block-title-edit">
+                                            <TextInput
+                                                id={`${blockId}-title`}
+                                                value={templateTitle}
+                                                placeholder={isEditing ? 'Template Name' : undefined}
+                                                onChange={updateTemplateTitle}
+                                            />
+                                        </span>
                                     ) : (
                                         <Heading size="xx-large" weight="strong">
-                                            {templateTitle}
+                                            <span data-test-id="template-block-title">{templateTitle}</span>
                                         </Heading>
                                     )}
                                     <div>
-                                        <Text size="small">{selectedTemplate?.pages.length ?? 0} pages</Text>
+                                        <Text size="small">
+                                            <span data-test-id="template-block-page-count">
+                                                {selectedTemplate?.pages.length ?? 0} pages
+                                            </span>
+                                        </Text>
                                     </div>
                                 </div>
                                 {isEditing ? (
-                                    <Textarea
-                                        id={`${blockId}-description`}
-                                        value={templateDescription}
-                                        autosize={true}
-                                        resizeable={false}
-                                        placeholder={
-                                            isEditing
-                                                ? 'Use default Template description if available, add your own or leave it empty'
-                                                : undefined
-                                        }
-                                        onInput={updateTemplateDescription}
-                                    />
+                                    <span data-test-id="template-block-description-edit">
+                                        <Textarea
+                                            id={`${blockId}-description`}
+                                            value={templateDescription}
+                                            autosize={true}
+                                            resizeable={false}
+                                            placeholder={
+                                                isEditing
+                                                    ? 'Use default Template description if available, add your own or leave it empty'
+                                                    : undefined
+                                            }
+                                            onInput={updateTemplateDescription}
+                                            data-test-id="template-block-description-editing"
+                                        />
+                                    </span>
                                 ) : (
-                                    <Text>{templateDescription}</Text>
+                                    <Text>
+                                        <span data-test-id="template-block-description">{templateDescription}</span>
+                                    </Text>
                                 )}
                             </div>
                             <div className="tw-shrink-0">
