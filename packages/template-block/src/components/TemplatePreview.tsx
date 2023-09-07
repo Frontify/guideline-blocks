@@ -1,13 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    AppBridgeBlock,
-    Template,
-    TemplateLegacy,
-    useBlockAssets,
-    useBlockSettings,
-    useEditorState,
-} from '@frontify/app-bridge';
+import { AppBridgeBlock, Template, TemplateLegacy, useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import {
     ActionMenu,
     Button,
@@ -35,22 +28,25 @@ import { SETTING_ID } from '../constants';
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
+    blockSettings: Settings;
     template: Template | null;
     onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
     onUpdateTemplateTitle: (value: string) => void;
     onUpdateTemplateDescription: (value: string) => void;
+    onSave: (properties: Partial<Settings>) => Promise<void>;
     onError: (message: string) => void;
 };
 
 export const TemplatePreview = ({
     appBridge,
+    blockSettings,
     template,
     onUpdateTemplate,
     onUpdateTemplateTitle,
     onUpdateTemplateDescription,
+    onSave,
     onError,
 }: TemplatePreviewProps) => {
-    const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
 
@@ -76,7 +72,7 @@ export const TemplatePreview = ({
     const { previewCustom } = blockAssets;
 
     const flexDirection = textPositioningToFlexDirection[textPositioning];
-    const isRows = useCallback(() => flexDirection === 'row' || flexDirection === 'row-reverse', [flexDirection]);
+    const isRows = flexDirection === 'row' || flexDirection === 'row-reverse';
 
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
@@ -89,24 +85,24 @@ export const TemplatePreview = ({
         onUpdateTemplateDescription(newDescriptionValue);
     };
 
-    const onTemplateSelected = useCallback(async (result: TemplateLegacy) => {
-        try {
-            await onUpdateTemplate(SETTING_ID, [result.id]);
-
-            updateBlockSettings({
-                ...blockSettings,
-                template: result,
-                templateId: result.id,
-            }).then(() => {
+    const onTemplateSelected = useCallback(
+        async (result: TemplateLegacy) => {
+            try {
+                await onUpdateTemplate(SETTING_ID, [result.id]);
+                await onSave({
+                    ...blockSettings,
+                    template: result,
+                    templateId: result.id,
+                });
                 updateTemplateTitleAndDescription(result);
-            });
-        } catch (error) {
-            onError(error as string);
-        }
+            } catch (error) {
+                onError(error as string);
+            }
 
-        appBridge.closeTemplateChooser();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+            appBridge.closeTemplateChooser();
+        },
+        [appBridge, blockSettings, onError, onSave, onUpdateTemplate, updateTemplateTitleAndDescription],
+    );
 
     const openTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
 
@@ -114,7 +110,7 @@ export const TemplatePreview = ({
         <div
             data-test-id="template-block-preview"
             style={{
-                width: isRows() ? `${100 - parseInt(textRatio)}%` : '100%',
+                width: isRows ? `${100 - parseInt(textRatio)}%` : '100%',
             }}
         >
             {template !== null || previewCustom ? (
@@ -129,7 +125,7 @@ export const TemplatePreview = ({
                             : cornerRadiusValues[previewCornerRadiusSimple],
                         border: hasPreviewBorder
                             ? `${previewBorderWidth} ${previewBorderStyle} ${getRgbaString(
-                                  previewBorderColor as Color
+                                  previewBorderColor as Color,
                               )}`
                             : 'none',
                         height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
@@ -158,10 +154,10 @@ export const TemplatePreview = ({
                                 trigger={
                                     <Button
                                         icon={<IconDotsVertical />}
-                                        onClick={() => setIsActionFlyoutOpen(!isActionFlyoutOpen)}
+                                        onClick={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
                                     />
                                 }
-                                onOpenChange={() => setIsActionFlyoutOpen(!isActionFlyoutOpen)}
+                                onOpenChange={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
                                 legacyFooter={false}
                             >
                                 <ActionMenu

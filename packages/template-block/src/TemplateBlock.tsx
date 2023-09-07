@@ -75,7 +75,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 setSelectedTemplate(lastTemplate);
             }
         },
-        [setSelectedTemplate]
+        [setSelectedTemplate],
     );
 
     useEffect(() => {
@@ -139,10 +139,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {hasPreview && (
                             <TemplatePreview
                                 appBridge={appBridge}
+                                blockSettings={blockSettings}
                                 template={selectedTemplate}
                                 onUpdateTemplate={updateTemplateIdsFromKey}
                                 onUpdateTemplateTitle={updateTemplateTitle}
                                 onUpdateTemplateDescription={updateTemplateDescription}
+                                onSave={updateBlockSettings}
                                 onError={setLastErrorMessage}
                             />
                         )}
