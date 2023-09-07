@@ -38,7 +38,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             onFilesDrop,
             replaceWithPlaceholder = false,
         },
-        ref
+        ref,
     ) => {
         const [showAltTextMenu, setShowAltTextMenu] = useState(false);
         const { id, title, description, altText } = item;
@@ -141,7 +141,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 />
             </div>
         );
-    }
+    },
 );
 
 Item.displayName = 'Item';

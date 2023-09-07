@@ -69,7 +69,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 selectedValueId: blockAssets[AUDIO_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.File],
                 extensions: FileExtensionSets.Audio,
-            }
+            },
         );
     };
 

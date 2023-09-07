@@ -49,7 +49,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 selectedValueId: id && blockAssets[id]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     };
     const onFilesDrop = (files: FileList, id?: string) => {
@@ -122,7 +122,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 const newId = generateRandomId();
                 addItem(newId, type, newId, altText);
                 setLoadingIds((ids) =>
-                    index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId]
+                    index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId],
                 );
                 await updateImage(file, newId, updateId ?? 'placeholder');
             }

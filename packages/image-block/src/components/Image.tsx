@@ -44,29 +44,22 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
         className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
     };
 
-    return (
-        <>
-            {isEditing ? (
-                Image
-            ) : (
-                <>
-                    {link ? (
-                        <a
-                            {...props}
-                            href={link.link.link}
-                            target={link.openInNewTab ? '_blank' : undefined}
-                            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-                        >
-                            {Image}
-                        </a>
-                    ) : (
-                        <button {...props} onClick={() => open(image)}>
-                            {Image}
-                        </button>
-                    )}
-                </>
-            )}
-        </>
+    return isEditing ? (
+        Image
+    ) : // eslint-disable-next-line unicorn/no-nested-ternary
+    link ? (
+        <a
+            {...props}
+            href={link.link.link}
+            target={link.openInNewTab ? '_blank' : undefined}
+            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+        >
+            {Image}
+        </a>
+    ) : (
+        <button {...props} onClick={() => open(image)}>
+            {Image}
+        </button>
     );
 };
 
