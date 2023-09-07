@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getBackgroundColorStyles, getBorderStyles, getRadiusStyles } from '@frontify/guideline-blocks-shared';
+import { getBackgroundColorStyles, getBorderStyles, getRadiusStyles } from '@frontify/guideline-blocks-settings';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from '../settings';
 import { CSSProperties } from 'react';
 import { Settings } from '../types';

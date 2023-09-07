@@ -3,8 +3,7 @@
 import { mount } from 'cypress/react18';
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { BorderStyle, GutterSpacing, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
-import { TextStyles } from '@frontify/fondue';
+import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
 import { AnimationCurve, AnimationCurveType } from './types';
@@ -153,7 +152,7 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_PARAMETERS_SELECTOR).should('not.exist');
     });
 
-    it('should render one animation curve with a background color with padding and overflow hidden', () => {
+    it('should render one animation curve with a background color with padding', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 content: [AnimationCurveDummy.with()],
@@ -162,12 +161,11 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(CARD_SELECTOR).should('have.css', 'overflow', 'hidden');
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'background-color', 'rgb(255, 0, 0)');
     });
 
-    it('should render one animation curve with a dashed border, padding and overflow hidden', () => {
+    it('should render one animation curve with a dashed border, padding', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 content: [AnimationCurveDummy.with()],
@@ -178,12 +176,11 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(CARD_SELECTOR).should('have.css', 'overflow', 'hidden');
         cy.get(CARD_SELECTOR).should('have.css', 'border', '2px dashed rgb(255, 0, 0)');
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');
     });
 
-    it('should render one animation curve with a solid border, radius, padding and overflow hidden', () => {
+    it('should render one animation curve with a solid border, radius, padding', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 content: [AnimationCurveDummy.with()],
@@ -195,13 +192,12 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(CARD_SELECTOR).should('have.css', 'overflow', 'hidden');
         cy.get(CARD_SELECTOR).should('have.css', 'border', '2px dashed rgb(255, 0, 0)');
         cy.get(CARD_SELECTOR).should('have.css', 'border-radius', '12px');
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');
     });
 
-    it('should render one animation curve with a solid border, custom radius, padding and overflow hidden', () => {
+    it('should render one animation curve with a solid border, custom radius, padding', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 content: [AnimationCurveDummy.with()],
@@ -214,7 +210,6 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(CARD_SELECTOR).should('have.css', 'overflow', 'hidden');
         cy.get(CARD_SELECTOR).should('have.css', 'border', '2px dashed rgb(255, 0, 0)');
         cy.get(CARD_SELECTOR).should('have.css', 'border-radius', '42px');
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');

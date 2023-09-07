@@ -19,7 +19,7 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-settings';
 
 export const titlePlugins = new PluginComposer()
     .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: AllTextStylePlugins })])
@@ -38,7 +38,7 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
             new SoftBreakPlugin(),
             new TextStylePlugin({
                 textStyles: AllTextStylePlugins,
-            })
+            }),
         )
         .setPlugin(
             [
@@ -59,5 +59,5 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
                 new CheckboxListPlugin(),
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
-            ]
+            ],
         );

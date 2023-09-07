@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconPlus24 } from '@frontify/fondue';
-import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { UploadPlaceholderProps } from '../types';
 
 export const UploadPlaceholder = ({

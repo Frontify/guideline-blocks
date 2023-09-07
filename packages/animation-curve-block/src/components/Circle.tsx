@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { toHexString } from '@frontify/guideline-blocks-settings';
 
 import { CircleProps } from '../types';
 

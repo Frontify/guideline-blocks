@@ -13,7 +13,7 @@ import {
     merge,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
@@ -104,7 +104,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     if (!isEditing && !mappedColorSpace.value) {
-                        return <></>;
+                        return null;
                     }
 
                     return (

@@ -5,20 +5,21 @@ import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/c
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
 import {
     Asset,
     AssetChooserObjectType,
     FileExtensionSets,
+    useAssetChooser,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';
@@ -27,7 +28,7 @@ import { Grid, ImageWrapper, Item, RichTextEditors, SortableItem, UploadPlacehol
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-
+    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [itemsState, setItemsState] = useState(blockSettings.items ?? []);
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
@@ -36,18 +37,19 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
     const [uploadId, setUploadId] = useState<string | undefined>(undefined);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
-    const openAssetChooser = (id?: string) => {
-        appBridge.openAssetChooser(
+
+    const onOpenAssetChooser = (id?: string) => {
+        openAssetChooser(
             async (uploadResults: Asset[]) => {
                 updateImages([...uploadResults], id);
-                appBridge.closeAssetChooser();
+                closeAssetChooser();
             },
             {
                 multiSelection: id ? false : true,
                 selectedValueId: id && blockAssets[id]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     };
     const onFilesDrop = (files: FileList, id?: string) => {
@@ -120,7 +122,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 const newId = generateRandomId();
                 addItem(newId, type, newId, altText);
                 setLoadingIds((ids) =>
-                    index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId]
+                    index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId],
                 );
                 await updateImage(file, newId, updateId ?? 'placeholder');
             }
@@ -155,7 +157,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         showGrabHandle: isEditing && itemsState.length > 1,
         setUploadedId: setUploadId,
         onFilesDrop,
-        openAssetChooser,
+        openAssetChooser: onOpenAssetChooser,
         openFileDialog,
         onRemoveAsset,
         updateItemWith,
@@ -213,7 +215,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             isLoading={loadingIds.includes('placeholder')}
                             openFileDialog={openFileDialog}
                             onFilesDrop={onFilesDrop}
-                            openAssetChooser={openAssetChooser}
+                            openAssetChooser={onOpenAssetChooser}
                         />
                     </ImageWrapper>
                     <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />

@@ -4,13 +4,13 @@ import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
-    downloadAsset,
     isDownloadable,
     joinClassNames,
     useAttachments,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
-import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 import { getImageStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
@@ -23,6 +23,7 @@ type ImageProps = {
 };
 
 export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
+    const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
     const { isFocused, focusProps } = useFocusRing();
@@ -43,29 +44,22 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
         className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
     };
 
-    return (
-        <>
-            {isEditing ? (
-                Image
-            ) : (
-                <>
-                    {link ? (
-                        <a
-                            {...props}
-                            href={link.link.link}
-                            target={link.openInNewTab ? '_blank' : undefined}
-                            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-                        >
-                            {Image}
-                        </a>
-                    ) : (
-                        <button {...props} onClick={() => appBridge.openAssetViewer(image.token)}>
-                            {Image}
-                        </button>
-                    )}
-                </>
-            )}
-        </>
+    return isEditing ? (
+        Image
+    ) : // eslint-disable-next-line unicorn/no-nested-ternary
+    link ? (
+        <a
+            {...props}
+            href={link.link.link}
+            target={link.openInNewTab ? '_blank' : undefined}
+            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+        >
+            {Image}
+        </a>
+    ) : (
+        <button {...props} onClick={() => open(image)}>
+            {Image}
+        </button>
     );
 };
 

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getReadableColor, isDark } from '@frontify/guideline-blocks-shared';
+import { getReadableColor, isDark } from '@frontify/guideline-blocks-settings';
 import { Appearance } from '../types';
 
 export const getTextColor = (appearance: Appearance, color: string, backgroundColor: string): string => {

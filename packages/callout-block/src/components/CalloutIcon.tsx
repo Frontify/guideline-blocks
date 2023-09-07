@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconInfo20, IconLightbulb20, IconMegaphone20 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { ReactElement } from 'react';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
+import type { ReactNode } from 'react';
+
 import { Icon } from '../types';
 
 type CalloutIconProps = {
@@ -24,8 +25,8 @@ export const CalloutIcon = ({ iconType, isActive, iconUrl, color }: CalloutIconP
     </div>
 );
 
-export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement> => ({
-    none: <></>,
+export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactNode> => ({
+    none: null,
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,

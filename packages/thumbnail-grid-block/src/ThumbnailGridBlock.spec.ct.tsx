@@ -4,7 +4,7 @@ import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
 import { CaptionPosition, HorizontalAlignment, Thumbnail, VerticalAlignment } from './types';
-import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
 
 const ThumbnailGridBlockSelector = '[data-test-id="thumbnail-grid-block"]';
 const ThumbnailCaption = '[data-test-id="thumbnail-rte"]';
@@ -260,7 +260,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
         cy.get(ThumbnailCaption).should('have.length', 3);
         cy.get(ThumbnailCaption).first().click();
@@ -294,7 +294,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
 
         cy.get(ThumbnailItem)
@@ -339,7 +339,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
 
         cy.get(ThumbnailItem)

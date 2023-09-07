@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -18,9 +19,12 @@ import {
     IconPlus12,
     Palette,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-shared';
+
+import {
+    BlockProps,
+    joinClassNames,
+    mapAppBridgeColorPalettesToFonduePalettes,
+} from '@frontify/guideline-blocks-settings';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
@@ -58,7 +62,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
-        setColorPickerPalettes(mapColorPalettes(appBridgePalettes));
+        setColorPickerPalettes(mapAppBridgeColorPalettesToFonduePalettes(appBridgePalettes));
     }, [appBridgePalettes, appBridge]);
 
     const { customHeight, heightInput, heightSlider } = blockSettings;
@@ -75,7 +79,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 (paletteColor) =>
                     paletteColor.red === selectedColor.red &&
                     paletteColor.blue === selectedColor.blue &&
-                    paletteColor.green === selectedColor.green
+                    paletteColor.green === selectedColor.green,
             );
         }
 
@@ -246,7 +250,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const colorsBeforeCurrent = displayableItems?.filter((_, index) => index < colorIndex);
 
             const colorsBeforeCurrentColorThatCanBeResized = colorsBeforeCurrent.filter(
-                (color) => color.width >= MINIMUM_COLOR_WIDTH
+                (color) => color.width >= MINIMUM_COLOR_WIDTH,
             );
 
             const nextResizeableSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
@@ -294,7 +298,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         };
                     }
                     return siblingColor;
-                })
+                }),
             );
         }
 
@@ -313,7 +317,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const freeSpaceExists = colorScaleBlockInnerWidth < colorScaleBlockWidth;
 
             const nextResizeableSiblingIndex = displayableItems.findIndex(
-                (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
+                (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH,
             );
 
             if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
@@ -375,7 +379,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     }
 
                     return siblingColor;
-                })
+                }),
             );
         }
     };

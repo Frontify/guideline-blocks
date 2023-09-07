@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FOCUS_STYLE, IconCheckMark } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
@@ -37,7 +37,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             'aria-label': ariaLabel || label,
         },
         toggleState,
-        inputRef
+        inputRef,
     );
 
     const { completeCheckboxColor, checkboxColor } = useContext(SettingsContext);

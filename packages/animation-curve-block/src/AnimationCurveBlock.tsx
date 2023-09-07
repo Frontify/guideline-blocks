@@ -5,15 +5,14 @@ import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } 
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 
-import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
 import { gridClasses } from './constants';
 import { BlankSlate, Card, SortableCard } from './components';
-import { gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-shared';
+import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);

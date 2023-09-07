@@ -9,14 +9,13 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Color } from '@frontify/guideline-blocks-settings';
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
+import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
@@ -66,7 +65,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 document.querySelector(`[data-block="${appBridge.getBlockId()}"].referenced`) as
                     | HTMLDivElement
                     | undefined
-            )?.dataset.referenceUrl || ''
+            )?.dataset.referenceUrl || '',
         );
     }, []);
 
@@ -99,7 +98,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 projectTypes: [AssetChooserProjectType.Workspace],
                 objectTypes: [AssetChooserObjectType.Url],
                 urlContains: 'https://www.figma',
-            }
+            },
         );
     };
 
@@ -124,7 +123,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </a>
             </div>
         ),
-        []
+        [],
     );
 
     const ShowImagePreview = useCallback(
@@ -177,7 +176,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             hasRadius,
             radiusChoice,
             radiusValue,
-        ]
+        ],
     );
 
     const ShowFigmaLive = useCallback(
@@ -213,7 +212,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             borderColor,
             borderStyle,
             allowFullScreen,
-        ]
+        ],
     );
 
     const FigmaLivePortal = useCallback(() => {

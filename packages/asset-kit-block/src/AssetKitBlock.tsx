@@ -8,17 +8,18 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { PluginComposer } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
 import {
+    BlockProps,
     BlockStyles,
     RichTextEditor,
     convertToRteValue,
     hasRichTextValue,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
@@ -58,6 +59,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const downloadAssets = (downloadUrl: string) => {
         const a = document.createElement('a');
         a.href = downloadUrl;
+        a.target = '_blank';
         a.click();
         announceToScreenReader();
     };
@@ -90,87 +92,91 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const isButtonDisabled =
         [AssetBulkDownloadState.Error, AssetBulkDownloadState.Pending, AssetBulkDownloadState.Started].includes(
-            status
+            status,
         ) || currentAssets.length === 0;
 
     return (
-        <div
-            data-test-id="asset-kit-block"
-            className={joinClassNames([
-                'tw-w-full tw-space-y-8',
-                (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8',
-            ])}
-            style={{
-                ...blockStyle(blockSettings),
-            }}
-        >
-            <div className="sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
-                <InformationSection
-                    description={description}
-                    isEditing={isEditing}
-                    setBlockSettings={setBlockSettings}
-                    title={title}
-                    appBridge={appBridge}
-                />
-                <div className="tw-flex-none">
-                    <button
-                        data-test-id="asset-kit-block-download-button"
-                        disabled={isButtonDisabled}
-                        onClick={isEditing ? undefined : startDownload}
-                        onMouseEnter={() => setButtonHover(true)}
-                        onMouseLeave={() => setButtonHover(false)}
-                        style={{
-                            ...BlockStyles.buttonPrimary,
-                            ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
-                            ...(isButtonDisabled ? { opacity: 0.5 } : null),
-                        }}
-                    >
-                        <RichTextEditor
-                            id="asset-kit-block-download-button-text"
-                            value={
-                                hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Download package')
-                            }
-                            isEditing={isEditing}
-                            plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
-                            onTextChange={(buttonText) => setBlockSettings({ buttonText })}
-                        />
-                        <span
-                            data-test-id="asset-kit-block-screen-reader"
-                            ref={screenReaderRef}
-                            role="status"
-                            className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 tw-overflow-hidden"
-                        />
-                    </button>
-                </div>
-            </div>
-
-            {![AssetBulkDownloadState.Init, AssetBulkDownloadState.Ready].includes(status) && (
-                <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
-            )}
-
-            <div>
-                <AssetGrid
-                    appBridge={appBridge}
-                    currentAssets={currentAssets}
-                    deleteAssetIdsFromKey={deleteAssetIdsFromKey}
-                    updateAssetIdsFromKey={updateAssetIdsFromKey}
-                    saveDownloadUrl={saveDownloadUrl}
-                    isEditing={isEditing}
-                    showThumbnails={showThumbnails}
-                    showCount={showCount}
-                    countColor={assetCountColor === 'override' ? countCustomColor : undefined}
-                />
-
-                {isEditing && (
-                    <AssetSelection
+        <div className="asset-kit-block">
+            <div
+                data-test-id="asset-kit-block"
+                className={joinClassNames([
+                    'tw-w-full tw-space-y-8',
+                    (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8',
+                ])}
+                style={{
+                    ...blockStyle(blockSettings),
+                }}
+            >
+                <div className="sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
+                    <InformationSection
+                        description={description}
+                        isEditing={isEditing}
+                        setBlockSettings={setBlockSettings}
+                        title={title}
                         appBridge={appBridge}
-                        isUploadingAssets={isUploadingAssets}
-                        setIsUploadingAssets={setIsUploadingAssets}
-                        addAssetIdsToKey={addAssetIdsToKey}
-                        saveDownloadUrl={saveDownloadUrl}
-                        currentAssets={currentAssets}
                     />
+                    <div className="tw-flex-none">
+                        <button
+                            data-test-id="asset-kit-block-download-button"
+                            disabled={isButtonDisabled}
+                            onClick={isEditing ? undefined : startDownload}
+                            onMouseEnter={() => setButtonHover(true)}
+                            onMouseLeave={() => setButtonHover(false)}
+                            style={{
+                                ...BlockStyles.buttonPrimary,
+                                ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
+                                ...(isButtonDisabled ? { opacity: 0.5 } : null),
+                            }}
+                        >
+                            <RichTextEditor
+                                id="asset-kit-block-download-button-text"
+                                value={
+                                    hasRichTextValue(buttonText)
+                                        ? buttonText
+                                        : convertToRteValue('p', 'Download package')
+                                }
+                                isEditing={isEditing}
+                                plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
+                                onTextChange={(buttonText) => setBlockSettings({ buttonText })}
+                            />
+                            <span
+                                data-test-id="asset-kit-block-screen-reader"
+                                ref={screenReaderRef}
+                                role="status"
+                                className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 tw-overflow-hidden"
+                            />
+                        </button>
+                    </div>
+                </div>
+
+                {![AssetBulkDownloadState.Init, AssetBulkDownloadState.Ready].includes(status) && (
+                    <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
                 )}
+
+                <div>
+                    <AssetGrid
+                        appBridge={appBridge}
+                        currentAssets={currentAssets}
+                        deleteAssetIdsFromKey={deleteAssetIdsFromKey}
+                        updateAssetIdsFromKey={updateAssetIdsFromKey}
+                        saveDownloadUrl={saveDownloadUrl}
+                        isEditing={isEditing}
+                        showThumbnails={showThumbnails}
+                        showCount={showCount}
+                        countColor={assetCountColor === 'override' ? countCustomColor : undefined}
+                    />
+
+                    {isEditing && (
+                        <AssetSelection
+                            appBridge={appBridge}
+                            isUploadingAssets={isUploadingAssets}
+                            setIsUploadingAssets={setIsUploadingAssets}
+                            addAssetIdsToKey={addAssetIdsToKey}
+                            saveDownloadUrl={saveDownloadUrl}
+                            currentAssets={currentAssets}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

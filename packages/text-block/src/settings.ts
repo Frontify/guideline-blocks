@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { defineSettings } from '@frontify/guideline-blocks-settings';
-import { GutterSpacing, getGutterSettings } from '@frontify/guideline-blocks-shared';
+import { GutterSpacing, defineSettings, getGutterSettings } from '@frontify/guideline-blocks-settings';
 
 export const PLACEHOLDER = 'Your text here';
 const CUSTOM_GUTTER_ID = 'columnGutterCustom';

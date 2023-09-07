@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Thumbnail } from '../../types';
-import { RichTextEditor, convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { RichTextEditor, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
-import { TextStyles } from '@frontify/fondue';
 import { useMemo } from 'react';
 
 type RichTextEditorsProps = {
@@ -37,7 +36,7 @@ export const RichTextEditors = ({
                 />
             </div>
         ),
-        [id, title, isEditing, updateItemWith]
+        [id, title, isEditing, updateItemWith],
     );
     const memoizedDescription = useMemo(
         () => (
@@ -50,7 +49,7 @@ export const RichTextEditors = ({
                 placeholder="Add a description"
             />
         ),
-        [id, description, isEditing, updateItemWith, appBridge]
+        [id, description, isEditing, updateItemWith, appBridge],
     );
 
     return (

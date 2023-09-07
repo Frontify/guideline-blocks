@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { toHexString } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
 import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
@@ -112,7 +112,7 @@ export const AnimationCanvas = ({
             setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [draggingPoint, viewBox.width, viewBox.height]
+        [draggingPoint, viewBox.width, viewBox.height],
     );
 
     const updatedAnimationFunction = (animationValues: Point, draggingPoint: ControlPoint): AnimationFunction => {

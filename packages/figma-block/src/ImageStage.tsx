@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-settings';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
 import { getBorderOfBlock } from './helpers';
 import { DEFAULT_HEIGHT } from './settings';

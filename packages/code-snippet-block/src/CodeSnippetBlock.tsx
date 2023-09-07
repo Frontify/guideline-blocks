@@ -15,17 +15,16 @@ import {
     debounce,
     merge,
 } from '@frontify/fondue';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import './styles.css';
 import { headerThemes } from './headerThemes';
 import { Language, Settings, languageNameMap } from './types';
-import { setAlpha } from '@frontify/guideline-blocks-shared';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);

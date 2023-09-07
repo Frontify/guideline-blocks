@@ -8,10 +8,10 @@ import {
     appendUnit,
     createFooter,
     defineSettings,
+    getExtendedBorderRadiusSettings,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 import { Alignment, Appearance, Icon, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';

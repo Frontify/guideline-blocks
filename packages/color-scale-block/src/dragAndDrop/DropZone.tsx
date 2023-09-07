@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrop } from 'react-dnd';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { CollisionPosition } from '@frontify/fondue';
 
 import { ColorProps } from '../types';

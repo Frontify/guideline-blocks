@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, defineSettings } from '@frontify/guideline-blocks-settings';
-import { getBackgroundSettings, getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import {
+    Color,
+    defineSettings,
+    getBackgroundSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+} from '@frontify/guideline-blocks-settings';
 
 export const ASSET_SETTINGS_ID = 'images';
 const COUNT_COLOR_ID = 'assetCountColor';

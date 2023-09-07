@@ -73,6 +73,7 @@ describe('Quote Block', () => {
                 authorName: 'James Webb',
                 showAuthor: true,
             },
+            editorState: true,
         });
 
         mount(<QuoteBlockWithStubs />);

@@ -2,17 +2,18 @@
 
 import {
     AssetChooserObjectType,
+    BorderStyle,
     IconEnum,
     appendUnit,
     defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
     maximumNumericalOrPixelOrAutoRule,
     minimumNumericRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '../../shared';
 import {
     Alignment,
     FIRST_ASSET_ID,

@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
+import {
+    IconEnum,
+    Radius,
+    defineSettings,
+    getBorderSettings,
+    getExtendedBorderRadiusSettings,
+} from '@frontify/guideline-blocks-settings';
 import { languageNameMap, themeNameMap } from './types';
 
 export const settings = defineSettings({

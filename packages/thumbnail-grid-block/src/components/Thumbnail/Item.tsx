@@ -10,7 +10,8 @@ import {
     IconTrashBin16,
     merge,
 } from '@frontify/fondue';
-import { BlockItemWrapper, EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
 import { SortableThumbnailItemProps, ThumbnailItemProps } from '../../types';
@@ -37,7 +38,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             onFilesDrop,
             replaceWithPlaceholder = false,
         },
-        ref
+        ref,
     ) => {
         const [showAltTextMenu, setShowAltTextMenu] = useState(false);
         const { id, title, description, altText } = item;
@@ -140,7 +141,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 />
             </div>
         );
-    }
+    },
 );
 
 Item.displayName = 'Item';

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconMinus, IconPlus } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps } from '../types';
 
 export const DrawFullScreenActionButton = ({ isFullScreen = false, onClick }: DrawFullScreenActionButtonProps) => (

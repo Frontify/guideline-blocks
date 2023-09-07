@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
-import { BorderSettings, Padding, PaddingSettings, RadiusSettings } from '@frontify/guideline-blocks-shared';
+import { BorderSettings, Padding, PaddingSettings, RadiusSettings } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     backgroundColor?: Color;

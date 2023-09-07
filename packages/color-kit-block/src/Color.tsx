@@ -3,7 +3,7 @@
 import type { ReactElement } from 'react';
 import type { Color as ColorType } from '@frontify/app-bridge';
 import { LegacyTooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { TooltipContent } from './TooltipContent';
 
@@ -13,7 +13,7 @@ type ColorProps = {
     colorsLength: number;
 };
 
-export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement => {
+export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement | null => {
     const { copy, status } = useCopy();
 
     const colorWithDecimalAlpha: ColorType = {
@@ -22,7 +22,7 @@ export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElem
     };
 
     if (!color.hex) {
-        return <></>;
+        return null;
     }
 
     const ColorBox = () => (
