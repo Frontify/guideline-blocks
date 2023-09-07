@@ -59,6 +59,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const downloadAssets = (downloadUrl: string) => {
         const a = document.createElement('a');
         a.href = downloadUrl;
+        a.target = '_blank';
         a.click();
         announceToScreenReader();
     };
