@@ -69,7 +69,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 selectedValueId: blockAssets[AUDIO_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.File],
                 extensions: FileExtensionSets.Audio,
-            }
+            },
         );
     };
 
@@ -160,7 +160,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,
-                                assetDownloadEnabled
+                                assetDownloadEnabled,
                             ) && <DownloadButton onDownload={() => downloadAsset(audio)} />}
                             <BlockAttachments appBridge={appBridge} />
                         </div>

@@ -72,7 +72,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 selectedValueId: blockAssets[IMAGE_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     };
 
