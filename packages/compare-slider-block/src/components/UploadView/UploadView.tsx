@@ -6,8 +6,10 @@ import { Alignment, SliderImageSlot, UploadViewProps } from '../../types';
 
 export const UploadView = ({
     alignment,
-    firstAsset,
-    secondAsset,
+    firstAssetPreviewUrl,
+    firstAssetTitle,
+    secondAssetPreviewUrl,
+    secondAssetTitle,
     openAssetChooser,
     startFileDialogUpload,
     startDragAndDropUpload,
@@ -21,12 +23,12 @@ export const UploadView = ({
                 alignment === Alignment.Vertical ? 'tw-grid-cols-1 tw-grid-rows-2' : 'tw-grid-cols-2',
             ])}
         >
-            {firstAsset ? (
+            {firstAssetPreviewUrl ? (
                 <img
                     loading="lazy"
                     className="tw-w-full tw-h-full tw-object-cover tw-object-left"
-                    src={firstAsset?.previewUrl}
-                    alt={firstAsset?.title}
+                    src={firstAssetPreviewUrl}
+                    alt={firstAssetTitle}
                 />
             ) : (
                 <BlockInjectButton
@@ -41,12 +43,12 @@ export const UploadView = ({
                 />
             )}
 
-            {secondAsset ? (
+            {secondAssetPreviewUrl ? (
                 <img
                     loading="lazy"
                     className="tw-w-full tw-h-full tw-object-cover tw-object-right"
-                    src={secondAsset.previewUrl}
-                    alt={secondAsset.title}
+                    src={secondAssetPreviewUrl}
+                    alt={secondAssetTitle}
                 />
             ) : (
                 <BlockInjectButton

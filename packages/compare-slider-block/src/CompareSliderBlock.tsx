@@ -317,8 +317,10 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     openAssetChooser={onOpenAssetChooser}
                     startDragAndDropUpload={startDragAndDropUpload}
                     startFileDialogUpload={startFileDialogUpload}
-                    firstAsset={firstAsset[0]}
-                    secondAsset={secondAsset[0]}
+                    firstAssetPreviewUrl={firstAssetPreviewUrl}
+                    firstAssetTitle={firstAssetTitle}
+                    secondAssetPreviewUrl={secondAssetPreviewUrl}
+                    secondAssetTitle={secondAssetTitle}
                 />
             </div>
         );
