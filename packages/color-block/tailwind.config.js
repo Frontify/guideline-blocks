@@ -17,4 +17,5 @@ module.exports = {
             },
         },
     },
+    important: '.color-block',
 };

@@ -69,7 +69,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 selectedValueId: blockAssets[AUDIO_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.File],
                 extensions: FileExtensionSets.Audio,
-            },
+            }
         );
     };
 
@@ -104,64 +104,68 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     }, [doneAll, uploadResults]);
 
     return (
-        <div
-            data-test-id="audio-block"
-            className={joinClassNames([
-                'tw-flex tw-gap-3',
-                blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
-            ])}
-        >
-            {audio ? (
-                <AudioPlayer
-                    audio={audio}
-                    isEditing={isEditing}
-                    isLoading={isLoading}
-                    openFileDialog={openFileDialog}
-                    openAssetChooser={onOpenAssetChooser}
-                    onRemoveAsset={onRemoveAsset}
-                />
-            ) : (
-                isEditing && (
-                    <UploadPlaceholder
-                        onUploadClick={openFileDialog}
-                        onAssetChooseClick={onOpenAssetChooser}
-                        onFilesDrop={onFilesDrop}
-                        loading={isLoading}
+        <div className="audio-block">
+            <div
+                data-test-id="audio-block"
+                className={joinClassNames([
+                    'tw-flex tw-gap-3',
+                    blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
+                ])}
+            >
+                {audio ? (
+                    <AudioPlayer
+                        audio={audio}
+                        isEditing={isEditing}
+                        isLoading={isLoading}
+                        openFileDialog={openFileDialog}
+                        openAssetChooser={onOpenAssetChooser}
+                        onRemoveAsset={onRemoveAsset}
                     />
-                )
-            )}
-            <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
-                <div className="tw-flex-1">
-                    <div data-test-id="block-title">
-                        <RichTextEditor
-                            id={`${appBridge.getBlockId().toString()}-title`}
-                            plugins={titlePlugins}
-                            isEditing={isEditing}
-                            onTextChange={onTitleChange}
-                            value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
-                            placeholder="Asset name"
+                ) : (
+                    isEditing && (
+                        <UploadPlaceholder
+                            onUploadClick={openFileDialog}
+                            onAssetChooseClick={onOpenAssetChooser}
+                            onFilesDrop={onFilesDrop}
+                            loading={isLoading}
                         />
-                    </div>
-
-                    <div data-test-id="block-description">
-                        <RichTextEditor
-                            id={`${appBridge.getBlockId().toString()}-description`}
-                            plugins={getDescriptionPlugins(appBridge)}
-                            isEditing={isEditing}
-                            onTextChange={onDescriptionChange}
-                            value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
-                            placeholder="Add a description here"
-                        />
-                    </div>
-                </div>
-                {audio && (
-                    <div className="tw-flex tw-gap-2">
-                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
-                            <DownloadButton onDownload={() => downloadAsset(audio)} />
-                        )}
-                        <BlockAttachments appBridge={appBridge} />
-                    </div>
+                    )
                 )}
+                <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
+                    <div className="tw-flex-1">
+                        <div data-test-id="block-title">
+                            <RichTextEditor
+                                id={`${appBridge.getBlockId().toString()}-title`}
+                                plugins={titlePlugins}
+                                isEditing={isEditing}
+                                onTextChange={onTitleChange}
+                                value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
+                                placeholder="Asset name"
+                            />
+                        </div>
+
+                        <div data-test-id="block-description">
+                            <RichTextEditor
+                                id={`${appBridge.getBlockId().toString()}-description`}
+                                plugins={getDescriptionPlugins(appBridge)}
+                                isEditing={isEditing}
+                                onTextChange={onDescriptionChange}
+                                value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
+                                placeholder="Add a description here"
+                            />
+                        </div>
+                    </div>
+                    {audio && (
+                        <div className="tw-flex tw-gap-2">
+                            {isDownloadable(
+                                blockSettings.security,
+                                blockSettings.downloadable,
+                                assetDownloadEnabled
+                            ) && <DownloadButton onDownload={() => downloadAsset(audio)} />}
+                            <BlockAttachments appBridge={appBridge} />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

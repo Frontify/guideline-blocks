@@ -70,7 +70,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const renderChecklistItem = (
         { text, id, completed, updatedAt }: OrderableListItem<ChecklistContent>,
-        { componentDragState, isFocusVisible }: DragProperties,
+        { componentDragState, isFocusVisible }: DragProperties
     ) => {
         const index = findIndexById(displayableItems, id);
         displayableItems.sort((previousItem, currentItem) => previousItem.sort - currentItem.sort);
@@ -131,65 +131,67 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
                 alt: text,
                 sort: sort !== undefined ? sort : index,
             };
-        },
+        }
     );
 
     return (
         <SettingsContext.Provider value={settings}>
-            <div data-test-id="checklist-block" className="tw-relative">
-                <div className="tw-relative" {...hoverProps}>
-                    {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
-                        <ProgressBar
-                            fillColor={toHex8String(progressBarFillColor)}
-                            trackColor={toHex8String(progressBarTrackColor)}
-                            percentage={calculatePercentage(content)}
-                        />
-                    )}
-                    {shouldShowProgress && progressBarType === ProgressBarType.Percentage && (
-                        <ProgressHeader value={`${calculatePercentage(content)}%`} />
-                    )}
-                    {shouldShowProgress && progressBarType === ProgressBarType.Fraction && (
-                        <ProgressHeader value={calculateFraction(content)} />
-                    )}
-                    <div
-                        className={joinClassNames([
-                            'tw-absolute tw-right-0 tw-top-0 tw-z-40',
-                            isHovered && !isEditing && 'tw-visible',
-                            (!isHovered || isEditing) && 'tw-invisible',
-                        ])}
-                        data-test-id="toggle-completed-visibility"
-                    >
-                        <Button
-                            size={ButtonSize.Small}
-                            emphasis={ButtonEmphasis.Default}
-                            icon={
-                                showCompleted ? (
-                                    <IconEye size={IconSize.Size16} />
-                                ) : (
-                                    <IconEyeOff size={IconSize.Size16} />
-                                )
-                            }
-                            onClick={toggleCompletedVisibility}
-                        >
-                            {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
-                        </Button>
-                    </div>
-                    <div className="tw-mt-3" data-test-id="checklist-container">
-                        {displayableItems.length > 0 && (
-                            <OrderableList
-                                items={orderableListItems}
-                                dragDisabled={!isEditing}
-                                renderContent={renderChecklistItem}
-                                onMove={handleMove}
+            <div className="checklist-block">
+                <div data-test-id="checklist-block" className="tw-relative">
+                    <div className="tw-relative" {...hoverProps}>
+                        {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
+                            <ProgressBar
+                                fillColor={toHex8String(progressBarFillColor)}
+                                trackColor={toHex8String(progressBarTrackColor)}
+                                percentage={calculatePercentage(content)}
                             />
                         )}
+                        {shouldShowProgress && progressBarType === ProgressBarType.Percentage && (
+                            <ProgressHeader value={`${calculatePercentage(content)}%`} />
+                        )}
+                        {shouldShowProgress && progressBarType === ProgressBarType.Fraction && (
+                            <ProgressHeader value={calculateFraction(content)} />
+                        )}
+                        <div
+                            className={joinClassNames([
+                                'tw-absolute tw-right-0 tw-top-0 tw-z-40',
+                                isHovered && !isEditing && 'tw-visible',
+                                (!isHovered || isEditing) && 'tw-invisible',
+                            ])}
+                            data-test-id="toggle-completed-visibility"
+                        >
+                            <Button
+                                size={ButtonSize.Small}
+                                emphasis={ButtonEmphasis.Default}
+                                icon={
+                                    showCompleted ? (
+                                        <IconEye size={IconSize.Size16} />
+                                    ) : (
+                                        <IconEyeOff size={IconSize.Size16} />
+                                    )
+                                }
+                                onClick={toggleCompletedVisibility}
+                            >
+                                {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
+                            </Button>
+                        </div>
+                        <div className="tw-mt-3" data-test-id="checklist-container">
+                            {displayableItems.length > 0 && (
+                                <OrderableList
+                                    items={orderableListItems}
+                                    dragDisabled={!isEditing}
+                                    renderContent={renderChecklistItem}
+                                    onMove={handleMove}
+                                />
+                            )}
+                        </div>
+                        {isEditing && (
+                            <>
+                                <hr className="tw-my-2 tw-border-black-40" />
+                                <ChecklistItem mode={ChecklistItemMode.Create} onTextModified={addNewItem} />
+                            </>
+                        )}
                     </div>
-                    {isEditing && (
-                        <>
-                            <hr className="tw-my-2 tw-border-black-40" />
-                            <ChecklistItem mode={ChecklistItemMode.Create} onTextModified={addNewItem} />
-                        </>
-                    )}
                 </div>
             </div>
         </SettingsContext.Provider>
