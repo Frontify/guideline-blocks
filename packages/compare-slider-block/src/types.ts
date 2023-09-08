@@ -143,8 +143,8 @@ export type HandleProps = {
 
 export type UploadViewProps = {
     alignment: Alignment;
-    firstAssetPreviewUrl?: string;
-    secondAssetPreviewUrl?: string;
+    firstAsset?: Asset;
+    secondAsset?: Asset;
     openAssetChooser: (slot: SliderImageSlot) => void;
     startFileDialogUpload: (slot: SliderImageSlot) => void;
     startDragAndDropUpload: (files: FileList, slot: SliderImageSlot) => void;

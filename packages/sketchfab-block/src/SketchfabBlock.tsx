@@ -156,6 +156,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                         src={iframeUrl.toString()}
                         frameBorder="0"
                         data-test-id="sketchfab-iframe"
+                        title="sketchfab-iframe"
                     />
                 </div>
             )}
