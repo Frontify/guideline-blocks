@@ -98,32 +98,34 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     } as CSSProperties;
 
     return (
-        <div data-test-id="callout-block" style={overwrittenThemeSettings} className={containerDivClassNames}>
-            <div
-                data-test-id="callout-wrapper"
-                className={textDivClassNames}
-                style={{
-                    backgroundColor,
-                    ...customPaddingStyle,
-                    ...customCornerRadiusStyle,
-                }}
-            >
-                {showIcon && (
-                    <CalloutIcon
-                        iconUrl={iconUrl}
-                        isActive={hasRichTextValue(blockSettings.textValue)}
-                        iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
-                        color={textColor}
+        <div className="callout-block">
+            <div data-test-id="callout-block" style={overwrittenThemeSettings} className={containerDivClassNames}>
+                <div
+                    data-test-id="callout-wrapper"
+                    className={textDivClassNames}
+                    style={{
+                        backgroundColor,
+                        ...customPaddingStyle,
+                        ...customCornerRadiusStyle,
+                    }}
+                >
+                    {showIcon && (
+                        <CalloutIcon
+                            iconUrl={iconUrl}
+                            isActive={hasRichTextValue(blockSettings.textValue)}
+                            iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                            color={textColor}
+                        />
+                    )}
+                    <RichTextEditor
+                        id={appBridge.getBlockId().toString()}
+                        isEditing={isEditing}
+                        onTextChange={(textValue) => setBlockSettings({ textValue })}
+                        placeholder="Type your text here"
+                        value={blockSettings.textValue}
+                        plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     />
-                )}
-                <RichTextEditor
-                    id={appBridge.getBlockId().toString()}
-                    isEditing={isEditing}
-                    onTextChange={(textValue) => setBlockSettings({ textValue })}
-                    placeholder="Type your text here"
-                    value={blockSettings.textValue}
-                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
-                />
+                </div>
             </div>
         </div>
     );

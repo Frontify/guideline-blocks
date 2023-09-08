@@ -55,61 +55,63 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-            onDragStart={handleDragStart}
-            modifiers={[restrictToParentElement]}
-        >
-            <div
-                data-test-id="animation-curve-block"
-                className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
-                style={{
-                    gap,
-                }}
+        <div className="animation-curve-block">
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                modifiers={[restrictToParentElement]}
             >
-                <SortableContext items={localItems} strategy={rectSortingStrategy}>
-                    {localItems?.map((animationCurve) => (
-                        <SortableCard
-                            appBridge={appBridge}
-                            key={animationCurve.id}
-                            animationCurve={animationCurve}
-                            isEditing={isEditing}
-                            blockSettings={blockSettings}
-                            onDelete={deleteAnimationCurve}
-                            onUpdate={updateAnimationCurve}
-                            setCanvasHeight={setCanvasHeight}
-                        />
-                    ))}
-                    <DragOverlay>
-                        {activeItem && (
-                            <Card
+                <div
+                    data-test-id="animation-curve-block"
+                    className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
+                    style={{
+                        gap,
+                    }}
+                >
+                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                        {localItems?.map((animationCurve) => (
+                            <SortableCard
                                 appBridge={appBridge}
-                                key={activeItem.id}
-                                animationCurve={activeItem}
+                                key={animationCurve.id}
+                                animationCurve={animationCurve}
                                 isEditing={isEditing}
-                                isDragging={true}
                                 blockSettings={blockSettings}
                                 onDelete={deleteAnimationCurve}
                                 onUpdate={updateAnimationCurve}
                                 setCanvasHeight={setCanvasHeight}
                             />
-                        )}
-                    </DragOverlay>
-                </SortableContext>
-                {isEditing && (
-                    <BlankSlate
-                        key={localItems.length}
-                        appBridge={appBridge}
-                        content={localItems}
-                        hasBorder={hasBorder}
-                        setLocalItems={setLocalItems}
-                        setBlockSettings={setBlockSettings}
-                        canvasHeight={canvasHeight}
-                    />
-                )}
-            </div>
-        </DndContext>
+                        ))}
+                        <DragOverlay>
+                            {activeItem && (
+                                <Card
+                                    appBridge={appBridge}
+                                    key={activeItem.id}
+                                    animationCurve={activeItem}
+                                    isEditing={isEditing}
+                                    isDragging={true}
+                                    blockSettings={blockSettings}
+                                    onDelete={deleteAnimationCurve}
+                                    onUpdate={updateAnimationCurve}
+                                    setCanvasHeight={setCanvasHeight}
+                                />
+                            )}
+                        </DragOverlay>
+                    </SortableContext>
+                    {isEditing && (
+                        <BlankSlate
+                            key={localItems.length}
+                            appBridge={appBridge}
+                            content={localItems}
+                            hasBorder={hasBorder}
+                            setLocalItems={setLocalItems}
+                            setBlockSettings={setBlockSettings}
+                            canvasHeight={canvasHeight}
+                        />
+                    )}
+                </div>
+            </DndContext>
+        </div>
     );
 };

@@ -325,7 +325,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <>
+        <div className="dos-donts-block">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
@@ -428,6 +428,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     }
                 />
             </Modal>
-        </>
+        </div>
     );
 };
