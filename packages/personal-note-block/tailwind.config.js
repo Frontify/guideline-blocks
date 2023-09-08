@@ -6,4 +6,5 @@ module.exports = {
     corePlugins: {
         preflight: false,
     },
+    important: '.personal-note-block',
 };

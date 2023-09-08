@@ -20,4 +20,5 @@ module.exports = {
             },
         },
     },
+    important: '.color-kit-block',
 };

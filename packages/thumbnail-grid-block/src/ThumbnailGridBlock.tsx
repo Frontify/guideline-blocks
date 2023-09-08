@@ -171,56 +171,58 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const sensors = useDndSensors(parseInt(gap), parseInt(gap));
 
     return (
-        <Grid columnCount={blockSettings.columnCount} gap={gap}>
-            <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                onDragStart={handleDragStart}
-                modifiers={[restrictToParentElement]}
-            >
-                <SortableContext items={itemsState} strategy={rectSortingStrategy}>
-                    {itemsState.map((item) => (
-                        <SortableItem
-                            key={item.id}
-                            item={item}
-                            image={blockAssets?.[item.id]?.[0]}
-                            isLoading={loadingIds.includes(item.id)}
-                            {...thumbnailProps}
-                        />
-                    ))}
-                </SortableContext>
-                <DragOverlay>
-                    {draggedItem && (
-                        <Item
-                            key={draggedItem.id}
-                            item={draggedItem}
-                            image={blockAssets?.[draggedItem.id]?.[0]}
-                            isLoading={loadingIds.includes(draggedItem.id)}
-                            isDragging
-                            {...thumbnailProps}
-                        />
-                    )}
-                </DragOverlay>
-            </DndContext>
-            {isEditing && (
-                <div
-                    key={itemsState.length}
-                    className={thumbnailStyles.captionPositionClassNames}
-                    data-test-id="thumbnail-item-placeholder"
+        <div className="thumbnail-grid-block">
+            <Grid columnCount={blockSettings.columnCount} gap={gap}>
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                    onDragStart={handleDragStart}
+                    modifiers={[restrictToParentElement]}
                 >
-                    <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
-                        <UploadPlaceholder
-                            width={thumbnailStyles.width}
-                            isLoading={loadingIds.includes('placeholder')}
-                            openFileDialog={openFileDialog}
-                            onFilesDrop={onFilesDrop}
-                            openAssetChooser={onOpenAssetChooser}
-                        />
-                    </ImageWrapper>
-                    <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />
-                </div>
-            )}
-        </Grid>
+                    <SortableContext items={itemsState} strategy={rectSortingStrategy}>
+                        {itemsState.map((item) => (
+                            <SortableItem
+                                key={item.id}
+                                item={item}
+                                image={blockAssets?.[item.id]?.[0]}
+                                isLoading={loadingIds.includes(item.id)}
+                                {...thumbnailProps}
+                            />
+                        ))}
+                    </SortableContext>
+                    <DragOverlay>
+                        {draggedItem && (
+                            <Item
+                                key={draggedItem.id}
+                                item={draggedItem}
+                                image={blockAssets?.[draggedItem.id]?.[0]}
+                                isLoading={loadingIds.includes(draggedItem.id)}
+                                isDragging
+                                {...thumbnailProps}
+                            />
+                        )}
+                    </DragOverlay>
+                </DndContext>
+                {isEditing && (
+                    <div
+                        key={itemsState.length}
+                        className={thumbnailStyles.captionPositionClassNames}
+                        data-test-id="thumbnail-item-placeholder"
+                    >
+                        <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
+                            <UploadPlaceholder
+                                width={thumbnailStyles.width}
+                                isLoading={loadingIds.includes('placeholder')}
+                                openFileDialog={openFileDialog}
+                                onFilesDrop={onFilesDrop}
+                                openAssetChooser={onOpenAssetChooser}
+                            />
+                        </ImageWrapper>
+                        <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />
+                    </div>
+                )}
+            </Grid>
+        </div>
     );
 };

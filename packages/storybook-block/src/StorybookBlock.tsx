@@ -105,60 +105,62 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     return (
-        <div data-test-id="storybook-block" className="tw-relative">
-            {iframe ? (
+        <div className="storybook-block">
+            <div data-test-id="storybook-block" className="tw-relative">
+                {iframe ? (
+                    isEditing ? (
+                        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight} {...hoverProps}>
+                            {isHovered && (
+                                <RemoveButton
+                                    onClick={() => {
+                                        setBlockSettings({
+                                            url: '',
+                                        });
+                                    }}
+                                />
+                            )}
+                            <div>{iframe}</div>
+                        </Resizeable>
+                    ) : (
+                        <div style={{ height: activeHeight }}>{iframe}</div>
+                    )
+                ) : // eslint-disable-next-line unicorn/no-nested-ternary
                 isEditing ? (
-                    <Resizeable saveHeight={saveHeight} initialHeight={activeHeight} {...hoverProps}>
-                        {isHovered && (
-                            <RemoveButton
-                                onClick={() => {
-                                    setBlockSettings({
-                                        url: '',
-                                    });
-                                }}
-                            />
-                        )}
-                        <div>{iframe}</div>
+                    <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
+                        <div
+                            className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
+                            data-test-id="storybook-empty-wrapper"
+                        >
+                            <IconStorybook size={IconSize.Size32} />
+                            <div className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}>
+                                <FormControl
+                                    helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                                    style={
+                                        !isValidStorybookUrl(submittedUrl)
+                                            ? FormControlStyle.Danger
+                                            : FormControlStyle.Primary
+                                    }
+                                >
+                                    <TextInput
+                                        value={input}
+                                        onChange={setInput}
+                                        onEnterPressed={saveInputLink}
+                                        placeholder={URL_INPUT_PLACEHOLDER}
+                                    />
+                                </FormControl>
+                            </div>
+                            <Button onClick={saveInputLink}>Confirm</Button>
+                        </div>
                     </Resizeable>
                 ) : (
-                    <div style={{ height: activeHeight }}>{iframe}</div>
-                )
-            ) : // eslint-disable-next-line unicorn/no-nested-ternary
-            isEditing ? (
-                <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                     <div
-                        className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
-                        data-test-id="storybook-empty-wrapper"
+                        className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
+                        style={{ height: activeHeight }}
                     >
-                        <IconStorybook size={IconSize.Size32} />
-                        <div className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}>
-                            <FormControl
-                                helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
-                                style={
-                                    !isValidStorybookUrl(submittedUrl)
-                                        ? FormControlStyle.Danger
-                                        : FormControlStyle.Primary
-                                }
-                            >
-                                <TextInput
-                                    value={input}
-                                    onChange={setInput}
-                                    onEnterPressed={saveInputLink}
-                                    placeholder={URL_INPUT_PLACEHOLDER}
-                                />
-                            </FormControl>
-                        </div>
-                        <Button onClick={saveInputLink}>Confirm</Button>
+                        No Storybook-URL defined.
                     </div>
-                </Resizeable>
-            ) : (
-                <div
-                    className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
-                    style={{ height: activeHeight }}
-                >
-                    No Storybook-URL defined.
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };
