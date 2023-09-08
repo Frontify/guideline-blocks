@@ -17,15 +17,17 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
     return (
-        <RichTextEditor
-            id={appBridge.getBlockId().toString()}
-            isEditing={isEditing}
-            value={content}
-            columns={columnNumber}
-            gap={gap}
-            plugins={getPlugins(appBridge, columnNumber, gap)}
-            placeholder={PLACEHOLDER}
-            onTextChange={(content: string) => setBlockSettings({ content })}
-        />
+        <div className="text-block">
+            <RichTextEditor
+                id={appBridge.getBlockId().toString()}
+                isEditing={isEditing}
+                value={content}
+                columns={columnNumber}
+                gap={gap}
+                plugins={getPlugins(appBridge, columnNumber, gap)}
+                placeholder={PLACEHOLDER}
+                onTextChange={(content: string) => setBlockSettings({ content })}
+            />
+        </div>
     );
 };

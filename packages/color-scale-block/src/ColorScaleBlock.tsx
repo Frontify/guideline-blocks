@@ -410,7 +410,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const colorScaleHeight = customHeight ? heightInput : heightSlider;
 
     return (
-        <>
+        <div className="color-scale-block">
             <div
                 ref={colorScaleBlockRef}
                 data-test-id="color-scale-block"
@@ -518,6 +518,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     </ButtonGroup>
                 </div>
             )}
-        </>
+        </div>
     );
 };

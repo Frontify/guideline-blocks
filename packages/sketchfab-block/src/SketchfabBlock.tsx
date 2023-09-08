@@ -143,59 +143,61 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [blockSettings]);
 
     return (
-        <div data-test-id="sketchfab-block" className="tw-relative">
-            {iframeUrl && (
-                <div>
-                    <iframe
-                        className={joinClassNames(['tw-w-full', !hasRadius && radiusClassMap[radiusChoice]])}
-                        style={{
-                            ...(hasBorder ? getIframeBorderStyles(borderStyle, borderWidth, borderColor) : {}),
-                            borderRadius: hasRadius ? radiusValue : '',
-                        }}
-                        height={isCustomHeight ? customHeight : heights[height]}
-                        src={iframeUrl.toString()}
-                        frameBorder="0"
-                        data-test-id="sketchfab-iframe"
-                    />
-                </div>
-            )}
-            {isEditing && !iframeUrl && (
-                <div
-                    className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
-                    data-test-id="sketchfab-empty-block-edit"
-                >
-                    <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
-                    <div className="tw-text-text-x-weak tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
-                        <div className="tw-flex-none tw-mt-[2px]">
-                            <IconLinkBox size={IconSize.Size32} />
-                        </div>
-                        <div className="tw-w-full tw-max-w-sm">
-                            <FormControl
-                                helper={inputError ? { text: SKETCHFAB_RULE_ERROR } : undefined}
-                                style={inputError ? FormControlStyle.Danger : FormControlStyle.Primary}
-                            >
-                                <TextInput
-                                    value={localUrl}
-                                    onChange={setLocalUrl}
-                                    onEnterPressed={saveLink}
-                                    placeholder={URL_INPUT_PLACEHOLDER}
-                                />
-                            </FormControl>
-                        </div>
-                        <Button onClick={saveLink}>Confirm</Button>
+        <div className="sketchfab-block">
+            <div data-test-id="sketchfab-block" className="tw-relative">
+                {iframeUrl && (
+                    <div>
+                        <iframe
+                            className={joinClassNames(['tw-w-full', !hasRadius && radiusClassMap[radiusChoice]])}
+                            style={{
+                                ...(hasBorder ? getIframeBorderStyles(borderStyle, borderWidth, borderColor) : {}),
+                                borderRadius: hasRadius ? radiusValue : '',
+                            }}
+                            height={isCustomHeight ? customHeight : heights[height]}
+                            src={iframeUrl.toString()}
+                            frameBorder="0"
+                            data-test-id="sketchfab-iframe"
+                        />
                     </div>
-                </div>
-            )}
-            {!isEditing && !iframeUrl && (
-                <div
-                    className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20"
-                    data-test-id="sketchfab-empty-block-view"
-                >
-                    <Text color="x-weak">
-                        <IconLinkBox size={IconSize.Size32} />
-                    </Text>
-                </div>
-            )}
+                )}
+                {isEditing && !iframeUrl && (
+                    <div
+                        className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
+                        data-test-id="sketchfab-empty-block-edit"
+                    >
+                        <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
+                        <div className="tw-text-text-x-weak tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
+                            <div className="tw-flex-none tw-mt-[2px]">
+                                <IconLinkBox size={IconSize.Size32} />
+                            </div>
+                            <div className="tw-w-full tw-max-w-sm">
+                                <FormControl
+                                    helper={inputError ? { text: SKETCHFAB_RULE_ERROR } : undefined}
+                                    style={inputError ? FormControlStyle.Danger : FormControlStyle.Primary}
+                                >
+                                    <TextInput
+                                        value={localUrl}
+                                        onChange={setLocalUrl}
+                                        onEnterPressed={saveLink}
+                                        placeholder={URL_INPUT_PLACEHOLDER}
+                                    />
+                                </FormControl>
+                            </div>
+                            <Button onClick={saveLink}>Confirm</Button>
+                        </div>
+                    </div>
+                )}
+                {!isEditing && !iframeUrl && (
+                    <div
+                        className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20"
+                        data-test-id="sketchfab-empty-block-view"
+                    >
+                        <Text color="x-weak">
+                            <IconLinkBox size={IconSize.Size32} />
+                        </Text>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -103,88 +103,90 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div
-            data-test-id="image-block"
-            className={`tw-flex tw-h-auto tw-gap-3 ${mapCaptionPositionClasses[blockSettings.positioning]}`}
-        >
+        <div className="image-block">
             <div
-                className={
-                    blockSettings.positioning === CaptionPosition.Above ||
-                    blockSettings.positioning === CaptionPosition.Below
-                        ? 'tw-w-full'
-                        : ratioValues[blockSettings.ratio]
-                }
+                data-test-id="image-block"
+                className={`tw-flex tw-h-auto tw-gap-3 ${mapCaptionPositionClasses[blockSettings.positioning]}`}
             >
-                {image ? (
-                    <BlockItemWrapper
-                        shouldHideWrapper={!isEditing}
-                        shouldBeShown={showAltTextMenu}
-                        toolbarFlyoutItems={[
-                            image
-                                ? [
-                                      {
-                                          title: 'Set alt text',
-                                          onClick: () => setShowAltTextMenu(true),
-                                          icon: <IconSpeechBubbleQuote20 />,
-                                      },
-                                  ]
-                                : [],
-                            [
-                                {
-                                    title: 'Replace with upload',
-                                    icon: <IconArrowCircleUp20 />,
-                                    onClick: openFileDialog,
-                                },
-                                {
-                                    title: 'Replace with asset',
-                                    icon: <IconImageStack20 />,
-                                    onClick: onOpenAssetChooser,
-                                },
-                            ],
-                            [
-                                {
-                                    title: 'Delete',
-                                    icon: <IconTrashBin20 />,
-                                    style: MenuItemStyle.Danger,
-                                    onClick: onRemoveAsset,
-                                },
-                            ],
-                        ]}
-                        toolbarItems={[]}
-                    >
-                        {isLoading ? (
-                            <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
-                                <LoadingCircle />
-                            </div>
-                        ) : (
-                            <Image
-                                appBridge={appBridge}
-                                blockSettings={blockSettings}
-                                isEditing={isEditing}
-                                image={image}
+                <div
+                    className={
+                        blockSettings.positioning === CaptionPosition.Above ||
+                        blockSettings.positioning === CaptionPosition.Below
+                            ? 'tw-w-full'
+                            : ratioValues[blockSettings.ratio]
+                    }
+                >
+                    {image ? (
+                        <BlockItemWrapper
+                            shouldHideWrapper={!isEditing}
+                            shouldBeShown={showAltTextMenu}
+                            toolbarFlyoutItems={[
+                                image
+                                    ? [
+                                          {
+                                              title: 'Set alt text',
+                                              onClick: () => setShowAltTextMenu(true),
+                                              icon: <IconSpeechBubbleQuote20 />,
+                                          },
+                                      ]
+                                    : [],
+                                [
+                                    {
+                                        title: 'Replace with upload',
+                                        icon: <IconArrowCircleUp20 />,
+                                        onClick: openFileDialog,
+                                    },
+                                    {
+                                        title: 'Replace with asset',
+                                        icon: <IconImageStack20 />,
+                                        onClick: onOpenAssetChooser,
+                                    },
+                                ],
+                                [
+                                    {
+                                        title: 'Delete',
+                                        icon: <IconTrashBin20 />,
+                                        style: MenuItemStyle.Danger,
+                                        onClick: onRemoveAsset,
+                                    },
+                                ],
+                            ]}
+                            toolbarItems={[]}
+                        >
+                            {isLoading ? (
+                                <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
+                                    <LoadingCircle />
+                                </div>
+                            ) : (
+                                <Image
+                                    appBridge={appBridge}
+                                    blockSettings={blockSettings}
+                                    isEditing={isEditing}
+                                    image={image}
+                                />
+                            )}
+                            <EditAltTextFlyout
+                                setShowAltTextMenu={setShowAltTextMenu}
+                                showAltTextMenu={showAltTextMenu}
+                                setLocalAltText={setLocalAltText}
+                                defaultAltText={blockSettings.altText}
+                                onSave={() => setBlockSettings({ altText: localAltText || undefined })}
+                                localAltText={localAltText}
                             />
-                        )}
-                        <EditAltTextFlyout
-                            setShowAltTextMenu={setShowAltTextMenu}
-                            showAltTextMenu={showAltTextMenu}
-                            setLocalAltText={setLocalAltText}
-                            defaultAltText={blockSettings.altText}
-                            onSave={() => setBlockSettings({ altText: localAltText || undefined })}
-                            localAltText={localAltText}
-                        />
-                    </BlockItemWrapper>
-                ) : (
-                    isEditing && (
-                        <UploadPlaceholder
-                            loading={isLoading}
-                            onUploadClick={openFileDialog}
-                            onFilesDrop={onFilesDrop}
-                            onAssetChooseClick={onOpenAssetChooser}
-                        />
-                    )
-                )}
+                        </BlockItemWrapper>
+                    ) : (
+                        isEditing && (
+                            <UploadPlaceholder
+                                loading={isLoading}
+                                onUploadClick={openFileDialog}
+                                onFilesDrop={onFilesDrop}
+                                onAssetChooseClick={onOpenAssetChooser}
+                            />
+                        )
+                    )}
+                </div>
+                <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
             </div>
-            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
         </div>
     );
 };

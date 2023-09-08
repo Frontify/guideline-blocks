@@ -87,35 +87,38 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     }, []);
 
     return (
-        <div
-            data-test-id="personal-note-block"
-            className={hasBackground && !!backgroundColor && isDark(backgroundColor) ? 'tw-text-white' : ''}
-            style={{
-                ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
-                ...(hasBackground && getBackgroundStyles(backgroundColor)),
-                borderRadius: hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
-                padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
-            }}
-        >
-            {(hasAvatarName || hasDateEdited) && (
-                <NoteHeader
-                    hasAvatarName={hasAvatarName}
-                    name={username}
-                    avatar={avatar}
-                    hasDateEdited={hasDateEdited}
-                    dateEdited={dateEdited}
-                    useLightText={hasBackground && !!backgroundColor && isDark(backgroundColor)}
-                />
-            )}
+        <div className="personal-note-block">
+            <div
+                data-test-id="personal-note-block"
+                className={hasBackground && !!backgroundColor && isDark(backgroundColor) ? 'tw-text-white' : ''}
+                style={{
+                    ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                    ...(hasBackground && getBackgroundStyles(backgroundColor)),
+                    borderRadius:
+                        hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
+                    padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
+                }}
+            >
+                {(hasAvatarName || hasDateEdited) && (
+                    <NoteHeader
+                        hasAvatarName={hasAvatarName}
+                        name={username}
+                        avatar={avatar}
+                        hasDateEdited={hasDateEdited}
+                        dateEdited={dateEdited}
+                        useLightText={hasBackground && !!backgroundColor && isDark(backgroundColor)}
+                    />
+                )}
 
-            <RichTextEditor
-                id={`${appBridge.getBlockId().toString()}-title`}
-                value={note}
-                onTextChange={saveNote}
-                placeholder="Write personal note here ..."
-                isEditing={isEditing}
-                plugins={getDefaultPluginsWithLinkChooser(appBridge)}
-            />
+                <RichTextEditor
+                    id={`${appBridge.getBlockId().toString()}-title`}
+                    value={note}
+                    onTextChange={saveNote}
+                    placeholder="Write personal note here ..."
+                    isEditing={isEditing}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                />
+            </div>
         </div>
     );
 };

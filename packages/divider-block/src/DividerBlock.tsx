@@ -19,41 +19,43 @@ export const DividerBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     return (
-        <div
-            data-test-id="divider-block"
-            className={joinClassNames([
-                'tw-flex',
-                css.dividerBlock,
-                dividerAlignmentClasses[blockSettings.alignment ?? ALIGNMENT_DEFAULT_VALUE],
-            ])}
-        >
+        <div className="divider-block">
             <div
-                data-test-id="divider-wrapper"
-                className="tw-flex tw-items-center tw-transition-all"
-                style={{
-                    width: blockSettings.isWidthCustom ? blockSettings.widthCustom : blockSettings.widthSimple,
-                    height: blockSettings.isHeightCustom
-                        ? blockSettings.heightCustom
-                        : dividerHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE],
-                }}
+                data-test-id="divider-block"
+                className={joinClassNames([
+                    'tw-flex',
+                    css.dividerBlock,
+                    dividerAlignmentClasses[blockSettings.alignment ?? ALIGNMENT_DEFAULT_VALUE],
+                ])}
             >
-                <hr
-                    data-test-id="divider-line"
-                    className={joinClassNames([
-                        'tw-border-t tw-m-0 tw-w-full',
-                        dividerStyleClasses[
-                            blockSettings.isLine === DividerStyle.Solid
-                                ? blockSettings.style ?? STYLE_DEFAULT_VALUE
-                                : DividerStyle.NoLine
-                        ],
-                    ])}
+                <div
+                    data-test-id="divider-wrapper"
+                    className="tw-flex tw-items-center tw-transition-all"
                     style={{
-                        borderTopWidth: blockSettings.thickness,
-                        borderTopColor: blockSettings.color
-                            ? toRgbaString(blockSettings.color)
-                            : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),
+                        width: blockSettings.isWidthCustom ? blockSettings.widthCustom : blockSettings.widthSimple,
+                        height: blockSettings.isHeightCustom
+                            ? blockSettings.heightCustom
+                            : dividerHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE],
                     }}
-                />
+                >
+                    <hr
+                        data-test-id="divider-line"
+                        className={joinClassNames([
+                            'tw-border-t tw-m-0 tw-w-full',
+                            dividerStyleClasses[
+                                blockSettings.isLine === DividerStyle.Solid
+                                    ? blockSettings.style ?? STYLE_DEFAULT_VALUE
+                                    : DividerStyle.NoLine
+                            ],
+                        ])}
+                        style={{
+                            borderTopWidth: blockSettings.thickness,
+                            borderTopColor: blockSettings.color
+                                ? toRgbaString(blockSettings.color)
+                                : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

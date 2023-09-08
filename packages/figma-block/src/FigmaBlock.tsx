@@ -249,7 +249,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [asset?.externalUrl]);
 
     return (
-        <div ref={ref} data-test-id="figma-block">
+        <div ref={ref} data-test-id="figma-block" className="figma-block">
             {referenceUrl ? (
                 <ReferenceErrorMessage originalUrl={referenceUrl} />
             ) : (
