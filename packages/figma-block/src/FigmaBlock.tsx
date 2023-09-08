@@ -103,6 +103,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const FigmaEmptyBlock = () => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <div
             data-test-id="figma-empty-block"
             className="tw-group tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
@@ -198,7 +199,11 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         />
                     </div>
                 )}
-                <iframe src={asset?.externalUrl ?? undefined} className="tw-h-full tw-w-full tw-border-none" />
+                <iframe
+                    src={asset?.externalUrl ?? undefined}
+                    className="tw-h-full tw-w-full tw-border-none"
+                    title="figma-iframe"
+                />
             </div>
         ),
         [
@@ -240,6 +245,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         src={asset?.externalUrl ?? undefined}
                         className="tw-h-full tw-w-full tw-border-none"
                         loading="lazy"
+                        title={asset.title}
                     />
                 </div>
             </div>

@@ -37,6 +37,7 @@ export const BlockContainerStub = ({ height, padding = 0 }: { height: string; pa
                     height="100%"
                     style={{ position: 'relative' }}
                     onLoad={() => setIsImageLoaded(true)}
+                    alt=""
                 />
             </div>
         </div>
