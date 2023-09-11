@@ -74,6 +74,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     }
                     triggerElement={
                         <div className="tw-overflow-hidden tw-rounded-t tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                             <div
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-x-strong"
@@ -138,6 +139,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                                 />
                                             }
                                             triggerElement={
+                                                // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
                                                 <div
                                                     data-test-id="color-space-value-trigger"
                                                     className="tw-cursor-pointer tw-text-s tw-text-black-80 tw-truncate"

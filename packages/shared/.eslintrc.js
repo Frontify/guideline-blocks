@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 module.exports = {
-    extends: ['@frontify/eslint-config-react'],
+    extends: ['@frontify/eslint-config-react', 'plugin:jsx-a11y/recommended'],
     plugins: ['notice'],
     settings: {
         react: {

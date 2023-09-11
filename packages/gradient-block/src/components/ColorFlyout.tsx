@@ -76,6 +76,7 @@ export const ColorFlyout = ({
             fixedHeader={
                 <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white tw-border-b tw-border-b-black-10">
                     <span>Configure Color</span>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
                     <span
                         className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
                         onClick={() => setShowColorModal(false)}

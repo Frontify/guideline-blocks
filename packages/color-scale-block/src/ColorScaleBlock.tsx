@@ -416,6 +416,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 data-test-id="color-scale-block"
                 className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded"
             >
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                 <div
                     ref={colorScaleBlockInnerRef}
                     style={{
