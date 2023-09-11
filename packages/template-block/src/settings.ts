@@ -1,39 +1,37 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { Color, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { Bundle } from '@frontify/guideline-blocks-settings';
+import { IconEnum } from '@frontify/fondue';
 import {
+    type Bundle,
+    Radius,
     appendUnit,
+    defineSettings,
+    getBackgroundSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getPaddingSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
+    radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
 import {
     AnchoringType,
-    BorderStyleType,
-    CardPaddingType,
-    CornerRadiusType,
     PreviewDisplayType,
     PreviewHeightType,
     PreviewType,
     TextPositioningType,
     TextRatioType,
-    cardPaddingValues,
-    cornerRadiusValues,
     previewHeightValues,
 } from './types';
-import { SETTING_ID } from './constants';
-import { defineSettings } from '@frontify/guideline-blocks-settings';
-
-const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 250, green: 250, blue: 250, alpha: 1, name: 'Background Default' };
-const BORDER_COLOR_DEFAULT_VALUE: Color = { red: 8, green: 8, blue: 8, alpha: 0.1, name: 'Border Default' };
+import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 
 export const settings = defineSettings({
     main: [],
     basics: [
         {
-            id: SETTING_ID,
+            id: TEMPLATE_BLOCK_SETTING_ID,
             type: 'templateInput',
             label: 'Template',
         },
@@ -71,78 +69,9 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Card',
             blocks: [
-                {
-                    id: 'isCardPaddingCustom',
-                    type: 'switch',
-                    label: 'Padding',
-                    switchLabel: 'Custom',
-                    info: 'Determines the card padding.',
-                    defaultValue: false,
-                    onChange: (bundle) => {
-                        presetCustomValue(bundle, 'cardPaddingSimple', 'cardPaddingCustomTop', cardPaddingValues);
-                        presetCustomValue(bundle, 'cardPaddingSimple', 'cardPaddingCustomLeft', cardPaddingValues);
-                        presetCustomValue(bundle, 'cardPaddingSimple', 'cardPaddingCustomRight', cardPaddingValues);
-                        presetCustomValue(bundle, 'cardPaddingSimple', 'cardPaddingCustomBottom', cardPaddingValues);
-                    },
-                    on: [
-                        {
-                            id: 'cardPaddingCustom',
-                            type: 'multiInput',
-                            layout: 'Spider' as MultiInputLayout.Spider,
-                            blocks: [
-                                {
-                                    id: 'cardPaddingCustomTop',
-                                    type: 'input',
-                                    label: 'Top',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomTop'),
-                                    rules: [numericalOrPixelRule],
-                                },
-                                {
-                                    id: 'cardPaddingCustomLeft',
-                                    type: 'input',
-                                    label: 'Left',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomLeft'),
-                                    rules: [numericalOrPixelRule],
-                                },
-                                {
-                                    id: 'cardPaddingCustomRight',
-                                    type: 'input',
-                                    label: 'Right',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomRight'),
-                                    rules: [numericalOrPixelRule],
-                                },
-                                {
-                                    id: 'cardPaddingCustomBottom',
-                                    type: 'input',
-                                    label: 'Bottom',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomBottom'),
-                                    rules: [numericalOrPixelRule],
-                                },
-                            ],
-                        },
-                    ],
-                    off: [
-                        {
-                            id: 'cardPaddingSimple',
-                            type: 'slider',
-                            defaultValue: 'small',
-                            choices: [
-                                {
-                                    value: CardPaddingType.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: CardPaddingType.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: CardPaddingType.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
-                },
+                getPaddingSettings({
+                    id: 'blockCard',
+                }),
             ],
         },
         {
@@ -376,123 +305,24 @@ export const settings = defineSettings({
             label: 'Card',
             blocks: [
                 {
-                    id: 'hasCardBackgroundColor',
-                    label: 'Background',
-                    type: 'switch',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'cardBackgroundColor',
-                            type: 'colorInput',
-                            defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-                        },
-                    ],
-                    off: [],
+                    ...getBackgroundSettings({
+                        defaultValue: true,
+                    }),
                 },
                 {
-                    id: 'hasCardBorder',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Border',
-                    on: [
-                        {
-                            id: 'border',
-                            type: 'multiInput',
-                            lastItemFullWidth: true,
-                            onChange: (bundle) => {
-                                appendUnit(bundle, 'cardBorderWidth');
-                            },
-                            blocks: [
-                                {
-                                    id: 'cardBorderStyle',
-                                    type: 'dropdown',
-                                    defaultValue: 'solid',
-                                    size: DropdownSize.Small,
-                                    choices: [
-                                        {
-                                            value: BorderStyleType.Dotted,
-                                            label: 'Dotted',
-                                        },
-                                        {
-                                            value: BorderStyleType.Dashed,
-                                            label: 'Dashed',
-                                        },
-                                        {
-                                            value: BorderStyleType.Solid,
-                                            label: 'Solid',
-                                        },
-                                    ],
-                                },
-                                {
-                                    id: 'cardBorderWidth',
-                                    type: 'input',
-                                    defaultValue: '1px',
-                                    placeholder: 'e.g. 2px',
-                                    rules: [numericalOrPixelRule],
-                                    clearable: false,
-                                },
-                                {
-                                    id: 'cardBorderColor',
-                                    type: 'colorInput',
-                                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                                },
-                            ],
-                            layout: MultiInputLayout.Columns,
-                        },
-                    ],
+                    ...getBorderSettings({
+                        id: 'blockCard',
+                    }),
                 },
                 {
-                    id: 'isCardCornerRadiusCustom',
-                    type: 'switch',
-                    label: 'Corner radius',
-                    switchLabel: 'Custom',
-                    info: 'Determines the card corner radius.',
-                    defaultValue: false,
-                    onChange: (bundle) => {
-                        presetCustomValue(
-                            bundle,
-                            'cardCornerRadiusSimple',
-                            'cardCornerRadiusCustom',
-                            cornerRadiusValues
-                        );
-                    },
-                    on: [
-                        {
-                            id: 'cardCornerRadiusCustom',
-                            type: 'input',
-                            placeholder: 'e.g. 2px',
-                            clearable: true,
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
-                            onChange: (bundle) => {
-                                appendUnit(bundle, 'cardCornerRadiusCustom');
-                            },
-                        },
-                    ],
-                    off: [
-                        {
-                            id: 'cardCornerRadiusSimple',
-                            type: 'slider',
-                            defaultValue: CornerRadiusType.Medium,
-                            choices: [
-                                {
-                                    value: CornerRadiusType.None,
-                                    label: 'None',
-                                },
-                                {
-                                    value: CornerRadiusType.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: CornerRadiusType.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: CornerRadiusType.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
+                    ...getBorderRadiusSettings({
+                        id: 'blockCard',
+                    }),
+                    onChange: (bundle) =>
+                        bundle.setBlockValue(
+                            'radiusValue_blockCard',
+                            radiusStyleMap[bundle.getBlock('radiusChoice_blockCard')?.value as Radius],
+                        ),
                 },
             ],
         },
@@ -502,123 +332,25 @@ export const settings = defineSettings({
             label: 'Preview',
             blocks: [
                 {
-                    id: 'hasPreviewBackgroundColor',
-                    label: 'Background',
-                    type: 'switch',
-                    defaultValue: true,
-                    on: [
-                        {
-                            id: 'previewBackgroundColor',
-                            type: 'colorInput',
-                            defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-                        },
-                    ],
-                    off: [],
+                    ...getBackgroundSettings({
+                        id: 'TemplatePreview',
+                        defaultValue: true,
+                    }),
                 },
                 {
-                    id: 'hasPreviewBorder',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Border',
-                    on: [
-                        {
-                            id: 'border',
-                            type: 'multiInput',
-                            lastItemFullWidth: true,
-                            onChange: (bundle) => {
-                                appendUnit(bundle, 'previewBorderWidth');
-                            },
-                            blocks: [
-                                {
-                                    id: 'previewBorderStyle',
-                                    type: 'dropdown',
-                                    defaultValue: 'solid',
-                                    size: DropdownSize.Small,
-                                    choices: [
-                                        {
-                                            value: BorderStyleType.Dotted,
-                                            label: 'Dotted',
-                                        },
-                                        {
-                                            value: BorderStyleType.Dashed,
-                                            label: 'Dashed',
-                                        },
-                                        {
-                                            value: BorderStyleType.Solid,
-                                            label: 'Solid',
-                                        },
-                                    ],
-                                },
-                                {
-                                    id: 'previewBorderWidth',
-                                    type: 'input',
-                                    defaultValue: '1px',
-                                    placeholder: 'e.g. 2px',
-                                    rules: [numericalOrPixelRule],
-                                    clearable: false,
-                                },
-                                {
-                                    id: 'previewBorderColor',
-                                    type: 'colorInput',
-                                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                                },
-                            ],
-                            layout: MultiInputLayout.Columns,
-                        },
-                    ],
+                    ...getBorderSettings({
+                        id: 'templatePreview',
+                    }),
                 },
                 {
-                    id: 'isPreviewCornerRadiusCustom',
-                    type: 'switch',
-                    label: 'Corner radius',
-                    switchLabel: 'Custom',
-                    info: 'Determines the preview corner radius.',
-                    defaultValue: false,
-                    onChange: (bundle) => {
-                        presetCustomValue(
-                            bundle,
-                            'previewCornerRadiusSimple',
-                            'previewCornerRadiusCustom',
-                            cornerRadiusValues
-                        );
-                    },
-                    on: [
-                        {
-                            id: 'previewCornerRadiusCustom',
-                            type: 'input',
-                            placeholder: 'e.g. 2px',
-                            clearable: true,
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
-                            onChange: (bundle) => {
-                                appendUnit(bundle, 'previewCornerRadiusCustom');
-                            },
-                        },
-                    ],
-                    off: [
-                        {
-                            id: 'previewCornerRadiusSimple',
-                            type: 'slider',
-                            defaultValue: CornerRadiusType.Medium,
-                            choices: [
-                                {
-                                    value: CornerRadiusType.None,
-                                    label: 'None',
-                                },
-                                {
-                                    value: CornerRadiusType.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: CornerRadiusType.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: CornerRadiusType.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
+                    ...getBorderRadiusSettings({
+                        id: 'templatePreview',
+                    }),
+                    onChange: (bundle) =>
+                        bundle.setBlockValue(
+                            'radiusValue_templatePreview',
+                            radiusStyleMap[bundle.getBlock('radiusChoice_templatePreview')?.value as Radius],
+                        ),
                 },
             ],
         },

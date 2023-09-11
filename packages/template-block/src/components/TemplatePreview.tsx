@@ -8,31 +8,29 @@ import {
     ButtonSize,
     ButtonStyle,
     ButtonType,
-    Color,
     Flyout,
     IconDotsVertical,
     IconPlus20,
     merge,
 } from '@frontify/fondue';
-import { getRgbaString } from '../utils';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import {
     Settings,
-    cornerRadiusValues,
     previewDisplayValues,
     previewHeightValues,
     previewImageAnchoringValues,
     textPositioningToFlexDirection,
 } from '../types';
-import { SETTING_ID } from '../constants';
+import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
+import { getBackgroundColorStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
     onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
-    onUpdateTemplateTitle: (value: string) => void;
-    onUpdateTemplateDescription: (value: string) => void;
+    onUpdateTemplateTitle: (newValue: string, prevValue?: string) => void;
+    onUpdateTemplateDescription: (newValue: string, prevValue?: string) => void;
     onSave: (properties: Partial<Settings>) => Promise<void>;
     onError: (message: string) => void;
 };
@@ -51,15 +49,15 @@ export const TemplatePreview = ({
     const isEditing = useEditorState(appBridge);
 
     const {
-        hasPreviewBackgroundColor,
-        previewBackgroundColor,
-        hasPreviewBorder,
-        previewBorderColor,
-        previewBorderStyle,
-        previewBorderWidth,
-        isPreviewCorderRadiusCustom,
-        previewCornerRadiusSimple,
-        previewCornerRadiusCustom,
+        hasBackgroundTemplatePreview,
+        backgroundColorTemplatePreview,
+        hasBorder_templatePreview,
+        borderWidth_templatePreview,
+        borderColor_templatePreview,
+        borderStyle_templatePreview,
+        hasRadius_templatePreview,
+        radiusValue_templatePreview,
+        radiusChoice_templatePreview,
         textRatio,
         isPreviewHeightCustom,
         previewHeightSimple,
@@ -73,36 +71,32 @@ export const TemplatePreview = ({
 
     const flexDirection = textPositioningToFlexDirection[textPositioning];
     const isRows = flexDirection === 'row' || flexDirection === 'row-reverse';
+    const borderRadius = hasRadius_templatePreview
+        ? radiusValue_templatePreview
+        : radiusStyleMap[radiusChoice_templatePreview];
+    const border = hasBorder_templatePreview
+        ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
+        : 'none';
 
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
-    const updateTemplateTitleAndDescription = (template: TemplateLegacy) => {
+    const onTemplateSelected = async (result: TemplateLegacy) => {
         const { title, description } = blockSettings;
-        const newTitleValue = title ? title : template.title;
-        const newDescriptionValue = description ? description : template.description;
 
-        onUpdateTemplateTitle(newTitleValue);
-        onUpdateTemplateDescription(newDescriptionValue);
+        try {
+            await onUpdateTemplate(TEMPLATE_BLOCK_SETTING_ID, [result.id]);
+            onSave({
+                template: result,
+                templateId: result.id,
+            });
+            onUpdateTemplateTitle(result.title, title);
+            onUpdateTemplateDescription(result.description, description);
+        } catch (error) {
+            onError(error as string);
+        }
+
+        appBridge.closeTemplateChooser();
     };
-
-    const onTemplateSelected = useCallback(
-        async (result: TemplateLegacy) => {
-            try {
-                await onUpdateTemplate(SETTING_ID, [result.id]);
-                await onSave({
-                    ...blockSettings,
-                    template: result,
-                    templateId: result.id,
-                });
-                updateTemplateTitleAndDescription(result);
-            } catch (error) {
-                onError(error as string);
-            }
-
-            appBridge.closeTemplateChooser();
-        },
-        [appBridge, blockSettings, onError, onSave, onUpdateTemplate, updateTemplateTitleAndDescription],
-    );
 
     const openTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
 
@@ -117,17 +111,11 @@ export const TemplatePreview = ({
                 <div
                     className="tw-relative"
                     style={{
-                        backgroundColor: hasPreviewBackgroundColor
-                            ? getRgbaString(previewBackgroundColor as Color)
-                            : undefined,
-                        borderRadius: isPreviewCorderRadiusCustom
-                            ? previewCornerRadiusCustom
-                            : cornerRadiusValues[previewCornerRadiusSimple],
-                        border: hasPreviewBorder
-                            ? `${previewBorderWidth} ${previewBorderStyle} ${getRgbaString(
-                                  previewBorderColor as Color,
-                              )}`
-                            : 'none',
+                        ...(hasBackgroundTemplatePreview && {
+                            ...getBackgroundColorStyles(backgroundColorTemplatePreview),
+                        }),
+                        borderRadius,
+                        border,
                         height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
                     }}
                 >
@@ -190,7 +178,7 @@ export const TemplatePreview = ({
                     onClick={openTemplateChooser}
                     rounding={ButtonRounding.Medium}
                     size={ButtonSize.Medium}
-                    style={ButtonStyle.Primary}
+                    style={ButtonStyle.Default}
                     type={ButtonType.Button}
                 >
                     Choose existing template

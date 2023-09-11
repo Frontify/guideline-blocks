@@ -2,8 +2,7 @@
 
 import { Asset, TemplateLegacy } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, ReactNode } from 'react';
+import { BorderStyle, Padding, Radius } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     title: string;
@@ -15,17 +14,13 @@ export type Settings = {
     templateId?: number;
     preview: PreviewType;
     previewCustom?: Asset;
-    buttonStyle?: RichTextButtonStyle;
     buttonText?: string;
 
     // layout
 
-    isCardPaddingCustom: boolean;
-    cardPaddingCustomTop?: string;
-    cardPaddingCustomLeft?: string;
-    cardPaddingCustomRight?: string;
-    cardPaddingCustomBottom?: string;
-    cardPaddingSimple: CardPaddingType;
+    hasCustomPaddingValue_blockCard: boolean;
+    paddingValue_blockCard: string;
+    paddingChoice_blockCard: Padding;
 
     textPositioning: TextPositioningType;
 
@@ -44,29 +39,29 @@ export type Settings = {
 
     // style
 
-    hasCardBackgroundColor: boolean;
-    cardBackgroundColor?: Color;
+    hasBackground: boolean;
+    backgroundColor: Color;
 
-    hasCardBorder: boolean;
-    cardBorderStyle?: BorderStyleType;
-    cardBorderWidth?: string;
-    cardBorderColor?: Color;
+    hasBorder_blockCard: boolean;
+    borderWidth_blockCard: string;
+    borderStyle_blockCard: BorderStyle;
+    borderColor_blockCard: Color;
 
-    isCardCornerRadiusCustom: boolean;
-    cardCornerRadiusCustom?: string;
-    cardCornerRadiusSimple: CornerRadiusType;
+    hasRadius_blockCard: boolean;
+    radiusValue_blockCard: string;
+    radiusChoice_blockCard: Radius;
 
-    hasPreviewBackgroundColor: boolean;
-    previewBackgroundColor?: Color;
+    hasBackgroundTemplatePreview: boolean;
+    backgroundColorTemplatePreview: Color;
 
-    hasPreviewBorder: boolean;
-    previewBorderStyle?: BorderStyleType;
-    previewBorderWidth?: string;
-    previewBorderColor?: Color;
+    hasBorder_templatePreview: boolean;
+    borderWidth_templatePreview: string;
+    borderStyle_templatePreview: BorderStyle;
+    borderColor_templatePreview: Color;
 
-    isPreviewCorderRadiusCustom: boolean;
-    previewCornerRadiusCustom?: string;
-    previewCornerRadiusSimple: CornerRadiusType;
+    hasRadius_templatePreview: boolean;
+    radiusValue_templatePreview: string;
+    radiusChoice_templatePreview: Radius;
 };
 
 export enum PreviewType {
@@ -74,18 +69,6 @@ export enum PreviewType {
     Template = 'template',
     Custom = 'custom',
 }
-
-export enum CardPaddingType {
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
-}
-
-export const cardPaddingValues: Record<CardPaddingType, string> = {
-    [CardPaddingType.Small]: '36px',
-    [CardPaddingType.Medium]: '60px',
-    [CardPaddingType.Large]: '96px',
-};
 
 export enum TextPositioningType {
     Bottom = 'bottom',
@@ -146,32 +129,4 @@ export const previewImageAnchoringValues: Record<AnchoringType, string> = {
     [AnchoringType.Start]: 'left',
     [AnchoringType.Center]: 'center',
     [AnchoringType.End]: 'right',
-};
-
-export enum BorderStyleType {
-    Solid = 'solid',
-    Dotted = 'dotted',
-    Dashed = 'dashed',
-}
-
-export enum CornerRadiusType {
-    None = 'none',
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
-}
-
-export const cornerRadiusValues: Record<CornerRadiusType, string> = {
-    [CornerRadiusType.None]: '0px',
-    [CornerRadiusType.Small]: '2px',
-    [CornerRadiusType.Medium]: '4px',
-    [CornerRadiusType.Large]: '12px',
-};
-
-export type ButtonProps = {
-    id: string;
-    styles?: CSSProperties & { hover?: CSSProperties };
-    isActive?: boolean;
-    onClick: () => void;
-    children: ReactNode;
 };

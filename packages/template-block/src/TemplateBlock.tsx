@@ -8,14 +8,20 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, cardPaddingValues, cornerRadiusValues, textPositioningToFlexDirection } from './types';
-import { GAP, SETTING_ID } from './constants';
-import { Button, ButtonEmphasis, Color, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
-import { getRgbaString } from './utils';
+import { ReactElement, useEffect, useReducer, useState } from 'react';
+import {
+    BlockProps,
+    getBackgroundColorStyles,
+    paddingStyleMap,
+    radiusStyleMap,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
+import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
+import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
+import { Button, ButtonEmphasis, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
+import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -29,72 +35,62 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         title,
         description,
         preview,
-        isCardPaddingCustom,
-        cardPaddingSimple,
-        cardPaddingCustomTop,
-        cardPaddingCustomLeft,
-        cardPaddingCustomRight,
-        cardPaddingCustomBottom,
-        hasCardBackgroundColor,
-        cardBackgroundColor,
-        hasCardBorder,
-        cardBorderColor,
-        cardBorderStyle,
-        cardBorderWidth,
-        isCardCornerRadiusCustom,
-        cardCornerRadiusSimple,
-        cardCornerRadiusCustom,
+        hasCustomPaddingValue_blockCard,
+        paddingValue_blockCard,
+        paddingChoice_blockCard,
+        hasBackground,
+        backgroundColor,
+        hasBorder_blockCard,
+        borderWidth_blockCard,
+        borderColor_blockCard,
+        borderStyle_blockCard,
+        hasRadius_blockCard,
+        radiusValue_blockCard,
+        radiusChoice_blockCard,
         textPositioning,
         textRatio,
         textAnchoringHorizontal,
         textAnchoringVertical,
     } = blockSettings;
 
-    const [templateTitle, setTemplateTitle] = useState(title ?? '');
-    const [templateDescription, setTemplateDescription] = useState(description ?? '');
+    const [{ templateTitle, templateDescription }, dispatch] = useReducer(templateDataReducer, {
+        templateTitle: title ?? '',
+        templateDescription: description ?? '',
+    });
 
     const hasPreview = preview !== PreviewType.None;
     const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
     const isRows = hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
+    const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
+    const border = hasBorder_blockCard
+        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
+        : 'none';
 
-    const updateTemplateTitle = (value: string) => {
-        setTemplateTitle(value);
-        onChangeSetting('title', value);
-    };
+    useEffect(() => {
+        updateBlockSettings({ title: templateTitle });
+    }, [templateTitle]);
 
-    const updateTemplateDescription = (value: string) => {
-        setTemplateDescription(value);
-        onChangeSetting('description', value);
-    };
-
-    const updateSelectedTemplate = useCallback(
-        (templates: Template[]) => {
-            const lastTemplate = templates.pop();
-
-            if (lastTemplate) {
-                setSelectedTemplate(lastTemplate);
-            }
-        },
-        [setSelectedTemplate],
-    );
+    useEffect(() => {
+        updateBlockSettings({ description: templateDescription });
+    }, [templateDescription]);
 
     useEffect(() => {
         if (error !== null) {
             setLastErrorMessage(error);
-            updateTemplateTitle('');
-            updateTemplateDescription('');
+            dispatch({ type: TemplateDataActionType.UPDATE_TITLE, payload: { newValue: '' } });
+            dispatch({ type: TemplateDataActionType.UPDATE_DESCRIPTION, payload: { newValue: '' } });
         }
     }, [error]);
 
     useEffect(() => {
-        if (blockTemplates[SETTING_ID]) {
-            updateSelectedTemplate(blockTemplates[SETTING_ID]);
-        }
-    }, [blockTemplates, updateSelectedTemplate]);
+        if (blockTemplates[TEMPLATE_BLOCK_SETTING_ID] && blockTemplates[TEMPLATE_BLOCK_SETTING_ID].length > 0) {
+            const lastTemplate = blockTemplates[TEMPLATE_BLOCK_SETTING_ID].pop();
 
-    const onChangeSetting = async <Key extends keyof Settings>(key: Key, value: Settings[Key]) => {
-        await updateBlockSettings({ ...blockSettings, [key]: value });
-    };
+            if (lastTemplate) {
+                setSelectedTemplate(lastTemplate);
+            }
+        }
+    }, [blockTemplates]);
 
     const handleNewPublication = () => {
         if (selectedTemplate !== null) {
@@ -113,23 +109,19 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     data-test-id="template-block"
                     className="tw-border tw-border-black-20"
                     style={{
-                        backgroundColor: hasCardBackgroundColor
-                            ? getRgbaString(cardBackgroundColor as Color)
-                            : undefined,
-                        borderRadius: isCardCornerRadiusCustom
-                            ? cardCornerRadiusCustom
-                            : cornerRadiusValues[cardCornerRadiusSimple],
-                        border: hasCardBorder
-                            ? `${cardBorderWidth} ${cardBorderStyle} ${getRgbaString(cardBorderColor as Color)}`
-                            : 'none',
-                        padding: isCardPaddingCustom
-                            ? `${cardPaddingCustomTop} ${cardPaddingCustomRight} ${cardPaddingCustomBottom} ${cardPaddingCustomLeft}`
-                            : cardPaddingValues[cardPaddingSimple],
+                        ...(hasBackground && {
+                            ...getBackgroundColorStyles(backgroundColor),
+                        }),
+                        borderRadius,
+                        border,
+                        padding: hasCustomPaddingValue_blockCard
+                            ? paddingValue_blockCard
+                            : paddingStyleMap[paddingChoice_blockCard],
                     }}
                 >
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
                     <div
-                        className="tw-flex"
+                        className="tw-flex justify-test"
                         style={{
                             flexDirection,
                             gap: GAP,
@@ -142,8 +134,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 blockSettings={blockSettings}
                                 template={selectedTemplate}
                                 onUpdateTemplate={updateTemplateIdsFromKey}
-                                onUpdateTemplateTitle={updateTemplateTitle}
-                                onUpdateTemplateDescription={updateTemplateDescription}
+                                onUpdateTemplateTitle={(newValue, prevValue) =>
+                                    dispatch({
+                                        type: TemplateDataActionType.UPDATE_TITLE,
+                                        payload: { newValue, prevValue },
+                                    })
+                                }
+                                onUpdateTemplateDescription={(newValue, prevValue) =>
+                                    dispatch({
+                                        type: TemplateDataActionType.UPDATE_DESCRIPTION,
+                                        payload: { newValue, prevValue },
+                                    })
+                                }
                                 onSave={updateBlockSettings}
                                 onError={setLastErrorMessage}
                             />
@@ -163,7 +165,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                                 id={`${blockId}-title`}
                                                 value={templateTitle}
                                                 placeholder={isEditing ? 'Template Name' : undefined}
-                                                onChange={updateTemplateTitle}
+                                                onChange={(value) =>
+                                                    dispatch({
+                                                        type: TemplateDataActionType.UPDATE_TITLE,
+                                                        payload: { newValue: value },
+                                                    })
+                                                }
                                             />
                                         </span>
                                     ) : (
@@ -172,7 +179,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         </Heading>
                                     )}
                                     <div>
-                                        <Text size="small">
+                                        <Text size="small" color="weak">
                                             <span data-test-id="template-block-page-count">
                                                 {selectedTemplate?.pages.length ?? 0} pages
                                             </span>
@@ -191,7 +198,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                                     ? 'Use default Template description if available, add your own or leave it empty'
                                                     : undefined
                                             }
-                                            onInput={updateTemplateDescription}
+                                            onInput={(value) =>
+                                                dispatch({
+                                                    type: TemplateDataActionType.UPDATE_TITLE,
+                                                    payload: { newValue: value },
+                                                })
+                                            }
                                             data-test-id="template-block-description-editing"
                                         />
                                     </span>
