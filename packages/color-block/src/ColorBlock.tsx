@@ -34,7 +34,7 @@ export const ColorBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
         appBridge,
-        blockSettings.colorPaletteId
+        blockSettings.colorPaletteId,
     );
     const [colors, setColors] = useState<ColorType[]>([]);
     useEffect(() => {
@@ -74,7 +74,7 @@ export const ColorBlock: FC<BlockProps> = ({ appBridge }) => {
     const inputClasses = joinClassNames(['tw-w-full tw-outline-none', isEditing ? '' : 'tw-pointer-events-none']);
 
     return (
-        <div data-test-id="color-block">
+        <div className="color-block" data-test-id="color-block">
             <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
                 <input
                     className={inputClasses}

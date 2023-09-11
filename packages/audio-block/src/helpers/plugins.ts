@@ -38,7 +38,7 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
             new SoftBreakPlugin(),
             new TextStylePlugin({
                 textStyles: AllTextStylePlugins,
-            })
+            }),
         )
         .setPlugin(
             [
@@ -59,5 +59,5 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
                 new CheckboxListPlugin(),
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
-            ]
+            ],
         );

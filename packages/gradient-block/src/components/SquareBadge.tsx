@@ -70,6 +70,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                 right: isOutOfBounds ? '0%' : 'auto',
             }}
         >
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <div
                 className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
                 onClick={() => copy(toHexString(gradientColor.color))}

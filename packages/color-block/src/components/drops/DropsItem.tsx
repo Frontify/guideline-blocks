@@ -73,6 +73,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     }
                     triggerElement={
                         <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                             <div
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-rounded-full tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-x-strong"
@@ -137,6 +138,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                             />
                                         }
                                         triggerElement={
+                                            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
                                             <div
                                                 data-test-id="color-space-value-trigger"
                                                 className="tw-cursor-pointer tw-text-s tw-text-black-80 tw-truncate"

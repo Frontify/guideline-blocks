@@ -37,7 +37,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             'aria-label': ariaLabel || label,
         },
         toggleState,
-        inputRef
+        inputRef,
     );
 
     const { completeCheckboxColor, checkboxColor } = useContext(SettingsContext);
@@ -53,6 +53,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     };
 
     return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
         <label
             className={joinClassNames([
                 'tw-flex tw-select-none tw-outline-none tw-self-start tw-items-start',

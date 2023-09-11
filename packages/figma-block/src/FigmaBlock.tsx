@@ -65,7 +65,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 document.querySelector(`[data-block="${appBridge.getBlockId()}"].referenced`) as
                     | HTMLDivElement
                     | undefined
-            )?.dataset.referenceUrl || ''
+            )?.dataset.referenceUrl || '',
         );
     }, []);
 
@@ -98,21 +98,21 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 projectTypes: [AssetChooserProjectType.Workspace],
                 objectTypes: [AssetChooserObjectType.Url],
                 urlContains: 'https://www.figma',
-            }
+            },
         );
     };
 
     const FigmaEmptyBlock = () => (
-        <div
+        <button
             data-test-id="figma-empty-block"
-            className="tw-group tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
+            className="tw-group tw-w-full tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
                 <IconSuitcase size={IconSize.Size32} />
             </div>
             <span className="tw-text-text-x-weak group-hover:tw-text-black">Choose Figma asset</span>
-        </div>
+        </button>
     );
 
     const ShowFigmaLink = useCallback(
@@ -123,7 +123,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </a>
             </div>
         ),
-        []
+        [],
     );
 
     const ShowImagePreview = useCallback(
@@ -176,7 +176,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             hasRadius,
             radiusChoice,
             radiusValue,
-        ]
+        ],
     );
 
     const ShowFigmaLive = useCallback(
@@ -198,7 +198,11 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         />
                     </div>
                 )}
-                <iframe src={asset?.externalUrl ?? undefined} className="tw-h-full tw-w-full tw-border-none" />
+                <iframe
+                    src={asset?.externalUrl ?? undefined}
+                    className="tw-h-full tw-w-full tw-border-none"
+                    title="figma-iframe"
+                />
             </div>
         ),
         [
@@ -212,7 +216,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             borderColor,
             borderStyle,
             allowFullScreen,
-        ]
+        ],
     );
 
     const FigmaLivePortal = useCallback(() => {
@@ -240,6 +244,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         src={asset?.externalUrl ?? undefined}
                         className="tw-h-full tw-w-full tw-border-none"
                         loading="lazy"
+                        title={asset.title}
                     />
                 </div>
             </div>
@@ -249,7 +254,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [asset?.externalUrl]);
 
     return (
-        <div ref={ref} data-test-id="figma-block">
+        <div ref={ref} data-test-id="figma-block" className="figma-block">
             {referenceUrl ? (
                 <ReferenceErrorMessage originalUrl={referenceUrl} />
             ) : (

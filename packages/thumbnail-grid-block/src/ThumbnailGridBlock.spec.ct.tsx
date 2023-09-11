@@ -260,7 +260,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
         cy.get(ThumbnailCaption).should('have.length', 3);
         cy.get(ThumbnailCaption).first().click();
@@ -294,7 +294,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
 
         cy.get(ThumbnailItem)
@@ -339,7 +339,7 @@ describe('Thumbnail Grid Block', () => {
         mount(
             <div className="tw-mt-12">
                 <ThumbnailGridBlockWithStubs />
-            </div>
+            </div>,
         );
 
         cy.get(ThumbnailItem)

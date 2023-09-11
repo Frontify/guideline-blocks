@@ -59,6 +59,7 @@ const ImageComponent = ({
                                 'tw-object-contain',
                         ])}
                         src={src.replace('{width}', width.toString())}
+                        alt=""
                     />
                     {hasStrikethrough && (
                         <div

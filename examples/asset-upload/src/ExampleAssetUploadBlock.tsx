@@ -49,7 +49,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
             },
             {
                 selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
-            }
+            },
         );
     };
 
@@ -62,32 +62,38 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     };
 
     return (
-        <div className="tw-flex tw-flex-col tw-gap-4">
-            <div className="tw-flex tw-gap-4">
-                <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
-                <Button onClick={openFileDialog} disabled={loading}>
-                    {loading ? 'Uploading...' : 'Upload'}
-                </Button>
-            </div>
+        <div className="example-asset-upload">
+            <div className="tw-flex tw-flex-col tw-gap-4">
+                <div className="tw-flex tw-gap-4">
+                    <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
+                    <Button onClick={openFileDialog} disabled={loading}>
+                        {loading ? 'Uploading...' : 'Upload'}
+                    </Button>
+                </div>
 
-            <div data-test-id="example-asset-upload-block">
-                {blockAssets[IMAGE_SETTING_ID] ? (
-                    blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
-                        <div key={asset.id}>
-                            <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
-                            <div className="tw-flex tw-flex-col tw-gap-4">
-                                <strong>{asset.title}</strong>
-                                <div className="tw-flex tw-gap-4">
-                                    <Link link={asset.previewUrl} text="Preview URL" />
-                                    <Link link={asset.genericUrl} text="Generic URL" />
-                                    {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
+                <div data-test-id="example-asset-upload-block">
+                    {blockAssets[IMAGE_SETTING_ID] ? (
+                        blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
+                            <div key={asset.id}>
+                                <img
+                                    src={asset.previewUrl}
+                                    alt={asset.title}
+                                    data-test-id="example-asset-upload-image"
+                                />
+                                <div className="tw-flex tw-flex-col tw-gap-4">
+                                    <strong>{asset.title}</strong>
+                                    <div className="tw-flex tw-gap-4">
+                                        <Link link={asset.previewUrl} text="Preview URL" />
+                                        <Link link={asset.genericUrl} text="Generic URL" />
+                                        {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>No image set</p>
-                )}
+                        ))
+                    ) : (
+                        <p>No image set</p>
+                    )}
+                </div>
             </div>
         </div>
     );
