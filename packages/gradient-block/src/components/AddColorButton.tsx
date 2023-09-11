@@ -15,6 +15,7 @@ export const AddColorButton = ({
     };
 
     return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <div
             data-test-id="add-color-button"
             className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded tw-cursor-pointer tw-h-4 tw-w-4"

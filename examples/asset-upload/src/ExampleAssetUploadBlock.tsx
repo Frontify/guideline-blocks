@@ -75,7 +75,11 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                     {blockAssets[IMAGE_SETTING_ID] ? (
                         blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
                             <div key={asset.id}>
-                                <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
+                                <img
+                                    src={asset.previewUrl}
+                                    alt={asset.title}
+                                    data-test-id="example-asset-upload-image"
+                                />
                                 <div className="tw-flex tw-flex-col tw-gap-4">
                                     <strong>{asset.title}</strong>
                                     <div className="tw-flex tw-gap-4">
