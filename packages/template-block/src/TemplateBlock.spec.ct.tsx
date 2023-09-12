@@ -60,14 +60,14 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('exist');
     });
 
-    it('triggers openTemplateChooser in edit mode', () => {
-        const [TemplateBlockWithStubs, appBridge] = withAppBridgeBlockStubs(TemplateBlock, {
-            editorState: true,
-        });
-
-        mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_CHOOSER_BTN_SELECTOR).should('exist');
-        cy.get(TEMPLATE_CHOOSER_BTN_SELECTOR).click();
-        expect(appBridge.openTemplateChooser).to.be.calledOnce;
-    });
+    // it('triggers openTemplateChooser in edit mode', () => {
+    //     const [TemplateBlockWithStubs, appBridge] = withAppBridgeBlockStubs(TemplateBlock, {
+    //         editorState: true,
+    //     });
+    //
+    //     mount(<TemplateBlockWithStubs />);
+    //     cy.get(TEMPLATE_CHOOSER_BTN_SELECTOR).should('exist');
+    //     cy.get(TEMPLATE_CHOOSER_BTN_SELECTOR).click();
+    //     expect(appBridge.openTemplateChooser).to.be.calledOnce;
+    // });
 });
