@@ -307,11 +307,13 @@ export const settings = defineSettings({
                 {
                     ...getBackgroundSettings({
                         defaultValue: true,
+                        defaultColor: { red: 255, green: 255, blue: 255, alpha: 1 },
                     }),
                 },
                 {
                     ...getBorderSettings({
                         id: 'blockCard',
+                        defaultValue: true,
                     }),
                 },
                 {
@@ -335,11 +337,13 @@ export const settings = defineSettings({
                     ...getBackgroundSettings({
                         id: 'TemplatePreview',
                         defaultValue: true,
+                        defaultColor: { red: 255, green: 255, blue: 255, alpha: 1 },
                     }),
                 },
                 {
                     ...getBorderSettings({
                         id: 'templatePreview',
+                        defaultValue: true,
                     }),
                 },
                 {

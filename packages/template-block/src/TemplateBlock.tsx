@@ -18,7 +18,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
-import { Button, ButtonEmphasis, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonStyle, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
@@ -200,7 +200,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                             }
                                             onInput={(value) =>
                                                 dispatch({
-                                                    type: TemplateDataActionType.UPDATE_TITLE,
+                                                    type: TemplateDataActionType.UPDATE_DESCRIPTION,
                                                     payload: { newValue: value },
                                                 })
                                             }
@@ -217,6 +217,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 <Button
                                     data-test-id="template-block-new-publication-btn"
                                     emphasis={ButtonEmphasis.Default}
+                                    style={ButtonStyle.Default}
                                     onClick={handleNewPublication}
                                     disabled={!selectedTemplate}
                                 >
