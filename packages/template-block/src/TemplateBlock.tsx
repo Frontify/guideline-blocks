@@ -68,11 +68,11 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         updateBlockSettings({ title: templateTitle });
-    }, [templateTitle, updateBlockSettings]);
+    }, [templateTitle]);
 
     useEffect(() => {
         updateBlockSettings({ description: templateDescription });
-    }, [templateDescription, updateBlockSettings]);
+    }, [templateDescription]);
 
     useEffect(() => {
         if (error !== null) {
