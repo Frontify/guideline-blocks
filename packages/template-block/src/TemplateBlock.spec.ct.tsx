@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { TemplateDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
-import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 
 const TEMPLATE_BLOCK_CONTAINER_SELECTOR = '[data-test-id="template-block-container"]';
 const TEMPLATE_BLOCK_SELECTOR = '[data-test-id="template-block"]';
