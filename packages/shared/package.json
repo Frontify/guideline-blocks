@@ -15,7 +15,7 @@
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
-        "@babel/core": "^7.22.15",
+        "@babel/core": "^7.22.17",
         "@frontify/eslint-config-typescript": "0.16.1",
         "@testing-library/react": "^14.0.0",
         "@types/node": "^20.5.9",
@@ -41,8 +41,8 @@
         "vitest": "^0.34.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^3.0.0-beta.90",
-        "@frontify/fondue": "12.0.0-beta.316",
+        "@frontify/app-bridge": "^3.0.0-beta.91",
+        "@frontify/fondue": "12.0.0-beta.321",
         "@uiw/codemirror-extensions-langs": "^4.21.12",
         "@uiw/react-codemirror": "^4.21.12"
     },
