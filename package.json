@@ -21,7 +21,7 @@
     },
     "devDependencies": {
         "@4tw/cypress-drag-drop": "^2.2.4",
-        "@babel/core": "^7.22.15",
+        "@babel/core": "^7.22.17",
         "@cypress/vite-dev-server": "^5.0.6",
         "@testing-library/react": "^14.0.0",
         "@types/node": "^20.5.9",
@@ -39,7 +39,7 @@
         "vitest": "^0.34.4"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.316",
+        "@frontify/fondue": "12.0.0-beta.321",
         "glob": "^10.3.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
