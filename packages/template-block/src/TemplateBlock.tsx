@@ -22,6 +22,7 @@ import { Button, ButtonEmphasis, ButtonStyle, Heading, Text, TextInput, Textarea
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
+import { TemplateText } from './components/TemplateText';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -158,60 +159,27 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             }}
                         >
                             <div className="tw-grow tw-min-w-0">
-                                <div className="tw-mb-2">
-                                    {isEditing ? (
-                                        <span data-test-id="template-block-title-edit">
-                                            <TextInput
-                                                id={`${blockId}-title`}
-                                                value={templateTitle}
-                                                placeholder={isEditing ? 'Template Name' : undefined}
-                                                onChange={(value) =>
-                                                    dispatch({
-                                                        type: TemplateDataActionType.UPDATE_TITLE,
-                                                        payload: { newValue: value },
-                                                    })
-                                                }
-                                            />
-                                        </span>
-                                    ) : (
-                                        <Heading size="xx-large" weight="strong">
-                                            <span data-test-id="template-block-title">{templateTitle}</span>
-                                        </Heading>
-                                    )}
-                                    <div>
-                                        <Text size="small" color="weak">
-                                            <span data-test-id="template-block-page-count">
-                                                {selectedTemplate?.pages.length ?? 0} pages
-                                            </span>
-                                        </Text>
-                                    </div>
-                                </div>
-                                {isEditing ? (
-                                    <span data-test-id="template-block-description-edit">
-                                        <Textarea
-                                            id={`${blockId}-description`}
-                                            value={templateDescription}
-                                            autosize={true}
-                                            resizeable={false}
-                                            placeholder={
-                                                isEditing
-                                                    ? 'Use default Template description if available, add your own or leave it empty'
-                                                    : undefined
-                                            }
-                                            onInput={(value) =>
-                                                dispatch({
-                                                    type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                                                    payload: { newValue: value },
-                                                })
-                                            }
-                                            data-test-id="template-block-description-editing"
-                                        />
-                                    </span>
-                                ) : (
-                                    <Text>
-                                        <span data-test-id="template-block-description">{templateDescription}</span>
-                                    </Text>
-                                )}
+                                {
+                                    <TemplateText
+                                        appBridge={appBridge}
+                                        title={templateTitle}
+                                        description={templateDescription}
+                                        pageCount={selectedTemplate?.pages.length ?? 0}
+                                        isEditing={isEditing}
+                                        setTitle={(newValue, prevValue) =>
+                                            dispatch({
+                                                type: TemplateDataActionType.UPDATE_TITLE,
+                                                payload: { newValue, prevValue },
+                                            })
+                                        }
+                                        setDescription={(newValue, prevValue) =>
+                                            dispatch({
+                                                type: TemplateDataActionType.UPDATE_DESCRIPTION,
+                                                payload: { newValue, prevValue },
+                                            })
+                                        }
+                                    />
+                                }
                             </div>
                             <div className="tw-shrink-0">
                                 <Button

@@ -1867,6 +1867,9 @@ importers:
       eslint:
         specifier: ^8.48.0
         version: 8.49.0
+      eslint-plugin-jsx-a11y:
+        specifier: ^6.7.1
+        version: 6.7.1(eslint@8.49.0)
       eslint-plugin-notice:
         specifier: ^0.9.10
         version: 0.9.10(eslint@8.49.0)

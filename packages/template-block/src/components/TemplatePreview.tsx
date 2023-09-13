@@ -4,6 +4,7 @@ import { AppBridgeBlock, Template, TemplateLegacy, useBlockAssets, useEditorStat
 import {
     ActionMenu,
     Button,
+    ButtonEmphasis,
     ButtonRounding,
     ButtonSize,
     ButtonStyle,
@@ -11,6 +12,7 @@ import {
     Flyout,
     IconDotsVertical,
     IconPlus20,
+    IconPlus24,
     merge,
 } from '@frontify/fondue';
 import { useState } from 'react';
@@ -22,7 +24,12 @@ import {
     textPositioningToFlexDirection,
 } from '../types';
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
-import { getBackgroundColorStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+import {
+    BlockInjectButton,
+    getBackgroundColorStyles,
+    radiusStyleMap,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
@@ -141,6 +148,8 @@ export const TemplatePreview = ({
                                 isOpen={isActionFlyoutOpen}
                                 trigger={
                                     <Button
+                                        emphasis={ButtonEmphasis.Default}
+                                        style={ButtonStyle.Default}
                                         icon={<IconDotsVertical />}
                                         onClick={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
                                     />
@@ -171,18 +180,31 @@ export const TemplatePreview = ({
                     )}
                 </div>
             ) : (
-                <Button
-                    data-test-id="template-block-preview-templatechooser-btn"
-                    hugWidth
-                    icon={<IconPlus20 />}
-                    onClick={openTemplateChooser}
-                    rounding={ButtonRounding.Medium}
-                    size={ButtonSize.Medium}
-                    style={ButtonStyle.Default}
-                    type={ButtonType.Button}
+                // <Button
+                //     data-test-id="template-block-preview-templatechooser-btn"
+                //     hugWidth
+                //     icon={<IconPlus20 />}
+                //     onClick={openTemplateChooser}
+                //     rounding={ButtonRounding.Medium}
+                //     size={ButtonSize.Medium}
+                //     style={ButtonStyle.Default}
+                //     type={ButtonType.Button}
+                // >
+                //     Choose existing template
+                // </Button>
+                <div
+                    style={{
+                        height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
+                    }}
                 >
-                    Choose existing template
-                </Button>
+                    <BlockInjectButton
+                        label="Choose existing template"
+                        icon={<IconPlus24 />}
+                        withMenu={false}
+                        fillParentContainer={true}
+                        onClick={openTemplateChooser}
+                    />
+                </div>
             )}
         </div>
     );
