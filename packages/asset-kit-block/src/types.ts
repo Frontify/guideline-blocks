@@ -71,6 +71,7 @@ export type InformationSectionProps = {
 
 export type ThumbnailItemProps = {
     asset: Asset;
+    currentAssetsIds: number[];
     isEditing: boolean;
     appBridge: AppBridgeBlock;
     onRemoveAsset: (assetId: number) => Promise<void>;

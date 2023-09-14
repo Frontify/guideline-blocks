@@ -4,16 +4,17 @@ import { useEffect, useState } from 'react';
 import { Settings, ThumbnailItemProps } from '../types';
 import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import {
-    AssetChooserObjectType,
-    useAssetChooser,
-    useAssetUpload,
-    useBlockSettings,
-    useFileInput,
-} from '@frontify/app-bridge';
+import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
 
-export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onReplaceAsset }: ThumbnailItemProps) => {
+export const ThumbnailItem = ({
+    asset,
+    currentAssetsIds,
+    isEditing,
+    appBridge,
+    onRemoveAsset,
+    onReplaceAsset,
+}: ThumbnailItemProps) => {
     const [isUploading, setIsUploading] = useState(false);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -25,11 +26,12 @@ export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onRe
     const onOpenAssetChooser = () => {
         openAssetChooser(
             async (result) => {
-                onReplaceAsset(asset.id, result[0].id);
+                await onReplaceAsset(asset.id, result[0].id);
                 closeAssetChooser();
             },
             {
-                objectTypes: [AssetChooserObjectType.ImageVideo],
+                multiSelection: false,
+                selectedValueIds: currentAssetsIds,
             },
         );
     };

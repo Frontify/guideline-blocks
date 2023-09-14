@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { generateRandomId } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
 import { AssetCount } from './AssetCount';
@@ -28,7 +29,7 @@ export const AssetGrid = ({
     };
 
     const shouldShowThumbnails = isEditing || showThumbnails;
-
+    const currentAssetsIds = currentAssets.map((asset) => asset.id);
     return (
         <>
             {showCount && <AssetCount count={currentAssets.length} color={countColor} />}
@@ -37,7 +38,8 @@ export const AssetGrid = ({
                     {currentAssets
                         ? currentAssets.map((asset) => (
                               <ThumbnailItem
-                                  key={asset.id}
+                                  key={`${asset.id}-${generateRandomId()}`}
+                                  currentAssetsIds={currentAssetsIds}
                                   asset={asset}
                                   isEditing={isEditing}
                                   onRemoveAsset={onRemoveAsset}
