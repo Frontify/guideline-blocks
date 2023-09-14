@@ -3,6 +3,7 @@
 import {
     OpenNewPublicationPayload,
     Template,
+    TemplateLegacy,
     openNewPublication,
     useBlockSettings,
     useBlockTemplates,
@@ -10,6 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { ReactElement, useEffect, useReducer, useState } from 'react';
 import {
+    BlockInjectButton,
     BlockProps,
     getBackgroundColorStyles,
     paddingStyleMap,
@@ -18,7 +20,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
-import { Button, ButtonEmphasis, ButtonStyle, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonStyle, IconPlus24, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
@@ -29,7 +31,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const isEditing = useEditorState(appBridge);
-    const blockId = appBridge.getBlockId();
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
@@ -103,6 +104,32 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     };
 
+    const onTemplateSelected = async (result: TemplateLegacy) => {
+        const { title, description } = blockSettings;
+
+        try {
+            await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.id]);
+            updateBlockSettings({
+                template: result,
+                templateId: result.id,
+            });
+            dispatch({
+                type: TemplateDataActionType.UPDATE_TITLE,
+                payload: { newValue: result.title, prevValue: title },
+            });
+            dispatch({
+                type: TemplateDataActionType.UPDATE_DESCRIPTION,
+                payload: { newValue: result.description, prevValue: description },
+            });
+        } catch (error) {
+            setLastErrorMessage(error as string);
+        }
+
+        appBridge.closeTemplateChooser();
+    };
+
+    const handleOpenTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
+
     return (
         <div data-test-id="template-block-container">
             {selectedTemplate || isEditing ? (
@@ -134,21 +161,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 template={selectedTemplate}
-                                onUpdateTemplate={updateTemplateIdsFromKey}
-                                onUpdateTemplateTitle={(newValue, prevValue) =>
-                                    dispatch({
-                                        type: TemplateDataActionType.UPDATE_TITLE,
-                                        payload: { newValue, prevValue },
-                                    })
-                                }
-                                onUpdateTemplateDescription={(newValue, prevValue) =>
-                                    dispatch({
-                                        type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                                        payload: { newValue, prevValue },
-                                    })
-                                }
-                                onSave={updateBlockSettings}
-                                onError={setLastErrorMessage}
+                                onOpenTemplateChooser={handleOpenTemplateChooser}
                             />
                         )}
                         <div
@@ -163,6 +176,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     <TemplateText
                                         appBridge={appBridge}
                                         title={templateTitle}
+                                        blockSettings={blockSettings}
                                         description={templateDescription}
                                         pageCount={selectedTemplate?.pages.length ?? 0}
                                         isEditing={isEditing}
@@ -194,6 +208,17 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             </div>
                         </div>
                     </div>
+                    {!hasPreview && isEditing && (
+                        <div style={{ width: '75%', height: '70px' }} className="tw-pt-2">
+                            <BlockInjectButton
+                                label="Choose existing template"
+                                icon={<IconPlus24 />}
+                                withMenu={false}
+                                fillParentContainer={true}
+                                onClick={handleOpenTemplateChooser}
+                            />
+                        </div>
+                    )}
                 </div>
             ) : null}
         </div>

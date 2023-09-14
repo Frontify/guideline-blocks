@@ -26,6 +26,7 @@ import {
     previewHeightValues,
 } from './types';
 import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
+import { getColorSettings } from './helpers/colorSettings';
 
 export const settings = defineSettings({
     main: [],
@@ -58,6 +59,7 @@ export const settings = defineSettings({
         {
             id: 'previewCustom',
             type: 'assetInput',
+            size: 'small',
             extensions: FileExtensionSets.Images,
             label: 'Custom Preview',
             show: (bundle: Bundle) => bundle.getBlock('preview')?.value === PreviewType.Custom,
@@ -78,6 +80,7 @@ export const settings = defineSettings({
             id: 'textLayoutHeading',
             type: 'sectionHeading',
             label: 'Text',
+            show: (bundle: Bundle) => bundle.getBlock('preview')?.value !== PreviewType.None,
             blocks: [
                 {
                     id: 'textPositioning',
@@ -206,6 +209,7 @@ export const settings = defineSettings({
             id: 'previewLayoutHeading',
             type: 'sectionHeading',
             label: 'Preview',
+            show: (bundle: Bundle) => bundle.getBlock('preview')?.value !== PreviewType.None,
             blocks: [
                 {
                     id: 'isPreviewHeightCustom',
@@ -260,6 +264,7 @@ export const settings = defineSettings({
                     type: 'slider',
                     label: 'Display',
                     defaultValue: PreviewDisplayType.Fit,
+                    show: (bundle: Bundle) => bundle.getBlock('previewHeightSimple')?.value !== PreviewHeightType.Auto,
                     choices: [
                         {
                             value: PreviewDisplayType.Fit,
@@ -276,7 +281,9 @@ export const settings = defineSettings({
                     type: 'slider',
                     label: 'Image anchoring',
                     defaultValue: AnchoringType.Center,
-                    show: (bundle: Bundle) => bundle.getBlock('previewDisplay')?.value === PreviewDisplayType.Fit,
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock('previewHeightSimple')?.value !== PreviewHeightType.Auto &&
+                        bundle.getBlock('previewDisplay')?.value === PreviewDisplayType.Fit,
                     choices: [
                         {
                             value: AnchoringType.Start,
@@ -299,6 +306,34 @@ export const settings = defineSettings({
         },
     ],
     style: [
+        {
+            id: 'textStyleHeading',
+            type: 'sectionHeading',
+            label: 'Text',
+            blocks: [
+                {
+                    ...getColorSettings({
+                        id: 'title',
+                        label: 'Headline',
+                        defaultValue: true,
+                    }),
+                },
+                {
+                    ...getColorSettings({
+                        id: 'pages',
+                        label: 'Pages',
+                        defaultValue: true,
+                    }),
+                },
+                {
+                    ...getColorSettings({
+                        id: 'description',
+                        label: 'Body',
+                        defaultValue: true,
+                    }),
+                },
+            ],
+        },
         {
             id: 'cardStyleHeading',
             type: 'sectionHeading',
@@ -332,6 +367,7 @@ export const settings = defineSettings({
             id: 'previewStyleHeading',
             type: 'sectionHeading',
             label: 'Preview',
+            show: (bundle: Bundle) => bundle.getBlock('preview')?.value !== PreviewType.None,
             blocks: [
                 {
                     ...getBackgroundSettings({

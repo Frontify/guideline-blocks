@@ -1,14 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template, TemplateLegacy, useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import {
     ActionMenu,
     Button,
     ButtonEmphasis,
-    ButtonRounding,
-    ButtonSize,
     ButtonStyle,
-    ButtonType,
     Flyout,
     IconDotsVertical,
     IconPlus20,
@@ -17,13 +14,13 @@ import {
 } from '@frontify/fondue';
 import { useState } from 'react';
 import {
+    PreviewType,
     Settings,
     previewDisplayValues,
     previewHeightValues,
     previewImageAnchoringValues,
     textPositioningToFlexDirection,
 } from '../types';
-import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
@@ -35,22 +32,14 @@ export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
-    onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
-    onUpdateTemplateTitle: (newValue: string, prevValue?: string) => void;
-    onUpdateTemplateDescription: (newValue: string, prevValue?: string) => void;
-    onSave: (properties: Partial<Settings>) => Promise<void>;
-    onError: (message: string) => void;
+    onOpenTemplateChooser: () => void;
 };
 
 export const TemplatePreview = ({
     appBridge,
     blockSettings,
     template,
-    onUpdateTemplate,
-    onUpdateTemplateTitle,
-    onUpdateTemplateDescription,
-    onSave,
-    onError,
+    onOpenTemplateChooser,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -66,6 +55,7 @@ export const TemplatePreview = ({
         radiusValue_templatePreview,
         radiusChoice_templatePreview,
         textRatio,
+        preview,
         isPreviewHeightCustom,
         previewHeightSimple,
         previewHeightCustom,
@@ -84,28 +74,9 @@ export const TemplatePreview = ({
     const border = hasBorder_templatePreview
         ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
         : 'none';
+    const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
 
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
-
-    const onTemplateSelected = async (result: TemplateLegacy) => {
-        const { title, description } = blockSettings;
-
-        try {
-            await onUpdateTemplate(TEMPLATE_BLOCK_SETTING_ID, [result.id]);
-            onSave({
-                template: result,
-                templateId: result.id,
-            });
-            onUpdateTemplateTitle(result.title, title);
-            onUpdateTemplateDescription(result.description, description);
-        } catch (error) {
-            onError(error as string);
-        }
-
-        appBridge.closeTemplateChooser();
-    };
-
-    const openTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
 
     return (
         <div
@@ -116,19 +87,23 @@ export const TemplatePreview = ({
         >
             {template !== null || previewCustom ? (
                 <div
-                    className="tw-relative"
+                    className="tw-relative tw-overflow-hidden"
                     style={{
                         ...(hasBackgroundTemplatePreview && {
                             ...getBackgroundColorStyles(backgroundColorTemplatePreview),
                         }),
                         borderRadius,
                         border,
-                        height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
+                        height,
                     }}
                 >
                     <img
                         data-test-id="template-block-preview-img"
-                        src={previewCustom ? previewCustom[0].previewUrl : template?.previewUrl}
+                        src={
+                            preview === PreviewType.Custom && previewCustom
+                                ? previewCustom[0].previewUrl
+                                : template?.previewUrl
+                        }
                         className={merge([
                             'tw-relative tw-w-full tw-h-full',
                             `tw-object-${previewDisplayValues[previewDisplay]}`,
@@ -138,8 +113,8 @@ export const TemplatePreview = ({
                                 ? previewImageAnchoringValues[previewImageAnchoring]
                                 : 'center',
                         }}
-                        width={previewCustom ? previewCustom[0].width : 'auto'}
-                        height={previewCustom ? previewCustom[0].height : 'auto'}
+                        width={preview === PreviewType.Custom && previewCustom ? previewCustom[0].width : 'auto'}
+                        height={preview === PreviewType.Custom && previewCustom ? previewCustom[0].height : 'auto'}
                         alt={template?.name}
                     />
                     {isEditing && (
@@ -168,7 +143,7 @@ export const TemplatePreview = ({
                                                     decorator: <IconPlus20 />,
                                                     onClick: () => {
                                                         setIsActionFlyoutOpen(false);
-                                                        openTemplateChooser();
+                                                        onOpenTemplateChooser();
                                                     },
                                                 },
                                             ],
@@ -180,29 +155,13 @@ export const TemplatePreview = ({
                     )}
                 </div>
             ) : (
-                // <Button
-                //     data-test-id="template-block-preview-templatechooser-btn"
-                //     hugWidth
-                //     icon={<IconPlus20 />}
-                //     onClick={openTemplateChooser}
-                //     rounding={ButtonRounding.Medium}
-                //     size={ButtonSize.Medium}
-                //     style={ButtonStyle.Default}
-                //     type={ButtonType.Button}
-                // >
-                //     Choose existing template
-                // </Button>
-                <div
-                    style={{
-                        height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
-                    }}
-                >
+                <div style={{ height }}>
                     <BlockInjectButton
                         label="Choose existing template"
                         icon={<IconPlus24 />}
                         withMenu={false}
                         fillParentContainer={true}
-                        onClick={openTemplateChooser}
+                        onClick={onOpenTemplateChooser}
                     />
                 </div>
             )}

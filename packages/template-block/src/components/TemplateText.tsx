@@ -7,15 +7,16 @@ import {
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
-    joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 
 import { getTitlePlugin } from '../helpers/rtePlugin';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Text } from '@frontify/fondue';
+import { Settings } from '../types';
 
 export type TemplateTextProps = {
     appBridge: AppBridgeBlock;
+    blockSettings: Settings;
     title: string;
     description: string;
     pageCount: number | undefined;
