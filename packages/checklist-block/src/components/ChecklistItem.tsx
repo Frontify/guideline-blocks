@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCross, ItemDragState } from '@frontify/fondue';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCross, LegacyItemDragState } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
@@ -42,14 +42,14 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     const shouldDisplayControlPanel =
         (isHovered || focused || isDragFocusVisible) &&
         mode === ChecklistItemMode.Edit &&
-        dragState === ItemDragState.Idle;
+        dragState === LegacyItemDragState.Idle;
 
     const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
 
     const containerClasses = joinClassNames([
         'tw-relative tw-rounded tw-p-1',
-        dragState === ItemDragState.Preview && 'tw-bg-white',
-        dragState === ItemDragState.Dragging && 'tw-bg-black-5 tw-opacity-70',
+        dragState === LegacyItemDragState.Preview && 'tw-bg-white',
+        dragState === LegacyItemDragState.Dragging && 'tw-bg-black-5 tw-opacity-70',
         shouldDisplayControlPanel && 'tw-bg-black-5',
     ]);
 
