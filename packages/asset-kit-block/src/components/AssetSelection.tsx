@@ -24,11 +24,11 @@ export const AssetSelection = ({
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            async (assetsObject) => {
+            (assetsObject) => {
                 setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
                 saveDownloadUrl('');
-                await addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
                 closeAssetChooser();
             },
             {

@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { generateRandomId } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
 import { AssetCount } from './AssetCount';
@@ -38,7 +37,7 @@ export const AssetGrid = ({
                     {currentAssets
                         ? currentAssets.map((asset) => (
                               <ThumbnailItem
-                                  key={`${asset.id}-${generateRandomId()}`}
+                                  key={asset.id}
                                   currentAssetsIds={currentAssetsIds}
                                   asset={asset}
                                   isEditing={isEditing}
