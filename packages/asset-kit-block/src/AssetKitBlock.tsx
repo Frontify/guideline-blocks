@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    BulkDownloadState,
+    AssetBulkDownloadState,
+    useAssetBulkDownload,
     useBlockAssets,
     useBlockSettings,
-    useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
 import { PluginComposer } from '@frontify/fondue';
@@ -47,13 +47,13 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
-    const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
+    const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
         if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
             return downloadAssets(downloadUrlBlock);
         }
-        generateBulkDownload(currentAssets.map((asset) => asset.id));
+        generateBulkDownload([ASSET_SETTINGS_ID]);
     };
 
     const downloadAssets = (downloadUrl: string) => {
@@ -83,7 +83,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     useEffect(() => {
-        if (status === BulkDownloadState.Ready && downloadUrl) {
+        if (status === AssetBulkDownloadState.Ready && downloadUrl) {
             downloadAssets(downloadUrl);
             saveDownloadUrl(downloadUrl);
         }
@@ -91,8 +91,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [downloadUrl]);
 
     const isButtonDisabled =
-        [BulkDownloadState.Error, BulkDownloadState.Pending, BulkDownloadState.Started].includes(status) ||
-        currentAssets.length === 0;
+        [AssetBulkDownloadState.Error, AssetBulkDownloadState.Pending, AssetBulkDownloadState.Started].includes(
+            status,
+        ) || currentAssets.length === 0;
 
     return (
         <div className="asset-kit-block">
@@ -148,7 +149,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     </div>
                 </div>
 
-                {![BulkDownloadState.Init, BulkDownloadState.Ready].includes(status) && (
+                {![AssetBulkDownloadState.Init, AssetBulkDownloadState.Ready].includes(status) && (
                     <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
                 )}
 
