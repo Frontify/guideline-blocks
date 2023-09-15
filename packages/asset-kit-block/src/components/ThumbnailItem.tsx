@@ -26,7 +26,7 @@ export const ThumbnailItem = ({
     const onOpenAssetChooser = () => {
         openAssetChooser(
             async (result) => {
-                await onReplaceAsset(asset.id, result[0].id);
+                onReplaceAsset(asset.id, result[0].id);
                 closeAssetChooser();
             },
             {
