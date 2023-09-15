@@ -7,7 +7,7 @@ import {
     ButtonStyle,
     IconSize,
     IconTrashBin,
-    ItemDragState,
+    LegacyItemDragState,
     LegacyTooltip,
     TooltipAlignment,
     TooltipPosition,
@@ -44,7 +44,7 @@ export const ColorSquare = ({
         item: color,
         collect: (monitor) => {
             return {
-                componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+                componentDragState: monitor.isDragging() ? LegacyItemDragState.Dragging : LegacyItemDragState.Idle,
             };
         },
         type: 'color',
