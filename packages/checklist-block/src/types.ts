@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonSize, Color, LegacyItemDragState, OrderableListItem } from '@frontify/fondue';
+import { ButtonSize, Color, LegacyItemDragState, LegacyOrderableListItem } from '@frontify/fondue';
 import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistItemProps = {
@@ -128,7 +128,7 @@ export type DecorationStyle = {
 };
 
 export type Settings = {
-    content: OrderableListItem<ChecklistContent>[];
+    content: LegacyOrderableListItem<ChecklistContent>[];
     textColor: Color;
     checkboxColor: Color;
     completeTextColor: Color;

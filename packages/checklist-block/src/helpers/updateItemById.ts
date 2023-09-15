@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { OrderableListItem } from '@frontify/fondue';
+import { LegacyOrderableListItem } from '@frontify/fondue';
 import { ChecklistContent } from '../types';
 
 export const updateItemById = (
-    array: OrderableListItem<ChecklistContent>[],
+    array: LegacyOrderableListItem<ChecklistContent>[],
     idToUpdate: string,
     properties: Partial<ChecklistContent>,
-): OrderableListItem<ChecklistContent>[] =>
+): LegacyOrderableListItem<ChecklistContent>[] =>
     array.reduce(
-        (acc: OrderableListItem<ChecklistContent>[], item: OrderableListItem<ChecklistContent>) =>
+        (acc: LegacyOrderableListItem<ChecklistContent>[], item: LegacyOrderableListItem<ChecklistContent>) =>
             item.id === idToUpdate ? [...acc, { ...item, ...properties }] : [...acc, item],
         [],
     );
