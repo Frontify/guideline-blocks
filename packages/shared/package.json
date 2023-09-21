@@ -16,7 +16,7 @@
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
         "@babel/core": "^7.22.17",
-        "@frontify/eslint-config-typescript": "0.16.1",
+        "@frontify/eslint-config-typescript": "0.16.2",
         "@testing-library/react": "^14.0.0",
         "@types/node": "^20.5.9",
         "@types/react": "^18.2.21",

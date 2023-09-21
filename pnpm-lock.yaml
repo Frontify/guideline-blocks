@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       glob:
         specifier: ^10.3.4
         version: 10.3.4
@@ -80,10 +80,10 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
-        version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@15.1.3)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -156,7 +156,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -223,7 +223,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -293,7 +293,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -363,7 +363,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -430,7 +430,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -497,7 +497,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -597,7 +597,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -676,7 +676,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -752,7 +752,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -819,7 +819,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -895,7 +895,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -962,7 +962,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1038,7 +1038,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1108,7 +1108,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1175,7 +1175,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1242,7 +1242,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1315,7 +1315,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1388,7 +1388,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1461,7 +1461,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1531,7 +1531,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1598,7 +1598,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.21.12
         version: 4.21.13(@codemirror/autocomplete@6.9.0)(@codemirror/language-data@6.3.1)(@codemirror/language@6.9.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.2.1)(@codemirror/view@6.18.0)(@lezer/common@1.0.4)(@lezer/highlight@1.1.6)(@lezer/javascript@1.4.7)(@lezer/lr@1.3.10)
@@ -1610,8 +1610,8 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@frontify/eslint-config-typescript':
-        specifier: 0.16.1
-        version: 0.16.1(eslint@8.49.0)(prettier@3.0.3)(typescript@5.2.2)
+        specifier: 0.16.2
+        version: 0.16.2(eslint@8.49.0)(prettier@3.0.3)(typescript@5.2.2)
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1686,7 +1686,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1753,7 +1753,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1823,7 +1823,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -1908,7 +1908,7 @@ importers:
         version: 3.0.0-beta.93(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
       '@frontify/fondue':
         specifier: 12.0.0-beta.324
-        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+        version: 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@frontify/guideline-blocks-settings':
         specifier: ^0.29.7
         version: 0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
@@ -4168,6 +4168,31 @@ packages:
       - supports-color
     dev: true
 
+  /@frontify/eslint-config-basic@0.18.1(eslint@8.49.0)(prettier@3.0.3):
+    resolution: {integrity: sha512-73WYg+V/vuEkwXwy3Z/yaOtfoLAO8cAkdVPXq30IM+TMR+uNt0TWqT2iDcEg+b90pvpmSnW10gJXoey/ZlKbPw==}
+    peerDependencies:
+      eslint: '>=8.27.0'
+      prettier: '>=3.0.0'
+    dependencies:
+      eslint: 8.49.0
+      eslint-config-prettier: 9.0.0(eslint@8.49.0)
+      eslint-plugin-html: 7.1.0
+      eslint-plugin-jsonc: 2.9.0(eslint@8.49.0)
+      eslint-plugin-lodash: 7.4.0(eslint@8.49.0)
+      eslint-plugin-markdown: 3.0.1(eslint@8.49.0)
+      eslint-plugin-no-only-tests: 3.1.0
+      eslint-plugin-node: 11.1.0(eslint@8.49.0)
+      eslint-plugin-prettier: 5.0.0(eslint-config-prettier@9.0.0)(eslint@8.49.0)(prettier@3.0.3)
+      eslint-plugin-promise: 6.1.1(eslint@8.49.0)
+      eslint-plugin-unicorn: 48.0.1(eslint@8.49.0)
+      eslint-plugin-yml: 1.8.0(eslint@8.49.0)
+      prettier: 3.0.3
+      yaml-eslint-parser: 1.2.2
+    transitivePeerDependencies:
+      - '@types/eslint'
+      - supports-color
+    dev: true
+
   /@frontify/eslint-config-react@0.16.1(eslint@8.49.0)(prettier@3.0.3)(react@18.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-O8d2zEwAQ862Rdudzwz6ojMZfm0tZ6Z2L0YJJvRnIrChzS+mOmKCyNPOMXOyj/49vviHTz2/0m6n1lFBzhgUzg==}
     peerDependencies:
@@ -4205,6 +4230,24 @@ packages:
       - supports-color
     dev: true
 
+  /@frontify/eslint-config-typescript@0.16.2(eslint@8.49.0)(prettier@3.0.3)(typescript@5.2.2):
+    resolution: {integrity: sha512-hdMu2q15KIOtSU390cJB7pTlUDnXGbT4Djd1x9YZ0Y0FUJHoY5B5rYqSpEmRKNCVQEqrE875mFqDBxbwIveoUQ==}
+    peerDependencies:
+      eslint: '>=8.27.0'
+      prettier: '>=3.0.0'
+      typescript: '>=5.0.0'
+    dependencies:
+      '@frontify/eslint-config-basic': 0.18.1(eslint@8.49.0)(prettier@3.0.3)
+      '@typescript-eslint/eslint-plugin': 6.6.0(@typescript-eslint/parser@6.6.0)(eslint@8.49.0)(typescript@5.2.2)
+      '@typescript-eslint/parser': 6.6.0(eslint@8.49.0)(typescript@5.2.2)
+      eslint: 8.49.0
+      prettier: 3.0.3
+      typescript: 5.2.2
+    transitivePeerDependencies:
+      - '@types/eslint'
+      - supports-color
+    dev: true
+
   /@frontify/fondue-tokens@3.3.0-next.5(ts-node@10.9.1):
     resolution: {integrity: sha512-6M919jnfqZnSW1GFSJ3jDiUx3Ml4L6FjA+IJR19LSVWK7de/xiXOiNDa4Rh1UAzZmA1NgzPAJKyu2FI3RZza/Q==}
     dependencies:
@@ -4214,7 +4257,7 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue@12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
+  /@frontify/fondue@12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
     resolution: {integrity: sha512-reGsCfc74I2okitC1Ca09Yi0iLaRtLN4cv6UD+L7EMsmske+G6g944TJJKGo/m1ni87/rS+hdu5Ar9CDpQJiag==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -4284,7 +4327,6 @@ packages:
       react-textarea-autosize: 8.5.3(@types/react@18.2.21)(react@18.2.0)
       remark-gfm: 3.0.1
       remark-parse: 10.0.2
-      scheduler: 0.23.0
       slate: 0.94.1
       slate-react: 0.98.3(react-dom@18.2.0)(react@18.2.0)(slate@0.94.1)
       unified: 10.1.2
@@ -4309,6 +4351,7 @@ packages:
       - jotai-xstate
       - jotai-zustand
       - react-native
+      - scheduler
       - slate-history
       - slate-hyperscript
       - styled-components
@@ -4348,6 +4391,58 @@ packages:
       - terser
     dev: true
 
+  /@frontify/guideline-blocks-settings@0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@15.1.3)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
+    resolution: {integrity: sha512-wEFcEs1D+GnXXrYqpbLj0Q3BkYvcxUhpP9+k5/0O6GNMmR6yXDpcWiDOTBbhPtwOlFx/f+cxQ+AdOt3eqJQJww==}
+    peerDependencies:
+      react: ^18
+      react-dom: ^18
+    dependencies:
+      '@ctrl/tinycolor': 4.0.2
+      '@dnd-kit/core': 6.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
+      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
+      '@frontify/app-bridge': 3.0.0-beta.94(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
+      '@frontify/fondue': 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+      '@frontify/sidebar-settings': 0.6.10(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+      '@react-aria/focus': 3.14.1(react@18.2.0)
+      '@react-stately/overlays': 3.6.2(react@18.2.0)
+      '@udecode/plate': 21.5.0(@babel/core@7.22.17)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@15.1.3)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.98.3)(slate@0.94.1)(styled-components@6.0.7)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      slate: 0.94.1
+      slate-react: 0.98.3(react-dom@18.2.0)(react@18.2.0)(slate@0.94.1)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@xstate/fsm'
+      - jotai-devtools
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - react-dnd
+      - react-dnd-html5-backend
+      - react-is
+      - react-native
+      - scheduler
+      - sinon
+      - slate-history
+      - slate-hyperscript
+      - styled-components
+      - supports-color
+      - tailwindcss
+      - ts-node
+      - zustand
+    dev: false
+
   /@frontify/guideline-blocks-settings@0.29.7(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
     resolution: {integrity: sha512-wEFcEs1D+GnXXrYqpbLj0Q3BkYvcxUhpP9+k5/0O6GNMmR6yXDpcWiDOTBbhPtwOlFx/f+cxQ+AdOt3eqJQJww==}
     peerDependencies:
@@ -4359,8 +4454,8 @@ packages:
       '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@frontify/app-bridge': 3.0.0-beta.94(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
-      '@frontify/fondue': 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
-      '@frontify/sidebar-settings': 0.6.10(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+      '@frontify/fondue': 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+      '@frontify/sidebar-settings': 0.6.10(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       '@react-aria/focus': 3.14.1(react@18.2.0)
       '@react-stately/overlays': 3.6.2(react@18.2.0)
       '@udecode/plate': 21.5.0(@babel/core@7.22.17)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.98.3)(slate@0.94.1)(styled-components@6.0.7)
@@ -4400,14 +4495,14 @@ packages:
       - zustand
     dev: false
 
-  /@frontify/sidebar-settings@0.6.10(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
+  /@frontify/sidebar-settings@0.6.10(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(sinon@15.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2):
     resolution: {integrity: sha512-W0b4g9w1FlBR2bqP3fgLAl6E4CvRRDgpzgks0gTxJCPe3Kuc57nD+bfpL1WGQlj9KN5knLdU3tsxCQoqB65/1w==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.94(react-dom@18.2.0)(react@18.2.0)(sinon@15.2.0)
-      '@frontify/fondue': 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
+      '@frontify/fondue': 12.0.0-beta.324(@babel/core@7.22.17)(@types/node@20.6.0)(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(styled-components@6.0.7)(tailwindcss@3.3.3)(ts-node@10.9.1)(zustand@3.7.2)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4428,6 +4523,7 @@ packages:
       - jotai-xstate
       - jotai-zustand
       - react-native
+      - scheduler
       - sinon
       - slate-history
       - slate-hyperscript
@@ -11512,6 +11608,15 @@ packages:
       eslint: 8.49.0
     dev: true
 
+  /eslint-config-prettier@9.0.0(eslint@8.49.0):
+    resolution: {integrity: sha512-IcJsTkJae2S35pRsRAwoCE+925rJJStOdkKnLVgtE+tEpqU0EVVM7OqrwxqgptKdX29NUwC82I5pXsGFIgSevw==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.49.0
+    dev: true
+
   /eslint-plugin-es@3.0.1(eslint@8.49.0):
     resolution: {integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==}
     engines: {node: '>=8.10.0'}
@@ -11635,6 +11740,27 @@ packages:
     dependencies:
       eslint: 8.49.0
       eslint-config-prettier: 8.10.0(eslint@8.49.0)
+      prettier: 3.0.3
+      prettier-linter-helpers: 1.0.0
+      synckit: 0.8.5
+    dev: true
+
+  /eslint-plugin-prettier@5.0.0(eslint-config-prettier@9.0.0)(eslint@8.49.0)(prettier@3.0.3):
+    resolution: {integrity: sha512-AgaZCVuYDXHUGxj/ZGu1u8H8CYgDY3iG6w5kUFw4AzMVXzB7VvbKgYR4nATIN+OvUrghMbiDLeimVjVY5ilq3w==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      '@types/eslint': '>=8.0.0'
+      eslint: '>=8.0.0'
+      eslint-config-prettier: '*'
+      prettier: '>=3.0.0'
+    peerDependenciesMeta:
+      '@types/eslint':
+        optional: true
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 8.49.0
+      eslint-config-prettier: 9.0.0(eslint@8.49.0)
       prettier: 3.0.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.5
