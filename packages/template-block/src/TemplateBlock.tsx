@@ -25,6 +25,7 @@ import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
 import { TemplateText } from './components/TemplateText';
+import { CustomButton } from './components/CustomButton';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -196,15 +197,13 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 }
                             </div>
                             <div className="tw-shrink-0">
-                                <Button
-                                    data-test-id="template-block-new-publication-btn"
-                                    emphasis={ButtonEmphasis.Default}
-                                    style={ButtonStyle.Default}
-                                    onClick={handleNewPublication}
-                                    disabled={!selectedTemplate}
-                                >
-                                    Use this Template
-                                </Button>
+                                <CustomButton
+                                    blockSettings={blockSettings}
+                                    isEditing={isEditing}
+                                    isDisabled={!selectedTemplate}
+                                    updateBlockSettings={updateBlockSettings}
+                                    handleNewPublication={handleNewPublication}
+                                />
                             </div>
                         </div>
                     </div>
