@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { OrderableListItem } from '@frontify/fondue';
+import { LegacyOrderableListItem } from '@frontify/fondue';
 import { ChecklistContent } from '../types';
 
-export const createItem = (text: string, index: number | null): OrderableListItem<ChecklistContent> => {
+export const createItem = (text: string, index: number | null): LegacyOrderableListItem<ChecklistContent> => {
     const creationDate = Date.now();
     const id = Math.ceil(Math.random() * creationDate).toString();
 

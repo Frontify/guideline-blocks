@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { OrderableListItem } from '@frontify/fondue';
+import { LegacyOrderableListItem } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react18';
 import { ChecklistBlock } from './ChecklistBlock';
@@ -34,8 +34,8 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
 
-const createContentArray = (length: number, fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
-    const createRandomItem = (fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
+const createContentArray = (length: number, fixedParams?: Partial<LegacyOrderableListItem<ChecklistContent>>) => {
+    const createRandomItem = (fixedParams?: Partial<LegacyOrderableListItem<ChecklistContent>>) => {
         const item = createItem('text', null);
 
         item.completed = Math.random() > 0.5;
