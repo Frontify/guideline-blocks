@@ -20,7 +20,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
-import { Button, ButtonEmphasis, ButtonStyle, IconPlus24, merge } from '@frontify/fondue';
+import { IconPlus24, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
