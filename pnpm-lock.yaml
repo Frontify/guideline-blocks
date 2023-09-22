@@ -1609,9 +1609,9 @@ importers:
       '@babel/core':
         specifier: ^7.22.17
         version: 7.22.17
-      '@frontify/eslint-config-typescript':
+      '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.49.0)(prettier@3.0.3)(typescript@5.2.2)
+        version: 0.16.1(eslint@8.49.0)(prettier@3.0.3)(react@18.2.0)(typescript@5.2.2)
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
