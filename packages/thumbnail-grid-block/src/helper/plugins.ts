@@ -6,6 +6,7 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     CheckboxListPlugin,
     CodePlugin,
@@ -47,7 +48,7 @@ export const titlePlugins = new PluginComposer();
 titlePlugins
     .setPlugin(textStylePlugins)
     .setPlugin(markStylesPlugins)
-    .setPlugin([...alignmentPlugins, new ResetFormattingPlugin()]);
+    .setPlugin([...alignmentPlugins, new ResetFormattingPlugin(), new AutoformatPlugin()]);
 
 export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
     new PluginComposer()
@@ -64,4 +65,5 @@ export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
             new CheckboxListPlugin(),
             new OrderedListPlugin(),
             new ResetFormattingPlugin(),
+            new AutoformatPlugin(),
         ]);

@@ -6,6 +6,7 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     CheckboxListPlugin,
     CodePlugin,
@@ -59,5 +60,6 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
                 new CheckboxListPlugin(),
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
+                new AutoformatPlugin(),
             ],
         );

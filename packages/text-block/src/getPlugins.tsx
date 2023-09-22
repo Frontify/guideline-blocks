@@ -6,6 +6,7 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     BreakAfterPlugin,
     CheckboxListPlugin,
@@ -63,6 +64,7 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new CheckboxListPlugin(),
         new OrderedListPlugin(),
         new ResetFormattingPlugin(),
+        new AutoformatPlugin(),
     ]);
     return plugins;
 };
