@@ -5,6 +5,7 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
@@ -38,4 +39,4 @@ export const labelPlugins = new PluginComposer();
 labelPlugins
     .setPlugin(textStylePlugins)
     .setPlugin(markStylesPlugins)
-    .setPlugin([...alignmentPlugins, new ResetFormattingPlugin()]);
+    .setPlugin([...alignmentPlugins, new ResetFormattingPlugin(), new AutoformatPlugin()]);

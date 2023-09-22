@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    AutoformatPlugin,
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
@@ -32,7 +33,7 @@ export const InformationSection = ({
         return new PluginComposer()
             .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
-            .setPlugin([new ResetFormattingPlugin()]);
+            .setPlugin([new ResetFormattingPlugin(), new AutoformatPlugin()]);
     }, []);
 
     const saveDescription = (newDescription: string) => {

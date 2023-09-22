@@ -5,6 +5,7 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
@@ -34,5 +35,6 @@ export const getTitlePlugin = () => {
                 validTypes: TextStylesWithoutImage,
             }),
             new ResetFormattingPlugin(),
+            new AutoformatPlugin(),
         ]);
 };
