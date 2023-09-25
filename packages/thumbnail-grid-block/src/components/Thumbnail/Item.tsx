@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import {
     IconArrowCircleUp20,
@@ -15,6 +15,14 @@ import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
 import { SortableThumbnailItemProps, ThumbnailItemProps } from '../../types';
+import {
+    AssetChooserObjectType,
+    FileExtensionSets,
+    closeAssetChooser,
+    openAssetChooser,
+    useAssetUpload,
+    useFileInput,
+} from '@frontify/app-bridge';
 
 export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
     (
@@ -27,15 +35,14 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             draggableProps = {},
             setActivatorNodeRef,
             isDragging = false,
-            setUploadedId,
-            openAssetChooser,
-            openFileDialog,
-            updateItemWith,
-            onRemoveAsset,
+            updateItem,
+            onRemoveItem,
             showGrabHandle,
             thumbnailStyles,
             isLoading,
-            onFilesDrop,
+            onFilesSelected,
+            onFilesUploaded,
+            onAssetsSelected,
             replaceWithPlaceholder = false,
         },
         ref,
@@ -43,12 +50,37 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const [showAltTextMenu, setShowAltTextMenu] = useState(false);
         const { id, title, description, altText } = item;
         const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
+        const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
+        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
 
-        const onOpenFileDialog = () => {
-            setUploadedId(id);
-            openFileDialog();
+        const onOpenAssetChooser = () => {
+            appBridge.dispatch(
+                openAssetChooser({
+                    multiSelection: true,
+                    selectedValueId: image?.id,
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                    extensions: FileExtensionSets.Images,
+                }),
+            );
+            const unsusbcribe = appBridge.subscribe('assetsChosen', ({ assets }) => {
+                onAssetsSelected(assets, id);
+                appBridge.dispatch(closeAssetChooser());
+                unsusbcribe();
+            });
         };
-        const onAssetChooserClick = () => openAssetChooser(id);
+
+        useEffect(() => {
+            if (selectedFiles) {
+                onFilesSelected(selectedFiles, id);
+                uploadFile(selectedFiles);
+            }
+        }, [selectedFiles]);
+
+        useEffect(() => {
+            if (doneAll) {
+                onFilesUploaded(uploadResults, id);
+            }
+        }, [doneAll, uploadResults]);
 
         return (
             <div
@@ -77,12 +109,12 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             {
                                 title: 'Replace with upload',
                                 icon: <IconArrowCircleUp20 />,
-                                onClick: onOpenFileDialog,
+                                onClick: openFileDialog,
                             },
                             {
                                 title: 'Replace with asset',
                                 icon: <IconImageStack20 />,
-                                onClick: onAssetChooserClick,
+                                onClick: onOpenAssetChooser,
                             },
                         ],
                     ].filter((item) => item.length > 0)}
@@ -97,7 +129,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                         {
                             icon: <IconTrashBin16 />,
                             tooltip: 'Delete Item',
-                            onClick: () => onRemoveAsset(id, image?.id),
+                            onClick: () => onRemoveItem(id),
                         },
                     ]}
                 >
@@ -107,7 +139,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             showAltTextMenu={showAltTextMenu}
                             setLocalAltText={setLocalAltText}
                             defaultAltText={altText}
-                            onSave={() => updateItemWith('altText', localAltText ?? '', id)}
+                            onSave={() => updateItem({ ...item, altText: localAltText || '' })}
                             localAltText={localAltText}
                         />
                         <Image
@@ -117,9 +149,9 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             isEditing={isEditing}
                             thumbnailStyles={thumbnailStyles}
                             altText={altText}
-                            onOpenFileDialog={onOpenFileDialog}
-                            onFilesDrop={onFilesDrop}
-                            onAssetChooserClick={onAssetChooserClick}
+                            onOpenFileDialog={openFileDialog}
+                            onFilesDrop={(fileList) => onFilesSelected(fileList, id)}
+                            onAssetChooserClick={onOpenAssetChooser}
                         />
                         {(image || isEditing) && (
                             <RichTextEditors
@@ -127,7 +159,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                                 title={title}
                                 isEditing={isEditing}
                                 description={description}
-                                updateItemWith={updateItemWith}
+                                updateItem={(key, value) => updateItem({ ...item, [key]: value })}
                                 appBridge={appBridge}
                             />
                         )}

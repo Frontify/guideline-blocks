@@ -3,40 +3,33 @@
 import { Thumbnail } from '../../types';
 import { RichTextEditor, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { useMemo } from 'react';
 
 type RichTextEditorsProps = {
     isEditing: boolean;
-    updateItemWith: (type: keyof Thumbnail, value: string | Asset[], id?: string) => void;
+    updateItem: (key: keyof Thumbnail, value: string) => void;
     id?: string;
     title?: string;
     description?: string;
     appBridge: AppBridgeBlock;
 };
 
-export const RichTextEditors = ({
-    isEditing,
-    updateItemWith,
-    id,
-    title,
-    description,
-    appBridge,
-}: RichTextEditorsProps) => {
+export const RichTextEditors = ({ isEditing, updateItem, id, title, description, appBridge }: RichTextEditorsProps) => {
     const memoizedTitle = useMemo(
         () => (
             <div className="[&>div>div>*]:!tw-mt-0">
                 <RichTextEditor
                     id={`${id}-title`}
                     isEditing={isEditing}
-                    onTextChange={(value) => updateItemWith('title', value, id)}
+                    onTextChange={(value) => updateItem('title', value)}
                     value={title ?? convertToRteValue(TextStyles.heading3)}
                     placeholder="Add a title"
                     plugins={titlePlugins}
                 />
             </div>
         ),
-        [id, title, isEditing, updateItemWith],
+        [id, title, isEditing, updateItem],
     );
     const memoizedDescription = useMemo(
         () => (
@@ -45,11 +38,11 @@ export const RichTextEditors = ({
                 isEditing={isEditing}
                 value={description ?? convertToRteValue()}
                 plugins={getCaptionPlugins(appBridge)}
-                onTextChange={(value) => updateItemWith('description', value, id)}
+                onTextChange={(value) => updateItem('description', value)}
                 placeholder="Add a description"
             />
         ),
-        [id, description, isEditing, updateItemWith, appBridge],
+        [id, description, isEditing, updateItem, appBridge],
     );
 
     return (

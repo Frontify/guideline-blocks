@@ -1,138 +1,100 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 
-import {
-    Asset,
-    AssetChooserObjectType,
-    FileExtensionSets,
-    useAssetChooser,
-    useAssetUpload,
-    useBlockAssets,
-    useBlockSettings,
-    useEditorState,
-    useFileInput,
-} from '@frontify/app-bridge';
+import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';
 import { getThumbnailStyles } from './helper';
-import { Grid, ImageWrapper, Item, RichTextEditors, SortableItem, UploadPlaceholder } from './components/';
+import { Grid, Item, SortableItem } from './components/';
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [itemsState, setItemsState] = useState(blockSettings.items ?? []);
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
-    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-    const [loadingIds, setLoadingIds] = useState<string[]>(['']);
-    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
-    const [uploadId, setUploadId] = useState<string | undefined>(undefined);
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
+    const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const [uploadingItemIds, setUploadingItemIds] = useState<Record<string, string[]>>({});
 
-    const onOpenAssetChooser = (id?: string) => {
-        openAssetChooser(
-            async (uploadResults: Asset[]) => {
-                updateImages([...uploadResults], id);
-                closeAssetChooser();
-            },
-            {
-                multiSelection: id ? false : true,
-                selectedValueId: id && blockAssets[id]?.[0]?.id,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
-            },
+    const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
+        const [, ...assetsToAdd] = Array.from(selectedAssets);
+        const newItemsToAdd: Thumbnail[] = (assetsToAdd || []).map(() => ({
+            id: generateRandomId(),
+        }));
+        addItems(newItemsToAdd);
+        const _uploadingItemIds = {
+            ...uploadingItemIds,
+            [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)],
+        };
+        setUploadingItemIds(_uploadingItemIds);
+        const updateAssetIdPromises = _uploadingItemIds[itemId].map((uploadingItemId, i) =>
+            updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id]),
         );
+        await Promise.all(updateAssetIdPromises);
+
+        setUploadingItemIds({ ..._uploadingItemIds, [itemId]: [] });
     };
-    const onFilesDrop = (files: FileList, id?: string) => {
+
+    const onFilesSelected = (files: FileList, itemId: string) => {
         if (files) {
-            setLoadingIds((ids) => [...ids, id ?? 'placeholder']);
-            setUploadId(id);
-            uploadFile(files);
+            const [, ...filesToAdd] = Array.from(files);
+            const newItemsToAdd: Thumbnail[] = filesToAdd.map(() => ({
+                id: generateRandomId(),
+            }));
+            addItems(newItemsToAdd);
+            setUploadingItemIds({ ...uploadingItemIds, [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)] });
         }
     };
-    useEffect(() => {
-        if (selectedFiles) {
-            setLoadingIds((ids) => [...ids, uploadId ?? 'placeholder']);
-            uploadFile(selectedFiles);
+
+    const onFilesUploaded = async (uploadedAssets: Asset[], itemId: string) => {
+        if (!uploadingItemIds[itemId]) {
+            return;
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedFiles]);
-    useEffect(() => {
-        if (doneAll && uploadResults) {
-            updateImages(uploadResults, uploadId);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [doneAll, uploadResults]);
+
+        const updateAssetIdPromises = uploadingItemIds[itemId].map((uploadingItemId, i) =>
+            updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]),
+        );
+        await Promise.all(updateAssetIdPromises);
+        setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
+    };
 
     useEffect(() => {
         setBlockSettings({ items: itemsState });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemsState]);
 
-    const updateImages = async (images: Asset[], id?: string) => {
-        if (!loadingIds.includes(id ?? 'placeholder')) {
-            setLoadingIds((ids) => [...ids, id ?? 'placeholder']);
-        }
-        await updateItemWith('image', images, id);
-    };
-    const saveItems = (items: Thumbnail[]) => {
-        setItemsState(items);
+    const addItems = useCallback(
+        (items: Thumbnail[]) => {
+            setItemsState([...itemsState, ...items]);
+        },
+        [itemsState, setItemsState],
+    );
+
+    const updateItems = (updatedItems: Thumbnail[]) => {
+        const newItemsState = itemsState.map((item) => {
+            const updatedItem = updatedItems.find((i) => i.id === item.id);
+            return updatedItem || item;
+        });
+        setItemsState(newItemsState);
     };
 
-    const updateImage = async (image: Asset, id: string, loadingId?: string) => {
-        await updateAssetIdsFromKey(id, [image.id]);
-        setLoadingIds(loadingIds.filter((i) => i !== (loadingId ?? id)));
-        setUploadId(undefined);
-    };
-
-    const addItem = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
-        setItemsState((old) => [...old, { id, [type]: value, altText }]); // cannot use saveItems here, as it overwrites the array when adding multiple image
-    };
-
-    const updateItems = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
-        if (altText) {
-            return saveItems(itemsState.map((item) => (item.id === id ? { ...item, [type]: value, altText } : item)));
+    const onRemoveItem = async (itemId: string) => {
+        if ((blockAssets[itemId] || []).length > 0) {
+            await deleteAssetIdsFromKey(
+                itemId,
+                blockAssets[itemId].map((asset) => asset.id),
+            );
         }
-        saveItems(itemsState.map((item) => (item.id === id ? { ...item, [type]: value } : item)));
-    };
-
-    const updateItemWith = async (type: keyof Thumbnail, value: string | Asset[], updateId?: string) => {
-        if (typeof value === 'string' && type !== 'image') {
-            updateId ? updateItems(updateId, type, value) : addItem(generateRandomId(), type, value);
-            return;
-        }
-        if (value.length === 0 || !Array.isArray(value)) {
-            return;
-        }
-        for (const [index, file] of value.entries()) {
-            const altText = file.title ?? file.fileName;
-            if (index === 0 && updateId) {
-                await updateImage(file, updateId, updateId);
-                updateItems(updateId, type, updateId, altText);
-            } else {
-                const newId = generateRandomId();
-                addItem(newId, type, newId, altText);
-                setLoadingIds((ids) =>
-                    index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId],
-                );
-                await updateImage(file, newId, updateId ?? 'placeholder');
-            }
-        }
-    };
-    const onRemoveAsset = async (thumbnailId: string, assetId?: number) => {
-        saveItems(itemsState.filter((item) => item.id !== thumbnailId));
-        if (assetId) {
-            await updateAssetIdsFromKey(thumbnailId, [assetId]);
-        }
+        setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
+        setItemsState(itemsState.filter((item) => item.id !== itemId));
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -141,7 +103,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             const oldIndex = itemsState.findIndex((i) => i.id === active.id);
             const newIndex = itemsState.findIndex((i) => i.id === over.id);
             const sortedItems = arrayMove(itemsState, oldIndex, newIndex);
-            saveItems(sortedItems);
+            setItemsState(sortedItems);
             setDraggedItem(undefined);
         }
     };
@@ -150,17 +112,29 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         setDraggedItem(itemsState.find(({ id }) => id === active.id));
     };
 
+    useEffect(() => {
+        const lastItemInState = itemsState[itemsState.length - 1];
+
+        const shouldAddNewItem =
+            !lastItemInState ||
+            lastItemInState.title ||
+            lastItemInState.description ||
+            blockAssets[lastItemInState.id]?.[0];
+        if (shouldAddNewItem) {
+            addItems([{ id: generateRandomId() }]);
+        }
+    }, [blockAssets, itemsState, addItems]);
+
     const thumbnailStyles = getThumbnailStyles(blockSettings);
     const thumbnailProps = {
         isEditing,
         thumbnailStyles,
         showGrabHandle: isEditing && itemsState.length > 1,
-        setUploadedId: setUploadId,
-        onFilesDrop,
-        openAssetChooser: onOpenAssetChooser,
-        openFileDialog,
-        onRemoveAsset,
-        updateItemWith,
+        onFilesSelected,
+        onFilesUploaded,
+        onRemoveItem,
+        onAssetsSelected,
+        updateItem: (item: Thumbnail) => updateItems([item]),
         appBridge,
     };
 
@@ -169,6 +143,10 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         : gutterSpacingStyleMap[blockSettings.spacingChoice];
 
     const sensors = useDndSensors(parseInt(gap), parseInt(gap));
+
+    const getIsItemUploading = (itemId: string) => {
+        return Object.entries(uploadingItemIds).some((entry) => entry[1].includes(itemId));
+    };
 
     return (
         <div className="thumbnail-grid-block">
@@ -186,7 +164,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                                 key={item.id}
                                 item={item}
                                 image={blockAssets?.[item.id]?.[0]}
-                                isLoading={loadingIds.includes(item.id)}
+                                isLoading={getIsItemUploading(item.id)}
                                 {...thumbnailProps}
                             />
                         ))}
@@ -197,31 +175,13 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                                 key={draggedItem.id}
                                 item={draggedItem}
                                 image={blockAssets?.[draggedItem.id]?.[0]}
-                                isLoading={loadingIds.includes(draggedItem.id)}
+                                isLoading={getIsItemUploading(draggedItem.id)}
                                 isDragging
                                 {...thumbnailProps}
                             />
                         )}
                     </DragOverlay>
                 </DndContext>
-                {isEditing && (
-                    <div
-                        key={itemsState.length}
-                        className={thumbnailStyles.captionPositionClassNames}
-                        data-test-id="thumbnail-item-placeholder"
-                    >
-                        <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
-                            <UploadPlaceholder
-                                width={thumbnailStyles.width}
-                                isLoading={loadingIds.includes('placeholder')}
-                                openFileDialog={openFileDialog}
-                                onFilesDrop={onFilesDrop}
-                                openAssetChooser={onOpenAssetChooser}
-                            />
-                        </ImageWrapper>
-                        <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />
-                    </div>
-                )}
             </Grid>
         </div>
     );
