@@ -15,9 +15,11 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { sandpackTemplate, sandpackTheme } = blockSettings;
 
     return (
-        <Sandpack
-            template={sandpackTemplate as SandpackPredefinedTemplate}
-            theme={sandpackThemeValues[sandpackTheme]}
-        />
+        <div className="ui-pattern-block">
+            <Sandpack
+                template={sandpackTemplate as SandpackPredefinedTemplate}
+                theme={sandpackThemeValues[sandpackTheme]}
+            />
+        </div>
     );
 };
