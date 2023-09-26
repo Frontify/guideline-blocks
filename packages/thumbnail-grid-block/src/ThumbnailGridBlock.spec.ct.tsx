@@ -12,7 +12,7 @@ const ThumbnailImageWrapper = '[data-test-id="thumbnail-image-wrapper"]';
 const ThumbnailImage = '[data-test-id="thumbnail-image"]';
 const ThumbnailImagePlaceholder = '[data-test-id="thumbnail-image-placeholder"]';
 const ThumbnailItem = '[data-test-id="thumbnail-item"]';
-const ThumbnailItemPlaceholder = '[data-test-id="thumbnail-item-placeholder"]';
+const VisibleThumbnailItem = ':not(.tw-hidden) > [data-test-id="thumbnail-item"]';
 const BlockItemWrapperBtn = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 
 const defaultSettings = {
@@ -35,7 +35,6 @@ class ThumbnailDummy {
             id,
             title: `Title ${id}`,
             description: `Test Description ${id}`,
-            image: id,
             altText: `A custom alt text ${id}`,
         };
     }
@@ -54,14 +53,13 @@ describe('Thumbnail Grid Block', () => {
             .should('exist')
             .should('have.class', 'xs:tw-grid-cols-2 md:tw-grid-cols-3')
             .should('have.css', 'gap', '30px');
-        cy.get(ThumbnailItem).should('not.exist');
+        cy.get(ThumbnailItem).should('exist');
         cy.get(ThumbnailImage).should('not.exist');
         cy.get(ThumbnailImagePlaceholder).should('exist');
         cy.get(ThumbnailImageWrapper).should('have.class', 'tw-place-self-start');
-        cy.get(ThumbnailItemPlaceholder).should('have.class', 'tw-flex-row');
     });
 
-    it('should render one item if it is provided', () => {
+    it('should render one item if it is provided and automatically add an empty one', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: true,
             blockSettings: {
@@ -70,7 +68,7 @@ describe('Thumbnail Grid Block', () => {
         });
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailCaption).first().should('contain.text', 'Title', 'Test Description');
-        cy.get(ThumbnailItemPlaceholder).should('exist');
+        cy.get(ThumbnailItem).should('have.length', 2);
     });
 
     it('should not render the item in view mode if no image is provided', () => {
@@ -83,7 +81,6 @@ describe('Thumbnail Grid Block', () => {
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailCaption).should('not.exist');
         cy.get(ThumbnailItem).should('not.be.visible');
-        cy.get(ThumbnailItemPlaceholder).should('not.exist');
     });
 
     it('should render multiple items in edit mode if provided', () => {
@@ -96,8 +93,7 @@ describe('Thumbnail Grid Block', () => {
         });
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailCaption).should('have.length', 3);
-        cy.get(ThumbnailItem).should('have.length', 2);
-        cy.get(ThumbnailItemPlaceholder).should('have.length', 1);
+        cy.get(ThumbnailItem).should('have.length', 3);
     });
 
     // IMAGES
@@ -118,7 +114,7 @@ describe('Thumbnail Grid Block', () => {
             .should('have.length', 2)
             .should('contain.text', 'Title 1', 'Title 2')
             .should('contain.text', 'Test Description 1', 'Test Description 2');
-        cy.get(ThumbnailItem).should('have.length', 2);
+        cy.get(VisibleThumbnailItem).should('have.length', 2);
         cy.get(ThumbnailImage).should('have.length', 2).first().should('have.attr', 'src', 'https://generic.url');
         cy.get(ThumbnailImagePlaceholder).should('not.exist');
     });
