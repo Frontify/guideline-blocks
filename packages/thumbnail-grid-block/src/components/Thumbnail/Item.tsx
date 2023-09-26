@@ -110,12 +110,12 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             : [],
                         [
                             {
-                                title: image ? 'Replace with upload' : 'Upload image',
+                                title: image ? 'Replace with upload' : 'Upload asset',
                                 icon: <IconArrowCircleUp20 />,
                                 onClick: openFileDialog,
                             },
                             {
-                                title: image ? 'Replace with asset' : 'Choose image',
+                                title: image ? 'Replace with asset' : 'Browse asset',
                                 icon: <IconImageStack20 />,
                                 onClick: onOpenAssetChooser,
                             },
