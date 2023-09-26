@@ -69,6 +69,8 @@ describe('Thumbnail Grid Block', () => {
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailCaption).first().should('contain.text', 'Title', 'Test Description');
         cy.get(ThumbnailItem).should('have.length', 2);
+        cy.get(ThumbnailCaption).eq(1).should('not.contain.text');
+        cy.get(ThumbnailImagePlaceholder).eq(1).should('exist');
     });
 
     it('should not render the item in view mode if no image is provided', () => {

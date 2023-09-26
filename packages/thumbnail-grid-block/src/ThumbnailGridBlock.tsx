@@ -12,7 +12,7 @@ import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@fronti
 import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
-import { Settings, Thumbnail } from './types';
+import type { Settings, Thumbnail } from './types';
 import { getThumbnailStyles } from './helper';
 import { Grid, Item, SortableItem } from './components/';
 
@@ -82,7 +82,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const updateItems = (updatedItems: Thumbnail[]) => {
         const newItemsState = itemsState.map((item) => {
             const updatedItem = updatedItems.find((i) => i.id === item.id);
-            return updatedItem || item;
+            return updatedItem ?? item;
         });
         setItemsState(newItemsState);
     };

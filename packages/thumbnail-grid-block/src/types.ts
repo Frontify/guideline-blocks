@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import type { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
+import type { CSSProperties } from 'react';
+import type { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 
 export type Thumbnail = {
     id: string;

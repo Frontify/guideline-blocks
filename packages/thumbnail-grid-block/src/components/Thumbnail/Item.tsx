@@ -75,12 +75,14 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 onFilesSelected(selectedFiles, id);
                 uploadFile(selectedFiles);
             }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [selectedFiles]);
 
         useEffect(() => {
             if (doneAll) {
                 onFilesUploaded(uploadResults, id);
             }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
 
         return (
