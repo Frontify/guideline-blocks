@@ -24,12 +24,18 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const [uploadingItemIds, setUploadingItemIds] = useState<Record<string, string[]>>({});
 
-    const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
-        const [, ...assetsToAdd] = Array.from(selectedAssets);
-        const newItemsToAdd: Thumbnail[] = (assetsToAdd || []).map(() => ({
+    const addNewItemsIfNeeded = (assetsToAdd: Asset[] | FileList) => {
+        const [, ...newAssets] = Array.from(assetsToAdd as Asset[]);
+        const newItemsToAdd: Thumbnail[] = (newAssets || []).map(() => ({
             id: generateRandomId(),
         }));
         addItems(newItemsToAdd);
+
+        return newItemsToAdd;
+    };
+
+    const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
+        const newItemsToAdd = addNewItemsIfNeeded(selectedAssets);
         const _uploadingItemIds = {
             ...uploadingItemIds,
             [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)],
@@ -45,11 +51,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     const onFilesSelected = (files: FileList, itemId: string) => {
         if (files) {
-            const [, ...filesToAdd] = Array.from(files);
-            const newItemsToAdd: Thumbnail[] = filesToAdd.map(() => ({
-                id: generateRandomId(),
-            }));
-            addItems(newItemsToAdd);
+            const newItemsToAdd = addNewItemsIfNeeded(files);
             setUploadingItemIds({ ...uploadingItemIds, [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)] });
         }
     };
