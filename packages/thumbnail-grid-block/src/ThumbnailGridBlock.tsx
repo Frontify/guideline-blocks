@@ -36,17 +36,16 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
         const newItemsToAdd = addNewItemsIfNeeded(selectedAssets);
-        const _uploadingItemIds = {
+        const newUploadingItemIds = {
             ...uploadingItemIds,
             [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)],
         };
-        setUploadingItemIds(_uploadingItemIds);
-        const updateAssetIdPromises = _uploadingItemIds[itemId].map((uploadingItemId, i) =>
+        setUploadingItemIds(newUploadingItemIds);
+        const updateAssetIdPromises = newUploadingItemIds[itemId].map((uploadingItemId, i) =>
             updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id]),
         );
         await Promise.all(updateAssetIdPromises);
-
-        setUploadingItemIds({ ..._uploadingItemIds, [itemId]: [] });
+        setUploadingItemIds({ ...newUploadingItemIds, [itemId]: [] });
     };
 
     const onFilesSelected = (files: FileList, itemId: string) => {
@@ -62,7 +61,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         }
 
         const updateAssetIdPromises = uploadingItemIds[itemId].map((uploadingItemId, i) =>
-            updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]),
+            uploadedAssets[i] ? updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]) : Promise.resolve(),
         );
         await Promise.all(updateAssetIdPromises);
         setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
@@ -161,12 +160,13 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                     modifiers={[restrictToParentElement]}
                 >
                     <SortableContext items={itemsState} strategy={rectSortingStrategy}>
-                        {itemsState.map((item) => (
+                        {itemsState.map((item, i) => (
                             <SortableItem
                                 key={item.id}
                                 item={item}
                                 image={blockAssets?.[item.id]?.[0]}
                                 isLoading={getIsItemUploading(item.id)}
+                                showDeleteButton={i !== itemsState.length - 1}
                                 {...thumbnailProps}
                             />
                         ))}
@@ -179,6 +179,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                                 image={blockAssets?.[draggedItem.id]?.[0]}
                                 isLoading={getIsItemUploading(draggedItem.id)}
                                 isDragging
+                                showDeleteButton={itemsState[itemsState.length - 1]?.id !== draggedItem.id}
                                 {...thumbnailProps}
                             />
                         )}

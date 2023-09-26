@@ -38,6 +38,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             updateItem,
             onRemoveItem,
             showGrabHandle,
+            showDeleteButton,
             thumbnailStyles,
             isLoading,
             onFilesSelected,
@@ -126,11 +127,13 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                                   setActivatorNodeRef,
                               }
                             : undefined,
-                        {
-                            icon: <IconTrashBin16 />,
-                            tooltip: 'Delete Item',
-                            onClick: () => onRemoveItem(id),
-                        },
+                        showDeleteButton
+                            ? {
+                                  icon: <IconTrashBin16 />,
+                                  tooltip: 'Delete Item',
+                                  onClick: () => onRemoveItem(id),
+                              }
+                            : undefined,
                     ]}
                 >
                     <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item">
