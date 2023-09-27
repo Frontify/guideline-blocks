@@ -8,7 +8,6 @@ import {
     joinClassNames,
     useAttachments,
 } from '@frontify/guideline-blocks-settings';
-import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
@@ -88,7 +87,9 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                         style={getTotalImagePadding(blockSettings)}
                     >
                         {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
-                            <DownloadButton onDownload={() => downloadAsset(image)} />
+                            <DownloadButton
+                                onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
+                            />
                         )}
 
                         <Attachments

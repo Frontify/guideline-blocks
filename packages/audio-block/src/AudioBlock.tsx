@@ -13,7 +13,6 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import {
     BlockProps,
     DownloadButton,
@@ -161,7 +160,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                                 blockSettings.security,
                                 blockSettings.downloadable,
                                 assetDownloadEnabled,
-                            ) && <DownloadButton onDownload={() => downloadAsset(audio)} />}
+                            ) && (
+                                <DownloadButton
+                                    onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: audio })}
+                                />
+                            )}
                             <BlockAttachments appBridge={appBridge} />
                         </div>
                     )}
