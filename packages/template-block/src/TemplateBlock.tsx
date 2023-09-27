@@ -5,6 +5,7 @@ import {
     Template,
     TemplateLegacy,
     openNewPublication,
+    useBlockAssets,
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
@@ -32,6 +33,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const isEditing = useEditorState(appBridge);
+    const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
@@ -55,6 +57,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         textAnchoringHorizontal,
         textAnchoringVertical,
     } = blockSettings;
+    const { previewCustom } = blockAssets;
 
     const [{ templateTitle, templateDescription }, dispatch] = useReducer(templateDataReducer, {
         templateTitle: title ?? '',
@@ -97,6 +100,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const handleNewPublication = () => {
         if (selectedTemplate !== null) {
+            if (Array.isArray(previewCustom) && previewCustom.length > 0) {
+                selectedTemplate.previewUrl = previewCustom[0].previewUrl;
+            }
+
             const options: OpenNewPublicationPayload = {
                 template: selectedTemplate,
             };
