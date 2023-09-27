@@ -31,8 +31,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^3.0.0-beta.96",
-        "@frontify/fondue": "12.0.0-beta.334",
-        "@frontify/guideline-blocks-settings": "^0.29.8",
+        "@frontify/fondue": "12.0.0-beta.337",
+        "@frontify/guideline-blocks-settings": "^0.29.9",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/interactions": "^3.17.0",
         "react": "^18.2.0",
