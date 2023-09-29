@@ -166,7 +166,7 @@ export const settings = defineSettings({
                 {
                     id: 'showResetButton',
                     type: 'switch',
-                    defaultValue: true,
+                    defaultValue: false,
                     label: 'Show reset button',
                 },
             ],
@@ -198,7 +198,7 @@ export const settings = defineSettings({
                 {
                     id: 'showSandboxLink',
                     type: 'switch',
-                    defaultValue: true,
+                    defaultValue: false,
                     label: 'Show sandbox link',
                 },
             ],
