@@ -12,7 +12,7 @@ import {
     radiusStyleMap,
     setAlpha,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { CalloutIcon } from './components/CalloutIcon';
@@ -20,8 +20,32 @@ import { getTextColor } from './helpers/getTextColor';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
+const getAccentColor = (type: Type): string => {
+    const style = getComputedStyle(document.body);
+    switch (type) {
+        case Type.Info:
+            return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
+        case Type.Note:
+            return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
+        case Type.Tip:
+            return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
+        case Type.Warning:
+            return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
+    }
+};
+
+const computeStyles = (type: Type, appearance: Appearance) => {
+    const accentColor = getAccentColor(type);
+    const bgColor = appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
+    const txtColor = getTextColor(appearance, accentColor, bgColor);
+    return { bgColor, txtColor };
+};
+
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
+    const [backgroundColor, setBackgroundColor] = useState<string>('');
+    const [textColor, setTextColor] = useState<string>('');
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
@@ -35,23 +59,28 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const getAccentColor = (type: Type): string => {
-        const style = getComputedStyle(document.body);
-        switch (type) {
-            case Type.Info:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
-            case Type.Note:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
-            case Type.Tip:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
-            case Type.Warning:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
-        }
-    };
+    useEffect(() => {
+        const updateStyles = () => {
+            const { bgColor, txtColor } = computeStyles(type, appearance);
+            setBackgroundColor(bgColor);
+            setTextColor(txtColor);
+        };
 
-    const accentColor = getAccentColor(blockSettings.type);
-    const backgroundColor = blockSettings.appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
-    const textColor = getTextColor(blockSettings.appearance, accentColor, backgroundColor);
+        const styleElement = document.getElementById('design-settings');
+        if (!styleElement) {
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            updateStyles();
+        });
+
+        observer.observe(styleElement, { childList: true });
+        updateStyles();
+        return () => {
+            observer.disconnect();
+        };
+    }, [appearance, type]);
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
