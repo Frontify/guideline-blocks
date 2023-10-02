@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
+import { ButtonSize, Color, LegacyItemDragState, LegacyOrderableListItem } from '@frontify/fondue';
 import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistItemProps = {
     item?: ChecklistContent;
     toggleCompleted?: (value: boolean) => void;
     isDragFocusVisible?: boolean;
-    dragState?: ItemDragState;
+    dragState?: LegacyItemDragState;
     onTextModified?: (text: string) => void;
     mode: ChecklistItemMode;
     isFirst?: boolean;
@@ -128,7 +128,7 @@ export type DecorationStyle = {
 };
 
 export type Settings = {
-    content: OrderableListItem<ChecklistContent>[];
+    content: LegacyOrderableListItem<ChecklistContent>[];
     textColor: Color;
     checkboxColor: Color;
     completeTextColor: Color;

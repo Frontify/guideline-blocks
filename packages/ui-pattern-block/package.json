@@ -1,5 +1,5 @@
 {
-    "name": "text-block",
+    "name": "ui-pattern-block",
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
     "version": "1.0.0",
@@ -32,6 +32,8 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
+        "@codesandbox/sandpack-react": "^2.7.1",
+        "@codesandbox/sandpack-themes": "^2.0.21",
         "@frontify/app-bridge": "^3.0.0-beta.98",
         "@frontify/fondue": "12.0.0-beta.341",
         "@frontify/guideline-blocks-settings": "^0.29.10",

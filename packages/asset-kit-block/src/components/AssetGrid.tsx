@@ -28,7 +28,7 @@ export const AssetGrid = ({
     };
 
     const shouldShowThumbnails = isEditing || showThumbnails;
-
+    const currentAssetsIds = currentAssets.map((asset) => asset.id);
     return (
         <>
             {showCount && <AssetCount count={currentAssets.length} color={countColor} />}
@@ -38,6 +38,7 @@ export const AssetGrid = ({
                         ? currentAssets.map((asset) => (
                               <ThumbnailItem
                                   key={asset.id}
+                                  currentAssetsIds={currentAssetsIds}
                                   asset={asset}
                                   isEditing={isEditing}
                                   onRemoveAsset={onRemoveAsset}

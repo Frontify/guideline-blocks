@@ -1,14 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import type { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
+import type { CSSProperties } from 'react';
+import type { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 
 export type Thumbnail = {
     id: string;
     title?: string;
     description?: string;
-    image?: string;
     altText?: string;
 };
 
@@ -49,16 +48,16 @@ export type Settings = {
 
 export type SortableThumbnailItemProps = {
     isEditing: boolean;
-    onRemoveAsset: (id: string, imageId?: number) => void;
+    onRemoveItem: (id: string) => void;
     showGrabHandle: boolean;
+    showDeleteButton: boolean;
     image: Asset | undefined;
-    updateItemWith: (type: keyof Thumbnail, value: string | Asset[], id?: string) => void;
+    updateItem: (updatedItem: Thumbnail) => void;
     thumbnailStyles: ThumbnailStylesProps;
     item: Thumbnail;
-    onFilesDrop: (files: FileList, id?: string) => void;
-    openFileDialog: () => void;
-    openAssetChooser: (id?: string) => void;
-    setUploadedId: (id: string) => void;
+    onAssetsSelected: (assets: Asset[], id: string) => void;
+    onFilesSelected: (files: FileList, id: string) => void;
+    onFilesUploaded: (assets: Asset[], id: string) => void;
     isLoading: boolean;
     appBridge: AppBridgeBlock;
 };

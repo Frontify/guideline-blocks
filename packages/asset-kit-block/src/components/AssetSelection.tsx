@@ -4,7 +4,7 @@ import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { IconPlus24 } from '@frontify/fondue';
 import { useEffect, useState } from 'react';
 import { ASSET_SETTINGS_ID } from '../settings';
-import { AssetChooserObjectType, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { AssetSelectionProps } from '../types';
 
 export const AssetSelection = ({
@@ -34,7 +34,6 @@ export const AssetSelection = ({
             {
                 multiSelection: true,
                 selectedValueIds: currentAssets.map((asset) => asset.id),
-                objectTypes: [AssetChooserObjectType.ImageVideo],
             },
         );
     };

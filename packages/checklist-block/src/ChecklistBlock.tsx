@@ -5,13 +5,13 @@ import {
     Button,
     ButtonEmphasis,
     ButtonSize,
-    DragProperties,
     IconEye,
     IconEyeOff,
     IconSize,
-    ItemDragState,
-    OrderableList,
-    OrderableListItem,
+    LegacyDragProperties,
+    LegacyItemDragState,
+    LegacyOrderableList,
+    LegacyOrderableListItem,
 } from '@frontify/fondue';
 
 import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
@@ -69,8 +69,8 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const renderChecklistItem = (
-        { text, id, completed, updatedAt }: OrderableListItem<ChecklistContent>,
-        { componentDragState, isFocusVisible }: DragProperties,
+        { text, id, completed, updatedAt }: LegacyOrderableListItem<ChecklistContent>,
+        { componentDragState, isFocusVisible }: LegacyDragProperties,
     ) => {
         const index = findIndexById(displayableItems, id);
         displayableItems.sort((previousItem, currentItem) => previousItem.sort - currentItem.sort);
@@ -96,7 +96,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
             />
         );
         // Preview is rendered in external DOM, requires own context provider
-        return componentDragState === ItemDragState.Preview ? (
+        return componentDragState === LegacyItemDragState.Preview ? (
             <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
         ) : (
             content
@@ -107,7 +107,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
-    const handleMove = (modifiedItems: OrderableListItem<ChecklistContent>[]) => {
+    const handleMove = (modifiedItems: LegacyOrderableListItem<ChecklistContent>[]) => {
         const modifiedArray = displayableItems.map((item) => {
             const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
             if (matchingModifiedItem) {
@@ -121,7 +121,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const orderableListItems = displayableItems.map(
-        ({ id, completed, sort, text, updatedAt }: OrderableListItem<ChecklistContent>, index: number) => {
+        ({ id, completed, sort, text, updatedAt }: LegacyOrderableListItem<ChecklistContent>, index: number) => {
             return {
                 id,
                 text,
@@ -177,7 +177,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
                         </div>
                         <div className="tw-mt-3" data-test-id="checklist-container">
                             {displayableItems.length > 0 && (
-                                <OrderableList
+                                <LegacyOrderableList
                                     items={orderableListItems}
                                     dragDisabled={!isEditing}
                                     renderContent={renderChecklistItem}

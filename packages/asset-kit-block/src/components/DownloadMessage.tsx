@@ -3,7 +3,7 @@
 import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-settings';
 import { LoadingCircle } from '@frontify/fondue';
 import { DownloadMessageProps } from '../types';
-import { BulkDownloadState } from '@frontify/app-bridge';
+import { AssetBulkDownloadState } from '@frontify/app-bridge';
 
 export const DownloadMessage = ({ blockStyle, status }: DownloadMessageProps) => {
     return (
@@ -15,19 +15,19 @@ export const DownloadMessage = ({ blockStyle, status }: DownloadMessageProps) =>
             }}
             className="tw-flex tw-gap-8 tw-items-center tw-mb-8"
         >
-            {[BulkDownloadState.Started, BulkDownloadState.Pending].includes(status) && (
+            {[AssetBulkDownloadState.Started, AssetBulkDownloadState.Pending].includes(status) && (
                 <div className="tw-flew-0">
                     <LoadingCircle />
                 </div>
             )}
             <div className="tw-flex-1">
-                {[BulkDownloadState.Started, BulkDownloadState.Pending].includes(status) && (
+                {[AssetBulkDownloadState.Started, AssetBulkDownloadState.Pending].includes(status) && (
                     <span data-test-id="asset-kit-pending-message" role="status">
                         This may take a little while. Your package will download automatically when it&apos;s ready.
                     </span>
                 )}
 
-                {status === BulkDownloadState.Error && (
+                {status === AssetBulkDownloadState.Error && (
                     <span data-test-id="asset-kit-error-message" role="status" className="tw-text-red-60">
                         Sorry, we&apos;re experiencing some technical difficulties. Please try again in a few minutes.
                     </span>

@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es6",
+        "jsx": "react-jsx",
+        "lib": ["ES2021", "DOM"],
+        "resolveJsonModule": true,
+        "types": ["cypress", "cypress-real-events"],
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*", "../shared/src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

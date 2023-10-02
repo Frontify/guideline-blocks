@@ -2,6 +2,7 @@
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
+    AutoformatPlugin,
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
@@ -31,7 +32,13 @@ import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities
 const customPlugins = new PluginComposer();
 customPlugins
     .setPlugin([new TextStylePlugin({ textStyles: AllTextStylePlugins })])
-    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
+    .setPlugin([
+        new BoldPlugin(),
+        new ItalicPlugin(),
+        new UnderlinePlugin(),
+        new StrikethroughPlugin(),
+        new AutoformatPlugin(),
+    ]);
 
 export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
