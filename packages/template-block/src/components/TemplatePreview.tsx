@@ -88,6 +88,7 @@ export const TemplatePreview = ({
             {template !== null || previewCustom ? (
                 <div
                     className="tw-relative tw-overflow-hidden"
+                    data-test-id="template-block-preview-wrapper"
                     style={{
                         ...(hasBackgroundTemplatePreview && {
                             ...getBackgroundColorStyles(backgroundColorTemplatePreview),

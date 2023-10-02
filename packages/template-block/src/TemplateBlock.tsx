@@ -157,6 +157,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 >
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
                     <div
+                        data-test-id="template-block-content"
                         className="tw-flex justify-test"
                         style={{
                             flexDirection,
