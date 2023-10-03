@@ -307,34 +307,6 @@ export const settings = defineSettings({
     ],
     style: [
         {
-            id: 'textStyleHeading',
-            type: 'sectionHeading',
-            label: 'Text',
-            blocks: [
-                {
-                    ...getColorSettings({
-                        id: 'title',
-                        label: 'Headline',
-                        defaultValue: true,
-                    }),
-                },
-                {
-                    ...getColorSettings({
-                        id: 'pages',
-                        label: 'Pages',
-                        defaultValue: true,
-                    }),
-                },
-                {
-                    ...getColorSettings({
-                        id: 'description',
-                        label: 'Body',
-                        defaultValue: true,
-                    }),
-                },
-            ],
-        },
-        {
             id: 'cardStyleHeading',
             type: 'sectionHeading',
             label: 'Card',
