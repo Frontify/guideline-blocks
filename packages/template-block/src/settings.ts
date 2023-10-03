@@ -26,7 +26,6 @@ import {
     previewHeightValues,
 } from './types';
 import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
-import { getColorSettings } from './helpers/colorSettings';
 
 export const settings = defineSettings({
     main: [],
