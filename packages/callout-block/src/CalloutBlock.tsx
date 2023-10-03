@@ -10,36 +10,14 @@ import {
     hasRichTextValue,
     joinClassNames,
     radiusStyleMap,
-    setAlpha,
 } from '@frontify/guideline-blocks-settings';
 import { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { CalloutIcon } from './components/CalloutIcon';
-import { getTextColor } from './helpers/getTextColor';
+import { computeStyles } from './helpers/color';
 import { ICON_ASSET_ID } from './settings';
-import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-
-const getAccentColor = (type: Type): string => {
-    const style = getComputedStyle(document.body);
-    switch (type) {
-        case Type.Info:
-            return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
-        case Type.Note:
-            return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
-        case Type.Tip:
-            return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
-        case Type.Warning:
-            return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
-    }
-};
-
-const computeStyles = (type: Type, appearance: Appearance) => {
-    const accentColor = getAccentColor(type);
-    const bgColor = appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
-    const txtColor = getTextColor(appearance, accentColor, bgColor);
-    return { bgColor, txtColor };
-};
+import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -49,7 +27,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
-    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+    if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
         setBlockSettings({ appearance: Appearance.Light });
     }
@@ -61,25 +39,16 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         const updateStyles = () => {
-            const { bgColor, txtColor } = computeStyles(type, appearance);
-            setBackgroundColor(bgColor);
-            setTextColor(txtColor);
+            const { backgroundColor, textColor } = computeStyles(type, appearance);
+            setBackgroundColor(backgroundColor);
+            setTextColor(textColor);
         };
 
-        const styleElement = document.getElementById('design-settings');
-        if (!styleElement) {
-            return;
-        }
-
-        const observer = new MutationObserver(() => {
+        window.emitter.on('HubAppearanceUpdated', () => {
             updateStyles();
         });
 
-        observer.observe(styleElement, { childList: true });
         updateStyles();
-        return () => {
-            observer.disconnect();
-        };
     }, [appearance, type]);
 
     const textDivClassNames = joinClassNames([
