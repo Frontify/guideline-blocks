@@ -139,7 +139,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleOpenTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
 
     return (
-        <div data-test-id="template-block-container">
+        <div data-test-id="template-block-container" className="template-block">
             {selectedTemplate || isEditing ? (
                 <div
                     data-test-id="template-block"
