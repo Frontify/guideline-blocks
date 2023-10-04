@@ -474,6 +474,9 @@ importers:
       eslint-plugin-notice:
         specifier: ^0.9.10
         version: 0.9.10(eslint@8.50.0)
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
       postcss:
         specifier: ^8.4.29
         version: 8.4.30
