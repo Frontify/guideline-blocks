@@ -23,7 +23,7 @@ import { SandpackTheme as ReactSandpackTheme } from '@codesandbox/sandpack-react
 
 export type Settings = {
     // layout
-    sandpackTemplate?: SandpackTemplate;
+    sandpackTemplate: SandpackTemplate;
     alignment?: Alignment;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
@@ -34,7 +34,10 @@ export type Settings = {
     showResponsivePreview: boolean;
     showResetButton: boolean;
     showCode: boolean;
-    collapseCode: boolean;
+    shouldCollapseCodeByDefault: boolean;
+    showNpmDependencies: boolean;
+    showExternalDependencies: boolean;
+    shouldCollapseDependenciesByDefault: boolean;
     showSandboxLink: boolean;
 
     // style
@@ -48,19 +51,25 @@ export type Settings = {
     radiusChoice: Radius;
     radiusValue?: number;
     sandpackTheme: SandpackTheme;
+
+    // files
+    files?: TemplateFiles;
+    dependencies?: TemplateDependencies;
+
+    // captions
+    title?: string;
+    description?: string;
 };
 
 export enum SandpackTemplate {
     Angular = 'angular',
     React = 'react',
-    Solid = 'solid',
     Svelte = 'svelte',
-    Vanilla = 'vanilla',
     Vue = 'vue',
+    Vanilla = 'vanilla',
 }
 
 export enum SandpackTheme {
-    Auto = 'Auto',
     Dark = 'Dark',
     Light = 'Light',
     Amethyst = 'Amethyst',
@@ -82,7 +91,6 @@ export enum SandpackTheme {
 }
 
 export const sandpackThemeValues: Record<SandpackTheme, 'dark' | 'auto' | 'light' | ReactSandpackTheme> = {
-    [SandpackTheme.Auto]: 'auto',
     [SandpackTheme.Dark]: 'dark',
     [SandpackTheme.Light]: 'light',
     [SandpackTheme.Amethyst]: amethyst,
@@ -129,9 +137,12 @@ export enum Height {
     Large = 'Large',
 }
 
-export const heightVALUES: Record<Height, string> = {
+export const heightValues: Record<Height, string> = {
     [Height.Auto]: 'auto',
     [Height.Small]: '120px',
     [Height.Medium]: '200px',
     [Height.Large]: '300px',
 };
+
+export type TemplateFiles = Partial<Record<SandpackTemplate, Record<string, string>>>;
+export type TemplateDependencies = Partial<Record<SandpackTemplate, { npm: string; external: string }>>;

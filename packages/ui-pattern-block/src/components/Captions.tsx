@@ -1,0 +1,54 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { ReactElement } from 'react';
+import {
+    RichTextEditor,
+    TextStyles,
+    convertToRteValue,
+    hasRichTextValue,
+    joinClassNames,
+} from '@frontify/guideline-blocks-settings';
+import { AppBridgeBlock } from '@frontify/app-bridge';
+import { getCaptionPlugins } from '../helpers/plugins';
+
+interface Props {
+    appBridge: AppBridgeBlock;
+    isEditing: boolean;
+    title?: string;
+    onTitleChange: (newValue: string) => void;
+    description?: string;
+    onDescriptionChange: (newValue: string) => void;
+}
+
+export const Captions = ({
+    appBridge,
+    description,
+    isEditing,
+    onDescriptionChange,
+    onTitleChange,
+    title,
+}: Props): ReactElement => {
+    const shouldRender = isEditing || hasRichTextValue(description) || hasRichTextValue(title);
+    return (
+        <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1', shouldRender && 'tw-mb-3'])}>
+            <RichTextEditor
+                id={`${appBridge.getBlockId().toString()}_title`}
+                value={title ?? convertToRteValue(TextStyles.imageTitle, '')}
+                onTextChange={onTitleChange}
+                plugins={getCaptionPlugins(appBridge)}
+                isEditing={isEditing}
+                showSerializedText={hasRichTextValue(title)}
+                placeholder="Pattern name"
+            />
+            <RichTextEditor
+                id={`${appBridge.getBlockId().toString()}_description`}
+                isEditing={isEditing}
+                value={description ?? convertToRteValue(TextStyles.imageCaption, '')}
+                plugins={getCaptionPlugins(appBridge)}
+                onTextChange={onDescriptionChange}
+                showSerializedText={hasRichTextValue(description)}
+                placeholder="Add a description here"
+            />
+        </div>
+    );
+};
