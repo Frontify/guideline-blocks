@@ -44,11 +44,13 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
             setTextColor(textColor);
         };
 
-        window.emitter.on('HubAppearanceUpdated', () => {
-            updateStyles();
-        });
+        window.emitter.on('HubAppearanceUpdated', updateStyles);
 
         updateStyles();
+
+        return () => {
+            window.emitter.off('HubAppearanceUpdated', updateStyles);
+        };
     }, [appearance, type]);
 
     const textDivClassNames = joinClassNames([
