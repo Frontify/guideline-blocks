@@ -9,6 +9,7 @@ import {
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
+    useTemplateChooser,
 } from '@frontify/app-bridge';
 import { ReactElement, useEffect, useReducer, useState } from 'react';
 import {
@@ -35,6 +36,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
+    const { openTemplateChooser, closeTemplateChooser } = useTemplateChooser(appBridge);
 
     const {
         title,
@@ -133,10 +135,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             setLastErrorMessage(error as string);
         }
 
-        appBridge.closeTemplateChooser();
+        closeTemplateChooser();
     };
 
-    const handleOpenTemplateChooser = () => appBridge.openTemplateChooser(onTemplateSelected);
+    const handleOpenTemplateChooser = () => openTemplateChooser(onTemplateSelected);
 
     return (
         <div data-test-id="template-block-container" className="template-block">

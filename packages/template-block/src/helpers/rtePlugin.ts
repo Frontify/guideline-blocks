@@ -5,10 +5,10 @@ import {
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
+    AutoformatPlugin,
     BoldPlugin,
     ItalicPlugin,
     PluginComposer,
-    ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
@@ -33,6 +33,6 @@ export const getTitlePlugin = () => {
             new AlignJustifyPlugin({
                 validTypes: TextStylesWithoutImage,
             }),
-            new ResetFormattingPlugin(),
+            new AutoformatPlugin(),
         ]);
 };
