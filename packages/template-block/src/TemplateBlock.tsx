@@ -147,9 +147,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     data-test-id="template-block"
                     className="tw-border tw-border-black-20"
                     style={{
-                        ...(hasBackground && {
-                            ...getBackgroundColorStyles(backgroundColor),
-                        }),
+                        ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
                         borderRadius,
                         border,
                         padding: hasCustomPaddingValue_blockCard
@@ -160,11 +158,11 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
                     <div
                         data-test-id="template-block-content"
-                        className="tw-flex justify-test"
+                        className="tw-flex"
                         style={{
                             flexDirection,
                             gap: GAP,
-                            alignItems: isRows ? textAnchoringHorizontal : textAnchoringVertical,
+                            alignItems: isRows ? textAnchoringHorizontal : undefined,
                         }}
                     >
                         {hasPreview && (
@@ -179,32 +177,31 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             className={merge(['tw-flex', isRows && hasPreview ? 'tw-flex-col' : 'tw-flex-row'])}
                             style={{
                                 width: isRows && hasPreview ? `${textRatio}%` : '100%',
+                                textAlign: !isRows ? textAnchoringVertical : undefined,
                                 gap: GAP,
                             }}
                         >
                             <div className="tw-grow tw-min-w-0">
-                                {
-                                    <TemplateText
-                                        appBridge={appBridge}
-                                        title={templateTitle}
-                                        blockSettings={blockSettings}
-                                        description={templateDescription}
-                                        pageCount={selectedTemplate?.pages.length ?? 0}
-                                        isEditing={isEditing}
-                                        setTitle={(newValue, prevValue) =>
-                                            dispatch({
-                                                type: TemplateDataActionType.UPDATE_TITLE,
-                                                payload: { newValue, prevValue },
-                                            })
-                                        }
-                                        setDescription={(newValue, prevValue) =>
-                                            dispatch({
-                                                type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                                                payload: { newValue, prevValue },
-                                            })
-                                        }
-                                    />
-                                }
+                                <TemplateText
+                                    appBridge={appBridge}
+                                    title={templateTitle}
+                                    blockSettings={blockSettings}
+                                    description={templateDescription}
+                                    pageCount={selectedTemplate?.pages.length ?? 0}
+                                    isEditing={isEditing}
+                                    setTitle={(newValue, prevValue) =>
+                                        dispatch({
+                                            type: TemplateDataActionType.UPDATE_TITLE,
+                                            payload: { newValue, prevValue },
+                                        })
+                                    }
+                                    setDescription={(newValue, prevValue) =>
+                                        dispatch({
+                                            type: TemplateDataActionType.UPDATE_DESCRIPTION,
+                                            payload: { newValue, prevValue },
+                                        })
+                                    }
+                                />
                             </div>
                             <div className="tw-shrink-0">
                                 <CustomButton
@@ -218,12 +215,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     </div>
                     {!hasPreview && isEditing && (
-                        <div style={{ width: '75%', height: '70px' }} className="tw-pt-2">
+                        <div className="tw-pt-2 tw-w-3/4 tw-h-[70px]">
                             <BlockInjectButton
                                 label="Choose existing template"
                                 icon={<IconPlus24 />}
                                 withMenu={false}
-                                fillParentContainer={true}
+                                fillParentContainer
                                 onClick={handleOpenTemplateChooser}
                             />
                         </div>
