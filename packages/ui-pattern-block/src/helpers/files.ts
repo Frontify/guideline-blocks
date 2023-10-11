@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SandpackFiles } from '@codesandbox/sandpack-react/types';
+import type { SandpackFiles } from '@codesandbox/sandpack-react/types';
 import { SandpackTemplate } from '../types';
 
 export const getDefaultFilesOfTemplate = (template: SandpackTemplate): SandpackFiles => {

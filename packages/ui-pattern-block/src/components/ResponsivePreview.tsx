@@ -20,7 +20,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
     const [width, setWidth] = useState(1440);
     const [activeElementOnMount] = useState<HTMLElement>(document.activeElement as HTMLElement);
     const buttonRef = useRef<HTMLButtonElement>(null);
-
+    const modalRef = useRef<HTMLDivElement>(null);
     const onPreviewClose = useCallback(() => {
         // Move the tab index back to where it was before modal open
         activeElementOnMount?.focus();
@@ -30,20 +30,41 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
 
     useEffect(() => {
         buttonRef.current?.focus();
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        };
     }, []);
 
     useEffect(() => {
-        const closeHandler = (e: KeyboardEvent) => {
+        const keyHandler = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
                 onPreviewClose();
+            } else if (e.key === 'Tab') {
+                const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+                const modal = modalRef.current as HTMLDivElement;
+                const focusableContent = modal.querySelectorAll(focusableElements);
+                const firstFocusableElement = focusableContent[0] as HTMLButtonElement;
+                const lastFocusableElement = focusableContent[focusableContent.length - 1] as HTMLButtonElement;
+
+                if (!e.shiftKey && e.target === lastFocusableElement) {
+                    firstFocusableElement.focus();
+                    e.preventDefault();
+                }
+
+                if (e.shiftKey && e.target === firstFocusableElement) {
+                    lastFocusableElement.focus();
+                    e.preventDefault();
+                }
             }
         };
-        window.addEventListener('keydown', closeHandler);
-        return () => window.removeEventListener('keydown', closeHandler);
+        window.addEventListener('keydown', keyHandler);
+        return () => window.removeEventListener('keydown', keyHandler);
     }, [onPreviewClose]);
 
     return createPortal(
-        <div data-test-id="ui-pattern-responsive-preview" className="ui-pattern-block">
+        <div ref={modalRef} data-test-id="ui-pattern-responsive-preview" className="ui-pattern-block">
             <div className="tw-fixed tw-z-[5000] tw-w-full tw-h-full tw-top-0 tw-left-0 tw-p-6 tw-pb-12">
                 <div className="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8 tw-items-center">
                     <button
@@ -94,7 +115,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                 showOpenInCodeSandbox={false}
                                 showRestartButton={false}
                                 showRefreshButton={false}
-                                className="tw-w-full tw-h-full tw-rounded tw-overflow-hidden tw-bg-white tw-bg-none tw-border-line-strong tw-border-2"
+                                className="tw-w-full tw-h-full tw-rounded tw-overflow-hidden tw-bg-white tw-bg-none "
                             />
                         </div>
                     </div>

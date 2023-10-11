@@ -19,6 +19,7 @@ export const ToolbarButton = ({ icon, tooltip, onClick }: Props): ReactElement =
             withArrow
             triggerElement={
                 <Button
+                    aria-label={tooltip}
                     data-test-id="toolbar-icon-btn"
                     onClick={onClick}
                     icon={icon}

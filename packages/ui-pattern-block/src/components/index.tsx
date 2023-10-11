@@ -8,3 +8,4 @@ export * from './NPMDependencies';
 export * from './Dependencies';
 export * from './ExternalDependencies';
 export * from './Captions';
+export * from './ResponsivePreview';

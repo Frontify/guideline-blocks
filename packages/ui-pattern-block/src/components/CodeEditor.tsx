@@ -33,6 +33,7 @@ export const CodeEditor = ({
 
     useEffect(() => {
         onCodeChange(activeFile, code);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [code]);
 
     return (

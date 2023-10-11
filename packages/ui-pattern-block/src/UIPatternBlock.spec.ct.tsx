@@ -124,10 +124,35 @@ describe('UI Pattern Block', () => {
         cy.get(CodeEditorSelector).should('contain.text', 'console.log("Hello")');
     });
 
-    it('does not render the code editor if it is set in the settings', () => {
+    it('renders the correct code in the code editor on tab switch - keyboard only', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
             blockId: 6,
+            blockSettings: {
+                ...DEFAULT_BLOCK_SETTINGS,
+
+                files: {
+                    [SandpackTemplate.Vanilla]: {
+                        '/index.html': 'Testing',
+                        '/app.js': 'console.log("Hello")',
+                    },
+                },
+            },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(CodeEditorSelector).should('contain.text', 'Testing');
+        cy.get(ToolbarTabButtonSelector).realPress('Tab');
+        cy.get(ToolbarTabButtonSelector).realPress('Tab');
+        cy.get(ToolbarTabButtonSelector).realPress('Tab');
+        cy.get(ToolbarTabButtonSelector).realPress('Tab');
+        cy.get(ToolbarTabButtonSelector).realPress('Enter');
+        cy.get(CodeEditorSelector).should('contain.text', 'console.log("Hello")');
+    });
+
+    it('does not render the code editor if it is set in the settings', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 7,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showCode: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -138,7 +163,7 @@ describe('UI Pattern Block', () => {
     it('collapses the code editor if it is set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 7,
+            blockId: 8,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, shouldCollapseCodeByDefault: true },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -148,10 +173,26 @@ describe('UI Pattern Block', () => {
         cy.get(CodeEditorSelector).should('exist');
     });
 
+    it('toggles the code editor with keyboard only', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 9,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, shouldCollapseCodeByDefault: true },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(CodeEditorSelector).should('not.exist');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.get(CodeEditorSelector).should('exist');
+        cy.realPress('Enter');
+        cy.get(CodeEditorSelector).should('not.exist');
+    });
+
     it('renders the dependencies if it is set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 8,
+            blockId: 10,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showNpmDependencies: false, showExternalDependencies: true },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -161,7 +202,7 @@ describe('UI Pattern Block', () => {
     it('does not collapse the dependencies if it is set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 9,
+            blockId: 11,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, shouldCollapseDependenciesByDefault: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -171,7 +212,7 @@ describe('UI Pattern Block', () => {
     it('renders the saved dependencies', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 10,
+            blockId: 12,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
                 shouldCollapseDependenciesByDefault: false,
@@ -194,7 +235,7 @@ describe('UI Pattern Block', () => {
     it('renders the error message if the JSON is invalid', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: true,
-            blockId: 11,
+            blockId: 13,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
             },
@@ -208,7 +249,7 @@ describe('UI Pattern Block', () => {
     it('does not render toolbar icon buttons if set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 12,
+            blockId: 14,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -218,7 +259,7 @@ describe('UI Pattern Block', () => {
     it('opens the responsive preview on button click and changes preview width', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 13,
+            blockId: 15,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -231,10 +272,37 @@ describe('UI Pattern Block', () => {
         cy.get(ResponsivePreviewSelector).should('not.exist');
     });
 
+    it('opens the responsive preview on button click and changes preview width - keyboard only', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 16,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.get(ResponsivePreviewSelector).should('exist');
+        cy.get(ResponsivePreviewDeviceSelector).should('have.css', 'width', '1440px');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.get(ResponsivePreviewDeviceSelector).should('have.css', 'width', '834px');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.get(ResponsivePreviewSelector).should('not.exist');
+    });
+
     it('renders with correct styles', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 14,
+            blockId: 17,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
                 paddingChoice: Padding.Medium,
@@ -257,7 +325,7 @@ describe('UI Pattern Block', () => {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 15 + index,
+                blockId: 18 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCaretDown12 } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE, IconCaretDown12 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { PropsWithChildren, ReactElement } from 'react';
 
@@ -8,16 +8,29 @@ interface Props {
     label: string;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    borderRadius?: number;
 }
 
-export const Accordion = ({ label, children, isOpen, setIsOpen }: PropsWithChildren<Props>): ReactElement => {
+export const Accordion = ({
+    label,
+    children,
+    isOpen,
+    setIsOpen,
+    borderRadius,
+}: PropsWithChildren<Props>): ReactElement => {
     return (
         <div data-test-id="dependency-accordion" className="tw-border-b tw-border-b-line last:tw-border-b-0">
             <button
+                aria-expanded={isOpen}
                 className={joinClassNames([
-                    'tw-text-s tw-gap-2 tw-w-full tw-text-text-weak tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
+                    'tw-relative focus:tw-z-20 tw-text-s tw-gap-2 tw-w-[calc(100%-32px)] tw-text-text-weak tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
                     isOpen && 'tw-border-b tw-border-b-line',
+                    FOCUS_VISIBLE_STYLE,
                 ])}
+                style={{
+                    borderBottomLeftRadius: !isOpen ? borderRadius : undefined,
+                    borderBottomRightRadius: !isOpen ? borderRadius : undefined,
+                }}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {label}
@@ -25,7 +38,18 @@ export const Accordion = ({ label, children, isOpen, setIsOpen }: PropsWithChild
                     <IconCaretDown12 />
                 </div>
             </button>
-            {isOpen && <div data-test-id="dependency-accordion-children">{children}</div>}
+            {isOpen && (
+                <div
+                    style={{
+                        borderBottomLeftRadius: borderRadius,
+                        borderBottomRightRadius: borderRadius,
+                    }}
+                    data-test-id="dependency-accordion-children"
+                    className="tw-overflow-hidden"
+                >
+                    {children}
+                </div>
+            )}
         </div>
     );
 };

@@ -9,7 +9,6 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 
 import { Alignment, Height, type Settings, sandpackThemeValues } from './types';
-import { CodeEditor } from './components/CodeEditor';
 import {
     DEFAULT_BLOCK_SETTINGS,
     EDITOR_CLASSES,
@@ -19,13 +18,13 @@ import {
     getDefaultFilesOfTemplate,
     getHeightStyle,
     getPaddingStyle,
-    getRadiusStyle,
+    getParsedDependencies,
+    getRadiusValue,
     getScriptToInject,
     initialActiveFile,
 } from './helpers';
 import { useDebounce } from './hooks';
-import { Captions, ExternalDependencies, NPMDependencies } from './components';
-import { ResponsivePreview } from './components/ResponsivePreview';
+import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
 
 export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -76,6 +75,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const templateFiles = useMemo(
         () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [sandpackTemplate, cssToInject, dependencies, reset],
     );
 
@@ -123,22 +123,13 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const npmDependencies = dependencies?.[sandpackTemplate]?.npm ?? '';
     const externalDependencies = dependencies?.[sandpackTemplate]?.external ?? '';
+    const parsedExternalDependencies = useMemo(
+        () => getParsedDependencies(externalDependencies, []),
+        [externalDependencies],
+    );
+    const parsedNpmDependencies = useMemo(() => getParsedDependencies(npmDependencies, {}), [npmDependencies]);
 
-    const parsedNpmDependencies = useMemo(() => {
-        try {
-            return { dependencies: JSON.parse(npmDependencies) };
-        } catch {
-            return {};
-        }
-    }, [dependencies]);
-
-    const parsedExternalDependencies = useMemo(() => {
-        try {
-            return JSON.parse(externalDependencies);
-        } catch {
-            return [];
-        }
-    }, [dependencies]);
+    const borderRadius = getRadiusValue(hasRadius, radiusValue, radiusChoice);
 
     // Remount sandpack provider if any of these change
     const sandpackRestartInitiators = [
@@ -166,14 +157,16 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                 data-test-id="ui-pattern-block-wrapper"
                 style={{
                     ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
-                    borderRadius: getRadiusStyle(hasRadius, radiusValue, radiusChoice),
+                    borderRadius,
                 }}
-                className="tw-rounded tw-bg-white tw-overflow-hidden"
+                className="tw-rounded tw-bg-white"
             >
                 <SandpackProvider
                     files={templateFiles}
                     template={sandpackTemplate}
-                    customSetup={parsedNpmDependencies}
+                    customSetup={{
+                        dependencies: parsedNpmDependencies,
+                    }}
                     theme={sandpackThemeValues[sandpackTheme]}
                     key={sandpackRestartInitiators}
                     options={{
@@ -182,7 +175,10 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         externalResources: [cssToInject, ...parsedExternalDependencies],
                     }}
                 >
-                    <SandpackLayout className="tw-flex tw-flex-col tw-bg-inher">
+                    <SandpackLayout
+                        style={{ borderTopRightRadius: borderRadius, borderTopLeftRadius: borderRadius }}
+                        className="tw-flex tw-flex-col"
+                    >
                         {isResponsivePreviewOpen && (
                             <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
                         )}
@@ -194,10 +190,12 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     ...getBackgroundColorStyles(backgroundColor),
                                     backgroundImage: 'none',
                                 }),
+                                borderTopRightRadius: borderRadius,
+                                borderTopLeftRadius: borderRadius,
                             }}
                             showRefreshButton={false}
                             showOpenInCodeSandbox={false}
-                            className="tw-rounded-none tw-bg-box-nega tw-shadow-none tw-ml-0"
+                            className="tw-rounded-none tw-shadow-none tw-ml-0"
                         />
                         {(isEditing || showCode) && (
                             <CodeEditor
@@ -214,12 +212,14 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         )}
                     </SandpackLayout>
                 </SandpackProvider>
+
                 {(isEditing || showNpmDependencies) && (
                     <NPMDependencies
                         key={`npm_${isEditing.toString()}`}
                         npmDependencies={npmDependencies}
                         shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
                         onNpmDependenciesChanged={(newDependencies) => onDependenciesChanged(newDependencies, 'npm')}
+                        borderRadius={showExternalDependencies ? undefined : borderRadius}
                     />
                 )}
                 {(isEditing || showExternalDependencies) && (
@@ -230,6 +230,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         onExternalDependenciesChanged={(newDependencies) =>
                             onDependenciesChanged(newDependencies, 'external')
                         }
+                        borderRadius={borderRadius}
                     />
                 )}
             </div>

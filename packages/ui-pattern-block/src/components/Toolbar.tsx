@@ -5,7 +5,13 @@ import { UnstyledOpenInCodeSandboxButton, useActiveCode, useSandpack } from '@co
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { toolbarButtons } from '../helpers';
 import { SandpackTemplate } from '../types';
-import { IconArrowExpand16, IconArrowRoundAntiClockwise16, IconClipboard16, useCopy } from '@frontify/fondue';
+import {
+    FOCUS_VISIBLE_STYLE,
+    IconArrowExpand16,
+    IconArrowRoundAntiClockwise16,
+    IconClipboard16,
+    useCopy,
+} from '@frontify/fondue';
 import { IconSandBox } from './icons';
 import { ToolbarButton } from './ToolbarButton';
 
@@ -56,7 +62,8 @@ export const Toolbar = ({
                     <button
                         data-test-id="toolbar-tab-btn"
                         className={joinClassNames([
-                            'tw-px-2 tw-h-full tw-text-s tw-text-text-weak hover:tw-text-text-x-weak tw-font-body tw-relative',
+                            'tw-px-2 tw-h-full tw-text-s tw-text-text-weak hover:tw-text-text-x-weak tw-font-body tw-relative focus-visible:tw-z-20',
+                            FOCUS_VISIBLE_STYLE,
                         ])}
                         key={button.file}
                         onClick={() => toggleFile(button.file)}

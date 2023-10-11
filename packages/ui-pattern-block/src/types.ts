@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { BorderStyle, Color, Radius } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, Color, Radius } from '@frontify/guideline-blocks-settings';
 import {
     amethyst,
     aquaBlue,
@@ -142,6 +142,13 @@ export const heightValues: Record<Height, string> = {
     [Height.Small]: '120px',
     [Height.Medium]: '200px',
     [Height.Large]: '300px',
+};
+
+export const radiusValues: Record<Radius, number> = {
+    [Radius.None]: 0,
+    [Radius.Small]: 2,
+    [Radius.Medium]: 4,
+    [Radius.Large]: 12,
 };
 
 export type TemplateFiles = Partial<Record<SandpackTemplate, Record<string, string>>>;

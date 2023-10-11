@@ -29,25 +29,28 @@ export const Captions = ({
     title,
 }: Props): ReactElement => {
     const shouldRender = isEditing || hasRichTextValue(description) || hasRichTextValue(title);
+    const commonProps = {
+        isEditing,
+        plugins: getCaptionPlugins(appBridge),
+    };
+
     return (
         <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1', shouldRender && 'tw-mb-3'])}>
             <RichTextEditor
                 id={`${appBridge.getBlockId().toString()}_title`}
                 value={title ?? convertToRteValue(TextStyles.imageTitle, '')}
                 onTextChange={onTitleChange}
-                plugins={getCaptionPlugins(appBridge)}
-                isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 placeholder="Pattern name"
+                {...commonProps}
             />
             <RichTextEditor
                 id={`${appBridge.getBlockId().toString()}_description`}
-                isEditing={isEditing}
                 value={description ?? convertToRteValue(TextStyles.imageCaption, '')}
-                plugins={getCaptionPlugins(appBridge)}
                 onTextChange={onDescriptionChange}
                 showSerializedText={hasRichTextValue(description)}
                 placeholder="Add a description here"
+                {...commonProps}
             />
         </div>
     );

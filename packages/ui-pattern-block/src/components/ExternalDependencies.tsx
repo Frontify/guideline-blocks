@@ -7,12 +7,14 @@ interface Props {
     onExternalDependenciesChanged: (newDependencies: string) => void;
     externalDependencies: string;
     shouldCollapseByDefault: boolean;
+    borderRadius?: number;
 }
 
 export const ExternalDependencies = ({
     onExternalDependenciesChanged,
     shouldCollapseByDefault,
     externalDependencies,
+    borderRadius,
 }: Props): ReactElement => {
     return (
         <Dependencies
@@ -21,6 +23,7 @@ export const ExternalDependencies = ({
             onBlur={onExternalDependenciesChanged}
             value={externalDependencies}
             shouldCollapseByDefault={shouldCollapseByDefault}
+            borderRadius={borderRadius}
         />
     );
 };
