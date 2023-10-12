@@ -124,6 +124,7 @@ export const TemplatePreview = ({
                                 isOpen={isActionFlyoutOpen}
                                 trigger={
                                     <Button
+                                        aria-label="Template actions"
                                         emphasis={ButtonEmphasis.Default}
                                         style={ButtonStyle.Default}
                                         icon={<IconDotsVertical />}
