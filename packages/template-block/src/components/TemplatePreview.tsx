@@ -12,7 +12,7 @@ import {
     IconPlus24,
     merge,
 } from '@frontify/fondue';
-import { useState } from 'react';
+import { MutableRefObject, useState } from 'react';
 import {
     PreviewType,
     Settings,
@@ -119,18 +119,19 @@ export const TemplatePreview = ({
                         alt={template?.name}
                     />
                     {isEditing && (
-                        <div className="tw-absolute tw-top-0 tw-right-0 tw-flex tw-justify-end tw-pt-3">
+                        <div className="tw-absolute tw-top-0 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">
                             <Flyout
                                 isOpen={isActionFlyoutOpen}
-                                trigger={
+                                trigger={(_, ref) => (
                                     <Button
                                         aria-label="Template actions"
                                         emphasis={ButtonEmphasis.Default}
                                         style={ButtonStyle.Default}
                                         icon={<IconDotsVertical />}
                                         onClick={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
+                                        ref={ref as MutableRefObject<HTMLButtonElement>}
                                     />
-                                }
+                                )}
                                 onOpenChange={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
                                 legacyFooter={false}
                             >
