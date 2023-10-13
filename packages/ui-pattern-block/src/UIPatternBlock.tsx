@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useMemo, useState } from 'react';
+import { ReactElement, useMemo, useRef, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps, getBackgroundColorStyles, getBorderStyles } from '@frontify/guideline-blocks-settings';
-import { SandpackLayout, SandpackPreview, SandpackProvider } from '@codesandbox/sandpack-react';
+import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
@@ -44,6 +44,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         showSandboxLink,
         showResponsivePreview,
         showCode,
+        isCodeEditable,
         showNpmDependencies,
         showExternalDependencies,
         shouldCollapseCodeByDefault,
@@ -60,11 +61,14 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         description,
         title,
     } = { ...DEFAULT_BLOCK_SETTINGS, ...blockSettings };
+
     const { debounce } = useDebounce();
     const isEditing = useEditorState(appBridge);
     const [isResponsivePreviewOpen, setIsResponsivePreviewOpen] = useState(false);
     const [dependencies, setDependencies] = useState(blockDependencies);
-    const [reset, setReset] = useState(false);
+    const [resetFiles, setResetFiles] = useState(false);
+    const [hasCodeChanges, setHasCodeChanges] = useState(false);
+    const previewRef = useRef<SandpackPreviewRef>(null);
 
     const cssToInject = useMemo(() => {
         const alignmentCss = alignment === Alignment.Center ? centeringCss : '';
@@ -73,20 +77,43 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         return getScriptToInject(getCssToInject(hasAutoHeight, alignmentCss, backgroundCss));
     }, [hasBackground, backgroundColor, alignment, isCustomHeight, heightChoice]);
 
+    const npmDependencies = dependencies?.[sandpackTemplate]?.npm ?? '';
+    const externalDependencies = dependencies?.[sandpackTemplate]?.external ?? '';
+
+    // Remount sandpack provider if any of these change
+    const sandpackRestartInitiators = [
+        heightChoice,
+        customHeightValue,
+        cssToInject,
+        npmDependencies,
+        externalDependencies,
+        resetFiles,
+    ];
+
+    const onResetFiles = () => {
+        setResetFiles(!resetFiles);
+        setHasCodeChanges(false);
+    };
+
     const templateFiles = useMemo(
         () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [sandpackTemplate, cssToInject, dependencies, reset],
+        sandpackRestartInitiators,
     );
 
-    const onResetToDefault = () => {
-        setReset(!reset);
+    const onResetRun = () => {
+        previewRef.current?.getClient()?.dispatch({ type: 'refresh' });
     };
 
     const onCodeChange = (filename: string, code: string) => {
         if (!isEditing) {
+            const existingFiles = { ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] };
+            if (existingFiles[filename] !== code) {
+                setHasCodeChanges(true);
+            }
             return;
         }
+        setHasCodeChanges(false);
         debounce(() =>
             setBlockSettings({
                 files: {
@@ -121,27 +148,16 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         });
     };
 
-    const npmDependencies = dependencies?.[sandpackTemplate]?.npm ?? '';
-    const externalDependencies = dependencies?.[sandpackTemplate]?.external ?? '';
     const parsedExternalDependencies = useMemo(
         () => getParsedDependencies(externalDependencies, []),
         [externalDependencies],
     );
-    const parsedNpmDependencies = useMemo(() => getParsedDependencies(npmDependencies, {}), [npmDependencies]);
+    const parsedNpmDependencies = useMemo(
+        () => ({ dependencies: getParsedDependencies(npmDependencies, {}) }),
+        [npmDependencies],
+    );
 
     const borderRadius = getRadiusValue(hasRadius, radiusValue, radiusChoice);
-
-    // Remount sandpack provider if any of these change
-    const sandpackRestartInitiators = [
-        heightChoice,
-        customHeightValue,
-        cssToInject,
-        npmDependencies,
-        externalDependencies,
-        reset,
-    ]
-        .map((item) => item.toString())
-        .join('');
 
     return (
         <div key={sandpackTemplate} data-test-id="ui-pattern-block" className="ui-pattern-block">
@@ -164,11 +180,9 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <SandpackProvider
                     files={templateFiles}
                     template={sandpackTemplate}
-                    customSetup={{
-                        dependencies: parsedNpmDependencies,
-                    }}
+                    customSetup={parsedNpmDependencies}
                     theme={sandpackThemeValues[sandpackTheme]}
-                    key={sandpackRestartInitiators}
+                    key={sandpackRestartInitiators.map((i) => i.toString()).join('')}
                     options={{
                         classes: EDITOR_CLASSES,
                         activeFile: initialActiveFile[sandpackTemplate],
@@ -183,6 +197,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
                         )}
                         <SandpackPreview
+                            ref={previewRef}
                             style={{
                                 height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
                                 padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
@@ -200,12 +215,15 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {(isEditing || showCode) && (
                             <CodeEditor
                                 key={`editor_${isEditing.toString()}`}
+                                isCodeEditable={isEditing || isCodeEditable}
                                 showResetButton={showResetButton}
                                 showSandboxLink={showSandboxLink}
                                 showResponsivePreview={showResponsivePreview}
                                 onResponsivePreviewOpen={() => setIsResponsivePreviewOpen(true)}
                                 onCodeChange={onCodeChange}
-                                onResetToDefault={onResetToDefault}
+                                onResetFilesToDefault={onResetFiles}
+                                onResetRun={onResetRun}
+                                hasCodeChanges={!isEditing && hasCodeChanges}
                                 template={sandpackTemplate}
                                 shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
                             />

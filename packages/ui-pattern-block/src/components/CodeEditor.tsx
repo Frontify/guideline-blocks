@@ -11,20 +11,26 @@ interface Props {
     showSandboxLink: boolean;
     showResponsivePreview: boolean;
     shouldCollapseCodeByDefault: boolean;
+    isCodeEditable: boolean;
+    hasCodeChanges: boolean;
     onResponsivePreviewOpen: () => void;
     onCodeChange: (filename: string, code: string) => void;
-    onResetToDefault: () => void;
+    onResetFilesToDefault: () => void;
+    onResetRun: () => void;
 }
 
 export const CodeEditor = ({
     onCodeChange,
-    onResetToDefault,
+    onResetFilesToDefault,
+    onResetRun,
     onResponsivePreviewOpen,
     template,
     showResetButton,
     showResponsivePreview,
     showSandboxLink,
     shouldCollapseCodeByDefault,
+    isCodeEditable,
+    hasCodeChanges,
 }: Props): ReactElement => {
     const { code } = useActiveCode();
     const { sandpack } = useSandpack();
@@ -40,15 +46,25 @@ export const CodeEditor = ({
         <div className="tw-max-w-full">
             <Toolbar
                 template={template}
+                isCodeEditable={isCodeEditable}
                 isEditorCollapsed={isEditorCollapsed}
                 setIsEditorCollapsed={setIsEditorCollapsed}
-                onResetToDefault={onResetToDefault}
+                onResetFilesToDefault={onResetFilesToDefault}
+                onResetRun={onResetRun}
+                hasCodeChanges={hasCodeChanges}
                 onResponsivePreviewOpen={onResponsivePreviewOpen}
                 showResetButton={showResetButton}
                 showSandboxLink={showSandboxLink}
                 showResponsivePreview={showResponsivePreview}
             />
-            {!isEditorCollapsed && <SandpackCodeEditor showRunButton={false} showTabs={false} />}
+            {!isEditorCollapsed && (
+                <SandpackCodeEditor
+                    showReadOnly={false}
+                    readOnly={!isCodeEditable}
+                    showRunButton={false}
+                    showTabs={false}
+                />
+            )}
         </div>
     );
 };

@@ -6,6 +6,9 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { toolbarButtons } from '../helpers';
 import { SandpackTemplate } from '../types';
 import {
+    Button,
+    ButtonEmphasis,
+    ButtonSize,
     FOCUS_VISIBLE_STYLE,
     IconArrowExpand16,
     IconArrowRoundAntiClockwise16,
@@ -19,22 +22,28 @@ interface Props {
     isEditorCollapsed: boolean;
     template: SandpackTemplate;
     setIsEditorCollapsed: (isEditorCollapsed: boolean) => void;
-    onResetToDefault: () => void;
+    onResetFilesToDefault: () => void;
+    onResetRun: () => void;
     onResponsivePreviewOpen: () => void;
     showResetButton: boolean;
     showSandboxLink: boolean;
     showResponsivePreview: boolean;
+    isCodeEditable: boolean;
+    hasCodeChanges: boolean;
 }
 
 export const Toolbar = ({
     isEditorCollapsed,
     setIsEditorCollapsed,
-    onResetToDefault,
     onResponsivePreviewOpen,
+    onResetFilesToDefault,
+    onResetRun,
     template,
     showResetButton,
     showResponsivePreview,
     showSandboxLink,
+    isCodeEditable,
+    hasCodeChanges,
 }: Props): ReactElement => {
     const { copy, status } = useCopy(3000);
     const { sandpack } = useSandpack();
@@ -75,8 +84,8 @@ export const Toolbar = ({
                     </button>
                 ))}
             </div>
-            <div className="tw-flex">
-                <div className="tw-flex tw-gap-0.5 tw-px-3">
+            <div className="tw-flex tw-items-center tw-gap-3 tw-h-full">
+                <div className="tw-flex tw-gap-0.5 tw-items-center">
                     {showSandboxLink && (
                         <UnstyledOpenInCodeSandboxButton>
                             <ToolbarButton icon={<IconSandBox />} tooltip="Open in CodeSandbox" />
@@ -96,14 +105,27 @@ export const Toolbar = ({
                     )}
                 </div>
                 {showResetButton && (
-                    <div className="tw-pl-3 tw-pr-1 tw-relative">
-                        <div className="tw-absolute tw-h-full tw-w-[1px] tw-bg-line tw-right-full tw-top-0"></div>
+                    <>
+                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
                         <ToolbarButton
                             icon={<IconArrowRoundAntiClockwise16 />}
                             tooltip="Reset pattern"
-                            onClick={() => onResetToDefault()}
+                            onClick={() => onResetRun()}
                         />
-                    </div>
+                    </>
+                )}
+                {isCodeEditable && hasCodeChanges && (
+                    <>
+                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
+                        <Button
+                            data-test-id="ui-pattern-discard-changes"
+                            size={ButtonSize.Small}
+                            emphasis={ButtonEmphasis.Weak}
+                            onClick={() => onResetFilesToDefault()}
+                        >
+                            Discard changes
+                        </Button>
+                    </>
                 )}
             </div>
         </div>

@@ -34,6 +34,7 @@ export type Settings = {
     showResponsivePreview: boolean;
     showResetButton: boolean;
     showCode: boolean;
+    isCodeEditable: boolean;
     shouldCollapseCodeByDefault: boolean;
     showNpmDependencies: boolean;
     showExternalDependencies: boolean;

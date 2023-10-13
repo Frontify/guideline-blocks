@@ -49,6 +49,65 @@ export const settings = defineSettings({
             ],
         },
     ],
+    basics: [
+        {
+            id: 'uiPatternBasicsPreview',
+            type: 'sectionHeading',
+            label: 'Preview',
+            blocks: [
+                {
+                    id: 'showResponsivePreview',
+                    type: 'switch',
+                    defaultValue: true,
+                    label: 'Show responsive preview',
+                },
+                {
+                    id: 'showResetButton',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show reset button',
+                },
+            ],
+        },
+        {
+            id: 'uiPatternBasicsSnippet',
+            type: 'sectionHeading',
+            label: 'Snippet',
+            blocks: [
+                {
+                    id: 'showCode',
+                    type: 'switch',
+                    defaultValue: true,
+                    label: 'Show code',
+                },
+                {
+                    id: 'isCodeEditable',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Editable',
+                },
+                {
+                    id: 'shouldCollapseCodeByDefault',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Collapse by default',
+                },
+            ],
+        },
+        {
+            id: 'uiPatternBasicsLinks',
+            type: 'sectionHeading',
+            label: 'Links',
+            blocks: [
+                {
+                    id: 'showSandboxLink',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show sandbox link',
+                },
+            ],
+        },
+    ],
     layout: [
         {
             id: 'uiPatternLayout',
@@ -158,37 +217,6 @@ export const settings = defineSettings({
                         },
                     ],
                 },
-                {
-                    id: 'showResponsivePreview',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show responsive preview',
-                },
-                {
-                    id: 'showResetButton',
-                    type: 'switch',
-                    defaultValue: false,
-                    label: 'Show reset button',
-                },
-            ],
-        },
-        {
-            id: 'uiPatternSnippets',
-            type: 'sectionHeading',
-            label: 'Snippets',
-            blocks: [
-                {
-                    id: 'showCode',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show code',
-                },
-                {
-                    id: 'shouldCollapseCodeByDefault',
-                    type: 'switch',
-                    defaultValue: false,
-                    label: 'Collapse by default',
-                },
             ],
         },
         {
@@ -213,19 +241,6 @@ export const settings = defineSettings({
                     type: 'switch',
                     defaultValue: true,
                     label: 'Collapse by default',
-                },
-            ],
-        },
-        {
-            id: 'uiPatternLinks',
-            type: 'sectionHeading',
-            label: 'Links',
-            blocks: [
-                {
-                    id: 'showSandboxLink',
-                    type: 'switch',
-                    defaultValue: false,
-                    label: 'Show sandbox link',
                 },
             ],
         },

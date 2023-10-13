@@ -43,6 +43,7 @@ export const DEFAULT_BLOCK_SETTINGS = {
     showSandboxLink: true,
     showResponsivePreview: true,
     showCode: true,
+    isCodeEditable: false,
     showNpmDependencies: true,
     showExternalDependencies: true,
     shouldCollapseCodeByDefault: false,

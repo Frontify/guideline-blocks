@@ -80,7 +80,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                         onClick={() => setWidth(device.width)}
                                         key={device.label}
                                         className={joinClassNames([
-                                            'tw-h-full tw-text-button-text tw-rounded tw-px-2 tw-border hover:tw-bg-button-background-hover',
+                                            'tw-h-full tw-text-button-text tw-rounded tw-px-2 tw-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed',
                                             FOCUS_VISIBLE_STYLE,
                                             width === device.width
                                                 ? 'tw-border-button-border tw-bg-button-background-pressed hover:tw-bg-button-background-pressed'
@@ -95,6 +95,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                         </div>
                         <div className="tw-absolute tw-right-0">
                             <Button
+                                aria-label="Close responsive preview view"
                                 ref={buttonRef}
                                 data-test-id="ui-pattern-responsive-preview-close-btn"
                                 onClick={onPreviewClose}

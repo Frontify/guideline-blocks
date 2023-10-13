@@ -12,7 +12,9 @@ const UiPatternBlockWrapperSelector = '[data-test-id="ui-pattern-block-wrapper"]
 const ToolbarTabButtonSelector = '[data-test-id="toolbar-tab-btn"]';
 const ToolbarSelector = '[data-test-id="ui-pattern-files-toolbar"]';
 const ToolbarIconButtonSelector = '[data-test-id="toolbar-icon-btn"]';
+const DiscardChangesButtonSelector = '[data-test-id="ui-pattern-discard-changes"]';
 const CodeEditorSelector = '.sp-code-editor';
+const CodeEditorContentEditableSelector = '.sp-code-editor [contenteditable]';
 const CodePreviewSelector = '.sp-preview';
 const DependencyAccordionSelector = '[data-test-id="dependency-accordion"]';
 const ResponsivePreviewSelector = '[data-test-id="ui-pattern-responsive-preview"]';
@@ -173,10 +175,57 @@ describe('UI Pattern Block', () => {
         cy.get(CodeEditorSelector).should('exist');
     });
 
-    it('toggles the code editor with keyboard only', () => {
+    it('should allow code edit in view mode if set in settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
             blockId: 9,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(CodeEditorContentEditableSelector).should('have.attr', 'contenteditable', 'true');
+        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+    });
+
+    it('should not allow code edit in view mode if not set in settings', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 10,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(CodeEditorContentEditableSelector).should('have.attr', 'contenteditable', 'false');
+    });
+
+    it('should render discard changes button only in view mode if there are changes', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 11,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(DiscardChangesButtonSelector).should('not.exist');
+        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+        cy.get(DiscardChangesButtonSelector).should('exist');
+        cy.get(DiscardChangesButtonSelector).click();
+        cy.get(DiscardChangesButtonSelector).should('not.exist');
+        cy.get(CodeEditorContentEditableSelector).should('not.contain', 'New changes');
+    });
+
+    it('should not render discard changes button in edit mode', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: true,
+            blockId: 12,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+        cy.get(DiscardChangesButtonSelector).should('not.exist');
+    });
+
+    it('toggles the code editor with keyboard only', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 13,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, shouldCollapseCodeByDefault: true },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -192,7 +241,7 @@ describe('UI Pattern Block', () => {
     it('renders the dependencies if it is set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 10,
+            blockId: 14,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showNpmDependencies: false, showExternalDependencies: true },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -202,7 +251,7 @@ describe('UI Pattern Block', () => {
     it('does not collapse the dependencies if it is set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 11,
+            blockId: 15,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, shouldCollapseDependenciesByDefault: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -212,7 +261,7 @@ describe('UI Pattern Block', () => {
     it('renders the saved dependencies', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 12,
+            blockId: 16,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
                 shouldCollapseDependenciesByDefault: false,
@@ -235,7 +284,7 @@ describe('UI Pattern Block', () => {
     it('renders the error message if the JSON is invalid', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: true,
-            blockId: 13,
+            blockId: 17,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
             },
@@ -249,7 +298,7 @@ describe('UI Pattern Block', () => {
     it('does not render toolbar icon buttons if set in the settings', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 14,
+            blockId: 18,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -275,7 +324,7 @@ describe('UI Pattern Block', () => {
     it('opens the responsive preview on button click and changes preview width - keyboard only', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 16,
+            blockId: 19,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
         });
         mount(<UIPatternBlockWithStubs />);
@@ -302,7 +351,7 @@ describe('UI Pattern Block', () => {
     it('renders with correct styles', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: false,
-            blockId: 17,
+            blockId: 20,
             blockSettings: {
                 ...DEFAULT_BLOCK_SETTINGS,
                 paddingChoice: Padding.Medium,
@@ -325,7 +374,7 @@ describe('UI Pattern Block', () => {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 18 + index,
+                blockId: 21 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);
