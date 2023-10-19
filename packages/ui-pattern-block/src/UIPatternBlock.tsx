@@ -210,7 +210,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                             }}
                             showRefreshButton={false}
                             showOpenInCodeSandbox={false}
-                            className="tw-rounded-none tw-shadow-none tw-ml-0"
+                            className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white"
                         />
                         {(isEditing || showCode) && (
                             <CodeEditor
