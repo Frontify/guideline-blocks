@@ -12,6 +12,7 @@ interface Props {
     value: string;
     shouldCollapseByDefault: boolean;
     borderRadius?: number;
+    readOnly?: boolean;
 }
 
 export const Dependencies = ({
@@ -21,6 +22,7 @@ export const Dependencies = ({
     value,
     shouldCollapseByDefault,
     borderRadius,
+    readOnly,
 }: Props): ReactElement => {
     const [isOpen, setIsOpen] = useState(!shouldCollapseByDefault);
     const [innerValue, setInnerValue] = useState(value);
@@ -31,6 +33,7 @@ export const Dependencies = ({
                 <JsonInput
                     formatOnBlur
                     autosize
+                    readOnly={!!readOnly}
                     value={innerValue}
                     onBlur={() => onBlur(innerValue)}
                     onChange={setInnerValue}

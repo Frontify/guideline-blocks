@@ -238,6 +238,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
                         onNpmDependenciesChanged={(newDependencies) => onDependenciesChanged(newDependencies, 'npm')}
                         borderRadius={showExternalDependencies ? undefined : borderRadius}
+                        readOnly={!isEditing}
                     />
                 )}
                 {(isEditing || showExternalDependencies) && (
@@ -249,6 +250,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                             onDependenciesChanged(newDependencies, 'external')
                         }
                         borderRadius={borderRadius}
+                        readOnly={!isEditing}
                     />
                 )}
             </div>

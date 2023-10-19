@@ -8,6 +8,7 @@ interface Props {
     externalDependencies: string;
     shouldCollapseByDefault: boolean;
     borderRadius?: number;
+    readOnly?: boolean;
 }
 
 export const ExternalDependencies = ({
@@ -15,6 +16,7 @@ export const ExternalDependencies = ({
     shouldCollapseByDefault,
     externalDependencies,
     borderRadius,
+    readOnly,
 }: Props): ReactElement => {
     return (
         <Dependencies
@@ -24,6 +26,7 @@ export const ExternalDependencies = ({
             value={externalDependencies}
             shouldCollapseByDefault={shouldCollapseByDefault}
             borderRadius={borderRadius}
+            readOnly={readOnly}
         />
     );
 };
