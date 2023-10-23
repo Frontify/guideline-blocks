@@ -130,8 +130,8 @@ export enum PreviewDisplayType {
 }
 
 export const previewDisplayValues: Record<PreviewDisplayType, string> = {
-    [PreviewDisplayType.Fit]: 'contain',
-    [PreviewDisplayType.Fill]: 'cover',
+    [PreviewDisplayType.Fit]: 'tw-object-contain',
+    [PreviewDisplayType.Fill]: 'tw-object-cover',
 };
 
 export const previewImageAnchoringValues: Record<AnchoringType, string> = {

@@ -105,10 +105,7 @@ export const TemplatePreview = ({
                                 ? previewCustom[0].previewUrl
                                 : template?.previewUrl
                         }
-                        className={merge([
-                            'tw-relative tw-w-full tw-h-full',
-                            `tw-object-${previewDisplayValues[previewDisplay]}`,
-                        ])}
+                        className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
                         style={{
                             objectPosition: previewImageAnchoring
                                 ? previewImageAnchoringValues[previewImageAnchoring]
