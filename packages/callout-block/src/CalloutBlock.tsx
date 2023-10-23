@@ -10,22 +10,24 @@ import {
     hasRichTextValue,
     joinClassNames,
     radiusStyleMap,
-    setAlpha,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { CalloutIcon } from './components/CalloutIcon';
-import { getTextColor } from './helpers/getTextColor';
+import { computeStyles } from './helpers/color';
 import { ICON_ASSET_ID } from './settings';
-import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
+    const [backgroundColor, setBackgroundColor] = useState<string>('');
+    const [textColor, setTextColor] = useState<string>('');
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
-    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+    if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
         setBlockSettings({ appearance: Appearance.Light });
     }
@@ -35,23 +37,21 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const getAccentColor = (type: Type): string => {
-        const style = getComputedStyle(document.body);
-        switch (type) {
-            case Type.Info:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
-            case Type.Note:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
-            case Type.Tip:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
-            case Type.Warning:
-                return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
-        }
-    };
+    useEffect(() => {
+        const updateStyles = () => {
+            const { backgroundColor, textColor } = computeStyles(type, appearance);
+            setBackgroundColor(backgroundColor);
+            setTextColor(textColor);
+        };
 
-    const accentColor = getAccentColor(blockSettings.type);
-    const backgroundColor = blockSettings.appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
-    const textColor = getTextColor(blockSettings.appearance, accentColor, backgroundColor);
+        window.emitter.on('HubAppearanceUpdated', updateStyles);
+
+        updateStyles();
+
+        return () => {
+            window.emitter.off('HubAppearanceUpdated', updateStyles);
+        };
+    }, [appearance, type]);
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',

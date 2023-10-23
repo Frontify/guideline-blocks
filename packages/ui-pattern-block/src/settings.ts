@@ -2,6 +2,7 @@
 
 import {
     IconEnum,
+    Radius,
     appendUnit,
     defineSettings,
     getBackgroundSettings,
@@ -10,7 +11,8 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { Alignment, Height, Padding, SandpackTemplate, SandpackTheme, paddingValues } from './types';
+import { Alignment, Height, Padding, SandpackTemplate, SandpackTheme, heightValues, paddingValues } from './types';
+import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './helpers';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
@@ -24,28 +26,86 @@ export const settings = defineSettings({
             size: 'large',
             choices: [
                 {
-                    value: SandpackTemplate.Angular,
-                    label: 'Angular',
+                    value: SandpackTemplate.Vanilla,
+                    label: 'Vanilla',
                 },
                 {
                     value: SandpackTemplate.React,
                     label: 'React',
                 },
                 {
-                    value: SandpackTemplate.Solid,
-                    label: 'Solid',
+                    value: SandpackTemplate.Angular,
+                    label: 'Angular',
                 },
                 {
                     value: SandpackTemplate.Svelte,
                     label: 'Svelte',
                 },
-                {
-                    value: SandpackTemplate.Vanilla,
-                    label: 'Vanilla',
-                },
+
                 {
                     value: SandpackTemplate.Vue,
                     label: 'Vue',
+                },
+            ],
+        },
+    ],
+    basics: [
+        {
+            id: 'uiPatternBasicsPreview',
+            type: 'sectionHeading',
+            label: 'Preview',
+            blocks: [
+                {
+                    id: 'showResponsivePreview',
+                    type: 'switch',
+                    defaultValue: true,
+                    label: 'Show responsive preview',
+                },
+                {
+                    id: 'showResetButton',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show reset button',
+                },
+            ],
+        },
+        {
+            id: 'uiPatternBasicsSnippet',
+            type: 'sectionHeading',
+            label: 'Snippet',
+            blocks: [
+                {
+                    id: 'showCode',
+                    type: 'switch',
+                    defaultValue: true,
+                    label: 'Show code',
+                },
+                {
+                    id: 'isCodeEditable',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Editable',
+                    show: (bundle) => !!bundle.getBlock('showCode')?.value,
+                },
+                {
+                    id: 'shouldCollapseCodeByDefault',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Collapse by default',
+                    show: (bundle) => !!bundle.getBlock('showCode')?.value,
+                },
+            ],
+        },
+        {
+            id: 'uiPatternBasicsLinks',
+            type: 'sectionHeading',
+            label: 'Links',
+            blocks: [
+                {
+                    id: 'showSandboxLink',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show sandbox link',
                 },
             ],
         },
@@ -78,7 +138,7 @@ export const settings = defineSettings({
                     defaultValue: false,
                     switchLabel: 'Custom',
                     label: 'Padding',
-                    info: 'The spacing around the image.',
+                    info: 'The spacing around the preview.',
                     onChange: (bundle) =>
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
                     on: [
@@ -121,6 +181,8 @@ export const settings = defineSettings({
                     type: 'switch',
                     switchLabel: 'Custom',
                     defaultValue: false,
+                    onChange: (bundle) => presetCustomValue(bundle, 'heightChoice', 'customHeightValue', heightValues),
+
                     on: [
                         {
                             id: 'customHeightValue',
@@ -157,49 +219,30 @@ export const settings = defineSettings({
                         },
                     ],
                 },
-                {
-                    id: 'showResponsivePreview',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show responsive preview',
-                },
-                {
-                    id: 'showResetButton',
-                    type: 'switch',
-                    defaultValue: false,
-                    label: 'Show reset button',
-                },
             ],
         },
         {
-            id: 'uiPatternSnippets',
+            id: 'uiPatternDependencies',
             type: 'sectionHeading',
-            label: 'Snippets',
+            label: 'Dependencies',
             blocks: [
                 {
-                    id: 'showCode',
+                    id: 'showNpmDependencies',
                     type: 'switch',
                     defaultValue: true,
-                    label: 'Show code',
+                    label: 'Show NPM dependencies',
                 },
                 {
-                    id: 'collapseCode',
+                    id: 'showExternalDependencies',
                     type: 'switch',
-                    defaultValue: false,
-                    label: 'Collapse code by default',
+                    defaultValue: true,
+                    label: 'Show external dependencies',
                 },
-            ],
-        },
-        {
-            id: 'uiPatternLinks',
-            type: 'sectionHeading',
-            label: 'Links',
-            blocks: [
                 {
-                    id: 'showSandboxLink',
+                    id: 'shouldCollapseDependenciesByDefault',
                     type: 'switch',
-                    defaultValue: false,
-                    label: 'Show sandbox link',
+                    defaultValue: true,
+                    label: 'Collapse by default',
                 },
             ],
         },
@@ -208,7 +251,11 @@ export const settings = defineSettings({
         {
             id: 'uiPreviewSection',
             type: 'sectionHeading',
-            blocks: [getBackgroundSettings(), getBorderSettings(), getBorderRadiusSettings()],
+            blocks: [
+                getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE }),
+                getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true }),
+                getBorderRadiusSettings({ defaultRadius: Radius.Medium }),
+            ],
         },
         {
             id: 'uiSnippetSection',
@@ -218,13 +265,10 @@ export const settings = defineSettings({
                 {
                     id: 'sandpackTheme',
                     type: 'dropdown',
-                    defaultValue: SandpackTheme.Auto,
+                    defaultValue: SandpackTheme.GithubLight,
                     size: 'small',
                     label: 'Color scheme',
                     choices: [
-                        {
-                            value: SandpackTheme.Auto,
-                        },
                         {
                             value: SandpackTheme.Dark,
                         },
