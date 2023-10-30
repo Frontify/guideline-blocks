@@ -4,10 +4,11 @@ import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { UIPatternBlock } from './UIPatternBlock';
 import { DEFAULT_BLOCK_SETTINGS, toolbarButtons } from './helpers';
-import { Height, Padding, SandpackTemplate } from './types';
+import { Height, Padding, SandpackTemplate, TextAlignment } from './types';
 import { Radius } from '@frontify/guideline-blocks-settings';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
+const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div';
 const UiPatternBlockWrapperSelector = '[data-test-id="ui-pattern-block-wrapper"]';
 const ToolbarTabButtonSelector = '[data-test-id="toolbar-tab-btn"]';
 const ToolbarSelector = '[data-test-id="ui-pattern-files-toolbar"]';
@@ -370,11 +371,24 @@ describe('UI Pattern Block', () => {
         cy.get(CodePreviewSelector).should('have.css', 'padding', '20px');
     });
 
+    it('renders with correct label position', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: false,
+            blockId: 21,
+            blockSettings: {
+                ...DEFAULT_BLOCK_SETTINGS,
+                labelPosition: TextAlignment.Bottom,
+            },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(UiPatternBlockFlexboxSelector).should('have.css', 'flex-direction', 'column-reverse');
+    });
+
     for (const [index, template] of templates.entries()) {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 21 + index,
+                blockId: 22 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);

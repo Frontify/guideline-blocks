@@ -25,6 +25,7 @@ export type Settings = {
     // layout
     sandpackTemplate: SandpackTemplate;
     alignment?: Alignment;
+    labelPosition: TextAlignment;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
     paddingCustom: string;
@@ -115,6 +116,11 @@ export const sandpackThemeValues: Record<SandpackTheme, 'dark' | 'auto' | 'light
 export enum Alignment {
     Center = 'Center',
     Left = 'Left',
+}
+
+export enum TextAlignment {
+    Top = 'Top',
+    Bottom = 'Bottom',
 }
 
 export enum Padding {

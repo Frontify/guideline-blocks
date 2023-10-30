@@ -9,6 +9,7 @@ import {
     SandpackTheme,
     TemplateDependencies,
     TemplateFiles,
+    TextAlignment,
 } from '../types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = {
@@ -32,6 +33,7 @@ export const DEFAULT_BLOCK_SETTINGS = {
     sandpackTheme: SandpackTheme.GithubLight,
     files: {} as TemplateFiles,
     alignment: Alignment.Left,
+    labelPosition: TextAlignment.Top,
     dependencies: {} as TemplateDependencies,
     paddingChoice: Padding.None,
     paddingCustom: '0px',

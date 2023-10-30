@@ -28,14 +28,13 @@ export const Captions = ({
     onTitleChange,
     title,
 }: Props): ReactElement => {
-    const shouldRender = isEditing || hasRichTextValue(description) || hasRichTextValue(title);
     const commonProps = {
         isEditing,
         plugins: getCaptionPlugins(appBridge),
     };
 
     return (
-        <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1', shouldRender && 'tw-mb-3'])}>
+        <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1'])}>
             <RichTextEditor
                 id={`${appBridge.getBlockId().toString()}_title`}
                 value={title ?? convertToRteValue(TextStyles.imageTitle, '')}

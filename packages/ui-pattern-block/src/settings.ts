@@ -11,7 +11,16 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { Alignment, Height, Padding, SandpackTemplate, SandpackTheme, heightValues, paddingValues } from './types';
+import {
+    Alignment,
+    Height,
+    Padding,
+    SandpackTemplate,
+    SandpackTheme,
+    TextAlignment,
+    heightValues,
+    paddingValues,
+} from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './helpers';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
@@ -111,6 +120,29 @@ export const settings = defineSettings({
         },
     ],
     layout: [
+        {
+            id: 'uiPatternLabels',
+            type: 'sectionHeading',
+            label: 'Labels',
+            blocks: [
+                {
+                    id: 'labelPosition',
+                    type: 'segmentedControls',
+                    label: 'Alignment',
+                    defaultValue: TextAlignment.Top,
+                    choices: [
+                        {
+                            value: TextAlignment.Bottom,
+                            icon: IconEnum.MediaObjectTextBottom,
+                        },
+                        {
+                            value: TextAlignment.Top,
+                            icon: IconEnum.MediaObjectTextTop,
+                        },
+                    ],
+                },
+            ],
+        },
         {
             id: 'uiPatternLayout',
             type: 'sectionHeading',
