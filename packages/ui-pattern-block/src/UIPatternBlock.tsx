@@ -2,13 +2,18 @@
 
 import { ReactElement, useMemo, useRef, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { BlockProps, getBackgroundColorStyles, getBorderStyles } from '@frontify/guideline-blocks-settings';
+import {
+    BlockProps,
+    getBackgroundColorStyles,
+    getBorderStyles,
+    joinClassNames,
+} from '@frontify/guideline-blocks-settings';
 import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 
-import { Alignment, Height, type Settings, sandpackThemeValues } from './types';
+import { Alignment, Height, type Settings, TextAlignment, sandpackThemeValues } from './types';
 import {
     DEFAULT_BLOCK_SETTINGS,
     EDITOR_CLASSES,
@@ -33,6 +38,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         sandpackTheme,
         files,
         alignment,
+        labelPosition,
         dependencies: blockDependencies,
         paddingChoice,
         paddingCustom,
@@ -161,98 +167,107 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div key={sandpackTemplate} data-test-id="ui-pattern-block" className="ui-pattern-block">
-            <Captions
-                appBridge={appBridge}
-                title={title}
-                description={description}
-                onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
-                onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
-                isEditing={isEditing}
-            />
             <div
-                data-test-id="ui-pattern-block-wrapper"
-                style={{
-                    ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
-                    borderRadius,
-                }}
-                className="tw-rounded tw-bg-white"
+                className={joinClassNames([
+                    'tw-flex tw-gap-3',
+                    labelPosition === TextAlignment.Top ? 'tw-flex-col' : 'tw-flex-col-reverse',
+                ])}
             >
-                <SandpackProvider
-                    files={templateFiles}
-                    template={sandpackTemplate}
-                    customSetup={parsedNpmDependencies}
-                    theme={sandpackThemeValues[sandpackTheme]}
-                    key={sandpackRestartInitiators.map((i) => i.toString()).join('')}
-                    options={{
-                        classes: EDITOR_CLASSES,
-                        activeFile: initialActiveFile[sandpackTemplate],
-                        externalResources: [cssToInject, ...parsedExternalDependencies],
+                <Captions
+                    appBridge={appBridge}
+                    title={title}
+                    description={description}
+                    onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
+                    onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
+                    isEditing={isEditing}
+                />
+                <div
+                    data-test-id="ui-pattern-block-wrapper"
+                    style={{
+                        ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                        borderRadius,
                     }}
+                    className="tw-rounded tw-bg-white"
                 >
-                    <SandpackLayout
-                        style={{ borderTopRightRadius: borderRadius, borderTopLeftRadius: borderRadius }}
-                        className="tw-flex tw-flex-col"
+                    <SandpackProvider
+                        files={templateFiles}
+                        template={sandpackTemplate}
+                        customSetup={parsedNpmDependencies}
+                        theme={sandpackThemeValues[sandpackTheme]}
+                        key={sandpackRestartInitiators.map((i) => i.toString()).join('')}
+                        options={{
+                            classes: EDITOR_CLASSES,
+                            activeFile: initialActiveFile[sandpackTemplate],
+                            externalResources: [cssToInject, ...parsedExternalDependencies],
+                        }}
                     >
-                        {isResponsivePreviewOpen && (
-                            <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
-                        )}
-                        <SandpackPreview
-                            ref={previewRef}
-                            style={{
-                                height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
-                                padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
-                                ...(hasBackground && {
-                                    ...getBackgroundColorStyles(backgroundColor),
-                                    backgroundImage: 'none',
-                                }),
-                                borderTopRightRadius: borderRadius,
-                                borderTopLeftRadius: borderRadius,
-                            }}
-                            showRefreshButton={false}
-                            showOpenInCodeSandbox={false}
-                            className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white"
-                        />
-                        {(isEditing || showCode) && (
-                            <CodeEditor
-                                key={`editor_${isEditing.toString()}`}
-                                isCodeEditable={isEditing || isCodeEditable}
-                                showResetButton={showResetButton}
-                                showSandboxLink={showSandboxLink}
-                                showResponsivePreview={showResponsivePreview}
-                                onResponsivePreviewOpen={() => setIsResponsivePreviewOpen(true)}
-                                onCodeChange={onCodeChange}
-                                onResetFilesToDefault={onResetFiles}
-                                onResetRun={onResetRun}
-                                hasCodeChanges={!isEditing && hasCodeChanges}
-                                template={sandpackTemplate}
-                                shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
+                        <SandpackLayout
+                            style={{ borderTopRightRadius: borderRadius, borderTopLeftRadius: borderRadius }}
+                            className="tw-flex tw-flex-col"
+                        >
+                            {isResponsivePreviewOpen && (
+                                <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
+                            )}
+                            <SandpackPreview
+                                ref={previewRef}
+                                style={{
+                                    height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
+                                    padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
+                                    ...(hasBackground && {
+                                        ...getBackgroundColorStyles(backgroundColor),
+                                        backgroundImage: 'none',
+                                    }),
+                                    borderTopRightRadius: borderRadius,
+                                    borderTopLeftRadius: borderRadius,
+                                }}
+                                showRefreshButton={false}
+                                showOpenInCodeSandbox={false}
+                                className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white"
                             />
-                        )}
-                    </SandpackLayout>
-                </SandpackProvider>
+                            {(isEditing || showCode) && (
+                                <CodeEditor
+                                    key={`editor_${isEditing.toString()}`}
+                                    isCodeEditable={isEditing || isCodeEditable}
+                                    showResetButton={showResetButton}
+                                    showSandboxLink={showSandboxLink}
+                                    showResponsivePreview={showResponsivePreview}
+                                    onResponsivePreviewOpen={() => setIsResponsivePreviewOpen(true)}
+                                    onCodeChange={onCodeChange}
+                                    onResetFilesToDefault={onResetFiles}
+                                    onResetRun={onResetRun}
+                                    hasCodeChanges={!isEditing && hasCodeChanges}
+                                    template={sandpackTemplate}
+                                    shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
+                                />
+                            )}
+                        </SandpackLayout>
+                    </SandpackProvider>
 
-                {(isEditing || showNpmDependencies) && (
-                    <NPMDependencies
-                        key={`npm_${isEditing.toString()}`}
-                        npmDependencies={npmDependencies}
-                        shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
-                        onNpmDependenciesChanged={(newDependencies) => onDependenciesChanged(newDependencies, 'npm')}
-                        borderRadius={showExternalDependencies ? undefined : borderRadius}
-                        readOnly={!isEditing}
-                    />
-                )}
-                {(isEditing || showExternalDependencies) && (
-                    <ExternalDependencies
-                        key={`external_${isEditing.toString()}`}
-                        externalDependencies={externalDependencies}
-                        shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
-                        onExternalDependenciesChanged={(newDependencies) =>
-                            onDependenciesChanged(newDependencies, 'external')
-                        }
-                        borderRadius={borderRadius}
-                        readOnly={!isEditing}
-                    />
-                )}
+                    {(isEditing || showNpmDependencies) && (
+                        <NPMDependencies
+                            key={`npm_${isEditing.toString()}`}
+                            npmDependencies={npmDependencies}
+                            shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
+                            onNpmDependenciesChanged={(newDependencies) =>
+                                onDependenciesChanged(newDependencies, 'npm')
+                            }
+                            borderRadius={showExternalDependencies ? undefined : borderRadius}
+                            readOnly={!isEditing}
+                        />
+                    )}
+                    {(isEditing || showExternalDependencies) && (
+                        <ExternalDependencies
+                            key={`external_${isEditing.toString()}`}
+                            externalDependencies={externalDependencies}
+                            shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
+                            onExternalDependenciesChanged={(newDependencies) =>
+                                onDependenciesChanged(newDependencies, 'external')
+                            }
+                            borderRadius={borderRadius}
+                            readOnly={!isEditing}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
