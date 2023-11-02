@@ -4,12 +4,13 @@ import {
     OpenNewPublicationPayload,
     Template,
     TemplateLegacy,
+    closeTemplateChooser,
     openNewPublication,
+    openTemplateChooser,
     useBlockAssets,
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
-    useTemplateChooser,
 } from '@frontify/app-bridge';
 import { ReactElement, useEffect, useReducer, useState } from 'react';
 import {
@@ -36,7 +37,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
-    const { openTemplateChooser, closeTemplateChooser } = useTemplateChooser(appBridge);
 
     const {
         title,
@@ -75,6 +75,14 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         : 'none';
 
     useEffect(() => {
+        const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
+
+        return () => {
+            unsubscribeTemplateChooser();
+        };
+    }, []);
+
+    useEffect(() => {
         updateBlockSettings({ title: templateTitle });
     }, [templateTitle]);
 
@@ -100,7 +108,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, [blockTemplates]);
 
-    const handleNewPublication = () => {
+    const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
             if (Array.isArray(previewCustom) && previewCustom.length > 0) {
                 selectedTemplate.previewUrl = previewCustom[0].previewUrl;
@@ -110,35 +118,35 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 template: selectedTemplate,
             };
 
-            appBridge.dispatch(openNewPublication(options));
+            await appBridge.dispatch(openNewPublication(options));
         }
     };
 
-    const onTemplateSelected = async (result: TemplateLegacy) => {
+    const onTemplateSelected = async (result: { template: TemplateLegacy }) => {
         const { title, description } = blockSettings;
 
         try {
-            await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.id]);
+            await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
             updateBlockSettings({
-                template: result,
-                templateId: result.id,
+                template: result.template,
+                templateId: result.template.id,
             });
             dispatch({
                 type: TemplateDataActionType.UPDATE_TITLE,
-                payload: { newValue: result.title, prevValue: title },
+                payload: { newValue: result.template.title, prevValue: title },
             });
             dispatch({
                 type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                payload: { newValue: result.description, prevValue: description },
+                payload: { newValue: result.template.description, prevValue: description },
             });
         } catch (error) {
             setLastErrorMessage(error as string);
         }
 
-        closeTemplateChooser();
+        await appBridge.dispatch(closeTemplateChooser());
     };
 
-    const handleOpenTemplateChooser = () => openTemplateChooser(onTemplateSelected);
+    const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
     return (
         <div data-test-id="template-block-container" className="template-block">
