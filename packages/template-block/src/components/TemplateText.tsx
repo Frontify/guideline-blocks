@@ -1,17 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useMemo } from 'react';
-
 import {
+    BlockStyles,
     RichTextEditor,
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
 } from '@frontify/guideline-blocks-settings';
-
 import { getTitlePlugin } from '../helpers/rtePlugin';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Text } from '@frontify/fondue';
 import { Settings } from '../types';
 
 export type TemplateTextProps = {
@@ -34,6 +32,7 @@ export const TemplateText = ({
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
+    const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const memoTitleRte = useMemo(() => {
         return (
             <RichTextEditor
@@ -64,9 +63,9 @@ export const TemplateText = ({
             <div className="tw-mb-2">
                 {memoTitleRte}
                 <div>
-                    <Text size="small" color="weak">
-                        <span data-test-id="template-block-page-count">{pageCount} pages</span>
-                    </Text>
+                    <span data-test-id="template-block-page-count" style={{ ...pageCountStyles }}>
+                        {pageCount} pages
+                    </span>
                 </div>
             </div>
             <div>{memoDescriptionRte}</div>

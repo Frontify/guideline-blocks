@@ -17,12 +17,11 @@ import {
     BlockInjectButton,
     BlockProps,
     getBackgroundColorStyles,
-    paddingStyleMap,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
-import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
+import { PreviewType, Settings, TextPositioningType, paddingStyleMap, textPositioningToFlexDirection } from './types';
+import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
@@ -73,6 +72,14 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const border = hasBorder_blockCard
         ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
         : 'none';
+
+    const getCardPadding = () => {
+        if (hasBorder_blockCard || hasBackground) {
+            return hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard];
+        }
+
+        return undefined;
+    };
 
     useEffect(() => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
@@ -158,9 +165,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
                         borderRadius,
                         border,
-                        padding: hasCustomPaddingValue_blockCard
-                            ? paddingValue_blockCard
-                            : paddingStyleMap[paddingChoice_blockCard],
+                        padding: getCardPadding(),
                     }}
                 >
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
@@ -169,8 +174,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         className="tw-flex"
                         style={{
                             flexDirection,
-                            gap: GAP,
-                            alignItems: isRows ? textAnchoringHorizontal : undefined,
+                            gap: textPositioning !== TextPositioningType.Top ? GAP : undefined,
+                            alignItems: isRows ? textAnchoringVertical : undefined,
                         }}
                     >
                         {hasPreview && (
@@ -178,15 +183,19 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 template={selectedTemplate}
+                                updateBlockSettings={updateBlockSettings}
                                 onOpenTemplateChooser={handleOpenTemplateChooser}
                             />
                         )}
                         <div
-                            className={merge(['tw-flex', isRows && hasPreview ? 'tw-flex-col' : 'tw-flex-row'])}
+                            className={merge([
+                                'tw-flex',
+                                isRows && hasPreview ? 'tw-flex-col' : 'tw-grid tw-grid-rows-2 grid-flow-col',
+                            ])}
                             style={{
                                 width: isRows && hasPreview ? `${textRatio}%` : '100%',
-                                textAlign: !isRows ? textAnchoringVertical : undefined,
-                                gap: GAP,
+                                textAlign: !isRows ? textAnchoringHorizontal : undefined,
+                                gap: VERTICAL_GAP,
                             }}
                         >
                             <div className="tw-grow tw-min-w-0">
@@ -211,7 +220,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     }
                                 />
                             </div>
-                            <div className="tw-shrink-0">
+                            <div>
                                 <CustomButton
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}

@@ -15,6 +15,7 @@ export type Settings = {
     preview: PreviewType;
     previewCustom?: Asset;
     buttonText?: string;
+    altText?: string;
 
     // layout
 
@@ -138,4 +139,11 @@ export const previewImageAnchoringValues: Record<AnchoringType, string> = {
     [AnchoringType.Start]: 'left',
     [AnchoringType.Center]: 'center',
     [AnchoringType.End]: 'right',
+};
+
+export const paddingStyleMap: Record<Padding, string> = {
+    [Padding.None]: '0px',
+    [Padding.Small]: '10px',
+    [Padding.Medium]: '20px',
+    [Padding.Large]: '30px',
 };
