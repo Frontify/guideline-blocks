@@ -39,6 +39,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const {
         title,
+        template,
         description,
         preview,
         hasCustomPaddingValue_blockCard,
@@ -117,8 +118,17 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
-            if (Array.isArray(previewCustom) && previewCustom.length > 0) {
-                selectedTemplate.previewUrl = previewCustom[0].previewUrl;
+            switch (preview) {
+                case PreviewType.Custom:
+                    if (Array.isArray(previewCustom) && previewCustom.length > 0) {
+                        selectedTemplate.previewUrl = previewCustom[0].previewUrl;
+                    }
+                    break;
+                default:
+                    if (template?.previewUrl) {
+                        selectedTemplate.previewUrl = template.previewUrl;
+                    }
+                    break;
             }
 
             const options: OpenNewPublicationPayload = {
