@@ -80,6 +80,7 @@ export const TemplatePreview = ({
                     <PreviewImage
                         appBridge={appBridge}
                         blockSettings={blockSettings}
+                        template={template}
                         updateBlockSettings={updateBlockSettings}
                         onOpenTemplateChooser={onOpenTemplateChooser}
                     />

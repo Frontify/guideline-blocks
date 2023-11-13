@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { PreviewType, Settings, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, merge } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 export type PreviewImageProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
+    template: Template | null;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
 };
@@ -17,12 +18,13 @@ export type PreviewImageProps = {
 export const PreviewImage = ({
     appBridge,
     blockSettings,
+    template,
     updateBlockSettings,
     onOpenTemplateChooser,
 }: PreviewImageProps) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
-    const { preview, template, previewImageAnchoring, previewDisplay } = blockSettings;
+    const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
     const previewSrc =
         preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
             ? blockAssets.previewCustom[0].previewUrl
@@ -34,7 +36,7 @@ export const PreviewImage = ({
 
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
-    }, [preview]);
+    }, [preview, template]);
 
     return (
         <>
