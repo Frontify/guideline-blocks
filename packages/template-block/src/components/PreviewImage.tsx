@@ -36,7 +36,7 @@ export const PreviewImage = ({
 
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
-    }, [preview, template]);
+    }, [preview, template, blockAssets.previewCustom]);
 
     return (
         <>

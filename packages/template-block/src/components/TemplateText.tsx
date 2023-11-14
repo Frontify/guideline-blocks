@@ -33,6 +33,7 @@ export const TemplateText = ({
     setDescription,
 }: TemplateTextProps) => {
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
+    const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
     const memoTitleRte = useMemo(() => {
         return (
             <RichTextEditor
@@ -66,7 +67,7 @@ export const TemplateText = ({
                 {memoTitleRte}
                 <div>
                     <span data-test-id="template-block-page-count" style={{ ...pageCountStyles }}>
-                        {pageCount} pages
+                        {`${pageCount} ${pageCountLabel}`}
                     </span>
                 </div>
             </div>
