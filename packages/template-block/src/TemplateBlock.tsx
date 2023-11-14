@@ -20,7 +20,14 @@ import {
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, TextPositioningType, paddingStyleMap, textPositioningToFlexDirection } from './types';
+import {
+    AnchoringType,
+    PreviewType,
+    Settings,
+    TextPositioningType,
+    paddingStyleMap,
+    textPositioningToFlexDirection,
+} from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
 import { TemplatePreview } from './components/TemplatePreview';
@@ -82,6 +89,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         return undefined;
     };
 
+    const getLayoutClasses = () => {
+        let classNames = '';
+
+        if (hasPreview) {
+            classNames = isRows ? 'tw-flex-col' : 'tw-grid tw-grid-rows-2 grid-flow-col';
+        } else {
+            classNames = 'tw-grid tw-grid-cols-3';
+        }
+
+        return classNames;
+    };
+
     useEffect(() => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
@@ -117,6 +136,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [blockTemplates]);
 
     const handleNewPublication = async () => {
+        console.log(preview);
         if (selectedTemplate !== null) {
             switch (preview) {
                 case PreviewType.Custom:
@@ -198,17 +218,14 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         <div
-                            className={merge([
-                                'tw-flex',
-                                isRows && hasPreview ? 'tw-flex-col' : 'tw-grid tw-grid-rows-2 grid-flow-col',
-                            ])}
+                            className={merge(['tw-flex', getLayoutClasses()])}
                             style={{
                                 width: isRows && hasPreview ? `${textRatio}%` : '100%',
-                                textAlign: !isRows ? textAnchoringHorizontal : undefined,
+                                textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
                                 gap: VERTICAL_GAP,
                             }}
                         >
-                            <div className="tw-grow tw-min-w-0">
+                            <div className={merge(['tw-grow tw-min-w-0', hasPreview ? '' : 'tw-col-span-2'])}>
                                 <TemplateText
                                     appBridge={appBridge}
                                     title={templateTitle}
@@ -230,7 +247,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     }
                                 />
                             </div>
-                            <div>
+                            <div className={hasPreview ? '' : 'tw-flex tw-justify-end tw-items-start'}>
                                 <CustomButton
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}

@@ -51,7 +51,9 @@ export const TemplateText = ({
             <RichTextEditor
                 id="template-block-description"
                 value={description || convertToRteValue()}
-                placeholder="Add a description"
+                placeholder={
+                    'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
+                }
                 onTextChange={setDescription}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
