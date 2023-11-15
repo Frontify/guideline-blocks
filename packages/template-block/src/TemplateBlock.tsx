@@ -46,7 +46,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const {
         title,
-        template,
         description,
         preview,
         hasCustomPaddingValue_blockCard,
