@@ -75,7 +75,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
         return () => {
-            unsubscribeTemplateChooser();
+            if (typeof unsubscribeTemplateChooser === 'function') {
+                unsubscribeTemplateChooser();
+            }
         };
     }, []);
 
@@ -153,7 +155,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         <div data-test-id="template-block-container" className="template-block">
             {selectedTemplate || isEditing ? (
                 <div
-                    data-test-id="template-block"
+                    data-test-id="template-block-card"
                     className="tw-border tw-border-black-20"
                     style={{
                         ...(hasBackground && getBackgroundColorStyles(backgroundColor)),

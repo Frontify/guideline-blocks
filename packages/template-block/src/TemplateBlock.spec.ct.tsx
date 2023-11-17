@@ -3,17 +3,18 @@
 import { mount } from 'cypress/react';
 import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
-import { BorderStyle, Padding, Radius } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import {
     AnchoringType,
     PreviewDisplayType,
     PreviewHeightType,
     TextPositioningType,
+    paddingStyleMap,
     previewHeightValues,
 } from './types';
 
 const TEMPLATE_BLOCK_CONTAINER_SELECTOR = '[data-test-id="template-block-container"]';
-const TEMPLATE_BLOCK_SELECTOR = '[data-test-id="template-block"]';
+const TEMPLATE_BLOCK_SELECTOR = '[data-test-id="template-block-card"]';
 const TEMPLATE_BLOCK_CONTENT_SELECTOR = '[data-test-id="template-block-content"]';
 const TEMPLATE_PREVIEW_SELECTOR = '[data-test-id="template-block-preview-img"]';
 const TEMPLATE_PREVIEW_WRAPPER_SELECTOR = '[data-test-id="template-block-preview-wrapper"]';
@@ -148,36 +149,39 @@ describe('Template Block', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
+                hasBorder_blockCard: true,
                 paddingChoice_blockCard: Padding.Small,
             },
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', '24px');
+        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Small]);
     });
 
     it('should render block card with a medium padding', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
+                hasBorder_blockCard: true,
                 paddingChoice_blockCard: Padding.Medium,
             },
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', '36px');
+        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Medium]);
     });
 
     it('should render block card with a large padding', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
+                hasBorder_blockCard: true,
                 paddingChoice_blockCard: Padding.Large,
             },
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', '60px');
+        cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Large]);
     });
 
     it('should render block content with a flex direction column when text positioning is bottom', () => {
@@ -233,7 +237,7 @@ describe('Template Block', () => {
             editorState: true,
             blockSettings: {
                 textPositioning: TextPositioningType.Left,
-                textAnchoringHorizontal: AnchoringType.Start,
+                textAnchoringVertical: AnchoringType.Start,
             },
         });
 
@@ -246,7 +250,7 @@ describe('Template Block', () => {
             editorState: true,
             blockSettings: {
                 textPositioning: TextPositioningType.Left,
-                textAnchoringHorizontal: AnchoringType.Center,
+                textAnchoringVertical: AnchoringType.Center,
             },
         });
 
@@ -259,7 +263,7 @@ describe('Template Block', () => {
             editorState: true,
             blockSettings: {
                 textPositioning: TextPositioningType.Left,
-                textAnchoringHorizontal: AnchoringType.End,
+                textAnchoringVertical: AnchoringType.End,
             },
         });
 
@@ -272,6 +276,7 @@ describe('Template Block', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
+                preview: PREVIEW_MODE_TEMPLATE,
                 previewHeightSimple: PreviewHeightType.Small,
             },
             blockTemplates: {
@@ -288,14 +293,20 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a medium height', () => {
+        const asset = AssetDummy.with(ASSET_ID);
+
         const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
+                preview: PREVIEW_MODE_CUSTOM,
                 previewHeightSimple: PreviewHeightType.Medium,
             },
             blockTemplates: {
                 template: [templateDummy],
+            },
+            blockAssets: {
+                [PREVIEW_CUSTOM_SETTING_ID]: [asset],
             },
         });
 
@@ -380,7 +391,7 @@ describe('Template Block', () => {
             blockSettings: {
                 hasBorder_blockCard: true,
                 borderWidth_blockCard: '1px',
-                borderColor_blockCard: COLOR_RED,
+                borderColor_blockCard: toRgbaString(COLOR_RED),
                 borderStyle_blockCard: BorderStyle.Solid,
             },
         });
