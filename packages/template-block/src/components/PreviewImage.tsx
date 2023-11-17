@@ -62,12 +62,10 @@ export const PreviewImage = ({
                 alt={blockSettings.altText || undefined}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                onBlur={() => setIsHovered(false)}
             />
             {isEditing && (
                 <div className="tw-absolute tw-top-5 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">
                     <BlockItemWrapper
-                        shouldHideWrapper={!isEditing}
                         shouldBeShown={isHovered || showAltTextMenu}
                         toolbarItems={[]}
                         toolbarFlyoutItems={[
