@@ -33,8 +33,8 @@ export const CustomButton = ({
             onMouseLeave={() => setButtonHover(false)}
             className="disabled:tw-opacity-50"
             style={{
-                ...BlockStyles.buttonSecondary,
-                ...(buttonHover ? BlockStyles.buttonSecondary?.hover : null),
+                ...BlockStyles.buttonPrimary,
+                ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
             }}
         >
             <RichTextEditor

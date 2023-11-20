@@ -2,6 +2,7 @@
 
 export const TEMPLATE_BLOCK_SETTING_ID = 'template';
 export const GAP = '32px';
+export const VERTICAL_GAP = '5px';
 
 export const TEXT_DEFAULT_COLOR = {
     red: 103,

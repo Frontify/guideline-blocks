@@ -1,37 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
-import {
-    ActionMenu,
-    Button,
-    ButtonEmphasis,
-    ButtonStyle,
-    Flyout,
-    IconDotsVertical,
-    IconPlus20,
-    IconPlus24,
-    merge,
-} from '@frontify/fondue';
-import { MutableRefObject, useState } from 'react';
-import {
-    PreviewType,
-    Settings,
-    previewDisplayValues,
-    previewHeightValues,
-    previewImageAnchoringValues,
-    textPositioningToFlexDirection,
-} from '../types';
+import { AppBridgeBlock, Template, useBlockAssets } from '@frontify/app-bridge';
+import { IconPlus24 } from '@frontify/fondue';
+import { Settings, previewHeightValues, textPositioningToFlexDirection } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
+import { PreviewImage } from './PreviewImage';
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
+    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
 };
 
@@ -39,10 +23,10 @@ export const TemplatePreview = ({
     appBridge,
     blockSettings,
     template,
+    updateBlockSettings,
     onOpenTemplateChooser,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
-    const isEditing = useEditorState(appBridge);
 
     const {
         hasBackgroundTemplatePreview,
@@ -55,12 +39,9 @@ export const TemplatePreview = ({
         radiusValue_templatePreview,
         radiusChoice_templatePreview,
         textRatio,
-        preview,
         isPreviewHeightCustom,
         previewHeightSimple,
         previewHeightCustom,
-        previewDisplay,
-        previewImageAnchoring,
         textPositioning,
     } = blockSettings;
 
@@ -75,8 +56,6 @@ export const TemplatePreview = ({
         ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
         : 'none';
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
-
-    const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
     return (
         <div
@@ -98,61 +77,13 @@ export const TemplatePreview = ({
                         height,
                     }}
                 >
-                    <img
-                        data-test-id="template-block-preview-img"
-                        src={
-                            preview === PreviewType.Custom && previewCustom
-                                ? previewCustom[0].previewUrl
-                                : template?.previewUrl
-                        }
-                        className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
-                        style={{
-                            objectPosition: previewImageAnchoring
-                                ? previewImageAnchoringValues[previewImageAnchoring]
-                                : 'center',
-                        }}
-                        width={preview === PreviewType.Custom && previewCustom ? previewCustom[0].width : 'auto'}
-                        height={preview === PreviewType.Custom && previewCustom ? previewCustom[0].height : 'auto'}
-                        alt={template?.name}
+                    <PreviewImage
+                        appBridge={appBridge}
+                        blockSettings={blockSettings}
+                        template={template}
+                        updateBlockSettings={updateBlockSettings}
+                        onOpenTemplateChooser={onOpenTemplateChooser}
                     />
-                    {isEditing && (
-                        <div className="tw-absolute tw-top-0 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">
-                            <Flyout
-                                isOpen={isActionFlyoutOpen}
-                                trigger={(_, ref) => (
-                                    <Button
-                                        aria-label="Template actions"
-                                        emphasis={ButtonEmphasis.Default}
-                                        style={ButtonStyle.Default}
-                                        icon={<IconDotsVertical />}
-                                        onClick={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
-                                        ref={ref as MutableRefObject<HTMLButtonElement>}
-                                    />
-                                )}
-                                onOpenChange={() => setIsActionFlyoutOpen((previousValue) => !previousValue)}
-                                legacyFooter={false}
-                            >
-                                <ActionMenu
-                                    menuBlocks={[
-                                        {
-                                            id: '0',
-                                            menuItems: [
-                                                {
-                                                    id: '0',
-                                                    title: 'Choose existing template',
-                                                    decorator: <IconPlus20 />,
-                                                    onClick: () => {
-                                                        setIsActionFlyoutOpen(false);
-                                                        onOpenTemplateChooser();
-                                                    },
-                                                },
-                                            ],
-                                        },
-                                    ]}
-                                />
-                            </Flyout>
-                        </div>
-                    )}
                 </div>
             ) : (
                 <div style={{ height }}>

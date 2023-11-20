@@ -1,17 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useMemo } from 'react';
-
 import {
+    BlockStyles,
     RichTextEditor,
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
 } from '@frontify/guideline-blocks-settings';
-
 import { getTitlePlugin } from '../helpers/rtePlugin';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Text } from '@frontify/fondue';
 import { Settings } from '../types';
 
 export type TemplateTextProps = {
@@ -34,6 +32,8 @@ export const TemplateText = ({
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
+    const pageCountStyles = BlockStyles[TextStyles.imageCaption];
+    const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
     const memoTitleRte = useMemo(() => {
         return (
             <RichTextEditor
@@ -52,7 +52,9 @@ export const TemplateText = ({
             <RichTextEditor
                 id="template-block-description"
                 value={description || convertToRteValue()}
-                placeholder="Add a description"
+                placeholder={
+                    'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
+                }
                 onTextChange={setDescription}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
@@ -64,9 +66,9 @@ export const TemplateText = ({
             <div className="tw-mb-2">
                 {memoTitleRte}
                 <div>
-                    <Text size="small" color="weak">
-                        <span data-test-id="template-block-page-count">{pageCount} pages</span>
-                    </Text>
+                    <span data-test-id="template-block-page-count" style={{ ...pageCountStyles }}>
+                        {`${pageCount} ${pageCountLabel}`}
+                    </span>
                 </div>
             </div>
             <div>{memoDescriptionRte}</div>

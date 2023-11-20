@@ -23,6 +23,7 @@ import {
     PreviewType,
     TextPositioningType,
     TextRatioType,
+    paddingStyleMap,
     previewHeightValues,
 } from './types';
 import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
@@ -69,9 +70,13 @@ export const settings = defineSettings({
             id: 'cardLayoutHeading',
             type: 'sectionHeading',
             label: 'Card',
+            show: (bundle: Bundle) =>
+                bundle.getBlock('hasBackground')?.value === true ||
+                bundle.getBlock('hasBorder_blockCard')?.value === true,
             blocks: [
                 getPaddingSettings({
                     id: 'blockCard',
+                    paddingStyleMap,
                 }),
             ],
         },
@@ -143,9 +148,9 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'textAnchoringHorizontal',
+                    id: 'textAnchoringVertical',
                     type: 'slider',
-                    label: 'Text anchoring',
+                    label: 'Vertical alignment',
                     defaultValue: AnchoringType.Start,
                     show: (bundle: Bundle) => {
                         const textPositioning = bundle.getBlock('textPositioning')?.value;
@@ -158,24 +163,21 @@ export const settings = defineSettings({
                         {
                             value: AnchoringType.Start,
                             icon: IconEnum.ArrowAlignUp,
-                            label: 'Top',
                         },
                         {
                             value: AnchoringType.Center,
                             icon: IconEnum.ArrowAlignHorizontalCentre,
-                            label: 'Middle',
                         },
                         {
                             value: AnchoringType.End,
                             icon: IconEnum.ArrowAlignDown,
-                            label: 'Bottom',
                         },
                     ],
                 },
                 {
-                    id: 'textAnchoringVertical',
+                    id: 'textAnchoringHorizontal',
                     type: 'slider',
-                    label: 'Text anchoring',
+                    label: 'Horizontal alignment',
                     defaultValue: AnchoringType.Start,
                     show: (bundle: Bundle) => {
                         const textPositioning = bundle.getBlock('textPositioning')?.value;
@@ -188,17 +190,14 @@ export const settings = defineSettings({
                         {
                             value: AnchoringType.Start,
                             icon: IconEnum.ArrowAlignLeft,
-                            label: 'Left',
                         },
                         {
                             value: AnchoringType.Center,
                             icon: IconEnum.ArrowAlignVerticalCentre,
-                            label: 'Center',
                         },
                         {
                             value: AnchoringType.End,
                             icon: IconEnum.ArrowAlignRight,
-                            label: 'Right',
                         },
                     ],
                 },
@@ -326,6 +325,9 @@ export const settings = defineSettings({
                     ...getBorderRadiusSettings({
                         id: 'blockCard',
                     }),
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock('hasBackground')?.value === true ||
+                        bundle.getBlock('hasBorder_blockCard')?.value === true,
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue_blockCard',

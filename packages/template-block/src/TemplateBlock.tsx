@@ -17,13 +17,13 @@ import {
     BlockInjectButton,
     BlockProps,
     getBackgroundColorStyles,
-    paddingStyleMap,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, textPositioningToFlexDirection } from './types';
-import { GAP, TEMPLATE_BLOCK_SETTING_ID } from './constants';
+import { AnchoringType, PreviewType, Settings, TextPositioningType, textPositioningToFlexDirection } from './types';
+import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
+import { getCardPadding, getLayoutClasses } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
@@ -42,9 +42,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         title,
         description,
         preview,
-        hasCustomPaddingValue_blockCard,
-        paddingValue_blockCard,
-        paddingChoice_blockCard,
         hasBackground,
         backgroundColor,
         hasBorder_blockCard,
@@ -78,7 +75,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
         return () => {
-            unsubscribeTemplateChooser();
+            if (typeof unsubscribeTemplateChooser === 'function') {
+                unsubscribeTemplateChooser();
+            }
         };
     }, []);
 
@@ -110,12 +109,16 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
-            if (Array.isArray(previewCustom) && previewCustom.length > 0) {
-                selectedTemplate.previewUrl = previewCustom[0].previewUrl;
-            }
+            const previewUrl =
+                preview === PreviewType.Custom && Array.isArray(previewCustom) && previewCustom.length > 0
+                    ? previewCustom[0].previewUrl
+                    : selectedTemplate.previewUrl;
 
             const options: OpenNewPublicationPayload = {
-                template: selectedTemplate,
+                template: {
+                    ...selectedTemplate,
+                    previewUrl,
+                },
             };
 
             await appBridge.dispatch(openNewPublication(options));
@@ -152,15 +155,13 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         <div data-test-id="template-block-container" className="template-block">
             {selectedTemplate || isEditing ? (
                 <div
-                    data-test-id="template-block"
+                    data-test-id="template-block-card"
                     className="tw-border tw-border-black-20"
                     style={{
                         ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
                         borderRadius,
                         border,
-                        padding: hasCustomPaddingValue_blockCard
-                            ? paddingValue_blockCard
-                            : paddingStyleMap[paddingChoice_blockCard],
+                        padding: getCardPadding(blockSettings),
                     }}
                 >
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
@@ -169,8 +170,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         className="tw-flex"
                         style={{
                             flexDirection,
-                            gap: GAP,
-                            alignItems: isRows ? textAnchoringHorizontal : undefined,
+                            gap: textPositioning !== TextPositioningType.Top ? GAP : undefined,
+                            alignItems: isRows ? textAnchoringVertical : undefined,
                         }}
                     >
                         {hasPreview && (
@@ -178,18 +179,19 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 template={selectedTemplate}
+                                updateBlockSettings={updateBlockSettings}
                                 onOpenTemplateChooser={handleOpenTemplateChooser}
                             />
                         )}
                         <div
-                            className={merge(['tw-flex', isRows && hasPreview ? 'tw-flex-col' : 'tw-flex-row'])}
+                            className={merge(['tw-flex', getLayoutClasses(hasPreview, isRows)])}
                             style={{
                                 width: isRows && hasPreview ? `${textRatio}%` : '100%',
-                                textAlign: !isRows ? textAnchoringVertical : undefined,
-                                gap: GAP,
+                                textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
+                                gap: VERTICAL_GAP,
                             }}
                         >
-                            <div className="tw-grow tw-min-w-0">
+                            <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
                                 <TemplateText
                                     appBridge={appBridge}
                                     title={templateTitle}
@@ -211,7 +213,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     }
                                 />
                             </div>
-                            <div className="tw-shrink-0">
+                            <div className={merge(['', hasPreview && 'tw-flex tw-justify-end tw-items-start'])}>
                                 <CustomButton
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
