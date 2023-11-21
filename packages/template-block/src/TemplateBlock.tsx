@@ -12,21 +12,29 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { ReactElement, useEffect, useReducer, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import {
     BlockInjectButton,
     BlockProps,
+    TextStyles,
+    convertToRteValue,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { AnchoringType, PreviewType, Settings, TextPositioningType, textPositioningToFlexDirection } from './types';
+import {
+    AnchoringType,
+    PreviewType,
+    Settings,
+    TextPositioningType,
+    justifyHorizontal,
+    textPositioningToFlexDirection,
+} from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
 import { getCardPadding, getLayoutClasses } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
-import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
 import { TemplateText } from './components/TemplateText';
 import { CustomButton } from './components/CustomButton';
 
@@ -58,11 +66,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
     const { previewCustom } = blockAssets;
 
-    const [{ templateTitle, templateDescription }, dispatch] = useReducer(templateDataReducer, {
-        templateTitle: title ?? '',
-        templateDescription: description ?? '',
-    });
-
     const hasPreview = preview !== PreviewType.None;
     const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
     const isRows = hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
@@ -82,18 +85,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, []);
 
     useEffect(() => {
-        updateBlockSettings({ title: templateTitle });
-    }, [templateTitle]);
-
-    useEffect(() => {
-        updateBlockSettings({ description: templateDescription });
-    }, [templateDescription]);
-
-    useEffect(() => {
         if (error !== null) {
             setLastErrorMessage(error);
-            dispatch({ type: TemplateDataActionType.UPDATE_TITLE, payload: { newValue: '' } });
-            dispatch({ type: TemplateDataActionType.UPDATE_DESCRIPTION, payload: { newValue: '' } });
         }
     }, [error]);
 
@@ -106,6 +99,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         }
     }, [blockTemplates]);
+
+    const saveDescription = (newDescription: string) => {
+        if (description !== newDescription) {
+            updateBlockSettings({ description: newDescription });
+        }
+    };
+
+    const saveTitle = (newTitle: string) => {
+        if (title !== newTitle) {
+            updateBlockSettings({ title: convertToRteValue(TextStyles.heading3, newTitle) });
+        }
+    };
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
@@ -126,22 +131,14 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const onTemplateSelected = async (result: { template: TemplateLegacy }) => {
-        const { title, description } = blockSettings;
-
         try {
             await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
             updateBlockSettings({
                 template: result.template,
                 templateId: result.template.id,
             });
-            dispatch({
-                type: TemplateDataActionType.UPDATE_TITLE,
-                payload: { newValue: result.template.title, prevValue: title },
-            });
-            dispatch({
-                type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                payload: { newValue: result.template.description, prevValue: description },
-            });
+            saveTitle(result.template.title);
+            saveDescription(result.template.description);
         } catch (error) {
             setLastErrorMessage(error as string);
         }
@@ -194,26 +191,20 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
                                 <TemplateText
                                     appBridge={appBridge}
-                                    title={templateTitle}
+                                    title={title}
                                     blockSettings={blockSettings}
-                                    description={templateDescription}
+                                    description={description}
                                     pageCount={selectedTemplate?.pages.length ?? 0}
                                     isEditing={isEditing}
-                                    setTitle={(newValue, prevValue) =>
-                                        dispatch({
-                                            type: TemplateDataActionType.UPDATE_TITLE,
-                                            payload: { newValue, prevValue },
-                                        })
-                                    }
-                                    setDescription={(newValue, prevValue) =>
-                                        dispatch({
-                                            type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                                            payload: { newValue, prevValue },
-                                        })
-                                    }
+                                    setTitle={saveTitle}
+                                    setDescription={saveDescription}
                                 />
                             </div>
-                            <div className={merge(['', hasPreview && 'tw-flex tw-justify-end tw-items-start'])}>
+                            <div
+                                className={merge([
+                                    hasPreview ? justifyHorizontal[textAnchoringHorizontal] : 'tw-flex tw-justify-end',
+                                ])}
+                            >
                                 <CustomButton
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
