@@ -178,15 +178,11 @@ export const settings = defineSettings({
                 },
             ],
         },
-        {
-            ...getBorderSettings(),
-        },
-        {
-            ...getBorderRadiusSettings({
-                id: 'cornerRadius',
-                radiusStyleMap: radiusValues,
-            }),
-        },
+        getBorderSettings(),
+        getBorderRadiusSettings({
+            id: 'cornerRadius',
+            radiusStyleMap: radiusValues,
+        }),
     ],
     security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
 });
