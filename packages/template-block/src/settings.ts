@@ -34,6 +34,7 @@ export const settings = defineSettings({
             id: TEMPLATE_BLOCK_SETTING_ID,
             type: 'templateInput',
             label: 'Template',
+            showForTranslations: true,
         },
         {
             id: 'preview',
@@ -54,6 +55,7 @@ export const settings = defineSettings({
                 },
             ],
             defaultValue: PreviewType.Template,
+            showForTranslations: true,
         },
         {
             id: 'previewCustom',
@@ -62,6 +64,7 @@ export const settings = defineSettings({
             extensions: FileExtensionSets.Images,
             label: 'Custom Preview',
             show: (bundle: Bundle) => bundle.getBlock('preview')?.value === PreviewType.Custom,
+            showForTranslations: true,
         },
     ],
     layout: [
@@ -329,7 +332,7 @@ export const settings = defineSettings({
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue_blockCard',
-                            radiusStyleMap[bundle.getBlock('radiusChoice_blockCard')?.value as Radius],
+                            radiusStyleMap[bundle.getBlock('radiusChoice_blockCard')?.value as Radius]
                         ),
                 },
             ],
@@ -360,7 +363,7 @@ export const settings = defineSettings({
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue_templatePreview',
-                            radiusStyleMap[bundle.getBlock('radiusChoice_templatePreview')?.value as Radius],
+                            radiusStyleMap[bundle.getBlock('radiusChoice_templatePreview')?.value as Radius]
                         ),
                 },
             ],
