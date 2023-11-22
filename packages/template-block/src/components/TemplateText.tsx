@@ -1,16 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
+    TextStylePluginsWithoutImage,
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
 } from '@frontify/guideline-blocks-settings';
-import { getTitlePlugin } from '../helpers/rtePlugin';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Settings } from '../types';
+import {
+    AutoformatPlugin,
+    BoldPlugin,
+    ItalicPlugin,
+    PluginComposer,
+    ResetFormattingPlugin,
+    SoftBreakPlugin,
+    StrikethroughPlugin,
+    TextStylePlugin,
+    UnderlinePlugin,
+} from '@frontify/fondue';
 
 export type TemplateTextProps = {
     appBridge: AppBridgeBlock;
@@ -19,8 +30,9 @@ export type TemplateTextProps = {
     description: string;
     pageCount: number | undefined;
     isEditing: boolean;
-    setTitle: (newValue: string, prevValue?: string) => void;
-    setDescription: (newValue: string, prevValue?: string) => void;
+    key: number;
+    setTitle: (newTitle: string) => void;
+    setDescription: (newDescription: string) => void;
 };
 
 export const TemplateText = ({
@@ -29,29 +41,41 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
+    key,
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
-    const memoTitleRte = useMemo(() => {
-        return (
+
+    const customTitlePlugins = useMemo(() => {
+        return new PluginComposer()
+            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
+            .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+            .setPlugin([new ResetFormattingPlugin(), new AutoformatPlugin()]);
+    }, []);
+
+    const memoTitleRte = useMemo(
+        () => (
             <RichTextEditor
                 id="template-block-title"
-                value={title || convertToRteValue(TextStyles.heading3)}
+                key={key}
+                value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onTextChange={setTitle}
                 isEditing={isEditing}
-                plugins={getTitlePlugin()}
+                plugins={customTitlePlugins}
             />
-        );
-    }, [title, isEditing, setTitle]);
+        ),
+        [customTitlePlugins, isEditing, setTitle, title],
+    );
 
-    const memoDescriptionRte = useMemo(() => {
-        return (
+    const memoDescriptionRte = useMemo(
+        () => (
             <RichTextEditor
                 id="template-block-description"
-                value={description || convertToRteValue()}
+                value={description}
+                key={key}
                 placeholder={
                     'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
                 }
@@ -59,8 +83,10 @@ export const TemplateText = ({
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
-        );
-    }, [description, isEditing, setDescription, appBridge]);
+        ),
+        [appBridge, description, isEditing, setDescription],
+    );
+
     return (
         <div>
             <div className="tw-mb-2">

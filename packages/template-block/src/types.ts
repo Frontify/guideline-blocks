@@ -147,3 +147,9 @@ export const paddingStyleMap: Record<Padding, string> = {
     [Padding.Medium]: '20px',
     [Padding.Large]: '30px',
 };
+
+export const justifyHorizontal: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'tw-justify-start',
+    [AnchoringType.Center]: 'tw-justify-center',
+    [AnchoringType.End]: 'tw-justify-end',
+};

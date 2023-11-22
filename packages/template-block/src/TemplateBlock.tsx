@@ -12,21 +12,29 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { ReactElement, useEffect, useReducer, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import {
     BlockInjectButton,
     BlockProps,
+    TextStyles,
+    convertToRteValue,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { AnchoringType, PreviewType, Settings, TextPositioningType, textPositioningToFlexDirection } from './types';
+import {
+    AnchoringType,
+    PreviewType,
+    Settings,
+    TextPositioningType,
+    justifyHorizontal,
+    textPositioningToFlexDirection,
+} from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
-import { getCardPadding, getLayoutClasses } from './helpers/layoutHelper';
+import { getCardPadding, getLayoutClasses, getRandomKey } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
-import { TemplateDataActionType, templateDataReducer } from './reducers/templateDataReducer';
 import { TemplateText } from './components/TemplateText';
 import { CustomButton } from './components/CustomButton';
 
@@ -34,6 +42,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
+    const [templateTextKey, setTemplateTextKey] = useState(getRandomKey());
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
@@ -58,11 +67,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
     const { previewCustom } = blockAssets;
 
-    const [{ templateTitle, templateDescription }, dispatch] = useReducer(templateDataReducer, {
-        templateTitle: title ?? '',
-        templateDescription: description ?? '',
-    });
-
     const hasPreview = preview !== PreviewType.None;
     const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
     const isRows = hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
@@ -82,18 +86,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, []);
 
     useEffect(() => {
-        updateBlockSettings({ title: templateTitle });
-    }, [templateTitle]);
-
-    useEffect(() => {
-        updateBlockSettings({ description: templateDescription });
-    }, [templateDescription]);
-
-    useEffect(() => {
         if (error !== null) {
             setLastErrorMessage(error);
-            dispatch({ type: TemplateDataActionType.UPDATE_TITLE, payload: { newValue: '' } });
-            dispatch({ type: TemplateDataActionType.UPDATE_DESCRIPTION, payload: { newValue: '' } });
         }
     }, [error]);
 
@@ -106,6 +100,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         }
     }, [blockTemplates]);
+
+    const saveDescription = async (newDescription: string) => {
+        if (description !== newDescription) {
+            await updateBlockSettings({ description: newDescription });
+        }
+    };
+
+    const saveTitle = async (newTitle: string) => {
+        if (title !== newTitle) {
+            await updateBlockSettings({ title: convertToRteValue(TextStyles.heading3, newTitle) });
+        }
+    };
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
@@ -126,22 +132,15 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const onTemplateSelected = async (result: { template: TemplateLegacy }) => {
-        const { title, description } = blockSettings;
-
         try {
             await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
             updateBlockSettings({
                 template: result.template,
                 templateId: result.template.id,
             });
-            dispatch({
-                type: TemplateDataActionType.UPDATE_TITLE,
-                payload: { newValue: result.template.title, prevValue: title },
-            });
-            dispatch({
-                type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                payload: { newValue: result.template.description, prevValue: description },
-            });
+            await saveTitle(result.template.title);
+            await saveDescription(result.template.description);
+            setTemplateTextKey(getRandomKey());
         } catch (error) {
             setLastErrorMessage(error as string);
         }
@@ -194,26 +193,23 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
                                 <TemplateText
                                     appBridge={appBridge}
-                                    title={templateTitle}
+                                    title={title}
                                     blockSettings={blockSettings}
-                                    description={templateDescription}
+                                    description={description}
                                     pageCount={selectedTemplate?.pages.length ?? 0}
                                     isEditing={isEditing}
-                                    setTitle={(newValue, prevValue) =>
-                                        dispatch({
-                                            type: TemplateDataActionType.UPDATE_TITLE,
-                                            payload: { newValue, prevValue },
-                                        })
-                                    }
-                                    setDescription={(newValue, prevValue) =>
-                                        dispatch({
-                                            type: TemplateDataActionType.UPDATE_DESCRIPTION,
-                                            payload: { newValue, prevValue },
-                                        })
-                                    }
+                                    key={templateTextKey}
+                                    setTitle={saveTitle}
+                                    setDescription={saveDescription}
                                 />
                             </div>
-                            <div className={merge(['', hasPreview && 'tw-flex tw-justify-end tw-items-start'])}>
+                            <div
+                                className={merge([
+                                    hasPreview
+                                        ? justifyHorizontal[textAnchoringHorizontal]
+                                        : 'tw-flex tw-items-center tw-justify-end',
+                                ])}
+                            >
                                 <CustomButton
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
