@@ -32,7 +32,7 @@ import {
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
-import { getCardPadding, getLayoutClasses } from './helpers/layoutHelper';
+import { getCardPadding, getLayoutClasses, getRandomKey } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateText } from './components/TemplateText';
@@ -42,6 +42,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
+    const [templateTextKey, setTemplateTextKey] = useState(getRandomKey());
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
@@ -100,15 +101,15 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, [blockTemplates]);
 
-    const saveDescription = (newDescription: string) => {
+    const saveDescription = async (newDescription: string) => {
         if (description !== newDescription) {
-            updateBlockSettings({ description: newDescription });
+            await updateBlockSettings({ description: newDescription });
         }
     };
 
-    const saveTitle = (newTitle: string) => {
+    const saveTitle = async (newTitle: string) => {
         if (title !== newTitle) {
-            updateBlockSettings({ title: convertToRteValue(TextStyles.heading3, newTitle) });
+            await updateBlockSettings({ title: convertToRteValue(TextStyles.heading3, newTitle) });
         }
     };
 
@@ -137,8 +138,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 template: result.template,
                 templateId: result.template.id,
             });
-            saveTitle(result.template.title);
-            saveDescription(result.template.description);
+            await saveTitle(result.template.title);
+            await saveDescription(result.template.description);
+            setTemplateTextKey(getRandomKey());
         } catch (error) {
             setLastErrorMessage(error as string);
         }
@@ -196,6 +198,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     description={description}
                                     pageCount={selectedTemplate?.pages.length ?? 0}
                                     isEditing={isEditing}
+                                    key={templateTextKey}
                                     setTitle={saveTitle}
                                     setDescription={saveDescription}
                                 />

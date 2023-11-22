@@ -23,3 +23,7 @@ export const getLayoutClasses = (hasPreview: boolean, isRows: boolean) => {
 
     return hasPreview ? previewClasses : 'tw-grid tw-grid-cols-3';
 };
+
+export const getRandomKey = () => {
+    return new Date().getTime();
+};
