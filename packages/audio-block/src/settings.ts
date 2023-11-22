@@ -24,6 +24,7 @@ export const settings = defineSettings({
             size: 'small',
             extensions: FileExtensionSets.Audio,
             objectTypes: [AssetChooserObjectType.File],
+            showForTranslations: true,
         },
     ],
     layout: [

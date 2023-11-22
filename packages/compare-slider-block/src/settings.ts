@@ -66,6 +66,7 @@ export const settings = defineSettings({
                     defaultValue: false,
                 },
             ],
+            showForTranslations: true,
         },
         {
             id: 'secondAssetSection',
@@ -86,6 +87,7 @@ export const settings = defineSettings({
                     defaultValue: false,
                 },
             ],
+            showForTranslations: true,
         },
     ],
     layout: [

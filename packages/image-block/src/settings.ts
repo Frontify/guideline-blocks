@@ -54,6 +54,7 @@ export const settings = defineSettings({
                     ],
                 },
             ],
+            showForTranslations: true,
         },
         {
             id: 'imageResolutionInfo',

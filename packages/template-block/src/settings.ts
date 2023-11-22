@@ -35,6 +35,7 @@ export const settings = defineSettings({
             id: TEMPLATE_BLOCK_SETTING_ID,
             type: 'templateInput',
             label: 'Template',
+            showForTranslations: true,
         },
         {
             id: 'preview',
@@ -55,6 +56,7 @@ export const settings = defineSettings({
                 },
             ],
             defaultValue: PreviewType.Template,
+            showForTranslations: true,
         },
         {
             id: 'previewCustom',
@@ -63,6 +65,7 @@ export const settings = defineSettings({
             extensions: FileExtensionSets.Images,
             label: 'Custom Preview',
             show: (bundle: Bundle) => bundle.getBlock('preview')?.value === PreviewType.Custom,
+            showForTranslations: true,
         },
     ],
     layout: [
