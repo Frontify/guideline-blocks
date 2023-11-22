@@ -205,7 +205,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             </div>
                             <div
                                 className={merge([
-                                    hasPreview ? justifyHorizontal[textAnchoringHorizontal] : 'tw-flex tw-justify-end',
+                                    hasPreview
+                                        ? justifyHorizontal[textAnchoringHorizontal]
+                                        : 'tw-flex tw-items-center tw-justify-end',
                                 ])}
                             >
                                 <CustomButton
