@@ -2,8 +2,6 @@
 
 import {
     Asset,
-    AssetChooserObjectType,
-    FileExtensionSets,
     useAssetChooser,
     useAssetUpload,
     useBlockAssets,
@@ -47,7 +45,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
-    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
+    const [openFileDialog, { selectedFiles }] = useFileInput({});
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
@@ -70,8 +68,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             },
             {
                 selectedValueId: blockAssets[IMAGE_ID]?.[0]?.id,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
             },
         );
     };
