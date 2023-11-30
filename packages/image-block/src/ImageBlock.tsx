@@ -2,8 +2,7 @@
 
 import {
     Asset,
-    AssetChooserObjectType,
-    FileExtensionSets,
+    getMimeType,
     useAssetChooser,
     useAssetUpload,
     useBlockAssets,
@@ -16,7 +15,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
-import { IMAGE_ID } from './settings';
+import { ALLOWED_EXTENSIONS, IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
     BlockProps,
@@ -47,7 +46,9 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
-    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
+    const [openFileDialog, { selectedFiles }] = useFileInput({
+        accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
+    });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
@@ -70,8 +71,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             },
             {
                 selectedValueId: blockAssets[IMAGE_ID]?.[0]?.id,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
+                extensions: ALLOWED_EXTENSIONS,
             },
         );
     };

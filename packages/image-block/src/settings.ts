@@ -1,9 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FileExtensionSets } from '@frontify/app-bridge';
-
 import {
-    AssetChooserObjectType,
+    FileExtensionSets,
     IconEnum,
     NotificationBlockDividerPosition,
     NotificationStyleType,
@@ -24,6 +22,11 @@ const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
+export const ALLOWED_EXTENSIONS = [
+    ...FileExtensionSets.Images,
+    ...FileExtensionSets.Documents,
+    ...FileExtensionSets.Templates,
+];
 
 export const settings = defineSettings({
     basics: [
@@ -37,8 +40,7 @@ export const settings = defineSettings({
                     type: 'assetInput',
                     label: 'Image',
                     size: 'small',
-                    objectTypes: [AssetChooserObjectType.ImageVideo],
-                    extensions: FileExtensionSets.Images,
+                    extensions: ALLOWED_EXTENSIONS,
                 },
                 {
                     id: 'hasLink',
