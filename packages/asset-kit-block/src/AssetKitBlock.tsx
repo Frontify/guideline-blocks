@@ -53,7 +53,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
             return downloadAssets(downloadUrlBlock);
         }
-        generateBulkDownload([ASSET_SETTINGS_ID]);
+        generateBulkDownload(blockAssets);
     };
 
     const downloadAssets = (downloadUrl: string) => {
