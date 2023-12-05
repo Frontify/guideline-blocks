@@ -35,7 +35,7 @@
         "@codemirror/language": "^6.9.0",
         "@codemirror/state": "^6.2.1",
         "@codemirror/view": "^6.17.0",
-        "@frontify/app-bridge": "^3.0.0-beta.100",
+        "@frontify/app-bridge": "^3.0.0-beta.103",
         "@frontify/fondue": "12.0.0-beta.341",
         "@frontify/guideline-blocks-settings": "^0.29.12",
         "@frontify/guideline-blocks-shared": "workspace:*",
