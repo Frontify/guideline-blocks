@@ -2,3 +2,4 @@
 
 export * from './CssValueHelper';
 export * from './SquareBadgeHelper';
+export * from './HexStringHelper';

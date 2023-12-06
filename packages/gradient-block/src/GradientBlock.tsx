@@ -3,15 +3,11 @@
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Divider, Palette } from '@frontify/fondue';
 
-import {
-    BlockProps,
-    mapAppBridgeColorPalettesToFonduePalettes,
-    toHexString,
-} from '@frontify/guideline-blocks-settings';
+import { BlockProps, mapAppBridgeColorPalettesToFonduePalettes } from '@frontify/guideline-blocks-settings';
 import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
-import { parseGradientColorsToCss } from './helpers';
+import { parseGradientColorsToCss, toHex6or8String } from './helpers';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
 
@@ -122,7 +118,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
 
                     {gradientColors?.map((gradientColor) => (
                         <ColorTooltip
-                            key={toHexString(gradientColor.color) + gradientColor.position}
+                            key={toHex6or8String(gradientColor.color) + gradientColor.position}
                             gradientColor={gradientColor}
                             gradientColors={gradientColors}
                             showColorModal={showColorModal}
