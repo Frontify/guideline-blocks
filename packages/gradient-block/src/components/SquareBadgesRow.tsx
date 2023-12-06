@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toHexString } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
-import { calculateLevelOfLast, prepareGradientColors } from '../helpers';
+import { calculateLevelOfLast, prepareGradientColors, toHex6or8String } from '../helpers';
 import { SquareBadgesRowProps } from '../types';
 import { SquareBadge } from './';
 
@@ -46,7 +45,7 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
         >
             {colors.map((gradientColor, index) => (
                 <SquareBadge
-                    key={toHexString(gradientColor.color) + gradientColor.position}
+                    key={toHex6or8String(gradientColor.color) + gradientColor.position}
                     gradientColor={gradientColor}
                     index={index}
                     gradientOrientation={gradientOrientation}

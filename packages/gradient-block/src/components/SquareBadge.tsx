@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-settings';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useRef } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
-import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';
+import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent, toHex6or8String } from '../helpers';
 import { GradientColor, SquareBadgeProps } from '../types';
 
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth }: SquareBadgeProps) => {
@@ -62,7 +62,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         <div
             ref={badgeRef}
             data-test-id="square-badge"
-            key={toHexString(gradientColor.color) + gradientColor.position}
+            key={toHex6or8String(gradientColor.color) + gradientColor.position}
             className="tw-absolute tw-mt-2"
             style={{
                 top: getTop(gradientColor, index),
@@ -73,19 +73,19 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <div
                 className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
-                onClick={() => copy(toHexString(gradientColor.color))}
+                onClick={() => copy(toHex6or8String(gradientColor.color))}
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
                     <div
                         className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0"
                         style={{
-                            backgroundColor: toHexString(gradientColor.color),
+                            backgroundColor: toHex6or8String(gradientColor.color),
                         }}
                     ></div>
                     <span className="tw-text-weak tw-px-1 tw-text-xs tw-whitespace-nowrap">
                         <strong>{gradientColor.color?.name}</strong>
                     </span>
-                    <span className="tw-text-x-weak tw-text-xs tw-pl-1">{toHexString(gradientColor.color)}</span>
+                    <span className="tw-text-x-weak tw-text-xs tw-pl-1">{toHex6or8String(gradientColor.color)}</span>
                 </div>
                 <button className={getCopyButtonClasses(gradientColor.isReverse || false)}>
                     {isCopied ? (

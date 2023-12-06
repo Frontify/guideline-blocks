@@ -65,6 +65,36 @@ const GradientColor = [
     },
 ];
 
+const GradientColorsWithOpacity = [
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 0,
+    },
+    {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 0.5,
+        },
+        position: 25,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 100,
+    },
+];
+
 const MultiLevelGradientColors = [
     {
         color: {
@@ -170,12 +200,19 @@ describe('Gradient Block', () => {
     it('renders three SquareBadges', () => {
         const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
             blockSettings: {
-                gradientColors: GradientColor,
+                gradientColors: GradientColorsWithOpacity,
             },
         });
 
         mount(<GradientBlockWithStubs />);
         cy.get(SquareBadgesSelector).should('have.length', 3);
+        cy.get(SquareBadgesSelector).eq(0).should('contain.text', '#ffffff');
+        cy.get(SquareBadgesSelector).eq(1).should('contain.text', '#00000080');
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(0, 0, 0, 0.5) 25%, rgb(255, 255, 255) 100%)',
+        );
     });
 
     it('square badges levels with special colors', () => {

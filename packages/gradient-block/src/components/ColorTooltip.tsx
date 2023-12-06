@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-settings';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 import { ColorTooltipProps } from '../types';
+import { toHex6or8String } from '../helpers';
 import { EditAndDeleteColorBox } from './';
 
 export const ColorTooltip = ({
@@ -17,7 +18,7 @@ export const ColorTooltip = ({
     const { hoverProps, isHovered } = useHover({});
 
     return (
-        <div className="tw-absolute tw-z-[1]" style={{ left }} {...hoverProps}>
+        <div className="tw-absolute tw-z-[11]" style={{ left }} {...hoverProps}>
             <div
                 data-test-id="color-points"
                 className={joinClassNames([
@@ -39,7 +40,7 @@ export const ColorTooltip = ({
                     <div
                         className="tw-absolute tw-w-4 tw-h-4 tw-rounded"
                         style={{
-                            backgroundColor: toHexString(gradientColor.color),
+                            backgroundColor: toHex6or8String(gradientColor.color),
                         }}
                     />
                 </div>
