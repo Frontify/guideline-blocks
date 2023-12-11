@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, Template, useBlockAssets } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
-import { Settings, previewHeightValues, textPositioningToFlexDirection, PreviewHeightType } from '../types';
+import { PreviewHeightType, Settings, previewHeightValues, textPositioningToFlexDirection } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings, paddingStyleMap, textPositioningToFlexDirection, TextPositioningType } from '../types';
+import { Settings, TextPositioningType, paddingStyleMap, textPositioningToFlexDirection } from '../types';
 
 export const getCardPadding = (blockSettings: Settings) => {
     const {

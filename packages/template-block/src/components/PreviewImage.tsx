@@ -52,7 +52,7 @@ export const PreviewImage = ({
     };
 
     const getItemWrapperMenu = () => {
-        let menuItems: FlyoutToolbarItem[] = [
+        const menuItems: FlyoutToolbarItem[] = [
             {
                 title: 'Set alt text',
                 onClick: () => setShowAltTextMenu(true),
