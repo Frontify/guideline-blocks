@@ -217,7 +217,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-row');
     });
 
     it('should render block content with a flex direction row-reverse when text positioning is left', () => {
@@ -229,7 +229,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row-reverse');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-row-reverse');
     });
 
     it('should render block text with a top anchoring', () => {
