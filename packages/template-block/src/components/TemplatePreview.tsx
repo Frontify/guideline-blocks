@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, Template, useBlockAssets } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
-import { Settings, previewHeightValues, textPositioningToFlexDirection } from '../types';
+import { Settings, previewHeightValues, textPositioningToFlexDirection, PreviewHeightType } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
@@ -86,7 +86,7 @@ export const TemplatePreview = ({
                     />
                 </div>
             ) : (
-                <div style={{ height }}>
+                <div style={{ height: previewHeightValues[PreviewHeightType.Small] }}>
                     <BlockInjectButton
                         label="Choose existing template"
                         icon={<IconPlus24 />}

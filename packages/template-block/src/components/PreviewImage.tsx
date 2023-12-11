@@ -2,10 +2,11 @@
 
 import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { PreviewType, Settings, previewDisplayValues, previewImageAnchoringValues } from '../types';
-import { IconArrowSync, IconSpeechBubbleQuote20, merge } from '@frontify/fondue';
+import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
+import { FlyoutToolbarItem } from './types';
 
 export type PreviewImageProps = {
     appBridge: AppBridgeBlock;
@@ -23,7 +24,7 @@ export const PreviewImage = ({
     onOpenTemplateChooser,
 }: PreviewImageProps) => {
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
     const previewSrc =
         preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
@@ -37,6 +38,44 @@ export const PreviewImage = ({
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
     }, [preview, template, blockAssets.previewCustom]);
+
+    const onDeleteCustomPreview = async () => {
+        if (
+            preview === PreviewType.Custom &&
+            Array.isArray(blockAssets.previewCustom) &&
+            blockAssets.previewCustom.length > 0
+        ) {
+            await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
+            await updateBlockSettings({ altText: undefined });
+            setLocalAltText(undefined);
+        }
+    };
+
+    const getItemWrapperMenu = () => {
+        let menuItems: FlyoutToolbarItem[] = [
+            {
+                title: 'Set alt text',
+                onClick: () => setShowAltTextMenu(true),
+                icon: <IconSpeechBubbleQuote20 />,
+            },
+            {
+                title: 'Replace template',
+                onClick: () => onOpenTemplateChooser(),
+                icon: <IconArrowSync />,
+            },
+        ];
+
+        if (preview === PreviewType.Custom && blockAssets.previewCustom) {
+            menuItems.push({
+                title: 'Delete custom preview',
+                onClick: () => onDeleteCustomPreview(),
+                style: MenuItemStyle.Danger,
+                icon: <IconTrashBin />,
+            });
+        }
+
+        return [menuItems];
+    };
 
     return (
         <>
@@ -68,20 +107,7 @@ export const PreviewImage = ({
                     <BlockItemWrapper
                         shouldBeShown={isHovered || showAltTextMenu}
                         toolbarItems={[]}
-                        toolbarFlyoutItems={[
-                            [
-                                {
-                                    title: 'Set alt text',
-                                    onClick: () => setShowAltTextMenu(true),
-                                    icon: <IconSpeechBubbleQuote20 />,
-                                },
-                                {
-                                    title: 'Replace template',
-                                    onClick: () => onOpenTemplateChooser(),
-                                    icon: <IconArrowSync />,
-                                },
-                            ],
-                        ]}
+                        toolbarFlyoutItems={getItemWrapperMenu()}
                     >
                         <EditAltTextFlyout
                             setShowAltTextMenu={setShowAltTextMenu}

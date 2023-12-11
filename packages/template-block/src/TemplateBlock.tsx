@@ -109,7 +109,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const saveTitle = async (newTitle: string) => {
         if (title !== newTitle) {
-            await updateBlockSettings({ title: convertToRteValue(TextStyles.heading3, newTitle) });
+            await updateBlockSettings({ title: newTitle });
         }
     };
 

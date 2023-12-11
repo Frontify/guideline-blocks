@@ -8,6 +8,7 @@ import {
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
+    hasRichTextValue,
 } from '@frontify/guideline-blocks-settings';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Settings } from '../types';
@@ -64,6 +65,7 @@ export const TemplateText = ({
                 placeholder="Add a title"
                 onTextChange={setTitle}
                 isEditing={isEditing}
+                showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
             />
         ),
@@ -80,6 +82,7 @@ export const TemplateText = ({
                     'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
                 }
                 onTextChange={setDescription}
+                showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
