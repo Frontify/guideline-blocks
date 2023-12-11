@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings, paddingStyleMap } from '../types';
+import { Settings, paddingStyleMap, textPositioningToFlexDirection, TextPositioningType } from '../types';
 
 export const getCardPadding = (blockSettings: Settings) => {
     const {
@@ -18,8 +18,16 @@ export const getCardPadding = (blockSettings: Settings) => {
     return undefined;
 };
 
-export const getLayoutClasses = (hasPreview: boolean, isRows: boolean) => {
-    const previewClasses = isRows ? 'tw-flex-col' : 'tw-grid tw-grid-rows-2 grid-flow-col';
+export const getIsRows = (hasPreview: boolean, textPositioning: TextPositioningType): boolean => {
+    const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
+
+    return hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
+};
+
+export const getLayoutClasses = (hasPreview: boolean, textPositioning: TextPositioningType) => {
+    const previewClasses = getIsRows(hasPreview, textPositioning)
+        ? 'tw-flex-col'
+        : 'tw-grid tw-grid-rows-2 grid-flow-col';
 
     return hasPreview ? previewClasses : 'tw-grid tw-grid-cols-3';
 };

@@ -16,8 +16,6 @@ import { ReactElement, useEffect, useState } from 'react';
 import {
     BlockInjectButton,
     BlockProps,
-    TextStyles,
-    convertToRteValue,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
@@ -28,11 +26,11 @@ import {
     Settings,
     TextPositioningType,
     justifyHorizontal,
-    textPositioningToFlexDirection,
+    textPositioningToStyles,
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
-import { getCardPadding, getLayoutClasses, getRandomKey } from './helpers/layoutHelper';
+import { getCardPadding, getIsRows, getLayoutClasses, getRandomKey } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateText } from './components/TemplateText';
@@ -68,8 +66,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { previewCustom } = blockAssets;
 
     const hasPreview = preview !== PreviewType.None;
-    const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
-    const isRows = hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
+    const flexDirectionStyles = hasPreview
+        ? textPositioningToStyles[textPositioning]
+        : textPositioningToStyles[TextPositioningType.Right];
+    const isRows = getIsRows(hasPreview, textPositioning);
     const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
     const border = hasBorder_blockCard
         ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
@@ -166,9 +166,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
                     <div
                         data-test-id="template-block-content"
-                        className="tw-flex"
+                        className={`tw-flex ${flexDirectionStyles}`}
                         style={{
-                            flexDirection,
                             gap: textPositioning !== TextPositioningType.Top ? GAP : undefined,
                             alignItems: isRows ? textAnchoringVertical : undefined,
                         }}
@@ -183,7 +182,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         <div
-                            className={merge(['tw-flex', getLayoutClasses(hasPreview, isRows)])}
+                            className={merge(['tw-flex', getLayoutClasses(hasPreview, textPositioning)])}
                             style={{
                                 width: isRows && hasPreview ? `${textRatio}%` : '100%',
                                 textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
