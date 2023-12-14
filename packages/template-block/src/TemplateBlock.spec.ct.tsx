@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount, describe, it } from 'cypress/react';
 import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
