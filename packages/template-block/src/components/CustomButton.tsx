@@ -1,17 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings } from '../types';
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { PluginComposer } from '@frontify/fondue';
 import { useRef, useState } from 'react';
-
-export type CustomButtonProps = {
-    blockSettings: Settings;
-    isEditing: boolean;
-    isDisabled: boolean;
-    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
-    handleNewPublication: () => void;
-};
+import { CustomButtonProps } from './types';
 
 export const CustomButton = ({
     blockSettings,

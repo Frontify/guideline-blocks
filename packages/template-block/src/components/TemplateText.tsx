@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
@@ -10,8 +10,6 @@ import {
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
 } from '@frontify/guideline-blocks-settings';
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Settings } from '../types';
 import {
     AutoformatPlugin,
     BoldPlugin,
@@ -23,18 +21,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
 } from '@frontify/fondue';
-
-export type TemplateTextProps = {
-    appBridge: AppBridgeBlock;
-    blockSettings: Settings;
-    title: string;
-    description: string;
-    pageCount: number | undefined;
-    isEditing: boolean;
-    key: number;
-    setTitle: (newTitle: string) => void;
-    setDescription: (newDescription: string) => void;
-};
+import { TemplateTextProps } from './types';
 
 export const TemplateText = ({
     appBridge,

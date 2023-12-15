@@ -1,20 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
-import { PreviewType, Settings, previewDisplayValues, previewImageAnchoringValues } from '../types';
+import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, FlyoutToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
-import { FlyoutToolbarItem } from './types';
-
-export type PreviewImageProps = {
-    appBridge: AppBridgeBlock;
-    blockSettings: Settings;
-    template: Template | null;
-    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
-    onOpenTemplateChooser: () => void;
-};
+import { PreviewImageProps } from './types';
 
 export const PreviewImage = ({
     appBridge,
