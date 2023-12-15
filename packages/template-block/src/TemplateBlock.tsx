@@ -30,7 +30,7 @@ import {
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
 import { IconPlus24, generateRandomId, merge } from '@frontify/fondue';
-import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layoutHelper';
+import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layout';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateText } from './components/TemplateText';
