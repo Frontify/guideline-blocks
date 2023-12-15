@@ -29,8 +29,8 @@ import {
     textPositioningToStyles,
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
-import { IconPlus24, merge } from '@frontify/fondue';
-import { getCardPadding, getIsRows, getLayoutClasses, getRandomKey } from './helpers/layoutHelper';
+import { IconPlus24, generateRandomId, merge } from '@frontify/fondue';
+import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layoutHelper';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
 import { TemplateText } from './components/TemplateText';
@@ -40,7 +40,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(getRandomKey());
+    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
@@ -140,7 +140,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             });
             await saveTitle(result.template.title);
             await saveDescription(result.template.description);
-            setTemplateTextKey(getRandomKey());
+            setTemplateTextKey(generateRandomId());
         } catch (error) {
             setLastErrorMessage(error as string);
         }

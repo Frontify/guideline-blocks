@@ -31,7 +31,3 @@ export const getLayoutClasses = (hasPreview: boolean, textPositioning: TextPosit
 
     return hasPreview ? previewClasses : 'tw-grid tw-grid-cols-3';
 };
-
-export const getRandomKey = () => {
-    return new Date().getTime();
-};
