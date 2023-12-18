@@ -208,7 +208,8 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'column-reverse');
     });
 
-    it('should render block content with a flex direction row when text positioning is right', () => {
+    it('should render block content with a flex direction row for xl viewport when text positioning is right', () => {
+        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -220,7 +221,8 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row');
     });
 
-    it('should render block content with a flex direction row-reverse when text positioning is left', () => {
+    it('should render block content with a flex direction row-reverse for xl viewport when text positioning is left', () => {
+        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
