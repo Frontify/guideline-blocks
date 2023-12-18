@@ -36,10 +36,10 @@
         "ts-node": "^10.9.1",
         "typescript": "^5.2.2",
         "vite": "^4.4.9",
-        "vitest": "^0.34.4"
+        "vitest": "^1.0.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.341",
+        "@frontify/fondue": "12.0.0-beta.382",
         "glob": "^10.3.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
