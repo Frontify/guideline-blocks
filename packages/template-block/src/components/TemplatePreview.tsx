@@ -2,7 +2,7 @@
 
 import { useBlockAssets } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
-import { PreviewHeightType, previewHeightValues, textPositioningToFlexDirection } from '../types';
+import { PreviewHeightType, previewHeightValues } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
@@ -18,6 +18,7 @@ export const TemplatePreview = ({
     template,
     updateBlockSettings,
     onOpenTemplateChooser,
+    isRows,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
 
@@ -35,13 +36,10 @@ export const TemplatePreview = ({
         isPreviewHeightCustom,
         previewHeightSimple,
         previewHeightCustom,
-        textPositioning,
     } = blockSettings;
 
     const { previewCustom } = blockAssets;
 
-    const flexDirection = textPositioningToFlexDirection[textPositioning];
-    const isRows = flexDirection === 'row' || flexDirection === 'row-reverse';
     const borderRadius = hasRadius_templatePreview
         ? radiusValue_templatePreview
         : radiusStyleMap[radiusChoice_templatePreview];

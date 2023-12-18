@@ -179,6 +179,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 template={selectedTemplate}
                                 updateBlockSettings={updateBlockSettings}
                                 onOpenTemplateChooser={handleOpenTemplateChooser}
+                                isRows={isRows}
                             />
                         )}
                         <div
