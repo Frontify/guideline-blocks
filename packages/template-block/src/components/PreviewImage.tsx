@@ -5,7 +5,7 @@ import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
 import { BlockItemWrapper, FlyoutToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { PreviewImageProps } from './types';
 
 export const PreviewImage = ({
@@ -18,25 +18,28 @@ export const PreviewImage = ({
     const isEditing = useEditorState(appBridge);
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
-    const previewSrc =
-        preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
-            ? blockAssets.previewCustom[0].previewUrl
-            : template?.previewUrl;
+    const previewSrc = useMemo(
+        () =>
+            preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
+                ? blockAssets.previewCustom[0].previewUrl
+                : template?.previewUrl,
+        [blockAssets.previewCustom, preview, template?.previewUrl],
+    );
     const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isHovered, setIsHovered] = useState(false);
+    const hasCustomPreview = useMemo(
+        () => preview === PreviewType.Custom && blockAssets.previewCustom?.length > 0,
+        [blockAssets.previewCustom?.length, preview],
+    );
 
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
-    }, [preview, template, blockAssets.previewCustom]);
+    }, [previewSrc]);
 
-    const onDeleteCustomPreview = async () => {
-        if (
-            preview === PreviewType.Custom &&
-            Array.isArray(blockAssets.previewCustom) &&
-            blockAssets.previewCustom.length > 0
-        ) {
+    const handleDeleteCustomPreview = async () => {
+        if (hasCustomPreview) {
             await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
             await updateBlockSettings({ altText: undefined });
             setLocalAltText(undefined);
@@ -52,15 +55,15 @@ export const PreviewImage = ({
             },
             {
                 title: 'Replace template',
-                onClick: () => onOpenTemplateChooser(),
+                onClick: onOpenTemplateChooser,
                 icon: <IconArrowSync />,
             },
         ];
 
-        if (preview === PreviewType.Custom && blockAssets.previewCustom) {
+        if (hasCustomPreview) {
             menuItems.push({
                 title: 'Delete custom preview',
-                onClick: () => onDeleteCustomPreview(),
+                onClick: handleDeleteCustomPreview,
                 style: MenuItemStyle.Danger,
                 icon: <IconTrashBin />,
             });
