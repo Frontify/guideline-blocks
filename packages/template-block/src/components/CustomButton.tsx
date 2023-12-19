@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
-import { PluginComposer } from '@frontify/fondue';
+import { PluginComposer, merge } from '@frontify/fondue';
 import { useRef, useState } from 'react';
 import { CustomButtonProps } from './types';
+import { PreviewType } from '../types';
 
 export const CustomButton = ({
     blockSettings,
@@ -14,7 +15,7 @@ export const CustomButton = ({
 }: CustomButtonProps) => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
     const [buttonHover, setButtonHover] = useState<boolean>(false);
-    const { buttonText } = blockSettings;
+    const { buttonText, preview } = blockSettings;
 
     return (
         <button
@@ -23,7 +24,7 @@ export const CustomButton = ({
             onClick={isEditing ? undefined : handleNewPublication}
             onMouseEnter={() => setButtonHover(true)}
             onMouseLeave={() => setButtonHover(false)}
-            className="disabled:tw-opacity-50"
+            className={merge(['disabled:tw-opacity-50', preview === PreviewType.None ? '!tw-mt-0' : ''])}
             style={{
                 ...BlockStyles.buttonPrimary,
                 ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
