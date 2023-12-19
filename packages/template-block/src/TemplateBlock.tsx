@@ -16,6 +16,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import {
     BlockInjectButton,
     BlockProps,
+    convertToRteValue,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
@@ -29,7 +30,7 @@ import {
     textPositioningToStyles,
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
-import { IconPlus24, generateRandomId, merge } from '@frontify/fondue';
+import { IconPlus24, TextStyles, generateRandomId, merge } from '@frontify/fondue';
 import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layout';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
@@ -138,7 +139,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 template: result.template,
                 templateId: result.template.id,
             });
-            await saveTitle(result.template.title);
+            await saveTitle(convertToRteValue(TextStyles.heading3, result.template.title));
             await saveDescription(result.template.description);
             setTemplateTextKey(generateRandomId());
         } catch (error) {
