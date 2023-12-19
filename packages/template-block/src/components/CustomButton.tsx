@@ -24,7 +24,7 @@ export const CustomButton = ({
             onClick={isEditing ? undefined : handleNewPublication}
             onMouseEnter={() => setButtonHover(true)}
             onMouseLeave={() => setButtonHover(false)}
-            className={merge(['disabled:tw-opacity-50', preview === PreviewType.None ? '!tw-mt-0' : ''])}
+            className={merge(['disabled:tw-opacity-50', preview === PreviewType.None ? '!tw-mt-0' : '!tw-mb-0'])}
             style={{
                 ...BlockStyles.buttonPrimary,
                 ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
