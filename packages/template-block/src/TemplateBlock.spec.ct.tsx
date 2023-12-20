@@ -22,7 +22,7 @@ const TEMPLATE_TITLE_SELECTOR = '[data-editor-id="template-block-title"]';
 const TEMPLATE_DESCRIPTION_SELECTOR = '[data-editor-id="template-block-description"]';
 const TEMPLATE_PAGE_COUNT_SELECTOR = '[data-test-id="template-block-page-count"]';
 const TEMPLATE_NEW_PUBLICATION_SELECTOR = '[data-test-id="template-block-new-publication-btn"]';
-const NEW_PUBLICATION_BUTTON_RTE_SELECTOR = '[data-editor-id="asset-kit-block-download-button-text"]';
+const NEW_PUBLICATION_BUTTON_RTE_SELECTOR = '[data-editor-id="template-block-new-publication-button-text"]';
 
 const TEMPLATE_ID = 13;
 const ASSET_ID = 35;

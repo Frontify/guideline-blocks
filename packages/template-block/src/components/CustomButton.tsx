@@ -30,7 +30,7 @@ export const CustomButton = ({
             }}
         >
             <RichTextEditor
-                id="asset-kit-block-download-button-text"
+                id="template-block-new-publication-button-text"
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
