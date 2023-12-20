@@ -2,7 +2,7 @@
 
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { PluginComposer, merge } from '@frontify/fondue';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { CustomButtonProps } from './types';
 import { PreviewType } from '../types';
 
@@ -13,7 +13,6 @@ export const CustomButton = ({
     updateBlockSettings,
     handleNewPublication,
 }: CustomButtonProps) => {
-    const screenReaderRef = useRef<HTMLDivElement>(null);
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview } = blockSettings;
 
@@ -36,12 +35,6 @@ export const CustomButton = ({
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
                 onTextChange={(buttonText) => updateBlockSettings({ buttonText })}
-            />
-            <span
-                data-test-id="asset-kit-block-screen-reader"
-                ref={screenReaderRef}
-                role="status"
-                className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 tw-overflow-hidden"
             />
         </button>
     );
