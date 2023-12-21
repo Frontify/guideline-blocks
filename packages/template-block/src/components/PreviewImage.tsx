@@ -1,19 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template, useBlockAssets, useEditorState } from '@frontify/app-bridge';
-import { PreviewType, Settings, previewDisplayValues, previewImageAnchoringValues } from '../types';
-import { IconArrowSync, IconSpeechBubbleQuote20, merge } from '@frontify/fondue';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
+import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
+import { BlockItemWrapper, FlyoutToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { useEffect, useState } from 'react';
-
-export type PreviewImageProps = {
-    appBridge: AppBridgeBlock;
-    blockSettings: Settings;
-    template: Template | null;
-    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
-    onOpenTemplateChooser: () => void;
-};
+import { useEffect, useMemo, useState } from 'react';
+import { PreviewImageProps } from './types';
 
 export const PreviewImage = ({
     appBridge,
@@ -23,20 +16,61 @@ export const PreviewImage = ({
     onOpenTemplateChooser,
 }: PreviewImageProps) => {
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
-    const previewSrc =
-        preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
-            ? blockAssets.previewCustom[0].previewUrl
-            : template?.previewUrl;
+    const previewSrc = useMemo(
+        () =>
+            preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
+                ? blockAssets.previewCustom[0].previewUrl
+                : template?.previewUrl,
+        [blockAssets.previewCustom, preview, template?.previewUrl],
+    );
     const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isHovered, setIsHovered] = useState(false);
+    const hasCustomPreview = useMemo(
+        () => preview === PreviewType.Custom && blockAssets.previewCustom?.length > 0,
+        [blockAssets.previewCustom?.length, preview],
+    );
 
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
-    }, [preview, template, blockAssets.previewCustom]);
+    }, [previewSrc]);
+
+    const handleDeleteCustomPreview = async () => {
+        if (hasCustomPreview) {
+            await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
+            await updateBlockSettings({ altText: undefined });
+            setLocalAltText(undefined);
+        }
+    };
+
+    const getItemWrapperMenu = () => {
+        const menuItems: FlyoutToolbarItem[] = [
+            {
+                title: 'Set alt text',
+                onClick: () => setShowAltTextMenu(true),
+                icon: <IconSpeechBubbleQuote20 />,
+            },
+            {
+                title: 'Replace template',
+                onClick: onOpenTemplateChooser,
+                icon: <IconArrowSync />,
+            },
+        ];
+
+        if (hasCustomPreview) {
+            menuItems.push({
+                title: 'Delete custom preview',
+                onClick: handleDeleteCustomPreview,
+                style: MenuItemStyle.Danger,
+                icon: <IconTrashBin />,
+            });
+        }
+
+        return [menuItems];
+    };
 
     return (
         <>
@@ -68,20 +102,7 @@ export const PreviewImage = ({
                     <BlockItemWrapper
                         shouldBeShown={isHovered || showAltTextMenu}
                         toolbarItems={[]}
-                        toolbarFlyoutItems={[
-                            [
-                                {
-                                    title: 'Set alt text',
-                                    onClick: () => setShowAltTextMenu(true),
-                                    icon: <IconSpeechBubbleQuote20 />,
-                                },
-                                {
-                                    title: 'Replace template',
-                                    onClick: () => onOpenTemplateChooser(),
-                                    icon: <IconArrowSync />,
-                                },
-                            ],
-                        ]}
+                        toolbarFlyoutItems={getItemWrapperMenu()}
                     >
                         <EditAltTextFlyout
                             setShowAltTextMenu={setShowAltTextMenu}

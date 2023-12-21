@@ -22,7 +22,7 @@ const TEMPLATE_TITLE_SELECTOR = '[data-editor-id="template-block-title"]';
 const TEMPLATE_DESCRIPTION_SELECTOR = '[data-editor-id="template-block-description"]';
 const TEMPLATE_PAGE_COUNT_SELECTOR = '[data-test-id="template-block-page-count"]';
 const TEMPLATE_NEW_PUBLICATION_SELECTOR = '[data-test-id="template-block-new-publication-btn"]';
-const NEW_PUBLICATION_BUTTON_RTE_SELECTOR = '[data-editor-id="asset-kit-block-download-button-text"]';
+const NEW_PUBLICATION_BUTTON_RTE_SELECTOR = '[data-editor-id="template-block-new-publication-button-text"]';
 
 const TEMPLATE_ID = 13;
 const ASSET_ID = 35;
@@ -208,7 +208,8 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'column-reverse');
     });
 
-    it('should render block content with a flex direction row when text positioning is right', () => {
+    it('should render block content with a flex direction row for xl viewport when text positioning is right', () => {
+        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -220,7 +221,8 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row');
     });
 
-    it('should render block content with a flex direction row-reverse when text positioning is left', () => {
+    it('should render block content with a flex direction row-reverse for xl viewport when text positioning is left', () => {
+        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {

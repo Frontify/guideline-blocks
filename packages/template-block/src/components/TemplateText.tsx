@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
@@ -8,9 +8,8 @@ import {
     TextStyles,
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
+    hasRichTextValue,
 } from '@frontify/guideline-blocks-settings';
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Settings } from '../types';
 import {
     AutoformatPlugin,
     BoldPlugin,
@@ -22,18 +21,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
 } from '@frontify/fondue';
-
-export type TemplateTextProps = {
-    appBridge: AppBridgeBlock;
-    blockSettings: Settings;
-    title: string;
-    description: string;
-    pageCount: number | undefined;
-    isEditing: boolean;
-    key: number;
-    setTitle: (newTitle: string) => void;
-    setDescription: (newDescription: string) => void;
-};
+import { TemplateTextProps } from './types';
 
 export const TemplateText = ({
     appBridge,
@@ -64,6 +52,7 @@ export const TemplateText = ({
                 placeholder="Add a title"
                 onTextChange={setTitle}
                 isEditing={isEditing}
+                showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
             />
         ),
@@ -80,6 +69,7 @@ export const TemplateText = ({
                     'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
                 }
                 onTextChange={setDescription}
+                showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />

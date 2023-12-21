@@ -238,7 +238,7 @@ export const settings = defineSettings({
                         {
                             id: 'previewHeightSimple',
                             type: 'slider',
-                            defaultValue: PreviewHeightType.Small,
+                            defaultValue: PreviewHeightType.Auto,
                             choices: [
                                 {
                                     value: PreviewHeightType.Auto,

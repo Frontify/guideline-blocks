@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template, useBlockAssets } from '@frontify/app-bridge';
+import { useBlockAssets } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
-import { Settings, previewHeightValues, textPositioningToFlexDirection } from '../types';
+import { PreviewHeightType, previewHeightValues } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
@@ -10,14 +10,7 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { PreviewImage } from './PreviewImage';
-
-export type TemplatePreviewProps = {
-    appBridge: AppBridgeBlock;
-    blockSettings: Settings;
-    template: Template | null;
-    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
-    onOpenTemplateChooser: () => void;
-};
+import { TemplatePreviewProps } from './types';
 
 export const TemplatePreview = ({
     appBridge,
@@ -25,6 +18,7 @@ export const TemplatePreview = ({
     template,
     updateBlockSettings,
     onOpenTemplateChooser,
+    isRows,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
 
@@ -42,13 +36,10 @@ export const TemplatePreview = ({
         isPreviewHeightCustom,
         previewHeightSimple,
         previewHeightCustom,
-        textPositioning,
     } = blockSettings;
 
     const { previewCustom } = blockAssets;
 
-    const flexDirection = textPositioningToFlexDirection[textPositioning];
-    const isRows = flexDirection === 'row' || flexDirection === 'row-reverse';
     const borderRadius = hasRadius_templatePreview
         ? radiusValue_templatePreview
         : radiusStyleMap[radiusChoice_templatePreview];
@@ -86,7 +77,7 @@ export const TemplatePreview = ({
                     />
                 </div>
             ) : (
-                <div style={{ height }}>
+                <div style={{ height: previewHeightValues[PreviewHeightType.Small] }}>
                     <BlockInjectButton
                         label="Choose existing template"
                         icon={<IconPlus24 />}
