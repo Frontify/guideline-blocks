@@ -32,7 +32,7 @@ export const settings = defineSettings({
             id: 'positioning',
             label: 'Positioning',
             type: 'segmentedControls',
-            defaultValue: TextPosition.Below,
+            defaultValue: TextPosition.Above,
             choices: [
                 { value: TextPosition.Below, icon: IconEnum.MediaObjectTextBottom },
                 { value: TextPosition.Above, icon: IconEnum.MediaObjectTextTop },
