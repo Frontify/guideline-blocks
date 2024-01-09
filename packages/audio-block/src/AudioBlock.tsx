@@ -22,19 +22,20 @@ import {
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
+    withAttachments,
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
-import { AUDIO_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { BlockSettings, TextPosition } from './types';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
-export const AudioBlock = ({ appBridge }: BlockProps) => {
+export const AudioBlock = withAttachments(({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -136,7 +137,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             <RichTextEditor
                                 id={`${appBridge.getBlockId().toString()}-title`}
                                 plugins={titlePlugins}
-                                isEditing={isEditing}
+                                isEditing={false}
                                 onTextChange={onTitleChange}
                                 value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                                 placeholder="Asset name"
@@ -147,14 +148,14 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             <RichTextEditor
                                 id={`${appBridge.getBlockId().toString()}-description`}
                                 plugins={getDescriptionPlugins(appBridge)}
-                                isEditing={isEditing}
+                                isEditing={false}
                                 onTextChange={onDescriptionChange}
                                 value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
                                 placeholder="Add a description here"
                             />
                         </div>
                     </div>
-                    {audio && (
+                    {audio && !isEditing && (
                         <div className="tw-flex tw-gap-2">
                             {isDownloadable(
                                 blockSettings.security,
@@ -172,4 +173,4 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             </div>
         </div>
     );
-};
+}, ATTACHMENTS_ASSET_ID);

@@ -1,12 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Attachments, useAttachments } from '@frontify/guideline-blocks-settings';
+import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
 import { BlockAttachmentsProps } from '../types';
-import { ATTACHMENTS_ASSET_ID } from '../settings';
 
 export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
-        useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
+        useAttachmentsContext();
 
     return (
         <Attachments

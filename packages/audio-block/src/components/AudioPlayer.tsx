@@ -30,6 +30,8 @@ export const AudioPlayer = ({
 }: AudioPlayerProps): ReactElement => (
     <BlockItemWrapper
         shouldHideWrapper={!isEditing}
+        showAttachments
+        toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: () => onRemoveAsset() }]}
         toolbarFlyoutItems={[
             [
                 {
@@ -44,7 +46,6 @@ export const AudioPlayer = ({
                 },
             ],
         ]}
-        toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: () => onRemoveAsset() }]}
     >
         {isLoading ? (
             <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
