@@ -137,7 +137,7 @@ export const AudioBlock = withAttachments(({ appBridge }: BlockProps) => {
                             <RichTextEditor
                                 id={`${appBridge.getBlockId().toString()}-title`}
                                 plugins={titlePlugins}
-                                isEditing={false}
+                                isEditing={isEditing}
                                 onTextChange={onTitleChange}
                                 value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                                 placeholder="Asset name"
@@ -148,7 +148,7 @@ export const AudioBlock = withAttachments(({ appBridge }: BlockProps) => {
                             <RichTextEditor
                                 id={`${appBridge.getBlockId().toString()}-description`}
                                 plugins={getDescriptionPlugins(appBridge)}
-                                isEditing={false}
+                                isEditing={isEditing}
                                 onTextChange={onDescriptionChange}
                                 value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
                                 placeholder="Add a description here"
