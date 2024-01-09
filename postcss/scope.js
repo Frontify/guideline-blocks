@@ -20,15 +20,16 @@ module.exports = (opts = {}) => {
                 ) {
                     return;
                 }
-                rule.selectors = rule.selectors.map((selectors) => {
-                    return selectors.split(/,\s* /g).map((selector) => {
-                        if (selector === opts.selector) {
-                            return selector;
-                        }
-                        const newSelector = `${opts.scope} ${selector}`;
-                        return newSelector;
-                    });
-                });
+                rule.selectors = rule.selectors.map((originalSelector) =>
+                    originalSelector
+                        .split(/,\s*/g)
+                        .map((individualSelector) =>
+                            individualSelector === opts.selector
+                                ? individualSelector
+                                : `${opts.scope} ${individualSelector}`,
+                        )
+                        .join(", "),
+                );
             });
         },
     };
