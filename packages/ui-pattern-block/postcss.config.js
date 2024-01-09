@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 module.exports = {
-    plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-    },
+    plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+        require('../../postcss/scope')({ scope: '.ui-pattern-block' }),
+    ],
 };
