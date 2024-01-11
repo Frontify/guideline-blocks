@@ -22,7 +22,7 @@ module.exports = (opts = {}) => {
                 }
                 rule.selectors = rule.selectors.map((originalSelector) =>
                     originalSelector
-                        .split(/,\s*/g)
+                        .split(/(?<!\\),\s*/g)
                         .map((individualSelector) =>
                             individualSelector === opts.selector
                                 ? individualSelector
