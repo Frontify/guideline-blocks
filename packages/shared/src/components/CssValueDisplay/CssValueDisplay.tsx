@@ -2,13 +2,11 @@
 
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { langs } from '@uiw/codemirror-extensions-langs';
+import { css } from '@codemirror/lang-css';
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 
 import { CssValueDisplayProps } from './types';
-
-const CSS_LANG = langs.css();
 
 export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
@@ -44,7 +42,7 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                 </div>
                 <CodeMirror
                     value={cssValue}
-                    extensions={[CSS_LANG]}
+                    extensions={[css()]}
                     readOnly={true}
                     basicSetup={{
                         highlightActiveLineGutter: false,
