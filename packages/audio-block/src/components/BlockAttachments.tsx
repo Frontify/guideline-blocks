@@ -4,17 +4,17 @@ import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-s
 import { BlockAttachmentsProps } from '../types';
 
 export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
-    const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
+    const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
 
     return (
         <Attachments
-            onUpload={onAddAttachments}
+            onUpload={onAttachmentsAdd}
             onDelete={onAttachmentDelete}
             onReplaceWithBrowse={onAttachmentReplace}
             onReplaceWithUpload={onAttachmentReplace}
             onSorted={onAttachmentsSorted}
-            onBrowse={onAddAttachments}
+            onBrowse={onAttachmentsAdd}
             items={attachments}
             appBridge={appBridge}
         />
