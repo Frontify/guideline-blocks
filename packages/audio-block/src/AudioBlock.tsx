@@ -22,7 +22,7 @@ import {
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
-    withAttachments,
+    withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -35,7 +35,7 @@ import { BlockSettings, TextPosition } from './types';
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
-export const AudioBlock = withAttachments(({ appBridge }: BlockProps) => {
+export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
