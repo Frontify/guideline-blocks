@@ -6,5 +6,4 @@ module.exports = {
     corePlugins: {
         preflight: false,
     },
-    important: '.code-snippet-block',
 };
