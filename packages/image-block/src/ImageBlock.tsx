@@ -15,13 +15,14 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
-import { ALLOWED_EXTENSIONS, IMAGE_ID } from './settings';
+import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
     BlockProps,
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
+    withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
@@ -36,7 +37,7 @@ import {
 } from '@frontify/fondue';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 
-export const ImageBlock = ({ appBridge }: BlockProps) => {
+export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -120,6 +121,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
                             shouldBeShown={showAltTextMenu}
+                            showAttachments
                             toolbarFlyoutItems={[
                                 image
                                     ? [
@@ -189,4 +191,4 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             </div>
         </div>
     );
-};
+}, ATTACHMENTS_ASSET_ID);
