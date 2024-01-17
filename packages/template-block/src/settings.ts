@@ -38,6 +38,13 @@ export const settings = defineSettings({
             showForTranslations: true,
         },
         {
+            id: 'hasPageCount',
+            type: 'switch',
+            defaultValue: true,
+            label: 'Show page count',
+            info: 'Show or hide the page count indicator',
+        },
+        {
             id: 'preview',
             type: 'slider',
             label: 'Preview',
@@ -203,13 +210,6 @@ export const settings = defineSettings({
                             icon: IconEnum.ArrowAlignRight,
                         },
                     ],
-                },
-                {
-                    id: 'hasPageCount',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show page count',
-                    info: 'Show or hide the page count indicator',
                 },
             ],
         },
