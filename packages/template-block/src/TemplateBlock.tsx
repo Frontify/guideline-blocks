@@ -221,7 +221,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     </div>
                     {!hasPreview && isEditing && (
-                        <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-[12px] tw-pl-[16px] tw-h-[70px] tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
+                        <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
                             <div>
                                 <Text size="large" color="x-weak">
                                     Connected template:{' '}
