@@ -14,7 +14,6 @@ import {
 } from '@frontify/app-bridge';
 import { ReactElement, useEffect, useState } from 'react';
 import {
-    BlockInjectButton,
     BlockProps,
     convertToRteValue,
     getBackgroundColorStyles,
@@ -30,7 +29,7 @@ import {
     textPositioningToStyles,
 } from './types';
 import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
-import { IconPlus24, TextStyles, generateRandomId, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, Text, TextStyles, generateRandomId, merge } from '@frontify/fondue';
 import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layout';
 import { TemplatePreview } from './components/TemplatePreview';
 import { AlertError } from './components/AlertError';
@@ -222,14 +221,20 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     </div>
                     {!hasPreview && isEditing && (
-                        <div className="tw-pt-2 tw-w-3/4 tw-h-[70px]">
-                            <BlockInjectButton
-                                label="Choose existing template"
-                                icon={<IconPlus24 />}
-                                withMenu={false}
-                                fillParentContainer
+                        <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-[12px] tw-pl-[16px] tw-h-[70px] tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
+                            <div>
+                                <Text size="large" color="x-weak">
+                                    Connected template:{' '}
+                                </Text>
+                                <Text size="large">{selectedTemplate?.name ?? 'None'}</Text>
+                            </div>
+
+                            <Button
+                                emphasis={selectedTemplate ? ButtonEmphasis.Default : ButtonEmphasis.Strong}
                                 onClick={handleOpenTemplateChooser}
-                            />
+                            >
+                                {selectedTemplate ? 'Replace template' : 'Choose existing template'}
+                            </Button>
                         </div>
                     )}
                 </div>
