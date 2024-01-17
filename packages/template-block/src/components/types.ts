@@ -39,7 +39,7 @@ export type TemplateTextProps = {
     description: string;
     pageCount: number | undefined;
     isEditing: boolean;
-    key: string;
+    rteKey: string;
     setTitle: (newTitle: string) => void;
     setDescription: (newDescription: string) => void;
 };

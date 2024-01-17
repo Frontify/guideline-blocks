@@ -108,7 +108,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     description={description}
                                     pageCount={selectedTemplate?.pages.length ?? 0}
                                     isEditing={isEditing}
-                                    key={templateTextKey}
+                                    rteKey={templateTextKey}
                                     setTitle={saveTitle}
                                     setDescription={saveDescription}
                                 />

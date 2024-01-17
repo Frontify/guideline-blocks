@@ -29,7 +29,7 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
-    key,
+    rteKey,
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
@@ -47,7 +47,7 @@ export const TemplateText = ({
         () => (
             <RichTextEditor
                 id="template-block-title"
-                key={key}
+                key={`${rteKey}-title`}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onTextChange={setTitle}
@@ -56,7 +56,7 @@ export const TemplateText = ({
                 plugins={customTitlePlugins}
             />
         ),
-        [customTitlePlugins, isEditing, setTitle, title],
+        [customTitlePlugins, isEditing, rteKey, setTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -64,7 +64,7 @@ export const TemplateText = ({
             <RichTextEditor
                 id="template-block-description"
                 value={description}
-                key={key}
+                key={`${rteKey}-description`}
                 placeholder={
                     'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
                 }
@@ -74,7 +74,7 @@ export const TemplateText = ({
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, description, isEditing, setDescription],
+        [appBridge, description, isEditing, rteKey, setDescription],
     );
 
     return (
