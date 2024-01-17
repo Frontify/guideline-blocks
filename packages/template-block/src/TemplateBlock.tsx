@@ -1,16 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type ReactElement } from 'react';
 import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { ReactElement } from 'react';
-import { BlockInjectButton, BlockProps, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
-import { AnchoringType, PreviewType, TextPositioningType, justifyHorizontal } from './types';
-import { GAP, VERTICAL_GAP } from './constants';
 import { IconPlus24, merge } from '@frontify/fondue';
-import { getCardPadding, getLayoutClasses } from './helpers/layout';
-import { TemplatePreview } from './components/TemplatePreview';
+import { BlockInjectButton, type BlockProps, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
+
 import { AlertError } from './components/AlertError';
-import { TemplateText } from './components/TemplateText';
 import { CustomButton } from './components/CustomButton';
+import { TemplatePreview } from './components/TemplatePreview';
+import { TemplateText } from './components/TemplateText';
+import { GAP, VERTICAL_GAP } from './constants';
+import { AnchoringType, PreviewType, TextPositioningType, justifyHorizontal } from './types';
+import { getCardPadding, getLayoutClasses } from './helpers/layout';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
