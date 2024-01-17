@@ -94,6 +94,27 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('not.exist');
     });
 
+    it('should not render page count in edit mode if the setting is disabled', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                hasPageCount: false,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('not.exist');
+    });
+
+    it('should render page count "0" in edit mode if no template is selected', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('have.text', '0 pages');
+    });
+
     it('should not render preview if preview is set to none', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             blockSettings: {
