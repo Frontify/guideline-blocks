@@ -34,7 +34,6 @@ export type TemplatePreviewProps = {
 
 export type TemplateTextProps = {
     appBridge: AppBridgeBlock;
-    blockSettings: Settings;
     title: string;
     description: string;
     pageCount: number | undefined;
