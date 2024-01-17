@@ -65,9 +65,7 @@ export const TemplateText = ({
                 id="template-block-description"
                 value={description}
                 key={key}
-                placeholder={
-                    'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
-                }
+                placeholder="Add a description for your template"
                 onTextChange={setDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
