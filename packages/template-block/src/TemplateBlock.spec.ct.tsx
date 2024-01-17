@@ -79,6 +79,21 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_DESCRIPTION_SELECTOR).should('exist');
     });
 
+    it('should not render page count if the setting is disabled', () => {
+        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            blockTemplates: {
+                template: [templateDummy],
+            },
+            blockSettings: {
+                hasPageCount: false,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('not.exist');
+    });
+
     it('should not render preview if preview is set to none', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             blockSettings: {
