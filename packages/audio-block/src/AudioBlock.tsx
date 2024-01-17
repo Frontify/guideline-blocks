@@ -25,12 +25,15 @@ import {
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
+
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { BlockSettings, TextPosition } from './types';
+
+import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/dist/styles.css';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
