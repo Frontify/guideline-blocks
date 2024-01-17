@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview } from './types';
@@ -26,13 +26,11 @@ describe('Figma Block', () => {
     });
 
     it('triggers openAssetChooser mock', () => {
-        const appBridgeStub = getAppBridgeBlockStub({
-            editorState: true,
-        });
+        const [FigmaBlockWithStubs, appBridge] = withAppBridgeBlockStubs(FigmaBlock, { editorState: true });
 
-        mount(<FigmaBlock appBridge={appBridgeStub} />);
+        mount(<FigmaBlockWithStubs />);
         cy.get(EMPTY_BLOCK_SELECTOR).click();
-        cy.wrap(appBridgeStub.dispatch).should('have.been.calledWith', {
+        cy.wrap(appBridge.dispatch).should('have.been.calledWith', {
             name: 'openAssetChooser',
             payload: {
                 selectedValueId: undefined,
