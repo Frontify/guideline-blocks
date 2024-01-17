@@ -10,12 +10,6 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
-import { ImageCaption } from './components/ImageCaption';
-import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
     BlockProps,
@@ -25,8 +19,6 @@ import {
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { Image } from './components/Image';
-import { useEffect, useState } from 'react';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
@@ -35,7 +27,17 @@ import {
     LoadingCircle,
     MenuItemStyle,
 } from '@frontify/fondue';
+import { useEffect, useState } from 'react';
+
+import { Image } from './components/Image';
+import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
+import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
+import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
+
+import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/dist/styles.css';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
