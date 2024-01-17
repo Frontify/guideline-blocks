@@ -111,12 +111,16 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [error]);
 
     useEffect(() => {
-        if (blockTemplates[TEMPLATE_BLOCK_SETTING_ID] && blockTemplates[TEMPLATE_BLOCK_SETTING_ID].length > 0) {
-            const lastTemplate = blockTemplates[TEMPLATE_BLOCK_SETTING_ID].pop();
+        const templates = blockTemplates[TEMPLATE_BLOCK_SETTING_ID];
 
-            if (lastTemplate) {
-                setSelectedTemplate(lastTemplate);
-            }
+        if (!templates || templates.length === 0) {
+            return;
+        }
+
+        const lastTemplate = templates[templates.length - 1];
+
+        if (lastTemplate) {
+            setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
 
