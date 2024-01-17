@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { useCallback, useEffect, useState } from 'react';
 import {
-    Template,
-    TemplateLegacy,
+    type Template,
+    type TemplateLegacy,
     closeTemplateChooser,
     useBlockAssets,
     useBlockSettings,
@@ -10,17 +11,17 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { TextStyles, generateRandomId } from '@frontify/fondue';
-import { useCallback, useEffect, useState } from 'react';
-import { PreviewType, Settings, TextPositioningType, textPositioningToStyles } from '../types';
+import { type BlockProps, convertToRteValue, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
-import { BlockProps, convertToRteValue, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { getIsRows } from '../helpers/layout';
+import { PreviewType, type Settings, TextPositioningType, textPositioningToStyles } from '../types';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId);
+    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
