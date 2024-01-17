@@ -81,11 +81,9 @@ export const TemplateText = ({
         <div>
             <div className="tw-mb-2">
                 {memoTitleRte}
-                {pageCount && (
-                    <div>
-                        <span data-test-id="template-block-page-count" style={{ ...pageCountStyles }}>
-                            {`${pageCount} ${pageCountLabel}`}
-                        </span>
+                {pageCount !== undefined && (
+                    <div data-test-id="template-block-page-count">
+                        <span style={{ ...pageCountStyles }}>{`${pageCount} ${pageCountLabel}`}</span>
                     </div>
                 )}
             </div>
