@@ -197,7 +197,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     title={title}
                                     description={description}
                                     pageCount={
-                                        blockSettings.hasPageCount !== false
+                                        blockSettings.hasPageCount
                                             ? selectedTemplate?.pages.length ?? 0
                                             : undefined
                                     }
