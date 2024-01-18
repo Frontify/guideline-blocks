@@ -24,9 +24,6 @@ export const getIsRows = (hasPreview: boolean, textPositioning: TextPositioningT
 };
 
 export const getLayoutClasses = (hasPreview: boolean, textPositioning: TextPositioningType) => {
-    const previewClasses = getIsRows(hasPreview, textPositioning)
-        ? 'tw-flex-col'
-        : 'tw-grid tw-grid-rows-2 grid-flow-col';
-
+    const previewClasses = getIsRows(hasPreview, textPositioning) ? 'tw-flex-col' : 'tw-grid grid-flow-col';
     return hasPreview ? previewClasses : 'tw-grid tw-grid-cols-3';
 };
