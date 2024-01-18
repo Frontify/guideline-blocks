@@ -20,8 +20,7 @@ export const getCardPadding = (blockSettings: Settings) => {
 
 export const getIsRows = (hasPreview: boolean, textPositioning: TextPositioningType): boolean => {
     const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
-
-    return hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
+    return hasPreview && ['row', 'row-reverse'].includes(flexDirection);
 };
 
 export const getLayoutClasses = (hasPreview: boolean, textPositioning: TextPositioningType) => {
