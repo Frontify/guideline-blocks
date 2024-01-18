@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Security } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react18';
+
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
-import { Security } from '@frontify/guideline-blocks-settings';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
