@@ -169,7 +169,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         data-test-id="template-block-content"
                         className={`tw-flex ${flexDirectionStyles}`}
                         style={{
-                            gap: textPositioning !== TextPositioningType.Top ? GAP : undefined,
+                            gap: GAP,
                             alignItems: isRows ? textAnchoringVertical : undefined,
                         }}
                     >
