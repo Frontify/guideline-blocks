@@ -6,11 +6,10 @@ import {
     DownloadButton,
     isDownloadable,
     joinClassNames,
-    useAttachments,
+    useAttachmentsContext,
 } from '@frontify/guideline-blocks-settings';
 import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
-import { ATTACHMENTS_ASSET_ID } from '../settings';
 import { getImageStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
 
@@ -63,8 +62,8 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
 };
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
-    const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
-        useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
+    const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
+        useAttachmentsContext();
 
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
@@ -80,30 +79,36 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                     image={image}
                     isEditing={isEditing}
                 />
-                <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-                    <div
-                        className="tw-flex tw-gap-2"
-                        data-test-id="buttons-wrapper"
-                        style={getTotalImagePadding(blockSettings)}
-                    >
-                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
-                            <DownloadButton
-                                onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
-                            />
-                        )}
+                {!isEditing && (
+                    <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
+                        <div
+                            className="tw-flex tw-gap-2"
+                            data-test-id="buttons-wrapper"
+                            style={getTotalImagePadding(blockSettings)}
+                        >
+                            {isDownloadable(
+                                blockSettings.security,
+                                blockSettings.downloadable,
+                                assetDownloadEnabled,
+                            ) && (
+                                <DownloadButton
+                                    onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
+                                />
+                            )}
 
-                        <Attachments
-                            onUpload={onAddAttachments}
-                            onDelete={onAttachmentDelete}
-                            onReplaceWithBrowse={onAttachmentReplace}
-                            onReplaceWithUpload={onAttachmentReplace}
-                            onSorted={onAttachmentsSorted}
-                            onBrowse={onAddAttachments}
-                            items={attachments}
-                            appBridge={appBridge}
-                        />
+                            <Attachments
+                                onUpload={onAttachmentsAdd}
+                                onDelete={onAttachmentDelete}
+                                onReplaceWithBrowse={onAttachmentReplace}
+                                onReplaceWithUpload={onAttachmentReplace}
+                                onSorted={onAttachmentsSorted}
+                                onBrowse={onAttachmentsAdd}
+                                items={attachments}
+                                appBridge={appBridge}
+                            />
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

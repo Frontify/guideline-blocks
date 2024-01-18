@@ -1,117 +1,45 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    OpenNewPublicationPayload,
-    Template,
-    TemplateLegacy,
-    closeTemplateChooser,
-    openNewPublication,
-    openTemplateChooser,
-    useBlockAssets,
-    useBlockSettings,
-    useBlockTemplates,
-    useEditorState,
-} from '@frontify/app-bridge';
-import { ReactElement, useEffect, useState } from 'react';
-import {
-    BlockProps,
-    convertToRteValue,
-    getBackgroundColorStyles,
-    radiusStyleMap,
-    toRgbaString,
-} from '@frontify/guideline-blocks-settings';
-import {
-    AnchoringType,
-    PreviewType,
-    Settings,
-    TextPositioningType,
-    justifyHorizontal,
-    textPositioningToStyles,
-} from './types';
-import { GAP, TEMPLATE_BLOCK_SETTING_ID, VERTICAL_GAP } from './constants';
-import { Button, ButtonEmphasis, Text, TextStyles, generateRandomId, merge } from '@frontify/fondue';
-import { getCardPadding, getIsRows, getLayoutClasses } from './helpers/layout';
-import { TemplatePreview } from './components/TemplatePreview';
+import { type ReactElement } from 'react';
+import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
+import { Button, ButtonEmphasis, Text, merge } from '@frontify/fondue';
+import { type BlockProps, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
+
 import { AlertError } from './components/AlertError';
-import { TemplateText } from './components/TemplateText';
 import { CustomButton } from './components/CustomButton';
+import { TemplatePreview } from './components/TemplatePreview';
+import { TemplateText } from './components/TemplateText';
+import { GAP, VERTICAL_GAP } from './constants';
+import { AnchoringType, PreviewType, TextPositioningType, justifyHorizontal } from './types';
+import { getCardPadding, getLayoutClasses } from './helpers/layout';
+import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
-    const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
-    const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId);
-    const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
-    const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
-
     const {
-        title,
-        description,
+        selectedTemplate,
         preview,
+        previewCustom,
+        isEditing,
         hasBackground,
         backgroundColor,
-        hasBorder_blockCard,
-        borderWidth_blockCard,
-        borderColor_blockCard,
-        borderStyle_blockCard,
-        hasRadius_blockCard,
-        radiusValue_blockCard,
-        radiusChoice_blockCard,
+        borderRadius,
+        border,
+        blockSettings,
+        lastErrorMessage,
+        flexDirectionStyles,
         textPositioning,
+        isRows,
+        textAnchoringVertical,
+        hasPreview,
         textRatio,
         textAnchoringHorizontal,
-        textAnchoringVertical,
-    } = blockSettings;
-    const { previewCustom } = blockAssets;
-
-    const hasPreview = preview !== PreviewType.None;
-    const flexDirectionStyles = hasPreview
-        ? textPositioningToStyles[textPositioning]
-        : textPositioningToStyles[TextPositioningType.Right];
-    const isRows = getIsRows(hasPreview, textPositioning);
-    const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
-    const border = hasBorder_blockCard
-        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
-        : 'none';
-
-    useEffect(() => {
-        const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
-
-        return () => {
-            if (typeof unsubscribeTemplateChooser === 'function') {
-                unsubscribeTemplateChooser();
-            }
-        };
-    }, []);
-
-    useEffect(() => {
-        if (error !== null) {
-            setLastErrorMessage(error);
-        }
-    }, [error]);
-
-    useEffect(() => {
-        if (blockTemplates[TEMPLATE_BLOCK_SETTING_ID] && blockTemplates[TEMPLATE_BLOCK_SETTING_ID].length > 0) {
-            const lastTemplate = blockTemplates[TEMPLATE_BLOCK_SETTING_ID].pop();
-
-            if (lastTemplate) {
-                setSelectedTemplate(lastTemplate);
-            }
-        }
-    }, [blockTemplates]);
-
-    const saveDescription = async (newDescription: string) => {
-        if (description !== newDescription) {
-            await updateBlockSettings({ description: newDescription });
-        }
-    };
-
-    const saveTitle = async (newTitle: string) => {
-        if (title !== newTitle) {
-            await updateBlockSettings({ title: newTitle });
-        }
-    };
+        title,
+        description,
+        templateTextKey,
+        saveDescription,
+        saveTitle,
+        updateBlockSettings,
+    } = useTemplateBlockData(appBridge);
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
@@ -129,23 +57,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
             await appBridge.dispatch(openNewPublication(options));
         }
-    };
-
-    const onTemplateSelected = async (result: { template: TemplateLegacy }) => {
-        try {
-            await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
-            updateBlockSettings({
-                template: result.template,
-                templateId: result.template.id,
-            });
-            await saveTitle(convertToRteValue(TextStyles.heading3, result.template.title));
-            await saveDescription(result.template.description);
-            setTemplateTextKey(generateRandomId());
-        } catch (error) {
-            setLastErrorMessage(error as string);
-        }
-
-        await appBridge.dispatch(closeTemplateChooser());
     };
 
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
