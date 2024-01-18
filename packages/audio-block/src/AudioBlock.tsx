@@ -33,7 +33,7 @@ import { BlockSettings, TextPosition } from './types';
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/dist/styles.css';
+import '@frontify/fondue/style';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
@@ -159,7 +159,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         </div>
                     </div>
                     {audio && !isEditing && (
-                        <div className="tw-flex tw-gap-2">
+                        <div className="tw-flex tw-gap-2" data-test-id="view-mode-addons">
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,

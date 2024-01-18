@@ -37,7 +37,7 @@ import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } fro
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/dist/styles.css';
+import '@frontify/fondue/style';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);

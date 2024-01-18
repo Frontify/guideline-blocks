@@ -32,7 +32,7 @@ export const AudioPlayer = ({
         <BlockItemWrapper
             shouldHideWrapper={!isEditing}
             showAttachments
-            toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: () => onRemoveAsset() }]}
+            toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: onRemoveAsset }]}
             toolbarFlyoutItems={[
                 [
                     {

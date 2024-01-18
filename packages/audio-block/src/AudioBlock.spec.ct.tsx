@@ -4,7 +4,7 @@ import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
-import { AUDIO_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { Security } from '@frontify/guideline-blocks-settings';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
@@ -13,6 +13,9 @@ const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
 const AudioBlockTitleHtmlSelector = '[data-test-id="block-title"] [data-test-id="rte-content-html"]';
 const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description"] [data-test-id="rte-content-html"]';
 const DownloadButtonSelector = '[data-test-id="download-button"]';
+const AttachmentsTriggerSelector = '[data-test-id="attachments-flyout-button"]';
+const ViewModeAddonsSelector = '[data-test-id="view-mode-addons"]';
+const BlockWrapperSelector = '[data-test-id="block-item-wrapper"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
 const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
@@ -164,5 +167,55 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(DownloadButtonSelector).should('not.exist');
+    });
+
+    it('should render attachment button in view mode', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockAssets: {
+                [ATTACHMENTS_ASSET_ID]: [asset, asset],
+                [AUDIO_ID]: [asset],
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(AttachmentsTriggerSelector).should('have.length', 1).and('be.visible').and('contain.text', 2);
+    });
+
+    it('should hide block wrapper and toolbar in view mode', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockAssets: {
+                [ATTACHMENTS_ASSET_ID]: [asset, asset],
+                [AUDIO_ID]: [asset],
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(BlockWrapperSelector).should('not.exist');
+    });
+
+    it('should render attachment toolbar button in edit mode', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockAssets: {
+                [ATTACHMENTS_ASSET_ID]: [asset, asset],
+                [AUDIO_ID]: [asset],
+            },
+            editorState: true,
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(AttachmentsTriggerSelector).should('have.length', 1).and('not.be.visible').and('contain.text', 2);
+    });
+
+    it('should hide download and attachment buttons in edit mode', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockAssets: {
+                [ATTACHMENTS_ASSET_ID]: [asset, asset],
+                [AUDIO_ID]: [asset],
+            },
+            editorState: true,
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(ViewModeAddonsSelector).should('not.exist');
     });
 });
