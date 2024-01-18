@@ -22,19 +22,23 @@ import {
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
+    withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
+
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
-import { AUDIO_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { BlockSettings, TextPosition } from './types';
+
+import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
-export const AudioBlock = ({ appBridge }: BlockProps) => {
+export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -154,8 +158,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             />
                         </div>
                     </div>
-                    {audio && (
-                        <div className="tw-flex tw-gap-2">
+                    {audio && !isEditing && (
+                        <div className="tw-flex tw-gap-2" data-test-id="view-mode-addons">
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,
@@ -172,4 +176,4 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             </div>
         </div>
     );
-};
+}, ATTACHMENTS_ASSET_ID);

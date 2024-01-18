@@ -27,40 +27,43 @@ export const AudioPlayer = ({
     openFileDialog,
     openAssetChooser,
     onRemoveAsset,
-}: AudioPlayerProps): ReactElement => (
-    <BlockItemWrapper
-        shouldHideWrapper={!isEditing}
-        toolbarFlyoutItems={[
-            [
-                {
-                    title: 'Replace with upload',
-                    icon: <IconArrowCircleUp20 />,
-                    onClick: openFileDialog,
-                },
-                {
-                    title: 'Replace with asset',
-                    icon: <IconImageStack20 />,
-                    onClick: openAssetChooser,
-                },
-            ],
-        ]}
-        toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: () => onRemoveAsset() }]}
-    >
-        {isLoading ? (
-            <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
-                <LoadingCircle />
-            </div>
-        ) : (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <audio
-                data-test-id="audio-block-audio-tag"
-                key={audio.id}
-                controls
-                className={joinClassNames(['tw-w-full tw-outline-none', FOCUS_VISIBLE_STYLE])}
-                controlsList="nodownload"
-                preload="metadata"
-                src={audio.genericUrl}
-            />
-        )}
-    </BlockItemWrapper>
-);
+}: AudioPlayerProps): ReactElement => {
+    return (
+        <BlockItemWrapper
+            shouldHideWrapper={!isEditing}
+            showAttachments
+            toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: onRemoveAsset }]}
+            toolbarFlyoutItems={[
+                [
+                    {
+                        title: 'Replace with upload',
+                        icon: <IconArrowCircleUp20 />,
+                        onClick: openFileDialog,
+                    },
+                    {
+                        title: 'Replace with asset',
+                        icon: <IconImageStack20 />,
+                        onClick: openAssetChooser,
+                    },
+                ],
+            ]}
+        >
+            {isLoading ? (
+                <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
+                    <LoadingCircle />
+                </div>
+            ) : (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
+                <audio
+                    data-test-id="audio-block-audio-tag"
+                    key={audio.id}
+                    controls
+                    className={joinClassNames(['tw-w-full tw-outline-none', FOCUS_VISIBLE_STYLE])}
+                    controlsList="nodownload"
+                    preload="metadata"
+                    src={audio.genericUrl}
+                />
+            )}
+        </BlockItemWrapper>
+    );
+};

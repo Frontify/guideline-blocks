@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
@@ -27,13 +26,19 @@ describe('Figma Block', () => {
     });
 
     it('triggers openAssetChooser mock', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs<BlockProps>(FigmaBlock, {
-            editorState: true,
-            openAssetChooser: cy.stub().as('onClickOpenAssetChooser'),
-        });
+        const [FigmaBlockWithStubs, appBridge] = withAppBridgeBlockStubs(FigmaBlock, { editorState: true });
+
         mount(<FigmaBlockWithStubs />);
         cy.get(EMPTY_BLOCK_SELECTOR).click();
-        cy.get('@onClickOpenAssetChooser').should('have.been.calledOnce');
+        cy.wrap(appBridge.dispatch).should('have.been.calledWith', {
+            name: 'openAssetChooser',
+            payload: {
+                selectedValueId: undefined,
+                projectTypes: ['Workspace'],
+                objectTypes: ['URL'],
+                urlContains: 'https://www.figma',
+            },
+        });
     });
 
     it('renders a Figma image preview', () => {
