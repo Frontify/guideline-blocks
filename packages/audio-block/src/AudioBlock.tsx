@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Asset,
+    type Asset,
     AssetChooserObjectType,
-    FileExtension,
+    type FileExtension,
     FileExtensionSets,
     useAssetChooser,
     useAssetUpload,
@@ -13,8 +13,9 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
+import { generateRandomId } from '@frontify/fondue';
 import {
-    BlockProps,
+    type BlockProps,
     DownloadButton,
     RichTextEditor,
     TextStyles,
@@ -29,7 +30,7 @@ import { useEffect, useState } from 'react';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
-import { BlockSettings, TextPosition } from './types';
+import { type BlockSettings, TextPosition } from './types';
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
@@ -40,6 +41,7 @@ const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [titleKey, setTitleKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -55,7 +57,8 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(blockSettings.title)) {
-            onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
+            await onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
+            setTitleKey(generateRandomId());
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
@@ -86,7 +89,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         }
     };
 
-    const onTitleChange = (title: string) => title !== blockSettings.title && setBlockSettings({ title });
+    const onTitleChange = async (title: string) => title !== blockSettings.title && (await setBlockSettings({ title }));
 
     const onDescriptionChange = (description: string) =>
         description !== blockSettings.description && setBlockSettings({ description });
@@ -138,7 +141,8 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                     <div className="tw-flex-1">
                         <div data-test-id="block-title">
                             <RichTextEditor
-                                id={`${appBridge.getBlockId().toString()}-title`}
+                                key={titleKey}
+                                id={`${appBridge.context('blockId').get()}-title`}
                                 plugins={titlePlugins}
                                 isEditing={isEditing}
                                 onTextChange={onTitleChange}
@@ -149,7 +153,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
 
                         <div data-test-id="block-description">
                             <RichTextEditor
-                                id={`${appBridge.getBlockId().toString()}-description`}
+                                id={`${appBridge.context('blockId').get()}-description`}
                                 plugins={getDescriptionPlugins(appBridge)}
                                 isEditing={isEditing}
                                 onTextChange={onDescriptionChange}
