@@ -56,7 +56,7 @@ export const TemplateText = ({
                 plugins={customTitlePlugins}
             />
         ),
-        [customTitlePlugins, isEditing, setTitle, title],
+        [customTitlePlugins, isEditing, key, setTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -74,7 +74,7 @@ export const TemplateText = ({
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, description, isEditing, setDescription],
+        [appBridge, description, isEditing, key, setDescription],
     );
 
     return (

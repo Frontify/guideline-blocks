@@ -10,7 +10,7 @@ import { CustomButton } from './components/CustomButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
 import { GAP, VERTICAL_GAP } from './constants';
-import { AnchoringType, PreviewType, TextPositioningType, justifyHorizontal } from './types';
+import { AnchoringType, PreviewType, justifyHorizontal } from './types';
 import { getCardPadding, getLayoutClasses } from './helpers/layout';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
