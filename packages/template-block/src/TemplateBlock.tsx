@@ -28,6 +28,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         contentClasses,
         textCtaWrapperClasses,
         textClasses,
+        ctaClasses,
         hasPreview,
         title,
         description,
@@ -103,7 +104,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 setDescription={saveDescription}
                             />
                         </div>
-                        <div data-text-id="template-block-cta">
+                        <div data-text-id="template-block-cta" className={ctaClasses}>
                             <CustomButton
                                 blockSettings={blockSettings}
                                 isEditing={isEditing}
@@ -116,7 +117,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </div>
 
                 {isEditing && !hasPreview && (
-                    <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
+                    <div
+                        data-test-id="template-block-cta-editing-no-preview"
+                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded"
+                    >
                         <div>
                             <Text size="large" color="x-weak">
                                 {'Connected template: '}

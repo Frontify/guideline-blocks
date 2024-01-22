@@ -18,6 +18,7 @@ import {
     PreviewType,
     type Settings,
     TextPositioningType,
+    horizontalAlignmentToCtaSelfAlign,
     horizontalAlignmentToTextAlign,
     textPositioningToContentFlexDirection,
     textRatioToPreviewFlexBasis,
@@ -82,6 +83,13 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
     const textClasses = `tw-grow ${textAlign}`;
+
+    // CTA
+    const ctaAlignSelf =
+        hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+            ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
+            : '';
+    const ctaClasses = `${ctaAlignSelf}`;
 
     const saveDescription = useCallback(
         async (newDescription: string) => {
@@ -164,6 +172,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         previewClasses,
         textCtaWrapperClasses,
         textClasses,
+        ctaClasses,
         hasPreview,
         title,
         description,

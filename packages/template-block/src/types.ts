@@ -126,6 +126,12 @@ export const horizontalAlignmentToTextAlign: Record<AnchoringType, string> = {
     [AnchoringType.End]: 'tw-text-right',
 };
 
+export const horizontalAlignmentToCtaSelfAlign: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'tw-self-start',
+    [AnchoringType.Center]: 'tw-self-center',
+    [AnchoringType.End]: 'tw-self-end',
+};
+
 export const textRatioToPreviewFlexBasis: Record<TextRatioType, string> = {
     [TextRatioType.OneQuarter]: 'tw-basis-3/4',
     [TextRatioType.OneThird]: 'tw-basis-2/3',
