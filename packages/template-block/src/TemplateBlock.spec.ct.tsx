@@ -9,6 +9,7 @@ import {
     PreviewDisplayType,
     PreviewHeightType,
     TextPositioningType,
+    TextRatioType,
     paddingStyleMap,
     previewHeightValues,
 } from './types';
@@ -16,11 +17,12 @@ import {
 const TEMPLATE_BLOCK_CONTAINER_SELECTOR = '[data-test-id="template-block-container"]';
 const TEMPLATE_BLOCK_SELECTOR = '[data-test-id="template-block-card"]';
 const TEMPLATE_BLOCK_CONTENT_SELECTOR = '[data-test-id="template-block-content"]';
-const TEMPLATE_PREVIEW_SELECTOR = '[data-test-id="template-block-preview-img"]';
+const TEMPLATE_PREVIEW_SELECTOR = '[data-test-id="template-block-preview"]';
+const TEMPLATE_PREVIEW_WRAPPER_SELECTOR = '[data-test-id="template-block-preview-wrapper"]';
+const TEMPLATE_PREVIEW_IMAGE_SELECTOR = '[data-test-id="template-block-preview-img"]';
 const TEMPLATE_BLOCK_TEXT_CTA_WRAPPER_SELECTOR = '[data-test-id="template-block-text-cta-wrapper"]';
 const TEMPLATE_BLOCK_TEXT_SELECTOR = '[data-test-id="template-block-text"]';
 const TEMPLATE_BLOCK_CTA_SELECTOR = '[data-test-id="template-block-cta"]';
-const TEMPLATE_PREVIEW_WRAPPER_SELECTOR = '[data-test-id="template-block-preview-wrapper"]';
 const TEMPLATE_TITLE_SELECTOR = '[data-editor-id="template-block-title"]';
 const TEMPLATE_DESCRIPTION_SELECTOR = '[data-editor-id="template-block-description"]';
 const TEMPLATE_PAGE_COUNT_SELECTOR = '[data-test-id="template-block-page-count"]';
@@ -71,7 +73,7 @@ describe('Template Block', () => {
 
         mount(<TemplateBlockWithStubs />);
         cy.get(TEMPLATE_BLOCK_SELECTOR).should('exist');
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('exist');
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('exist');
         cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('exist');
         cy.get(TEMPLATE_NEW_PUBLICATION_SELECTOR).should('exist');
     });
@@ -148,7 +150,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
     });
 
     it('should render a custom preview image if preview mode is set to custom', () => {
@@ -165,7 +167,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
     });
 
     it('should not render preview, but CTA and text side-by-side if preview is set to none', () => {
@@ -180,7 +182,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('not.exist');
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('not.exist');
         cy.get(TEMPLATE_BLOCK_TEXT_CTA_WRAPPER_SELECTOR).should('not.have.class', 'tw-flex-col');
     });
 
@@ -245,7 +247,6 @@ describe('Template Block', () => {
     });
 
     it('should render block content in columns when text is positioned right', () => {
-        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -258,7 +259,6 @@ describe('Template Block', () => {
     });
 
     it('should render block content in reverse columns when text is positioned left', () => {
-        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -272,8 +272,20 @@ describe('Template Block', () => {
             .and('have.class', 'lg:tw-flex-row-reverse');
     });
 
+    it('should respect text ratio setting when block is in left/right mode', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Right,
+                textRatio: TextRatioType.ThreeQuarters,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-basis-1/4');
+    });
+
     it('should render block content in rows when text is positioned on bottom', () => {
-        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -286,7 +298,6 @@ describe('Template Block', () => {
     });
 
     it('should render block content in reverse rows when text is positioned on top', () => {
-        cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -442,7 +453,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-object-contain');
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('have.class', 'tw-object-contain');
     });
 
     it('should fill the preview', () => {
@@ -458,7 +469,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-object-cover');
+        cy.get(TEMPLATE_PREVIEW_IMAGE_SELECTOR).should('have.class', 'tw-object-cover');
     });
 
     it('should render card with a background color', () => {
