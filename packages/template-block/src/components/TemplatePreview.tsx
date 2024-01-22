@@ -24,18 +24,18 @@ export const TemplatePreview = ({
     const { previewClasses } = useTemplateBlockData(appBridge);
 
     const {
-        hasBackgroundTemplatePreview,
         backgroundColorTemplatePreview,
-        hasBorder_templatePreview,
-        borderWidth_templatePreview,
         borderColor_templatePreview,
         borderStyle_templatePreview,
+        borderWidth_templatePreview,
+        hasBackgroundTemplatePreview,
+        hasBorder_templatePreview,
         hasRadius_templatePreview,
-        radiusValue_templatePreview,
-        radiusChoice_templatePreview,
         isPreviewHeightCustom,
-        previewHeightSimple,
         previewHeightCustom,
+        previewHeightSimple,
+        radiusChoice_templatePreview,
+        radiusValue_templatePreview,
     } = blockSettings;
 
     const { previewCustom } = blockAssets;
