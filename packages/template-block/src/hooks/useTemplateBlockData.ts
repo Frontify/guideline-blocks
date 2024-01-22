@@ -75,7 +75,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     // Text/CTA Wrapper
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
-    const textCtaWrapperClasses = `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2`;
+    const textCtaWrapperClasses = `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
 
     // Text
     const textAlign =
