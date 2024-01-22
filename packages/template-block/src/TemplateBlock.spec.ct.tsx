@@ -17,6 +17,9 @@ const TEMPLATE_BLOCK_CONTAINER_SELECTOR = '[data-test-id="template-block-contain
 const TEMPLATE_BLOCK_SELECTOR = '[data-test-id="template-block-card"]';
 const TEMPLATE_BLOCK_CONTENT_SELECTOR = '[data-test-id="template-block-content"]';
 const TEMPLATE_PREVIEW_SELECTOR = '[data-test-id="template-block-preview-img"]';
+const TEMPLATE_BLOCK_TEXT_CTA_WRAPPER_SELECTOR = '[data-test-id="template-block-text-cta-wrapper"]';
+const TEMPLATE_BLOCK_TEXT_SELECTOR = '[data-test-id="template-block-text"]';
+const TEMPLATE_BLOCK_CTA_SELECTOR = '[data-test-id="template-block-cta"]';
 const TEMPLATE_PREVIEW_WRAPPER_SELECTOR = '[data-test-id="template-block-preview-wrapper"]';
 const TEMPLATE_TITLE_SELECTOR = '[data-editor-id="template-block-title"]';
 const TEMPLATE_DESCRIPTION_SELECTOR = '[data-editor-id="template-block-description"]';
@@ -131,15 +134,21 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('have.text', '0 pages');
     });
 
-    it('should not render preview if preview is set to none', () => {
+    it("should render a template's preview if preview mode is set to template", () => {
+        const templateDummy = getTemplateDummyWithPages();
+        const expectedPreviewUrl = templateDummy.previewUrl;
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockTemplates: {
+                template: [templateDummy],
+            },
             blockSettings: {
-                preview: PREVIEW_MODE_NONE,
+                preview: PREVIEW_MODE_TEMPLATE,
             },
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('not.exist');
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
     });
 
     it('should render a custom preview image if preview mode is set to custom', () => {
@@ -159,21 +168,20 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
     });
 
-    it("should render a template's preview if preview mode is set to template", () => {
+    it('should not render preview, but CTA and text side-by-side if preview is set to none', () => {
         const templateDummy = getTemplateDummyWithPages();
-        const expectedPreviewUrl = templateDummy.previewUrl;
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
-            editorState: true,
             blockTemplates: {
                 template: [templateDummy],
             },
             blockSettings: {
-                // preview: PREVIEW_MODE_TEMPLATE,
+                preview: PREVIEW_MODE_NONE,
             },
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.attr', 'src', expectedPreviewUrl);
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('not.exist');
+        cy.get(TEMPLATE_BLOCK_TEXT_CTA_WRAPPER_SELECTOR).should('not.have.class', 'tw-flex-col');
     });
 
     it('should render a new publication button with RTE in edit mode', () => {
@@ -236,31 +244,7 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Large]);
     });
 
-    it('should render block content with a flex direction column when text positioning is bottom', () => {
-        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
-            editorState: true,
-            blockSettings: {
-                textPositioning: TextPositioningType.Bottom,
-            },
-        });
-
-        mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'column');
-    });
-
-    it('should render block content with a flex direction column-reverse when text positioning is top', () => {
-        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
-            editorState: true,
-            blockSettings: {
-                textPositioning: TextPositioningType.Top,
-            },
-        });
-
-        mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'column-reverse');
-    });
-
-    it('should render block content with a flex direction row for xl viewport when text positioning is right', () => {
+    it('should render block content in columns when text is positioned right', () => {
         cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
@@ -270,10 +254,10 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-col').and('have.class', 'lg:tw-flex-row');
     });
 
-    it('should render block content with a flex direction row-reverse for xl viewport when text positioning is left', () => {
+    it('should render block content in reverse columns when text is positioned left', () => {
         cy.viewport(1280, 800);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
@@ -283,10 +267,38 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'flexDirection', 'row-reverse');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR)
+            .should('have.class', 'tw-flex-col')
+            .and('have.class', 'lg:tw-flex-row-reverse');
     });
 
-    it('should render block text with a top anchoring', () => {
+    it('should render block content in rows when text is positioned on bottom', () => {
+        cy.viewport(1280, 800);
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Bottom,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-col');
+    });
+
+    it('should render block content in reverse rows when text is positioned on top', () => {
+        cy.viewport(1280, 800);
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Top,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-col-reverse');
+    });
+
+    it('should render block text top anchored', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -296,10 +308,50 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'alignItems', 'start');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-items-start');
     });
 
-    it('should render block text with a middle anchoring', () => {
+    it('should render block text center anchored', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Right,
+                textAnchoringVertical: AnchoringType.Center,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-items-center');
+    });
+
+    it('should ignore vertical alignment when text is not aligned left or right', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Top,
+                textAnchoringVertical: AnchoringType.Center,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'tw-items-center');
+    });
+
+    it('should render block text and CTA right anchored', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Bottom,
+                textAnchoringHorizontal: AnchoringType.End,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_BLOCK_TEXT_SELECTOR).should('have.class', 'tw-text-right');
+        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('have.class', 'tw-self-end');
+    });
+
+    it('should ignore horizontal alignment when text is not aligned top or bottom', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -309,20 +361,8 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'alignItems', 'center');
-    });
-
-    it('should render block text with a bottom anchoring', () => {
-        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
-            editorState: true,
-            blockSettings: {
-                textPositioning: TextPositioningType.Left,
-                textAnchoringVertical: AnchoringType.End,
-            },
-        });
-
-        mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.css', 'alignItems', 'end');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'tw-text-center');
+        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('not.have.class', 'tw-self-center');
     });
 
     it('should render preview with a small height', () => {
