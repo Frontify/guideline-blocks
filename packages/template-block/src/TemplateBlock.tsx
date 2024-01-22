@@ -87,8 +87,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         />
                     )}
 
-                    <div data-test-id="template-block-text-wrapper" className={textCtaWrapperClasses}>
-                        <div data-text-id="template-block-text" className={textClasses}>
+                    <div data-test-id="template-block-text-cta-wrapper" className={textCtaWrapperClasses}>
+                        <div data-test-id="template-block-text" className={textClasses}>
                             <TemplateText
                                 appBridge={appBridge}
                                 title={title}
@@ -104,7 +104,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 setDescription={saveDescription}
                             />
                         </div>
-                        <div data-text-id="template-block-cta" className={ctaClasses}>
+                        <div data-test-id="template-block-cta" className={ctaClasses}>
                             <CustomButton
                                 blockSettings={blockSettings}
                                 isEditing={isEditing}
