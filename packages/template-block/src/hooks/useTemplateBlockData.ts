@@ -154,6 +154,13 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     };
 };
 
+const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVertical: AnchoringType): string => {
+    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+        ? verticalAlignmentToItemAlign[textAnchoringVertical]
+        : '';
+    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+};
+
 const getCtaClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
@@ -161,6 +168,16 @@ const getCtaClasses = (
 ) => {
     return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
+        : '';
+};
+
+const getPreviewClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textRatio: TextRatioType,
+): string => {
+    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+        ? textRatioToPreviewFlexBasis[textRatio]
         : '';
 };
 
@@ -179,21 +196,4 @@ const getTextClasses = (
 const getTextCtaWrapperClass = (hasPreview: boolean): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
     return `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
-};
-
-const getPreviewClasses = (
-    hasPreview: boolean,
-    textPositioning: TextPositioningType,
-    textRatio: TextRatioType,
-): string => {
-    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? textRatioToPreviewFlexBasis[textRatio]
-        : '';
-};
-
-const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVertical: AnchoringType): string => {
-    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? verticalAlignmentToItemAlign[textAnchoringVertical]
-        : '';
-    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
 };
