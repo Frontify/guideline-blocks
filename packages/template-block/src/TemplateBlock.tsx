@@ -10,7 +10,7 @@ import { CustomButton } from './components/CustomButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
 import { GAP, VERTICAL_GAP } from './constants';
-import { AnchoringType, PreviewType, TextPositioningType, justifyHorizontal } from './types';
+import { AnchoringType, PreviewType, justifyHorizontal } from './types';
 import { getCardPadding, getLayoutClasses } from './helpers/layout';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
@@ -79,7 +79,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         data-test-id="template-block-content"
                         className={`tw-flex ${flexDirectionStyles}`}
                         style={{
-                            gap: textPositioning !== TextPositioningType.Top ? GAP : undefined,
+                            gap: GAP,
                             alignItems: isRows ? textAnchoringVertical : undefined,
                         }}
                     >
