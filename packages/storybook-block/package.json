@@ -19,7 +19,7 @@
         "@types/react": "^18.2.21",
         "@types/react-dom": "^18.2.7",
         "autoprefixer": "^10.4.15",
-        "cypress": "^13.2.0",
+        "cypress": "^13.6.3",
         "eslint": "^8.48.0",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-notice": "^0.9.10",
