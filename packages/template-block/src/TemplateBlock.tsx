@@ -2,16 +2,15 @@
 
 import { type ReactElement } from 'react';
 import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, Text, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, Text } from '@frontify/fondue';
 import { type BlockProps, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
 
 import { AlertError } from './components/AlertError';
 import { CustomButton } from './components/CustomButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
-import { GAP, VERTICAL_GAP } from './constants';
-import { AnchoringType, PreviewType, justifyHorizontal } from './types';
-import { getCardPadding, getLayoutClasses } from './helpers/layout';
+import { PreviewType } from './types';
+import { getCardPadding } from './helpers/layout';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -26,13 +25,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         border,
         blockSettings,
         lastErrorMessage,
-        flexDirectionStyles,
-        textPositioning,
-        isRows,
-        textAnchoringVertical,
+        contentClasses,
+        textCtaWrapperClasses,
+        textClasses,
         hasPreview,
-        textRatio,
-        textAnchoringHorizontal,
         title,
         description,
         templateTextKey,
@@ -79,14 +75,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
-                <div
-                    data-test-id="template-block-content"
-                    className={`tw-flex ${flexDirectionStyles}`}
-                    style={{
-                        gap: GAP,
-                        alignItems: isRows ? textAnchoringVertical : undefined,
-                    }}
-                >
+                <div data-test-id="template-block-content" className={contentClasses}>
                     {hasPreview && (
                         <TemplatePreview
                             appBridge={appBridge}
@@ -94,19 +83,11 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             template={selectedTemplate}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
-                            isRows={isRows}
                         />
                     )}
 
-                    <div
-                        className={merge(['tw-flex', getLayoutClasses(hasPreview, textPositioning)])}
-                        style={{
-                            width: isRows && hasPreview ? `${textRatio}%` : '100%',
-                            textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
-                            gap: VERTICAL_GAP,
-                        }}
-                    >
-                        <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
+                    <div data-test-id="template-block-text-wrapper" className={textCtaWrapperClasses}>
+                        <div data-text-id="template-block-text" className={textClasses}>
                             <TemplateText
                                 appBridge={appBridge}
                                 title={title}
@@ -122,13 +103,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 setDescription={saveDescription}
                             />
                         </div>
-                        <div
-                            className={
-                                hasPreview
-                                    ? justifyHorizontal[textAnchoringHorizontal]
-                                    : 'tw-flex tw-justify-end tw-items-start'
-                            }
-                        >
+                        <div data-text-id="template-block-cta">
                             <CustomButton
                                 blockSettings={blockSettings}
                                 isEditing={isEditing}

@@ -11,6 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewImage } from './PreviewImage';
 import { TemplatePreviewProps } from './types';
+import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
 export const TemplatePreview = ({
     appBridge,
@@ -18,9 +19,9 @@ export const TemplatePreview = ({
     template,
     updateBlockSettings,
     onOpenTemplateChooser,
-    isRows,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
+    const { previewClasses } = useTemplateBlockData(appBridge);
 
     const {
         hasBackgroundTemplatePreview,
@@ -32,7 +33,6 @@ export const TemplatePreview = ({
         hasRadius_templatePreview,
         radiusValue_templatePreview,
         radiusChoice_templatePreview,
-        textRatio,
         isPreviewHeightCustom,
         previewHeightSimple,
         previewHeightCustom,
@@ -49,12 +49,7 @@ export const TemplatePreview = ({
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
 
     return (
-        <div
-            data-test-id="template-block-preview"
-            style={{
-                width: isRows ? `${100 - parseInt(textRatio)}%` : '100%',
-            }}
-        >
+        <div className={previewClasses} data-test-id="template-block-preview">
             {template !== null || previewCustom ? (
                 <div
                     className="tw-relative tw-overflow-hidden"

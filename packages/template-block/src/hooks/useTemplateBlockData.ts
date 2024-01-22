@@ -14,8 +14,15 @@ import { TextStyles, generateRandomId } from '@frontify/fondue';
 import { type BlockProps, convertToRteValue, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
-import { getIsRows } from '../helpers/layout';
-import { PreviewType, type Settings, TextPositioningType, textPositioningToStyles } from '../types';
+import {
+    PreviewType,
+    type Settings,
+    TextPositioningType,
+    horizontalAlignmentToTextAlign,
+    textPositioningToContentFlexDirection,
+    textRatioToPreviewFlexBasis,
+    verticalAlignmentToItemAlign,
+} from '../types';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -47,14 +54,34 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const { previewCustom } = blockAssets;
 
     const hasPreview = preview !== PreviewType.None;
-    const flexDirectionStyles = hasPreview
-        ? textPositioningToStyles[textPositioning]
-        : textPositioningToStyles[TextPositioningType.Right];
-    const isRows = getIsRows(hasPreview, textPositioning);
     const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
     const border = hasBorder_blockCard
         ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
         : 'none';
+
+    // Content
+    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+        ? verticalAlignmentToItemAlign[textAnchoringVertical]
+        : '';
+    const contentClasses = `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+
+    // Preview
+    const previewFlexBasis =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? textRatioToPreviewFlexBasis[textRatio]
+            : '';
+    const previewClasses = `${previewFlexBasis}`;
+
+    // Text/CTA Wrapper
+    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : 'tw-flex-row';
+    const textCtaWrapperClasses = `tw-flex ${textCtaWrapperFlexDirection} tw-gap-y-2`;
+
+    // Text
+    const textAlign =
+        hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+            ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
+            : 'tw-text-left';
+    const textClasses = `tw-grow ${textAlign}`;
 
     const saveDescription = useCallback(
         async (newDescription: string) => {
@@ -133,13 +160,11 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         border,
         blockSettings,
         lastErrorMessage,
-        flexDirectionStyles,
-        textPositioning,
-        isRows,
-        textAnchoringVertical,
+        contentClasses,
+        previewClasses,
+        textCtaWrapperClasses,
+        textClasses,
         hasPreview,
-        textRatio,
-        textAnchoringHorizontal,
         title,
         description,
         templateTextKey,

@@ -29,7 +29,6 @@ export type TemplatePreviewProps = {
     template: Template | null;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
-    isRows: boolean;
 };
 
 export type TemplateTextProps = {
