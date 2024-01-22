@@ -12,11 +12,13 @@ const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
 const AudioBlockTitleHtmlSelector = '[data-test-id="block-title"] [data-test-id="rte-content-html"]';
+const AudioBlockTitleRteSelector = '[data-test-id="block-title"]';
 const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description"] [data-test-id="rte-content-html"]';
 const DownloadButtonSelector = '[data-test-id="download-button"]';
 const AttachmentsTriggerSelector = '[data-test-id="attachments-flyout-button"]';
 const ViewModeAddonsSelector = '[data-test-id="view-mode-addons"]';
 const BlockWrapperSelector = '[data-test-id="block-item-wrapper"]';
+const UploadMenu = '[data-test-id="menu-item-title"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
 const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
@@ -218,5 +220,29 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(ViewModeAddonsSelector).should('not.exist');
+    });
+
+    it('should add the file name to the title when the title is empty', () => {
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            editorState: true,
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(UploadPlaceholderSelector).click();
+        cy.get(UploadMenu).eq(1).click();
+        cy.get(AudioBlockTitleRteSelector).contains('A title').should('exist');
+    });
+
+    it('should not add the file name to the title when the title is not empty', () => {
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            editorState: true,
+            blockSettings: {
+                title: Title,
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(UploadPlaceholderSelector).click();
+        cy.get(UploadMenu).eq(1).click();
+        cy.get(AudioBlockTitleRteSelector).contains('Audio Title').should('exist');
+        cy.get(AudioBlockTitleRteSelector).contains('A title').should('not.exist');
     });
 });
