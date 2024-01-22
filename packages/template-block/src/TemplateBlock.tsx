@@ -105,9 +105,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 <TemplateText
                                     appBridge={appBridge}
                                     title={title}
-                                    blockSettings={blockSettings}
                                     description={description}
-                                    pageCount={selectedTemplate?.pages.length ?? 0}
+                                    pageCount={
+                                        blockSettings.hasPageCount !== false
+                                            ? selectedTemplate?.pages.length ?? 0
+                                            : undefined
+                                    }
                                     isEditing={isEditing}
                                     key={templateTextKey}
                                     setTitle={saveTitle}

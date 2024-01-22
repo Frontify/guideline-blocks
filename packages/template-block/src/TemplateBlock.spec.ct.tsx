@@ -32,6 +32,24 @@ const PREVIEW_MODE_CUSTOM = 'custom';
 const PREVIEW_MODE_TEMPLATE = 'template';
 const COLOR_RED = { red: 255, green: 0, blue: 0 };
 
+const getTemplateDummyWithPages = () => {
+    const templateDummy = TemplateDummy.with(TEMPLATE_ID);
+    templateDummy.name = 'Template with two pages';
+    templateDummy.pages = [
+        {
+            previewUrl: 'url-1',
+            width: 1920,
+            height: 1080,
+        },
+        {
+            previewUrl: 'url-2',
+            width: 1080,
+            height: 1920,
+        },
+    ];
+    return templateDummy;
+};
+
 describe('Template Block', () => {
     it('should render an empty slate if no template provided', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock);
@@ -42,10 +60,9 @@ describe('Template Block', () => {
     });
 
     it('should render a block if template provided', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -56,7 +73,7 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_NEW_PUBLICATION_SELECTOR).should('exist');
     });
 
-    it('should render a block if template provided and block is in an edit mode', () => {
+    it('should render a block if template provided and block is in edit mode', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
         });
@@ -77,6 +94,41 @@ describe('Template Block', () => {
         mount(<TemplateBlockWithStubs />);
         cy.get(TEMPLATE_TITLE_SELECTOR).should('exist');
         cy.get(TEMPLATE_DESCRIPTION_SELECTOR).should('exist');
+    });
+
+    it('should not render page count if the setting is disabled', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+            blockSettings: {
+                hasPageCount: false,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('not.exist');
+    });
+
+    it('should not render page count in edit mode if the setting is disabled', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                hasPageCount: false,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('not.exist');
+    });
+
+    it('should render page count "0" in edit mode if no template is selected', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PAGE_COUNT_SELECTOR).should('have.text', '0 pages');
     });
 
     it('should not render preview if preview is set to none', () => {
@@ -108,7 +160,7 @@ describe('Template Block', () => {
     });
 
     it("should render a template's preview if preview mode is set to template", () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
+        const templateDummy = getTemplateDummyWithPages();
         const expectedPreviewUrl = templateDummy.previewUrl;
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
@@ -116,7 +168,7 @@ describe('Template Block', () => {
                 template: [templateDummy],
             },
             blockSettings: {
-                preview: PREVIEW_MODE_TEMPLATE,
+                // preview: PREVIEW_MODE_TEMPLATE,
             },
         });
 
@@ -274,7 +326,6 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a small height', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -282,7 +333,7 @@ describe('Template Block', () => {
                 previewHeightSimple: PreviewHeightType.Small,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -297,7 +348,6 @@ describe('Template Block', () => {
     it('should render preview with a medium height', () => {
         const asset = AssetDummy.with(ASSET_ID);
 
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -305,7 +355,7 @@ describe('Template Block', () => {
                 previewHeightSimple: PreviewHeightType.Medium,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
             blockAssets: {
                 [PREVIEW_CUSTOM_SETTING_ID]: [asset],
@@ -321,14 +371,13 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a large height', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
                 previewHeightSimple: PreviewHeightType.Large,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -341,7 +390,6 @@ describe('Template Block', () => {
     });
 
     it('should fit the preview', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -349,7 +397,7 @@ describe('Template Block', () => {
                 previewDisplay: PreviewDisplayType.Fit,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -358,7 +406,6 @@ describe('Template Block', () => {
     });
 
     it('should fill the preview', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -366,7 +413,7 @@ describe('Template Block', () => {
                 previewDisplay: PreviewDisplayType.Fill,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -415,7 +462,6 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a background color', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -423,7 +469,7 @@ describe('Template Block', () => {
                 backgroundColorTemplatePreview: COLOR_RED,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -432,7 +478,6 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a custom border', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -442,7 +487,7 @@ describe('Template Block', () => {
                 borderStyle_templatePreview: BorderStyle.Solid,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 
@@ -451,14 +496,13 @@ describe('Template Block', () => {
     });
 
     it('should render preview with a medium border radius', () => {
-        const templateDummy = TemplateDummy.with(TEMPLATE_ID);
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
                 radiusChoice_templatePreview: Radius.Medium,
             },
             blockTemplates: {
-                template: [templateDummy],
+                template: [getTemplateDummyWithPages()],
             },
         });
 

@@ -30,6 +30,8 @@ export type Settings = {
     textAnchoringHorizontal: AnchoringType;
     textAnchoringVertical: AnchoringType;
 
+    hasPageCount: boolean;
+
     isPreviewHeightCustom: boolean;
     previewHeightCustom?: string;
     previewHeightSimple: PreviewHeightType;

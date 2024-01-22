@@ -112,13 +112,11 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         const templates = blockTemplates[TEMPLATE_BLOCK_SETTING_ID];
-
         if (!templates || templates.length === 0) {
             return;
         }
 
         const lastTemplate = templates[templates.length - 1];
-
         if (lastTemplate) {
             setSelectedTemplate(lastTemplate);
         }
