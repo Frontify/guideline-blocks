@@ -100,8 +100,8 @@ export const textPositioningToFlexDirection: Record<
 export const textPositioningToStyles: Record<TextPositioningType, string> = {
     [TextPositioningType.Bottom]: 'tw-flex-col',
     [TextPositioningType.Top]: 'tw-flex-col-reverse',
-    [TextPositioningType.Right]: 'lg:tw-flex-row tw-flex-col',
-    [TextPositioningType.Left]: 'lg:tw-flex-row-reverse tw-flex-col',
+    [TextPositioningType.Right]: 'tw-flex-col lg:tw-flex-row',
+    [TextPositioningType.Left]: 'tw-flex-col lg:tw-flex-row-reverse',
 };
 
 export enum AnchoringType {

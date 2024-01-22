@@ -19,15 +19,12 @@ export const getCardPadding = (blockSettings: Settings) => {
 };
 
 export const getIsRows = (hasPreview: boolean, textPositioning: TextPositioningType): boolean => {
-    const flexDirection = hasPreview ? textPositioningToFlexDirection[textPositioning] : 'row';
-
-    return hasPreview && (flexDirection === 'row' || flexDirection === 'row-reverse');
+    return hasPreview && ['row', 'row-reverse'].includes(textPositioningToFlexDirection[textPositioning]);
 };
 
 export const getLayoutClasses = (hasPreview: boolean, textPositioning: TextPositioningType) => {
-    const previewClasses = getIsRows(hasPreview, textPositioning)
-        ? 'tw-flex-col'
-        : 'tw-grid tw-grid-rows-2 grid-flow-col';
-
-    return hasPreview ? previewClasses : 'tw-grid tw-grid-cols-3';
+    if (!hasPreview) {
+        return 'tw-grid tw-grid-cols-3';
+    }
+    return getIsRows(hasPreview, textPositioning) ? 'tw-flex-col' : 'tw-grid grid-flow-col';
 };

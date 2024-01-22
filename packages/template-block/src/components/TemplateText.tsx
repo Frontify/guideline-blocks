@@ -56,7 +56,7 @@ export const TemplateText = ({
                 plugins={customTitlePlugins}
             />
         ),
-        [customTitlePlugins, isEditing, setTitle, title],
+        [customTitlePlugins, isEditing, key, setTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -65,16 +65,14 @@ export const TemplateText = ({
                 id="template-block-description"
                 value={description}
                 key={key}
-                placeholder={
-                    'Add a description that will be displayed in the block\n\nNote: When template description is available, it will be added by default'
-                }
+                placeholder="Add a description for your template"
                 onTextChange={setDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, description, isEditing, setDescription],
+        [appBridge, description, isEditing, key, setDescription],
     );
 
     return (
