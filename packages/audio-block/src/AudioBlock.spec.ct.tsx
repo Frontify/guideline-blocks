@@ -222,7 +222,7 @@ describe('Audio Block', () => {
         cy.get(ViewModeAddonsSelector).should('not.exist');
     });
 
-    it.only('should add the file name to the title when the title is empty', () => {
+    it('should add the file name to the title when the title is empty', () => {
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             editorState: true,
         });
@@ -230,5 +230,19 @@ describe('Audio Block', () => {
         cy.get(UploadPlaceholderSelector).click();
         cy.get(UploadMenu).eq(1).click();
         cy.get(AudioBlockTitleRteSelector).contains('A title').should('exist');
+    });
+
+    it('should not add the file name to the title when the title is not empty', () => {
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            editorState: true,
+            blockSettings: {
+                title: Title,
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(UploadPlaceholderSelector).click();
+        cy.get(UploadMenu).eq(1).click();
+        cy.get(AudioBlockTitleRteSelector).contains('Audio Title').should('exist');
+        cy.get(AudioBlockTitleRteSelector).contains('A title').should('not.exist');
     });
 });

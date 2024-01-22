@@ -49,6 +49,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
+    const blockId = appBridge.context('blockId').get();
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
@@ -89,7 +90,11 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         }
     };
 
-    const onTitleChange = async (title: string) => title !== blockSettings.title && (await setBlockSettings({ title }));
+    const onTitleChange = async (title: string) => {
+        if (title !== blockSettings.title) {
+            await setBlockSettings({ title });
+        }
+    };
 
     const onDescriptionChange = (description: string) =>
         description !== blockSettings.description && setBlockSettings({ description });
@@ -142,7 +147,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         <div data-test-id="block-title">
                             <RichTextEditor
                                 key={titleKey}
-                                id={`${appBridge.context('blockId').get()}-title`}
+                                id={`${blockId}-title`}
                                 plugins={titlePlugins}
                                 isEditing={isEditing}
                                 onTextChange={onTitleChange}
@@ -153,7 +158,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
 
                         <div data-test-id="block-description">
                             <RichTextEditor
-                                id={`${appBridge.context('blockId').get()}-description`}
+                                id={`${blockId}-description`}
                                 plugins={getDescriptionPlugins(appBridge)}
                                 isEditing={isEditing}
                                 onTextChange={onDescriptionChange}
