@@ -58,7 +58,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(blockSettings.title)) {
-            await onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
+            await onTitleChange(convertToRteValue(TextStyles.imageTitle, audio.title));
             setTitleKey(generateRandomId());
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
