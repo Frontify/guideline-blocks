@@ -52,7 +52,7 @@ export const InformationSection = ({
         <div className="tw-flex-1 tw-space-y-2">
             <div data-test-id="block-title">
                 <RichTextEditor
-                    id="block-title"
+                    id={`block-title-${appBridge.context('blockId').get()}`}
                     isEditing={isEditing}
                     plugins={customTitlePlugins}
                     onTextChange={saveTitle}
@@ -63,7 +63,7 @@ export const InformationSection = ({
             </div>
             <div data-test-id="block-description">
                 <RichTextEditor
-                    id="block-description"
+                    id={`block-description-${appBridge.context('blockId').get()}`}
                     isEditing={isEditing}
                     onTextChange={saveDescription}
                     placeholder="Add a description here ..."
