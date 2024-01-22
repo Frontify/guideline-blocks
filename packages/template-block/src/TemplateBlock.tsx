@@ -61,98 +61,103 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
+    if (!selectedTemplate && !isEditing) {
+        return <div data-test-id="template-block-container" className="template-block"></div>;
+    }
+
     return (
         <div data-test-id="template-block-container" className="template-block">
-            {selectedTemplate || isEditing ? (
+            <div
+                data-test-id="template-block-card"
+                className="tw-border tw-border-black-20"
+                style={{
+                    ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+                    padding: getCardPadding(blockSettings),
+                    borderRadius,
+                    border,
+                }}
+            >
+                {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
+
                 <div
-                    data-test-id="template-block-card"
-                    className="tw-border tw-border-black-20"
+                    data-test-id="template-block-content"
+                    className={`tw-flex ${flexDirectionStyles}`}
                     style={{
-                        ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
-                        borderRadius,
-                        border,
-                        padding: getCardPadding(blockSettings),
+                        gap: GAP,
+                        alignItems: isRows ? textAnchoringVertical : undefined,
                     }}
                 >
-                    {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
+                    {hasPreview && (
+                        <TemplatePreview
+                            appBridge={appBridge}
+                            blockSettings={blockSettings}
+                            template={selectedTemplate}
+                            updateBlockSettings={updateBlockSettings}
+                            onOpenTemplateChooser={handleOpenTemplateChooser}
+                            isRows={isRows}
+                        />
+                    )}
+
                     <div
-                        data-test-id="template-block-content"
-                        className={`tw-flex ${flexDirectionStyles}`}
+                        className={merge(['tw-flex', getLayoutClasses(hasPreview, textPositioning)])}
                         style={{
-                            gap: GAP,
-                            alignItems: isRows ? textAnchoringVertical : undefined,
+                            width: isRows && hasPreview ? `${textRatio}%` : '100%',
+                            textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
+                            gap: VERTICAL_GAP,
                         }}
                     >
-                        {hasPreview && (
-                            <TemplatePreview
+                        <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
+                            <TemplateText
                                 appBridge={appBridge}
-                                blockSettings={blockSettings}
-                                template={selectedTemplate}
-                                updateBlockSettings={updateBlockSettings}
-                                onOpenTemplateChooser={handleOpenTemplateChooser}
-                                isRows={isRows}
-                            />
-                        )}
-                        <div
-                            className={merge(['tw-flex', getLayoutClasses(hasPreview, textPositioning)])}
-                            style={{
-                                width: isRows && hasPreview ? `${textRatio}%` : '100%',
-                                textAlign: !isRows && hasPreview ? textAnchoringHorizontal : AnchoringType.Start,
-                                gap: VERTICAL_GAP,
-                            }}
-                        >
-                            <div className={merge(['tw-grow tw-min-w-0', !hasPreview && 'tw-col-span-2'])}>
-                                <TemplateText
-                                    appBridge={appBridge}
-                                    title={title}
-                                    description={description}
-                                    pageCount={
-                                        blockSettings.hasPageCount !== false
-                                            ? selectedTemplate?.pages.length ?? 0
-                                            : undefined
-                                    }
-                                    isEditing={isEditing}
-                                    key={templateTextKey}
-                                    setTitle={saveTitle}
-                                    setDescription={saveDescription}
-                                />
-                            </div>
-                            <div
-                                className={
-                                    hasPreview
-                                        ? justifyHorizontal[textAnchoringHorizontal]
-                                        : 'tw-flex tw-justify-end tw-items-start'
+                                title={title}
+                                description={description}
+                                pageCount={
+                                    blockSettings.hasPageCount !== false
+                                        ? selectedTemplate?.pages.length ?? 0
+                                        : undefined
                                 }
-                            >
-                                <CustomButton
-                                    blockSettings={blockSettings}
-                                    isEditing={isEditing}
-                                    isDisabled={!selectedTemplate}
-                                    updateBlockSettings={updateBlockSettings}
-                                    handleNewPublication={handleNewPublication}
-                                />
-                            </div>
+                                isEditing={isEditing}
+                                key={templateTextKey}
+                                setTitle={saveTitle}
+                                setDescription={saveDescription}
+                            />
+                        </div>
+                        <div
+                            className={
+                                hasPreview
+                                    ? justifyHorizontal[textAnchoringHorizontal]
+                                    : 'tw-flex tw-justify-end tw-items-start'
+                            }
+                        >
+                            <CustomButton
+                                blockSettings={blockSettings}
+                                isEditing={isEditing}
+                                isDisabled={!selectedTemplate}
+                                updateBlockSettings={updateBlockSettings}
+                                handleNewPublication={handleNewPublication}
+                            />
                         </div>
                     </div>
-                    {!hasPreview && isEditing && (
-                        <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
-                            <div>
-                                <Text size="large" color="x-weak">
-                                    Connected template:{' '}
-                                </Text>
-                                <Text size="large">{selectedTemplate?.name ?? 'None'}</Text>
-                            </div>
-
-                            <Button
-                                emphasis={selectedTemplate ? ButtonEmphasis.Default : ButtonEmphasis.Strong}
-                                onClick={handleOpenTemplateChooser}
-                            >
-                                {selectedTemplate ? 'Replace template' : 'Choose existing template'}
-                            </Button>
-                        </div>
-                    )}
                 </div>
-            ) : null}
+
+                {isEditing && !hasPreview && (
+                    <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded">
+                        <div>
+                            <Text size="large" color="x-weak">
+                                {'Connected template: '}
+                            </Text>
+                            <Text size="large">{selectedTemplate?.name ?? 'None'}</Text>
+                        </div>
+
+                        <Button
+                            emphasis={selectedTemplate ? ButtonEmphasis.Default : ButtonEmphasis.Strong}
+                            onClick={handleOpenTemplateChooser}
+                        >
+                            {selectedTemplate ? 'Replace template' : 'Choose existing template'}
+                        </Button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
