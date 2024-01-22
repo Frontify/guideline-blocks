@@ -247,6 +247,7 @@ describe('Template Block', () => {
     });
 
     it('should render block content in columns when text is positioned right', () => {
+        cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -255,10 +256,13 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-flex-col').and('have.class', 'lg:tw-flex-row');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR)
+            .should('have.class', 'tw-flex-col-reverse')
+            .and('have.class', 'lg:tw-flex-row');
     });
 
     it('should render block content in reverse columns when text is positioned left', () => {
+        cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -272,7 +276,30 @@ describe('Template Block', () => {
             .and('have.class', 'lg:tw-flex-row-reverse');
     });
 
-    it('should respect text ratio setting when block is in left/right mode', () => {
+    it('should render block content in rows on mobile instead of cols', () => {
+        cy.viewport('iphone-x');
+        const templateDummy = getTemplateDummyWithPages();
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            blockTemplates: {
+                template: [templateDummy],
+            },
+            blockSettings: {
+                textPositioning: TextPositioningType.Right,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).then(($preview) => {
+            cy.get(TEMPLATE_BLOCK_TEXT_SELECTOR).then(($text) => {
+                const previewTop = $preview[0].getBoundingClientRect().top;
+                const textTop = $text[0].getBoundingClientRect().top;
+                expect(previewTop).to.be.greaterThan(textTop);
+            });
+        });
+    });
+
+    it('should respect 3/4 text ratio setting when block is in right mode', () => {
+        cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -286,6 +313,7 @@ describe('Template Block', () => {
     });
 
     it('should render block content in rows when text is positioned on bottom', () => {
+        cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -298,6 +326,7 @@ describe('Template Block', () => {
     });
 
     it('should render block content in reverse rows when text is positioned on top', () => {
+        cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
