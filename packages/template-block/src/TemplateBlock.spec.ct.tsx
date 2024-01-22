@@ -312,6 +312,20 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-basis-1/4');
     });
 
+    it('should respect 1/3 text ratio setting when block is in left mode', () => {
+        cy.viewport('macbook-13');
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: true,
+            blockSettings: {
+                textPositioning: TextPositioningType.Right,
+                textRatio: TextRatioType.OneThird,
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-basis-2/3');
+    });
+
     it('should render block content in rows when text is positioned on bottom', () => {
         cy.viewport('macbook-13');
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
