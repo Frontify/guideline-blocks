@@ -102,7 +102,7 @@ export const TemplateText = ({
         const removeBottomMargin =
             '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
 
-        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : `${removeTopMargin} tw-mb-2`;
+        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : removeTopMargin;
     }, [hasTitleOnly]);
 
     return (
