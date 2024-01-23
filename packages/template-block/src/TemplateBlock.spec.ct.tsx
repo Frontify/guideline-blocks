@@ -309,7 +309,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-basis-1/4');
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'lg:tw-basis-1/4');
     });
 
     it('should respect 1/3 text ratio setting when block is in left mode', () => {
@@ -323,7 +323,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'tw-basis-2/3');
+        cy.get(TEMPLATE_PREVIEW_SELECTOR).should('have.class', 'lg:tw-basis-2/3');
     });
 
     it('should render block content in rows when text is positioned on bottom', () => {
@@ -362,7 +362,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-items-start');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'lg:tw-items-start');
     });
 
     it('should render block text center anchored', () => {
@@ -375,7 +375,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'tw-items-center');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('have.class', 'lg:tw-items-center');
     });
 
     it('should ignore vertical alignment when text is not aligned left or right', () => {
@@ -388,7 +388,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'tw-items-center');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'lg:tw-items-center');
     });
 
     it('should render block text and CTA right anchored', () => {
@@ -401,8 +401,8 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_TEXT_SELECTOR).should('have.class', 'tw-text-right');
-        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('have.class', 'tw-self-end');
+        cy.get(TEMPLATE_BLOCK_TEXT_SELECTOR).should('have.class', 'lg:tw-text-right');
+        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('have.class', 'lg:tw-self-end');
     });
 
     it('should ignore horizontal alignment when text is not aligned top or bottom', () => {
@@ -415,8 +415,8 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'tw-text-center');
-        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('not.have.class', 'tw-self-center');
+        cy.get(TEMPLATE_BLOCK_CONTENT_SELECTOR).should('not.have.class', 'lg:tw-text-center');
+        cy.get(TEMPLATE_BLOCK_CTA_SELECTOR).should('not.have.class', 'lg:tw-self-center');
     });
 
     it('should render preview with a small height', () => {
