@@ -159,7 +159,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             borderColor_blockCard,
         ),
         contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
-        ctaClasses: getCtaClasses(hasTitleOnly, hasPreview, textPositioning, textAnchoringHorizontal),
+        ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         hasPreview,
         hasTitleOnly,
@@ -172,7 +172,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         saveTitle,
         selectedTemplate,
         templateTextKey,
-        textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview),
         title,
         updateBlockSettings,
@@ -187,8 +187,8 @@ const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVe
 };
 
 const getCtaClasses = (
-    hasTitleOnly: boolean,
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
 ) => {
@@ -212,6 +212,7 @@ const getPreviewClasses = (
 
 const getTextClasses = (
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
 ): string => {
@@ -219,7 +220,8 @@ const getTextClasses = (
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
-    return `tw-grow ${textAlign}`;
+    const selfAlign = hasTitleOnly ? 'tw-self-center' : '';
+    return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
 const getTextCtaWrapperClass = (hasPreview: boolean): string => {
