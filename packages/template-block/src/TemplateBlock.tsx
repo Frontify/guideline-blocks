@@ -3,26 +3,22 @@
 import { type ReactElement } from 'react';
 import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, Text } from '@frontify/fondue';
-import { type BlockProps, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
+import { type BlockProps } from '@frontify/guideline-blocks-settings';
 
 import { AlertError } from './components/AlertError';
 import { CustomButton } from './components/CustomButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
 import { PreviewType } from './types';
-import { getCardPadding } from './helpers/layout';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const {
-        backgroundColor,
         blockSettings,
-        border,
-        borderRadius,
+        cardStyles,
         contentClasses,
         ctaClasses,
         description,
-        hasBackground,
         hasPreview,
         isEditing,
         lastErrorMessage,
@@ -64,16 +60,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div data-test-id="template-block-container" className="template-block">
-            <div
-                data-test-id="template-block-card"
-                className="tw-border tw-border-black-20"
-                style={{
-                    ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
-                    padding: getCardPadding(blockSettings),
-                    borderRadius,
-                    border,
-                }}
-            >
+            <div data-test-id="template-block-card" style={cardStyles}>
                 {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
                 <div data-test-id="template-block-content" className={contentClasses}>

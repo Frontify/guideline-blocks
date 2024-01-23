@@ -10,8 +10,18 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { TextStyles, generateRandomId } from '@frontify/fondue';
-import { type BlockProps, convertToRteValue, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { Color, TextStyles, generateRandomId } from '@frontify/fondue';
+import {
+    type BlockProps,
+    BorderStyle,
+    Padding,
+    Radius,
+    convertToRteValue,
+    getBackgroundColorStyles,
+    paddingStyleMap,
+    radiusStyleMap,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
 import {
@@ -33,7 +43,10 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const [templateTextKey, setTemplateTextKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+
+    const {
+        blockAssets: { previewCustom },
+    } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
@@ -44,7 +57,10 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         description,
         hasBackground,
         hasBorder_blockCard,
+        hasCustomPaddingValue_blockCard,
         hasRadius_blockCard,
+        paddingChoice_blockCard,
+        paddingValue_blockCard,
         preview,
         radiusChoice_blockCard,
         radiusValue_blockCard,
@@ -54,13 +70,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         textRatio,
         title,
     } = blockSettings;
-    const { previewCustom } = blockAssets;
-
-    const hasPreview = preview !== PreviewType.None;
-    const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
-    const border = hasBorder_blockCard
-        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
-        : 'none';
 
     const saveDescription = useCallback(
         async (newDescription: string) => {
@@ -128,15 +137,27 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         }
     }, [blockTemplates]);
 
+    const hasPreview = preview !== PreviewType.None;
+
     return {
-        backgroundColor,
         blockSettings,
-        border,
-        borderRadius,
+        cardStyles: getCardStyles(
+            hasBackground,
+            backgroundColor,
+            hasCustomPaddingValue_blockCard,
+            paddingValue_blockCard,
+            paddingChoice_blockCard,
+            hasRadius_blockCard,
+            radiusValue_blockCard,
+            radiusChoice_blockCard,
+            hasBorder_blockCard,
+            borderWidth_blockCard,
+            borderStyle_blockCard,
+            borderColor_blockCard,
+        ),
         contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
         ctaClasses: getCtaClasses(hasPreview, textPositioning, textAnchoringHorizontal),
         description,
-        hasBackground,
         hasPreview,
         isEditing,
         lastErrorMessage,
@@ -197,3 +218,26 @@ const getTextCtaWrapperClass = (hasPreview: boolean): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
     return `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
 };
+function getCardStyles(
+    hasBackground: boolean,
+    backgroundColor: Color,
+    hasCustomPaddingValue_blockCard: boolean,
+    paddingValue_blockCard: string,
+    paddingChoice_blockCard: Padding,
+    hasRadius_blockCard: boolean,
+    radiusValue_blockCard: string,
+    radiusChoice_blockCard: Radius,
+    hasBorder_blockCard: boolean,
+    borderWidth_blockCard: string,
+    borderStyle_blockCard: BorderStyle,
+    borderColor_blockCard: Color,
+) {
+    return {
+        ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+        padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
+        borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
+        border: hasBorder_blockCard
+            ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
+            : 'none',
+    };
+}
