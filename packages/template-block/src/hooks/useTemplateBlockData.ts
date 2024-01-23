@@ -144,8 +144,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         preview,
         previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
         previewCustom,
-        saveDescription,
-        saveTitle,
         selectedTemplate,
         templateTextKey,
         textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
