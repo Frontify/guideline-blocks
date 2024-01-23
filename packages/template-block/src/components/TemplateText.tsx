@@ -39,14 +39,17 @@ export const TemplateText = ({
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
     const { titleWrapperClasses, titleClasses } = useMemo(() => {
+        const removeTopMargin = '[&>div>*:first-child]:!tw-mt-0';
+        const removeBottomMargin = '[&>div>*:last-child]:!tw-mb-0';
+
         return hasTitleOnly
             ? {
                   titleWrapperClasses: '',
-                  titleClasses: '[&>div>*:first-child]:!tw-mt-0 [&>div>*:last-child]:!tw-mb-0',
+                  titleClasses: `${removeTopMargin} ${removeBottomMargin}`,
               }
             : {
                   titleWrapperClasses: 'tw-mb-2',
-                  titleClasses: '',
+                  titleClasses: removeTopMargin,
               };
     }, [hasTitleOnly]);
 
