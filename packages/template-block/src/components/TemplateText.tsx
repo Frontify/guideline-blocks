@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
@@ -22,20 +22,32 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import { TemplateTextProps } from './types';
+import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
-export const TemplateText = ({
-    appBridge,
-    title,
-    description,
-    pageCount,
-    isEditing,
-    key,
-    setTitle,
-    setDescription,
-}: TemplateTextProps) => {
+export const TemplateText = ({ appBridge, title, description, pageCount, isEditing, key }: TemplateTextProps) => {
+    const { updateBlockSettings } = useTemplateBlockData(appBridge);
+
     const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
+
+    const saveTitle = useCallback(
+        async (newTitle: string) => {
+            if (title !== newTitle) {
+                await updateBlockSettings({ title: newTitle });
+            }
+        },
+        [title, updateBlockSettings],
+    );
+
+    const saveDescription = useCallback(
+        async (newDescription: string) => {
+            if (description !== newDescription) {
+                await updateBlockSettings({ description: newDescription });
+            }
+        },
+        [description, updateBlockSettings],
+    );
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -51,13 +63,13 @@ export const TemplateText = ({
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
-                onTextChange={setTitle}
+                onTextChange={saveDescription}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, key, setTitle, title],
+        [blockId, customTitlePlugins, isEditing, key, saveDescription, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -67,13 +79,13 @@ export const TemplateText = ({
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
-                onTextChange={setDescription}
+                onTextChange={saveTitle}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, blockId, description, isEditing, key, setDescription],
+        [appBridge, blockId, description, isEditing, key, saveTitle],
     );
 
     return (

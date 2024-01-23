@@ -39,6 +39,4 @@ export type TemplateTextProps = {
     pageCount: number | undefined;
     isEditing: boolean;
     key: string;
-    setTitle: (newTitle: string) => void;
-    setDescription: (newDescription: string) => void;
 };

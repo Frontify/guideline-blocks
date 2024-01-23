@@ -32,18 +32,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         updateBlockSettings,
     } = useTemplateBlockData(appBridge);
 
-    const saveDescription = async (newDescription: string) => {
-        if (description !== newDescription) {
-            await updateBlockSettings({ description: newDescription });
-        }
-    };
-
-    const saveTitle = async (newTitle: string) => {
-        if (title !== newTitle) {
-            await updateBlockSettings({ title: newTitle });
-        }
-    };
-
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
             const previewUrl =
@@ -97,8 +85,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 }
                                 isEditing={isEditing}
                                 key={templateTextKey}
-                                setTitle={saveTitle}
-                                setDescription={saveDescription}
                             />
                         </div>
                         <div data-test-id="cta" className={ctaClasses}>
