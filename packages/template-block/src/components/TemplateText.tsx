@@ -68,13 +68,13 @@ export const TemplateText = ({
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
-                onTextChange={saveDescription}
+                onTextChange={saveTitle}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, key, saveDescription, title],
+        [blockId, customTitlePlugins, isEditing, key, saveTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -84,13 +84,13 @@ export const TemplateText = ({
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
-                onTextChange={saveTitle}
+                onTextChange={saveDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, blockId, description, isEditing, key, saveTitle],
+        [appBridge, blockId, description, isEditing, key, saveDescription],
     );
 
     return (
