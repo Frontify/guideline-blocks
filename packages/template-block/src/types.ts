@@ -115,29 +115,29 @@ export const textPositioningToContentFlexDirection: Record<TextPositioningType, 
 };
 
 export const verticalAlignmentToItemAlign: Record<AnchoringType, string> = {
-    [AnchoringType.Start]: 'tw-items-start',
-    [AnchoringType.Center]: 'tw-items-center',
-    [AnchoringType.End]: 'tw-items-end',
+    [AnchoringType.Start]: 'lg:tw-items-start',
+    [AnchoringType.Center]: 'lg:tw-items-center',
+    [AnchoringType.End]: 'lg:tw-items-end',
 };
 
 export const horizontalAlignmentToTextAlign: Record<AnchoringType, string> = {
-    [AnchoringType.Start]: 'tw-text-left',
-    [AnchoringType.Center]: 'tw-text-center',
-    [AnchoringType.End]: 'tw-text-right',
+    [AnchoringType.Start]: 'lg:tw-text-left',
+    [AnchoringType.Center]: 'lg:tw-text-center',
+    [AnchoringType.End]: 'lg:tw-text-right',
 };
 
 export const horizontalAlignmentToCtaSelfAlign: Record<AnchoringType, string> = {
-    [AnchoringType.Start]: 'tw-self-start',
-    [AnchoringType.Center]: 'tw-self-center',
-    [AnchoringType.End]: 'tw-self-end',
+    [AnchoringType.Start]: 'lg:tw-self-start',
+    [AnchoringType.Center]: 'lg:tw-self-center',
+    [AnchoringType.End]: 'lg:tw-self-end',
 };
 
 export const textRatioToPreviewFlexBasis: Record<TextRatioType, string> = {
-    [TextRatioType.OneQuarter]: 'tw-basis-3/4',
-    [TextRatioType.OneThird]: 'tw-basis-2/3',
-    [TextRatioType.OneHalf]: 'tw-basis-1/2',
-    [TextRatioType.TwoThirds]: 'tw-basis-1/3',
-    [TextRatioType.ThreeQuarters]: 'tw-basis-1/4',
+    [TextRatioType.OneQuarter]: 'lg:tw-basis-3/4',
+    [TextRatioType.OneThird]: 'lg:tw-basis-2/3',
+    [TextRatioType.OneHalf]: 'lg:tw-basis-1/2',
+    [TextRatioType.TwoThirds]: 'lg:tw-basis-1/3',
+    [TextRatioType.ThreeQuarters]: 'lg:tw-basis-1/4',
 };
 
 export const previewHeightValues: Record<PreviewHeightType, string> = {
