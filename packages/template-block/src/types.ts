@@ -110,8 +110,8 @@ export enum PreviewHeightType {
 export const textPositioningToContentFlexDirection: Record<TextPositioningType, string> = {
     [TextPositioningType.Bottom]: 'tw-flex-col',
     [TextPositioningType.Top]: 'tw-flex-col-reverse',
-    [TextPositioningType.Right]: 'tw-flex-col-reverse lg:tw-flex-row',
-    [TextPositioningType.Left]: 'tw-flex-col lg:tw-flex-row-reverse',
+    [TextPositioningType.Right]: 'tw-flex-col lg:tw-flex-row',
+    [TextPositioningType.Left]: 'tw-flex-col-reverse lg:tw-flex-row-reverse',
 };
 
 export const verticalAlignmentToItemAlign: Record<AnchoringType, string> = {
