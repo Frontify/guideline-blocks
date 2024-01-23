@@ -22,11 +22,16 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import { TemplateTextProps } from './types';
-import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
-export const TemplateText = ({ appBridge, title, description, pageCount, isEditing, key }: TemplateTextProps) => {
-    const { updateBlockSettings } = useTemplateBlockData(appBridge);
-
+export const TemplateText = ({
+    appBridge,
+    updateBlockSettings,
+    title,
+    description,
+    pageCount,
+    isEditing,
+    key,
+}: TemplateTextProps) => {
     const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
