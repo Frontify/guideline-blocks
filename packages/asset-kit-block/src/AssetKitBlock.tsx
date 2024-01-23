@@ -137,7 +137,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 }
                                 isEditing={isEditing}
                                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
-                                onTextChange={(buttonText) => setBlockSettings({ buttonText })}
+                                onTextChange={(newButtonText) => setBlockSettings({ buttonText: newButtonText })}
                             />
                             <span
                                 data-test-id="asset-kit-block-screen-reader"

@@ -186,7 +186,7 @@ const getCtaClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
-) => {
+): string => {
     return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
         : '';
@@ -231,7 +231,7 @@ function getCardStyles(
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
     borderColor_blockCard: Color,
-) {
+): React.CSSProperties {
     return {
         ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
         padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
