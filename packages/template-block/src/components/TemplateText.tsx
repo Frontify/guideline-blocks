@@ -93,12 +93,16 @@ export const TemplateText = ({
             <div data-test-id="title" className={titleClasses}>
                 {memoTitleRte}
             </div>
+
             {pageCount !== undefined && (
                 <div style={{ ...pageCountStyles }} data-test-id="page-count">
                     {`${pageCount} ${pageCountLabel}`}
                 </div>
             )}
-            <div data-test-id="description">{memoDescriptionRte}</div>
+
+            <div className={isEditing || hasRichTextValue(description) ? 'tw-mt-2' : ''} data-test-id="description">
+                {memoDescriptionRte}
+            </div>
         </div>
     );
 };
