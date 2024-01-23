@@ -33,6 +33,7 @@ export const TemplateText = ({
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
+    const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
@@ -46,7 +47,7 @@ export const TemplateText = ({
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-title"
+                id={`template-block-title-${blockId}`}
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
@@ -56,13 +57,13 @@ export const TemplateText = ({
                 plugins={customTitlePlugins}
             />
         ),
-        [customTitlePlugins, isEditing, key, setTitle, title],
+        [blockId, customTitlePlugins, isEditing, key, setTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-description"
+                id={`template-block-description-${blockId}`}
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
@@ -72,7 +73,7 @@ export const TemplateText = ({
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, description, isEditing, key, setDescription],
+        [appBridge, blockId, description, isEditing, key, setDescription],
     );
 
     return (

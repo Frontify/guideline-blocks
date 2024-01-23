@@ -93,6 +93,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                         <div data-test-id="template-block-cta" className={ctaClasses}>
                             <CustomButton
+                                appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 isEditing={isEditing}
                                 isDisabled={!selectedTemplate}

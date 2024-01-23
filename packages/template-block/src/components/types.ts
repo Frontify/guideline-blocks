@@ -8,6 +8,7 @@ export type AlertErrorProps = {
 };
 
 export type CustomButtonProps = {
+    appBridge: AppBridgeBlock;
     blockSettings: Settings;
     isEditing: boolean;
     isDisabled: boolean;
