@@ -40,19 +40,13 @@ export const TemplateText = ({
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
-    const { titleWrapperClasses, titleClasses } = useMemo(() => {
-        const removeTopMargin = '[&>div>*:first-child]:!tw-mt-0';
-        const removeBottomMargin = '[&>div>*:last-child]:!tw-mb-0';
+    const titleClasses = useMemo(() => {
+        const removeTopMargin =
+            '[&>div>*:first-child]:!tw-mt-0 [&>div>[data-slate-editor="true"]>*:first-child]:!tw-mt-0';
+        const removeBottomMargin =
+            '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
 
-        return hasTitleOnly
-            ? {
-                  titleWrapperClasses: '',
-                  titleClasses: `${removeTopMargin} ${removeBottomMargin}`,
-              }
-            : {
-                  titleWrapperClasses: 'tw-mb-2',
-                  titleClasses: removeTopMargin,
-              };
+        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : `${removeTopMargin} tw-mb-2`;
     }, [hasTitleOnly]);
 
     const customTitlePlugins = useMemo(() => {
@@ -96,16 +90,14 @@ export const TemplateText = ({
 
     return (
         <div>
-            <div className={titleWrapperClasses}>
-                <div data-test-id="title" className={titleClasses}>
-                    {memoTitleRte}
-                </div>
-                {pageCount !== undefined && (
-                    <div style={{ ...pageCountStyles }} data-test-id="page-count">
-                        {`${pageCount} ${pageCountLabel}`}
-                    </div>
-                )}
+            <div data-test-id="title" className={titleClasses}>
+                {memoTitleRte}
             </div>
+            {pageCount !== undefined && (
+                <div style={{ ...pageCountStyles }} data-test-id="page-count">
+                    {`${pageCount} ${pageCountLabel}`}
+                </div>
+            )}
             <div data-test-id="description">{memoDescriptionRte}</div>
         </div>
     );
