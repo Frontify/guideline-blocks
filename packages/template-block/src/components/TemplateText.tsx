@@ -35,6 +35,8 @@ export const TemplateText = ({
     setDescription,
 }: TemplateTextProps) => {
     const { hasTitleOnly } = useTemplateBlockData(appBridge);
+
+    const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
@@ -63,7 +65,7 @@ export const TemplateText = ({
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-title"
+                id={`title-${blockId}`}
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
@@ -73,13 +75,13 @@ export const TemplateText = ({
                 plugins={customTitlePlugins}
             />
         ),
-        [customTitlePlugins, isEditing, key, setTitle, title],
+        [blockId, customTitlePlugins, isEditing, key, setTitle, title],
     );
 
     const memoDescriptionRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-description"
+                id={`description-${blockId}`}
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
@@ -89,20 +91,22 @@ export const TemplateText = ({
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, description, isEditing, key, setDescription],
+        [appBridge, blockId, description, isEditing, key, setDescription],
     );
 
     return (
         <div>
             <div className={titleWrapperClasses}>
-                <div className={titleClasses}>{memoTitleRte}</div>
+                <div data-test-id="title" className={titleClasses}>
+                    {memoTitleRte}
+                </div>
                 {pageCount !== undefined && (
-                    <div style={{ ...pageCountStyles }} data-test-id="template-block-page-count">
+                    <div style={{ ...pageCountStyles }} data-test-id="page-count">
                         {`${pageCount} ${pageCountLabel}`}
                     </div>
                 )}
             </div>
-            <div>{memoDescriptionRte}</div>
+            <div data-test-id="description">{memoDescriptionRte}</div>
         </div>
     );
 };

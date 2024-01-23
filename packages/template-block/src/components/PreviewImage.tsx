@@ -75,7 +75,7 @@ export const PreviewImage = ({
     return (
         <>
             <img
-                data-test-id="template-block-preview-img"
+                data-test-id="preview-img"
                 src={currentPreviewSrc}
                 className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
                 style={{

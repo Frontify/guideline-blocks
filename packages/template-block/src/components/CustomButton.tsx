@@ -7,6 +7,7 @@ import { CustomButtonProps } from './types';
 import { PreviewType } from '../types';
 
 export const CustomButton = ({
+    appBridge,
     blockSettings,
     isEditing,
     isDisabled,
@@ -15,12 +16,13 @@ export const CustomButton = ({
 }: CustomButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview } = blockSettings;
+    const blockId = appBridge.context('blockId').get();
 
     const marginOverwrites = preview === PreviewType.None ? '!tw-m-0' : '!tw-mb-0';
 
     return (
         <button
-            data-test-id="template-block-new-publication-btn"
+            data-test-id="cta-button"
             disabled={isDisabled}
             onClick={isEditing ? undefined : handleNewPublication}
             onMouseEnter={() => setButtonHover(true)}
@@ -32,7 +34,7 @@ export const CustomButton = ({
             }}
         >
             <RichTextEditor
-                id="template-block-new-publication-button-text"
+                id={`cta-button-text-${blockId}`}
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}

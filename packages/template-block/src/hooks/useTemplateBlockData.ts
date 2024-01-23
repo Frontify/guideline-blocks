@@ -191,7 +191,7 @@ const getCtaClasses = (
     hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
-) => {
+): string => {
     if (hasTitleOnly) {
         return 'tw-self-center';
     }
@@ -241,7 +241,7 @@ function getCardStyles(
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
     borderColor_blockCard: Color,
-) {
+): React.CSSProperties {
     return {
         ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
         padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
