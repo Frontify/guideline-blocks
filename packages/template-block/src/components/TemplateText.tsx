@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
@@ -26,13 +26,12 @@ import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
 export const TemplateText = ({
     appBridge,
+    updateBlockSettings,
     title,
     description,
     pageCount,
     isEditing,
     key,
-    setTitle,
-    setDescription,
 }: TemplateTextProps) => {
     const { hasTitleOnly } = useTemplateBlockData(appBridge);
 
@@ -40,14 +39,23 @@ export const TemplateText = ({
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
-    const titleClasses = useMemo(() => {
-        const removeTopMargin =
-            '[&>div>*:first-child]:!tw-mt-0 [&>div>[data-slate-editor="true"]>*:first-child]:!tw-mt-0';
-        const removeBottomMargin =
-            '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
+    const saveTitle = useCallback(
+        async (newTitle: string) => {
+            if (title !== newTitle) {
+                await updateBlockSettings({ title: newTitle });
+            }
+        },
+        [title, updateBlockSettings],
+    );
 
-        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : `${removeTopMargin} tw-mb-2`;
-    }, [hasTitleOnly]);
+    const saveDescription = useCallback(
+        async (newDescription: string) => {
+            if (description !== newDescription) {
+                await updateBlockSettings({ description: newDescription });
+            }
+        },
+        [description, updateBlockSettings],
+    );
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -63,13 +71,13 @@ export const TemplateText = ({
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
-                onTextChange={setTitle}
+                onTextChange={saveDescription}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, key, setTitle, title],
+        [blockId, customTitlePlugins, isEditing, key, saveDescription, title],
     );
 
     const memoDescriptionRte = useMemo(
@@ -79,14 +87,23 @@ export const TemplateText = ({
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
-                onTextChange={setDescription}
+                onTextChange={saveTitle}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         ),
-        [appBridge, blockId, description, isEditing, key, setDescription],
+        [appBridge, blockId, description, isEditing, key, saveTitle],
     );
+
+    const titleClasses = useMemo(() => {
+        const removeTopMargin =
+            '[&>div>*:first-child]:!tw-mt-0 [&>div>[data-slate-editor="true"]>*:first-child]:!tw-mt-0';
+        const removeBottomMargin =
+            '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
+
+        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : `${removeTopMargin} tw-mb-2`;
+    }, [hasTitleOnly]);
 
     return (
         <div>

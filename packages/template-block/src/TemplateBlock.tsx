@@ -23,9 +23,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         isEditing,
         lastErrorMessage,
         preview,
+        previewClasses,
         previewCustom,
-        saveDescription,
-        saveTitle,
         selectedTemplate,
         templateTextKey,
         textClasses,
@@ -69,6 +68,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             appBridge={appBridge}
                             blockSettings={blockSettings}
                             template={selectedTemplate}
+                            previewClasses={previewClasses}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
                         />
@@ -78,6 +78,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         <div data-test-id="text" className={textClasses}>
                             <TemplateText
                                 appBridge={appBridge}
+                                updateBlockSettings={updateBlockSettings}
                                 title={title}
                                 description={description}
                                 pageCount={
@@ -87,8 +88,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 }
                                 isEditing={isEditing}
                                 key={templateTextKey}
-                                setTitle={saveTitle}
-                                setDescription={saveDescription}
                             />
                         </div>
                         <div data-test-id="cta" className={ctaClasses}>

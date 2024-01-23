@@ -28,6 +28,7 @@ export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
+    previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
 };
@@ -39,6 +40,5 @@ export type TemplateTextProps = {
     pageCount: number | undefined;
     isEditing: boolean;
     key: string;
-    setTitle: (newTitle: string) => void;
-    setDescription: (newDescription: string) => void;
+    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
 };

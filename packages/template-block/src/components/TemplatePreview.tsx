@@ -11,17 +11,16 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewImage } from './PreviewImage';
 import { TemplatePreviewProps } from './types';
-import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
 export const TemplatePreview = ({
     appBridge,
     blockSettings,
     template,
+    previewClasses,
     updateBlockSettings,
     onOpenTemplateChooser,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
-    const { previewClasses } = useTemplateBlockData(appBridge);
 
     const {
         backgroundColorTemplatePreview,
