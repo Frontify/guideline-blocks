@@ -18,7 +18,6 @@ import {
     Radius,
     convertToRteValue,
     getBackgroundColorStyles,
-    paddingStyleMap,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
@@ -32,6 +31,7 @@ import {
     TextRatioType,
     horizontalAlignmentToCtaSelfAlign,
     horizontalAlignmentToTextAlign,
+    paddingStyleMap,
     textPositioningToContentFlexDirection,
     textRatioToPreviewFlexBasis,
     verticalAlignmentToItemAlign,
