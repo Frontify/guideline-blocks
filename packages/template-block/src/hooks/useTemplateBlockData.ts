@@ -71,34 +71,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         title,
     } = blockSettings;
 
-    const saveDescription = useCallback(
-        async (newDescription: string) => {
-            if (description !== newDescription) {
-                await updateBlockSettings({ description: newDescription });
-            }
-        },
-        [description, updateBlockSettings],
-    );
-
-    const saveTitle = useCallback(
-        async (newTitle: string) => {
-            if (title !== newTitle) {
-                await updateBlockSettings({ title: newTitle });
-            }
-        },
-        [title, updateBlockSettings],
-    );
-
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 updateBlockSettings({
-                    template: result.template,
-                    templateId: result.template.id,
+                    title: convertToRteValue(TextStyles.heading3, result.template.title),
+                    description: result.template.description,
                 });
-                await saveTitle(convertToRteValue(TextStyles.heading3, result.template.title));
-                await saveDescription(result.template.description);
                 setTemplateTextKey(generateRandomId());
             } catch (error) {
                 setLastErrorMessage(error as string);
@@ -106,7 +86,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, saveDescription, saveTitle, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, updateBlockSettings, updateTemplateIdsFromKey],
     );
 
     useEffect(() => {

@@ -24,8 +24,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         lastErrorMessage,
         preview,
         previewCustom,
-        saveDescription,
-        saveTitle,
         selectedTemplate,
         templateTextKey,
         textClasses,
@@ -33,6 +31,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         title,
         updateBlockSettings,
     } = useTemplateBlockData(appBridge);
+
+    const saveDescription = async (newDescription: string) => {
+        if (description !== newDescription) {
+            await updateBlockSettings({ description: newDescription });
+        }
+    };
+
+    const saveTitle = async (newTitle: string) => {
+        if (title !== newTitle) {
+            await updateBlockSettings({ title: newTitle });
+        }
+    };
 
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
