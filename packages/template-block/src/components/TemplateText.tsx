@@ -22,6 +22,7 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import { TemplateTextProps } from './types';
+import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
 export const TemplateText = ({
     appBridge,
@@ -33,8 +34,21 @@ export const TemplateText = ({
     setTitle,
     setDescription,
 }: TemplateTextProps) => {
+    const { hasTitleOnly } = useTemplateBlockData(appBridge);
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
+
+    const { titleWrapperClasses, titleClasses } = useMemo(() => {
+        return hasTitleOnly
+            ? {
+                  titleWrapperClasses: '',
+                  titleClasses: '[&>div>*:first-child]:!tw-mt-0 [&>div>*:last-child]:!tw-mb-0',
+              }
+            : {
+                  titleWrapperClasses: 'tw-mb-2',
+                  titleClasses: '',
+              };
+    }, [hasTitleOnly]);
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -77,8 +91,8 @@ export const TemplateText = ({
 
     return (
         <div>
-            <div className="tw-mb-2">
-                {memoTitleRte}
+            <div className={titleWrapperClasses}>
+                <div className={titleClasses}>{memoTitleRte}</div>
                 {pageCount !== undefined && (
                     <div style={{ ...pageCountStyles }} data-test-id="template-block-page-count">
                         {`${pageCount} ${pageCountLabel}`}

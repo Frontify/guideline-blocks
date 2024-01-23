@@ -18,6 +18,7 @@ import {
     Radius,
     convertToRteValue,
     getBackgroundColorStyles,
+    hasRichTextValue,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
@@ -58,6 +59,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         hasBackground,
         hasBorder_blockCard,
         hasCustomPaddingValue_blockCard,
+        hasPageCount,
         hasRadius_blockCard,
         paddingChoice_blockCard,
         paddingValue_blockCard,
@@ -138,6 +140,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [blockTemplates]);
 
     const hasPreview = preview !== PreviewType.None;
+    const hasTitleOnly = !isEditing && !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     return {
         blockSettings,
@@ -156,9 +159,10 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             borderColor_blockCard,
         ),
         contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
-        ctaClasses: getCtaClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        ctaClasses: getCtaClasses(hasTitleOnly, hasPreview, textPositioning, textAnchoringHorizontal),
         description,
         hasPreview,
+        hasTitleOnly,
         isEditing,
         lastErrorMessage,
         preview,
@@ -183,10 +187,14 @@ const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVe
 };
 
 const getCtaClasses = (
+    hasTitleOnly: boolean,
     hasPreview: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
 ) => {
+    if (hasTitleOnly) {
+        return 'tw-self-center';
+    }
     return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
         : '';
