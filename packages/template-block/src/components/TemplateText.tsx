@@ -47,7 +47,7 @@ export const TemplateText = ({
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
-                id={`template-block-title-${blockId}`}
+                id={`title-${blockId}`}
                 key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
@@ -63,7 +63,7 @@ export const TemplateText = ({
     const memoDescriptionRte = useMemo(
         () => (
             <RichTextEditor
-                id={`template-block-description-${blockId}`}
+                id={`description-${blockId}`}
                 value={description}
                 key={key}
                 placeholder="Add a description for your template"
@@ -78,15 +78,15 @@ export const TemplateText = ({
 
     return (
         <div>
-            <div className="tw-mb-2">
+            <div data-test-id="title" className="tw-mb-2">
                 {memoTitleRte}
                 {pageCount !== undefined && (
-                    <div style={{ ...pageCountStyles }} data-test-id="template-block-page-count">
+                    <div style={{ ...pageCountStyles }} data-test-id="page-count">
                         {`${pageCount} ${pageCountLabel}`}
                     </div>
                 )}
             </div>
-            <div>{memoDescriptionRte}</div>
+            <div data-test-id="description">{memoDescriptionRte}</div>
         </div>
     );
 };

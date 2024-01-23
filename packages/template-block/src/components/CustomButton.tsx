@@ -22,7 +22,7 @@ export const CustomButton = ({
 
     return (
         <button
-            data-test-id="template-block-new-publication-btn"
+            data-test-id="cta-button"
             disabled={isDisabled}
             onClick={isEditing ? undefined : handleNewPublication}
             onMouseEnter={() => setButtonHover(true)}
@@ -34,7 +34,7 @@ export const CustomButton = ({
             }}
         >
             <RichTextEditor
-                id={`template-block-new-publication-button-text-${blockId}`}
+                id={`cta-button-text-${blockId}`}
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}

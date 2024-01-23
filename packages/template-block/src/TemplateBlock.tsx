@@ -55,15 +55,15 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
     if (!selectedTemplate && !isEditing) {
-        return <div data-test-id="template-block-container" className="template-block"></div>;
+        return <div data-test-id="container" className="template-block"></div>;
     }
 
     return (
-        <div data-test-id="template-block-container" className="template-block">
-            <div data-test-id="template-block-card" style={cardStyles}>
+        <div data-test-id="container" className="template-block">
+            <div data-test-id="card" style={cardStyles}>
                 {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
-                <div data-test-id="template-block-content" className={contentClasses}>
+                <div data-test-id="content" className={contentClasses}>
                     {hasPreview && (
                         <TemplatePreview
                             appBridge={appBridge}
@@ -74,8 +74,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         />
                     )}
 
-                    <div data-test-id="template-block-text-cta-wrapper" className={textCtaWrapperClasses}>
-                        <div data-test-id="template-block-text" className={textClasses}>
+                    <div data-test-id="text-cta-wrapper" className={textCtaWrapperClasses}>
+                        <div data-test-id="text" className={textClasses}>
                             <TemplateText
                                 appBridge={appBridge}
                                 title={title}
@@ -91,7 +91,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 setDescription={saveDescription}
                             />
                         </div>
-                        <div data-test-id="template-block-cta" className={ctaClasses}>
+                        <div data-test-id="cta" className={ctaClasses}>
                             <CustomButton
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
@@ -106,7 +106,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
                 {isEditing && !hasPreview && (
                     <div
-                        data-test-id="template-block-cta-editing-no-preview"
+                        data-test-id="cta-editing-no-preview"
                         className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded"
                     >
                         <div>
