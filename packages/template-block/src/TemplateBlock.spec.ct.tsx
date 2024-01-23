@@ -197,7 +197,7 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', '0px');
     });
 
-    it('should render block card with a small padding', () => {
+    it('should render block card with small padding', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
@@ -210,11 +210,11 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Small]);
     });
 
-    it('should render block card with a medium padding', () => {
+    it('should render block card with medium padding even with disabled border', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
-                hasBorder_blockCard: true,
+                hasBorder_blockCard: false,
                 paddingChoice_blockCard: Padding.Medium,
             },
         });
@@ -223,11 +223,11 @@ describe('Template Block', () => {
         cy.get(TEMPLATE_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[Padding.Medium]);
     });
 
-    it('should render block card with a large padding', () => {
+    it('should render block card with large padding even with disabled background', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
             blockSettings: {
-                hasBorder_blockCard: true,
+                hasBackground: false,
                 paddingChoice_blockCard: Padding.Large,
             },
         });

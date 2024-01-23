@@ -80,9 +80,6 @@ export const settings = defineSettings({
             id: 'cardLayoutHeading',
             type: 'sectionHeading',
             label: 'Card',
-            show: (bundle: Bundle) =>
-                bundle.getBlock('hasBackground')?.value === true ||
-                bundle.getBlock('hasBorder_blockCard')?.value === true,
             blocks: [
                 getPaddingSettings({
                     id: 'blockCard',
