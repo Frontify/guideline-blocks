@@ -173,7 +173,7 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         </div>
                     </div>
                     {audio && !isEditing && (
-                        <div className="tw-flex tw-gap-2" data-test-id="view-mode-addons">
+                        <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,
