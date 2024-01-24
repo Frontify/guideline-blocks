@@ -22,7 +22,6 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import { TemplateTextProps } from './types';
-import { useTemplateBlockData } from '../hooks/useTemplateBlockData';
 
 export const TemplateText = ({
     appBridge,
@@ -31,10 +30,9 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
-    key,
+    hasTitleOnly,
+    templateTextKey,
 }: TemplateTextProps) => {
-    const { hasTitleOnly } = useTemplateBlockData(appBridge);
-
     const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
@@ -68,16 +66,16 @@ export const TemplateText = ({
         () => (
             <RichTextEditor
                 id={`title-${blockId}`}
-                key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onTextChange={saveTitle}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
+                key={templateTextKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, key, saveTitle, title],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey],
     );
 
     const memoDescriptionRte = useMemo(
@@ -85,15 +83,15 @@ export const TemplateText = ({
             <RichTextEditor
                 id={`description-${blockId}`}
                 value={description}
-                key={key}
                 placeholder="Add a description for your template"
                 onTextChange={saveDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                key={templateTextKey}
             />
         ),
-        [appBridge, blockId, description, isEditing, key, saveDescription],
+        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
     );
 
     const titleClasses = useMemo(() => {

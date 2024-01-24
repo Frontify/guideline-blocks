@@ -114,6 +114,9 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    const titleValue = blockSettings.title ?? DEFAULT_CONTENT_TITLE;
+    const descriptionValue = blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION;
+
     return (
         <div className="audio-block">
             <div
@@ -151,8 +154,9 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 plugins={titlePlugins}
                                 isEditing={isEditing}
                                 onTextChange={onTitleChange}
-                                value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
+                                value={titleValue}
                                 placeholder="Asset name"
+                                showSerializedText={hasRichTextValue(titleValue)}
                             />
                         </div>
 
@@ -162,13 +166,14 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 plugins={getDescriptionPlugins(appBridge)}
                                 isEditing={isEditing}
                                 onTextChange={onDescriptionChange}
-                                value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
+                                value={descriptionValue}
                                 placeholder="Add a description here"
+                                showSerializedText={hasRichTextValue(descriptionValue)}
                             />
                         </div>
                     </div>
                     {audio && !isEditing && (
-                        <div className="tw-flex tw-gap-2" data-test-id="view-mode-addons">
+                        <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,

@@ -10,7 +10,7 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Color, TextStyles, generateRandomId } from '@frontify/fondue';
+import { Color, TextStyles } from '@frontify/fondue';
 import {
     type BlockProps,
     BorderStyle,
@@ -34,7 +34,8 @@ import {
     horizontalAlignmentToTextAlign,
     paddingStyleMap,
     textPositioningToContentFlexDirection,
-    textRatioToPreviewFlexBasis,
+    textRatioToFlexBasis,
+    textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from '../types';
 
@@ -42,7 +43,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId());
+    const [templateTextKey, setTemplateTextKey] = useState(0);
     const isEditing = useEditorState(appBridge);
 
     const {
@@ -77,18 +78,18 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         async (result: { template: TemplateLegacy }) => {
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
-                updateBlockSettings({
+                await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
                     description: result.template.description,
                 });
-                setTemplateTextKey(generateRandomId());
+                setTemplateTextKey(templateTextKey + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             }
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey],
     );
 
     useEffect(() => {
@@ -151,7 +152,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         selectedTemplate,
         templateTextKey,
         textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
-        textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview),
+        textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
         title,
         updateBlockSettings,
     };
@@ -184,7 +185,7 @@ const getPreviewClasses = (
     textRatio: TextRatioType,
 ): string => {
     return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? textRatioToPreviewFlexBasis[textRatio]
+        ? textRatioToInverseFlexBasis[textRatio]
         : '';
 };
 
@@ -202,11 +203,20 @@ const getTextClasses = (
     return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
-const getTextCtaWrapperClass = (hasPreview: boolean): string => {
+const getTextCtaWrapperClass = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textRatio: TextRatioType,
+): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
-    return `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
+    const flexBasis =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? textRatioToFlexBasis[textRatio]
+            : '';
+    return `tw-flex tw-grow tw-gap-y-2 tw-gap-x-8 ${textCtaWrapperFlexDirection} ${flexBasis}`;
 };
-function getCardStyles(
+
+const getCardStyles = (
     hasBackground: boolean,
     backgroundColor: Color,
     hasCustomPaddingValue_blockCard: boolean,
@@ -219,13 +229,11 @@ function getCardStyles(
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
     borderColor_blockCard: Color,
-): React.CSSProperties {
-    return {
-        ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
-        padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
-        borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
-        border: hasBorder_blockCard
-            ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
-            : 'none',
-    };
-}
+): React.CSSProperties => ({
+    ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+    padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
+    borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
+    border: hasBorder_blockCard
+        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
+        : 'none',
+});
