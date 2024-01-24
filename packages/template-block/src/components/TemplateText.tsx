@@ -30,11 +30,13 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
-    key,
 }: TemplateTextProps) => {
     const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
+
+    const titleKey = JSON.stringify(title);
+    const descriptionKey = JSON.stringify(description);
 
     const saveTitle = useCallback(
         async (newTitle: string) => {
@@ -65,16 +67,16 @@ export const TemplateText = ({
         () => (
             <RichTextEditor
                 id={`title-${blockId}`}
-                key={key}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onTextChange={saveTitle}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
+                key={titleKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, key, saveTitle, title],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, titleKey],
     );
 
     const memoDescriptionRte = useMemo(
@@ -82,15 +84,15 @@ export const TemplateText = ({
             <RichTextEditor
                 id={`description-${blockId}`}
                 value={description}
-                key={key}
                 placeholder="Add a description for your template"
                 onTextChange={saveDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                key={descriptionKey}
             />
         ),
-        [appBridge, blockId, description, isEditing, key, saveDescription],
+        [appBridge, blockId, description, descriptionKey, isEditing, saveDescription],
     );
 
     return (

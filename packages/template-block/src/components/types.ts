@@ -39,6 +39,5 @@ export type TemplateTextProps = {
     description: string;
     pageCount: number | undefined;
     isEditing: boolean;
-    key: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
 };

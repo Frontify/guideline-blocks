@@ -26,7 +26,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         previewClasses,
         previewCustom,
         selectedTemplate,
-        templateTextKey,
+        templateKey,
         textClasses,
         textCtaWrapperClasses,
         title,
@@ -87,7 +87,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         : undefined
                                 }
                                 isEditing={isEditing}
-                                key={templateTextKey}
+                                key={templateKey}
                             />
                         </div>
                         <div data-test-id="cta" className={ctaClasses}>

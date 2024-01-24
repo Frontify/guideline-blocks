@@ -10,7 +10,7 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Color, TextStyles, generateRandomId } from '@frontify/fondue';
+import { Color, TextStyles } from '@frontify/fondue';
 import {
     type BlockProps,
     BorderStyle,
@@ -41,7 +41,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId());
+    const [templateKey, setTemplateKey] = useState(0);
     const isEditing = useEditorState(appBridge);
 
     const {
@@ -79,14 +79,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
                     description: result.template.description,
                 });
-                setTemplateTextKey(generateRandomId());
+                setTemplateKey(templateKey + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             }
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateKey, updateBlockSettings, updateTemplateIdsFromKey],
     );
 
     useEffect(() => {
@@ -145,7 +145,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
         previewCustom,
         selectedTemplate,
-        templateTextKey,
+        templateKey,
         textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
         textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview),
         title,
