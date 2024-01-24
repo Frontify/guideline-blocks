@@ -164,21 +164,19 @@ const getCtaClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
-): string => {
-    return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+): string =>
+    hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
         : '';
-};
 
 const getPreviewClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
     textRatio: TextRatioType,
-): string => {
-    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+): string =>
+    hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? textRatioToPreviewFlexBasis[textRatio]
         : '';
-};
 
 const getTextClasses = (
     hasPreview: boolean,
@@ -196,7 +194,7 @@ const getTextCtaWrapperClass = (hasPreview: boolean): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
     return `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
 };
-function getCardStyles(
+const getCardStyles = (
     hasBackground: boolean,
     backgroundColor: Color,
     hasCustomPaddingValue_blockCard: boolean,
@@ -209,13 +207,11 @@ function getCardStyles(
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
     borderColor_blockCard: Color,
-): React.CSSProperties {
-    return {
-        ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
-        padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
-        borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
-        border: hasBorder_blockCard
-            ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
-            : 'none',
-    };
-}
+): React.CSSProperties => ({
+    ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+    padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
+    borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
+    border: hasBorder_blockCard
+        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
+        : 'none',
+});
