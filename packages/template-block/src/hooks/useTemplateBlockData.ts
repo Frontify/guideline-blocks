@@ -33,7 +33,8 @@ import {
     horizontalAlignmentToTextAlign,
     paddingStyleMap,
     textPositioningToContentFlexDirection,
-    textRatioToPreviewFlexBasis,
+    textRatioToFlexBasis,
+    textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from '../types';
 
@@ -147,7 +148,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         selectedTemplate,
         templateKey,
         textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
-        textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview),
+        textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
         title,
         updateBlockSettings,
     };
@@ -175,7 +176,7 @@ const getPreviewClasses = (
     textRatio: TextRatioType,
 ): string =>
     hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? textRatioToPreviewFlexBasis[textRatio]
+        ? textRatioToInverseFlexBasis[textRatio]
         : '';
 
 const getTextClasses = (
@@ -190,10 +191,19 @@ const getTextClasses = (
     return `tw-grow ${textAlign}`;
 };
 
-const getTextCtaWrapperClass = (hasPreview: boolean): string => {
+const getTextCtaWrapperClass = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textRatio: TextRatioType,
+): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
-    return `tw-flex tw-grow ${textCtaWrapperFlexDirection} tw-gap-y-2 tw-gap-x-8`;
+    const flexBasis =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? textRatioToFlexBasis[textRatio]
+            : '';
+    return `tw-flex tw-grow tw-gap-y-2 tw-gap-x-8 ${textCtaWrapperFlexDirection} ${flexBasis}`;
 };
+
 const getCardStyles = (
     hasBackground: boolean,
     backgroundColor: Color,

@@ -132,7 +132,15 @@ export const horizontalAlignmentToCtaSelfAlign: Record<AnchoringType, string> = 
     [AnchoringType.End]: 'lg:tw-self-end',
 };
 
-export const textRatioToPreviewFlexBasis: Record<TextRatioType, string> = {
+export const textRatioToFlexBasis: Record<TextRatioType, string> = {
+    [TextRatioType.OneQuarter]: 'lg:tw-basis-1/4',
+    [TextRatioType.OneThird]: 'lg:tw-basis-1/3',
+    [TextRatioType.OneHalf]: 'lg:tw-basis-1/2',
+    [TextRatioType.TwoThirds]: 'lg:tw-basis-2/3',
+    [TextRatioType.ThreeQuarters]: 'lg:tw-basis-3/4',
+};
+
+export const textRatioToInverseFlexBasis: Record<TextRatioType, string> = {
     [TextRatioType.OneQuarter]: 'lg:tw-basis-3/4',
     [TextRatioType.OneThird]: 'lg:tw-basis-2/3',
     [TextRatioType.OneHalf]: 'lg:tw-basis-1/2',
