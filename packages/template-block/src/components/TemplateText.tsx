@@ -30,13 +30,11 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
+    templateTextKey,
 }: TemplateTextProps) => {
     const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
-
-    const titleKey = JSON.stringify(title);
-    const descriptionKey = JSON.stringify(description);
 
     const saveTitle = useCallback(
         async (newTitle: string) => {
@@ -73,10 +71,10 @@ export const TemplateText = ({
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
-                key={titleKey}
+                key={templateTextKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, saveTitle, title, titleKey],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey],
     );
 
     const memoDescriptionRte = useMemo(
@@ -89,10 +87,10 @@ export const TemplateText = ({
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
-                key={descriptionKey}
+                key={templateTextKey}
             />
         ),
-        [appBridge, blockId, description, descriptionKey, isEditing, saveDescription],
+        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
     );
 
     return (

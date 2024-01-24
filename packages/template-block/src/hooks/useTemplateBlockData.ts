@@ -42,7 +42,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateKey, setTemplateKey] = useState(0);
+    const [templateTextKey, setTemplateTextKey] = useState(0);
     const isEditing = useEditorState(appBridge);
 
     const {
@@ -76,18 +76,18 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         async (result: { template: TemplateLegacy }) => {
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
-                updateBlockSettings({
+                await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
                     description: result.template.description,
                 });
-                setTemplateKey(templateKey + 1);
+                setTemplateTextKey(templateTextKey + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             }
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, templateKey, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey],
     );
 
     useEffect(() => {
@@ -146,7 +146,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
         previewCustom,
         selectedTemplate,
-        templateKey,
+        templateTextKey,
         textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
         textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
         title,
