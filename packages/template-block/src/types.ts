@@ -8,8 +8,7 @@ export type Settings = {
     title: string;
     description: string;
 
-    // basics
-
+    // Basics
     template?: TemplateLegacy;
     templateId?: number;
     preview: PreviewType;
@@ -17,8 +16,7 @@ export type Settings = {
     buttonText?: string;
     altText?: string;
 
-    // layout
-
+    // Layout
     hasCustomPaddingValue_blockCard: boolean;
     paddingValue_blockCard: string;
     paddingChoice_blockCard: Padding;
@@ -40,8 +38,7 @@ export type Settings = {
 
     previewImageAnchoring?: AnchoringType;
 
-    // style
-
+    // Style
     hasBackground: boolean;
     backgroundColor: Color;
 
@@ -89,23 +86,6 @@ export enum TextPositioningType {
     Left = 'left',
 }
 
-export const textPositioningToFlexDirection: Record<
-    TextPositioningType,
-    'row' | 'row-reverse' | 'column' | 'column-reverse'
-> = {
-    [TextPositioningType.Bottom]: 'column',
-    [TextPositioningType.Top]: 'column-reverse',
-    [TextPositioningType.Right]: 'row',
-    [TextPositioningType.Left]: 'row-reverse',
-};
-
-export const textPositioningToStyles: Record<TextPositioningType, string> = {
-    [TextPositioningType.Bottom]: 'tw-flex-col',
-    [TextPositioningType.Top]: 'tw-flex-col-reverse',
-    [TextPositioningType.Right]: 'tw-flex-col lg:tw-flex-row',
-    [TextPositioningType.Left]: 'tw-flex-col lg:tw-flex-row-reverse',
-};
-
 export enum AnchoringType {
     Start = 'start',
     Center = 'center',
@@ -126,6 +106,47 @@ export enum PreviewHeightType {
     Medium = 'medium',
     Large = 'large',
 }
+
+export const textPositioningToContentFlexDirection: Record<TextPositioningType, string> = {
+    [TextPositioningType.Bottom]: 'tw-flex-col',
+    [TextPositioningType.Top]: 'tw-flex-col-reverse',
+    [TextPositioningType.Right]: 'tw-flex-col lg:tw-flex-row',
+    [TextPositioningType.Left]: 'tw-flex-col-reverse lg:tw-flex-row-reverse',
+};
+
+export const verticalAlignmentToItemAlign: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'lg:tw-items-start',
+    [AnchoringType.Center]: 'lg:tw-items-center',
+    [AnchoringType.End]: 'lg:tw-items-end',
+};
+
+export const horizontalAlignmentToTextAlign: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'lg:tw-text-left',
+    [AnchoringType.Center]: 'lg:tw-text-center',
+    [AnchoringType.End]: 'lg:tw-text-right',
+};
+
+export const horizontalAlignmentToCtaSelfAlign: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'lg:tw-self-start',
+    [AnchoringType.Center]: 'lg:tw-self-center',
+    [AnchoringType.End]: 'lg:tw-self-end',
+};
+
+export const textRatioToFlexBasis: Record<TextRatioType, string> = {
+    [TextRatioType.OneQuarter]: 'lg:tw-basis-1/4',
+    [TextRatioType.OneThird]: 'lg:tw-basis-1/3',
+    [TextRatioType.OneHalf]: 'lg:tw-basis-1/2',
+    [TextRatioType.TwoThirds]: 'lg:tw-basis-2/3',
+    [TextRatioType.ThreeQuarters]: 'lg:tw-basis-3/4',
+};
+
+export const textRatioToInverseFlexBasis: Record<TextRatioType, string> = {
+    [TextRatioType.OneQuarter]: 'lg:tw-basis-3/4',
+    [TextRatioType.OneThird]: 'lg:tw-basis-2/3',
+    [TextRatioType.OneHalf]: 'lg:tw-basis-1/2',
+    [TextRatioType.TwoThirds]: 'lg:tw-basis-1/3',
+    [TextRatioType.ThreeQuarters]: 'lg:tw-basis-1/4',
+};
 
 export const previewHeightValues: Record<PreviewHeightType, string> = {
     [PreviewHeightType.Auto]: 'auto',
@@ -155,10 +176,4 @@ export const paddingStyleMap: Record<Padding, string> = {
     [Padding.Small]: '10px',
     [Padding.Medium]: '20px',
     [Padding.Large]: '30px',
-};
-
-export const justifyHorizontal: Record<AnchoringType, string> = {
-    [AnchoringType.Start]: 'tw-justify-start',
-    [AnchoringType.Center]: 'tw-justify-center',
-    [AnchoringType.End]: 'tw-justify-end',
 };

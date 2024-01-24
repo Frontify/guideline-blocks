@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
@@ -25,16 +25,34 @@ import { TemplateTextProps } from './types';
 
 export const TemplateText = ({
     appBridge,
+    updateBlockSettings,
     title,
     description,
     pageCount,
     isEditing,
-    key,
-    setTitle,
-    setDescription,
+    templateTextKey,
 }: TemplateTextProps) => {
+    const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
+
+    const saveTitle = useCallback(
+        async (newTitle: string) => {
+            if (title !== newTitle) {
+                await updateBlockSettings({ title: newTitle });
+            }
+        },
+        [title, updateBlockSettings],
+    );
+
+    const saveDescription = useCallback(
+        async (newDescription: string) => {
+            if (description !== newDescription) {
+                await updateBlockSettings({ description: newDescription });
+            }
+        },
+        [description, updateBlockSettings],
+    );
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -46,49 +64,46 @@ export const TemplateText = ({
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-title"
-                key={key}
+                id={`title-${blockId}`}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
-                onTextChange={setTitle}
+                onTextChange={saveTitle}
                 isEditing={isEditing}
                 showSerializedText={hasRichTextValue(title)}
                 plugins={customTitlePlugins}
+                key={templateTextKey}
             />
         ),
-        [customTitlePlugins, isEditing, key, setTitle, title],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey],
     );
 
     const memoDescriptionRte = useMemo(
         () => (
             <RichTextEditor
-                id="template-block-description"
+                id={`description-${blockId}`}
                 value={description}
-                key={key}
                 placeholder="Add a description for your template"
-                onTextChange={setDescription}
+                onTextChange={saveDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                key={templateTextKey}
             />
         ),
-        [appBridge, description, isEditing, key, setDescription],
+        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
     );
 
     return (
         <div>
-            <div className="tw-mb-2">
+            <div data-test-id="title" className="tw-mb-2">
                 {memoTitleRte}
                 {pageCount !== undefined && (
-                    <div>
-                        <span
-                            style={{ ...pageCountStyles }}
-                            data-test-id="template-block-page-count"
-                        >{`${pageCount} ${pageCountLabel}`}</span>
+                    <div style={{ ...pageCountStyles }} data-test-id="page-count">
+                        {`${pageCount} ${pageCountLabel}`}
                     </div>
                 )}
             </div>
-            <div>{memoDescriptionRte}</div>
+            <div data-test-id="description">{memoDescriptionRte}</div>
         </div>
     );
 };

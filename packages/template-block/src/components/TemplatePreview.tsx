@@ -16,26 +16,25 @@ export const TemplatePreview = ({
     appBridge,
     blockSettings,
     template,
+    previewClasses,
     updateBlockSettings,
     onOpenTemplateChooser,
-    isRows,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
 
     const {
-        hasBackgroundTemplatePreview,
         backgroundColorTemplatePreview,
-        hasBorder_templatePreview,
-        borderWidth_templatePreview,
         borderColor_templatePreview,
         borderStyle_templatePreview,
+        borderWidth_templatePreview,
+        hasBackgroundTemplatePreview,
+        hasBorder_templatePreview,
         hasRadius_templatePreview,
-        radiusValue_templatePreview,
-        radiusChoice_templatePreview,
-        textRatio,
         isPreviewHeightCustom,
-        previewHeightSimple,
         previewHeightCustom,
+        previewHeightSimple,
+        radiusChoice_templatePreview,
+        radiusValue_templatePreview,
     } = blockSettings;
 
     const { previewCustom } = blockAssets;
@@ -49,16 +48,11 @@ export const TemplatePreview = ({
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
 
     return (
-        <div
-            data-test-id="template-block-preview"
-            style={{
-                width: isRows ? `${100 - parseInt(textRatio)}%` : '100%',
-            }}
-        >
+        <div className={previewClasses} data-test-id="preview">
             {template !== null || previewCustom ? (
                 <div
                     className="tw-relative tw-overflow-hidden"
-                    data-test-id="template-block-preview-wrapper"
+                    data-test-id="preview-wrapper"
                     style={{
                         ...(hasBackgroundTemplatePreview && {
                             ...getBackgroundColorStyles(backgroundColorTemplatePreview),

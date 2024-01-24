@@ -8,6 +8,7 @@ export type AlertErrorProps = {
 };
 
 export type CustomButtonProps = {
+    appBridge: AppBridgeBlock;
     blockSettings: Settings;
     isEditing: boolean;
     isDisabled: boolean;
@@ -27,9 +28,9 @@ export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
+    previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
-    isRows: boolean;
 };
 
 export type TemplateTextProps = {
@@ -38,7 +39,6 @@ export type TemplateTextProps = {
     description: string;
     pageCount: number | undefined;
     isEditing: boolean;
-    key: string;
-    setTitle: (newTitle: string) => void;
-    setDescription: (newDescription: string) => void;
+    templateTextKey: number;
+    updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
 };

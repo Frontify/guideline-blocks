@@ -10,88 +10,84 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { TextStyles, generateRandomId } from '@frontify/fondue';
-import { type BlockProps, convertToRteValue, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { Color, TextStyles } from '@frontify/fondue';
+import {
+    type BlockProps,
+    BorderStyle,
+    Padding,
+    Radius,
+    convertToRteValue,
+    getBackgroundColorStyles,
+    radiusStyleMap,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
-import { getIsRows } from '../helpers/layout';
-import { PreviewType, type Settings, TextPositioningType, textPositioningToStyles } from '../types';
+import {
+    AnchoringType,
+    PreviewType,
+    type Settings,
+    TextPositioningType,
+    TextRatioType,
+    horizontalAlignmentToCtaSelfAlign,
+    horizontalAlignmentToTextAlign,
+    paddingStyleMap,
+    textPositioningToContentFlexDirection,
+    textRatioToFlexBasis,
+    textRatioToInverseFlexBasis,
+    verticalAlignmentToItemAlign,
+} from '../types';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
-    const [templateTextKey, setTemplateTextKey] = useState(generateRandomId());
+    const [templateTextKey, setTemplateTextKey] = useState(0);
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+
+    const {
+        blockAssets: { previewCustom },
+    } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
-        title,
-        description,
-        preview,
-        hasBackground,
         backgroundColor,
-        hasBorder_blockCard,
-        borderWidth_blockCard,
         borderColor_blockCard,
         borderStyle_blockCard,
+        borderWidth_blockCard,
+        description,
+        hasBackground,
+        hasBorder_blockCard,
+        hasCustomPaddingValue_blockCard,
         hasRadius_blockCard,
-        radiusValue_blockCard,
+        paddingChoice_blockCard,
+        paddingValue_blockCard,
+        preview,
         radiusChoice_blockCard,
-        textPositioning,
-        textRatio,
+        radiusValue_blockCard,
         textAnchoringHorizontal,
         textAnchoringVertical,
+        textPositioning,
+        textRatio,
+        title,
     } = blockSettings;
-    const { previewCustom } = blockAssets;
-
-    const hasPreview = preview !== PreviewType.None;
-    const flexDirectionStyles = hasPreview
-        ? textPositioningToStyles[textPositioning]
-        : textPositioningToStyles[TextPositioningType.Right];
-    const isRows = getIsRows(hasPreview, textPositioning);
-    const borderRadius = hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard];
-    const border = hasBorder_blockCard
-        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
-        : 'none';
-
-    const saveDescription = useCallback(
-        async (newDescription: string) => {
-            if (description !== newDescription) {
-                await updateBlockSettings({ description: newDescription });
-            }
-        },
-        [description, updateBlockSettings],
-    );
-
-    const saveTitle = useCallback(
-        async (newTitle: string) => {
-            if (title !== newTitle) {
-                await updateBlockSettings({ title: newTitle });
-            }
-        },
-        [title, updateBlockSettings],
-    );
 
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
-                updateBlockSettings({
-                    template: result.template,
-                    templateId: result.template.id,
+                await updateBlockSettings({
+                    title: convertToRteValue(TextStyles.heading3, result.template.title),
+                    description: result.template.description,
                 });
-                await saveTitle(convertToRteValue(TextStyles.heading3, result.template.title));
-                await saveDescription(result.template.description);
-                setTemplateTextKey(generateRandomId());
+                setTemplateTextKey(templateTextKey + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             }
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, saveDescription, saveTitle, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey],
     );
 
     useEffect(() => {
@@ -122,29 +118,110 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         }
     }, [blockTemplates]);
 
+    const hasPreview = preview !== PreviewType.None;
+
     return {
-        selectedTemplate,
-        preview,
-        previewCustom,
-        isEditing,
-        hasBackground,
-        backgroundColor,
-        borderRadius,
-        border,
         blockSettings,
-        lastErrorMessage,
-        flexDirectionStyles,
-        textPositioning,
-        isRows,
-        textAnchoringVertical,
-        hasPreview,
-        textRatio,
-        textAnchoringHorizontal,
-        title,
+        cardStyles: getCardStyles(
+            hasBackground,
+            backgroundColor,
+            hasCustomPaddingValue_blockCard,
+            paddingValue_blockCard,
+            paddingChoice_blockCard,
+            hasRadius_blockCard,
+            radiusValue_blockCard,
+            radiusChoice_blockCard,
+            hasBorder_blockCard,
+            borderWidth_blockCard,
+            borderStyle_blockCard,
+            borderColor_blockCard,
+        ),
+        contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
+        ctaClasses: getCtaClasses(hasPreview, textPositioning, textAnchoringHorizontal),
         description,
+        hasPreview,
+        isEditing,
+        lastErrorMessage,
+        preview,
+        previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
+        previewCustom,
+        selectedTemplate,
         templateTextKey,
-        saveDescription,
-        saveTitle,
+        textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
+        title,
         updateBlockSettings,
     };
 };
+
+const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVertical: AnchoringType): string => {
+    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+        ? verticalAlignmentToItemAlign[textAnchoringVertical]
+        : '';
+    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+};
+
+const getCtaClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textAnchoringHorizontal: AnchoringType,
+): string =>
+    hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+        ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
+        : '';
+
+const getPreviewClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textRatio: TextRatioType,
+): string =>
+    hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+        ? textRatioToInverseFlexBasis[textRatio]
+        : '';
+
+const getTextClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textAnchoringHorizontal: AnchoringType,
+): string => {
+    const textAlign =
+        hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+            ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
+            : 'tw-text-left';
+    return `tw-grow ${textAlign}`;
+};
+
+const getTextCtaWrapperClass = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textRatio: TextRatioType,
+): string => {
+    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
+    const flexBasis =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? textRatioToFlexBasis[textRatio]
+            : '';
+    return `tw-flex tw-grow tw-gap-y-2 tw-gap-x-8 ${textCtaWrapperFlexDirection} ${flexBasis}`;
+};
+
+const getCardStyles = (
+    hasBackground: boolean,
+    backgroundColor: Color,
+    hasCustomPaddingValue_blockCard: boolean,
+    paddingValue_blockCard: string,
+    paddingChoice_blockCard: Padding,
+    hasRadius_blockCard: boolean,
+    radiusValue_blockCard: string,
+    radiusChoice_blockCard: Radius,
+    hasBorder_blockCard: boolean,
+    borderWidth_blockCard: string,
+    borderStyle_blockCard: BorderStyle,
+    borderColor_blockCard: Color,
+): React.CSSProperties => ({
+    ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+    padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],
+    borderRadius: hasRadius_blockCard ? radiusValue_blockCard : radiusStyleMap[radiusChoice_blockCard],
+    border: hasBorder_blockCard
+        ? `${borderWidth_blockCard} ${borderStyle_blockCard} ${toRgbaString(borderColor_blockCard)}`
+        : 'none',
+});
