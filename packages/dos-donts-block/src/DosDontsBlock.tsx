@@ -23,8 +23,6 @@ import {
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useRef, useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
@@ -39,6 +37,10 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
+
+import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
