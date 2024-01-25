@@ -38,10 +38,6 @@ import {
     generateRandomId,
 } from '@frontify/fondue';
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
-
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
 
