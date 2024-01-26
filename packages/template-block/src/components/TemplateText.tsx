@@ -94,18 +94,18 @@ export const TemplateText = ({
         [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
     );
 
-    const titleClasses = useMemo(() => {
+    const titleClasses = () => {
         const removeTopMargin =
             '[&>div>*:first-child]:!tw-mt-0 [&>div>[data-slate-editor="true"]>*:first-child]:!tw-mt-0';
         const removeBottomMargin =
             '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
 
         return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : removeTopMargin;
-    }, [hasTitleOnly]);
+    };
 
     return (
         <div>
-            <div data-test-id="title" className={titleClasses}>
+            <div data-test-id="title" className={titleClasses()}>
                 {memoTitleRte}
             </div>
 
