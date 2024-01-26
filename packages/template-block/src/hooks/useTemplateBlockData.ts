@@ -121,7 +121,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [blockTemplates]);
 
     const hasPreview = preview !== PreviewType.None;
-    const hasTitleOnly = !isEditing && !hasPreview && !hasPageCount && !hasRichTextValue(description);
+    const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     return {
         blockSettings,
