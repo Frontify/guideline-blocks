@@ -71,6 +71,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             previewClasses={previewClasses}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
+                            handleNewPublication={handleNewPublication}
                         />
                     )}
 

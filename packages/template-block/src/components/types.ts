@@ -31,6 +31,7 @@ export type TemplatePreviewProps = {
     previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
+    handleNewPublication: () => void;
 };
 
 export type TemplateTextProps = {

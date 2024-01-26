@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets } from '@frontify/app-bridge';
+import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
 import { PreviewHeightType, previewHeightValues } from '../types';
 import {
@@ -19,8 +19,10 @@ export const TemplatePreview = ({
     previewClasses,
     updateBlockSettings,
     onOpenTemplateChooser,
+    handleNewPublication,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const {
         backgroundColorTemplatePreview,
@@ -46,6 +48,7 @@ export const TemplatePreview = ({
         ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
         : 'none';
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
+    const enableCta = !isEditing && template !== null;
 
     return (
         <div className={previewClasses} data-test-id="preview">
@@ -60,7 +63,9 @@ export const TemplatePreview = ({
                         borderRadius,
                         border,
                         height,
+                        cursor: enableCta ? 'pointer' : 'default',
                     }}
+                    onClick={enableCta ? handleNewPublication : null}
                 >
                     <PreviewImage
                         appBridge={appBridge}
