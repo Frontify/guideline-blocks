@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useMemo } from 'react';
+import { CSSProperties, useCallback, useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
+    THEME_PREFIX,
     TextStylePluginsWithoutImage,
     TextStyles,
     convertToRteValue,
@@ -94,18 +95,36 @@ export const TemplateText = ({
         [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
     );
 
-    const titleClasses = () => {
-        const removeTopMargin =
-            '[&>div>*:first-child]:!tw-mt-0 [&>div>[data-slate-editor="true"]>*:first-child]:!tw-mt-0';
-        const removeBottomMargin =
-            '[&>div>*:last-child]:!tw-mb-0 [&>div>[data-slate-editor="true"]>*:last-child]:!tw-mb-0';
+    const getOverwrittenThemeSettings = (): CSSProperties => {
+        const removeMarginTop = {
+            [`${THEME_PREFIX}heading1-margin-top`]: '0',
+            [`${THEME_PREFIX}heading2-margin-top`]: '0',
+            [`${THEME_PREFIX}heading3-margin-top`]: '0',
+            [`${THEME_PREFIX}heading4-margin-top`]: '0',
+            [`${THEME_PREFIX}custom1-margin-top`]: '0',
+            [`${THEME_PREFIX}custom2-margin-top`]: '0',
+            [`${THEME_PREFIX}custom3-margin-top`]: '0',
+            [`${THEME_PREFIX}body-margin-top`]: '0',
+            [`${THEME_PREFIX}quote-margin-top`]: '0',
+        } as CSSProperties;
+        const removeMarginBottom = {
+            [`${THEME_PREFIX}heading1-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading2-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading3-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading4-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom1-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom2-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom3-margin-bottom`]: '0',
+            [`${THEME_PREFIX}body-margin-bottom`]: '0',
+            [`${THEME_PREFIX}quote-margin-bottom`]: '0',
+        } as CSSProperties;
 
-        return hasTitleOnly ? `${removeTopMargin} ${removeBottomMargin}` : removeTopMargin;
+        return hasTitleOnly ? { ...removeMarginTop, ...removeMarginBottom } : removeMarginTop;
     };
 
     return (
         <div>
-            <div data-test-id="title" className={titleClasses()}>
+            <div data-test-id="title" style={getOverwrittenThemeSettings()}>
                 {memoTitleRte}
             </div>
 
