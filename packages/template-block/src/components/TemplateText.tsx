@@ -129,14 +129,12 @@ export const TemplateText = ({
             </div>
 
             {pageCount !== undefined && (
-                <div style={{ ...pageCountStyles }} data-test-id="page-count">
-                    {`${pageCount} ${pageCountLabel}`}
+                <div className="tw-mb-2" data-test-id="page-count">
+                    <span style={{ ...pageCountStyles }}>{`${pageCount} ${pageCountLabel}`}</span>
                 </div>
             )}
 
-            <div className={isEditing || hasRichTextValue(description) ? 'tw-mt-2' : ''} data-test-id="description">
-                {memoDescriptionRte}
-            </div>
+            <div data-test-id="description">{memoDescriptionRte}</div>
         </div>
     );
 };
