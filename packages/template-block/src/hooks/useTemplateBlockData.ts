@@ -162,7 +162,7 @@ const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVe
     const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? verticalAlignmentToItemAlign[textAnchoringVertical]
         : '';
-    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+    return `tw-flex tw-gap-x-6 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
 };
 
 const getCtaClasses = (
