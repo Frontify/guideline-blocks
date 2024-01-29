@@ -22,7 +22,7 @@
         "@types/react-dom": "^18.2.18",
         "autoprefixer": "^10.4.17",
         "cypress": "^13.6.3",
-        "eslint": "^8.48.0",
+        "eslint": "^8.56.0",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-notice": "^0.9.10",
         "postcss": "^8.4.33",
