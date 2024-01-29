@@ -53,7 +53,7 @@ export const TemplatePreview = ({
     return (
         <div className={previewClasses} data-test-id="preview">
             {template !== null || previewCustom ? (
-                <div
+                <button
                     className="tw-relative tw-overflow-hidden"
                     data-test-id="preview-wrapper"
                     style={{
@@ -65,7 +65,8 @@ export const TemplatePreview = ({
                         height,
                         cursor: enableCta ? 'pointer' : 'default',
                     }}
-                    onClick={enableCta ? handleNewPublication : null}
+                    onClick={enableCta ? handleNewPublication : () => null}
+                    aria-label="Use this template"
                 >
                     <PreviewImage
                         appBridge={appBridge}
@@ -74,7 +75,7 @@ export const TemplatePreview = ({
                         updateBlockSettings={updateBlockSettings}
                         onOpenTemplateChooser={onOpenTemplateChooser}
                     />
-                </div>
+                </button>
             ) : (
                 <div style={{ height: previewHeightValues[PreviewHeightType.Small] }}>
                     <BlockInjectButton
