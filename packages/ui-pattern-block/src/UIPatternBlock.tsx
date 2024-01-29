@@ -10,9 +10,6 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-
 import { Alignment, Height, type Settings, TextAlignment, sandpackThemeValues } from './types';
 import {
     DEFAULT_BLOCK_SETTINGS,

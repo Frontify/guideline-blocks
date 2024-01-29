@@ -79,6 +79,19 @@ export const settings = defineSettings({
             ],
         },
         {
+            id: 'uiPatternBasicsLinks',
+            type: 'sectionHeading',
+            label: 'Links',
+            blocks: [
+                {
+                    id: 'showSandboxLink',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show sandbox link',
+                },
+            ],
+        },
+        {
             id: 'uiPatternBasicsSnippet',
             type: 'sectionHeading',
             label: 'Snippet',
@@ -106,15 +119,27 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: 'uiPatternBasicsLinks',
+            id: 'uiPatternDependencies',
             type: 'sectionHeading',
-            label: 'Links',
+            label: 'Dependencies',
             blocks: [
                 {
-                    id: 'showSandboxLink',
+                    id: 'showNpmDependencies',
                     type: 'switch',
                     defaultValue: false,
-                    label: 'Show sandbox link',
+                    label: 'Show NPM dependencies',
+                },
+                {
+                    id: 'showExternalDependencies',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Show external dependencies',
+                },
+                {
+                    id: 'shouldCollapseDependenciesByDefault',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Collapse by default',
                 },
             ],
         },
@@ -250,31 +275,6 @@ export const settings = defineSettings({
                             ],
                         },
                     ],
-                },
-            ],
-        },
-        {
-            id: 'uiPatternDependencies',
-            type: 'sectionHeading',
-            label: 'Dependencies',
-            blocks: [
-                {
-                    id: 'showNpmDependencies',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show NPM dependencies',
-                },
-                {
-                    id: 'showExternalDependencies',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Show external dependencies',
-                },
-                {
-                    id: 'shouldCollapseDependenciesByDefault',
-                    type: 'switch',
-                    defaultValue: true,
-                    label: 'Collapse by default',
                 },
             ],
         },
