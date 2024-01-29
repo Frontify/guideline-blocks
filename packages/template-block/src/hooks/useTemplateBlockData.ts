@@ -18,6 +18,7 @@ import {
     Radius,
     convertToRteValue,
     getBackgroundColorStyles,
+    hasRichTextValue,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
@@ -59,6 +60,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         hasBackground,
         hasBorder_blockCard,
         hasCustomPaddingValue_blockCard,
+        hasPageCount,
         hasRadius_blockCard,
         paddingChoice_blockCard,
         paddingValue_blockCard,
@@ -119,6 +121,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [blockTemplates]);
 
     const hasPreview = preview !== PreviewType.None;
+    const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     return {
         blockSettings,
@@ -137,9 +140,10 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             borderColor_blockCard,
         ),
         contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
-        ctaClasses: getCtaClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         hasPreview,
+        hasTitleOnly,
         isEditing,
         lastErrorMessage,
         preview,
@@ -147,7 +151,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         previewCustom,
         selectedTemplate,
         templateTextKey,
-        textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
         title,
         updateBlockSettings,
@@ -163,24 +167,31 @@ const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVe
 
 const getCtaClasses = (
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
-): string =>
-    hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+): string => {
+    if (hasTitleOnly) {
+        return 'tw-self-center';
+    }
+    return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
         : '';
+};
 
 const getPreviewClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
     textRatio: TextRatioType,
-): string =>
-    hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+): string => {
+    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? textRatioToInverseFlexBasis[textRatio]
         : '';
+};
 
 const getTextClasses = (
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
     textAnchoringHorizontal: AnchoringType,
 ): string => {
@@ -188,7 +199,8 @@ const getTextClasses = (
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
-    return `tw-grow ${textAlign}`;
+    const selfAlign = hasTitleOnly ? 'tw-self-center' : '';
+    return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
 const getTextCtaWrapperClass = (
