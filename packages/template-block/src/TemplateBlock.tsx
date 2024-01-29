@@ -20,6 +20,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         ctaClasses,
         description,
         hasPreview,
+        hasTitleOnly,
         isEditing,
         lastErrorMessage,
         preview,
@@ -88,6 +89,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         : undefined
                                 }
                                 isEditing={isEditing}
+                                hasTitleOnly={hasTitleOnly}
                                 templateTextKey={templateTextKey}
                             />
                         </div>
