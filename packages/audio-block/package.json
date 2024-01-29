@@ -26,7 +26,7 @@
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-notice": "^0.9.10",
         "postcss": "^8.4.29",
-        "prettier": "^3.0.3",
+        "prettier": "^3.2.4",
         "sinon": "^17.0.0",
         "tailwindcss": "^3.3.3",
         "typescript": "^5.2.2"

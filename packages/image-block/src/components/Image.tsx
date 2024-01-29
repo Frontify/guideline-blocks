@@ -89,7 +89,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                             {isDownloadable(
                                 blockSettings.security,
                                 blockSettings.downloadable,
-                                assetDownloadEnabled,
+                                assetDownloadEnabled
                             ) && (
                                 <DownloadButton
                                     onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}

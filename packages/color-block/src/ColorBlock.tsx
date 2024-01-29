@@ -34,7 +34,7 @@ export const ColorBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
         appBridge,
-        blockSettings.colorPaletteId,
+        blockSettings.colorPaletteId
     );
     const [colors, setColors] = useState<ColorType[]>([]);
     useEffect(() => {

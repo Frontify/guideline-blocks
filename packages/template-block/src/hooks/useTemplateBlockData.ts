@@ -89,7 +89,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
     );
 
     useEffect(() => {
@@ -137,7 +137,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             hasBorder_blockCard,
             borderWidth_blockCard,
             borderStyle_blockCard,
-            borderColor_blockCard,
+            borderColor_blockCard
         ),
         contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
@@ -169,7 +169,7 @@ const getCtaClasses = (
     hasPreview: boolean,
     hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
-    textAnchoringHorizontal: AnchoringType,
+    textAnchoringHorizontal: AnchoringType
 ): string => {
     if (hasTitleOnly) {
         return 'tw-self-center';
@@ -182,7 +182,7 @@ const getCtaClasses = (
 const getPreviewClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
-    textRatio: TextRatioType,
+    textRatio: TextRatioType
 ): string => {
     return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? textRatioToInverseFlexBasis[textRatio]
@@ -193,7 +193,7 @@ const getTextClasses = (
     hasPreview: boolean,
     hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
-    textAnchoringHorizontal: AnchoringType,
+    textAnchoringHorizontal: AnchoringType
 ): string => {
     const textAlign =
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
@@ -206,7 +206,7 @@ const getTextClasses = (
 const getTextCtaWrapperClass = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
-    textRatio: TextRatioType,
+    textRatio: TextRatioType
 ): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
     const flexBasis =
@@ -228,7 +228,7 @@ const getCardStyles = (
     hasBorder_blockCard: boolean,
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
-    borderColor_blockCard: Color,
+    borderColor_blockCard: Color
 ): React.CSSProperties => ({
     ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
     padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],

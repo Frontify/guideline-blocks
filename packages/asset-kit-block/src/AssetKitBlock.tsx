@@ -92,7 +92,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const isButtonDisabled =
         [AssetBulkDownloadState.Error, AssetBulkDownloadState.Pending, AssetBulkDownloadState.Started].includes(
-            status,
+            status
         ) || currentAssets.length === 0;
 
     return (

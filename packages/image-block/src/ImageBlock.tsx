@@ -75,7 +75,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             {
                 selectedValueId: blockAssets[IMAGE_ID]?.[0]?.id,
                 extensions: ALLOWED_EXTENSIONS,
-            },
+            }
         );
     };
 
