@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "^7.22.17",
+        "@babel/core": "^7.23.9",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.5.8",
         "@types/lodash-es": "^4.17.9",
@@ -25,11 +25,11 @@
         "eslint": "^8.48.0",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-notice": "^0.9.10",
-        "postcss": "^8.4.29",
+        "postcss": "^8.4.33",
         "prettier": "^3.0.3",
         "sinon": "^17.0.0",
-        "tailwindcss": "^3.3.3",
-        "typescript": "^5.2.2"
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.3.3"
     },
     "dependencies": {
         "@frontify/app-bridge": "^3.0.2",
