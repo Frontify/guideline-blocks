@@ -134,7 +134,9 @@ export const TemplateText = ({
                 </div>
             )}
 
-            <div data-test-id="description">{memoDescriptionRte}</div>
+            <div className={isEditing || hasRichTextValue(description) ? 'tw-mt-2' : ''} data-test-id="description">
+                {memoDescriptionRte}
+            </div>
         </div>
     );
 };
