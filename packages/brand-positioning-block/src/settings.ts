@@ -63,7 +63,7 @@ export const settings = defineSettings({
                             bundle,
                             'brandItemSizeSimple',
                             'brandItemSizeCustom',
-                            brandItemBrandItemSizeMap,
+                            brandItemBrandItemSizeMap
                         );
                     },
                     on: [

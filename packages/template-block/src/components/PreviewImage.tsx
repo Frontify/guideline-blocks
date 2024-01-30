@@ -23,7 +23,7 @@ export const PreviewImage = ({
             preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
                 ? blockAssets.previewCustom[0].previewUrl
                 : template?.previewUrl,
-        [blockAssets.previewCustom, preview, template?.previewUrl],
+        [blockAssets.previewCustom, preview, template?.previewUrl]
     );
     const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
@@ -31,7 +31,7 @@ export const PreviewImage = ({
     const [isHovered, setIsHovered] = useState(false);
     const hasCustomPreview = useMemo(
         () => preview === PreviewType.Custom && blockAssets.previewCustom?.length > 0,
-        [blockAssets.previewCustom?.length, preview],
+        [blockAssets.previewCustom?.length, preview]
     );
 
     useEffect(() => {

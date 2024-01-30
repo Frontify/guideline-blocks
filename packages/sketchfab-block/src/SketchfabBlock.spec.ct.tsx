@@ -178,7 +178,7 @@ describe('Sketchfab Block', () => {
         cy.get(IFRAME_ID).should(
             'have.attr',
             'src',
-            `${SKETCHFAB_URL}?autospin=${AUTO_SPIN_COUNT}&annotation_cycle=${ANNOTATION_CYCLE_COUNT}`,
+            `${SKETCHFAB_URL}?autospin=${AUTO_SPIN_COUNT}&annotation_cycle=${ANNOTATION_CYCLE_COUNT}`
         );
     });
 });

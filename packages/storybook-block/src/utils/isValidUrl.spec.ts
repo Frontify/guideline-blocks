@@ -6,7 +6,7 @@ import { isValidStorybookUrl } from './isValidStorybookUrl';
 describe('isValidStorybookUrl', () => {
     test('It should be valid with a storybook url', () => {
         const result = isValidStorybookUrl(
-            'https://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
+            'https://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu'
         );
         expect(result).toBeTruthy();
     });

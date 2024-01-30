@@ -46,7 +46,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             onAssetsSelected,
             replaceWithPlaceholder = false,
         },
-        ref,
+        ref
     ) => {
         const [showAltTextMenu, setShowAltTextMenu] = useState(false);
         const { id, title, description, altText } = item;
@@ -61,7 +61,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                     selectedValueId: image?.id,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
-                }),
+                })
             );
             const unsusbcribe = appBridge.subscribe('assetsChosen', ({ assets }) => {
                 onAssetsSelected(assets, id);
@@ -178,7 +178,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 />
             </div>
         );
-    },
+    }
 );
 
 Item.displayName = 'Item';

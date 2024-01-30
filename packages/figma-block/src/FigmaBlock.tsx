@@ -65,7 +65,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 document.querySelector(`[data-block="${appBridge.getBlockId()}"].referenced`) as
                     | HTMLDivElement
                     | undefined
-            )?.dataset.referenceUrl || '',
+            )?.dataset.referenceUrl || ''
         );
     }, []);
 
@@ -98,7 +98,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 projectTypes: [AssetChooserProjectType.Workspace],
                 objectTypes: [AssetChooserObjectType.Url],
                 urlContains: 'https://www.figma',
-            },
+            }
         );
     };
 
@@ -123,7 +123,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </a>
             </div>
         ),
-        [],
+        []
     );
 
     const ShowImagePreview = useCallback(
@@ -176,7 +176,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             hasRadius,
             radiusChoice,
             radiusValue,
-        ],
+        ]
     );
 
     const ShowFigmaLive = useCallback(
@@ -216,7 +216,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             borderColor,
             borderStyle,
             allowFullScreen,
-        ],
+        ]
     );
 
     const FigmaLivePortal = useCallback(() => {

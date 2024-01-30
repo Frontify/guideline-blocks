@@ -32,7 +32,7 @@ describe('ListItem component in view mode', () => {
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}
-            />,
+            />
         );
     });
 
@@ -65,7 +65,7 @@ describe('ListItem component in edit mode', () => {
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}
-            />,
+            />
         );
     });
 

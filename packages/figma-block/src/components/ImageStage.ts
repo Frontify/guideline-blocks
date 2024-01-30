@@ -9,7 +9,7 @@ export class ImageStage {
 
     constructor(
         protected imageStage: HTMLDivElement,
-        public customHeight = '0px',
+        public customHeight = '0px'
     ) {
         this.boundaries = this.imageStage.getBoundingClientRect();
         document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));

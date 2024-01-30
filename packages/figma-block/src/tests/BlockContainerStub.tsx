@@ -20,7 +20,7 @@ export const BlockContainerStub = ({ height, padding = 0 }: { height: string; pa
                 imageContainer,
                 imageStage,
                 imageElement,
-                false,
+                false
             );
             bitmapContainerOperator.setPadding(padding).fitAndCenterTheImageContainerWithinTheImageStage();
         }

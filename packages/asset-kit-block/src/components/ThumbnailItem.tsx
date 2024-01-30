@@ -32,7 +32,7 @@ export const ThumbnailItem = ({
             {
                 multiSelection: false,
                 selectedValueIds: currentAssetsIds,
-            },
+            }
         );
     };
 

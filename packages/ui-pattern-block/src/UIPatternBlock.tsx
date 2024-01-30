@@ -104,7 +104,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
     const templateFiles = useMemo(
         () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        sandpackRestartInitiators,
+        sandpackRestartInitiators
     );
 
     const onResetRun = () => {
@@ -129,7 +129,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         [filename]: code,
                     },
                 },
-            }),
+            })
         );
     };
 
@@ -156,11 +156,11 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const parsedExternalDependencies = useMemo(
         () => getParsedDependencies(externalDependencies, []),
-        [externalDependencies],
+        [externalDependencies]
     );
     const parsedNpmDependencies = useMemo(
         () => ({ dependencies: getParsedDependencies(npmDependencies, {}) }),
-        [npmDependencies],
+        [npmDependencies]
     );
 
     const borderRadius = getRadiusValue(hasRadius, radiusValue, radiusChoice);

@@ -6,7 +6,7 @@ import { ChecklistContent } from '../types';
 export const reorderList = <T extends LegacyOrderableListItem<ChecklistContent>>(
     array: T[],
     originalIndex: number,
-    newIndex: number,
+    newIndex: number
 ): T[] =>
     array.map((value, index) => {
         if (index === newIndex) {

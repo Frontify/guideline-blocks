@@ -260,7 +260,7 @@ describe('Checklist Block', () => {
             .find(CONTROL_BUTTONS)
             .find('button')
             .each(($button, index) =>
-                index === 0 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled,
+                index === 0 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled
             );
         cy.get(CHECKLIST_CONTAINER)
             .find(CHECKLIST_ITEM)
@@ -268,7 +268,7 @@ describe('Checklist Block', () => {
             .find(CONTROL_BUTTONS)
             .find('button')
             .each(($button, index) =>
-                index === 1 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled,
+                index === 1 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled
             );
     });
 
@@ -407,7 +407,7 @@ describe('Checklist Block', () => {
         cy.get(PROGRESS_BAR_FILL).should(
             'have.css',
             'background-color',
-            toRgbaString(testSettings.progressBarFillColor),
+            toRgbaString(testSettings.progressBarFillColor)
         );
         cy.get(CHECKBOX_DATE).should('have.length', 5);
     });

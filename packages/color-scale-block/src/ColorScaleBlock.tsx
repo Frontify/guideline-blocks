@@ -79,7 +79,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 (paletteColor) =>
                     paletteColor.red === selectedColor.red &&
                     paletteColor.blue === selectedColor.blue &&
-                    paletteColor.green === selectedColor.green,
+                    paletteColor.green === selectedColor.green
             );
         }
 
@@ -250,7 +250,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const colorsBeforeCurrent = displayableItems?.filter((_, index) => index < colorIndex);
 
             const colorsBeforeCurrentColorThatCanBeResized = colorsBeforeCurrent.filter(
-                (color) => color.width >= MINIMUM_COLOR_WIDTH,
+                (color) => color.width >= MINIMUM_COLOR_WIDTH
             );
 
             const nextResizeableSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
@@ -298,7 +298,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         };
                     }
                     return siblingColor;
-                }),
+                })
             );
         }
 
@@ -317,7 +317,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const freeSpaceExists = colorScaleBlockInnerWidth < colorScaleBlockWidth;
 
             const nextResizeableSiblingIndex = displayableItems.findIndex(
-                (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH,
+                (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
             );
 
             if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
@@ -379,7 +379,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     }
 
                     return siblingColor;
-                }),
+                })
             );
         }
     };
