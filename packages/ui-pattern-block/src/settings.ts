@@ -347,7 +347,7 @@ export const settings = defineSettings({
                         },
                     ],
                 },
-                getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE }),
+                getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE, label: 'Pattern background' }),
                 getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true }),
                 getBorderRadiusSettings({ defaultRadius: Radius.Medium }),
             ],
