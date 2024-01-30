@@ -184,7 +184,11 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
                         borderRadius,
                     }}
-                    className="tw-rounded tw-bg-white tw-overflow-hidden"
+                    className={joinClassNames([
+                        'tw-rounded tw-bg-white tw-overflow-hidden tw-group',
+                        // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
+                        hasBorder && 'bordered',
+                    ])}
                 >
                     <SandpackProvider
                         files={templateFiles}

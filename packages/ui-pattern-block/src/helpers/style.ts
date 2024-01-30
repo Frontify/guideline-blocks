@@ -6,7 +6,7 @@ import { type Color, FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 
 export const EDITOR_CLASSES = {
     'sp-layout': 'tw-gap-0 tw-border-none tw-rounded-none !tw-overflow-visible',
-    'sp-wrapper': 'tw-border-b tw-border-line last:tw-border-b-0',
+    'sp-wrapper': 'tw-border-b tw-border-line group-[.bordered]:last:tw-border-b-0',
     'sp-editor': 'tw-min-h-[52px] tw-box-content tw-overflow-hidden',
     'sp-preview': '!tw-flex-[unset]',
     'sp-preview-container': 'tw-h-full tw-bg-[inherit]',

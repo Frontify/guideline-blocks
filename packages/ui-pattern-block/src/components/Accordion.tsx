@@ -19,7 +19,10 @@ export const Accordion = ({
     borderRadius,
 }: PropsWithChildren<Props>): ReactElement => {
     return (
-        <div data-test-id="dependency-accordion" className="tw-border-b tw-border-b-line last:tw-border-b-0">
+        <div
+            data-test-id="dependency-accordion"
+            className="tw-border-b tw-border-b-line group-[.bordered]:last:tw-border-b-0"
+        >
             <button
                 aria-expanded={isOpen}
                 className={joinClassNames([
