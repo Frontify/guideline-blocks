@@ -184,7 +184,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
                         borderRadius,
                     }}
-                    className="tw-rounded tw-bg-white"
+                    className="tw-rounded tw-bg-white tw-overflow-hidden"
                 >
                     <SandpackProvider
                         files={templateFiles}
@@ -198,10 +198,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                             externalResources: [cssToInject, ...parsedExternalDependencies],
                         }}
                     >
-                        <SandpackLayout
-                            style={{ borderTopRightRadius: borderRadius, borderTopLeftRadius: borderRadius }}
-                            className="tw-flex tw-flex-col"
-                        >
+                        <SandpackLayout className="tw-flex tw-flex-col">
                             {isResponsivePreviewOpen && (
                                 <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
                             )}
@@ -214,8 +211,6 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         ...getBackgroundColorStyles(backgroundColor),
                                         backgroundImage: 'none',
                                     }),
-                                    borderTopRightRadius: borderRadius,
-                                    borderTopLeftRadius: borderRadius,
                                 }}
                                 showRefreshButton={false}
                                 showOpenInCodeSandbox={false}
