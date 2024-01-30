@@ -14,23 +14,23 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "^7.22.17",
+        "@babel/core": "^7.23.9",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.5.8",
         "@react-aria/interactions": "^3.17.0",
-        "@types/react": "^18.2.21",
-        "@types/react-dom": "^18.2.7",
-        "autoprefixer": "^10.4.15",
+        "@types/react": "^18.2.48",
+        "@types/react-dom": "^18.2.18",
+        "autoprefixer": "^10.4.17",
         "cypress": "^13.6.3",
         "cypress-real-events": "^1.11.0",
-        "eslint": "^8.48.0",
+        "eslint": "^8.56.0",
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-notice": "^0.9.10",
-        "postcss": "^8.4.29",
+        "postcss": "^8.4.33",
         "prettier": "^3.2.4",
-        "sinon": "^17.0.0",
-        "tailwindcss": "^3.3.3",
-        "typescript": "^5.2.2"
+        "sinon": "^17.0.1",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.3.3"
     },
     "dependencies": {
         "@frontify/app-bridge": "^3.0.2",
