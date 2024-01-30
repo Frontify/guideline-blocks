@@ -9,7 +9,7 @@ export class BitmapContainerOperator extends ContainerOperator {
     constructor(
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
-        protected imageElement: ImageElement,
+        protected imageElement: ImageElement
     ) {
         super(imageContainer, imageStage, imageElement);
     }

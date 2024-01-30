@@ -39,7 +39,7 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
             new SoftBreakPlugin(),
             new TextStylePlugin({
                 textStyles: AllTextStylePlugins,
-            }),
+            })
         )
         .setPlugin(
             [
@@ -61,5 +61,5 @@ export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
                 new AutoformatPlugin(),
-            ],
+            ]
         );

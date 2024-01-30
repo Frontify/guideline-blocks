@@ -293,17 +293,14 @@ export const settings = defineSettings({
                         {
                             value: AnchoringType.Start,
                             icon: IconEnum.ArrowAlignLeft,
-                            label: 'Left',
                         },
                         {
                             value: AnchoringType.Center,
                             icon: IconEnum.ArrowAlignVerticalCentre,
-                            label: 'Center',
                         },
                         {
                             value: AnchoringType.End,
                             icon: IconEnum.ArrowAlignRight,
-                            label: 'Right',
                         },
                     ],
                 },
@@ -338,7 +335,7 @@ export const settings = defineSettings({
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue_blockCard',
-                            radiusStyleMap[bundle.getBlock('radiusChoice_blockCard')?.value as Radius],
+                            radiusStyleMap[bundle.getBlock('radiusChoice_blockCard')?.value as Radius]
                         ),
                 },
             ],
@@ -369,7 +366,7 @@ export const settings = defineSettings({
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue_templatePreview',
-                            radiusStyleMap[bundle.getBlock('radiusChoice_templatePreview')?.value as Radius],
+                            radiusStyleMap[bundle.getBlock('radiusChoice_templatePreview')?.value as Radius]
                         ),
                 },
             ],

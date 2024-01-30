@@ -85,7 +85,7 @@ describe('style helpers', () => {
             for (const testItem of testItems) {
                 cy.wrap(clean(getCssToInject(testItem.input[0], ...(testItem.input.slice(1) as string[])))).should(
                     'eq',
-                    clean(testItem.output),
+                    clean(testItem.output)
                 );
             }
         });

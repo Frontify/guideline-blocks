@@ -46,7 +46,7 @@ describe('Palette', () => {
             <Palette
                 palette={{ ...dummyPalette, colors: [{ ...dummyPalette.colors[0], hex: null }] }}
                 isEditing={false}
-            />,
+            />
         );
 
         cy.get(ColorKitPaletteSelector).should('not.have.descendants', ColorKitColorSelector);

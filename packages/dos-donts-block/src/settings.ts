@@ -211,7 +211,7 @@ export const settings = defineSettings({
                             onChange: (bundle) =>
                                 bundle.setBlockValue(
                                     'customColumnGutterValue',
-                                    GUTTER_VALUES[bundle.getBlock('columnGutterChoice')?.value as DoDontSpacing],
+                                    GUTTER_VALUES[bundle.getBlock('columnGutterChoice')?.value as DoDontSpacing]
                                 ),
                         },
                     ],
@@ -261,7 +261,7 @@ export const settings = defineSettings({
                             onChange: (bundle) =>
                                 bundle.setBlockValue(
                                     'customRowGutterValue',
-                                    GUTTER_VALUES[bundle.getBlock('rowGutterChoice')?.value as DoDontSpacing],
+                                    GUTTER_VALUES[bundle.getBlock('rowGutterChoice')?.value as DoDontSpacing]
                                 ),
                         },
                     ],
@@ -319,7 +319,7 @@ export const settings = defineSettings({
                                     'customImageHeightValue',
                                     IMAGE_HEIGHT_VALUES[
                                         bundle.getBlock('imageHeightChoice')?.value as DoDontImageHeight
-                                    ],
+                                    ]
                                 ),
                         },
                     ],
@@ -415,7 +415,7 @@ export const settings = defineSettings({
                     onChange: (bundle) =>
                         bundle.setBlockValue(
                             'radiusValue',
-                            radiusStyleMap[bundle.getBlock('radiusChoice')?.value as Radius],
+                            radiusStyleMap[bundle.getBlock('radiusChoice')?.value as Radius]
                         ),
                 },
             ],

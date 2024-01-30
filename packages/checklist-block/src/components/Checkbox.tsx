@@ -37,7 +37,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             'aria-label': ariaLabel || label,
         },
         toggleState,
-        inputRef,
+        inputRef
     );
 
     const { completeCheckboxColor, checkboxColor } = useContext(SettingsContext);

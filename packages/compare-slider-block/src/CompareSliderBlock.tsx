@@ -181,7 +181,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             {
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets['Images'],
-            },
+            }
         );
     };
 
@@ -197,7 +197,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 : firstAsset[0];
 
         return Math.round(
-            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width,
+            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width
         );
     };
 

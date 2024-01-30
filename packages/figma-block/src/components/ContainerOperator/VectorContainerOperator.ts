@@ -18,7 +18,7 @@ export class VectorContainerOperator extends ContainerOperator {
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
         protected imageElement: ImageElement,
-        protected isFullScreen: boolean,
+        protected isFullScreen: boolean
     ) {
         super(imageContainer, imageStage, imageElement);
         imageContainer.node.addEventListener('mouseover', this.onMouseOver.bind(this));
@@ -63,7 +63,7 @@ export class VectorContainerOperator extends ContainerOperator {
 
         this.imageContainer.setImageContainerPosition(
             this.startImageContainerPosition.x + mouseMoved.x,
-            this.startImageContainerPosition.y + mouseMoved.y,
+            this.startImageContainerPosition.y + mouseMoved.y
         );
     }
 
@@ -76,7 +76,7 @@ export class VectorContainerOperator extends ContainerOperator {
     public resize(zoom = Zoom.OUT): this {
         this.imageContainer.setImageContainerSize(
             this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT),
-            this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT),
+            this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT)
         );
         this.centerImageContainerWithinTheImageStage();
         return this;

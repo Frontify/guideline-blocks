@@ -25,7 +25,7 @@ import { Settings, paddingStyleMap } from './types';
 const getBorderStyles = (
     style = BorderStyle.Solid,
     width = '1px',
-    color = BORDER_COLOR_DEFAULT_VALUE,
+    color = BORDER_COLOR_DEFAULT_VALUE
 ): CSSProperties => ({
     borderStyle: borderStyleMap[style],
     borderWidth: width,

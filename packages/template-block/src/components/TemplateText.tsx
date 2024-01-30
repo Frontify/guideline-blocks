@@ -44,7 +44,7 @@ export const TemplateText = ({
                 await updateBlockSettings({ title: newTitle });
             }
         },
-        [title, updateBlockSettings],
+        [title, updateBlockSettings]
     );
 
     const saveDescription = useCallback(
@@ -53,7 +53,7 @@ export const TemplateText = ({
                 await updateBlockSettings({ description: newDescription });
             }
         },
-        [description, updateBlockSettings],
+        [description, updateBlockSettings]
     );
 
     const customTitlePlugins = useMemo(() => {
@@ -76,7 +76,7 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey]
     );
 
     const memoDescriptionRte = useMemo(
@@ -92,7 +92,7 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
+        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey]
     );
 
     const getOverwrittenThemeSettings = (): CSSProperties => {
@@ -129,8 +129,8 @@ export const TemplateText = ({
             </div>
 
             {pageCount !== undefined && (
-                <div style={{ ...pageCountStyles }} data-test-id="page-count">
-                    {`${pageCount} ${pageCountLabel}`}
+                <div className="tw-mb-2" data-test-id="page-count">
+                    <span style={{ ...pageCountStyles }}>{`${pageCount} ${pageCountLabel}`}</span>
                 </div>
             )}
 
