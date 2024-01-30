@@ -54,7 +54,7 @@ export const TemplatePreview = ({
         <div className={previewClasses} data-test-id="preview">
             {template !== null || previewCustom ? (
                 <button
-                    className="tw-relative tw-overflow-hidden"
+                    className="tw-relative tw-overflow-hidden tw-w-full tw-h-full"
                     data-test-id="preview-wrapper"
                     style={{
                         ...(hasBackgroundTemplatePreview && {
