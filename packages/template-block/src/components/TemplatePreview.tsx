@@ -63,9 +63,9 @@ export const TemplatePreview = ({
                         borderRadius,
                         border,
                         height,
-                        cursor: enableCta ? 'pointer' : 'default',
                     }}
-                    onClick={enableCta ? handleNewPublication : () => null}
+                    onClick={handleNewPublication}
+                    disabled={!enableCta}
                     aria-label="Use this template"
                 >
                     <PreviewImage
