@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets } from '@frontify/app-bridge';
+import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
 import { PreviewHeightType, previewHeightValues } from '../types';
 import {
@@ -19,8 +19,10 @@ export const TemplatePreview = ({
     previewClasses,
     updateBlockSettings,
     onOpenTemplateChooser,
+    handleNewPublication,
 }: TemplatePreviewProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const {
         backgroundColorTemplatePreview,
@@ -46,11 +48,12 @@ export const TemplatePreview = ({
         ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
         : 'none';
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
+    const enableCta = !isEditing && template !== null;
 
     return (
         <div className={previewClasses} data-test-id="preview">
             {template !== null || previewCustom ? (
-                <div
+                <button
                     className="tw-relative tw-overflow-hidden"
                     data-test-id="preview-wrapper"
                     style={{
@@ -61,6 +64,9 @@ export const TemplatePreview = ({
                         border,
                         height,
                     }}
+                    onClick={handleNewPublication}
+                    disabled={!enableCta}
+                    aria-label="Use this template"
                 >
                     <PreviewImage
                         appBridge={appBridge}
@@ -69,7 +75,7 @@ export const TemplatePreview = ({
                         updateBlockSettings={updateBlockSettings}
                         onOpenTemplateChooser={onOpenTemplateChooser}
                     />
-                </div>
+                </button>
             ) : (
                 <div style={{ height: previewHeightValues[PreviewHeightType.Small] }}>
                     <BlockInjectButton

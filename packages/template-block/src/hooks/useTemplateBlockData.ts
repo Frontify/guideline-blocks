@@ -139,7 +139,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             borderStyle_blockCard,
             borderColor_blockCard
         ),
-        contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
+        contentClasses: getContentClasses(hasPreview, textPositioning, textAnchoringVertical),
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         hasPreview,
@@ -158,11 +158,16 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     };
 };
 
-const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVertical: AnchoringType): string => {
-    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? verticalAlignmentToItemAlign[textAnchoringVertical]
-        : '';
-    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+const getContentClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textAnchoringVertical: AnchoringType
+): string => {
+    const alignContentItems =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? verticalAlignmentToItemAlign[textAnchoringVertical]
+            : '';
+    return `tw-flex tw-gap-x-6 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
 };
 
 const getCtaClasses = (

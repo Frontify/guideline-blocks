@@ -93,7 +93,7 @@ export const PreviewImage = ({
                         ? blockAssets.previewCustom[0].height
                         : 'auto'
                 }
-                alt={blockSettings.altText || undefined}
+                alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             />
