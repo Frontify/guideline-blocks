@@ -284,22 +284,12 @@ export const settings = defineSettings({
             id: 'uiPreviewSection',
             type: 'sectionHeading',
             blocks: [
-                getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE }),
-                getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true }),
-                getBorderRadiusSettings({ defaultRadius: Radius.Medium }),
-            ],
-        },
-        {
-            id: 'uiSnippetSection',
-            type: 'sectionHeading',
-            label: 'Snippet',
-            blocks: [
                 {
                     id: 'sandpackTheme',
                     type: 'dropdown',
                     defaultValue: SandpackTheme.GithubLight,
                     size: 'small',
-                    label: 'Color scheme',
+                    label: 'Snippet color scheme',
                     choices: [
                         {
                             value: SandpackTheme.Dark,
@@ -357,6 +347,9 @@ export const settings = defineSettings({
                         },
                     ],
                 },
+                getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE }),
+                getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true }),
+                getBorderRadiusSettings({ defaultRadius: Radius.Medium }),
             ],
         },
     ],
