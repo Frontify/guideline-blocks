@@ -63,6 +63,7 @@ export const CodeEditor = ({
                     readOnly={!isCodeEditable}
                     showRunButton={false}
                     showTabs={false}
+                    className="CODE_EDITOR"
                 />
             )}
         </div>
