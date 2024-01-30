@@ -17,7 +17,7 @@ export const getFontWeights = async (projectId: number, font: string): Promise<C
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
     const responseJson = await response.json();
     const fontStyles: ApiFontStyle[] = responseJson.data.filter(
-        (fontStyle: ApiFontStyle) => fontStyle.name === font && fontStyle.font_style === 'normal',
+        (fontStyle: ApiFontStyle) => fontStyle.name === font && fontStyle.font_style === 'normal'
     );
     const fontWeights: Choice[] = fontStyles.map(({ font_weight }: ApiFontStyle) => ({
         label: font_weight,

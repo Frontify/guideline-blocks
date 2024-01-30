@@ -32,7 +32,7 @@ export const getTopLevel = (gradientColors: GradientColor[], index: number, widt
 
     const currentColor = gradientColors[index];
     const allColorsOnLevel = gradientColors.filter(
-        (color) => color.level === level && color.position < currentColor.position,
+        (color) => color.level === level && color.position < currentColor.position
     );
 
     const lastLevelColors = allColorsOnLevel[allColorsOnLevel.length - 1];

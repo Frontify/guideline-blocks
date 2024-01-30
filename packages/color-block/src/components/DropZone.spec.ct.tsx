@@ -51,7 +51,7 @@ describe('DropZone component', () => {
                         </div>
                     </DropZone>
                 </DndProvider>
-            </div>,
+            </div>
         );
 
         cy.get(CardsItemSelector).first().trigger('dragstart', 'bottom');

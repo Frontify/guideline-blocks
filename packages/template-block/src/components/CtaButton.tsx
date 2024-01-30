@@ -3,17 +3,17 @@
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { PluginComposer } from '@frontify/fondue';
 import { useState } from 'react';
-import { CustomButtonProps } from './types';
+import { CtaButtonProps } from './types';
 import { PreviewType } from '../types';
 
-export const CustomButton = ({
+export const CtaButton = ({
     appBridge,
     blockSettings,
     isEditing,
     isDisabled,
     updateBlockSettings,
     handleNewPublication,
-}: CustomButtonProps) => {
+}: CtaButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview } = blockSettings;
     const blockId = appBridge.context('blockId').get();

@@ -18,7 +18,7 @@ export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fil
 export const quoteIconMap = (
     size: string,
     color: string,
-    customIconUrl?: string,
+    customIconUrl?: string
 ): Record<QuoteStyle, ReactElement | null> => {
     const style: CSSProperties = {
         color,

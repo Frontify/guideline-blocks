@@ -20,7 +20,7 @@ const getLabelDecorationStylesMap = (
     style: StrikethroughType,
     thickness: string,
     color: Color,
-    highlightColor: Color,
+    highlightColor: Color
 ): Record<ChecklistDecoration, DecorationStyle> => ({
     [ChecklistDecoration.Strikethrough]: {
         textDecoration: 'line-through',
@@ -61,7 +61,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
         strikethroughStyle,
         strikethroughWidth,
         strikethroughColor,
-        highlightColor,
+        highlightColor
     )[completedDecoration];
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };

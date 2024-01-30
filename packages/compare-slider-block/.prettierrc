@@ -1,5 +1,15 @@
 {
     "printWidth": 120,
     "tabWidth": 4,
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "overrides": [
+        {
+            "files": ["tsconfig.json", "tsconfig.*.json"],
+            "options": {
+                "parser": "json",
+                "trailingComma": "none"
+            }
+        }
+    ]
 }

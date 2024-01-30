@@ -134,7 +134,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                     ...basicSettings,
                     ...proSettings,
                     ...premiumSettings,
-                }),
+                })
             );
         } else {
             setLocalUrl('');

@@ -69,7 +69,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             radiusValue,
             setActivatorNodeRef,
         },
-        ref,
+        ref
     ) => {
         const doColorString = toRgbaString(doColor);
         const dontColorString = toRgbaString(dontColor);
@@ -86,7 +86,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
 
         const onBodyTextChange = useCallback(
             (value: string) => value !== body && onChangeItem(id, value, 'body'),
-            [onChangeItem, body, id],
+            [onChangeItem, body, id]
         );
 
         const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
@@ -111,7 +111,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 },
                 {
                     multiSelection: false,
-                },
+                }
             );
         };
 
@@ -154,7 +154,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const plugins = useMemo(
             () => getDefaultPluginsWithLinkChooser(appBridge),
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            [],
+            []
         );
 
         const memoizedRichTextEditor = useMemo(
@@ -169,7 +169,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 />
             ),
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            [body, shouldRerenderDependency, editing, appBridge, id],
+            [body, shouldRerenderDependency, editing, appBridge, id]
         );
 
         return (
@@ -331,7 +331,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 />
             </div>
         );
-    },
+    }
 );
 
 DoDontItem.displayName = 'DoDontItem';

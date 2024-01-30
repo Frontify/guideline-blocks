@@ -15,7 +15,7 @@ export const ColorKitBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const memoizedColorPaletteIds = useMemo(
         () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
-        [blockSettings.colorPaletteIds],
+        [blockSettings.colorPaletteIds]
     );
 
     const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);

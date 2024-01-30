@@ -73,7 +73,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                 />
             </div>
         );
-    },
+    }
 );
 
 TextEditor.displayName = 'TextEditor';

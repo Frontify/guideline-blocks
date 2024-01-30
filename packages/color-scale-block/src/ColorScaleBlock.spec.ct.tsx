@@ -493,7 +493,7 @@ describe('Color Scale Block', () => {
                             (pageWidth - COLOR_SQUARE_HARDCODED_WIDTH) / 2 -
                                 COLOR_SCALE_BLOCK_PADDING -
                                 COLOR_SCALE_BLOCK_BORDER_WIDTH,
-                            2,
+                            2
                         );
                     });
             });

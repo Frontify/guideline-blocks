@@ -111,7 +111,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
                 </div>
             </div>
         );
-    },
+    }
 );
 
 DropZone.displayName = 'DropZone';

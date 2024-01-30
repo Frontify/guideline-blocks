@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useMemo } from 'react';
+import { CSSProperties, useCallback, useMemo } from 'react';
 import {
     BlockStyles,
     RichTextEditor,
+    THEME_PREFIX,
     TextStylePluginsWithoutImage,
     TextStyles,
     convertToRteValue,
@@ -30,6 +31,7 @@ export const TemplateText = ({
     description,
     pageCount,
     isEditing,
+    hasTitleOnly,
     templateTextKey,
 }: TemplateTextProps) => {
     const blockId = appBridge.context('blockId').get();
@@ -42,7 +44,7 @@ export const TemplateText = ({
                 await updateBlockSettings({ title: newTitle });
             }
         },
-        [title, updateBlockSettings],
+        [title, updateBlockSettings]
     );
 
     const saveDescription = useCallback(
@@ -51,7 +53,7 @@ export const TemplateText = ({
                 await updateBlockSettings({ description: newDescription });
             }
         },
-        [description, updateBlockSettings],
+        [description, updateBlockSettings]
     );
 
     const customTitlePlugins = useMemo(() => {
@@ -74,7 +76,7 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey],
+        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey]
     );
 
     const memoDescriptionRte = useMemo(
@@ -90,20 +92,51 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey],
+        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey]
     );
+
+    const getOverwrittenThemeSettings = (): CSSProperties => {
+        const removeMarginTop = {
+            [`${THEME_PREFIX}heading1-margin-top`]: '0',
+            [`${THEME_PREFIX}heading2-margin-top`]: '0',
+            [`${THEME_PREFIX}heading3-margin-top`]: '0',
+            [`${THEME_PREFIX}heading4-margin-top`]: '0',
+            [`${THEME_PREFIX}custom1-margin-top`]: '0',
+            [`${THEME_PREFIX}custom2-margin-top`]: '0',
+            [`${THEME_PREFIX}custom3-margin-top`]: '0',
+            [`${THEME_PREFIX}body-margin-top`]: '0',
+            [`${THEME_PREFIX}quote-margin-top`]: '0',
+        } as CSSProperties;
+        const removeMarginBottom = {
+            [`${THEME_PREFIX}heading1-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading2-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading3-margin-bottom`]: '0',
+            [`${THEME_PREFIX}heading4-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom1-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom2-margin-bottom`]: '0',
+            [`${THEME_PREFIX}custom3-margin-bottom`]: '0',
+            [`${THEME_PREFIX}body-margin-bottom`]: '0',
+            [`${THEME_PREFIX}quote-margin-bottom`]: '0',
+        } as CSSProperties;
+
+        return hasTitleOnly ? { ...removeMarginTop, ...removeMarginBottom } : removeMarginTop;
+    };
 
     return (
         <div>
-            <div data-test-id="title" className="tw-mb-2">
+            <div data-test-id="title" style={getOverwrittenThemeSettings()}>
                 {memoTitleRte}
-                {pageCount !== undefined && (
-                    <div style={{ ...pageCountStyles }} data-test-id="page-count">
-                        {`${pageCount} ${pageCountLabel}`}
-                    </div>
-                )}
             </div>
-            <div data-test-id="description">{memoDescriptionRte}</div>
+
+            {pageCount !== undefined && (
+                <div className="tw-mb-2" data-test-id="page-count">
+                    <span style={{ ...pageCountStyles }}>{`${pageCount} ${pageCountLabel}`}</span>
+                </div>
+            )}
+
+            <div className={isEditing || hasRichTextValue(description) ? 'tw-mt-2' : ''} data-test-id="description">
+                {memoDescriptionRte}
+            </div>
         </div>
     );
 };

@@ -54,7 +54,7 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
                               imageContainer,
                               imageStage.current,
                               imageElement,
-                              isFullScreenRef.current,
+                              isFullScreenRef.current
                           );
                     containerOperator.current.fitAndCenterTheImageContainerWithinTheImageStage();
                 }
