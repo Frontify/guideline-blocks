@@ -63,7 +63,8 @@ export const Toolbar = ({
         <div
             data-test-id="ui-pattern-files-toolbar"
             className={joinClassNames([
-                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10  tw-px-2 tw-bg-white tw-border-t tw-border-b tw-border-line',
+                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10  tw-px-2 tw-bg-white tw-border-t tw-border-line',
+                !isEditorCollapsed && 'tw-border-b',
             ])}
         >
             <div className="tw-flex tw-h-full">
