@@ -293,17 +293,14 @@ export const settings = defineSettings({
                         {
                             value: AnchoringType.Start,
                             icon: IconEnum.ArrowAlignLeft,
-                            label: 'Left',
                         },
                         {
                             value: AnchoringType.Center,
                             icon: IconEnum.ArrowAlignVerticalCentre,
-                            label: 'Center',
                         },
                         {
                             value: AnchoringType.End,
                             icon: IconEnum.ArrowAlignRight,
-                            label: 'Right',
                         },
                     ],
                 },
