@@ -33,7 +33,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             isDragging = false,
             replaceWithPlaceholder = false,
         },
-        ref,
+        ref
     ) => {
         const [isHovered, setIsHovered] = useState(false);
         const [isEditFlyoutOpen, setIsEditFlyoutOpen] = useState(false);
@@ -206,7 +206,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 />
             </div>
         );
-    },
+    }
 );
 
 Card.displayName = 'Card';

@@ -12,7 +12,7 @@ export abstract class ContainerOperator {
     constructor(
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
-        protected imageElement: ImageElement,
+        protected imageElement: ImageElement
     ) {}
 
     public setPadding(paddingInPercentage: number): this {
@@ -29,7 +29,7 @@ export abstract class ContainerOperator {
     protected centerImageContainerWithinTheImageStage() {
         this.imageContainer.setImageContainerPosition(
             (this.imageStage.width - this.imageContainer.width) / 2,
-            (this.imageStage.height - this.imageContainer.height) / 2,
+            (this.imageStage.height - this.imageContainer.height) / 2
         );
     }
 

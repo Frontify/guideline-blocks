@@ -14,7 +14,7 @@ export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPi
                   ...currentColor,
                   alpha: currentColor.alpha && parseFloat((currentColor.alpha / 255).toFixed(2)),
               }
-            : { red: 255, green: 255, blue: 255, alpha: 1 },
+            : { red: 255, green: 255, blue: 255, alpha: 1 }
     );
 
     const handleOpenChange = (isOpen: boolean) => {

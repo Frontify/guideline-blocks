@@ -7,7 +7,7 @@ export const useDebounce = (duration = 400) => {
     const debouncedSave = useRef(
         debounce((callback) => {
             callback();
-        }, duration),
+        }, duration)
     );
 
     return { debounce: debouncedSave.current };

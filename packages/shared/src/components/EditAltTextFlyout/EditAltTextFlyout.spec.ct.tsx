@@ -18,7 +18,7 @@ describe('EditAltTextFlyout', () => {
                 showAltTextMenu
                 defaultAltText="default alt text"
                 localAltText="local alt text"
-            />,
+            />
         );
         cy.get(FlyoutMenu).should('exist');
         cy.get(SaveButton).click();
@@ -36,7 +36,7 @@ describe('EditAltTextFlyout', () => {
                 showAltTextMenu
                 defaultAltText="default alt text"
                 localAltText="local alt text"
-            />,
+            />
         );
         cy.get(CancelButton).click();
         cy.get('@setLocalAltText').should('be.calledWith', 'default alt text');
@@ -52,7 +52,7 @@ describe('EditAltTextFlyout', () => {
                 showAltTextMenu
                 defaultAltText="default alt text"
                 localAltText="local alt text"
-            />,
+            />
         );
         cy.get('input').clear();
         cy.get('@setLocalAltText').should('be.calledWith', '');
@@ -67,7 +67,7 @@ describe('EditAltTextFlyout', () => {
                 showAltTextMenu
                 defaultAltText="default alt text"
                 localAltText=""
-            />,
+            />
         );
         cy.get('input').type('N');
         cy.get('@setLocalAltText').should('be.calledWith', 'N');

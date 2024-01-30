@@ -42,7 +42,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         };
         setUploadingItemIds(newUploadingItemIds);
         const updateAssetIdPromises = newUploadingItemIds[itemId].map((uploadingItemId, i) =>
-            updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id]),
+            updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id])
         );
         await Promise.all(updateAssetIdPromises);
         setUploadingItemIds({ ...newUploadingItemIds, [itemId]: [] });
@@ -61,7 +61,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         }
 
         const updateAssetIdPromises = uploadingItemIds[itemId].map((uploadingItemId, i) =>
-            uploadedAssets[i] ? updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]) : Promise.resolve(),
+            uploadedAssets[i] ? updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]) : Promise.resolve()
         );
         await Promise.all(updateAssetIdPromises);
         setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
@@ -76,7 +76,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         (items: Thumbnail[]) => {
             setItemsState([...itemsState, ...items]);
         },
-        [itemsState, setItemsState],
+        [itemsState, setItemsState]
     );
 
     const updateItems = (updatedItems: Thumbnail[]) => {
@@ -91,7 +91,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         if ((blockAssets[itemId] || []).length > 0) {
             await deleteAssetIdsFromKey(
                 itemId,
-                blockAssets[itemId].map((asset) => asset.id),
+                blockAssets[itemId].map((asset) => asset.id)
             );
         }
         setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });

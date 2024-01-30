@@ -16,7 +16,7 @@ describe('ColorPickerFlyout component', () => {
         mount(
             <ColorPickerFlyout currentColor={null} onConfirm={onConfirmStub}>
                 <div data-test-id="color-picker-flyout-trigger">Hello</div>
-            </ColorPickerFlyout>,
+            </ColorPickerFlyout>
         );
     });
 

@@ -49,7 +49,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
             },
             {
                 selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
-            },
+            }
         );
     };
 
