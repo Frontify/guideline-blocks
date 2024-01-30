@@ -123,6 +123,6 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                 </div>
             </div>
         </div>,
-        document.body,
+        document.body
     );
 };

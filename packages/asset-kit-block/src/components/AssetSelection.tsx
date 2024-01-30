@@ -34,7 +34,7 @@ export const AssetSelection = ({
             {
                 multiSelection: true,
                 selectedValueIds: currentAssets.map((asset) => asset.id),
-            },
+            }
         );
     };
 

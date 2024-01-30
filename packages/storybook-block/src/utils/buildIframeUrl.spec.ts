@@ -9,10 +9,10 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             true,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).toEqual(
-            'http://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right',
+            'http://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right'
         );
     });
     test('It should return null if empty', () => {
@@ -31,7 +31,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             true,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).toContain('panel=right');
     });
@@ -39,7 +39,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             true,
-            StorybookPosition.Vertical,
+            StorybookPosition.Vertical
         );
         expect(result?.toString()).toContain('panel=bottom');
     });
@@ -47,7 +47,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             false,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).toContain('panel=false');
     });
@@ -55,7 +55,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             false,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).toContain('iframe.html');
     });
@@ -63,7 +63,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
             true,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).not.toContain('iframe.html');
     });
@@ -71,7 +71,7 @@ describe('buildIframeUrl', () => {
         const result = buildIframeUrl(
             'http://fondue-components.frontify.com/iframe.html?path=/story/components-action-menu--action-menu',
             true,
-            StorybookPosition.Horizontal,
+            StorybookPosition.Horizontal
         );
         expect(result?.toString()).not.toContain('iframe.html');
     });

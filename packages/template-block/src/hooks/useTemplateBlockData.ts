@@ -18,6 +18,7 @@ import {
     Radius,
     convertToRteValue,
     getBackgroundColorStyles,
+    hasRichTextValue,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
@@ -59,6 +60,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         hasBackground,
         hasBorder_blockCard,
         hasCustomPaddingValue_blockCard,
+        hasPageCount,
         hasRadius_blockCard,
         paddingChoice_blockCard,
         paddingValue_blockCard,
@@ -87,7 +89,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
             await appBridge.dispatch(closeTemplateChooser());
         },
-        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey],
+        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
     );
 
     useEffect(() => {
@@ -119,6 +121,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [blockTemplates]);
 
     const hasPreview = preview !== PreviewType.None;
+    const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     return {
         blockSettings,
@@ -134,12 +137,13 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             hasBorder_blockCard,
             borderWidth_blockCard,
             borderStyle_blockCard,
-            borderColor_blockCard,
+            borderColor_blockCard
         ),
-        contentClasses: getContentClasses(textPositioning, textAnchoringVertical),
-        ctaClasses: getCtaClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        contentClasses: getContentClasses(hasPreview, textPositioning, textAnchoringVertical),
+        ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         hasPreview,
+        hasTitleOnly,
         isEditing,
         lastErrorMessage,
         preview,
@@ -147,54 +151,67 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         previewCustom,
         selectedTemplate,
         templateTextKey,
-        textClasses: getTextClasses(hasPreview, textPositioning, textAnchoringHorizontal),
+        textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         textCtaWrapperClasses: getTextCtaWrapperClass(hasPreview, textPositioning, textRatio),
         title,
         updateBlockSettings,
     };
 };
 
-const getContentClasses = (textPositioning: TextPositioningType, textAnchoringVertical: AnchoringType): string => {
-    const alignContentItems = [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
-        ? verticalAlignmentToItemAlign[textAnchoringVertical]
-        : '';
-    return `tw-flex tw-gap-x-8 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
+const getContentClasses = (
+    hasPreview: boolean,
+    textPositioning: TextPositioningType,
+    textAnchoringVertical: AnchoringType
+): string => {
+    const alignContentItems =
+        hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+            ? verticalAlignmentToItemAlign[textAnchoringVertical]
+            : '';
+    return `tw-flex tw-gap-x-6 tw-gap-y-4 ${textPositioningToContentFlexDirection[textPositioning]} ${alignContentItems}`;
 };
 
 const getCtaClasses = (
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
-    textAnchoringHorizontal: AnchoringType,
-): string =>
-    hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
+    textAnchoringHorizontal: AnchoringType
+): string => {
+    if (hasTitleOnly) {
+        return 'tw-self-center';
+    }
+    return hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
         ? horizontalAlignmentToCtaSelfAlign[textAnchoringHorizontal]
         : '';
+};
 
 const getPreviewClasses = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
-    textRatio: TextRatioType,
-): string =>
-    hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+    textRatio: TextRatioType
+): string => {
+    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? textRatioToInverseFlexBasis[textRatio]
         : '';
+};
 
 const getTextClasses = (
     hasPreview: boolean,
+    hasTitleOnly: boolean,
     textPositioning: TextPositioningType,
-    textAnchoringHorizontal: AnchoringType,
+    textAnchoringHorizontal: AnchoringType
 ): string => {
     const textAlign =
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
-    return `tw-grow ${textAlign}`;
+    const selfAlign = hasTitleOnly ? 'tw-self-center' : '';
+    return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
 const getTextCtaWrapperClass = (
     hasPreview: boolean,
     textPositioning: TextPositioningType,
-    textRatio: TextRatioType,
+    textRatio: TextRatioType
 ): string => {
     const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
     const flexBasis =
@@ -216,7 +233,7 @@ const getCardStyles = (
     hasBorder_blockCard: boolean,
     borderWidth_blockCard: string,
     borderStyle_blockCard: BorderStyle,
-    borderColor_blockCard: Color,
+    borderColor_blockCard: Color
 ): React.CSSProperties => ({
     ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
     padding: hasCustomPaddingValue_blockCard ? paddingValue_blockCard : paddingStyleMap[paddingChoice_blockCard],

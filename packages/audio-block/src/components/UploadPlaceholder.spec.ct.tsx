@@ -14,7 +14,7 @@ describe('Upload Placeholder', () => {
                 onAssetChooseClick={cy.stub()}
                 loading={false}
                 onFilesDrop={cy.stub()}
-            />,
+            />
         );
         cy.get(UploadPlaceholderSelector).should('exist');
     });
@@ -26,7 +26,7 @@ describe('Upload Placeholder', () => {
                 onAssetChooseClick={cy.stub()}
                 loading={true}
                 onFilesDrop={cy.stub()}
-            />,
+            />
         );
         cy.get(LoadingCircle).should('exist');
     });

@@ -36,7 +36,7 @@ export type ColorSquareProps = {
 export type OnDropCallback<T> = (
     targetItem: DraggableItem<T>,
     sourceItem: DraggableItem<T>,
-    position: CollisionPosition,
+    position: CollisionPosition
 ) => void;
 
 export type DropZoneData<T> = {

@@ -6,7 +6,7 @@ import { Button, ButtonEmphasis, Text } from '@frontify/fondue';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 
 import { AlertError } from './components/AlertError';
-import { CustomButton } from './components/CustomButton';
+import { CtaButton } from './components/CtaButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
 import { PreviewType } from './types';
@@ -20,6 +20,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         ctaClasses,
         description,
         hasPreview,
+        hasTitleOnly,
         isEditing,
         lastErrorMessage,
         preview,
@@ -71,6 +72,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             previewClasses={previewClasses}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
+                            handleNewPublication={handleNewPublication}
                         />
                     )}
 
@@ -87,11 +89,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         : undefined
                                 }
                                 isEditing={isEditing}
+                                hasTitleOnly={hasTitleOnly}
                                 templateTextKey={templateTextKey}
                             />
                         </div>
                         <div data-test-id="cta" className={ctaClasses}>
-                            <CustomButton
+                            <CtaButton
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 isEditing={isEditing}

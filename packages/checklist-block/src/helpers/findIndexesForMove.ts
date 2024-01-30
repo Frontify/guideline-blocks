@@ -7,7 +7,7 @@ import { findIndexById } from './findIndexById';
 export const findIndexesForMove = (
     content: ChecklistContent[],
     selectedGridItemKeys: React.Key[],
-    gridItemLocation: ItemDropTarget,
+    gridItemLocation: ItemDropTarget
 ) => {
     let newIndex = findIndexById(content, gridItemLocation.key);
     const oldIndex = findIndexById(content, selectedGridItemKeys[0]);

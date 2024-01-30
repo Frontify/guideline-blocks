@@ -7,7 +7,7 @@ export type AlertErrorProps = {
     errorMessage: string;
 };
 
-export type CustomButtonProps = {
+export type CtaButtonProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     isEditing: boolean;
@@ -31,6 +31,7 @@ export type TemplatePreviewProps = {
     previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
+    handleNewPublication: () => void;
 };
 
 export type TemplateTextProps = {
@@ -39,6 +40,7 @@ export type TemplateTextProps = {
     description: string;
     pageCount: number | undefined;
     isEditing: boolean;
+    hasTitleOnly: boolean;
     templateTextKey: number;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
 };

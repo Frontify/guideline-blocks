@@ -70,7 +70,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const renderChecklistItem = (
         { text, id, completed, updatedAt }: LegacyOrderableListItem<ChecklistContent>,
-        { componentDragState, isFocusVisible }: LegacyDragProperties,
+        { componentDragState, isFocusVisible }: LegacyDragProperties
     ) => {
         const index = findIndexById(displayableItems, id);
         displayableItems.sort((previousItem, currentItem) => previousItem.sort - currentItem.sort);
@@ -131,7 +131,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
                 alt: text,
                 sort: sort !== undefined ? sort : index,
             };
-        },
+        }
     );
 
     return (
