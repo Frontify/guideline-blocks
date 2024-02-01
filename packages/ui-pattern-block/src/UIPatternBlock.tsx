@@ -10,9 +10,6 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-
 import { Alignment, Height, type Settings, TextAlignment, sandpackThemeValues } from './types';
 import {
     DEFAULT_BLOCK_SETTINGS,
@@ -94,6 +91,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         npmDependencies,
         externalDependencies,
         resetFiles,
+        sandpackTheme,
     ];
 
     const onResetFiles = () => {
@@ -187,7 +185,11 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
                         borderRadius,
                     }}
-                    className="tw-rounded tw-bg-white"
+                    className={joinClassNames([
+                        'tw-rounded tw-bg-white tw-overflow-hidden tw-group',
+                        // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
+                        hasBorder && 'bordered',
+                    ])}
                 >
                     <SandpackProvider
                         files={templateFiles}
@@ -201,10 +203,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                             externalResources: [cssToInject, ...parsedExternalDependencies],
                         }}
                     >
-                        <SandpackLayout
-                            style={{ borderTopRightRadius: borderRadius, borderTopLeftRadius: borderRadius }}
-                            className="tw-flex tw-flex-col"
-                        >
+                        <SandpackLayout className="tw-flex tw-flex-col">
                             {isResponsivePreviewOpen && (
                                 <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
                             )}
@@ -217,8 +216,6 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         ...getBackgroundColorStyles(backgroundColor),
                                         backgroundImage: 'none',
                                     }),
-                                    borderTopRightRadius: borderRadius,
-                                    borderTopLeftRadius: borderRadius,
                                 }}
                                 showRefreshButton={false}
                                 showOpenInCodeSandbox={false}

@@ -2,16 +2,24 @@
 
 import { Radius, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
 import { Height, Padding, heightValues, paddingValues, radiusValues } from '../types';
-import { type Color, FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
+import { type Color } from '@frontify/fondue';
+
+/* The internal CodeMirror component covers the box-shadow inset styles applied by fondue.
+    To make them visible they are applied to a psuedo element instead. This way they also don't overflow
+    the UI Pattern container which has border radius and "overflow: hidden". */
+
+const FOCUS_VISIBLE_INSET_AFTER =
+    'focus-visible:after:tw-ring-inset focus:tw-z-20 focus-visible:after:tw-absolute focus-visible:after:tw-top-0 focus-visible:after:tw-left-0 focus-visible:after:tw-right-0 focus-visible:after:tw-bottom-0 focus-visible:after:tw-ring-4 focus-visible:after:tw-ring-blue focus-visible:after:tw-ring-offset-2 focus-visible:after:tw-outline-none';
 
 export const EDITOR_CLASSES = {
     'sp-layout': 'tw-gap-0 tw-border-none tw-rounded-none !tw-overflow-visible',
-    'sp-code-editor': 'tw-border-b tw-border-line !tw-overflow-visible',
+    'sp-wrapper': 'tw-border-b tw-border-line group-[.bordered]:last:tw-border-b-0',
+    'sp-editor': 'tw-min-h-[52px] tw-box-content',
     'sp-preview': '!tw-flex-[unset]',
     'sp-preview-container': 'tw-h-full tw-bg-[inherit]',
     'sp-preview-iframe': 'tw-min-h-0 tw-flex-[unset]',
     'sp-loading': 'tw-bg-[inherit]',
-    'sp-cm': `${FOCUS_VISIBLE_STYLE} tw-relative focus:tw-z-20`,
+    'sp-cm': `tw-relative ${FOCUS_VISIBLE_INSET_AFTER}`,
 };
 
 export const getPaddingStyle = (hasCustomPadding: boolean, paddingValue: string, paddingChoice: Padding) => {

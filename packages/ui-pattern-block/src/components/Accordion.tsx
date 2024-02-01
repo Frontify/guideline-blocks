@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_VISIBLE_STYLE, IconCaretDown12 } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE_INSET, IconCaretDown12 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { PropsWithChildren, ReactElement } from 'react';
 
@@ -19,13 +19,16 @@ export const Accordion = ({
     borderRadius,
 }: PropsWithChildren<Props>): ReactElement => {
     return (
-        <div data-test-id="dependency-accordion" className="tw-border-b tw-border-b-line last:tw-border-b-0">
+        <div
+            data-test-id="dependency-accordion"
+            className="tw-border-b tw-border-b-line group-[.bordered]:last:tw-border-b-0"
+        >
             <button
                 aria-expanded={isOpen}
                 className={joinClassNames([
                     'tw-relative focus:tw-z-20 tw-text-s tw-gap-2 tw-w-[calc(100%-32px)] tw-text-text-weak tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
                     isOpen && 'tw-border-b tw-border-b-line',
-                    FOCUS_VISIBLE_STYLE,
+                    FOCUS_VISIBLE_STYLE_INSET,
                 ])}
                 style={{
                     borderBottomLeftRadius: !isOpen ? borderRadius : undefined,
