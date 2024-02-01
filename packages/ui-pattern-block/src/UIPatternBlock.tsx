@@ -91,6 +91,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         npmDependencies,
         externalDependencies,
         resetFiles,
+        sandpackTheme,
     ];
 
     const onResetFiles = () => {
