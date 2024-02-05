@@ -40,7 +40,7 @@ export const settings = defineSettings({
         {
             id: 'hasPageCount',
             type: 'switch',
-            defaultValue: true,
+            defaultValue: false,
             label: 'Show page count',
             info: 'Show or hide the page count indicator',
         },
