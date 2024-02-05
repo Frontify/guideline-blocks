@@ -126,8 +126,12 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         const getCurrentLoggedUser = async () => {
-            const currentLoggedUser = await appBridge.getCurrentLoggedUser();
-            setHasLoggedInUser(!!currentLoggedUser.id);
+            try {
+                const currentLoggedUser = await appBridge.getCurrentLoggedUser();
+                setHasLoggedInUser(!!currentLoggedUser.id);
+            } catch (userFetchError) {
+                setHasLoggedInUser(false);
+            }
         };
         getCurrentLoggedUser();
     }, [appBridge]);
