@@ -125,9 +125,11 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     useEffect(() => {
-        appBridge.getCurrentLoggedUser().then((user) => {
-            setHasLoggedInUser(!!user.id);
-        });
+        const getCurrentLoggedUser = async () => {
+            const currentLoggedUser = await appBridge.getCurrentLoggedUser();
+            setHasLoggedInUser(!!currentLoggedUser.id);
+        };
+        getCurrentLoggedUser();
     }, [appBridge]);
 
     return {
