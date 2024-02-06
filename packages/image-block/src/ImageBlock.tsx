@@ -22,7 +22,9 @@ import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
+    IconSpeechBubbleQuote16,
     IconSpeechBubbleQuote20,
+    IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
@@ -125,15 +127,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             shouldBeShown={showAltTextMenu}
                             showAttachments
                             toolbarFlyoutItems={[
-                                image
-                                    ? [
-                                          {
-                                              title: 'Set alt text',
-                                              onClick: () => setShowAltTextMenu(true),
-                                              icon: <IconSpeechBubbleQuote20 />,
-                                          },
-                                      ]
-                                    : [],
                                 [
                                     {
                                         title: 'Replace with upload',
@@ -155,7 +148,16 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     },
                                 ],
                             ]}
-                            toolbarItems={[]}
+                            toolbarItems={[
+                                ...(image && [
+                                    {
+                                        tooltip: 'Set alt text',
+                                        onClick: () => (showAltTextMenu ? false : setShowAltTextMenu(true)),
+                                        icon: <IconSpeechBubbleQuote16 />,
+                                    },
+                                ]),
+                                { icon: <IconTrashBin16 />, onClick: onRemoveAsset, tooltip: 'Delete' },
+                            ]}
                         >
                             {isLoading ? (
                                 <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
