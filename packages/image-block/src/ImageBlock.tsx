@@ -127,7 +127,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             shouldHideWrapper={!isEditing}
                             shouldBeShown={showAltTextMenu}
                             showAttachments
-                            isDragging={showAltTextMenu}
                             toolbarFlyoutItems={[
                                 [
                                     {
