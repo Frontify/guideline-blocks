@@ -45,7 +45,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
-    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const [showAltTextMenu, _setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -57,7 +57,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 
-    const throttledSetShowAltTextMenu = useThrottle(setShowAltTextMenu);
+    const setShowAltTextMenu = useThrottle(_setShowAltTextMenu);
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
@@ -154,7 +154,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 ...(image && [
                                     {
                                         tooltip: 'Set alt text',
-                                        onClick: () => throttledSetShowAltTextMenu(true),
+                                        onClick: () => setShowAltTextMenu(true),
                                         icon: <IconSpeechBubbleQuote16 />,
                                     },
                                 ]),
@@ -174,7 +174,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 />
                             )}
                             <EditAltTextFlyout
-                                setShowAltTextMenu={throttledSetShowAltTextMenu}
+                                setShowAltTextMenu={setShowAltTextMenu}
                                 showAltTextMenu={showAltTextMenu}
                                 setLocalAltText={setLocalAltText}
                                 defaultAltText={blockSettings.altText}
