@@ -18,7 +18,7 @@ import {
     hasRichTextValue,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { EditAltTextFlyout, useThrottle } from '@frontify/guideline-blocks-shared';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
@@ -56,6 +56,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
+
+    const throttledSetShowAltTextMenu = useThrottle(setShowAltTextMenu);
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
@@ -125,6 +127,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             shouldHideWrapper={!isEditing}
                             shouldBeShown={showAltTextMenu}
                             showAttachments
+                            isDragging={showAltTextMenu}
                             toolbarFlyoutItems={[
                                 [
                                     {
@@ -151,7 +154,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 ...(image && [
                                     {
                                         tooltip: 'Set alt text',
-                                        onClick: () => (showAltTextMenu ? false : setShowAltTextMenu(true)),
+                                        onClick: () => throttledSetShowAltTextMenu(true),
                                         icon: <IconSpeechBubbleQuote16 />,
                                     },
                                 ]),
@@ -171,7 +174,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 />
                             )}
                             <EditAltTextFlyout
-                                setShowAltTextMenu={setShowAltTextMenu}
+                                setShowAltTextMenu={throttledSetShowAltTextMenu}
                                 showAltTextMenu={showAltTextMenu}
                                 setLocalAltText={setLocalAltText}
                                 defaultAltText={blockSettings.altText}
