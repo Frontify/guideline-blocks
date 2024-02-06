@@ -23,7 +23,6 @@ import {
     IconArrowCircleUp20,
     IconImageStack20,
     IconSpeechBubbleQuote16,
-    IconSpeechBubbleQuote20,
     IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,

@@ -27,12 +27,12 @@ export const EditAltTextFlyout = ({
         fitContent
         isTriggerDisabled
         trigger={(_, ref) => (
-            <div className="tw-absolute tw-top-0 tw-right-6" ref={ref as MutableRefObject<HTMLDivElement>} />
+            <div className="tw-absolute tw-top-0 tw-right-[-3px]" ref={ref as MutableRefObject<HTMLDivElement>} />
         )}
         onOpenChange={setShowAltTextMenu}
         hug={false}
         isOpen={showAltTextMenu}
-        placement={FlyoutPlacement.BottomLeft}
+        placement={FlyoutPlacement.BottomRight}
         legacyFooter={false}
         fixedFooter={
             <FlyoutFooter
