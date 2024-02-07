@@ -79,6 +79,20 @@ describe('Template Block', () => {
         cy.get(CTA_BUTTON_SELECTOR).should('exist');
     });
 
+    it('should not render a block if use is not authenticated', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+            user: undefined,
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(BLOCK_CONTAINER_SELECTOR).should('exist');
+        cy.wait(100);
+        cy.get(CARD_SELECTOR).should('not.exist');
+    });
+
     it('should render a block if template provided and block is in edit mode', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: true,
