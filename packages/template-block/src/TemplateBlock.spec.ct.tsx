@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, TemplateDummy, UserDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import {
@@ -84,7 +84,7 @@ describe('Template Block', () => {
             blockTemplates: {
                 template: [getTemplateDummyWithPages()],
             },
-            user: undefined,
+            user: UserDummy.with(0),
         });
 
         mount(<TemplateBlockWithStubs />);
