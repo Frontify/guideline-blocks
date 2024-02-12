@@ -44,6 +44,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const [templateTextKey, setTemplateTextKey] = useState(0);
+    const [hasLoggedInUser, setHasLoggedInUser] = useState(false);
     const isEditing = useEditorState(appBridge);
 
     const {
@@ -123,6 +124,18 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasPreview = preview !== PreviewType.None;
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
+    useEffect(() => {
+        const getCurrentLoggedUser = async () => {
+            try {
+                const currentLoggedUser = await appBridge.getCurrentLoggedUser();
+                setHasLoggedInUser(!!currentLoggedUser.id);
+            } catch (userFetchError) {
+                setHasLoggedInUser(false);
+            }
+        };
+        getCurrentLoggedUser();
+    }, [appBridge]);
+
     return {
         blockSettings,
         cardStyles: getCardStyles(
@@ -144,6 +157,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         description,
         hasPreview,
         hasTitleOnly,
+        hasLoggedInUser,
         isEditing,
         lastErrorMessage,
         preview,
