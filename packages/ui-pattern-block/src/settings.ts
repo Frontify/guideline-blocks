@@ -26,6 +26,8 @@ import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './he
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 
+const BORDER_SETTING = getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true });
+
 export const settings = defineSettings({
     main: [
         {
@@ -348,8 +350,8 @@ export const settings = defineSettings({
                     ],
                 },
                 getBackgroundSettings({ defaultColor: BACKGROUND_COLOR_DEFAULT_VALUE, label: 'Pattern background' }),
-                getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true }),
-                getBorderRadiusSettings({ defaultRadius: Radius.Medium }),
+                BORDER_SETTING,
+                getBorderRadiusSettings({ defaultRadius: Radius.Medium, dependentSettingId: BORDER_SETTING.id }),
             ],
         },
     ],
