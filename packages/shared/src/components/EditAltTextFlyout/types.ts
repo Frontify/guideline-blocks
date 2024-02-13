@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type FlyoutPlacement } from '@frontify/fondue';
+
 export type EditAltTextFlyoutProps = {
     setShowAltTextMenu: (showAltTextMenu: boolean) => void;
     showAltTextMenu: boolean;
@@ -10,4 +12,5 @@ export type EditAltTextFlyoutProps = {
     defaultAltText?: string;
     onSave: () => void;
     localAltText?: string;
+    placement?: FlyoutPlacement;
 };

@@ -2,10 +2,11 @@
 
 import { MutableRefObject } from 'react';
 import {
+    Button,
     ButtonEmphasis,
+    ButtonSize,
     ButtonStyle,
     Flyout,
-    FlyoutFooter,
     FlyoutPlacement,
     FormControl,
     HelperPosition,
@@ -22,47 +23,49 @@ export const EditAltTextFlyout = ({
     defaultAltText,
     onSave,
     localAltText,
+    placement = FlyoutPlacement.BottomLeft,
 }: EditAltTextFlyoutProps) => (
     <Flyout
         fitContent
         isTriggerDisabled
         trigger={(_, ref) => (
-            <div className="tw-absolute tw-top-0 tw-right-[-3px]" ref={ref as MutableRefObject<HTMLDivElement>} />
+            <div className="tw-absolute tw-top-0 tw-right-6" ref={ref as MutableRefObject<HTMLDivElement>} />
         )}
         onOpenChange={setShowAltTextMenu}
         hug={false}
         isOpen={showAltTextMenu}
-        placement={FlyoutPlacement.BottomRight}
+        placement={placement}
         legacyFooter={false}
         fixedFooter={
-            <FlyoutFooter
-                buttons={[
-                    {
-                        style: ButtonStyle.Default,
-                        emphasis: ButtonEmphasis.Default,
-                        children: 'Cancel',
-                        'data-test-id': 'cancel-button',
-                        onClick: () => {
-                            setLocalAltText(defaultAltText);
-                            setShowAltTextMenu(false);
-                        },
-                    },
-                    {
-                        style: ButtonStyle.Default,
-                        emphasis: ButtonEmphasis.Strong,
-                        icon: <IconCheckMark16 />,
-                        children: 'Save',
-                        'data-test-id': 'save-button',
-                        onClick: () => {
-                            onSave();
-                            setShowAltTextMenu(false);
-                        },
-                    },
-                ]}
-            />
+            <div className="tw-flex tw-gap-x-3 tw-rounded-b tw-justify-end tw-p-4 tw-bg-base tw-border-t tw-border-line">
+                <Button
+                    style={ButtonStyle.Default}
+                    emphasis={ButtonEmphasis.Default}
+                    data-test-id="cancel-button"
+                    onClick={() => {
+                        setLocalAltText(defaultAltText);
+                        setShowAltTextMenu(false);
+                    }}
+                    size={ButtonSize.Medium}
+                >
+                    Cancel
+                </Button>
+                <Button
+                    style={ButtonStyle.Default}
+                    emphasis={ButtonEmphasis.Strong}
+                    icon={<IconCheckMark16 />}
+                    data-test-id="save-button"
+                    onClick={() => {
+                        onSave();
+                        setShowAltTextMenu(false);
+                    }}
+                >
+                    Save
+                </Button>
+            </div>
         }
     >
-        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[20rem]" data-test-id="flyout-menu">
+        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[320px]" data-test-id="flyout-menu">
             <FormControl
                 label={{
                     children: 'Alt text',

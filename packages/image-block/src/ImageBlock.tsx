@@ -20,6 +20,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout, useThrottle } from '@frontify/guideline-blocks-shared';
 import {
+    FlyoutPlacement,
     IconArrowCircleUp20,
     IconImageStack20,
     IconSpeechBubbleQuote16,
@@ -172,14 +173,17 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     image={image}
                                 />
                             )}
-                            <EditAltTextFlyout
-                                setShowAltTextMenu={setShowAltTextMenu}
-                                showAltTextMenu={showAltTextMenu}
-                                setLocalAltText={setLocalAltText}
-                                defaultAltText={blockSettings.altText}
-                                onSave={() => setBlockSettings({ altText: localAltText || undefined })}
-                                localAltText={localAltText}
-                            />
+                            <div className="tw-absolute tw-top-0 tw-right-[-27px]">
+                                <EditAltTextFlyout
+                                    setShowAltTextMenu={setShowAltTextMenu}
+                                    showAltTextMenu={showAltTextMenu}
+                                    setLocalAltText={setLocalAltText}
+                                    placement={FlyoutPlacement.BottomRight}
+                                    defaultAltText={blockSettings.altText}
+                                    onSave={() => setBlockSettings({ altText: localAltText || undefined })}
+                                    localAltText={localAltText}
+                                />
+                            </div>
                         </BlockItemWrapper>
                     ) : (
                         isEditing && (
