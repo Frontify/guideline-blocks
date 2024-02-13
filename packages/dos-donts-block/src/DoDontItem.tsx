@@ -161,7 +161,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             () => (
                 <RichTextEditor
                     id={`${appBridge.getBlockId()}-${id}-editor`}
-                    isEditing={editing}
+                    isEditing={false}
                     value={body}
                     onTextChange={onBodyTextChange}
                     plugins={plugins}
@@ -192,28 +192,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
                     ]}
                     toolbarFlyoutItems={[
-                        [
-                            ...(!!linkedImage
-                                ? [
-                                      {
-                                          title: 'Replace with upload',
-                                          icon: <IconArrowCircleUp20 />,
-                                          onClick: onUploadClick,
-                                      },
-                                      {
-                                          title: 'Replace with asset',
-                                          icon: <IconImageStack20 />,
-                                          onClick: onOpenAssetChooser,
-                                      },
-                                  ]
-                                : []),
-                            {
-                                title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
-                                icon: <IconArrowSwap20 />,
-                                onClick: () =>
-                                    onChangeItem(id, type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do, 'type'),
-                            },
-                        ],
                         [
                             {
                                 title: 'Delete',

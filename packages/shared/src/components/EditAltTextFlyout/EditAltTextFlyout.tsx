@@ -78,6 +78,7 @@ export const EditAltTextFlyout = ({
                     onChange={setLocalAltText}
                     id="alt-text-input"
                     placeholder="Enter alt text"
+                    data-test-id="alt-text-input"
                 />
             </FormControl>
         </div>
