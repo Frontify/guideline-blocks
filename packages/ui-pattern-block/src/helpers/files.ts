@@ -28,7 +28,7 @@ export const getDefaultFilesOfTemplate = (template: SandpackTemplate): SandpackF
         case SandpackTemplate.Vanilla: {
             return {
                 '/index.html': '<h1>Hello world!</h1>',
-                '/index.js': 'import "./styles.css"; import("./app.js");',
+                '/index.js': 'import "./styles.css"; require("./app.js");',
                 '/styles.css': '',
                 '/app.js': '',
             };
