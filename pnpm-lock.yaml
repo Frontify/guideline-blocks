@@ -76,14 +76,14 @@ importers:
   examples/asset-upload:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -152,14 +152,14 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(@dnd-kit/core@6.1.0)(react@18.2.0)
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -219,14 +219,14 @@ importers:
   packages/asset-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -289,14 +289,14 @@ importers:
   packages/audio-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -359,14 +359,14 @@ importers:
   packages/brand-positioning-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -426,14 +426,14 @@ importers:
   packages/callout-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -496,14 +496,14 @@ importers:
   packages/checklist-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -596,14 +596,14 @@ importers:
         specifier: ^6.17.0
         version: 6.23.1
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -675,14 +675,14 @@ importers:
   packages/color-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -751,14 +751,14 @@ importers:
   packages/color-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -818,14 +818,14 @@ importers:
   packages/color-scale-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -894,14 +894,14 @@ importers:
   packages/compare-slider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -961,14 +961,14 @@ importers:
   packages/divider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1037,14 +1037,14 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(@dnd-kit/core@6.1.0)(react@18.2.0)
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1107,14 +1107,14 @@ importers:
   packages/example:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1174,14 +1174,14 @@ importers:
   packages/figma-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1241,14 +1241,14 @@ importers:
   packages/glyphs-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1314,14 +1314,14 @@ importers:
   packages/gradient-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1387,14 +1387,14 @@ importers:
   packages/image-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1460,14 +1460,14 @@ importers:
   packages/personal-note-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1530,14 +1530,14 @@ importers:
   packages/quote-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1600,8 +1600,8 @@ importers:
         specifier: ^6.2.1
         version: 6.2.1(@codemirror/view@6.23.1)
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
@@ -1685,14 +1685,14 @@ importers:
   packages/sketchfab-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1752,14 +1752,14 @@ importers:
   packages/storybook-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1822,14 +1822,14 @@ importers:
   packages/template-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1892,14 +1892,14 @@ importers:
   packages/text-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1977,14 +1977,14 @@ importers:
         specifier: ^3.2.1
         version: 3.2.2(react@18.2.0)
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -2059,14 +2059,14 @@ importers:
         specifier: ^2.0.21
         version: 2.0.21
       '@frontify/app-bridge':
-        specifier: ^3.0.2
-        version: 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.0-beta.396
         version: 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-settings':
-        specifier: ^0.32.0
-        version: 0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
+        specifier: ^0.32.1
+        version: 0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -3480,8 +3480,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@frontify/app-bridge@3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1):
-    resolution: {integrity: sha512-0gakYlgWRotoadyQAqi/9kWtBAZ25qV2w15/qqMts9Z6ZLs654Kb5MwUAl6/J6kjy1LzKJ/FPMjfnWz5O4hN2A==}
+  /@frontify/app-bridge@3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1):
+    resolution: {integrity: sha512-1mLnum9Z1KowcHFrEYeYHGKE40wudExx2CCIe3840liaZ4BDM4JaaFs6FH8ThUkE2c8YfgUZTLCAy63kh/uOLg==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^18
@@ -3703,8 +3703,8 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings@0.32.0(@babel/core@7.23.9)(@frontify/app-bridge@3.1.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0):
-    resolution: {integrity: sha512-6d9UAXZr1H3R8i/JwYJXGas7/CtIfl7UFbB4hflrq0gmpJ9whyiSf33G5481bJLNnWGrr173zee1pxaLxGrRaQ==}
+  /@frontify/guideline-blocks-settings@0.32.1(@babel/core@7.23.9)(@frontify/app-bridge@3.3.0)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0):
+    resolution: {integrity: sha512-kA0buSknJ1UAsK1IF2grM8xcKdBvT78rD6gjH0Xly49Hpeuv8/Eh2rGI0IGSml7F/q/4GHe73IPvliUp4F4aCg==}
     peerDependencies:
       '@frontify/app-bridge': ^3.0.0 || ^4.0.0-alpha.0
       react: ^18
@@ -3714,7 +3714,7 @@ packages:
       '@dnd-kit/core': 6.1.0(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.1.0)(react@18.2.0)
       '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0)(react@18.2.0)
-      '@frontify/app-bridge': 3.1.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
+      '@frontify/app-bridge': 3.3.0(react-dom@18.2.0)(react@18.2.0)(sinon@17.0.1)
       '@frontify/fondue': 12.0.0-beta.396(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@frontify/sidebar-settings': 0.9.1(@babel/core@7.23.9)(@types/node@20.11.16)(@types/react-dom@18.2.18)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(styled-components@6.1.8)(tailwindcss@3.4.1)(ts-node@10.9.2)(zustand@4.5.0)
       '@react-aria/focus': 3.16.0(react@18.2.0)
