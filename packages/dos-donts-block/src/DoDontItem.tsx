@@ -185,42 +185,50 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     shouldBeShown={isDragging}
                     toolbarItems={[
                         {
+                            type: 'dragHandle',
                             icon: <IconArrowMove16 />,
                             draggableProps,
                             setActivatorNodeRef,
                         },
-                        { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
-                    ]}
-                    toolbarFlyoutItems={[
-                        [
-                            ...(!!linkedImage
-                                ? [
-                                      {
-                                          title: 'Replace with upload',
-                                          icon: <IconArrowCircleUp20 />,
-                                          onClick: onUploadClick,
-                                      },
-                                      {
-                                          title: 'Replace with asset',
-                                          icon: <IconImageStack20 />,
-                                          onClick: onOpenAssetChooser,
-                                      },
-                                  ]
-                                : []),
-                            {
-                                title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
-                                icon: <IconArrowSwap20 />,
-                                onClick: () =>
-                                    onChangeItem(id, type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do, 'type'),
-                            },
-                        ],
-                        [
-                            {
-                                title: 'Delete',
-                                icon: <IconTrashBin20 />,
-                                onClick: onRemoveSelf,
-                            },
-                        ],
+                        { type: 'button', icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
+                        {
+                            type: 'menu',
+                            items: [
+                                [
+                                    ...(!!linkedImage
+                                        ? [
+                                              {
+                                                  title: 'Replace with upload',
+                                                  icon: <IconArrowCircleUp20 />,
+                                                  onClick: onUploadClick,
+                                              },
+                                              {
+                                                  title: 'Replace with asset',
+                                                  icon: <IconImageStack20 />,
+                                                  onClick: onOpenAssetChooser,
+                                              },
+                                          ]
+                                        : []),
+                                    {
+                                        title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
+                                        icon: <IconArrowSwap20 />,
+                                        onClick: () =>
+                                            onChangeItem(
+                                                id,
+                                                type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
+                                                'type'
+                                            ),
+                                    },
+                                ],
+                                [
+                                    {
+                                        title: 'Delete',
+                                        icon: <IconTrashBin20 />,
+                                        onClick: onRemoveSelf,
+                                    },
+                                ],
+                            ],
+                        },
                     ]}
                 >
                     {mode === BlockMode.TEXT_AND_IMAGE && (
