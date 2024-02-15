@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject } from 'react';
+import React, { MutableRefObject } from 'react';
 import {
     Button,
     ButtonEmphasis,
@@ -13,8 +13,6 @@ import {
     IconCheckMark16,
     TextInput,
 } from '@frontify/fondue';
-import { useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
-import React from 'react';
 import {
     type EditAltTextFlyoutFooterProps,
     type EditAltTextFlyoutProps,
@@ -23,7 +21,7 @@ import {
 
 export const ALT_TEXT_FLYOUT_ID = 'alt-text';
 
-const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => (
+export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => (
     <div className="tw-flex tw-gap-x-3 tw-rounded-b tw-justify-end tw-p-4 tw-bg-base tw-border-t tw-border-line">
         <Button
             style={ButtonStyle.Default}
@@ -45,17 +43,6 @@ const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFoot
         </Button>
     </div>
 );
-
-export const ToolbarEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => {
-    const { onOpenChange } = useMultiFlyoutState(ALT_TEXT_FLYOUT_ID);
-
-    const closeAfterAction = (action: () => void) => () => {
-        action();
-        onOpenChange(false);
-    };
-
-    return <BaseEditAltTextFlyoutFooter onCancel={closeAfterAction(onCancel)} onSave={closeAfterAction(onSave)} />;
-};
 
 export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => (
     <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[320px]" data-test-id="flyout-menu">

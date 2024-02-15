@@ -18,15 +18,10 @@ import {
     hasRichTextValue,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
-import {
-    ALT_TEXT_FLYOUT_ID,
-    EditAltTextFlyoutScreen,
-    ToolbarEditAltTextFlyoutFooter,
-} from '@frontify/guideline-blocks-shared';
+import { getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
-    IconSpeechBubbleQuote16,
     IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,
@@ -129,26 +124,12 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             showAttachments
                             toolbarItems={[
                                 image
-                                    ? {
-                                          type: 'flyout',
-                                          tooltip: 'Set alt text',
-                                          content: (
-                                              <EditAltTextFlyoutScreen
-                                                  localAltText={localAltText}
-                                                  setLocalAltText={setLocalAltText}
-                                              />
-                                          ),
-                                          flyoutFooter: (
-                                              <ToolbarEditAltTextFlyoutFooter
-                                                  onCancel={() => {
-                                                      setLocalAltText(blockSettings.altText);
-                                                  }}
-                                                  onSave={() => setBlockSettings({ altText: localAltText || '' })}
-                                              />
-                                          ),
-                                          icon: <IconSpeechBubbleQuote16 />,
-                                          flyoutId: ALT_TEXT_FLYOUT_ID,
-                                      }
+                                    ? getEditAltTextToolbarButton({
+                                          localAltText,
+                                          setLocalAltText,
+                                          blockSettings,
+                                          setBlockSettings,
+                                      })
                                     : undefined,
                                 {
                                     type: 'button',
