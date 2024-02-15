@@ -18,9 +18,12 @@ import {
     hasRichTextValue,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout, useThrottle } from '@frontify/guideline-blocks-shared';
 import {
-    FlyoutPlacement,
+    ALT_TEXT_FLYOUT_ID,
+    EditAltTextFlyoutScreen,
+    ToolbarEditAltTextFlyoutFooter,
+} from '@frontify/guideline-blocks-shared';
+import {
     IconArrowCircleUp20,
     IconImageStack20,
     IconSpeechBubbleQuote16,
@@ -46,7 +49,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
-    const [showAltTextMenu, _setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -57,8 +59,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
-
-    const setShowAltTextMenu = useThrottle(_setShowAltTextMenu);
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
@@ -126,39 +126,61 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                     {image ? (
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
-                            shouldBeShown={showAltTextMenu}
                             showAttachments
-                            toolbarFlyoutItems={[
-                                [
-                                    {
-                                        title: 'Replace with upload',
-                                        icon: <IconArrowCircleUp20 />,
-                                        onClick: openFileDialog,
-                                    },
-                                    {
-                                        title: 'Replace with asset',
-                                        icon: <IconImageStack20 />,
-                                        onClick: onOpenAssetChooser,
-                                    },
-                                ],
-                                [
-                                    {
-                                        title: 'Delete',
-                                        icon: <IconTrashBin20 />,
-                                        style: MenuItemStyle.Danger,
-                                        onClick: onRemoveAsset,
-                                    },
-                                ],
-                            ]}
                             toolbarItems={[
-                                ...(image && [
-                                    {
-                                        tooltip: 'Set alt text',
-                                        onClick: () => setShowAltTextMenu(true),
-                                        icon: <IconSpeechBubbleQuote16 />,
-                                    },
-                                ]),
-                                { icon: <IconTrashBin16 />, onClick: onRemoveAsset, tooltip: 'Delete' },
+                                image
+                                    ? {
+                                          type: 'flyout',
+                                          tooltip: 'Set alt text',
+                                          content: (
+                                              <EditAltTextFlyoutScreen
+                                                  localAltText={localAltText}
+                                                  setLocalAltText={setLocalAltText}
+                                              />
+                                          ),
+                                          flyoutFooter: (
+                                              <ToolbarEditAltTextFlyoutFooter
+                                                  onCancel={() => {
+                                                      setLocalAltText(blockSettings.altText);
+                                                  }}
+                                                  onSave={() => setBlockSettings({ altText: localAltText || '' })}
+                                              />
+                                          ),
+                                          icon: <IconSpeechBubbleQuote16 />,
+                                          flyoutId: ALT_TEXT_FLYOUT_ID,
+                                      }
+                                    : undefined,
+                                {
+                                    type: 'button',
+                                    icon: <IconTrashBin16 />,
+                                    onClick: onRemoveAsset,
+                                    tooltip: 'Delete',
+                                },
+                                {
+                                    type: 'menu',
+                                    items: [
+                                        [
+                                            {
+                                                title: 'Replace with upload',
+                                                icon: <IconArrowCircleUp20 />,
+                                                onClick: openFileDialog,
+                                            },
+                                            {
+                                                title: 'Replace with asset',
+                                                icon: <IconImageStack20 />,
+                                                onClick: onOpenAssetChooser,
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                title: 'Delete',
+                                                icon: <IconTrashBin20 />,
+                                                style: MenuItemStyle.Danger,
+                                                onClick: onRemoveAsset,
+                                            },
+                                        ],
+                                    ],
+                                },
                             ]}
                         >
                             {isLoading ? (
@@ -173,17 +195,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     image={image}
                                 />
                             )}
-                            <div className="tw-absolute tw-top-0 tw-right-[-27px]">
-                                <EditAltTextFlyout
-                                    setShowAltTextMenu={setShowAltTextMenu}
-                                    showAltTextMenu={showAltTextMenu}
-                                    setLocalAltText={setLocalAltText}
-                                    placement={FlyoutPlacement.BottomRight}
-                                    defaultAltText={blockSettings.altText}
-                                    onSave={() => setBlockSettings({ altText: localAltText || undefined })}
-                                    localAltText={localAltText}
-                                />
-                            </div>
                         </BlockItemWrapper>
                     ) : (
                         isEditing && (
