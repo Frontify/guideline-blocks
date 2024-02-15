@@ -4,7 +4,7 @@ import React from 'react';
 import { IconSpeechBubbleQuote16 } from '@frontify/fondue';
 import { ALT_TEXT_FLYOUT_ID, BaseEditAltTextFlyoutFooter, EditAltTextFlyoutScreen } from './EditAltTextFlyout';
 import { EditAltTextFlyoutFooterProps, EditAltTextFlyoutScreenProps } from './types';
-import { ToolbarItem, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
+import { FlyoutToolbarButtonProps, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
 
 const EditAltTextFlyoutToolbarFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => {
     const { onOpenChange } = useMultiFlyoutState(ALT_TEXT_FLYOUT_ID);
@@ -25,7 +25,7 @@ export const getEditAltTextToolbarButton = <T extends { altText?: string }>({
 }: EditAltTextFlyoutScreenProps & {
     blockSettings: T;
     setBlockSettings: (newSettings: { altText: string }) => Promise<void>;
-}): ToolbarItem => ({
+}): FlyoutToolbarButtonProps & { type: 'flyout' } => ({
     type: 'flyout',
     tooltip: 'Set alt text',
     content: <EditAltTextFlyoutScreen localAltText={localAltText} setLocalAltText={setLocalAltText} />,
