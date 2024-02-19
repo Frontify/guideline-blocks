@@ -11,7 +11,7 @@ type ImageCaptionProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const ImageCaption = ({ blockId, appBridge }: ImageCaptionProps) => {
+export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { name, description } = blockSettings;
@@ -24,7 +24,7 @@ export const ImageCaption = ({ blockId, appBridge }: ImageCaptionProps) => {
         >
             <RichTextEditor
                 id={`${blockId}_title`}
-                isEditing={false}
+                isEditing={isEditing}
                 plugins={titlePlugins}
                 placeholder="Asset name"
                 showSerializedText={hasRichTextValue(name)}
@@ -33,7 +33,7 @@ export const ImageCaption = ({ blockId, appBridge }: ImageCaptionProps) => {
             />
             <RichTextEditor
                 id={`${blockId}_description`}
-                isEditing={false}
+                isEditing={isEditing}
                 plugins={getCaptionPlugins(appBridge)}
                 onTextChange={(description) => setBlockSettings({ description })}
                 placeholder="Add a description here"
