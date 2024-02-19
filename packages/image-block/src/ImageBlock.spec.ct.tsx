@@ -24,6 +24,7 @@ const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
 const ButtonsWrapper = '[data-test-id="buttons-wrapper"]';
 const ToolbarButtonSelector = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const TextInputSelector = '[data-test-id="text-input"]';
+const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
@@ -271,8 +272,8 @@ describe('Image Block', () => {
                 <ImageBlockWithStubs />
             </div>
         );
-        cy.get(ToolbarButtonSelector).first().focus();
-        cy.get(ToolbarButtonSelector).first().should('be.visible').click();
+        cy.get(ToolbarFlyoutSelector).first().focus();
+        cy.get(ToolbarFlyoutSelector).first().should('be.visible').click();
         cy.get(TextInputSelector).should('be.visible');
     });
 
@@ -288,8 +289,8 @@ describe('Image Block', () => {
                 <ImageBlockWithStubs />
             </div>
         );
-        cy.get(ToolbarButtonSelector).eq(1).focus();
-        cy.get(ToolbarButtonSelector).eq(1).should('be.visible').click();
+        cy.get(ToolbarButtonSelector).focus();
+        cy.get(ToolbarButtonSelector).should('be.visible').click();
         cy.wrap(appBridge.deleteAssetIdsFromBlockAssetKey).should('have.been.called');
     });
 });
