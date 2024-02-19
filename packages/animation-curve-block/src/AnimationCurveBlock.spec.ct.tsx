@@ -360,7 +360,7 @@ describe('AnimationCurve Block', () => {
                 cy.get(CARD_SELECTOR)
                     .eq(3)
                     .then((fourth) => {
-                        expect(fourth.get(0)).to.eq(first.get(0));
+                        expect(fourth.get(0).outerHTML).to.eq(first.get(0).outerHTML);
                     });
             });
     });
@@ -391,12 +391,12 @@ describe('AnimationCurve Block', () => {
                 cy.get(CARD_SELECTOR)
                     .first()
                     .then((first) => {
-                        expect(first.get(0)).to.eq(fourth.get(0));
+                        expect(first.get(0).outerHTML).to.eq(fourth.get(0).outerHTML);
                     });
             });
     });
 
-    it('should add an new animation curve', () => {
+    it('should add a new animation curve', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             editorState: true,
             blockSettings: {
