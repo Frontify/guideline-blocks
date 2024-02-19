@@ -124,38 +124,42 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             shouldHideWrapper={!isEditing}
                             shouldBeShown={showAltTextMenu}
                             showAttachments
-                            toolbarFlyoutItems={[
-                                image
-                                    ? [
-                                          {
-                                              title: 'Set alt text',
-                                              onClick: () => setShowAltTextMenu(true),
-                                              icon: <IconSpeechBubbleQuote20 />,
-                                          },
-                                      ]
-                                    : [],
-                                [
-                                    {
-                                        title: 'Replace with upload',
-                                        icon: <IconArrowCircleUp20 />,
-                                        onClick: openFileDialog,
-                                    },
-                                    {
-                                        title: 'Replace with asset',
-                                        icon: <IconImageStack20 />,
-                                        onClick: onOpenAssetChooser,
-                                    },
-                                ],
-                                [
-                                    {
-                                        title: 'Delete',
-                                        icon: <IconTrashBin20 />,
-                                        style: MenuItemStyle.Danger,
-                                        onClick: onRemoveAsset,
-                                    },
-                                ],
+                            toolbarItems={[
+                                {
+                                    type: 'menu',
+                                    items: [
+                                        image
+                                            ? [
+                                                  {
+                                                      title: 'Set alt text',
+                                                      onClick: () => setShowAltTextMenu(true),
+                                                      icon: <IconSpeechBubbleQuote20 />,
+                                                  },
+                                              ]
+                                            : [],
+                                        [
+                                            {
+                                                title: 'Replace with upload',
+                                                icon: <IconArrowCircleUp20 />,
+                                                onClick: openFileDialog,
+                                            },
+                                            {
+                                                title: 'Replace with asset',
+                                                icon: <IconImageStack20 />,
+                                                onClick: onOpenAssetChooser,
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                title: 'Delete',
+                                                icon: <IconTrashBin20 />,
+                                                style: MenuItemStyle.Danger,
+                                                onClick: onRemoveAsset,
+                                            },
+                                        ],
+                                    ],
+                                },
                             ]}
-                            toolbarItems={[]}
                         >
                             {isLoading ? (
                                 <div className="tw-flex tw-items-center tw-justify-center tw-h-64">

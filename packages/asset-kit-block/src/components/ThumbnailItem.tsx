@@ -53,22 +53,30 @@ export const ThumbnailItem = ({
     return (
         <BlockItemWrapper
             shouldHideWrapper={!isEditing}
-            toolbarFlyoutItems={[
-                [
-                    {
-                        title: 'Replace with upload',
-                        icon: <IconArrowCircleUp20 />,
-                        onClick: openFileDialog,
-                    },
-                    {
-                        title: 'Replace with asset',
-                        icon: <IconImageStack20 />,
-                        onClick: onOpenAssetChooser,
-                    },
-                ],
-            ]}
             toolbarItems={[
-                { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: () => onRemoveAsset(asset.id) },
+                {
+                    type: 'button',
+                    icon: <IconTrashBin16 />,
+                    tooltip: 'Delete Item',
+                    onClick: () => onRemoveAsset(asset.id),
+                },
+                {
+                    type: 'menu',
+                    items: [
+                        [
+                            {
+                                title: 'Replace with upload',
+                                icon: <IconArrowCircleUp20 />,
+                                onClick: openFileDialog,
+                            },
+                            {
+                                title: 'Replace with asset',
+                                icon: <IconImageStack20 />,
+                                onClick: onOpenAssetChooser,
+                            },
+                        ],
+                    ],
+                },
             ]}
         >
             <div data-test-id="block-thumbnail" className="tw-aspect-square">

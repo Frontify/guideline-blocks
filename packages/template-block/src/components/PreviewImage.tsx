@@ -3,7 +3,7 @@
 import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
-import { BlockItemWrapper, FlyoutToolbarItem } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, MenuToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useEffect, useMemo, useState } from 'react';
 import { PreviewImageProps } from './types';
@@ -47,7 +47,7 @@ export const PreviewImage = ({
     };
 
     const getItemWrapperMenu = () => {
-        const menuItems: FlyoutToolbarItem[] = [
+        const menuItems: MenuToolbarItem['items'][0] = [
             {
                 title: 'Set alt text',
                 onClick: () => setShowAltTextMenu(true),
@@ -101,8 +101,7 @@ export const PreviewImage = ({
                 <div className="tw-absolute tw-top-5 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">
                     <BlockItemWrapper
                         shouldBeShown={isHovered || showAltTextMenu}
-                        toolbarItems={[]}
-                        toolbarFlyoutItems={getItemWrapperMenu()}
+                        toolbarItems={[{ type: 'menu', items: getItemWrapperMenu() }]}
                     >
                         <EditAltTextFlyout
                             setShowAltTextMenu={setShowAltTextMenu}

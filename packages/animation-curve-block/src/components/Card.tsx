@@ -87,24 +87,21 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
                     toolbarItems={[
+                        { type: 'dragHandle', icon: <IconArrowMove16 />, draggableProps, setActivatorNodeRef },
                         {
-                            icon: <IconArrowMove16 />,
-                            draggableProps,
-                            setActivatorNodeRef,
-                        },
-                        {
+                            type: 'button',
                             icon: <IconTrashBin16 />,
                             tooltip: 'Delete Item',
                             onClick: () => onDelete(animationCurve.id),
                         },
                         {
+                            type: 'button',
                             icon: <IconDotsHorizontal16 />,
                             tooltip: 'Edit Item',
                             onClick: () => setIsEditFlyoutOpen(true),
                         },
                     ]}
                     shouldBeShown={isEditFlyoutOpen || isDragging}
-                    toolbarFlyoutItems={[]}
                 >
                     <div
                         data-test-id="animation-curve-card"
