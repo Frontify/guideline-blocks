@@ -184,12 +184,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     shouldHideComponent={replaceWithPlaceholder}
                     shouldBeShown={isDragging}
                     toolbarItems={[
-                        {
-                            type: 'dragHandle',
-                            icon: <IconArrowMove16 />,
-                            draggableProps,
-                            setActivatorNodeRef,
-                        },
+                        { type: 'dragHandle', icon: <IconArrowMove16 />, draggableProps, setActivatorNodeRef },
                         { type: 'button', icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
                         {
                             type: 'menu',

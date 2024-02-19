@@ -92,6 +92,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         externalDependencies,
         resetFiles,
         sandpackTheme,
+        sandpackTemplate,
     ];
 
     const onResetFiles = () => {
@@ -161,7 +162,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         [npmDependencies]
     );
 
-    const borderRadius = getRadiusValue(hasRadius, radiusValue, radiusChoice);
+    const borderRadius = hasBorder ? getRadiusValue(hasRadius, radiusValue, radiusChoice) : 0;
 
     return (
         <div key={sandpackTemplate} data-test-id="ui-pattern-block" className="ui-pattern-block">

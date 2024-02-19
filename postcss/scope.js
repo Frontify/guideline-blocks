@@ -26,7 +26,7 @@ module.exports = (opts = {}) => {
                         .map((individualSelector) =>
                             individualSelector === opts.selector
                                 ? individualSelector
-                                : `${opts.scope} ${individualSelector}`,
+                                : `${opts.scope} ${individualSelector}, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}`,
                         )
                         .join(", "),
                 );

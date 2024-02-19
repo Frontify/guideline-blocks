@@ -28,24 +28,28 @@ export const EditorOverlay = ({
                     outlineOffset={1}
                     toolbarItems={[
                         {
+                            type: 'button',
                             icon: <IconTrashBin16 />,
                             onClick: () => handleAssetDelete('firstAsset', firstAsset[0].id),
                             tooltip: 'Remove asset',
                         },
-                    ]}
-                    toolbarFlyoutItems={[
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: () => startFileDialogUpload(SliderImageSlot.First),
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
-                                onClick: () => openAssetChooser(SliderImageSlot.First),
-                            },
-                        ],
+                        {
+                            type: 'menu',
+                            items: [
+                                [
+                                    {
+                                        title: 'Replace with upload',
+                                        icon: <IconArrowCircleUp20 />,
+                                        onClick: () => startFileDialogUpload(SliderImageSlot.First),
+                                    },
+                                    {
+                                        title: 'Replace with asset',
+                                        icon: <IconImageStack20 />,
+                                        onClick: () => openAssetChooser(SliderImageSlot.First),
+                                    },
+                                ],
+                            ],
+                        },
                     ]}
                 >
                     <div className="tw-w-full tw-h-full tw-pointer-events-none" />
@@ -65,24 +69,28 @@ export const EditorOverlay = ({
                     outlineOffset={1}
                     toolbarItems={[
                         {
+                            type: 'button',
                             icon: <IconTrashBin16 />,
                             onClick: () => handleAssetDelete('secondAsset', secondAsset[0].id),
                             tooltip: 'Remove asset',
                         },
-                    ]}
-                    toolbarFlyoutItems={[
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: () => startFileDialogUpload(SliderImageSlot.Second),
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
-                                onClick: () => openAssetChooser(SliderImageSlot.Second),
-                            },
-                        ],
+                        {
+                            type: 'menu',
+                            items: [
+                                [
+                                    {
+                                        title: 'Replace with upload',
+                                        icon: <IconArrowCircleUp20 />,
+                                        onClick: () => startFileDialogUpload(SliderImageSlot.Second),
+                                    },
+                                    {
+                                        title: 'Replace with asset',
+                                        icon: <IconImageStack20 />,
+                                        onClick: () => openAssetChooser(SliderImageSlot.Second),
+                                    },
+                                ],
+                            ],
+                        },
                     ]}
                 >
                     <div className="tw-w-full tw-h-full" />

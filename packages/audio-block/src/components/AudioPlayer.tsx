@@ -32,20 +32,25 @@ export const AudioPlayer = ({
         <BlockItemWrapper
             shouldHideWrapper={!isEditing}
             showAttachments
-            toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: onRemoveAsset }]}
-            toolbarFlyoutItems={[
-                [
-                    {
-                        title: 'Replace with upload',
-                        icon: <IconArrowCircleUp20 />,
-                        onClick: openFileDialog,
-                    },
-                    {
-                        title: 'Replace with asset',
-                        icon: <IconImageStack20 />,
-                        onClick: openAssetChooser,
-                    },
-                ],
+            toolbarItems={[
+                { type: 'button', icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: onRemoveAsset },
+                {
+                    type: 'menu',
+                    items: [
+                        [
+                            {
+                                title: 'Replace with upload',
+                                icon: <IconArrowCircleUp20 />,
+                                onClick: openFileDialog,
+                            },
+                            {
+                                title: 'Replace with asset',
+                                icon: <IconImageStack20 />,
+                                onClick: openAssetChooser,
+                            },
+                        ],
+                    ],
+                },
             ]}
         >
             {isLoading ? (

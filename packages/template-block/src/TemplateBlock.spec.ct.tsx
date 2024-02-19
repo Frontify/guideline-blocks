@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, TemplateDummy, UserDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import {
@@ -77,6 +77,20 @@ describe('Template Block', () => {
         cy.get(PREVIEW_IMAGE_SELECTOR).should('exist');
         cy.get(PAGE_COUNT_SELECTOR).should('exist');
         cy.get(CTA_BUTTON_SELECTOR).should('exist');
+    });
+
+    it('should not render a block if use is not authenticated', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+            user: UserDummy.with(0),
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(BLOCK_CONTAINER_SELECTOR).should('exist');
+        cy.wait(100);
+        cy.get(CARD_SELECTOR).should('not.exist');
     });
 
     it('should render a block if template provided and block is in edit mode', () => {

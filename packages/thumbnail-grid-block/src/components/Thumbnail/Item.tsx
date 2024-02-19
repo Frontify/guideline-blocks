@@ -98,32 +98,10 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
                     shouldBeShown={showAltTextMenu || isDragging}
-                    toolbarFlyoutItems={[
-                        image
-                            ? [
-                                  {
-                                      title: 'Set alt text',
-                                      onClick: () => setShowAltTextMenu(true),
-                                      icon: <IconSpeechBubbleQuote20 />,
-                                  },
-                              ]
-                            : [],
-                        [
-                            {
-                                title: image ? 'Replace with upload' : 'Upload asset',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: openFileDialog,
-                            },
-                            {
-                                title: image ? 'Replace with asset' : 'Browse asset',
-                                icon: <IconImageStack20 />,
-                                onClick: onOpenAssetChooser,
-                            },
-                        ],
-                    ].filter((item) => item.length > 0)}
                     toolbarItems={[
                         showGrabHandle
                             ? {
+                                  type: 'dragHandle',
                                   icon: <IconArrowMove16 />,
                                   draggableProps,
                                   setActivatorNodeRef,
@@ -131,11 +109,38 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             : undefined,
                         showDeleteButton
                             ? {
+                                  type: 'button',
                                   icon: <IconTrashBin16 />,
                                   tooltip: 'Delete Item',
                                   onClick: () => onRemoveItem(id),
                               }
                             : undefined,
+                        {
+                            type: 'menu',
+                            items: [
+                                image
+                                    ? [
+                                          {
+                                              title: 'Set alt text',
+                                              onClick: () => setShowAltTextMenu(true),
+                                              icon: <IconSpeechBubbleQuote20 />,
+                                          },
+                                      ]
+                                    : [],
+                                [
+                                    {
+                                        title: image ? 'Replace with upload' : 'Upload asset',
+                                        icon: <IconArrowCircleUp20 />,
+                                        onClick: openFileDialog,
+                                    },
+                                    {
+                                        title: image ? 'Replace with asset' : 'Browse asset',
+                                        icon: <IconImageStack20 />,
+                                        onClick: onOpenAssetChooser,
+                                    },
+                                ],
+                            ].filter((item) => item.length > 0),
+                        },
                     ]}
                 >
                     <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item">

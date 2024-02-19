@@ -26,12 +26,19 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
     const imageStyle = getImageStyle(blockSettings, image.width);
     const { isFocused, focusProps } = useFocusRing();
 
+    // Gif images can have a loop count property
+    // Which is lost during our image processing
+    const src =
+        image.extension === 'gif'
+            ? image.originUrl
+            : image.genericUrl.replace('{width}', `${800 * Math.max(1, window?.devicePixelRatio ?? 1)}`);
+
     const Image = (
         <img
             data-test-id="image-block-img"
             className="tw-flex tw-w-full"
             loading="lazy"
-            src={image.genericUrl.replace('{width}', `${800 * Math.max(1, window?.devicePixelRatio ?? 1)}`)}
+            src={src}
             alt={blockSettings.altText || undefined}
             style={imageStyle}
         />
