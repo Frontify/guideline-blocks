@@ -3,7 +3,7 @@
 import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
-import { BlockItemWrapper, MenuToolbarItem } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, ToolbarFlyoutMenuItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useEffect, useMemo, useState } from 'react';
 import { PreviewImageProps } from './types';
@@ -47,7 +47,7 @@ export const PreviewImage = ({
     };
 
     const getItemWrapperMenu = () => {
-        const menuItems: MenuToolbarItem['items'][0] = [
+        const menuItems: ToolbarFlyoutMenuItem[] = [
             {
                 title: 'Set alt text',
                 onClick: () => setShowAltTextMenu(true),
