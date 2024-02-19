@@ -2,9 +2,11 @@
 
 import React from 'react';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import '@frontify/guideline-blocks-settings/styles';
 import { mount } from 'cypress/react18';
+
 import { getEditAltTextToolbarButton } from './EditAltTextToolbarButton';
+
+import '@frontify/guideline-blocks-settings/styles';
 
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 const FlyoutMenuSelector = '[data-test-id="flyout-menu"]';
