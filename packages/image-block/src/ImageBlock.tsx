@@ -18,11 +18,11 @@ import {
     hasRichTextValue,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
-    IconSpeechBubbleQuote20,
+    IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
@@ -43,8 +43,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
-    const blockId = appBridge.getBlockId().toString();
-    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const blockId = String(appBridge.context('blockId').get());
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -122,21 +121,25 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                     {image ? (
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
-                            shouldBeShown={showAltTextMenu}
                             showAttachments
                             toolbarItems={[
+                                image
+                                    ? getEditAltTextToolbarButton({
+                                          localAltText,
+                                          setLocalAltText,
+                                          blockSettings,
+                                          setBlockSettings,
+                                      })
+                                    : undefined,
+                                {
+                                    type: 'button',
+                                    icon: <IconTrashBin16 />,
+                                    onClick: onRemoveAsset,
+                                    tooltip: 'Delete',
+                                },
                                 {
                                     type: 'menu',
                                     items: [
-                                        image
-                                            ? [
-                                                  {
-                                                      title: 'Set alt text',
-                                                      onClick: () => setShowAltTextMenu(true),
-                                                      icon: <IconSpeechBubbleQuote20 />,
-                                                  },
-                                              ]
-                                            : [],
                                         [
                                             {
                                                 title: 'Replace with upload',
@@ -173,14 +176,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     image={image}
                                 />
                             )}
-                            <EditAltTextFlyout
-                                setShowAltTextMenu={setShowAltTextMenu}
-                                showAltTextMenu={showAltTextMenu}
-                                setLocalAltText={setLocalAltText}
-                                defaultAltText={blockSettings.altText}
-                                onSave={() => setBlockSettings({ altText: localAltText || undefined })}
-                                localAltText={localAltText}
-                            />
                         </BlockItemWrapper>
                     ) : (
                         isEditing && (
