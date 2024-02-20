@@ -5,7 +5,8 @@ import { Settings, ThumbnailItemProps } from '../types';
 import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
-import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
+import { thumbnailStyle } from '../helpers';
+import { LazyImage } from '@frontify/guideline-blocks-shared';
 
 export const ThumbnailItem = ({
     asset,
@@ -87,12 +88,13 @@ export const ThumbnailItem = ({
                         </div>
                     </div>
                 ) : (
-                    <img
-                        data-test-id="block-thumbnail-image"
-                        className="tw-object-cover tw-w-full tw-h-full"
-                        src={getSmallPreviewUrl(asset.previewUrl)}
+                    <LazyImage
+                        asset={asset}
                         style={thumbnailStyle(blockSettings)}
+                        sourceSet={{ '218': '218px' }}
                         alt={asset.title}
+                        className="tw-object-cover tw-w-full tw-h-full"
+                        testId="block-thumbnail-image"
                     />
                 )}
             </div>
