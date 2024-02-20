@@ -16,7 +16,7 @@
     "devDependencies": {
         "@babel/core": "^7.23.9",
         "@frontify/eslint-config-react": "0.16.1",
-        "@frontify/frontify-cli": "^5.5.8",
+        "@frontify/frontify-cli": "^5.6.3",
         "@types/lodash": "^4.14.199",
         "@types/lodash-es": "^4.17.9",
         "@types/react": "^18.2.48",
@@ -35,9 +35,9 @@
     "dependencies": {
         "@codesandbox/sandpack-react": "^2.9.0",
         "@codesandbox/sandpack-themes": "^2.0.21",
-        "@frontify/app-bridge": "^3.3.0",
-        "@frontify/fondue": "12.0.0-beta.396",
-        "@frontify/guideline-blocks-settings": "^0.33.1",
+        "@frontify/app-bridge": "^3.3.1",
+        "@frontify/fondue": "12.0.0-beta.404",
+        "@frontify/guideline-blocks-settings": "^0.33.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@mantine/core": "^7.1.2",
         "lodash": "^4.17.21",
