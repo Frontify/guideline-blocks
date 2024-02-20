@@ -22,6 +22,9 @@ const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
 const ButtonsWrapper = '[data-test-id="buttons-wrapper"]';
+const ToolbarButtonSelector = '[data-test-id="block-item-wrapper-toolbar-btn"]';
+const TextInputSelector = '[data-test-id="text-input"]';
+const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
@@ -255,5 +258,39 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ButtonsWrapper).should('have.css', 'padding-top', '28px').and('have.css', 'padding-right', '28px');
+    });
+
+    it('should render the alt text button in the block toolbar', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+            editorState: true,
+        });
+        mount(
+            <div className="tw-p-20">
+                <ImageBlockWithStubs />
+            </div>
+        );
+        cy.get(ToolbarFlyoutSelector).first().focus();
+        cy.get(ToolbarFlyoutSelector).first().should('be.visible').click();
+        cy.get(TextInputSelector).should('be.visible');
+    });
+
+    it('should render the delete button in the block toolbar', () => {
+        const [ImageBlockWithStubs, appBridge] = withAppBridgeBlockStubs(ImageBlock, {
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+            editorState: true,
+        });
+        mount(
+            <div className="tw-p-10">
+                <ImageBlockWithStubs />
+            </div>
+        );
+        cy.get(ToolbarButtonSelector).focus();
+        cy.get(ToolbarButtonSelector).should('be.visible').click();
+        cy.wrap(appBridge.deleteAssetIdsFromBlockAssetKey).should('have.been.called');
     });
 });
