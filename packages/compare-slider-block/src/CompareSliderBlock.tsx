@@ -246,6 +246,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
                         className="tw-w-full tw-object-cover"
                         style={{ height: getImageHeight() }}
+                        loading="lazy"
                     />
                 </div>
 

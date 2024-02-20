@@ -40,7 +40,7 @@ export const quoteIconMap = (
         HookBracketLeft: <IconHookBracketLeft style={style} />,
         HookBracketRight: <IconHookBracketRight style={style} />,
         None: null,
-        Custom: customIconUrl ? <img style={style} alt="Quote Icon" src={customIconUrl} /> : <> </>,
+        Custom: customIconUrl ? <img style={style} alt="Quote Icon" src={customIconUrl} loading="lazy" /> : <> </>,
     };
 };
 

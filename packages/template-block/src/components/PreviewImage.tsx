@@ -96,6 +96,7 @@ export const PreviewImage = ({
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                loading="lazy"
             />
             {isEditing && (
                 <div className="tw-absolute tw-top-5 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">

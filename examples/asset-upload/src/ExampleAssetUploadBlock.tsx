@@ -79,6 +79,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                                     src={asset.previewUrl}
                                     alt={asset.title}
                                     data-test-id="example-asset-upload-image"
+                                    loading="lazy"
                                 />
                                 <div className="tw-flex tw-flex-col tw-gap-4">
                                     <strong>{asset.title}</strong>

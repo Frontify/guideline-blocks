@@ -30,5 +30,5 @@ export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactNode> => ({
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,
-    custom: <img data-test-id="callout-icon-custom" src={iconUrl} alt="custom callout icon" />,
+    custom: <img data-test-id="callout-icon-custom" src={iconUrl} alt="custom callout icon" loading="lazy" />,
 });

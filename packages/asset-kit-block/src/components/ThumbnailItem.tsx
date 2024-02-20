@@ -93,6 +93,7 @@ export const ThumbnailItem = ({
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
                         alt={asset.title}
+                        loading="lazy"
                     />
                 )}
             </div>

@@ -49,6 +49,7 @@ export const ImageStage = ({
                             width="100%"
                             height="100%"
                             onLoad={() => setIsImageLoaded(true)}
+                            loading="lazy"
                         />
                     </div>
                 </div>

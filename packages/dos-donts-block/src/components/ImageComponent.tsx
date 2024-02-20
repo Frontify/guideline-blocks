@@ -60,6 +60,7 @@ const ImageComponent = ({
                         ])}
                         src={src.replace('{width}', width.toString())}
                         alt=""
+                        loading="lazy"
                     />
                     {hasStrikethrough && (
                         <div
