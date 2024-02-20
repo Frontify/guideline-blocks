@@ -43,7 +43,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
-    const blockId = appBridge.getBlockId().toString();
+    const blockId = String(appBridge.context('blockId').get());
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
