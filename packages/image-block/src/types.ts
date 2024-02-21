@@ -18,6 +18,7 @@ export type Settings = {
     borderStyle: BorderStyle;
     borderWidth: string;
     downloadable: boolean;
+    assetViewerEnabled: boolean;
     hasBackground?: boolean;
     hasBorder: boolean;
     hasCustomPadding: boolean;

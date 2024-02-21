@@ -5,6 +5,7 @@ import {
     IconEnum,
     NotificationBlockDividerPosition,
     NotificationStyleType,
+    Security,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
@@ -186,5 +187,16 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
-    security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
+    security: [
+        ...getSecurityGlobalControlSetting(),
+        {
+            id: 'assetViewerEnabled',
+            label: 'Asset viewer',
+            info: "When disabled, viewers won't be able to open the image in the asset detail view.",
+            type: 'switch',
+            defaultValue: true,
+            show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
+        },
+        getSecurityDownloadableSetting(),
+    ],
 });

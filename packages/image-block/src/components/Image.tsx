@@ -4,6 +4,7 @@ import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
+    Security,
     isDownloadable,
     joinClassNames,
     useAttachmentsContext,
@@ -24,7 +25,11 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
     const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
+    const { assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetViewerEnabled, security } = blockSettings;
     const { isFocused, focusProps } = useFocusRing();
+
+    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     // Gif images can have a loop count property
     // Which is lost during our image processing
@@ -49,23 +54,33 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
         className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
     };
 
-    return isEditing ? (
-        Image
-    ) : // eslint-disable-next-line unicorn/no-nested-ternary
-    link ? (
-        <a
-            {...props}
-            href={link.link.link}
-            target={link.openInNewTab ? '_blank' : undefined}
-            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-        >
-            {Image}
-        </a>
-    ) : (
-        <button {...props} onClick={() => open(image)}>
-            {Image}
-        </button>
-    );
+    const getImageComponent = () => {
+        if (isEditing) {
+            return Image;
+        }
+        if (link) {
+            return (
+                <a
+                    {...props}
+                    href={link.link.link}
+                    target={link.openInNewTab ? '_blank' : undefined}
+                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+                >
+                    {Image}
+                </a>
+            );
+        }
+        if (isAssetViewerEnabled) {
+            return (
+                <button data-test-id="image-block-asset-viewer-button" {...props} onClick={() => open(image)}>
+                    {Image}
+                </button>
+            );
+        }
+        return Image;
+    };
+
+    return getImageComponent();
 };
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
