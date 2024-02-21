@@ -3,12 +3,12 @@
 import { Asset } from '@frontify/app-bridge';
 import React, { useEffect, useRef, useState } from 'react';
 
-const defaultSrcSet = {
-    '320': '280px',
-    '480': '440px',
-    '800': '800px',
-    '1200': '1200px',
-    '1600': '1600px',
+const DEFAULT_SOURCE_SET = {
+    '320': '(max-width: 320px) 280px',
+    '480': '(max-width: 480px) 440px',
+    '800': '(max-width: 800px) 800px',
+    '1200': '(max-width: 1200px) 1200px',
+    '1600': '(max-width: 1600px) 1600px',
     '2000': '2000px',
 };
 
@@ -23,7 +23,7 @@ type LazyImageProps = {
 
 export const LazyImage = ({
     asset,
-    sourceSet = defaultSrcSet,
+    sourceSet = DEFAULT_SOURCE_SET,
     alt,
     className,
     style,
@@ -57,17 +57,16 @@ export const LazyImage = ({
         };
     }, []);
 
-    const { srcSet, sizes } = React.useMemo(() => {
-        const srcSetEntries = Object.entries(sourceSet).map(
-            ([width, _]) => `${asset.previewUrl.replace('{width}', width)} ${width}w`
-        );
-        const sizesEntries = Object.values(sourceSet).join(', ');
+    // Generate srcSet based on available widths in the sourceSet
+    const srcSet = React.useMemo(
+        () =>
+            Object.keys(sourceSet)
+                .map((width) => `${asset.previewUrl.replace('{width}', width)} ${width}w`)
+                .join(', '),
+        [sourceSet, asset.previewUrl]
+    );
 
-        return {
-            srcSet: srcSetEntries.join(', '),
-            sizes: sizesEntries,
-        };
-    }, [sourceSet, asset.previewUrl]);
+    const sizes = React.useMemo(() => Object.values(sourceSet).join(', '), [sourceSet]);
 
     return (
         <img
