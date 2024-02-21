@@ -4,6 +4,7 @@ import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
+    Security,
     isDownloadable,
     joinClassNames,
     useAttachmentsContext,
@@ -20,7 +21,13 @@ type ImageProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
+export const ImageComponent = ({
+    image,
+    blockSettings,
+    isEditing,
+    appBridge,
+    isAssetViewerEnabled,
+}: ImageProps & { isAssetViewerEnabled: boolean }) => {
     const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
@@ -49,30 +56,42 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
         className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
     };
 
-    return isEditing ? (
-        Image
-    ) : // eslint-disable-next-line unicorn/no-nested-ternary
-    link ? (
-        <a
-            {...props}
-            href={link.link.link}
-            target={link.openInNewTab ? '_blank' : undefined}
-            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-        >
-            {Image}
-        </a>
-    ) : (
-        <button {...props} onClick={() => open(image)}>
-            {Image}
-        </button>
-    );
+    if (isEditing) {
+        return Image;
+    }
+
+    if (link) {
+        return (
+            <a
+                {...props}
+                href={link.link.link}
+                target={link.openInNewTab ? '_blank' : undefined}
+                rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+            >
+                {Image}
+            </a>
+        );
+    }
+
+    if (isAssetViewerEnabled) {
+        return (
+            <button data-test-id="image-block-asset-viewer-button" {...props} onClick={() => open(image)}>
+                {Image}
+            </button>
+        );
+    }
+
+    return Image;
 };
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
 
-    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
+    const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetViewerEnabled, security } = blockSettings;
+
+    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     return (
         <div
@@ -85,6 +104,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                     blockSettings={blockSettings}
                     image={image}
                     isEditing={isEditing}
+                    isAssetViewerEnabled={isAssetViewerEnabled}
                 />
                 {!isEditing && (
                     <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">

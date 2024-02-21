@@ -16,6 +16,7 @@ import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
+const ImageBlockAssetViewerButtonSelector = '[data-test-id="image-block-asset-viewer-button"]';
 const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
 const ImageBlockCaption = '[data-test-id="image-caption"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
@@ -79,6 +80,84 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(DownloadSelector).should('not.exist');
+    });
+
+    it('should render as a button if the custom security settings allow it even if the global is disabled', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            editorState: false,
+            blockSettings: {
+                security: Security.Custom,
+                assetViewerEnabled: true,
+            },
+            privacySettings: {
+                assetViewerEnabled: false,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
+    });
+
+    it('should not render as a button if the custom security settings disallow it even if the global is enabled', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            editorState: false,
+            blockSettings: {
+                security: Security.Custom,
+                assetViewerEnabled: false,
+            },
+            privacySettings: {
+                assetViewerEnabled: true,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
+    });
+
+    it('should not render as a button if the global security settings disallow asset viewer', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            editorState: false,
+            blockSettings: {
+                security: Security.Global,
+            },
+            privacySettings: {
+                assetViewerEnabled: false,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
+    });
+
+    it('should render as a button if the global security settings allow asset viewer', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            editorState: false,
+            blockSettings: {
+                security: Security.Global,
+            },
+            privacySettings: {
+                assetViewerEnabled: true,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
     });
 
     it('should render the attachments dropdown there are attachments uploaded', () => {
