@@ -65,7 +65,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             setBlockSettings({ altText });
             setLocalAltText(altText);
 
-            const hasManuallyEditedName = !hasRichTextValue(blockSettings.name);
+            const hasManuallyEditedName = hasRichTextValue(blockSettings.name);
             if (!hasManuallyEditedName) {
                 await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, newImage?.title, 'center') });
                 setTitleKey(generateRandomId());
