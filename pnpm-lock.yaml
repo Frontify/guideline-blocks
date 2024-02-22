@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@codesandbox/sandpack-react@^2.12.1>@codesandbox/sandpack-client': 2.10.0
+
 importers:
 
   .:
@@ -2056,7 +2059,7 @@ importers:
   packages/ui-pattern-block:
     dependencies:
       '@codesandbox/sandpack-react':
-        specifier: ^2.9.0
+        specifier: ^2.12.1
         version: 2.12.1(@lezer/common@1.2.1)(react-dom@18.2.0)(react@18.2.0)
       '@codesandbox/sandpack-themes':
         specifier: ^2.0.21
@@ -2690,12 +2693,12 @@ packages:
   /@codesandbox/nodebox@0.1.8:
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
     dependencies:
-      outvariant: 1.4.0
+      outvariant: 1.4.2
       strict-event-emitter: 0.4.6
     dev: false
 
-  /@codesandbox/sandpack-client@2.12.0:
-    resolution: {integrity: sha512-p0+yGdiJx8klwGzy+6mJCs1gKJG5mrYgXQ2HIHWKhWTBtiNI+DipGvxsR+yXXVHFm4NmnJbQtrTFtZDDpf4sIA==}
+  /@codesandbox/sandpack-client@2.10.0:
+    resolution: {integrity: sha512-1vLN0j8ElzTmTG43yoBj1dsOyuw6SqRH9rRa13D32jtM4v2qPFLWIFElcyNpH/YbWsCRZTUCN6ku6U4Yw/Xdvg==}
     dependencies:
       '@codesandbox/nodebox': 0.1.8
       buffer: 6.0.3
@@ -2718,7 +2721,7 @@ packages:
       '@codemirror/language': 6.10.1
       '@codemirror/state': 6.4.0
       '@codemirror/view': 6.24.0
-      '@codesandbox/sandpack-client': 2.12.0
+      '@codesandbox/sandpack-client': 2.10.0
       '@lezer/highlight': 1.2.0
       '@react-hook/intersection-observer': 3.1.1(react@18.2.0)
       '@stitches/core': 1.2.8
@@ -14008,7 +14011,6 @@ packages:
 
   /outvariant@1.4.2:
     resolution: {integrity: sha512-Ou3dJ6bA/UJ5GVHxah4LnqDwZRwAmWxrG3wtrHrbGnP4RnLCtA64A4F+ae7Y8ww660JaddSoArUR5HjipWSHAQ==}
-    dev: true
 
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -15365,7 +15367,7 @@ packages:
       '@open-draft/deferred-promise': 2.2.0
       dotenv: 16.4.4
       mime-db: 1.52.0
-      outvariant: 1.4.0
+      outvariant: 1.4.2
     dev: false
 
   /std-env@3.7.0:
