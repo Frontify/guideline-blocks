@@ -46,7 +46,7 @@
     },
     "pnpm": {
         "overrides": {
-            "@codesandbox/sandpack-client": "2.10.0"
+            "@codesandbox/sandpack-react@^2.12.1>@codesandbox/sandpack-client": "2.10.0"
         }
     }
 }
