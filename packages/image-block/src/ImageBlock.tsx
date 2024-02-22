@@ -57,13 +57,20 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 
-    const updateImage = async (image: Asset) => {
-        if (!hasRichTextValue(blockSettings.name)) {
-            await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
-            setTitleKey(generateRandomId());
+    const updateImage = async (newImage: Asset) => {
+        const isFirstImageUpload = !image;
+
+        if (isFirstImageUpload) {
+            setBlockSettings({ altText: newImage?.title ?? newImage?.fileName ?? '' });
+
+            const hasManuallyEditedName = !hasRichTextValue(blockSettings.name);
+            if (!hasManuallyEditedName) {
+                await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, newImage?.title, 'center') });
+                setTitleKey(generateRandomId());
+            }
         }
-        setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
-        await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
+
+        await updateAssetIdsFromKey(IMAGE_ID, [newImage.id]);
         setIsLoading(false);
     };
 
