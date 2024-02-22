@@ -26,6 +26,7 @@ import {
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
+    generateRandomId,
 } from '@frontify/fondue';
 import { useEffect, useState } from 'react';
 
@@ -41,6 +42,7 @@ import '@frontify/fondue/style';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = String(appBridge.context('blockId').get());
@@ -57,7 +59,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
-            setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
+            await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
+            setTitleKey(generateRandomId());
         }
         setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
@@ -188,7 +191,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         )
                     )}
                 </div>
-                <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+                <ImageCaption titleKey={titleKey} blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
             </div>
         </div>
     );

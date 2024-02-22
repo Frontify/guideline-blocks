@@ -9,9 +9,10 @@ type ImageCaptionProps = {
     blockId: string;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
+    titleKey: string;
 };
 
-export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProps) => {
+export const ImageCaption = ({ isEditing, blockId, appBridge, titleKey }: ImageCaptionProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { name, description } = blockSettings;
@@ -23,6 +24,7 @@ export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProp
             data-test-id="image-caption"
         >
             <RichTextEditor
+                key={titleKey}
                 id={`${blockId}_title`}
                 isEditing={isEditing}
                 plugins={titlePlugins}
