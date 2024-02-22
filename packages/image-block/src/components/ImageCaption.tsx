@@ -9,10 +9,10 @@ type ImageCaptionProps = {
     blockId: string;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
-    defaultName: string;
+    titleKey: string;
 };
 
-export const ImageCaption = ({ isEditing, blockId, appBridge, defaultName }: ImageCaptionProps) => {
+export const ImageCaption = ({ isEditing, blockId, appBridge, titleKey }: ImageCaptionProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { name, description } = blockSettings;
@@ -24,13 +24,13 @@ export const ImageCaption = ({ isEditing, blockId, appBridge, defaultName }: Ima
             data-test-id="image-caption"
         >
             <RichTextEditor
-                key={defaultName}
+                key={titleKey}
                 id={`${blockId}_title`}
                 isEditing={isEditing}
                 plugins={titlePlugins}
                 placeholder="Asset name"
                 showSerializedText={hasRichTextValue(name)}
-                value={name ?? convertToRteValue(TextStyles.imageTitle, defaultName, 'center')}
+                value={name ?? convertToRteValue(TextStyles.imageTitle, '', 'center')}
                 onTextChange={(name) => setBlockSettings({ name })}
             />
             <RichTextEditor
