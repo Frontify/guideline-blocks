@@ -7,6 +7,7 @@ import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-bl
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import { Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';

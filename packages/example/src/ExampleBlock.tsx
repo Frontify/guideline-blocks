@@ -4,6 +4,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 
 export const ExampleBlock = ({}: BlockProps): ReactElement => {
     return (

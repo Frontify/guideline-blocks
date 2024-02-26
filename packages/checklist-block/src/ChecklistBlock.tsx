@@ -19,6 +19,7 @@ import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { ProgressHeader } from './components/ProgressHeader';

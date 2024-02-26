@@ -22,6 +22,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 import './styles.css';
 import { headerThemes } from './headerThemes';
 import { Language, Settings, languageNameMap } from './types';
