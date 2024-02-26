@@ -12,6 +12,7 @@ import {
 } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BlockProps, joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-settings';
+import '@frontify/fondue/style';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
