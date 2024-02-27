@@ -11,7 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
-import { getImageStyle, getTotalImagePadding } from './helpers';
+import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
 
 type ImageProps = {
@@ -30,15 +30,17 @@ export const ImageComponent = ({
 }: ImageProps & { isAssetViewerEnabled: boolean }) => {
     const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
-    const imageStyle = getImageStyle(blockSettings, image.width);
     const { isFocused, focusProps } = useFocusRing();
+
+    const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
+    const imageWidthToRequest = Math.min(800 * devicePixelRatio, image.width);
 
     // Gif images can have a loop count property
     // Which is lost during our image processing
     const src =
         image.extension === 'gif'
             ? image.originUrl
-            : image.genericUrl.replace('{width}', `${800 * Math.max(1, window?.devicePixelRatio ?? 1)}`);
+            : image.genericUrl.replace('{width}', imageWidthToRequest.toString());
 
     const Image = (
         <img
@@ -47,7 +49,7 @@ export const ImageComponent = ({
             loading="lazy"
             src={src}
             alt={blockSettings.altText || undefined}
-            style={imageStyle}
+            style={{ maxWidth: image.width }}
         />
     );
 
@@ -87,6 +89,7 @@ export const ImageComponent = ({
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
+    const imageWrapperStyle = getImageWrapperStyle(blockSettings);
 
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const { assetViewerEnabled, security } = blockSettings;
@@ -95,6 +98,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 
     return (
         <div
+            style={imageWrapperStyle}
             data-test-id="image-block-img-wrapper"
             className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
         >
