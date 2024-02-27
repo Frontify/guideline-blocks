@@ -6,6 +6,7 @@ import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortab
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 
 import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 

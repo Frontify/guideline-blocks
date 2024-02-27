@@ -6,6 +6,7 @@ import { BlockProps, joinClassNames, toRgbaString } from '@frontify/guideline-bl
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,

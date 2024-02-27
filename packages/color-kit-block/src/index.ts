@@ -2,6 +2,7 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
 
 import { ColorKitBlock } from './ColorKitBlock';
 import { settings } from './settings';
