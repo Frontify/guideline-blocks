@@ -311,6 +311,34 @@ export const settings = defineSettings({
         {
             id: 'cardStyleHeading',
             type: 'sectionHeading',
+            label: 'Button',
+            blocks: [
+                {
+                    id: 'ctaButtonStyle',
+                    type: 'dropdown',
+                    size: 'small',
+                    defaultValue: 'primary',
+                    label: 'Style',
+                    choices: [
+                        {
+                            label: 'Primary',
+                            value: 'primary',
+                        },
+                        {
+                            label: 'Secondary',
+                            value: 'secondary',
+                        },
+                        {
+                            label: 'Tertiary',
+                            value: 'tertiary',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'cardStyleHeading',
+            type: 'sectionHeading',
             label: 'Card',
             blocks: [
                 {
