@@ -34,8 +34,6 @@ export const ImageComponent = ({
 
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidthToRequest = Math.min(800 * devicePixelRatio, image.width);
-    const imageWidthToDisplay = Math.min(imageWidthToRequest, 800);
-    const imageHeightToDisplay = imageWidthToDisplay * (image.height / image.width);
 
     // Gif images can have a loop count property
     // Which is lost during our image processing
@@ -50,8 +48,9 @@ export const ImageComponent = ({
             className="tw-flex tw-w-full"
             loading="lazy"
             src={src}
-            width={imageWidthToDisplay}
-            height={imageHeightToDisplay}
+            width={image.width}
+            height={image.height}
+            style={{ maxWidth: image.width }}
             alt={blockSettings.altText || undefined}
         />
     );
