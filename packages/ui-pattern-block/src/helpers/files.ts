@@ -3,7 +3,7 @@
 import type { SandpackFiles } from '@codesandbox/sandpack-react/types';
 import { Preprocessor, SandpackTemplate } from '../types';
 
-const getCssExtension = (preprocessor: Preprocessor) => {
+export const getCssExtension = (preprocessor: Preprocessor) => {
     if (preprocessor === Preprocessor.SCSS) {
         return { extension: 'scss', label: 'SCSS' };
     }
