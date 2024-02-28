@@ -15,22 +15,19 @@ export const CtaButton = ({
     handleNewPublication,
 }: CtaButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
-    const { buttonText, preview, ctaButtonStyle } = blockSettings;
+    const { buttonText, preview, buttonStyle } = blockSettings;
     const blockId = appBridge.context('blockId').get();
 
     const marginOverwrites = preview === PreviewType.None ? '!tw-m-0' : '!tw-mb-0';
 
-    const buttonStyle = (() => {
-        switch (ctaButtonStyle) {
+    const buttonStyles = (() => {
+        switch (buttonStyle) {
             case 'primary':
                 return BlockStyles.buttonPrimary;
-
             case 'secondary':
                 return BlockStyles.buttonSecondary;
-
             case 'tertiary':
                 return BlockStyles.buttonTertiary;
-
             default:
                 return BlockStyles.buttonPrimary;
         }
@@ -45,8 +42,8 @@ export const CtaButton = ({
             onMouseLeave={() => setButtonHover(false)}
             className={`disabled:tw-opacity-50 ${marginOverwrites}`}
             style={{
-                ...buttonStyle,
-                ...(buttonHover ? buttonStyle?.hover : null),
+                ...buttonStyles,
+                ...(buttonHover ? buttonStyles?.hover : null),
             }}
         >
             <RichTextEditor

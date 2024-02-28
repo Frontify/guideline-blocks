@@ -627,7 +627,7 @@ describe('Template Block', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
             editorState: false,
             blockSettings: {
-                ctaButtonStyle: 'secondary',
+                buttonStyle: 'secondary',
             },
             blockTemplates: {
                 template: [getTemplateDummyWithPages()],

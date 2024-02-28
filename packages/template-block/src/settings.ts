@@ -314,7 +314,7 @@ export const settings = defineSettings({
             label: 'Button',
             blocks: [
                 {
-                    id: 'ctaButtonStyle',
+                    id: 'buttonStyle',
                     type: 'dropdown',
                     size: 'small',
                     defaultValue: 'primary',

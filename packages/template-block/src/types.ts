@@ -39,7 +39,7 @@ export type Settings = {
     previewImageAnchoring?: AnchoringType;
 
     // Style
-    ctaButtonStyle: RichTextButtonStyle;
+    buttonStyle: RichTextButtonStyle;
 
     hasBackground: boolean;
     backgroundColor: Color;
