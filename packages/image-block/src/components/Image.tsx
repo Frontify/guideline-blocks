@@ -50,8 +50,9 @@ export const ImageComponent = ({
             className="tw-flex tw-w-full"
             loading="lazy"
             src={src}
+            width={imageWidthToDisplay}
+            height={imageHeightToDisplay}
             alt={blockSettings.altText || undefined}
-            style={{ width: imageWidthToDisplay, height: imageHeightToDisplay }}
         />
     );
 
