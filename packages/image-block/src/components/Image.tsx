@@ -34,6 +34,8 @@ export const ImageComponent = ({
 
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidthToRequest = Math.min(800 * devicePixelRatio, image.width);
+    const imageWidthToDisplay = Math.min(imageWidthToRequest, 800);
+    const imageHeightToDisplay = imageWidthToDisplay * (image.height / image.width);
 
     // Gif images can have a loop count property
     // Which is lost during our image processing
@@ -49,7 +51,7 @@ export const ImageComponent = ({
             loading="lazy"
             src={src}
             alt={blockSettings.altText || undefined}
-            style={{ maxWidth: image.width }}
+            style={{ width: imageWidthToDisplay, height: imageHeightToDisplay }}
         />
     );
 
@@ -102,7 +104,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
             data-test-id="image-block-img-wrapper"
             className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
         >
-            <div className="tw-relative ">
+            <div className="tw-relative tw-flex">
                 <ImageComponent
                     appBridge={appBridge}
                     blockSettings={blockSettings}
