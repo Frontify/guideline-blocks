@@ -56,15 +56,6 @@ const getTemplateDummyWithPages = () => {
     return templateDummy;
 };
 
-const getValueFromCssVariable = (cssVarName: string, styleName: string) => {
-    const dummy = document.createElement('span');
-    dummy.style.setProperty(styleName, `var(${cssVarName})`);
-    document.body.appendChild(dummy);
-    const value = window.getComputedStyle(dummy).getPropertyValue(styleName).trim();
-    dummy.remove();
-    return value;
-};
-
 describe('Template Block', () => {
     it('should render an empty slate if no template provided', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock);
@@ -627,12 +618,9 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-
-        const primaryFontFace = getValueFromCssVariable('--f-theme-settings-button-primary-font-size', 'font-size');
         cy.get(CTA_BUTTON_SELECTOR)
-            .then(($element) => window.getComputedStyle($element[0]))
-            .invoke('getPropertyValue', 'font-size')
-            .should('equal', primaryFontFace);
+            .should('have.attr', 'style')
+            .and('match', /font-size: var\(--f-theme-settings-button-primary-font-size\)/);
     });
 
     it('should render the CTA button respecting the button styling', () => {
@@ -647,11 +635,8 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-
-        const secondaryFontFace = getValueFromCssVariable('--f-theme-settings-button-secondary-font-size', 'font-size');
         cy.get(CTA_BUTTON_SELECTOR)
-            .then(($element) => window.getComputedStyle($element[0]))
-            .invoke('getPropertyValue', 'font-size')
-            .should('equal', secondaryFontFace);
+            .should('have.attr', 'style')
+            .and('match', /font-size: var\(--f-theme-settings-button-secondary-font-size\)/);
     });
 });
