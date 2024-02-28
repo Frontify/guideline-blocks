@@ -3,8 +3,8 @@
 import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { UIPatternBlock } from './UIPatternBlock';
-import { DEFAULT_BLOCK_SETTINGS, toolbarButtons } from './helpers';
-import { Height, Padding, SandpackTemplate, TextAlignment } from './types';
+import { DEFAULT_BLOCK_SETTINGS, getToolbarButtons } from './helpers';
+import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from './types';
 import { Radius } from '@frontify/guideline-blocks-settings';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
@@ -384,15 +384,29 @@ describe('UI Pattern Block', () => {
         cy.get(UiPatternBlockFlexboxSelector).should('have.css', 'flex-direction', 'column-reverse');
     });
 
+    it('renders the correct toolbar button for SCSS preprocessor', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: true,
+            blockId: 22,
+            blockSettings: {
+                ...DEFAULT_BLOCK_SETTINGS,
+                sandpackTemplate: SandpackTemplate.Vanilla,
+                preprocessor: Preprocessor.SCSS,
+            },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(ToolbarTabButtonSelector).eq(1).should('contain.text', 'SCSS');
+    });
+
     for (const [index, template] of templates.entries()) {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 22 + index,
+                blockId: 23 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);
-            for (const [i, tab] of toolbarButtons[template].entries()) {
+            for (const [i, tab] of getToolbarButtons(Preprocessor.None)[template].entries()) {
                 cy.get(ToolbarTabButtonSelector).eq(i).should('exist');
                 cy.get(ToolbarTabButtonSelector).eq(i).should('contain.text', tab.label);
             }

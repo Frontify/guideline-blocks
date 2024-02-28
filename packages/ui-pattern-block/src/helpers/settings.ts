@@ -5,6 +5,7 @@ import {
     Alignment,
     Height,
     Padding,
+    Preprocessor,
     SandpackTemplate,
     SandpackTheme,
     TemplateDependencies,
@@ -31,6 +32,7 @@ export const BORDER_WIDTH_DEFAULT_VALUE = '1px';
 export const DEFAULT_BLOCK_SETTINGS = {
     sandpackTemplate: SandpackTemplate.Vanilla,
     sandpackTheme: SandpackTheme.GithubLight,
+    preprocessor: Preprocessor.None,
     files: {} as TemplateFiles,
     alignment: Alignment.Left,
     labelPosition: TextAlignment.Top,

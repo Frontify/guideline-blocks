@@ -33,6 +33,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
     const {
         sandpackTemplate,
         sandpackTheme,
+        preprocessor,
         files,
         alignment,
         labelPosition,
@@ -93,6 +94,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
         resetFiles,
         sandpackTheme,
         sandpackTemplate,
+        preprocessor,
     ];
 
     const onResetFiles = () => {
@@ -101,7 +103,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const templateFiles = useMemo(
-        () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] }),
+        () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate, preprocessor), ...files?.[sandpackTemplate] }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         sandpackRestartInitiators
     );
@@ -112,7 +114,10 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const onCodeChange = (filename: string, code: string) => {
         if (!isEditing) {
-            const existingFiles = { ...getDefaultFilesOfTemplate(sandpackTemplate), ...files?.[sandpackTemplate] };
+            const existingFiles = {
+                ...getDefaultFilesOfTemplate(sandpackTemplate, preprocessor),
+                ...files?.[sandpackTemplate],
+            };
             if (existingFiles[filename] !== code) {
                 setHasCodeChanges(true);
             }
@@ -236,6 +241,7 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     hasCodeChanges={!isEditing && hasCodeChanges}
                                     template={sandpackTemplate}
                                     shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
+                                    preprocessor={preprocessor}
                                 />
                             )}
                         </SandpackLayout>

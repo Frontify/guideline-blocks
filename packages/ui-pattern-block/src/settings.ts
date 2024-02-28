@@ -15,6 +15,7 @@ import {
     Alignment,
     Height,
     Padding,
+    Preprocessor,
     SandpackTemplate,
     SandpackTheme,
     TextAlignment,
@@ -61,6 +62,24 @@ export const settings = defineSettings({
         },
     ],
     basics: [
+        {
+            id: 'preprocessor',
+            type: 'segmentedControls',
+            label: 'CSS preprocessor',
+            defaultValue: Preprocessor.None,
+            show: (bundle) => bundle.getBlock('sandpackTemplate')?.value?.toString() === SandpackTemplate.Vanilla,
+            choices: [
+                {
+                    value: Preprocessor.None,
+                },
+                {
+                    value: Preprocessor.SCSS,
+                },
+                {
+                    value: Preprocessor.LESS,
+                },
+            ],
+        },
         {
             id: 'uiPatternBasicsPreview',
             type: 'sectionHeading',
