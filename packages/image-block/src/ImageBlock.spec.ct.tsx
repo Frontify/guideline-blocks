@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { CSSProperties } from 'react';
+import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
@@ -27,27 +28,42 @@ const ToolbarButtonSelector = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const TextInputSelector = '[data-test-id="text-input"]';
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 
+const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps, containerWidth = 800) => {
+    const Component = () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, appBridgeProps);
+        return (
+            <div
+                style={{ '--container-width': `${containerWidth}px` } as CSSProperties}
+                className="[&_[data-test-id='image-block-img-wrapper']]:tw-w-[var(--container-width)]"
+            >
+                <ImageBlockWithStubs />
+            </div>
+        );
+    };
+    return Component;
+};
+
 describe('Image Block', () => {
     it('renders an image block', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {});
+        const ImageBlockWithStubs = getImageBlockWithContainer({});
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockSelector).should('exist');
     });
 
     it('should render a placeholder if in edit mode and there is no image uploaded yet', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, { editorState: true });
+        const ImageBlockWithStubs = getImageBlockWithContainer({ editorState: true });
         mount(<ImageBlockWithStubs />);
         cy.get(PlaceholderSelector).should('exist');
     });
 
     it('should not render a placeholder if in view mode and there is no image uploaded yet', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {});
+        const ImageBlockWithStubs = getImageBlockWithContainer({});
         mount(<ImageBlockWithStubs />);
         cy.get(PlaceholderSelector).should('not.exist');
     });
 
     it('should render the image if it is uploaded', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
@@ -56,8 +72,22 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageSelector).should('exist');
     });
 
+    it('should render the image at a smaller resolution if container is small', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer(
+            {
+                blockAssets: {
+                    [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
+                },
+            },
+            400
+        );
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageSelector).should('have.attr', 'src', 'https://generic.url?width=400');
+    });
+
     it('should render the download button if the image is uploaded and security settings allows it', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 security: Security.Custom,
                 downloadable: true,
@@ -71,7 +101,7 @@ describe('Image Block', () => {
     });
 
     it('should not render the download button if the security settings disallow it', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 security: Security.Custom,
                 downloadable: false,
@@ -83,7 +113,7 @@ describe('Image Block', () => {
     });
 
     it('should render as a button if the custom security settings allow it even if the global is disabled', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             editorState: false,
             blockSettings: {
                 security: Security.Custom,
@@ -103,7 +133,7 @@ describe('Image Block', () => {
     });
 
     it('should not render as a button if the custom security settings disallow it even if the global is enabled', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             editorState: false,
             blockSettings: {
                 security: Security.Custom,
@@ -123,7 +153,7 @@ describe('Image Block', () => {
     });
 
     it('should not render as a button if the global security settings disallow asset viewer', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             editorState: false,
             blockSettings: {
                 security: Security.Global,
@@ -142,7 +172,7 @@ describe('Image Block', () => {
     });
 
     it('should render as a button if the global security settings allow asset viewer', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             editorState: false,
             blockSettings: {
                 security: Security.Global,
@@ -161,7 +191,7 @@ describe('Image Block', () => {
     });
 
     it('should render the attachments dropdown there are attachments uploaded', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
                 [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(2)],
@@ -175,7 +205,7 @@ describe('Image Block', () => {
     });
 
     it('should render the title if it is provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
             },
@@ -185,7 +215,7 @@ describe('Image Block', () => {
     });
 
     it('should render the description if it is provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 description: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Description' }] }]),
             },
@@ -195,7 +225,7 @@ describe('Image Block', () => {
     });
 
     it('should be a link if it is provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasLink: true,
                 linkObject: {
@@ -211,7 +241,7 @@ describe('Image Block', () => {
     });
 
     it('should add border if provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasBorder: true,
                 borderWidth: '1px',
@@ -227,7 +257,7 @@ describe('Image Block', () => {
     });
 
     it('should change layout according to provided positioning', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 positioning: CaptionPosition.Right,
             },
@@ -240,7 +270,7 @@ describe('Image Block', () => {
     });
 
     it('should change width according to provided ratio', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 ratio: Ratio.Ratio1To2,
             },
@@ -253,7 +283,7 @@ describe('Image Block', () => {
     });
 
     it('should add background color if provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasBackground: true,
                 backgroundColor: { r: 0, g: 0, b: 255 },
@@ -267,7 +297,7 @@ describe('Image Block', () => {
     });
 
     it('should add padding provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasCustomPadding: true,
                 paddingCustom: '16px',
@@ -281,7 +311,7 @@ describe('Image Block', () => {
     });
 
     it('should add alignment of the image if provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 alignment: Alignment.Right,
             },
@@ -294,7 +324,7 @@ describe('Image Block', () => {
     });
 
     it('should add padding to buttons when padding is added to image', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasCustomPadding: true,
                 paddingCustom: '16px',
@@ -308,7 +338,7 @@ describe('Image Block', () => {
     });
 
     it('should add padding to buttons when border is added to image', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasBorder: true,
                 borderWidth: '12px',
@@ -322,7 +352,7 @@ describe('Image Block', () => {
     });
 
     it('should add padding to buttons when padding and border is added to image', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasBorder: true,
                 borderWidth: '12px',
@@ -340,7 +370,7 @@ describe('Image Block', () => {
     });
 
     it('should render the alt text button in the block toolbar', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
@@ -364,7 +394,7 @@ describe('Image Block', () => {
             editorState: true,
         });
         mount(
-            <div className="tw-p-10">
+            <div className="tw-p-10 [&_*]:tw-w-[800px]">
                 <ImageBlockWithStubs />
             </div>
         );
