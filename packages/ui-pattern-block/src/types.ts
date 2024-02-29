@@ -55,6 +55,7 @@ export type Settings = {
     sandpackTheme: SandpackTheme;
 
     // files
+    preprocessor: Preprocessor;
     files?: TemplateFiles;
     dependencies?: TemplateDependencies;
 
@@ -112,6 +113,12 @@ export const sandpackThemeValues: Record<SandpackTheme, 'dark' | 'auto' | 'light
     [SandpackTheme.NightOwl]: nightOwl,
     [SandpackTheme.SandpackDark]: sandpackDark,
 };
+
+export enum Preprocessor {
+    None = 'None',
+    SCSS = 'SCSS',
+    LESS = 'LESS',
+}
 
 export enum Alignment {
     Center = 'Center',

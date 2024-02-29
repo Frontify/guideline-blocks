@@ -3,8 +3,8 @@
 import { ReactElement } from 'react';
 import { UnstyledOpenInCodeSandboxButton, useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import { toolbarButtons } from '../helpers';
-import { SandpackTemplate } from '../types';
+import { getToolbarButtons } from '../helpers';
+import { Preprocessor, SandpackTemplate } from '../types';
 import {
     Button,
     ButtonEmphasis,
@@ -30,6 +30,7 @@ interface Props {
     showResponsivePreview: boolean;
     isCodeEditable: boolean;
     hasCodeChanges: boolean;
+    preprocessor: Preprocessor;
 }
 
 export const Toolbar = ({
@@ -44,6 +45,7 @@ export const Toolbar = ({
     showSandboxLink,
     isCodeEditable,
     hasCodeChanges,
+    preprocessor,
 }: Props): ReactElement => {
     const { copy, status } = useCopy(3000);
     const { sandpack } = useSandpack();
@@ -68,7 +70,7 @@ export const Toolbar = ({
             ])}
         >
             <div className="tw-flex tw-h-full">
-                {toolbarButtons[template].map((button) => (
+                {getToolbarButtons(preprocessor)[template].map((button) => (
                     <button
                         data-test-id="toolbar-tab-btn"
                         className={joinClassNames([

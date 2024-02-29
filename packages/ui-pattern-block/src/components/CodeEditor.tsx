@@ -3,7 +3,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { SandpackCodeEditor, useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { Toolbar } from './Toolbar';
-import { SandpackTemplate } from '../types';
+import { Preprocessor, SandpackTemplate } from '../types';
 
 interface Props {
     template: SandpackTemplate;
@@ -13,6 +13,7 @@ interface Props {
     shouldCollapseCodeByDefault: boolean;
     isCodeEditable: boolean;
     hasCodeChanges: boolean;
+    preprocessor: Preprocessor;
     onResponsivePreviewOpen: () => void;
     onCodeChange: (filename: string, code: string) => void;
     onResetFilesToDefault: () => void;
@@ -31,6 +32,7 @@ export const CodeEditor = ({
     shouldCollapseCodeByDefault,
     isCodeEditable,
     hasCodeChanges,
+    preprocessor,
 }: Props): ReactElement => {
     const { code } = useActiveCode();
     const { sandpack } = useSandpack();
@@ -56,6 +58,7 @@ export const CodeEditor = ({
                 showResetButton={showResetButton}
                 showSandboxLink={showSandboxLink}
                 showResponsivePreview={showResponsivePreview}
+                preprocessor={preprocessor}
             />
             {!isEditorCollapsed && (
                 <SandpackCodeEditor
