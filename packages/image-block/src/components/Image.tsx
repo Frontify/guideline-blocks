@@ -13,6 +13,7 @@ import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
+import { useState } from 'react';
 
 type ImageProps = {
     image: Asset;
@@ -27,14 +28,14 @@ export const ImageComponent = ({
     isEditing,
     appBridge,
     isAssetViewerEnabled,
-}: ImageProps & { isAssetViewerEnabled: boolean }) => {
+    containerWidth,
+}: ImageProps & { isAssetViewerEnabled: boolean; containerWidth: number }) => {
     const { open } = useAssetViewer(appBridge);
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const { isFocused, focusProps } = useFocusRing();
 
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
-    const imageWidthToRequest = Math.min(800 * devicePixelRatio, image.width);
-
+    const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, image.width);
     // Gif images can have a loop count property
     // Which is lost during our image processing
     const src =
@@ -89,6 +90,7 @@ export const ImageComponent = ({
 };
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
+    const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
@@ -102,16 +104,20 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
         <div
             style={imageWrapperStyle}
             data-test-id="image-block-img-wrapper"
+            ref={(el) => setContainerWidth(el?.offsetWidth)}
             className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
         >
             <div className="tw-relative tw-flex">
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    image={image}
-                    isEditing={isEditing}
-                    isAssetViewerEnabled={isAssetViewerEnabled}
-                />
+                {containerWidth && (
+                    <ImageComponent
+                        containerWidth={containerWidth}
+                        appBridge={appBridge}
+                        blockSettings={blockSettings}
+                        image={image}
+                        isEditing={isEditing}
+                        isAssetViewerEnabled={isAssetViewerEnabled}
+                    />
+                )}
                 {!isEditing && (
                     <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
                         <div
