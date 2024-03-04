@@ -2,7 +2,7 @@
 
 import { Asset, TemplateLegacy } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { BorderStyle, Padding, Radius } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, Padding, Radius, RichTextButtonStyle } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     title: string;
@@ -39,6 +39,8 @@ export type Settings = {
     previewImageAnchoring?: AnchoringType;
 
     // Style
+    buttonStyle: RichTextButtonStyle;
+
     hasBackground: boolean;
     backgroundColor: Color;
 

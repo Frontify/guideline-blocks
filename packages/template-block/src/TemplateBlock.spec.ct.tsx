@@ -607,4 +607,36 @@ describe('Template Block', () => {
         mount(<TemplateBlockWithStubs />);
         cy.get(PREVIEW_WRAPPER_SELECTOR).should('have.css', 'borderRadius', '4px');
     });
+
+    it('should render the CTA button with primary styling by default', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: false,
+            blockSettings: {},
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(CTA_BUTTON_SELECTOR)
+            .should('have.attr', 'style')
+            .and('match', /font-size: var\(--f-theme-settings-button-primary-font-size\)/);
+    });
+
+    it('should render the CTA button respecting the button styling', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: false,
+            blockSettings: {
+                buttonStyle: 'secondary',
+            },
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(CTA_BUTTON_SELECTOR)
+            .should('have.attr', 'style')
+            .and('match', /font-size: var\(--f-theme-settings-button-secondary-font-size\)/);
+    });
 });
