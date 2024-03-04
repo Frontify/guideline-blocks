@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import { ReactElement, useCallback, useMemo } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
@@ -17,6 +17,10 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
+    const plugins = useMemo(() => getPlugins(appBridge, columnNumber, gap), [appBridge, columnNumber, gap]);
+
+    const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
+
     return (
         <div className="text-block">
             <RichTextEditor
@@ -25,9 +29,9 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                 value={content}
                 columns={columnNumber}
                 gap={gap}
-                plugins={getPlugins(appBridge, columnNumber, gap)}
+                plugins={plugins}
                 placeholder={PLACEHOLDER}
-                onTextChange={(content: string) => setBlockSettings({ content })}
+                onTextChange={handleTextChange}
             />
         </div>
     );
