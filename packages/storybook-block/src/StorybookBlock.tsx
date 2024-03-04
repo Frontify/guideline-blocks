@@ -102,6 +102,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             loading="lazy"
             data-test-id="storybook-iframe"
             title="storybook-iframe"
+            allow="clipboard-write"
         />
     );
 
