@@ -83,7 +83,11 @@ describe('Image Block', () => {
         );
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockImageSelector).should('exist');
-        cy.get(ImageBlockImageSelector).should('have.attr', 'src', 'https://generic.url?width=400');
+        cy.get(ImageBlockImageSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=400&format=webp&quality=100'
+        );
     });
 
     it('should render the download button if the image is uploaded and security settings allows it', () => {
