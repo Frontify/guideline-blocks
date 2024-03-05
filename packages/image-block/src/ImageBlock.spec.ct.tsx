@@ -320,7 +320,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.class', mapAlignmentClasses[Alignment.Right]);
+        cy.get(`${ImageBlockImageWrapperSelector} > div`).should('have.class', mapAlignmentClasses[Alignment.Right]);
     });
 
     it('should add padding to buttons when padding is added to image', () => {

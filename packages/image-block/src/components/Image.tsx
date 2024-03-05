@@ -13,7 +13,8 @@ import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
-import { useState } from 'react';
+import { useImageContainer } from '../hooks/useImageContainer';
+import { ResponsiveImage } from './ResponsiveImage';
 
 type ImageProps = {
     image: Asset;
@@ -34,31 +35,11 @@ export const ImageComponent = ({
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const { isFocused, focusProps } = useFocusRing();
 
-    const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
-    const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, image.width);
-    // Gif images can have a loop count property
-    // Which is lost during our image processing
-    const src =
-        image.extension === 'gif'
-            ? image.originUrl
-            : image.genericUrl.replace('{width}', imageWidthToRequest.toString());
-
-    const Image = (
-        <img
-            data-test-id="image-block-img"
-            className="tw-flex tw-w-full"
-            loading="lazy"
-            src={src}
-            width={image.width}
-            height={image.height}
-            style={{ maxWidth: image.width }}
-            alt={blockSettings.altText || undefined}
-        />
-    );
+    const Image = <ResponsiveImage image={image} containerWidth={containerWidth} altText={blockSettings.altText} />;
 
     const props = {
         ...focusProps,
-        className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
+        className: joinClassNames(['tw-rounded tw-w-full', isFocused && FOCUS_STYLE]),
     };
 
     if (isEditing) {
@@ -90,11 +71,10 @@ export const ImageComponent = ({
 };
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
-    const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
+    const { containerWidth, setContainerRef } = useImageContainer();
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
-
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const { assetViewerEnabled, security } = blockSettings;
 
@@ -104,10 +84,10 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
         <div
             style={imageWrapperStyle}
             data-test-id="image-block-img-wrapper"
-            ref={(el) => setContainerWidth(el?.offsetWidth)}
-            className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
+            ref={setContainerRef}
+            className="tw-flex tw-w-full tw-h-auto"
         >
-            <div className="tw-relative tw-flex">
+            <div className={`tw-relative tw-w-full tw-flex ${mapAlignmentClasses[blockSettings.alignment]}`}>
                 {containerWidth && (
                     <ImageComponent
                         containerWidth={containerWidth}
