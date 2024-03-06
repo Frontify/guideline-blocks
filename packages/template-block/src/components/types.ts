@@ -23,7 +23,7 @@ export type PreviewImageProps = {
     previewCustom: Asset[];
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
-    handleDeleteCustomPreview: () => void;
+    handleDeleteCustomPreview: (assetId: number) => void;
 };
 
 export type TemplatePreviewProps = {
@@ -35,7 +35,7 @@ export type TemplatePreviewProps = {
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
     handleNewPublication: () => void;
-    handleDeleteCustomPreview: () => void;
+    handleDeleteCustomPreview: (assetId: number) => void;
 };
 
 export type TemplateTextProps = {

@@ -94,13 +94,16 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
     );
 
-    const handleDeleteCustomPreview = useCallback(async () => {
-        await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
-        await updateBlockSettings({
-            preview: PreviewType.Template,
-            altText: undefined,
-        });
-    }, [blockAssets.previewCustom, deleteAssetIdsFromKey, updateBlockSettings]);
+    const handleDeleteCustomPreview = useCallback(
+        async (assetId: number) => {
+            await deleteAssetIdsFromKey('previewCustom', [assetId]);
+            await updateBlockSettings({
+                preview: PreviewType.Template,
+                altText: undefined,
+            });
+        },
+        [deleteAssetIdsFromKey, updateBlockSettings]
+    );
 
     useEffect(() => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);

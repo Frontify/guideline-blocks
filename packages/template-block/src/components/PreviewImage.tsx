@@ -54,7 +54,7 @@ export const PreviewImage = ({
         if (hasCustomPreview) {
             menuItems.push({
                 title: 'Delete custom preview',
-                onClick: handleDeleteCustomPreview,
+                onClick: () => handleDeleteCustomPreview(previewCustom[0].id),
                 style: MenuItemStyle.Danger,
                 icon: <IconTrashBin />,
             });
