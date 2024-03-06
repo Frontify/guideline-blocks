@@ -2,6 +2,7 @@
 
 import { debounce } from '@frontify/fondue';
 import { useEffect, useRef, useState } from 'react';
+import { roundToNextHundred } from '../helpers';
 
 export const useImageContainer = () => {
     const containerRef = useRef<HTMLElement | null>(null);
@@ -15,11 +16,11 @@ export const useImageContainer = () => {
         const containerObserver = new ResizeObserver(
             debounce((entries) => {
                 const container = entries[0];
-                const newContainerWidth = container.contentRect.width;
-                const oldContainerWidth = containerWidth ?? 0;
+                const newContainerWidth = roundToNextHundred(container.contentRect.width);
+                const oldContainerWidth = roundToNextHundred(containerWidth ?? 0);
                 const containerWidthHasGrown = oldContainerWidth < newContainerWidth;
                 if (containerWidthHasGrown) {
-                    setContainerWidth(container.contentRect.width);
+                    setContainerWidth(newContainerWidth);
                 }
             }, 100)
         );
@@ -31,7 +32,7 @@ export const useImageContainer = () => {
     const setContainerRef = (container: HTMLElement | null) => {
         if (!containerRef.current) {
             containerRef.current = container;
-            setContainerWidth(container?.offsetWidth);
+            setContainerWidth(roundToNextHundred(container?.offsetWidth ?? 0));
         }
     };
 

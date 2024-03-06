@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties } from 'react';
 import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { ImageBlock } from './ImageBlock';
@@ -28,14 +27,11 @@ const ToolbarButtonSelector = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const TextInputSelector = '[data-test-id="text-input"]';
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 
-const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps, containerWidth = 800) => {
+const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps) => {
     const Component = () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, appBridgeProps);
         return (
-            <div
-                style={{ '--container-width': `${containerWidth}px` } as CSSProperties}
-                className="[&_[data-test-id='image-block-img-wrapper']]:tw-w-[var(--container-width)]"
-            >
+            <div className="[&_[data-test-id='image-block-img-wrapper']]:tw-w-screen">
                 <ImageBlockWithStubs />
             </div>
         );
@@ -72,21 +68,37 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageSelector).should('exist');
     });
 
-    it('should render the image at a smaller resolution if container is small', () => {
-        const ImageBlockWithStubs = getImageBlockWithContainer(
-            {
-                blockAssets: {
-                    [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
-                },
+    it('should render the image responsively rounded to the nearest hundred pixel', () => {
+        cy.viewport(240, 800);
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockAssets: {
+                [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
             },
-            400
-        );
+        });
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockImageSelector).should('exist');
         cy.get(ImageBlockImageSelector).should(
             'have.attr',
             'src',
+            'https://generic.url?width=300&format=webp&quality=100'
+        );
+        cy.viewport(280, 800);
+        cy.get(ImageBlockImageSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=300&format=webp&quality=100'
+        );
+        cy.viewport(400, 800);
+        cy.get(ImageBlockImageSelector).should(
+            'have.attr',
+            'src',
             'https://generic.url?width=400&format=webp&quality=100'
+        );
+        cy.viewport(401, 800);
+        cy.get(ImageBlockImageSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=500&format=webp&quality=100'
         );
     });
 

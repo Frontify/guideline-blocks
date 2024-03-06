@@ -102,3 +102,10 @@ export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Right]: 'tw-flex-col md:!tw-flex-row',
     [CaptionPosition.Left]: 'tw-flex-col md:!tw-flex-row-reverse',
 };
+
+export enum ImageFormat {
+    WEBP = 'webp',
+    JPG = 'jpg',
+    PNG = 'png',
+    GIF = 'gif',
+}

@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
+import { ImageFormat } from '../types';
 
 type ResponsiveImageProps = {
     image: Asset;
     containerWidth: number;
     altText?: string;
-    allowWebp?: boolean;
+    format?: ImageFormat;
     quality?: number;
 };
 
@@ -14,14 +15,13 @@ export const ResponsiveImage = ({
     image,
     containerWidth,
     altText,
-    allowWebp = true,
+    format = ImageFormat.WEBP,
     quality = 100,
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, image.width);
 
-    const allowOptimisation = !['gif', 'svg'].includes(image.extension);
-    const allowWebpConversion = allowWebp && allowOptimisation;
+    const allowConversions = !['gif', 'svg'].includes(image.extension);
 
     // Gif images can have a loop count property
     // Which is lost during our image processing
@@ -30,9 +30,8 @@ export const ResponsiveImage = ({
             ? image.originUrl
             : image.genericUrl.replace('{width}', imageWidthToRequest.toString());
 
-    const webpParams = allowWebpConversion ? '&format=webp' : '';
-    const qualityParams = allowOptimisation ? `&quality=${quality}` : '';
-    const sourceOptimised = `${sourceWithWidth}${webpParams}${qualityParams}`;
+    const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
+    const sourceOptimised = `${sourceWithWidth}${conversionParams}`;
 
     return (
         <img
