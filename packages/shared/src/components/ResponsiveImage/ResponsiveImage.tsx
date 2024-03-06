@@ -20,7 +20,9 @@ export const ResponsiveImage = ({
     quality = 100,
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
-    const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, image.width);
+    const imageWidth = image.width ?? 0;
+    const imageHeight = image.height ?? 0;
+    const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, imageWidth);
 
     const allowConversions = !['gif', 'svg'].includes(image.extension);
 
@@ -40,9 +42,9 @@ export const ResponsiveImage = ({
             className="tw-flex tw-w-full"
             loading="lazy"
             src={sourceOptimised}
-            width={image.width}
-            height={image.height}
-            style={{ maxWidth: image.width }}
+            width={imageWidth}
+            height={imageHeight}
+            style={{ maxWidth: imageWidth }}
             alt={altText}
         />
     );
