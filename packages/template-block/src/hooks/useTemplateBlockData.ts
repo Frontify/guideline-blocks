@@ -47,9 +47,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [hasLoggedInUser, setHasLoggedInUser] = useState(false);
     const isEditing = useEditorState(appBridge);
 
-    const {
-        blockAssets: { previewCustom },
-    } = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
 
     const {
@@ -75,6 +73,9 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         title,
     } = blockSettings;
 
+    const hasPreview = preview !== PreviewType.None;
+    const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
+
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
             try {
@@ -92,6 +93,11 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         },
         [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
     );
+
+    const handleDeleteCustomPreview = useCallback(async () => {
+        await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
+        await updateBlockSettings({ altText: undefined });
+    }, [blockAssets.previewCustom, deleteAssetIdsFromKey, updateBlockSettings]);
 
     useEffect(() => {
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
@@ -120,9 +126,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
-
-    const hasPreview = preview !== PreviewType.None;
-    const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     useEffect(() => {
         const getCurrentLoggedUser = async () => {
@@ -155,14 +158,15 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         contentClasses: getContentClasses(hasPreview, textPositioning, textAnchoringVertical),
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
+        handleDeleteCustomPreview,
+        hasLoggedInUser,
         hasPreview,
         hasTitleOnly,
-        hasLoggedInUser,
         isEditing,
         lastErrorMessage,
         preview,
         previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
-        previewCustom,
+        previewCustom: blockAssets.previewCustom,
         selectedTemplate,
         templateTextKey,
         textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
 import { BlockItemWrapper, ToolbarFlyoutMenuItem } from '@frontify/guideline-blocks-settings';
@@ -12,39 +12,31 @@ export const PreviewImage = ({
     appBridge,
     blockSettings,
     template,
+    previewCustom,
     updateBlockSettings,
     onOpenTemplateChooser,
+    handleDeleteCustomPreview,
 }: PreviewImageProps) => {
     const isEditing = useEditorState(appBridge);
-    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
+
     const previewSrc = useMemo(
         () =>
-            preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
-                ? blockAssets.previewCustom[0].previewUrl
+            preview === PreviewType.Custom && previewCustom !== undefined
+                ? previewCustom[0].previewUrl
                 : template?.previewUrl,
-        [blockAssets.previewCustom, preview, template?.previewUrl]
+        [previewCustom, preview, template?.previewUrl]
     );
+    const hasCustomPreview = preview === PreviewType.Custom && previewCustom.length > 0;
+
     const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isHovered, setIsHovered] = useState(false);
-    const hasCustomPreview = useMemo(
-        () => preview === PreviewType.Custom && blockAssets.previewCustom?.length > 0,
-        [blockAssets.previewCustom?.length, preview]
-    );
 
     useEffect(() => {
         setCurrentPreviewSrc(previewSrc);
     }, [previewSrc]);
-
-    const handleDeleteCustomPreview = async () => {
-        if (hasCustomPreview) {
-            await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
-            await updateBlockSettings({ altText: undefined });
-            setLocalAltText(undefined);
-        }
-    };
 
     const getItemWrapperMenu = () => {
         const menuItems: ToolbarFlyoutMenuItem[] = [
@@ -83,16 +75,8 @@ export const PreviewImage = ({
                         ? previewImageAnchoringValues[previewImageAnchoring]
                         : 'center',
                 }}
-                width={
-                    preview === PreviewType.Custom && blockAssets.previewCustom
-                        ? blockAssets.previewCustom[0].width
-                        : 'auto'
-                }
-                height={
-                    preview === PreviewType.Custom && blockAssets.previewCustom
-                        ? blockAssets.previewCustom[0].height
-                        : 'auto'
-                }
+                width={preview === PreviewType.Custom && previewCustom ? previewCustom[0].width : 'auto'}
+                height={preview === PreviewType.Custom && previewCustom ? previewCustom[0].height : 'auto'}
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}

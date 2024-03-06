@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Template } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, Template } from '@frontify/app-bridge';
 import { Settings } from '../types';
 
 export type AlertErrorProps = {
@@ -20,18 +20,22 @@ export type PreviewImageProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
+    previewCustom: Asset[];
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
+    handleDeleteCustomPreview: () => void;
 };
 
 export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
+    previewCustom: Asset[];
     previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
     handleNewPublication: () => void;
+    handleDeleteCustomPreview: () => void;
 };
 
 export type TemplateTextProps = {

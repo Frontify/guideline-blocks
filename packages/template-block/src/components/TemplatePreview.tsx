@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { useEditorState } from '@frontify/app-bridge';
 import { IconPlus24 } from '@frontify/fondue';
 import { PreviewHeightType, previewHeightValues } from '../types';
 import {
@@ -16,12 +16,13 @@ export const TemplatePreview = ({
     appBridge,
     blockSettings,
     template,
+    previewCustom,
     previewClasses,
     updateBlockSettings,
     onOpenTemplateChooser,
     handleNewPublication,
+    handleDeleteCustomPreview,
 }: TemplatePreviewProps) => {
-    const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
 
     const {
@@ -38,8 +39,6 @@ export const TemplatePreview = ({
         radiusChoice_templatePreview,
         radiusValue_templatePreview,
     } = blockSettings;
-
-    const { previewCustom } = blockAssets;
 
     const borderRadius = hasRadius_templatePreview
         ? radiusValue_templatePreview
@@ -72,8 +71,10 @@ export const TemplatePreview = ({
                         appBridge={appBridge}
                         blockSettings={blockSettings}
                         template={template}
+                        previewCustom={previewCustom}
                         updateBlockSettings={updateBlockSettings}
                         onOpenTemplateChooser={onOpenTemplateChooser}
+                        handleDeleteCustomPreview={handleDeleteCustomPreview}
                     />
                 </button>
             ) : (

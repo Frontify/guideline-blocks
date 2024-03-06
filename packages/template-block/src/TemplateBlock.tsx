@@ -19,9 +19,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         contentClasses,
         ctaClasses,
         description,
+        handleDeleteCustomPreview,
+        hasLoggedInUser,
         hasPreview,
         hasTitleOnly,
-        hasLoggedInUser,
         isEditing,
         lastErrorMessage,
         preview,
@@ -70,10 +71,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             appBridge={appBridge}
                             blockSettings={blockSettings}
                             template={selectedTemplate}
+                            previewCustom={previewCustom}
                             previewClasses={previewClasses}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
                             handleNewPublication={handleNewPublication}
+                            handleDeleteCustomPreview={handleDeleteCustomPreview}
                         />
                     )}
 
