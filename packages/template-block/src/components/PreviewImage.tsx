@@ -5,7 +5,7 @@ import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
 import { BlockItemWrapper, ToolbarFlyoutMenuItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { PreviewImageProps } from './types';
 
 export const PreviewImage = ({
@@ -20,23 +20,22 @@ export const PreviewImage = ({
     const isEditing = useEditorState(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
-    const previewSrc = useMemo(
-        () =>
-            preview === PreviewType.Custom && previewCustom !== undefined
-                ? previewCustom[0].previewUrl
-                : template?.previewUrl,
-        [previewCustom, preview, template?.previewUrl]
-    );
-    const hasCustomPreview = preview === PreviewType.Custom && previewCustom.length > 0;
+    const hasCustomPreview = preview === PreviewType.Custom && previewCustom?.length > 0;
+    const { previewSrc, width, height } = hasCustomPreview
+        ? {
+              previewSrc: previewCustom[0].previewUrl,
+              width: previewCustom[0].width,
+              height: previewCustom[0].height,
+          }
+        : {
+              previewSrc: template?.previewUrl,
+              width: 'auto',
+              height: 'auto',
+          };
 
-    const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isHovered, setIsHovered] = useState(false);
-
-    useEffect(() => {
-        setCurrentPreviewSrc(previewSrc);
-    }, [previewSrc]);
 
     const getItemWrapperMenu = () => {
         const menuItems: ToolbarFlyoutMenuItem[] = [
@@ -68,15 +67,15 @@ export const PreviewImage = ({
         <>
             <img
                 data-test-id="preview-img"
-                src={currentPreviewSrc}
+                src={previewSrc}
                 className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
                 style={{
                     objectPosition: previewImageAnchoring
                         ? previewImageAnchoringValues[previewImageAnchoring]
                         : 'center',
                 }}
-                width={preview === PreviewType.Custom && previewCustom ? previewCustom[0].width : 'auto'}
-                height={preview === PreviewType.Custom && previewCustom ? previewCustom[0].height : 'auto'}
+                width={width}
+                height={height}
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
