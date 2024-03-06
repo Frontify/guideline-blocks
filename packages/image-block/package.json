@@ -37,6 +37,7 @@
         "@frontify/guideline-blocks-settings": "^0.34.1",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/focus": "^3.14.0",
+        "@testing-library/react": "^14.1.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     }

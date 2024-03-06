@@ -11,4 +11,8 @@ export default defineConfig({
             strict: false,
         },
     },
+    test: {
+        environment: "happy-dom",
+        include: ["packages/**/*.{test,spec}.{ts,tsx}"],
+    },
 });
