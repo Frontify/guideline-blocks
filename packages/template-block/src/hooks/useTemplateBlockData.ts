@@ -96,7 +96,10 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     const handleDeleteCustomPreview = useCallback(async () => {
         await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
-        await updateBlockSettings({ altText: undefined });
+        await updateBlockSettings({
+            preview: PreviewType.Template,
+            altText: undefined,
+        });
     }, [blockAssets.previewCustom, deleteAssetIdsFromKey, updateBlockSettings]);
 
     useEffect(() => {
