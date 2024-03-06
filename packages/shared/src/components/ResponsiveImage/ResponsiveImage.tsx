@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import React from 'react';
 import { Asset } from '@frontify/app-bridge';
-import { ImageFormat } from '../types';
+import { ImageFormat } from '../../types';
 
 type ResponsiveImageProps = {
     image: Asset;

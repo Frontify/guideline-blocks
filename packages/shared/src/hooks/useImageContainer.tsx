@@ -2,7 +2,7 @@
 
 import { debounce } from '@frontify/fondue';
 import { useEffect, useRef, useState } from 'react';
-import { roundToNextHundred } from '../helpers';
+import { roundToNextHundred } from '../../../image-block/src/helpers';
 
 export const useImageContainer = () => {
     const containerRef = useRef<HTMLElement | null>(null);

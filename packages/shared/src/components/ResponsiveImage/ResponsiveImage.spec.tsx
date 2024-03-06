@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { afterEach, beforeAll, describe, expect, it, test } from 'vitest';
-import { cleanup, configure, render } from '@testing-library/react';
+import React from 'react';
+import { describe, expect, it, test } from 'vitest';
+import { render } from '@testing-library/react';
 
 import { Asset, AssetDummy } from '@frontify/app-bridge';
 import { ResponsiveImage } from './ResponsiveImage';
-import { ImageFormat } from '../types';
+import { ImageFormat } from '../../types';
 
 const ResponsiveImageSelector = 'image-block-img';
 
@@ -17,14 +18,6 @@ const HIGH_RES_ASSET: Asset = {
 };
 
 describe('ResponsiveImage', () => {
-    beforeAll(() => {
-        configure({ testIdAttribute: 'data-test-id' });
-    });
-
-    afterEach(() => {
-        cleanup();
-    });
-
     it('should render an image block', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} />);
         expect(getByTestId(ResponsiveImageSelector)).toBeTruthy();

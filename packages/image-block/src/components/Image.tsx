@@ -13,8 +13,7 @@ import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
-import { useImageContainer } from '../hooks/useImageContainer';
-import { ResponsiveImage } from './ResponsiveImage';
+import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 type ImageProps = {
     image: Asset;
