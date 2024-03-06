@@ -20,7 +20,7 @@ export type PreviewImageProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
-    previewCustom: Asset[];
+    previewCustom: Asset | null;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;
     handleDeleteCustomPreview: (assetId: number) => void;
@@ -30,7 +30,7 @@ export type TemplatePreviewProps = {
     appBridge: AppBridgeBlock;
     blockSettings: Settings;
     template: Template | null;
-    previewCustom: Asset[];
+    previewCustom: Asset | null;
     previewClasses: string;
     updateBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     onOpenTemplateChooser: () => void;

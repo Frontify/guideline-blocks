@@ -39,8 +39,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
             const previewUrl =
-                preview === PreviewType.Custom && previewCustom?.length > 0
-                    ? previewCustom[0].previewUrl
+                preview === PreviewType.Custom && previewCustom
+                    ? previewCustom.previewUrl
                     : selectedTemplate.previewUrl;
 
             const options: OpenNewPublicationPayload = {

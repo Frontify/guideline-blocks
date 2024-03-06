@@ -20,12 +20,12 @@ export const PreviewImage = ({
     const isEditing = useEditorState(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
-    const hasCustomPreview = preview === PreviewType.Custom && previewCustom?.length > 0;
+    const hasCustomPreview = preview === PreviewType.Custom && previewCustom;
     const { previewSrc, width, height } = hasCustomPreview
         ? {
-              previewSrc: previewCustom[0].previewUrl,
-              width: previewCustom[0].width,
-              height: previewCustom[0].height,
+              previewSrc: previewCustom.previewUrl,
+              width: previewCustom.width,
+              height: previewCustom.height,
           }
         : {
               previewSrc: template?.previewUrl,
@@ -54,7 +54,7 @@ export const PreviewImage = ({
         if (hasCustomPreview) {
             menuItems.push({
                 title: 'Delete custom preview',
-                onClick: () => handleDeleteCustomPreview(previewCustom[0].id),
+                onClick: () => handleDeleteCustomPreview(previewCustom.id),
                 style: MenuItemStyle.Danger,
                 icon: <IconTrashBin />,
             });

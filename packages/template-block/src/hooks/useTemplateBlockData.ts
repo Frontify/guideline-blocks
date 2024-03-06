@@ -172,7 +172,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         lastErrorMessage,
         preview,
         previewClasses: getPreviewClasses(hasPreview, textPositioning, textRatio),
-        previewCustom: blockAssets.previewCustom,
+        previewCustom: blockAssets.previewCustom?.length > 0 ? blockAssets.previewCustom[0] : null,
         selectedTemplate,
         templateTextKey,
         textClasses: getTextClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
