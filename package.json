@@ -41,6 +41,7 @@
     "dependencies": {
         "@frontify/fondue": "12.0.0-beta.409",
         "glob": "^10.3.4",
+        "happy-dom": "^13.6.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
