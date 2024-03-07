@@ -38,7 +38,11 @@ export const ImageComponent = ({
 
     const props = {
         ...focusProps,
-        className: joinClassNames(['tw-rounded tw-w-full', isFocused && FOCUS_STYLE]),
+        className: joinClassNames([
+            'tw-rounded tw-w-full tw-flex',
+            isFocused && FOCUS_STYLE,
+            mapAlignmentClasses[blockSettings.alignment],
+        ]),
     };
 
     if (isEditing) {
