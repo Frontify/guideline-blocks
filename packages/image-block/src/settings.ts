@@ -108,7 +108,7 @@ export const settings = defineSettings({
             type: 'segmentedControls',
             label: 'Alignment',
             info: 'For images that are smaller than the width of the Content Block.',
-            defaultValue: Alignment.Left,
+            defaultValue: Alignment.Center,
             choices: [
                 {
                     value: Alignment.Left,
