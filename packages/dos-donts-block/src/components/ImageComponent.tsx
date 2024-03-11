@@ -3,11 +3,11 @@
 import { IconPlus32 } from '@frontify/fondue';
 import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, ImageComponentProps, ImageFitChoice } from '../types';
+import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 const ImageComponent = ({
     isEditing,
-    src,
-    columns,
+    image,
     onAssetChooseClick,
     onUploadClick,
     isUploadLoading,
@@ -27,7 +27,7 @@ const ImageComponent = ({
     border,
 }: ImageComponentProps) => {
     const imageHeight = isCustomImageHeight ? customImageHeightValue : IMAGE_HEIGHT_VALUES[imageHeightChoice];
-
+    const { containerWidth, setContainerRef } = useImageContainer();
     const borderRadius = hasRadius ? radiusValue : radiusStyleMap[radiusChoice];
 
     const background =
@@ -37,30 +37,35 @@ const ImageComponent = ({
             ? toRgbaString(backgroundColor)
             : '';
 
-    const getImage = () => {
-        const width = (isEditing ? 800 : 800 / columns) * (window?.devicePixelRatio ?? 1);
-
-        return src ? (
-            <div className="tw-relative tw-w-full">
+    const getImage = () =>
+        image ? (
+            <div
+                {...draggableProps}
+                ref={setContainerRef}
+                className={joinClassNames([
+                    'tw-relative tw-w-full',
+                    isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
+                ])}
+            >
                 <div
                     style={{ height: imageHeight, borderRadius, border, background }}
                     className="tw-w-full tw-overflow-hidden"
                 >
-                    <img
-                        {...draggableProps}
-                        className={joinClassNames([
-                            'tw-w-full tw-h-full',
-                            isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
-                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                imageDisplay === ImageFitChoice.FILL &&
-                                'tw-object-cover',
-                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                imageDisplay === ImageFitChoice.FIT &&
-                                'tw-object-contain',
-                        ])}
-                        src={src.replace('{width}', width.toString())}
-                        alt=""
-                    />
+                    {containerWidth && (
+                        <ResponsiveImage
+                            containerWidth={containerWidth}
+                            image={image}
+                            className={joinClassNames([
+                                'tw-h-full',
+                                (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                                    imageDisplay === ImageFitChoice.FILL &&
+                                    'tw-object-cover',
+                                (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                                    imageDisplay === ImageFitChoice.FIT &&
+                                    'tw-object-contain',
+                            ])}
+                        />
+                    )}
                     {hasStrikethrough && (
                         <div
                             style={{ backgroundColor: toRgbaString(dontColor) }}
@@ -70,11 +75,10 @@ const ImageComponent = ({
                 </div>
             </div>
         ) : null;
-    };
 
     return (
         <div className="tw-mb-3">
-            {(!src && isEditing) || isUploadLoading ? (
+            {(!image && isEditing) || isUploadLoading ? (
                 <div style={{ height: imageHeight === 'auto' ? '180px' : imageHeight }}>
                     <BlockInjectButton
                         onAssetChooseClick={onAssetChooseClick}

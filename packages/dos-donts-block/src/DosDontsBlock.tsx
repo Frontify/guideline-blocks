@@ -43,7 +43,7 @@ export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 
 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -189,9 +189,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             });
             assetIds.push(image.id);
         }
-        const existingIds = itemImages?.map((x) => x.id) || [];
-        const newIds = [...new Set([...existingIds, ...assetIds])];
-        updateAssetIdsFromKey('itemImages', newIds).then(() => {
+        addAssetIdsToKey('itemImages', assetIds).then(() => {
             setAndSaveItems([...localItems, ...newItems]);
             setIsUploadLoading(false);
             setSelectedType(undefined);
@@ -201,7 +199,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const removeItemById = (itemId: string) => {
+        const itemToRemove = localItems.find((item) => item.id === itemId);
         const newItems: Item[] = localItems.filter((item) => item.id !== itemId);
+        if (itemToRemove?.imageId) {
+            deleteAssetIdsFromKey('itemImages', [itemToRemove?.imageId]);
+        }
         setAndSaveItems(newItems);
     };
 
@@ -256,7 +258,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         if (!itemImages) {
             return;
         }
-        return itemImages.find((asset) => asset.id === item.imageId)?.genericUrl;
+        return itemImages.find((asset) => asset.id === item.imageId);
     };
 
     const getDoDontItemProps = (item: Item) => ({
@@ -295,6 +297,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
         borderWidth,
+        addAssetIdsToKey,
+        activeId,
     });
 
     const onOpenAssetChooser = () => {
@@ -346,11 +350,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                         ))}
                     </div>
                 </SortableContext>
-                <DragOverlay>
-                    {activeItem ? (
+                {activeItem ? (
+                    <DragOverlay>
                         <DoDontItem key={activeItem.id} isDragging={true} {...getDoDontItemProps(activeItem)} />
-                    ) : null}
-                </DragOverlay>
+                    </DragOverlay>
+                ) : null}
             </DndContext>
             {isEditing && (
                 <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">

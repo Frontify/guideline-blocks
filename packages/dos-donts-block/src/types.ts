@@ -89,8 +89,7 @@ export type SortableDoDontItemProps = {
     doIconAsset: Asset[] | undefined;
     dontIconAsset: Asset[] | undefined;
     mode: BlockMode;
-    columns: number;
-    linkedImage?: string;
+    linkedImage?: Asset;
     appBridge: AppBridgeBlock;
     isCustomImageHeight: boolean;
     customImageHeightValue: string;
@@ -106,6 +105,7 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
+    addAssetIdsToKey: (key: string, newAssetIds: number[]) => Promise<void>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
@@ -141,8 +141,7 @@ export type IconComponentProps = {
 
 export type ImageComponentProps = {
     id: string;
-    src?: string;
-    columns: number;
+    image?: Asset;
     onAssetChooseClick: () => void;
     onUploadClick: () => void;
     isUploadLoading: boolean;
