@@ -20,7 +20,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         ctaClasses,
         description,
         handleDeleteCustomPreview,
-        hasLoggedInUser,
+        hasAuthenticatedUser,
         hasPreview,
         hasTitleOnly,
         isEditing,
@@ -56,7 +56,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
-    if (!isEditing && (!selectedTemplate || !hasLoggedInUser)) {
+    if (!isEditing && (!selectedTemplate || !hasAuthenticatedUser)) {
         return <div data-test-id="container" className="template-block"></div>;
     }
 
