@@ -137,7 +137,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         // TODO: Remove workaround once AppBridge does not request /user/info for every block
         const isAuthenticated = document.body.classList.contains('state-authenticated');
         setHasAuthenticatedUser(isAuthenticated);
-    }, [appBridge]);
+    }, []);
 
     return {
         blockSettings,
