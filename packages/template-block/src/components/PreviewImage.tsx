@@ -1,50 +1,41 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useEditorState } from '@frontify/app-bridge';
+import { useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
 import { BlockItemWrapper, ToolbarFlyoutMenuItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { PreviewImageProps } from './types';
 
 export const PreviewImage = ({
     appBridge,
     blockSettings,
     template,
+    previewCustom,
     updateBlockSettings,
     onOpenTemplateChooser,
+    handleDeleteCustomPreview,
 }: PreviewImageProps) => {
     const isEditing = useEditorState(appBridge);
-    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
-    const previewSrc = useMemo(
-        () =>
-            preview === PreviewType.Custom && blockAssets.previewCustom !== undefined
-                ? blockAssets.previewCustom[0].previewUrl
-                : template?.previewUrl,
-        [blockAssets.previewCustom, preview, template?.previewUrl]
-    );
-    const [currentPreviewSrc, setCurrentPreviewSrc] = useState(previewSrc);
+
+    const hasCustomPreview = preview === PreviewType.Custom && previewCustom;
+    const { previewSrc, width, height } = hasCustomPreview
+        ? {
+              previewSrc: previewCustom.previewUrl,
+              width: previewCustom.width,
+              height: previewCustom.height,
+          }
+        : {
+              previewSrc: template?.previewUrl,
+              width: 'auto',
+              height: 'auto',
+          };
+
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
     const [isHovered, setIsHovered] = useState(false);
-    const hasCustomPreview = useMemo(
-        () => preview === PreviewType.Custom && blockAssets.previewCustom?.length > 0,
-        [blockAssets.previewCustom?.length, preview]
-    );
-
-    useEffect(() => {
-        setCurrentPreviewSrc(previewSrc);
-    }, [previewSrc]);
-
-    const handleDeleteCustomPreview = async () => {
-        if (hasCustomPreview) {
-            await deleteAssetIdsFromKey('previewCustom', [blockAssets.previewCustom[0].id]);
-            await updateBlockSettings({ altText: undefined });
-            setLocalAltText(undefined);
-        }
-    };
 
     const getItemWrapperMenu = () => {
         const menuItems: ToolbarFlyoutMenuItem[] = [
@@ -63,7 +54,7 @@ export const PreviewImage = ({
         if (hasCustomPreview) {
             menuItems.push({
                 title: 'Delete custom preview',
-                onClick: handleDeleteCustomPreview,
+                onClick: () => handleDeleteCustomPreview(previewCustom.id),
                 style: MenuItemStyle.Danger,
                 icon: <IconTrashBin />,
             });
@@ -76,23 +67,15 @@ export const PreviewImage = ({
         <>
             <img
                 data-test-id="preview-img"
-                src={currentPreviewSrc}
+                src={previewSrc}
                 className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
                 style={{
                     objectPosition: previewImageAnchoring
                         ? previewImageAnchoringValues[previewImageAnchoring]
                         : 'center',
                 }}
-                width={
-                    preview === PreviewType.Custom && blockAssets.previewCustom
-                        ? blockAssets.previewCustom[0].width
-                        : 'auto'
-                }
-                height={
-                    preview === PreviewType.Custom && blockAssets.previewCustom
-                        ? blockAssets.previewCustom[0].height
-                        : 'auto'
-                }
+                width={width}
+                height={height}
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}

@@ -19,9 +19,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         contentClasses,
         ctaClasses,
         description,
+        handleDeleteCustomPreview,
+        hasLoggedInUser,
         hasPreview,
         hasTitleOnly,
-        hasLoggedInUser,
         isEditing,
         lastErrorMessage,
         preview,
@@ -38,8 +39,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleNewPublication = async () => {
         if (selectedTemplate !== null) {
             const previewUrl =
-                preview === PreviewType.Custom && Array.isArray(previewCustom) && previewCustom.length > 0
-                    ? previewCustom[0].previewUrl
+                preview === PreviewType.Custom && previewCustom
+                    ? previewCustom.previewUrl
                     : selectedTemplate.previewUrl;
 
             const options: OpenNewPublicationPayload = {
@@ -70,10 +71,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             appBridge={appBridge}
                             blockSettings={blockSettings}
                             template={selectedTemplate}
+                            previewCustom={previewCustom}
                             previewClasses={previewClasses}
                             updateBlockSettings={updateBlockSettings}
                             onOpenTemplateChooser={handleOpenTemplateChooser}
                             handleNewPublication={handleNewPublication}
+                            handleDeleteCustomPreview={handleDeleteCustomPreview}
                         />
                     )}
 
