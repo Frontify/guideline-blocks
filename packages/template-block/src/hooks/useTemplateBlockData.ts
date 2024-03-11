@@ -44,7 +44,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const [templateTextKey, setTemplateTextKey] = useState(0);
-    const [hasLoggedInUser, setHasLoggedInUser] = useState(false);
+    const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState(false);
     const isEditing = useEditorState(appBridge);
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -134,15 +134,9 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     }, [blockTemplates]);
 
     useEffect(() => {
-        const getCurrentLoggedUser = async () => {
-            try {
-                const currentLoggedUser = await appBridge.getCurrentLoggedUser();
-                setHasLoggedInUser(!!currentLoggedUser.id);
-            } catch (userFetchError) {
-                setHasLoggedInUser(false);
-            }
-        };
-        getCurrentLoggedUser();
+        // TODO: Remove workaround once AppBridge does not request /user/info for every block
+        const isAuthenticated = document.body.classList.contains('state-authenticated');
+        setHasAuthenticatedUser(isAuthenticated);
     }, [appBridge]);
 
     return {
@@ -165,7 +159,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         handleDeleteCustomPreview,
-        hasLoggedInUser,
+        hasAuthenticatedUser,
         hasPreview,
         hasTitleOnly,
         isEditing,
