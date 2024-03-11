@@ -29,7 +29,7 @@ importers:
     devDependencies:
       '@4tw/cypress-drag-drop':
         specifier: ^2.2.5
-        version: 2.2.5(cypress@13.6.4)
+        version: 2.2.5(cypress@13.6.6)
       '@babel/core':
         specifier: ^7.23.9
         version: 7.23.9
@@ -53,10 +53,10 @@ importers:
         version: 4.2.1(vite@5.1.3)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       msw:
         specifier: ^1.3.0
         version: 1.3.2(typescript@5.3.3)
@@ -120,7 +120,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -196,10 +196,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -263,10 +263,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -333,10 +333,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -403,7 +403,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -470,7 +470,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -561,10 +561,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -649,10 +649,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -725,10 +725,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -795,7 +795,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -850,7 +850,7 @@ importers:
     devDependencies:
       '@4tw/cypress-drag-drop':
         specifier: ^2.2.5
-        version: 2.2.5(cypress@13.6.4)
+        version: 2.2.5(cypress@13.6.6)
       '@babel/core':
         specifier: ^7.23.9
         version: 7.23.9
@@ -871,7 +871,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -941,7 +941,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1005,7 +1005,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1087,7 +1087,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1151,7 +1151,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1218,7 +1218,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1288,10 +1288,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1361,10 +1361,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1440,7 +1440,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1510,7 +1510,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1577,7 +1577,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1644,7 +1644,7 @@ importers:
         version: 17.0.3
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1735,7 +1735,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1805,7 +1805,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1872,10 +1872,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -1948,7 +1948,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2033,10 +2033,10 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       cypress-real-events:
         specifier: ^1.11.0
-        version: 1.12.0(cypress@13.6.4)
+        version: 1.12.0(cypress@13.6.6)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2124,7 +2124,7 @@ importers:
         version: 10.4.18(postcss@8.4.35)
       cypress:
         specifier: ^13.6.3
-        version: 13.6.4
+        version: 13.6.6
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -2152,12 +2152,12 @@ importers:
 
 packages:
 
-  /@4tw/cypress-drag-drop@2.2.5(cypress@13.6.4):
+  /@4tw/cypress-drag-drop@2.2.5(cypress@13.6.6):
     resolution: {integrity: sha512-3ghTmzhOmUqeN6U3QmUnKRUxI7OMLbJA4hHUY/eS/FhWJgxbiGgcaELbolWnBAOpajPXcsNQGYEj9brd59WH6A==}
     peerDependencies:
       cypress: 2 - 13
     dependencies:
-      cypress: 13.6.4
+      cypress: 13.6.6
     dev: true
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -8664,16 +8664,16 @@ packages:
   /csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  /cypress-real-events@1.12.0(cypress@13.6.4):
+  /cypress-real-events@1.12.0(cypress@13.6.6):
     resolution: {integrity: sha512-oiy+4kGKkzc2PT36k3GGQqkGxNiVypheWjMtfyi89iIk6bYmTzeqxapaLHS3pnhZOX1IEbTDUVxh8T4Nhs1tyQ==}
     peerDependencies:
       cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x
     dependencies:
-      cypress: 13.6.4
+      cypress: 13.6.6
     dev: true
 
-  /cypress@13.6.4:
-    resolution: {integrity: sha512-pYJjCfDYB+hoOoZuhysbbYhEmNW7DEDsqn+ToCLwuVowxUXppIWRr7qk4TVRIU471ksfzyZcH+mkoF0CQUKnpw==}
+  /cypress@13.6.6:
+    resolution: {integrity: sha512-S+2S9S94611hXimH9a3EAYt81QM913ZVA03pUmGDfLTFa5gyp85NJ8dJGSlEAEmyRsYkioS1TtnWtbv/Fzt11A==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
@@ -8717,7 +8717,7 @@ packages:
       request-progress: 3.0.0
       semver: 7.6.0
       supports-color: 8.1.1
-      tmp: 0.2.1
+      tmp: 0.2.3
       untildify: 4.0.0
       yauzl: 2.10.0
     dev: true
@@ -12279,7 +12279,7 @@ packages:
     resolution: {integrity: sha512-OQiU+C+Ds5qiH91qh/mg0w+8nwQuLjM4F4M/PbmhDOoYehPh+Fb0bDjtR1sOvy7YKxvj28Y/M0PhP5uVX0kB+g==}
     engines: {node: '>=0.6'}
     dependencies:
-      side-channel: 1.0.5
+      side-channel: 1.0.6
     dev: true
 
   /querystringify@2.2.0:
@@ -12956,6 +12956,16 @@ packages:
       get-intrinsic: 1.2.4
       object-inspect: 1.13.1
 
+  /side-channel@1.0.6:
+    resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.7
+      es-errors: 1.3.0
+      get-intrinsic: 1.2.4
+      object-inspect: 1.13.1
+    dev: true
+
   /siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
     dev: true
@@ -13434,11 +13444,9 @@ packages:
       os-tmpdir: 1.0.2
     dev: true
 
-  /tmp@0.2.1:
-    resolution: {integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==}
-    engines: {node: '>=8.17.0'}
-    dependencies:
-      rimraf: 3.0.2
+  /tmp@0.2.3:
+    resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
+    engines: {node: '>=14.14'}
     dev: true
 
   /to-fast-properties@2.0.0:
