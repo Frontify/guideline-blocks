@@ -35,9 +35,9 @@
     "dependencies": {
         "@codesandbox/sandpack-react": "^2.12.1",
         "@codesandbox/sandpack-themes": "^2.0.21",
-        "@frontify/app-bridge": "^3.3.1",
+        "@frontify/app-bridge": "^3.5.1",
         "@frontify/fondue": "12.0.0-beta.415",
-        "@frontify/guideline-blocks-settings": "^0.34.4",
+        "@frontify/guideline-blocks-settings": "^0.34.5",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@mantine/core": "^7.1.2",
         "lodash": "^4.17.21",
