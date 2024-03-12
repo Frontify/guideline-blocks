@@ -86,9 +86,18 @@ describe('ResponsiveImage', () => {
         expect(getByTestId(ResponsiveImageSelector).getAttribute('height')).toBe('1000');
     });
 
-    it('should use original image width as max height', () => {
-        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} />);
+    it('should use provided style', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} style={{ maxWidth: 2000 }} />
+        );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('style')).toBe('max-width: 2000px;');
+    });
+
+    it('should use provided classnames', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} className="test-class" />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe('tw-flex tw-w-full test-class');
     });
 
     it('should add alt text', () => {
