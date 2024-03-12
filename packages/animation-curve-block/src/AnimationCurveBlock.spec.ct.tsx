@@ -8,6 +8,7 @@ import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } fro
 import { AnimationCurveBlock } from './AnimationCurveBlock';
 import { AnimationCurve, AnimationCurveType } from './types';
 
+const RTE_SELECTOR = '[data-test-id="rich-text-editor"]';
 const BLOCK_SELECTOR = '[data-test-id="animation-curve-block"]';
 const CARD_SELECTOR = '[data-test-id="animation-curve-card"]';
 const CARD_DURATION_SELECTOR = '[data-test-id="animation-curve-card-duration"]';
@@ -349,6 +350,7 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
+        cy.get(RTE_SELECTOR).should('have.length', 12);
         cy.get(CARD_SELECTOR)
             .first()
             .then((first) => {
@@ -380,6 +382,7 @@ describe('AnimationCurve Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
+        cy.get(RTE_SELECTOR).should('have.length', 12);
         cy.get(CARD_SELECTOR)
             .eq(3)
             .then((fourth) => {

@@ -80,25 +80,25 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=300&format=webp&quality=100'
+            'https://generic.url?width=300&format=webp&quality=75'
         );
         cy.viewport(280, 800);
         cy.get(ImageBlockImageSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=300&format=webp&quality=100'
+            'https://generic.url?width=300&format=webp&quality=75'
         );
         cy.viewport(400, 800);
         cy.get(ImageBlockImageSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=400&format=webp&quality=100'
+            'https://generic.url?width=400&format=webp&quality=75'
         );
         cy.viewport(401, 800);
         cy.get(ImageBlockImageSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=500&format=webp&quality=100'
+            'https://generic.url?width=500&format=webp&quality=75'
         );
     });
 
