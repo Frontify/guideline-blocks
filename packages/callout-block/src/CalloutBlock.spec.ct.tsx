@@ -7,12 +7,12 @@ import { ICON_ASSET_ID } from './settings';
 import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
-const RichTextEditor = '[data-test-id="rich-text-editor"]';
-const HtmlContent = '[data-test-id="rte-content-html"]';
-const CalloutWrapper = '[data-test-id="callout-wrapper"]';
-const CalloutIcon = '[data-test-id="callout-icon"]';
-const CalloutIconCustom = '[data-test-id="callout-icon-custom"]';
-const CalloutIconInfo = '[data-test-id="callout-icon-info"]';
+const RichTextEditorSelector = '[data-test-id="rich-text-editor"]';
+const HtmlContentSelector = '[data-test-id="rte-content-html"]';
+const CalloutContentSelector = '[data-test-id="callout-content"]';
+const CalloutIconSelector = '[data-test-id="callout-icon"]';
+const CalloutIconCustomSelector = '[data-test-id="callout-icon-custom"]';
+const CalloutIconInfoSelector = '[data-test-id="callout-icon-info"]';
 
 const EXAMPLE_THEME_SETTINGS =
     ':root {--f-theme-settings-accent-color-info-color: rgba(26, 199, 211, 1); --f-theme-settings-accent-color-note-color: rgba(246, 216, 56, 1); --f-theme-settings-accent-color-tip-color: rgba(42, 191, 24, 1); --f-theme-settings-accent-color-warning-color: rgba(222, 27, 27, 1);}';
@@ -39,7 +39,7 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
-        cy.get(RichTextEditor).should('exist');
+        cy.get(RichTextEditorSelector).should('exist');
     });
 
     it('should not be able to input to a callout block when in view mode', () => {
@@ -48,8 +48,8 @@ describe('Callout Block', () => {
         });
 
         mount(<TextBlockWithStubs />);
-        cy.get(HtmlContent).should('have.text', 'Text value');
-        cy.get(RichTextEditor).should('not.exist');
+        cy.get(HtmlContentSelector).should('have.text', 'Text value');
+        cy.get(RichTextEditorSelector).should('not.exist');
     });
 
     it('renders a callout block with the correct layout settings', () => {
@@ -62,9 +62,9 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutBlockSelector).should('have.class', 'tw-flex');
-        cy.get(CalloutBlockSelector).should('have.class', 'tw-justify-end');
-        cy.get(CalloutWrapper).should('have.class', 'tw-px-[30px]').should('have.class', 'tw-py-[25px]');
+        cy.get(CalloutBlockSelector).should('have.class', 'tw-w-fit');
+        cy.get(CalloutBlockSelector).should('have.class', 'tw-ml-auto');
+        cy.get(CalloutBlockSelector).should('have.class', 'tw-px-[30px]').should('have.class', 'tw-py-[25px]');
     });
 
     it('renders a callout block with the correct border radius style', () => {
@@ -79,7 +79,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutWrapper).should('have.css', 'border-radius', '10px 20px 30px 40px');
+        cy.get(CalloutBlockSelector).should('have.css', 'border-radius', '10px 20px 30px 40px');
     });
 
     it('renders a callout block with a predefined icon', () => {
@@ -91,8 +91,8 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIcon).should('exist');
-        cy.get(CalloutIconInfo).should('exist');
+        cy.get(CalloutIconSelector).should('exist');
+        cy.get(CalloutIconInfoSelector).should('exist');
     });
 
     it('renders a callout block with a custom icon', () => {
@@ -106,8 +106,8 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIcon).should('exist');
-        cy.get(CalloutIconCustom).should('exist');
+        cy.get(CalloutIconSelector).should('exist');
+        cy.get(CalloutIconCustomSelector).should('exist');
     });
 
     it('renders a callout block without icon', () => {
@@ -119,7 +119,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIcon).should('not.exist');
+        cy.get(CalloutIconSelector).should('not.exist');
     });
 
     it('renders a callout block without icon when no custom icon url is defined', () => {
@@ -131,7 +131,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIcon).should('not.exist');
+        cy.get(CalloutIconSelector).should('not.exist');
     });
 
     it('renders a callout block with the correct colors for type info', () => {
@@ -144,8 +144,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(26, 199, 211)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(26, 199, 211)');
     });
 
     it('renders a callout block with the correct colors for type note', () => {
@@ -158,8 +158,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(108, 92, 5)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(108, 92, 5)');
     });
 
     it('renders a callout block with the correct colors for type tip', () => {
@@ -172,8 +172,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(42, 191, 24, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(42, 191, 24)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(42, 191, 24, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(42, 191, 24)');
     });
 
     it('renders a callout block with the correct colors for type warning', () => {
@@ -186,8 +186,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(222, 27, 27)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(222, 27, 27)');
     });
 
     it('renders a warning block with the overwritten css variables for the theme styles', () => {
@@ -203,7 +203,7 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should(
             'have.attr',
             'style',
-            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgba(222, 27, 27, 1); --f-theme-settings-heading2-color: rgba(222, 27, 27, 1); --f-theme-settings-heading3-color: rgba(222, 27, 27, 1); --f-theme-settings-heading4-color: rgba(222, 27, 27, 1); --f-theme-settings-custom1-color: rgba(222, 27, 27, 1); --f-theme-settings-custom2-color: rgba(222, 27, 27, 1); --f-theme-settings-custom3-color: rgba(222, 27, 27, 1); --f-theme-settings-body-color: rgba(222, 27, 27, 1); --f-theme-settings-quote-color: rgba(222, 27, 27, 1); --f-theme-settings-link-color: rgba(222, 27, 27, 1); color: rgb(222, 27, 27);'
+            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgba(222, 27, 27, 1); --f-theme-settings-heading2-color: rgba(222, 27, 27, 1); --f-theme-settings-heading3-color: rgba(222, 27, 27, 1); --f-theme-settings-heading4-color: rgba(222, 27, 27, 1); --f-theme-settings-custom1-color: rgba(222, 27, 27, 1); --f-theme-settings-custom2-color: rgba(222, 27, 27, 1); --f-theme-settings-custom3-color: rgba(222, 27, 27, 1); --f-theme-settings-body-color: rgba(222, 27, 27, 1); --f-theme-settings-quote-color: rgba(222, 27, 27, 1); --f-theme-settings-link-color: rgba(222, 27, 27, 1); color: rgb(222, 27, 27); background-color: rgba(222, 27, 27, 0.1);'
         );
     });
 
@@ -220,7 +220,7 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should(
             'have.attr',
             'style',
-            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgb(108, 92, 5); --f-theme-settings-heading2-color: rgb(108, 92, 5); --f-theme-settings-heading3-color: rgb(108, 92, 5); --f-theme-settings-heading4-color: rgb(108, 92, 5); --f-theme-settings-custom1-color: rgb(108, 92, 5); --f-theme-settings-custom2-color: rgb(108, 92, 5); --f-theme-settings-custom3-color: rgb(108, 92, 5); --f-theme-settings-body-color: rgb(108, 92, 5); --f-theme-settings-quote-color: rgb(108, 92, 5); --f-theme-settings-link-color: rgb(108, 92, 5); color: rgb(108, 92, 5);'
+            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgb(108, 92, 5); --f-theme-settings-heading2-color: rgb(108, 92, 5); --f-theme-settings-heading3-color: rgb(108, 92, 5); --f-theme-settings-heading4-color: rgb(108, 92, 5); --f-theme-settings-custom1-color: rgb(108, 92, 5); --f-theme-settings-custom2-color: rgb(108, 92, 5); --f-theme-settings-custom3-color: rgb(108, 92, 5); --f-theme-settings-body-color: rgb(108, 92, 5); --f-theme-settings-quote-color: rgb(108, 92, 5); --f-theme-settings-link-color: rgb(108, 92, 5); color: rgb(108, 92, 5); background-color: rgba(246, 216, 56, 0.1);'
         );
     });
 
@@ -242,8 +242,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(50, 40, 145, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(50, 40, 145)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(50, 40, 145, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(50, 40, 145)');
     });
 
     it('renders a callout block with strong appearance', () => {
@@ -264,7 +264,7 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgb(50, 40, 145)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(255, 255, 255)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgb(50, 40, 145)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(255, 255, 255)');
     });
 });

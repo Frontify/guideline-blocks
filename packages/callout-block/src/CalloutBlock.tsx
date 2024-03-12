@@ -112,7 +112,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }}
                 className={containerDivClassNames}
             >
-                <div data-test-id="callout-wrapper" className={textDivClassNames}>
+                <div data-test-id="callout-content" className={textDivClassNames}>
                     {iconType !== Icon.None && (
                         <CalloutIcon
                             appBridge={appBridge}
