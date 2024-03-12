@@ -7,7 +7,18 @@ import { ICON_ASSET_ID } from '../settings';
 export const CustomCalloutIcon = ({ appBridge }: { appBridge: AppBridgeBlock }) => {
     const { blockAssets } = useBlockAssets(appBridge);
 
-    const iconUrl = blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl.replace('{width}', '24');
+    const icon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
-    return iconUrl ? <img data-test-id="callout-icon-custom" src={iconUrl} alt="custom callout icon" /> : null;
+    const iconUrl = icon?.genericUrl.replace('{width}', '20');
+
+    return iconUrl ? (
+        <img
+            data-test-id="callout-icon-custom"
+            src={iconUrl}
+            alt="custom callout icon"
+            height={icon?.height}
+            width={icon?.width}
+            className="tw-w-5 tw-h-5 tw-object-contain"
+        />
+    ) : null;
 };

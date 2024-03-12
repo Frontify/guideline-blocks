@@ -17,18 +17,18 @@ type CalloutIconProps = {
 export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIconProps) => {
     const icon = calloutIconMap(appBridge)[iconType];
 
-    return icon ? (
+    return (
         <div
             data-test-id="callout-icon"
             className={joinClassNames([
                 isActive ? 'tw-opacity-100' : 'tw-opacity-30',
-                'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
+                'tw-mr-2 tw-h-5 tw-w-5 tw-flex-none',
             ])}
             style={{ color }}
         >
             {icon}
         </div>
-    ) : null;
+    );
 };
 
 export const calloutIconMap = (appBridge: AppBridgeBlock): Record<Icon, ReactNode> => ({
