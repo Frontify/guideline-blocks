@@ -233,14 +233,37 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
     };
 
-    const removeItemById = (itemId: string) => {
-        const itemToRemove = localItems.find((item) => item.id === itemId);
-        const newItems: Item[] = localItems.filter((item) => item.id !== itemId);
-        if (itemToRemove?.imageId && deleteAssetIdsFromKey) {
-            deleteAssetIdsFromKey(IMAGES_ASSET_KEY, [itemToRemove?.imageId]);
-        }
-        setAndSaveItems(newItems);
-    };
+    const saveItems = useCallback(
+        (newItems: Item[]) => {
+            setBlockSettings({
+                items: newItems,
+            });
+        },
+        [setBlockSettings]
+    );
+
+    const setAndSaveItems = useCallback(
+        (newItems: Item[]) => {
+            setLocalItems(newItems);
+            saveItems(newItems);
+        },
+        [saveItems]
+    );
+
+    const removeItemById = useCallback(
+        (itemId: string) => {
+            setLocalItems((prevItems) => {
+                const itemToRemove = prevItems.find((item) => item.id === itemId);
+                const newItems = prevItems.filter((item) => item.id !== itemId);
+                setBlockSettings({ items: newItems });
+                if (itemToRemove?.imageId && deleteAssetIdsFromKey) {
+                    deleteAssetIdsFromKey(IMAGES_ASSET_KEY, [itemToRemove?.imageId]);
+                }
+                return newItems;
+            });
+        },
+        [deleteAssetIdsFromKey, setBlockSettings]
+    );
 
     const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
@@ -260,17 +283,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         },
         [setBlockSettings]
     );
-
-    const setAndSaveItems = (newItems: Item[]) => {
-        setLocalItems(newItems);
-        saveItems(newItems);
-    };
-
-    const saveItems = (newItems: Item[]) => {
-        setBlockSettings({
-            items: newItems,
-        });
-    };
 
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
@@ -303,7 +315,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         id: item.id,
         onChangeItem,
         onChangeLocalItem,
-        onRemoveSelf: () => removeItemById(item.id),
+        onRemoveSelf: removeItemById,
         title: item.title,
         body: item.body,
         type: item.type,

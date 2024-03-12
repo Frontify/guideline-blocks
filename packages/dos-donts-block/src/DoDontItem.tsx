@@ -25,21 +25,7 @@ import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
 import { IMAGES_ASSET_KEY } from './const';
-function useTraceUpdate(props) {
-    const prev = useRef(props);
-    useEffect(() => {
-        const changedProps = Object.entries(props).reduce((ps, [k, v]) => {
-            if (prev.current[k] !== v) {
-                ps[k] = [prev.current[k], v];
-            }
-            return ps;
-        }, {});
-        if (Object.keys(changedProps).length > 0) {
-            console.log('Changed props:', changedProps);
-        }
-        prev.current = props;
-    });
-}
+
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
         id,
@@ -82,7 +68,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         addAssetIdsToKey,
         setActivatorNodeRef,
     } = props;
-    useTraceUpdate(props);
+
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -192,7 +178,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 shouldBeShown={isDragging}
                 toolbarItems={[
                     { type: 'dragHandle', icon: <IconArrowMove16 />, draggableProps, setActivatorNodeRef },
-                    { type: 'button', icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
+                    {
+                        type: 'button',
+                        icon: <IconTrashBin16 />,
+                        tooltip: 'Delete Item',
+                        onClick: () => onRemoveSelf(id),
+                    },
                     {
                         type: 'menu',
                         items: [
@@ -226,7 +217,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 {
                                     title: 'Delete',
                                     icon: <IconTrashBin20 />,
-                                    onClick: onRemoveSelf,
+                                    onClick: () => onRemoveSelf(id),
                                 },
                             ],
                         ],
@@ -341,7 +332,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
 DoDontItem.displayName = 'DoDontItem';
 
-export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
+export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     const { id, editing } = props;
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
@@ -373,4 +364,6 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
             />
         </div>
     );
-};
+});
+
+SortableDoDontItem.displayName = 'SortableDoDontItem';

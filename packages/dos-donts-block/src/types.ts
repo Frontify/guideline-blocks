@@ -81,7 +81,7 @@ export type SortableDoDontItemProps = {
     title?: string;
     body?: string;
     editing: boolean;
-    onRemoveSelf: () => void;
+    onRemoveSelf: (itemId: string) => void;
     hasCustomDoIcon: boolean;
     doIconChoice: ItemIconChoice;
     hasCustomDontIcon: boolean;
