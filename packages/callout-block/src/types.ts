@@ -21,7 +21,7 @@ export enum Appearance {
 
 export const outerWidthMap: Record<Width, string> = {
     [Width.FullWidth]: 'tw-w-full',
-    [Width.HugContents]: 'tw-w-fit',
+    [Width.HugContents]: 'tw-w-fit tw-max-w-full',
 };
 
 export enum Alignment {

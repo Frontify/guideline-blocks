@@ -61,7 +61,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutBlockSelector).should('have.class', 'tw-w-fit');
+        cy.get(CalloutBlockSelector).should('have.class', 'tw-w-fit tw-max-w-full');
         cy.get(CalloutBlockSelector).should('have.class', 'tw-ml-auto');
         cy.get(CalloutBlockSelector).should('have.class', 'tw-px-[30px]').should('have.class', 'tw-py-[25px]');
     });
