@@ -21,7 +21,7 @@ import {
     joinClassNames,
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
@@ -36,7 +36,8 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import { AssetsContext, AssetsProvider, NoAssetsProvider } from './AssetsProvider';
+import { AssetsContext, AssetsProvider } from './AssetsProvider';
+import { DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -49,12 +50,12 @@ export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
         blockSettings.hasCustomDoIcon ||
         blockSettings.hasCustomDontIcon;
 
-    const Provider = shouldFetchAssets ? AssetsProvider : NoAssetsProvider;
-
-    return (
-        <Provider appBridge={appBridge}>
+    return shouldFetchAssets ? (
+        <AssetsProvider appBridge={appBridge}>
             <DosDontsBlock appBridge={appBridge} />
-        </Provider>
+        </AssetsProvider>
+    ) : (
+        <DosDontsBlock appBridge={appBridge} />
     );
 };
 
@@ -112,18 +113,33 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
     const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
-    const { dontIconAsset, doIconAsset, itemImages } = blockAssets ?? {};
+    const itemImages = blockAssets?.[IMAGES_ASSET_KEY];
+    const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
+    const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
 
-    const themeStyle = getComputedStyle(document.body);
-    const defaultDoColor =
-        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
-        DO_COLOR_DEFAULT_VALUE;
-    const defaultDontColor =
-        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
-        DONT_COLOR_DEFAULT_VALUE;
-    const doColor = hasCustomDoColor ? customDoColor : defaultDoColor;
-    const dontColor = hasCustomDontColor ? customDontColor : defaultDontColor;
+    const themeStyle = useMemo(() => getComputedStyle(document.body), []);
+    const defaultDoColor = useMemo(
+        () =>
+            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
+            DO_COLOR_DEFAULT_VALUE,
+        [themeStyle]
+    );
+    const defaultDontColor = useMemo(
+        () =>
+            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
+            DONT_COLOR_DEFAULT_VALUE,
+        [themeStyle]
+    );
+
+    const doColor = useMemo(
+        () => (hasCustomDoColor ? customDoColor : defaultDoColor),
+        [customDoColor, hasCustomDoColor, defaultDoColor]
+    );
+    const dontColor = useMemo(
+        () => (hasCustomDontColor ? customDontColor : defaultDontColor),
+        [customDontColor, hasCustomDontColor, defaultDontColor]
+    );
 
     /**
      * Save the design tokens to the settings initially
@@ -207,7 +223,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             assetIds.push(image.id);
         }
         if (addAssetIdsToKey) {
-            addAssetIdsToKey('itemImages', assetIds).then(() => {
+            addAssetIdsToKey(IMAGES_ASSET_KEY, assetIds).then(() => {
                 setAndSaveItems([...localItems, ...newItems]);
                 setIsUploadLoading(false);
                 setSelectedType(undefined);
@@ -221,26 +237,29 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         const itemToRemove = localItems.find((item) => item.id === itemId);
         const newItems: Item[] = localItems.filter((item) => item.id !== itemId);
         if (itemToRemove?.imageId && deleteAssetIdsFromKey) {
-            deleteAssetIdsFromKey('itemImages', [itemToRemove?.imageId]);
+            deleteAssetIdsFromKey(IMAGES_ASSET_KEY, [itemToRemove?.imageId]);
         }
         setAndSaveItems(newItems);
     };
 
-    const onChangeLocalItem = (itemId: string, value: ValueType, type: ChangeType) => {
+    const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
             previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
         );
-    };
+    }, []);
 
-    const onChangeItem = (itemId: string, value: ValueType, type: ChangeType) => {
-        setLocalItems((previousItems) => {
-            const newItems = previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
-            setBlockSettings({
-                items: newItems,
+    const onChangeItem = useCallback(
+        (itemId: string, value: ValueType, type: ChangeType) => {
+            setLocalItems((previousItems) => {
+                const newItems = previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
+                setBlockSettings({
+                    items: newItems,
+                });
+                return newItems;
             });
-            return newItems;
-        });
-    };
+        },
+        [setBlockSettings]
+    );
 
     const setAndSaveItems = (newItems: Item[]) => {
         setLocalItems(newItems);

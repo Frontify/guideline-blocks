@@ -14,7 +14,7 @@ type AssetsContext = {
     deleteAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
 };
 
-export const AssetsContext = createContext<AssetsContext>({});
+export const AssetsContext = createContext<AssetsContext>({} as AssetsContext);
 
 export const AssetsProvider = ({ appBridge, children }: AssetsProviderProps) => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -23,8 +23,4 @@ export const AssetsProvider = ({ appBridge, children }: AssetsProviderProps) => 
             {children}
         </AssetsContext.Provider>
     );
-};
-
-export const NoAssetsProvider = ({ children }: { children: ReactNode }) => {
-    return <AssetsContext.Provider value={{}}>{children}</AssetsContext.Provider>;
 };

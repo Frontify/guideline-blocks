@@ -42,43 +42,40 @@ const ImageComponent = ({
             <div
                 {...draggableProps}
                 ref={setContainerRef}
+                style={{ height: imageHeight, borderRadius, border, background }}
                 className={joinClassNames([
-                    'tw-relative tw-w-full',
+                    'tw-overflow-hidden tw-relative tw-w-full',
                     isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
                 ])}
             >
-                <div
-                    style={{ height: imageHeight, borderRadius, border, background }}
-                    className="tw-w-full tw-overflow-hidden"
-                >
-                    {containerWidth && (
-                        <ResponsiveImage
-                            containerWidth={containerWidth}
-                            image={image}
-                            className={joinClassNames([
-                                'tw-h-full',
-                                (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                    imageDisplay === ImageFitChoice.FILL &&
-                                    'tw-object-cover',
-                                (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                    imageDisplay === ImageFitChoice.FIT &&
-                                    'tw-object-contain',
-                            ])}
-                        />
-                    )}
-                    {hasStrikethrough && (
-                        <div
-                            style={{ backgroundColor: toRgbaString(dontColor) }}
-                            className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
-                        />
-                    )}
-                </div>
+                {containerWidth && (
+                    <ResponsiveImage
+                        containerWidth={containerWidth}
+                        image={image}
+                        className={joinClassNames([
+                            'tw-h-full',
+                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                                imageDisplay === ImageFitChoice.FILL &&
+                                'tw-object-cover',
+                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                                imageDisplay === ImageFitChoice.FIT &&
+                                'tw-object-contain',
+                        ])}
+                        alt=""
+                    />
+                )}
+                {hasStrikethrough && (
+                    <div
+                        style={{ backgroundColor: toRgbaString(dontColor) }}
+                        className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
+                    />
+                )}
             </div>
         ) : null;
 
     return (
         <div className="tw-mb-3">
-            {(!image && isEditing) || isUploadLoading ? (
+            {isEditing && (!image || isUploadLoading) ? (
                 <div style={{ height: imageHeight === 'auto' ? '180px' : imageHeight }}>
                     <BlockInjectButton
                         onAssetChooseClick={onAssetChooseClick}

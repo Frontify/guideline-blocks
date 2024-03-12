@@ -24,7 +24,22 @@ import { CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, 
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-
+import { IMAGES_ASSET_KEY } from './const';
+function useTraceUpdate(props) {
+    const prev = useRef(props);
+    useEffect(() => {
+        const changedProps = Object.entries(props).reduce((ps, [k, v]) => {
+            if (prev.current[k] !== v) {
+                ps[k] = [prev.current[k], v];
+            }
+            return ps;
+        }, {});
+        if (Object.keys(changedProps).length > 0) {
+            console.log('Changed props:', changedProps);
+        }
+        prev.current = props;
+    });
+}
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
         id,
@@ -67,6 +82,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         addAssetIdsToKey,
         setActivatorNodeRef,
     } = props;
+    useTraceUpdate(props);
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -96,7 +112,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 setIsUploadLoading(true);
                 const imageId = result[0]?.id;
                 if (addAssetIdsToKey) {
-                    addAssetIdsToKey('itemImages', [imageId]).then(() => {
+                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
                         onChangeItem(id, imageId, 'imageId');
                         setIsUploadLoading(false);
                     });
@@ -134,7 +150,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             (async (uploadResults) => {
                 const imageId = uploadResults?.[0]?.id;
                 if (addAssetIdsToKey) {
-                    addAssetIdsToKey('itemImages', [imageId]).then(() => {
+                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
                         setIsUploadLoading(false);
                         onChangeItem(id, imageId, 'imageId');
                     });
@@ -168,7 +184,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     );
 
     return (
-        <div className="tw-bg-base tw-relative" style={{ ...(!isDragging ? { zIndex: undefined } : {}) }}>
+        <div className="tw-bg-base tw-relative">
             <BlockItemWrapper
                 isDragging={isDragging}
                 shouldHideWrapper={replaceWithPlaceholder || !editing}
@@ -246,7 +262,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     className="tw-flex tw-items-start tw-font-semibold tw-text-l"
                     style={{ color: headingColor }}
                 >
-                    {style === DoDontStyle.Icons && (title || body || editing) && (
+                    {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
                         <div
                             data-test-id="dos-donts-icon"
                             style={{
@@ -316,7 +332,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',
-                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-sm tw-bg-box-selected-hover',
                 ])}
             />
         </div>

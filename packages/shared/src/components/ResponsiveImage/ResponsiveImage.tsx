@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { CSSProperties } from 'react';
+import React, { type CSSProperties } from 'react';
 import { Asset } from '@frontify/app-bridge';
 import { ImageFormat } from '../../types';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -8,7 +8,7 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 type ResponsiveImageProps = {
     image: Asset;
     containerWidth: number;
-    altText?: string;
+    alt: string;
     format?: ImageFormat;
     quality?: number;
     className?: string;
@@ -18,7 +18,7 @@ type ResponsiveImageProps = {
 export const ResponsiveImage = ({
     image,
     containerWidth,
-    altText,
+    alt,
     format = ImageFormat.WEBP,
     quality = 100,
     className = '',
@@ -50,7 +50,7 @@ export const ResponsiveImage = ({
             width={imageWidth}
             height={imageHeight}
             style={style}
-            alt={altText ?? ''}
+            alt={alt}
         />
     );
 };

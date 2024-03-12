@@ -38,7 +38,7 @@ export const ImageComponent = ({
         <ResponsiveImage
             image={image}
             containerWidth={containerWidth}
-            altText={blockSettings.altText}
+            alt={blockSettings.altText ?? ''}
             style={{ maxWidth: image.width }}
         />
     );
