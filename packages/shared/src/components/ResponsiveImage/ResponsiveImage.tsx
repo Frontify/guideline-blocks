@@ -17,7 +17,7 @@ export const ResponsiveImage = ({
     containerWidth,
     altText,
     format = ImageFormat.WEBP,
-    quality = 100,
+    quality = 75,
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidth = image.width ?? 0;
