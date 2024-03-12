@@ -9,7 +9,8 @@ export const CustomCalloutIcon = ({ appBridge }: { appBridge: AppBridgeBlock }) 
 
     const icon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
-    const iconUrl = icon?.genericUrl.replace('{width}', '20');
+    const devicePixelRatio = Math.max(window.devicePixelRatio, 1);
+    const iconUrl = icon?.genericUrl.replace('{width}', (20 * devicePixelRatio).toString());
 
     return iconUrl ? (
         <img

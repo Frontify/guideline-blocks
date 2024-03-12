@@ -33,7 +33,7 @@ export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIco
     );
 };
 
-export const calloutIconMap = (appBridge: AppBridgeBlock): Record<Icon, ReactNode> => ({
+const calloutIconMap = (appBridge: AppBridgeBlock): Record<Icon, ReactNode> => ({
     none: null,
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
