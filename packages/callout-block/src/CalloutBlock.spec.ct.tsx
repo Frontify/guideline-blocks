@@ -9,8 +9,7 @@ import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const RichTextEditorSelector = '[data-test-id="rich-text-editor"]';
 const HtmlContentSelector = '[data-test-id="rte-content-html"]';
-const CalloutContentSelector = '[data-test-id="callout-content"]';
-const CalloutIconSelector = '[data-test-id="callout-icon"]';
+const CalloutIconWrapperSelector = '[data-test-id="callout-icon-wrapper"]';
 const CalloutIconCustomSelector = '[data-test-id="callout-icon-custom"]';
 const CalloutIconInfoSelector = '[data-test-id="callout-icon-info"]';
 
@@ -91,7 +90,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIconSelector).should('exist');
+        cy.get(CalloutIconWrapperSelector).should('exist');
         cy.get(CalloutIconInfoSelector).should('exist');
     });
 
@@ -106,7 +105,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIconSelector).should('exist');
+        cy.get(CalloutIconWrapperSelector).should('exist');
         cy.get(CalloutIconCustomSelector).should('exist');
     });
 
@@ -119,7 +118,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIconSelector).should('not.exist');
+        cy.get(CalloutIconWrapperSelector).should('not.exist');
     });
 
     it('renders a callout block without icon when no custom icon url is defined', () => {
@@ -131,7 +130,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutIconSelector).should('not.exist');
+        cy.get(CalloutIconCustomSelector).should('not.exist');
     });
 
     it('renders a callout block with the correct colors for type info', () => {

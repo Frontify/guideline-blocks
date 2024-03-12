@@ -19,10 +19,12 @@ export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIco
 
     return (
         <div
-            data-test-id="callout-icon"
+            data-test-id="callout-icon-wrapper"
             className={joinClassNames([
                 isActive ? 'tw-opacity-100' : 'tw-opacity-30',
-                'tw-mr-2 tw-h-5 tw-w-5 tw-flex-none',
+                'tw-flex-none',
+                // Only apply margin if icon or custom asset is defined
+                '[&>*:first-child]:tw-mr-2',
             ])}
             style={{ color }}
         >
