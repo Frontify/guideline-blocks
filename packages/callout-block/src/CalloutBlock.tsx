@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import {
     BlockProps,
@@ -17,7 +17,6 @@ import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
-import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -26,7 +25,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
 
     if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
@@ -80,9 +78,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
-    const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
-    const showIcon = blockSettings.iconSwitch ? !!iconUrl : blockSettings.iconType !== Icon.None;
-
     const overwrittenThemeSettings = {
         [`${THEME_PREFIX}heading1-color`]: textColor,
         [`${THEME_PREFIX}heading2-color`]: textColor,
@@ -110,9 +105,9 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ...customCornerRadiusStyle,
                     }}
                 >
-                    {showIcon && (
+                    {blockSettings.iconType !== Icon.None && (
                         <CalloutIcon
-                            iconUrl={iconUrl}
+                            appBridge={appBridge}
                             isActive={hasRichTextValue(blockSettings.textValue)}
                             iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
                             color={textColor}

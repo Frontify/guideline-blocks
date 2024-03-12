@@ -5,30 +5,36 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import type { ReactNode } from 'react';
 
 import { Icon } from '../types';
+import { AppBridgeBlock } from '@frontify/app-bridge';
+import { CustomCalloutIcon } from './CustomCalloutIcon';
 
 type CalloutIconProps = {
     iconType: Icon;
     isActive: boolean;
-    iconUrl?: string;
+    appBridge: AppBridgeBlock;
     color?: string;
 };
-export const CalloutIcon = ({ iconType, isActive, iconUrl, color }: CalloutIconProps) => (
-    <div
-        data-test-id="callout-icon"
-        className={joinClassNames([
-            isActive ? 'tw-opacity-100' : 'tw-opacity-30',
-            'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
-        ])}
-        style={{ color }}
-    >
-        {calloutIconMap(iconUrl)[iconType]}
-    </div>
-);
+export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIconProps) => {
+    const icon = calloutIconMap(appBridge)[iconType];
 
-export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactNode> => ({
+    return icon ? (
+        <div
+            data-test-id="callout-icon"
+            className={joinClassNames([
+                isActive ? 'tw-opacity-100' : 'tw-opacity-30',
+                'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
+            ])}
+            style={{ color }}
+        >
+            {icon}
+        </div>
+    ) : null;
+};
+
+export const calloutIconMap = (appBridge: AppBridgeBlock): Record<Icon, ReactNode> => ({
     none: null,
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,
-    custom: <img data-test-id="callout-icon-custom" src={iconUrl} alt="custom callout icon" />,
+    custom: <CustomCalloutIcon appBridge={appBridge} />,
 });
