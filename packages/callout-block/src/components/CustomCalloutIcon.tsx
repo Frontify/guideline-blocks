@@ -16,8 +16,6 @@ export const CustomCalloutIcon = ({ appBridge }: { appBridge: AppBridgeBlock }) 
             data-test-id="callout-icon-custom"
             src={iconUrl}
             alt="custom callout icon"
-            height={icon?.height}
-            width={icon?.width}
             className="tw-w-5 tw-h-5 tw-object-contain"
         />
     ) : null;

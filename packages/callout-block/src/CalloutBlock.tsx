@@ -17,8 +17,8 @@ import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
-import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import '@frontify/guideline-blocks-settings/styles';
 import 'tailwindcss/tailwind.css';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -56,10 +56,11 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
+        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
 
     const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center',
+        'tw-flex tw-items-center tw-min-h-5',
         '[&>div>*:first-child]:tw-mt-0', // Remove margin top from first child in view mode
         '[&>div>*:first-child>span]:!tw-mt-0',
         '[&>div>div>*:first-child]:tw-mt-0', // Remove margin top from first child in edit mode
@@ -68,9 +69,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         '[&>div>*:last-child>span]:!tw-mb-0',
         '[&>div>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in edit mode
         '[&>div>div>*:last-child>span]:!tw-mb-0',
-        '[&>div:first-child]:tw-min-h-[20px]', // Ensure height does not shift when no icon is present
-        blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
-        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
 
     const customPaddingStyle = {
@@ -104,16 +102,17 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div className="callout-block">
-            <div data-test-id="callout-block" style={overwrittenThemeSettings} className={containerDivClassNames}>
-                <div
-                    data-test-id="callout-wrapper"
-                    className={textDivClassNames}
-                    style={{
-                        backgroundColor,
-                        ...customPaddingStyle,
-                        ...customCornerRadiusStyle,
-                    }}
-                >
+            <div
+                data-test-id="callout-block"
+                style={{
+                    ...overwrittenThemeSettings,
+                    backgroundColor,
+                    ...customPaddingStyle,
+                    ...customCornerRadiusStyle,
+                }}
+                className={containerDivClassNames}
+            >
+                <div data-test-id="callout-wrapper" className={textDivClassNames}>
                     {iconType !== Icon.None && (
                         <CalloutIcon
                             appBridge={appBridge}
