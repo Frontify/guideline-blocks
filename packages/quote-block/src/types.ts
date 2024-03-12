@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { CSSProperties } from 'react';
 
@@ -78,3 +79,9 @@ export enum QuotationMarksAnchoring {
     FullWidth = 'fullWidth',
     HugText = 'hugText',
 }
+
+export type CustomIconProps = {
+    style: CSSProperties;
+    customIconId: string;
+    appBridge: AppBridgeBlock;
+};

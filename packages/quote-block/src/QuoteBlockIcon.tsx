@@ -1,35 +1,31 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
-
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 
 export type QuoteBlockIconProps = {
     customIconId: string;
-    blockAssets: Record<string, Asset[]>;
+    appBridge: AppBridgeBlock;
     quoteStyle: QuoteStyle;
     color: string;
     isCustomSize?: boolean;
     sizeValue?: string;
     sizeChoice?: QuoteSize;
-    isCustomQuoteStyle?: boolean;
 };
 
 export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     customIconId,
-    blockAssets,
     quoteStyle,
     color,
     isCustomSize,
     sizeValue,
     sizeChoice,
-    isCustomQuoteStyle,
+    appBridge,
 }) => {
-    const customIconUrl = isCustomQuoteStyle ? blockAssets?.[customIconId]?.[0]?.genericUrl : '';
     const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
-    return quoteIconMap(size, color, customIconUrl)[quoteStyle];
+    return quoteIconMap(size, color, customIconId, appBridge)[quoteStyle];
 };

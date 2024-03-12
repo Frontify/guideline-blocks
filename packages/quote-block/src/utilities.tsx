@@ -12,13 +12,16 @@ import { IconSingleChevronRight } from './foundation/IconSingleChevronRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
 import { QuoteStyle } from './types';
+import { CustomIcon } from './CustomIcon';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
 
 export const quoteIconMap = (
     size: string,
     color: string,
-    customIconUrl?: string
+    customIconId: string,
+    appBridge: AppBridgeBlock
 ): Record<QuoteStyle, ReactElement | null> => {
     const style: CSSProperties = {
         color,
@@ -40,7 +43,7 @@ export const quoteIconMap = (
         HookBracketLeft: <IconHookBracketLeft style={style} />,
         HookBracketRight: <IconHookBracketRight style={style} />,
         None: null,
-        Custom: customIconUrl ? <img style={style} alt="Quote Icon" src={customIconUrl} /> : <> </>,
+        Custom: <CustomIcon customIconId={customIconId} style={style} appBridge={appBridge} />,
     };
 };
 
