@@ -95,10 +95,13 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const imageId = result[0]?.id;
-                addAssetIdsToKey('itemImages', [imageId]).then(() => {
-                    onChangeItem(id, imageId, 'imageId');
-                    setIsUploadLoading(false);
-                });
+                if (addAssetIdsToKey) {
+                    addAssetIdsToKey('itemImages', [imageId]).then(() => {
+                        onChangeItem(id, imageId, 'imageId');
+                        setIsUploadLoading(false);
+                    });
+                }
+
                 closeAssetChooser();
             },
             {
@@ -130,10 +133,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         if (doneAll) {
             (async (uploadResults) => {
                 const imageId = uploadResults?.[0]?.id;
-                addAssetIdsToKey('itemImages', [imageId]).then(() => {
-                    setIsUploadLoading(false);
-                    onChangeItem(id, imageId, 'imageId');
-                });
+                if (addAssetIdsToKey) {
+                    addAssetIdsToKey('itemImages', [imageId]).then(() => {
+                        setIsUploadLoading(false);
+                        onChangeItem(id, imageId, 'imageId');
+                    });
+                }
             })(uploadResults);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

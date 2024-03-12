@@ -105,7 +105,7 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    addAssetIdsToKey: (key: string, newAssetIds: number[]) => Promise<void>;
+    addAssetIdsToKey?: (key: string, newAssetIds: number[]) => Promise<void>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
