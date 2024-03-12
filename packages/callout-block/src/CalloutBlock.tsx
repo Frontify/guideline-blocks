@@ -12,12 +12,14 @@ import {
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
 import { CSSProperties, ReactElement, useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
+
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+
+import '@frontify/guideline-blocks-settings/styles';
+import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
