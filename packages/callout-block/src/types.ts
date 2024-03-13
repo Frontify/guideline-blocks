@@ -20,8 +20,8 @@ export enum Appearance {
 }
 
 export const outerWidthMap: Record<Width, string> = {
-    [Width.FullWidth]: 'tw-block',
-    [Width.HugContents]: 'tw-flex',
+    [Width.FullWidth]: 'tw-w-full',
+    [Width.HugContents]: 'tw-w-fit tw-max-w-full',
 };
 
 export enum Alignment {
@@ -31,9 +31,9 @@ export enum Alignment {
 }
 
 export const alignmentMap: Record<Alignment, string> = {
-    [Alignment.Left]: 'tw-justify-start',
-    [Alignment.Center]: 'tw-justify-center',
-    [Alignment.Right]: 'tw-justify-end',
+    [Alignment.Left]: 'tw-mr-auto',
+    [Alignment.Center]: 'tw-mx-auto',
+    [Alignment.Right]: 'tw-ml-auto',
 };
 
 export enum Padding {
