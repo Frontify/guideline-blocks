@@ -3,9 +3,9 @@
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
-import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';
+import { QuoteSize, type QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 
 export type QuoteBlockIconProps = {
     customIconId: string;

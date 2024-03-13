@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets } from '@frontify/app-bridge';
-import { CustomIconProps } from './types';
+import { type CustomIconProps } from './types';
 
 export const CustomIcon = ({ style, customIconId, appBridge }: CustomIconProps) => {
     const { blockAssets } = useBlockAssets(appBridge);

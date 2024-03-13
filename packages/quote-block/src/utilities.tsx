@@ -11,9 +11,9 @@ import { IconSingleChevronLeft } from './foundation/IconSingleChevronLeft';
 import { IconSingleChevronRight } from './foundation/IconSingleChevronRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
-import { QuoteStyle } from './types';
+import { type QuoteStyle } from './types';
 import { CustomIcon } from './CustomIcon';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
 

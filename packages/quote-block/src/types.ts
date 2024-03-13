@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
-import { CSSProperties } from 'react';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
+import { type Color } from '@frontify/fondue';
+import { type CSSProperties } from 'react';
 
 export type Settings = {
     type?: QuoteType;
