@@ -1,7 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { AssetDummy, TemplateDummy, UserDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import {
+    AssetDummy,
+    TemplateDummy,
+    UserDummy,
+    getAppBridgeBlockStub,
+    withAppBridgeBlockStubs,
+} from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import {
@@ -112,11 +118,10 @@ describe('Template Block', () => {
     });
 
     it('should render title and description RTEs if block in edit mode', () => {
-        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+        const appBridgeStub = getAppBridgeBlockStub({
             editorState: true,
         });
-
-        mount(<TemplateBlockWithStubs />);
+        mount(<TemplateBlock appBridge={{ ...appBridgeStub, subscribe: cy.stub() }} />);
         cy.get(TITLE_EDITOR_SELECTOR).should('exist');
         cy.get(DESCRIPTION_EDITOR_SELECTOR).should('exist');
     });

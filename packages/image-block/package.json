@@ -32,9 +32,9 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^3.3.1",
+        "@frontify/app-bridge": "^3.5.1",
         "@frontify/fondue": "12.0.0-beta.415",
-        "@frontify/guideline-blocks-settings": "^0.34.4",
+        "@frontify/guideline-blocks-settings": "^0.34.5",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/focus": "^3.14.0",
         "@testing-library/react": "^14.1.2",
