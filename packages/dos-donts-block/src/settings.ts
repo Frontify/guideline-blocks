@@ -24,24 +24,24 @@ import {
 
 export const settings = defineSettings({
     main: [
-        // {
-        //     id: 'mode',
-        //     type: 'dropdown',
-        //     size: 'large',
-        //     defaultValue: BlockMode.TEXT,
-        //     choices: [
-        //         {
-        //             value: BlockMode.TEXT,
-        //             icon: IconEnum.TextAlignmentLeft20,
-        //             label: 'Text',
-        //         },
-        //         {
-        //             value: BlockMode.TEXT_AND_IMAGE,
-        //             icon: IconEnum.MediaObjectTextBottom20,
-        //             label: 'Text and Image',
-        //         },
-        //     ],
-        // },
+        {
+            id: 'mode',
+            type: 'dropdown',
+            size: 'large',
+            defaultValue: BlockMode.TEXT,
+            choices: [
+                {
+                    value: BlockMode.TEXT,
+                    icon: IconEnum.TextAlignmentLeft20,
+                    label: 'Text',
+                },
+                {
+                    value: BlockMode.TEXT_AND_IMAGE,
+                    icon: IconEnum.MediaObjectTextBottom20,
+                    label: 'Text and Image',
+                },
+            ],
+        },
     ],
     basics: [
         {

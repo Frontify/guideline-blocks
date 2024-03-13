@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import {
     BlockProps,
@@ -11,14 +11,15 @@ import {
     joinClassNames,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, ReactElement, useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
+import { CSSProperties, ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
+
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
-import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+
+import '@frontify/fondue/style';
+import '@frontify/guideline-blocks-settings/styles';
+import 'tailwindcss/tailwind.css';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -26,17 +27,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
-
-    if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
-        // workaround as the appearance could be hubAppearance
-        setBlockSettings({ appearance: Appearance.Light });
-    }
-
-    const containerDivClassNames = joinClassNames([
-        outerWidthMap[blockSettings.width],
-        blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
-    ]);
 
     useEffect(() => {
         const updateStyles = () => {
@@ -54,8 +44,23 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         };
     }, [appearance, type]);
 
+    const handleTextChange = useCallback((textValue: string) => setBlockSettings({ textValue }), [setBlockSettings]);
+
+    const plugins = useMemo(() => getDefaultPluginsWithLinkChooser(appBridge), [appBridge]);
+
+    if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
+        // workaround as the appearance could be hubAppearance
+        setBlockSettings({ appearance: Appearance.Light });
+    }
+
+    const containerDivClassNames = joinClassNames([
+        outerWidthMap[blockSettings.width],
+        blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
+        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
+    ]);
+
     const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center',
+        'tw-flex tw-items-center tw-min-h-5',
         '[&>div>*:first-child]:tw-mt-0', // Remove margin top from first child in view mode
         '[&>div>*:first-child>span]:!tw-mt-0',
         '[&>div>div>*:first-child]:tw-mt-0', // Remove margin top from first child in edit mode
@@ -64,8 +69,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         '[&>div>*:last-child>span]:!tw-mb-0',
         '[&>div>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in edit mode
         '[&>div>div>*:last-child>span]:!tw-mb-0',
-        blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
-        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
 
     const customPaddingStyle = {
@@ -79,9 +82,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
-
-    const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
-    const showIcon = blockSettings.iconSwitch ? !!iconUrl : blockSettings.iconType !== Icon.None;
 
     const overwrittenThemeSettings = {
         [`${THEME_PREFIX}heading1-color`]: textColor,
@@ -98,33 +98,36 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         color: textColor,
     } as CSSProperties;
 
+    const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
+
     return (
         <div className="callout-block">
-            <div data-test-id="callout-block" style={overwrittenThemeSettings} className={containerDivClassNames}>
-                <div
-                    data-test-id="callout-wrapper"
-                    className={textDivClassNames}
-                    style={{
-                        backgroundColor,
-                        ...customPaddingStyle,
-                        ...customCornerRadiusStyle,
-                    }}
-                >
-                    {showIcon && (
+            <div
+                data-test-id="callout-block"
+                style={{
+                    ...overwrittenThemeSettings,
+                    backgroundColor,
+                    ...customPaddingStyle,
+                    ...customCornerRadiusStyle,
+                }}
+                className={containerDivClassNames}
+            >
+                <div data-test-id="callout-content" className={textDivClassNames}>
+                    {iconType !== Icon.None && (
                         <CalloutIcon
-                            iconUrl={iconUrl}
+                            appBridge={appBridge}
                             isActive={hasRichTextValue(blockSettings.textValue)}
-                            iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                            iconType={iconType}
                             color={textColor}
                         />
                     )}
                     <RichTextEditor
                         id={appBridge.getBlockId().toString()}
                         isEditing={isEditing}
-                        onTextChange={(textValue) => setBlockSettings({ textValue })}
+                        onTextChange={handleTextChange}
                         placeholder="Type your text here"
                         value={blockSettings.textValue}
-                        plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                        plugins={plugins}
                     />
                 </div>
             </div>
