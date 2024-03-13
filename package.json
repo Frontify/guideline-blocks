@@ -48,6 +48,9 @@
     "pnpm": {
         "overrides": {
             "@codesandbox/sandpack-react@^2.12.1>@codesandbox/sandpack-client": "2.10.0"
+        },
+        "patchedDependencies": {
+            "@udecode/plate-emoji@30.7.0": "patches/@udecode__plate-emoji@30.7.0.patch"
         }
     }
 }

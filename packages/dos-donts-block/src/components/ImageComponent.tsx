@@ -3,11 +3,11 @@
 import { IconPlus32 } from '@frontify/fondue';
 import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, ImageComponentProps, ImageFitChoice } from '../types';
+import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 const ImageComponent = ({
     isEditing,
-    src,
-    columns,
+    image,
     onAssetChooseClick,
     onUploadClick,
     isUploadLoading,
@@ -27,7 +27,7 @@ const ImageComponent = ({
     border,
 }: ImageComponentProps) => {
     const imageHeight = isCustomImageHeight ? customImageHeightValue : IMAGE_HEIGHT_VALUES[imageHeightChoice];
-
+    const { containerWidth, setContainerRef } = useImageContainer();
     const borderRadius = hasRadius ? radiusValue : radiusStyleMap[radiusChoice];
 
     const background =
@@ -37,20 +37,23 @@ const ImageComponent = ({
             ? toRgbaString(backgroundColor)
             : '';
 
-    const getImage = () => {
-        const width = (isEditing ? 800 : 800 / columns) * (window?.devicePixelRatio ?? 1);
-
-        return src ? (
-            <div className="tw-relative tw-w-full">
-                <div
-                    style={{ height: imageHeight, borderRadius, border, background }}
-                    className="tw-w-full tw-overflow-hidden"
-                >
-                    <img
-                        {...draggableProps}
+    const getImage = () =>
+        image ? (
+            <div
+                {...draggableProps}
+                ref={setContainerRef}
+                style={{ height: imageHeight, borderRadius, border, background }}
+                className={joinClassNames([
+                    'tw-overflow-hidden tw-relative tw-w-full',
+                    isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
+                ])}
+            >
+                {containerWidth && (
+                    <ResponsiveImage
+                        containerWidth={containerWidth}
+                        image={image}
                         className={joinClassNames([
-                            'tw-w-full tw-h-full',
-                            isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
+                            'tw-h-full',
                             (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
                                 imageDisplay === ImageFitChoice.FILL &&
                                 'tw-object-cover',
@@ -58,23 +61,21 @@ const ImageComponent = ({
                                 imageDisplay === ImageFitChoice.FIT &&
                                 'tw-object-contain',
                         ])}
-                        src={src.replace('{width}', width.toString())}
                         alt=""
                     />
-                    {hasStrikethrough && (
-                        <div
-                            style={{ backgroundColor: toRgbaString(dontColor) }}
-                            className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
-                        />
-                    )}
-                </div>
+                )}
+                {hasStrikethrough && (
+                    <div
+                        style={{ backgroundColor: toRgbaString(dontColor) }}
+                        className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
+                    />
+                )}
             </div>
         ) : null;
-    };
 
     return (
         <div className="tw-mb-3">
-            {(!src && isEditing) || isUploadLoading ? (
+            {isEditing && (!image || isUploadLoading) ? (
                 <div style={{ height: imageHeight === 'auto' ? '180px' : imageHeight }}>
                     <BlockInjectButton
                         onAssetChooseClick={onAssetChooseClick}

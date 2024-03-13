@@ -1,22 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 import { Asset } from '@frontify/app-bridge';
 import { ImageFormat } from '../../types';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 
 type ResponsiveImageProps = {
     image: Asset;
     containerWidth: number;
-    altText?: string;
+    alt: string;
     format?: ImageFormat;
     quality?: number;
+    className?: string;
+    style?: CSSProperties;
 };
 
 export const ResponsiveImage = ({
     image,
     containerWidth,
-    altText,
+    alt,
     format = ImageFormat.WEBP,
+    className = '',
+    style,
     quality = 75,
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
@@ -39,13 +44,13 @@ export const ResponsiveImage = ({
     return (
         <img
             data-test-id="image-block-img"
-            className="tw-flex tw-w-full"
+            className={joinClassNames(['tw-flex tw-w-full', className])}
             loading="lazy"
             src={sourceOptimised}
             width={imageWidth}
             height={imageHeight}
-            style={{ maxWidth: imageWidth }}
-            alt={altText}
+            style={style}
+            alt={alt}
         />
     );
 };

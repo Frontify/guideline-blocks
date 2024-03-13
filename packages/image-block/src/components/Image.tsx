@@ -34,7 +34,14 @@ export const ImageComponent = ({
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const { isFocused, focusProps } = useFocusRing();
 
-    const Image = <ResponsiveImage image={image} containerWidth={containerWidth} altText={blockSettings.altText} />;
+    const Image = (
+        <ResponsiveImage
+            image={image}
+            containerWidth={containerWidth}
+            alt={blockSettings.altText ?? ''}
+            style={{ maxWidth: image.width }}
+        />
+    );
 
     const props = {
         ...focusProps,

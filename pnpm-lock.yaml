@@ -7,6 +7,11 @@ settings:
 overrides:
   '@codesandbox/sandpack-react@^2.12.1>@codesandbox/sandpack-client': 2.10.0
 
+patchedDependencies:
+  '@udecode/plate-emoji@30.7.0':
+    hash: nnzadsx7u627smwweuslw2wgqa
+    path: patches/@udecode__plate-emoji@30.7.0.patch
+
 importers:
 
   .:
@@ -3742,7 +3747,7 @@ packages:
       '@udecode/plate-code-block': 30.7.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-combobox': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-core': 30.4.5(@types/react@18.2.56)(immer@9.0.12)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
-      '@udecode/plate-emoji': 30.7.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+      '@udecode/plate-emoji': 30.7.0(patch_hash=nnzadsx7u627smwweuslw2wgqa)(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-floating': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-indent': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
       '@udecode/plate-link': 30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
@@ -6779,7 +6784,7 @@ packages:
       - scheduler
     dev: false
 
-  /@udecode/plate-emoji@30.7.0(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
+  /@udecode/plate-emoji@30.7.0(patch_hash=nnzadsx7u627smwweuslw2wgqa)(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
     resolution: {integrity: sha512-wQSd82O03qNnVfEO6XDd7d87tdZzHl9c8b7rNxuCLV1onWWnrztWO3cJgsSWY/Urkg6NxhUZovanQmEoKwx9uQ==}
     peerDependencies:
       '@udecode/plate-common': '>=30.4.5 < 31'
@@ -6800,6 +6805,7 @@ packages:
       slate-hyperscript: 0.100.0(slate@0.102.0)
       slate-react: 0.102.0(react-dom@18.2.0)(react@18.2.0)(slate@0.102.0)
     dev: false
+    patched: true
 
   /@udecode/plate-floating@30.5.3(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0):
     resolution: {integrity: sha512-9KxpZdKLy45a3Z+MJqSGmuJKQrl7CrNsLyUdjKD4Iqd1DIdBwl65dGqTmgI1EycF2jUsWIrgGE3W71f7E5/JdA==}
