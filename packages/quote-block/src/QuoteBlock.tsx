@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     AutoformatPlugin,
     BoldPlugin,
@@ -44,7 +44,6 @@ customPlugins
 export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const isFullWidth =
@@ -90,8 +89,8 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div className={getWrapperClasses()}>
                     {isQuotationMarkType && (
                         <QuoteBlockIcon
+                            appBridge={appBridge}
                             color={iconColor}
-                            blockAssets={blockAssets}
                             isCustomSize={blockSettings.isCustomSize}
                             sizeValue={sizeValue}
                             sizeChoice={blockSettings.sizeChoice}
@@ -101,7 +100,6 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                     ? QuoteStyle.Custom
                                     : blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp
                             }
-                            isCustomQuoteStyle={blockSettings.isCustomQuoteStyleLeft}
                         />
                     )}
 
@@ -129,8 +127,8 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     </div>
                     {isQuotationMarkType && (
                         <QuoteBlockIcon
+                            appBridge={appBridge}
                             color={iconColor}
-                            blockAssets={blockAssets}
                             isCustomSize={blockSettings.isCustomSize}
                             sizeValue={sizeValue}
                             sizeChoice={blockSettings.sizeChoice}
@@ -140,7 +138,6 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                     ? QuoteStyle.Custom
                                     : blockSettings.quoteStyleRight ?? QuoteStyle.None
                             }
-                            isCustomQuoteStyle={blockSettings.isCustomQuoteStyleRight}
                         />
                     )}
                 </div>
