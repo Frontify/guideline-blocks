@@ -1,13 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import {
-    AssetDummy,
-    TemplateDummy,
-    UserDummy,
-    getAppBridgeBlockStub,
-    withAppBridgeBlockStubs,
-} from '@frontify/app-bridge';
+import { AssetDummy, TemplateDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import {
@@ -63,10 +57,6 @@ const getTemplateDummyWithPages = () => {
 };
 
 describe('Template Block', () => {
-    beforeEach(() => {
-        document.body.classList.add('state-authenticated');
-    });
-
     it('should render an empty slate if no template provided', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock);
 
@@ -94,10 +84,9 @@ describe('Template Block', () => {
             blockTemplates: {
                 template: [getTemplateDummyWithPages()],
             },
-            user: UserDummy.with(0),
+            isAuthenticated: false,
         });
 
-        document.body.classList.remove('state-authenticated');
         mount(<TemplateBlockWithStubs />);
         cy.get(BLOCK_CONTAINER_SELECTOR).should('exist');
         cy.wait(100);
