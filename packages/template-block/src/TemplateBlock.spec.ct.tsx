@@ -63,10 +63,6 @@ const getTemplateDummyWithPages = () => {
 };
 
 describe('Template Block', () => {
-    beforeEach(() => {
-        document.body.classList.add('state-authenticated');
-    });
-
     it('should render an empty slate if no template provided', () => {
         const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock);
 
@@ -94,10 +90,9 @@ describe('Template Block', () => {
             blockTemplates: {
                 template: [getTemplateDummyWithPages()],
             },
-            user: UserDummy.with(0),
+            isAuthenticated: false,
         });
 
-        document.body.classList.remove('state-authenticated');
         mount(<TemplateBlockWithStubs />);
         cy.get(BLOCK_CONTAINER_SELECTOR).should('exist');
         cy.wait(100);
