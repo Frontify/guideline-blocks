@@ -110,7 +110,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -189,7 +189,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -256,7 +256,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -326,7 +326,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -396,7 +396,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -463,7 +463,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -551,7 +551,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@react-types/shared':
         specifier: ^3.19.0
         version: 3.22.1(react@18.2.0)
@@ -642,7 +642,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -718,7 +718,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -788,7 +788,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -864,7 +864,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -934,7 +934,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -998,7 +998,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1077,7 +1077,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/autosize':
         specifier: ^4.0.1
         version: 4.0.3
@@ -1144,7 +1144,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1211,7 +1211,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1278,7 +1278,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.1(react@18.2.0)
@@ -1351,7 +1351,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.1(react@18.2.0)
@@ -1430,7 +1430,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -1503,7 +1503,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1570,7 +1570,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1728,7 +1728,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1798,7 +1798,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1865,7 +1865,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.56
@@ -1938,7 +1938,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -2023,7 +2023,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -2111,7 +2111,7 @@ importers:
         version: 0.16.1(eslint@8.56.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.3.3)
       '@frontify/frontify-cli':
         specifier: ^5.6.3
-        version: 5.6.10(@types/node@20.11.28)
+        version: 5.6.11(@types/node@20.11.28)
       '@types/lodash':
         specifier: ^4.14.199
         version: 4.14.202
@@ -3492,7 +3492,7 @@ packages:
   /@fastify/fast-json-stringify-compiler@4.3.0:
     resolution: {integrity: sha512-aZAXGYo6m22Fk1zZzEUKBvut/CIIQe/BapEORnxiD5Qr0kPHqqI69NtEMCme74h+at72sPhbkb4ZrLd1W3KRLA==}
     dependencies:
-      fast-json-stringify: 5.12.0
+      fast-json-stringify: 5.13.0
     dev: true
 
   /@fastify/merge-json-schemas@0.1.1:
@@ -3803,8 +3803,8 @@ packages:
       - zustand
     dev: false
 
-  /@frontify/frontify-cli@5.6.10(@types/node@20.11.28):
-    resolution: {integrity: sha512-YtB4KgGM5RK0IVLylfe7ahMt5pOtxYnu2HicRyJ1NTzVczwav/iBIVnU+xs5DNplwxHk7xaeG+0bKVlgh7TOvg==}
+  /@frontify/frontify-cli@5.6.11(@types/node@20.11.28):
+    resolution: {integrity: sha512-jA2uRoQzHN7uf/+IRShmpPnbqJiCbkW7acbGeV3zqE0gwYgsJL0KkKJVxdG3COzcQnrUfeFGOG8ZqdKuNnBDPQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
@@ -9779,8 +9779,8 @@ packages:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
     dev: true
 
-  /fast-json-stringify@5.12.0:
-    resolution: {integrity: sha512-7Nnm9UPa7SfHRbHVA1kJQrGXCRzB7LMlAAqHXQFkEQqueJm1V8owm0FsE/2Do55/4CcdhwiLQERaKomOnKQkyA==}
+  /fast-json-stringify@5.13.0:
+    resolution: {integrity: sha512-XjTDWKHP3GoMQUOfnjYUbqeHeEt+PvYgvBdG2fRSmYaORILbSr8xTJvZX+w1YSAP5pw2NwKrGRmQleYueZEoxw==}
     dependencies:
       '@fastify/merge-json-schemas': 0.1.1
       ajv: 8.12.0
@@ -9823,7 +9823,7 @@ packages:
       abstract-logging: 2.0.1
       avvio: 8.3.0
       fast-content-type-parse: 1.1.0
-      fast-json-stringify: 5.12.0
+      fast-json-stringify: 5.13.0
       find-my-way: 8.1.0
       light-my-request: 5.12.0
       pino: 8.19.0
