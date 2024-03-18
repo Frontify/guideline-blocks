@@ -373,7 +373,6 @@ describe('AssetKit Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
                 downloadUrlBlock: 'dummy-download-url',
-                downloadExpiration: Math.floor(Date.now() / 1000) + 1000,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1)],

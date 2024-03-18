@@ -39,7 +39,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasBorder_blocks,
         hasBackgroundBlocks,
         downloadUrlBlock,
-        downloadExpiration,
         showThumbnails = true,
         showCount = true,
         assetCountColor,
@@ -51,7 +50,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
-        if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
+        if (downloadUrlBlock && getExpirationTimestamp(downloadUrlBlock) > Math.floor(Date.now() / 1000)) {
             return downloadAssets(downloadUrlBlock);
         }
         generateBulkDownload(blockAssets);
@@ -73,7 +72,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const saveDownloadUrl = (newDownloadUrlBlock: string) => {
         if (downloadUrlBlock !== newDownloadUrlBlock) {
             setBlockSettings({ downloadUrlBlock: newDownloadUrlBlock });
-            setBlockSettings({ downloadExpiration: getExpirationTimestamp(newDownloadUrlBlock) });
         }
     };
 
