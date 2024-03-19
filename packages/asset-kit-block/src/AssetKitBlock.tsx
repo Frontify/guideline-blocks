@@ -22,7 +22,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
-import { blockStyle } from './helpers';
+import { blockStyle, transformDateStringToDate } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 
@@ -64,22 +64,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         announceToScreenReader();
     };
 
-    const transformDateStringToDate = (dateString: string) => {
-        const year = dateString.substring(0, 4);
-        const month = dateString.substring(4, 6);
-        const day = dateString.substring(6, 8);
-        const hour = dateString.substring(9, 11);
-        const minute = dateString.substring(11, 13);
-        const second = dateString.substring(13, 15);
-
-        return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}Z`);
-    };
-
     const getExpirationTimestamp = (downloadUrl: string) => {
         const creationDate = transformDateStringToDate(downloadUrl.split('X-Amz-Date=')[1]?.split('&')[0] ?? '');
         const lifetime = downloadUrl.split('X-Amz-Expires=')[1]?.split('&')[0] ?? 0;
-        const expirationTimestamp = creationDate.getTime() + Number(lifetime) * 1000;
-        return expirationTimestamp;
+        return creationDate.getTime() + Number(lifetime) * 1000;
     };
 
     const saveDownloadUrl = (newDownloadUrlBlock: string) => {
