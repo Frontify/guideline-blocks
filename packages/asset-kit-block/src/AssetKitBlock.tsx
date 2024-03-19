@@ -50,7 +50,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
-        if (downloadUrlBlock && getExpirationTimestamp(downloadUrlBlock) > Date.now()) {
+        const expirationTimestamp = getExpirationTimestamp(downloadUrlBlock);
+        if (downloadUrlBlock && !isNaN(expirationTimestamp) && expirationTimestamp > Date.now()) {
             return downloadAssets(downloadUrlBlock);
         }
         generateBulkDownload(blockAssets);
