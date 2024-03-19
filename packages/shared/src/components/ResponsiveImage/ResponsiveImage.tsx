@@ -25,7 +25,7 @@ export const ResponsiveImage = ({
     quality = 75,
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
-    const imageWidth = image.width ?? 0;
+    const imageWidth = image.width ?? containerWidth;
     const imageHeight = image.height ?? 0;
     const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, imageWidth);
 
@@ -41,16 +41,17 @@ export const ResponsiveImage = ({
     const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
     const sourceOptimised = `${sourceWithWidth}${conversionParams}`;
 
+    const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
+
     return (
         <img
             data-test-id="image-block-img"
             className={joinClassNames(['tw-flex tw-w-full', className])}
             loading="lazy"
             src={sourceOptimised}
-            width={imageWidth}
-            height={imageHeight}
             style={style}
             alt={alt}
+            {...dimensions}
         />
     );
 };
