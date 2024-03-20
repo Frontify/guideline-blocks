@@ -22,7 +22,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
-import { blockStyle } from './helpers';
+import { blockStyle, transformDateStringToDate } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 
@@ -50,9 +50,13 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
-        if (downloadUrlBlock && getExpirationTimestamp(downloadUrlBlock) > Math.floor(Date.now() / 1000)) {
-            return downloadAssets(downloadUrlBlock);
+        if (downloadUrlBlock) {
+            const expirationTimestamp = getExpirationTimestamp(downloadUrlBlock);
+            if (!isNaN(expirationTimestamp) && expirationTimestamp > Date.now()) {
+                return downloadAssets(downloadUrlBlock);
+            }
         }
+
         generateBulkDownload(blockAssets);
     };
 
@@ -65,8 +69,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const getExpirationTimestamp = (downloadUrl: string) => {
-        const expirationTimestamp = downloadUrl.split('X-Amz-Expires=')[1]?.split('&')[0] ?? 0;
-        return parseInt(expirationTimestamp, 10) + Math.floor(Date.now() / 1000);
+        const creationDate = transformDateStringToDate(downloadUrl.split('X-Amz-Date=')[1]?.split('&')[0] ?? '');
+        const lifetime = downloadUrl.split('X-Amz-Expires=')[1]?.split('&')[0] ?? 0;
+        return creationDate.getTime() + Number(lifetime) * 1000;
     };
 
     const saveDownloadUrl = (newDownloadUrlBlock: string) => {
