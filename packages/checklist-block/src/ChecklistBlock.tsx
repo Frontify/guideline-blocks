@@ -17,9 +17,9 @@ import {
 import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { ProgressHeader } from './components/ProgressHeader';

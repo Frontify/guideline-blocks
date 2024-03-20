@@ -18,9 +18,9 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useEffect, useRef, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle, transformDateStringToDate } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';

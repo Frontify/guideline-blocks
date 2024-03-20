@@ -4,9 +4,9 @@ import { ReactElement, useCallback, useMemo } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
