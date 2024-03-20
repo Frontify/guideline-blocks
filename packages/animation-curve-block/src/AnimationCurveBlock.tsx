@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 

@@ -32,9 +32,9 @@ import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { type BlockSettings, TextPosition } from './types';
 
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);

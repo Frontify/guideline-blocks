@@ -36,9 +36,9 @@ import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);

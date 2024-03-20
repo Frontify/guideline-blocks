@@ -22,9 +22,9 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
-import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
 import { LineType, QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
