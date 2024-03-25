@@ -8,9 +8,9 @@ import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
 
-import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { Asset, useBlockAssets, useBlockSettings, useEditorState, usePrivacySettings } from '@frontify/app-bridge';
 
-import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
+import { BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
 import type { Settings, Thumbnail } from './types';
@@ -24,6 +24,9 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const [uploadingItemIds, setUploadingItemIds] = useState<Record<string, string[]>>({});
+    const { assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetViewerEnabled, security } = blockSettings;
+    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     const addNewItemsIfNeeded = (assetsToAdd: Asset[] | FileList) => {
         const [, ...newAssets] = Array.from(assetsToAdd as Asset[]);
@@ -165,6 +168,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             <SortableItem
                                 key={item.id}
                                 item={item}
+                                isAssetViewerEnabled={isAssetViewerEnabled}
                                 image={blockAssets?.[item.id]?.[0]}
                                 isLoading={getIsItemUploading(item.id)}
                                 showDeleteButton={i !== itemsState.length - 1}

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
+import type { BorderStyle, Color, GutterSpacing, Radius, Security } from '@frontify/guideline-blocks-settings';
 import type { CSSProperties } from 'react';
 import type { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 
@@ -44,6 +44,8 @@ export type Settings = {
     radiusValue: string;
     hasRadius: boolean;
     items: Thumbnail[];
+    security: Security;
+    assetViewerEnabled: boolean;
 };
 
 export type SortableThumbnailItemProps = {
@@ -60,6 +62,7 @@ export type SortableThumbnailItemProps = {
     onFilesUploaded: (assets: Asset[], id: string) => void;
     isLoading: boolean;
     appBridge: AppBridgeBlock;
+    isAssetViewerEnabled?: boolean;
 };
 
 export type ThumbnailItemProps = SortableThumbnailItemProps & {

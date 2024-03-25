@@ -4,7 +4,7 @@ import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
 import { CaptionPosition, HorizontalAlignment, Thumbnail, VerticalAlignment } from './types';
-import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, GutterSpacing, Radius, Security } from '@frontify/guideline-blocks-settings';
 
 const ThumbnailGridBlockSelector = '[data-test-id="thumbnail-grid-block"]';
 const ThumbnailCaption = '[data-test-id="thumbnail-rte"]';
@@ -14,6 +14,7 @@ const ThumbnailImagePlaceholder = '[data-test-id="thumbnail-image-placeholder"]'
 const ThumbnailItem = '[data-test-id="thumbnail-item"]';
 const VisibleThumbnailItem = ':not(.tw-hidden) > [data-test-id="thumbnail-item"]';
 const BlockItemWrapperBtn = '[data-test-id="block-item-wrapper-toolbar-btn"]';
+const ImageBlockAssetViewerButtonSelector = '[data-test-id="thumbnail-grid-block-asset-viewer-button"]';
 
 const defaultSettings = {
     columnCount: '3',
@@ -117,7 +118,10 @@ describe('Thumbnail Grid Block', () => {
             .should('contain.text', 'Title 1', 'Title 2')
             .should('contain.text', 'Test Description 1', 'Test Description 2');
         cy.get(VisibleThumbnailItem).should('have.length', 2);
-        cy.get(ThumbnailImage).should('have.length', 2).first().should('have.attr', 'src', 'https://generic.url');
+        cy.get(ThumbnailImage)
+            .should('have.length', 2)
+            .first()
+            .should('have.attr', 'src', 'https://generic.url&format=webp&quality=75');
         cy.get(ThumbnailImagePlaceholder).should('not.exist');
     });
 
@@ -168,7 +172,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ThumbnailImage)
             .first()
             .should('have.attr', 'alt', 'A custom alt text 1')
-            .should('have.attr', 'src', 'https://generic.url');
+            .should('have.attr', 'src', 'https://generic.url&format=webp&quality=75');
         cy.get(ThumbnailImage).first().click();
     });
 
@@ -354,5 +358,99 @@ describe('Thumbnail Grid Block', () => {
                         expect(first.get(0).textContent).contains(fifth.get(0).textContent);
                     });
             });
+    });
+
+    it('should render items as buttons if the custom security settings allow it even if the global is disabled', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: false,
+            blockSettings: {
+                ...defaultSettings,
+                security: Security.Custom,
+                assetViewerEnabled: true,
+
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
+            },
+            privacySettings: {
+                assetViewerEnabled: false,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+            },
+        });
+        mount(<ThumbnailGridBlockWithStubs />);
+        cy.get(ThumbnailImage).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
+    });
+
+    it('should not render as a button if the custom security settings disallow it even if the global is enabled', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: false,
+            blockSettings: {
+                ...defaultSettings,
+                security: Security.Custom,
+                assetViewerEnabled: false,
+
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
+            },
+            privacySettings: {
+                assetViewerEnabled: false,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+            },
+        });
+        mount(<ThumbnailGridBlockWithStubs />);
+        cy.get(ThumbnailImage).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
+    });
+
+    it('should not render as a button if the global security settings disallow asset viewer', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: false,
+            blockSettings: {
+                ...defaultSettings,
+                security: Security.Global,
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
+            },
+            privacySettings: {
+                assetViewerEnabled: true,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+            },
+        });
+        mount(<ThumbnailGridBlockWithStubs />);
+        cy.get(ThumbnailImage).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
+    });
+
+    it('should render as a button if the global security settings allow asset viewer', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: false,
+            blockSettings: {
+                ...defaultSettings,
+                security: Security.Global,
+                assetViewerEnabled: false,
+
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
+            },
+            privacySettings: {
+                assetViewerEnabled: false,
+                assetDownloadEnabled: true,
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+            },
+        });
+        mount(<ThumbnailGridBlockWithStubs />);
+        cy.get(ThumbnailImage).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
     });
 });

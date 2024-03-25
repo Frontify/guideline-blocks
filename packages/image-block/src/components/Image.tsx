@@ -36,6 +36,7 @@ export const ImageComponent = ({
 
     const Image = (
         <ResponsiveImage
+            testId="image-block-img"
             image={image}
             containerWidth={containerWidth}
             alt={blockSettings.altText ?? ''}

@@ -2,12 +2,14 @@
 
 import {
     IconEnum,
+    Security,
     appendUnit,
     defineSettings,
     getBackgroundSettings,
     getBorderRadiusSettings,
     getBorderSettings,
     getGutterSettings,
+    getSecurityGlobalControlSetting,
     maximumNumericalOrPercentOrAutoRule,
     minimumNumericalOrPercentRule,
     numericalOrPercentRule,
@@ -198,6 +200,17 @@ export const settings = defineSettings({
                 getBorderSettings(),
                 getBorderRadiusSettings(),
             ],
+        },
+    ],
+    security: [
+        ...getSecurityGlobalControlSetting(),
+        {
+            id: 'assetViewerEnabled',
+            label: 'Asset viewer',
+            info: "When disabled, viewers won't be able to open the item image in the asset detail view.",
+            type: 'switch',
+            defaultValue: true,
+            show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
     ],
 });
