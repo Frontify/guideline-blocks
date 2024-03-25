@@ -13,6 +13,7 @@ type ResponsiveImageProps = {
     quality?: number;
     className?: string;
     style?: CSSProperties;
+    testId?: string;
 };
 
 export const ResponsiveImage = ({
@@ -23,6 +24,7 @@ export const ResponsiveImage = ({
     className = '',
     style,
     quality = 75,
+    testId = 'responsive-image',
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidth = image.width ?? containerWidth;
@@ -45,7 +47,7 @@ export const ResponsiveImage = ({
 
     return (
         <img
-            data-test-id="image-block-img"
+            data-test-id={testId}
             className={joinClassNames(['tw-flex tw-w-full', className])}
             loading="lazy"
             src={sourceOptimised}

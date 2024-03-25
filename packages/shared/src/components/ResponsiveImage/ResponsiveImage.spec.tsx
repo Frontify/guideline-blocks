@@ -8,7 +8,7 @@ import { Asset, AssetDummy } from '@frontify/app-bridge';
 import { ResponsiveImage } from './ResponsiveImage';
 import { ImageFormat } from '../../types';
 
-const ResponsiveImageSelector = 'image-block-img';
+const ResponsiveImageSelector = 'responsive-image';
 
 const HIGH_RES_ASSET: Asset = {
     ...AssetDummy.with(1),

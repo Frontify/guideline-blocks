@@ -45,6 +45,8 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             onFilesUploaded,
             onAssetsSelected,
             replaceWithPlaceholder = false,
+            isAssetViewerEnabled = false,
+            openAssetInAssetViewer,
         },
         ref
     ) => {
@@ -157,11 +159,13 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             image={image}
                             isLoading={isLoading}
                             isEditing={isEditing}
+                            isAssetViewerEnabled={isAssetViewerEnabled}
                             thumbnailStyles={thumbnailStyles}
                             altText={altText}
                             onOpenFileDialog={openFileDialog}
                             onFilesDrop={(fileList) => onFilesSelected(fileList, id)}
                             onAssetChooserClick={onOpenAssetChooser}
+                            openAssetInAssetViewer={openAssetInAssetViewer}
                         />
                         {(image || isEditing) && (
                             <RichTextEditors
