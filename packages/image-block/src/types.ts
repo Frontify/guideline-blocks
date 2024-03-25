@@ -51,15 +51,15 @@ export enum Ratio {
     Ratio1To2 = '1:2',
 }
 export const imageRatioValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(66.666%-15px)]',
+    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(66.6666%-10px)]',
     [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-[calc(50%-15px)]',
-    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(41.6666%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(41.6666%-17.5px)]',
 };
 
 export const textRatioValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(33.333%-15px)]',
+    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(33.3333%-20px)]',
     [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-[calc(50%-15px)]',
-    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(58.333%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(58.3333%-12.5px)]',
 };
 
 export enum Padding {
