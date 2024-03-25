@@ -32,9 +32,9 @@
         "typescript": "^5.4.3"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^3.5.2",
+        "@frontify/app-bridge": "^3.5.5",
         "@frontify/fondue": "12.0.0-beta.415",
-        "@frontify/guideline-blocks-settings": "^0.34.6",
+        "@frontify/guideline-blocks-settings": "^0.34.8",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "^4.17.21",
         "react": "^18.2.0",
