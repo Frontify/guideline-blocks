@@ -34,7 +34,7 @@ import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
+import { CaptionPosition, Settings, imageRatioValues, mapCaptionPositionClasses, textRatioValues } from './types';
 
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
@@ -121,14 +121,14 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         <div className="image-block">
             <div
                 data-test-id="image-block"
-                className={`tw-flex tw-h-auto tw-gap-3 ${mapCaptionPositionClasses[blockSettings.positioning]}`}
+                className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[blockSettings.positioning]}`}
             >
                 <div
                     className={
                         blockSettings.positioning === CaptionPosition.Above ||
                         blockSettings.positioning === CaptionPosition.Below
                             ? 'tw-w-full'
-                            : ratioValues[blockSettings.ratio]
+                            : imageRatioValues[blockSettings.ratio]
                     }
                 >
                     {image ? (
@@ -201,7 +201,16 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         )
                     )}
                 </div>
-                <ImageCaption titleKey={titleKey} blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+                <div
+                    className={
+                        blockSettings.positioning === CaptionPosition.Above ||
+                        blockSettings.positioning === CaptionPosition.Below
+                            ? 'tw-w-full'
+                            : textRatioValues[blockSettings.ratio]
+                    }
+                >
+                    <ImageCaption titleKey={titleKey} blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+                </div>
             </div>
         </div>
     );

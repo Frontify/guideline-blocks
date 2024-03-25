@@ -1,9 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor, TextStyles, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
+import {
+    RichTextEditor,
+    TextStyles,
+    convertToRteValue,
+    hasRichTextValue,
+    joinClassNames,
+} from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from './helpers';
 import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
-import { Settings } from '../types';
+import { CaptionPosition, Settings } from '../types';
 
 type ImageCaptionProps = {
     blockId: string;
@@ -19,7 +25,10 @@ export const ImageCaption = ({ isEditing, blockId, appBridge, titleKey }: ImageC
 
     return (
         <div
-            className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full"
+            className={joinClassNames([
+                blockSettings.positioning === CaptionPosition.Below && 'tw-mt-3',
+                'tw-gap-1 tw-flex-1 tw-w-full',
+            ])}
             style={{ wordBreak: 'break-word' }}
             data-test-id="image-caption"
         >
