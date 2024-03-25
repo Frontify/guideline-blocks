@@ -7,6 +7,7 @@ import {
     getBackgroundColorStyles,
     getBorderStyles,
     joinClassNames,
+    withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
@@ -27,8 +28,10 @@ import {
 } from './helpers';
 import { useDebounce } from './hooks';
 import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
+import { ATTACHMENTS_ASSET_ID } from './settings';
+import { AttachmentsButton } from './components/AttachmentsButton';
 
-export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
+export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const {
         sandpackTemplate,
@@ -177,14 +180,18 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
                     labelPosition === TextAlignment.Top ? 'tw-flex-col' : 'tw-flex-col-reverse',
                 ])}
             >
-                <Captions
-                    appBridge={appBridge}
-                    title={title}
-                    description={description}
-                    onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
-                    onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
-                    isEditing={isEditing}
-                />
+                <div className="tw-flex tw-justify-between tw-gap-3 tw-items-start">
+                    <Captions
+                        appBridge={appBridge}
+                        title={title}
+                        description={description}
+                        onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
+                        onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
+                        isEditing={isEditing}
+                    />
+                    <AttachmentsButton appBridge={appBridge} />
+                </div>
+
                 <div
                     data-test-id="ui-pattern-block-wrapper"
                     style={{
@@ -275,4 +282,4 @@ export const UIPatternBlock = ({ appBridge }: BlockProps): ReactElement => {
             </div>
         </div>
     );
-};
+}, ATTACHMENTS_ASSET_ID);
