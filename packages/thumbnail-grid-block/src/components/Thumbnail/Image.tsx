@@ -3,7 +3,7 @@
 import { Asset } from '@frontify/app-bridge';
 import { UploadPlaceholder } from './UploadPlaceholder';
 import { ImageWrapper } from './ImageWrapper';
-import { ThumbnailStylesProps } from '../../types';
+import { type ThumbnailStylesProps } from '../../types';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 type ImageProps = {
