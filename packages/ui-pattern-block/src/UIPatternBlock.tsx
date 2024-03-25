@@ -180,7 +180,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                     labelPosition === TextAlignment.Top ? 'tw-flex-col' : 'tw-flex-col-reverse',
                 ])}
             >
-                <div className="tw-flex tw-justify-between tw-gap-2 tw-items-end">
+                <div className="tw-flex tw-justify-between tw-gap-3 tw-items-start">
                     <Captions
                         appBridge={appBridge}
                         title={title}
