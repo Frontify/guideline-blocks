@@ -17,7 +17,7 @@ import {
     usePrivacySettings,
 } from '@frontify/app-bridge';
 
-import { BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
 
 import type { Settings, Thumbnail } from './types';
