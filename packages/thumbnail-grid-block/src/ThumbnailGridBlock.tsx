@@ -9,7 +9,7 @@ import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
 
 import {
-    Asset,
+    type Asset,
     useAssetViewer,
     useBlockAssets,
     useBlockSettings,
