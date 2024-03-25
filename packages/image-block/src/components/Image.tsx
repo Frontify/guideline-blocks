@@ -95,7 +95,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
             style={imageWrapperStyle}
             data-test-id="image-block-img-wrapper"
             ref={setContainerRef}
-            className="tw-flex tw-w-full tw-h-auto"
+            className="tw-flex tw-w-full tw-h-auto tw-overflow-hidden"
         >
             <div className={`tw-relative tw-w-full tw-flex ${mapAlignmentClasses[blockSettings.alignment]}`}>
                 {containerWidth && (
