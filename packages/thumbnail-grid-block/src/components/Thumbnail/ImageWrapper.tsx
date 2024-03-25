@@ -25,7 +25,7 @@ export const ImageWrapper = ({
             style={{ width: imageIsAboveOrBelow ? 'auto' : width }}
             data-test-id="thumbnail-image-wrapper"
         >
-            <div style={{ width: imageIsAboveOrBelow ? width : 'auto' }} ref={setContainerRef}>
+            <div className="tw-flex" style={{ width: imageIsAboveOrBelow ? width : 'auto' }} ref={setContainerRef}>
                 {children}
             </div>
         </div>
