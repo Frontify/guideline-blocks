@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { UIPatternBlock } from './UIPatternBlock';
 import { DEFAULT_BLOCK_SETTINGS, getToolbarButtons } from './helpers';
 import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from './types';
 import { Radius } from '@frontify/guideline-blocks-settings';
+import { ATTACHMENTS_ASSET_ID } from './settings';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
 const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div';
@@ -26,6 +27,7 @@ const DependencyAccordionChildrenSelector = '[data-test-id="dependency-accordion
 const DependencyErrorSelector = '[data-test-id="dependency-invalid-json"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
 const RichTextEditorHtml = '[data-test-id="rte-content-html"]';
+const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
 
 const templates = [
     SandpackTemplate.Vanilla,
@@ -398,11 +400,28 @@ describe('UI Pattern Block', () => {
         cy.get(ToolbarTabButtonSelector).eq(1).should('contain.text', 'SCSS');
     });
 
+    it('should render the attachments dropdown there are attachments uploaded', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: true,
+            blockId: 23,
+            blockSettings: {
+                ...DEFAULT_BLOCK_SETTINGS,
+                sandpackTemplate: SandpackTemplate.Vanilla,
+                preprocessor: Preprocessor.SCSS,
+            },
+            blockAssets: {
+                [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(2)],
+            },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(AttachmentsSelector).should('exist');
+    });
+
     for (const [index, template] of templates.entries()) {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 23 + index,
+                blockId: 24 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);
