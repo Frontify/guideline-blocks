@@ -18,7 +18,7 @@ export const ImageWrapper = ({
     setContainerRef,
 }: ImageWrapperProps): ReactElement => {
     const { width, alignmentClassNames, imageIsAboveOrBelow } = thumbnailStyles;
-    console.log('HELO', placeholderWrapper);
+
     return (
         <div
             className={merge([placeholderWrapper && 'tw-min-w-fit', alignmentClassNames])} // placeholderWrapper && 'tw-min-w-fit' can be removed if placeholder width keeps same behaviour as image, as it does now
