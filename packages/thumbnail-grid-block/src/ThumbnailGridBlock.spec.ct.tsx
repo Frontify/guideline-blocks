@@ -384,7 +384,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
     });
 
-    it('should not render as a button if the custom security settings disallow it even if the global is enabled', () => {
+    it('should not render items as buttons if the custom security settings disallow it even if the global is enabled', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
@@ -408,7 +408,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
     });
 
-    it('should not render as a button if the global security settings disallow asset viewer', () => {
+    it('should not render items as buttons if the global security settings disallow asset viewer', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
@@ -430,7 +430,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
     });
 
-    it('should render as a button if the global security settings allow asset viewer', () => {
+    it('should render items as buttons if the global security settings allow asset viewer', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
