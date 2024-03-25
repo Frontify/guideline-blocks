@@ -29,6 +29,8 @@ const PADDING_CUSTOM_ID = 'paddingCustom';
 
 const BORDER_SETTING = getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE, defaultValue: true });
 
+export const ATTACHMENTS_ASSET_ID = 'attachments';
+
 export const settings = defineSettings({
     main: [
         {
