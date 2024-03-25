@@ -46,6 +46,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             onAssetsSelected,
             replaceWithPlaceholder = false,
             isAssetViewerEnabled = false,
+            openAssetInAssetViewer,
         },
         ref
     ) => {
@@ -164,7 +165,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             onOpenFileDialog={openFileDialog}
                             onFilesDrop={(fileList) => onFilesSelected(fileList, id)}
                             onAssetChooserClick={onOpenAssetChooser}
-                            appBridge={appBridge}
+                            openAssetInAssetViewer={openAssetInAssetViewer}
                         />
                         {(image || isEditing) && (
                             <RichTextEditors

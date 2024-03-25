@@ -63,6 +63,7 @@ export type SortableThumbnailItemProps = {
     isLoading: boolean;
     appBridge: AppBridgeBlock;
     isAssetViewerEnabled?: boolean;
+    openAssetInAssetViewer?: (asset: Asset) => void;
 };
 
 export type ThumbnailItemProps = SortableThumbnailItemProps & {

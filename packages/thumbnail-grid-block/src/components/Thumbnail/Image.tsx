@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, useAssetViewer } from '@frontify/app-bridge';
+import { Asset } from '@frontify/app-bridge';
 import { UploadPlaceholder } from './UploadPlaceholder';
 import { ImageWrapper } from './ImageWrapper';
 import { ThumbnailStylesProps } from '../../types';
@@ -16,8 +16,8 @@ type ImageProps = {
     onFilesDrop: (files: FileList, id?: string) => void;
     id: string;
     onAssetChooserClick: () => void;
-    appBridge: AppBridgeBlock;
     isAssetViewerEnabled: boolean;
+    openAssetInAssetViewer?: (asset: Asset) => void;
 };
 
 export const Image = ({
@@ -30,10 +30,9 @@ export const Image = ({
     onFilesDrop,
     id,
     onAssetChooserClick,
-    appBridge,
     isAssetViewerEnabled,
+    openAssetInAssetViewer,
 }: ImageProps) => {
-    const { open } = useAssetViewer(appBridge);
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const getImageComponent = () => {
@@ -50,20 +49,32 @@ export const Image = ({
             ) : null;
 
         if (isEditing) {
-            return image && !isLoading ? (
-                ImageComponent
-            ) : (
-                <UploadPlaceholder
-                    width={thumbnailStyles.width}
-                    isLoading={isLoading}
-                    openFileDialog={onOpenFileDialog}
-                    onFilesDrop={(files) => onFilesDrop(files, id)}
-                    openAssetChooser={onAssetChooserClick}
-                />
-            );
-        } else if (image) {
+            return renderEditModeComponent(ImageComponent);
+        }
+        return renderViewModeComponent(ImageComponent);
+    };
+
+    const renderEditModeComponent = (ImageComponent: JSX.Element | null) => {
+        return image && !isLoading ? (
+            ImageComponent
+        ) : (
+            <UploadPlaceholder
+                width={thumbnailStyles.width}
+                isLoading={isLoading}
+                openFileDialog={onOpenFileDialog}
+                onFilesDrop={(files) => onFilesDrop(files, id)}
+                openAssetChooser={onAssetChooserClick}
+            />
+        );
+    };
+
+    const renderViewModeComponent = (ImageComponent: JSX.Element | null) => {
+        if (image) {
             return isAssetViewerEnabled ? (
-                <button data-test-id="thumbnail-grid-block-asset-viewer-button" onClick={() => open(image)}>
+                <button
+                    data-test-id="thumbnail-grid-block-asset-viewer-button"
+                    onClick={() => openAssetInAssetViewer?.(image)}
+                >
                     {ImageComponent}
                 </button>
             ) : (
