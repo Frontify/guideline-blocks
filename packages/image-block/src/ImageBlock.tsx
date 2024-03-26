@@ -34,7 +34,7 @@ import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { CaptionPosition, Settings, imageRatioValues, mapCaptionPositionClasses, textRatioValues } from './types';
+import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses, textRatioValues } from './types';
 
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
@@ -46,7 +46,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = String(appBridge.context('blockId').get());
-    const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
+    const { altText, name, positioning, ratio, description } = blockSettings;
+    const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
@@ -66,7 +67,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             setBlockSettings({ altText: defaultImageName });
             setLocalAltText(defaultImageName);
 
-            const hasManuallyEditedName = hasRichTextValue(blockSettings.name);
+            const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
                 await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, defaultImageName, 'center') });
                 setTitleKey(generateRandomId());
@@ -119,16 +120,12 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
 
     return (
         <div className="image-block">
-            <div
-                data-test-id="image-block"
-                className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[blockSettings.positioning]}`}
-            >
+            <div data-test-id="image-block" className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}>
                 <div
                     className={
-                        blockSettings.positioning === CaptionPosition.Above ||
-                        blockSettings.positioning === CaptionPosition.Below
+                        positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
                             ? 'tw-w-full'
-                            : imageRatioValues[blockSettings.ratio]
+                            : imageRatioValues[ratio]
                     }
                 >
                     {image ? (
@@ -203,13 +200,21 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                 </div>
                 <div
                     className={
-                        blockSettings.positioning === CaptionPosition.Above ||
-                        blockSettings.positioning === CaptionPosition.Below
+                        positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
                             ? 'tw-w-full'
-                            : textRatioValues[blockSettings.ratio]
+                            : textRatioValues[ratio]
                     }
                 >
-                    <ImageCaption titleKey={titleKey} blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+                    <ImageCaption
+                        titleKey={titleKey}
+                        blockId={blockId}
+                        isEditing={isEditing}
+                        description={description}
+                        name={name}
+                        positioning={positioning}
+                        appBridge={appBridge}
+                        setBlockSettings={setBlockSettings}
+                    />
                 </div>
             </div>
         </div>
