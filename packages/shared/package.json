@@ -44,7 +44,7 @@
         "@codemirror/lang-css": "^6.2.1",
         "@frontify/app-bridge": "^3.5.5",
         "@frontify/fondue": "12.0.0-beta.415",
-        "@frontify/guideline-blocks-settings": "^0.34.8",
+        "@frontify/guideline-blocks-settings": "^0.34.9",
         "@uiw/react-codemirror": "^4.21.24"
     },
     "peerDependencies": {
