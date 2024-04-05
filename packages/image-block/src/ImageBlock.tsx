@@ -9,13 +9,18 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
+    usePrivacySettings,
 } from '@frontify/app-bridge';
 import {
+    Attachments,
     BlockItemWrapper,
     BlockProps,
+    DownloadButton,
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
+    isDownloadable,
+    useAttachmentsContext,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
@@ -27,6 +32,7 @@ import {
     LoadingCircle,
     MenuItemStyle,
     generateRandomId,
+    merge,
 } from '@frontify/fondue';
 import { useEffect, useState } from 'react';
 
@@ -34,13 +40,18 @@ import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses, textRatioValues } from './types';
+import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
+import { getTotalImagePadding } from './components/helpers';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
+    const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
+        useAttachmentsContext();
+    const { assetDownloadEnabled, assetViewerEnabled } = usePrivacySettings(appBridge);
+
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -51,6 +62,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
+    const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
@@ -122,12 +134,43 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         <div className="image-block">
             <div data-test-id="image-block" className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}>
                 <div
-                    className={
+                    className={merge([
+                        'tw-min-h-11',
                         positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
                             ? 'tw-w-full'
-                            : imageRatioValues[ratio]
-                    }
+                            : imageRatioValues[ratio],
+                    ])}
                 >
+                    {!isEditing && (
+                        <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
+                            <div
+                                className="tw-flex tw-gap-2"
+                                data-test-id="buttons-wrapper"
+                                style={getTotalImagePadding(blockSettings)}
+                            >
+                                {isDownloadable(
+                                    blockSettings.security,
+                                    blockSettings.downloadable,
+                                    assetDownloadEnabled
+                                ) && (
+                                    <DownloadButton
+                                        onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
+                                    />
+                                )}
+
+                                <Attachments
+                                    onUpload={onAttachmentsAdd}
+                                    onDelete={onAttachmentDelete}
+                                    onReplaceWithBrowse={onAttachmentReplace}
+                                    onReplaceWithUpload={onAttachmentReplace}
+                                    onSorted={onAttachmentsSorted}
+                                    onBrowse={onAttachmentsAdd}
+                                    items={attachments}
+                                    appBridge={appBridge}
+                                />
+                            </div>
+                        </div>
+                    )}
                     {image ? (
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
@@ -184,38 +227,39 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
                                     image={image}
+                                    globalAssetViewerEnabled={assetViewerEnabled}
                                 />
                             )}
                         </BlockItemWrapper>
                     ) : (
                         isEditing && (
-                            <UploadPlaceholder
-                                loading={isLoading}
-                                onUploadClick={openFileDialog}
-                                onFilesDrop={onFilesDrop}
-                                onAssetChooseClick={onOpenAssetChooser}
-                            />
+                            <BlockItemWrapper
+                                shouldHideWrapper={attachmentCount === 0}
+                                showAttachments
+                                toolbarItems={[]}
+                            >
+                                <UploadPlaceholder
+                                    loading={isLoading}
+                                    onUploadClick={openFileDialog}
+                                    onFilesDrop={onFilesDrop}
+                                    onAssetChooseClick={onOpenAssetChooser}
+                                />
+                            </BlockItemWrapper>
                         )
                     )}
                 </div>
-                <div
-                    className={
-                        positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
-                            ? 'tw-w-full'
-                            : textRatioValues[ratio]
-                    }
-                >
-                    <ImageCaption
-                        titleKey={titleKey}
-                        blockId={blockId}
-                        isEditing={isEditing}
-                        description={description}
-                        name={name}
-                        positioning={positioning}
-                        appBridge={appBridge}
-                        setBlockSettings={setBlockSettings}
-                    />
-                </div>
+
+                <ImageCaption
+                    titleKey={titleKey}
+                    blockId={blockId}
+                    isEditing={isEditing}
+                    description={description}
+                    name={name}
+                    positioning={positioning}
+                    appBridge={appBridge}
+                    ratio={ratio}
+                    setBlockSettings={setBlockSettings}
+                />
             </div>
         </div>
     );
