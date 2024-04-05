@@ -12,15 +12,11 @@ import {
     usePrivacySettings,
 } from '@frontify/app-bridge';
 import {
-    Attachments,
     BlockItemWrapper,
     BlockProps,
-    DownloadButton,
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
-    isDownloadable,
-    useAttachmentsContext,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
@@ -45,13 +41,10 @@ import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionCla
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
-import { getTotalImagePadding } from './components/helpers';
+import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
-    const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
-        useAttachmentsContext();
     const { assetDownloadEnabled, assetViewerEnabled } = usePrivacySettings(appBridge);
-
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -141,36 +134,13 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             : imageRatioValues[ratio],
                     ])}
                 >
-                    {!isEditing && (
-                        <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-                            <div
-                                className="tw-flex tw-gap-2"
-                                data-test-id="buttons-wrapper"
-                                style={getTotalImagePadding(blockSettings)}
-                            >
-                                {isDownloadable(
-                                    blockSettings.security,
-                                    blockSettings.downloadable,
-                                    assetDownloadEnabled
-                                ) && (
-                                    <DownloadButton
-                                        onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
-                                    />
-                                )}
-
-                                <Attachments
-                                    onUpload={onAttachmentsAdd}
-                                    onDelete={onAttachmentDelete}
-                                    onReplaceWithBrowse={onAttachmentReplace}
-                                    onReplaceWithUpload={onAttachmentReplace}
-                                    onSorted={onAttachmentsSorted}
-                                    onBrowse={onAttachmentsAdd}
-                                    items={attachments}
-                                    appBridge={appBridge}
-                                />
-                            </div>
-                        </div>
-                    )}
+                    <DownloadAndAttachments
+                        appBridge={appBridge}
+                        assetDownloadEnabled={assetDownloadEnabled}
+                        blockSettings={blockSettings}
+                        image={image}
+                        isEditing={isEditing}
+                    />
                     {image ? (
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
