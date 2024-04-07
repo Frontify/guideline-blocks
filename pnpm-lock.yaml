@@ -34,7 +34,7 @@ importers:
     devDependencies:
       '@4tw/cypress-drag-drop':
         specifier: ^2.2.5
-        version: 2.2.5(cypress@13.7.1)
+        version: 2.2.5(cypress@13.7.2)
       '@babel/core':
         specifier: ^7.24.3
         version: 7.24.3
@@ -58,10 +58,10 @@ importers:
         version: 4.2.1(vite@5.2.6)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       msw:
         specifier: ^1.3.0
         version: 1.3.2(typescript@5.4.3)
@@ -125,7 +125,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -201,10 +201,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -268,10 +268,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -338,10 +338,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -408,7 +408,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -475,7 +475,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -566,10 +566,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -620,13 +620,13 @@ importers:
         version: link:../shared
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.21.24
-        version: 4.21.24(@codemirror/autocomplete@6.15.0)(@codemirror/language-data@6.4.1)(@codemirror/language@6.10.1)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/javascript@1.4.14)(@lezer/lr@1.4.0)
+        version: 4.21.24(@codemirror/autocomplete@6.15.0)(@codemirror/language-data@6.5.0)(@codemirror/language@6.10.1)(@codemirror/legacy-modes@6.4.0)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/javascript@1.4.14)(@lezer/lr@1.4.0)
       '@uiw/codemirror-themes-all':
         specifier: ^4.21.24
         version: 4.21.24(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)
       '@uiw/react-codemirror':
         specifier: ^4.21.24
-        version: 4.21.24(@babel/runtime@7.24.1)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.24.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.21.24(@babel/runtime@7.24.4)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.24.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -654,10 +654,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -730,10 +730,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -800,7 +800,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -855,7 +855,7 @@ importers:
     devDependencies:
       '@4tw/cypress-drag-drop':
         specifier: ^2.2.5
-        version: 2.2.5(cypress@13.7.1)
+        version: 2.2.5(cypress@13.7.2)
       '@babel/core':
         specifier: ^7.24.3
         version: 7.24.3
@@ -876,7 +876,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -946,7 +946,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1010,7 +1010,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1092,7 +1092,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1156,7 +1156,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1223,7 +1223,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1293,10 +1293,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1366,10 +1366,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1445,7 +1445,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1515,7 +1515,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1582,7 +1582,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1624,7 +1624,7 @@ importers:
         version: 0.34.9(@frontify/app-bridge@3.5.5)(@types/node@20.11.30)(@types/react-dom@18.2.22)(@types/react@18.2.70)(@udecode/plate-common@30.4.5)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(tailwindcss@3.4.3)(ts-node@10.9.2)(zustand@4.5.2)
       '@uiw/react-codemirror':
         specifier: ^4.21.24
-        version: 4.21.24(@babel/runtime@7.24.1)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.26.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.21.24(@babel/runtime@7.24.4)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.26.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.24.3
@@ -1649,7 +1649,7 @@ importers:
         version: 17.0.3
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1740,7 +1740,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1810,7 +1810,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1877,10 +1877,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1953,7 +1953,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -2038,10 +2038,10 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       cypress-real-events:
         specifier: ^1.12.0
-        version: 1.12.0(cypress@13.7.1)
+        version: 1.12.0(cypress@13.7.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -2129,7 +2129,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       cypress:
         specifier: ^13.7.1
-        version: 13.7.1
+        version: 13.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -2157,12 +2157,12 @@ importers:
 
 packages:
 
-  /@4tw/cypress-drag-drop@2.2.5(cypress@13.7.1):
+  /@4tw/cypress-drag-drop@2.2.5(cypress@13.7.2):
     resolution: {integrity: sha512-3ghTmzhOmUqeN6U3QmUnKRUxI7OMLbJA4hHUY/eS/FhWJgxbiGgcaELbolWnBAOpajPXcsNQGYEj9brd59WH6A==}
     peerDependencies:
       cypress: 2 - 13
     dependencies:
-      cypress: 13.7.1
+      cypress: 13.7.2
     dev: true
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -2374,6 +2374,13 @@ packages:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  /@babel/runtime@7.24.4:
+    resolution: {integrity: sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
+
   /@babel/template@7.24.0:
     resolution: {integrity: sha512-Bkf2q8lMB0AFpX0NFEqSbx1OkTHf0f+0j82mkw+ZpzBnkk7e9Ql0891vlfgi+kHwOk8tQjiQHpqh4LaSa0fKEA==}
     engines: {node: '>=6.9.0'}
@@ -2513,6 +2520,18 @@ packages:
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/css': 1.1.7
+    transitivePeerDependencies:
+      - '@codemirror/view'
+    dev: false
+
+  /@codemirror/lang-go@6.0.0(@codemirror/view@6.24.1):
+    resolution: {integrity: sha512-mMT4YeYdKGjnffDBOhr1ur1glee4oV/rfMe28vzazNHZkSt7vSiuHiBcgr3L/79Cl2RIjFdpQ1XMD0/T8Rx64g==}
+    dependencies:
+      '@codemirror/autocomplete': 6.15.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.1
+      '@codemirror/state': 6.4.1
+      '@lezer/common': 1.2.1
+      '@lezer/go': 1.0.0
     transitivePeerDependencies:
       - '@codemirror/view'
     dev: false
@@ -2737,24 +2756,26 @@ packages:
       '@lezer/xml': 1.0.5
     dev: false
 
-  /@codemirror/lang-yaml@6.0.0(@codemirror/view@6.24.1):
-    resolution: {integrity: sha512-fVPapdX1oYr5HMC5bou1MHscGnNCvOHuhUW6C+V2gfIeIRcughvVfznV0OuUyHy0AdXoBCjOehjzFcmLRumu2Q==}
+  /@codemirror/lang-yaml@6.1.0(@codemirror/view@6.24.1):
+    resolution: {integrity: sha512-QQEEOWjHplNScULb0NCMVUcp+TPTpg42vmTcH62UMLVBkvAEFuVkhqH11f50m/pnai7qUfSLv6ZJoPv76Ky3QA==}
     dependencies:
       '@codemirror/autocomplete': 6.15.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)
       '@codemirror/language': 6.10.1
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
+      '@lezer/highlight': 1.2.0
       '@lezer/yaml': 1.0.2
     transitivePeerDependencies:
       - '@codemirror/view'
     dev: false
 
-  /@codemirror/language-data@6.4.1(@codemirror/view@6.24.1):
-    resolution: {integrity: sha512-NYhC3NvEMwUxSWS1sB5AePUtr5g2ASSYOZ37YixicDG8PWHslDV9mmXIX0KvmtEm50V8FT4F5i4HAsk/7i78LA==}
+  /@codemirror/language-data@6.5.0(@codemirror/view@6.24.1):
+    resolution: {integrity: sha512-+F2PyUJtTfGO/3X0fgwZwyyCQ35GZycQSI/731tHifhFMaKYTM8Ic45uK1jrcg086pDy573CL2DWvHJlSkFGzQ==}
     dependencies:
       '@codemirror/lang-angular': 0.1.3
       '@codemirror/lang-cpp': 6.0.2
       '@codemirror/lang-css': 6.2.1(@codemirror/view@6.24.1)
+      '@codemirror/lang-go': 6.0.0(@codemirror/view@6.24.1)
       '@codemirror/lang-html': 6.4.8
       '@codemirror/lang-java': 6.0.1
       '@codemirror/lang-javascript': 6.2.2
@@ -2770,9 +2791,9 @@ packages:
       '@codemirror/lang-vue': 0.1.3
       '@codemirror/lang-wast': 6.0.2
       '@codemirror/lang-xml': 6.1.0
-      '@codemirror/lang-yaml': 6.0.0(@codemirror/view@6.24.1)
+      '@codemirror/lang-yaml': 6.1.0(@codemirror/view@6.24.1)
       '@codemirror/language': 6.10.1
-      '@codemirror/legacy-modes': 6.3.3
+      '@codemirror/legacy-modes': 6.4.0
     transitivePeerDependencies:
       - '@codemirror/view'
     dev: false
@@ -2788,8 +2809,8 @@ packages:
       style-mod: 4.1.0
     dev: false
 
-  /@codemirror/legacy-modes@6.3.3:
-    resolution: {integrity: sha512-X0Z48odJ0KIoh/HY8Ltz75/4tDYc9msQf1E/2trlxFaFFhgjpVHjZ/BCXe1Lk7s4Gd67LL/CeEEHNI+xHOiESg==}
+  /@codemirror/legacy-modes@6.4.0:
+    resolution: {integrity: sha512-5m/K+1A6gYR0e+h/dEde7LoGimMjRtWXZFg4Lo70cc8HzjSdHe3fLwjWMR0VRl5KFT1SxalSap7uMgPKF28wBA==}
     dependencies:
       '@codemirror/language': 6.10.1
     dev: false
@@ -4026,6 +4047,14 @@ packages:
 
   /@lezer/css@1.1.7:
     resolution: {integrity: sha512-7BlFFAKNn/b39jJLrhdLSX5A2k56GIJvyLqdmm7UU+7XvequY084iuKDMAEhAmAzHnwDE8FK4OQtsIUssW91tg==}
+    dependencies:
+      '@lezer/common': 1.2.1
+      '@lezer/highlight': 1.2.0
+      '@lezer/lr': 1.4.0
+    dev: false
+
+  /@lezer/go@1.0.0:
+    resolution: {integrity: sha512-co9JfT3QqX1YkrMmourYw2Z8meGC50Ko4d54QEcQbEYpvdUvN4yb0NBZdn/9ertgvjsySxHsKzH3lbm3vqJ4Jw==}
     dependencies:
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
@@ -6432,6 +6461,14 @@ packages:
     dependencies:
       undici-types: 5.26.5
 
+  /@types/node@20.12.5:
+    resolution: {integrity: sha512-BD+BjQ9LS/D8ST9p5uqBxghlN+S42iuNxjsUGjeZobe/ciXzk2qb1B6IXc6AnRLS+yFJRpN2IPEHMzwspfDJNw==}
+    requiresBuild: true
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+    optional: true
+
   /@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
@@ -6493,7 +6530,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.5
     dev: true
     optional: true
 
@@ -7162,7 +7199,7 @@ packages:
       '@codemirror/view': 6.26.1
     dev: false
 
-  /@uiw/codemirror-extensions-langs@4.21.24(@codemirror/autocomplete@6.15.0)(@codemirror/language-data@6.4.1)(@codemirror/language@6.10.1)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/javascript@1.4.14)(@lezer/lr@1.4.0):
+  /@uiw/codemirror-extensions-langs@4.21.24(@codemirror/autocomplete@6.15.0)(@codemirror/language-data@6.5.0)(@codemirror/language@6.10.1)(@codemirror/legacy-modes@6.4.0)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/javascript@1.4.14)(@lezer/lr@1.4.0):
     resolution: {integrity: sha512-NZkmlwRK4r5npNprRVKwiKauKauylbtAWyQU6DHNIJXg/6tJDSgqDtmbwWzQiao0egwADMKqwj3pHA+IRUxTgw==}
     peerDependencies:
       '@codemirror/language-data': '>=6.0.0'
@@ -7187,8 +7224,8 @@ packages:
       '@codemirror/lang-vue': 0.1.3
       '@codemirror/lang-wast': 6.0.2
       '@codemirror/lang-xml': 6.0.2(@codemirror/view@6.24.1)
-      '@codemirror/language-data': 6.4.1(@codemirror/view@6.24.1)
-      '@codemirror/legacy-modes': 6.3.3
+      '@codemirror/language-data': 6.5.0(@codemirror/view@6.24.1)
+      '@codemirror/legacy-modes': 6.4.0
       '@nextjournal/lang-clojure': 1.0.0
       '@replit/codemirror-lang-csharp': 6.2.0(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)
       '@replit/codemirror-lang-nix': 6.0.1(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)
@@ -7613,7 +7650,7 @@ packages:
       '@codemirror/view': 6.24.1
     dev: false
 
-  /@uiw/react-codemirror@4.21.24(@babel/runtime@7.24.1)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.24.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
+  /@uiw/react-codemirror@4.21.24(@babel/runtime@7.24.4)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.24.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-8zs5OuxbhikHocHBsVBMuW1vqlv4ccZAkt4rFwr7ebLP2Q6RwHsjpsR9GeGyAigAqonKRoeHugqF78UMrkaTgg==}
     peerDependencies:
       '@babel/runtime': '>=7.11.0'
@@ -7624,7 +7661,7 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@babel/runtime': 7.24.1
+      '@babel/runtime': 7.24.4
       '@codemirror/commands': 6.3.3
       '@codemirror/state': 6.4.1
       '@codemirror/theme-one-dark': 6.1.2
@@ -7640,7 +7677,7 @@ packages:
       - '@codemirror/search'
     dev: false
 
-  /@uiw/react-codemirror@4.21.24(@babel/runtime@7.24.1)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.26.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
+  /@uiw/react-codemirror@4.21.24(@babel/runtime@7.24.4)(@codemirror/autocomplete@6.15.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.26.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-8zs5OuxbhikHocHBsVBMuW1vqlv4ccZAkt4rFwr7ebLP2Q6RwHsjpsR9GeGyAigAqonKRoeHugqF78UMrkaTgg==}
     peerDependencies:
       '@babel/runtime': '>=7.11.0'
@@ -7651,7 +7688,7 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@babel/runtime': 7.24.1
+      '@babel/runtime': 7.24.4
       '@codemirror/commands': 6.3.3
       '@codemirror/state': 6.4.1
       '@codemirror/theme-one-dark': 6.1.2
@@ -8466,8 +8503,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cli-table3@0.6.3:
-    resolution: {integrity: sha512-w5Jac5SykAeZJKntOxJCrm63Eg5/4dhMWIcuTbo9rpE+brgaSZo0RuNJZeOyMgsUdhDeojvgyQLmjI+K50ZGyg==}
+  /cli-table3@0.6.4:
+    resolution: {integrity: sha512-Lm3L0p+/npIQWNIiyF/nAn7T5dnOwR3xNTHXYEBFBFVPXzCVNZ5lqEC/1eo/EVfpDsQ1I+TX4ORPQgp+UI0CRw==}
     engines: {node: 10.* || >= 12.*}
     dependencies:
       string-width: 4.2.3
@@ -8707,16 +8744,16 @@ packages:
   /csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  /cypress-real-events@1.12.0(cypress@13.7.1):
+  /cypress-real-events@1.12.0(cypress@13.7.2):
     resolution: {integrity: sha512-oiy+4kGKkzc2PT36k3GGQqkGxNiVypheWjMtfyi89iIk6bYmTzeqxapaLHS3pnhZOX1IEbTDUVxh8T4Nhs1tyQ==}
     peerDependencies:
       cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x
     dependencies:
-      cypress: 13.7.1
+      cypress: 13.7.2
     dev: true
 
-  /cypress@13.7.1:
-    resolution: {integrity: sha512-4u/rpFNxOFCoFX/Z5h+uwlkBO4mWzAjveURi3vqdSu56HPvVdyGTxGw4XKGWt399Y1JwIn9E1L9uMXQpc0o55w==}
+  /cypress@13.7.2:
+    resolution: {integrity: sha512-FF5hFI5wlRIHY8urLZjJjj/YvfCBrRpglbZCLr/cYcL9MdDe0+5usa8kTIrDHthlEc9lwihbkb5dmwqBDNS2yw==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
@@ -8733,7 +8770,7 @@ packages:
       chalk: 4.1.2
       check-more-types: 2.24.0
       cli-cursor: 3.1.0
-      cli-table3: 0.6.3
+      cli-table3: 0.6.4
       commander: 6.2.1
       common-tags: 1.8.2
       dayjs: 1.11.10
