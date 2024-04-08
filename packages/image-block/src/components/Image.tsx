@@ -55,7 +55,11 @@ const ImageWrapper = ({
     };
 
     if (isEditing || (!link && !isAssetViewerEnabled)) {
-        return <div {...sharedProps}>{children}</div>;
+        return (
+            <div {...sharedProps} data-test-id="image-block-default-wrapper">
+                {children}
+            </div>
+        );
     }
 
     if (link) {
@@ -65,6 +69,7 @@ const ImageWrapper = ({
                 href={link.link.link}
                 target={link.openInNewTab ? '_blank' : undefined}
                 rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+                data-test-id="image-block-link-wrapper"
             >
                 {children}
             </a>
@@ -73,7 +78,7 @@ const ImageWrapper = ({
 
     if (isAssetViewerEnabled) {
         return (
-            <button data-test-id="image-block-asset-viewer-button" {...sharedProps} onClick={() => open(image)}>
+            <button data-test-id="image-block-asset-viewer-wrapper" {...sharedProps} onClick={() => open(image)}>
                 {children}
             </button>
         );
@@ -84,7 +89,7 @@ const ImageWrapper = ({
 
 export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentProps) => (
     <ResponsiveImage
-        testId="image-block-img"
+        testId="image-block-image-component"
         image={image}
         containerWidth={containerWidth}
         alt={alt}
@@ -106,9 +111,12 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 
     return (
         <div
-            data-test-id="image-block-img-wrapper"
+            data-test-id="image-block-image"
             ref={setContainerRef}
-            className={joinClassNames(['tw-flex tw-h-auto tw-relative', mapAlignmentClasses[blockSettings.alignment]])}
+            className={joinClassNames([
+                'tw-flex tw-w-full tw-h-auto tw-relative',
+                mapAlignmentClasses[blockSettings.alignment],
+            ])}
         >
             {containerWidth && (
                 <ImageWrapper
