@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings, mapAlignmentClasses } from '../types';
+import { type Link, type Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
@@ -9,11 +9,11 @@ import {
     joinClassNames,
     useAttachmentsContext,
 } from '@frontify/guideline-blocks-settings';
-import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
 import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
-import { FOCUS_STYLE } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, ReactNode } from 'react';
 
 type ImageProps = {
     image: Asset;
@@ -22,64 +22,75 @@ type ImageProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const ImageComponent = ({
+type ImageWrapperProps = {
+    image: Asset;
+    appBridge: AppBridgeBlock;
+    children: ReactNode;
+    link: Link | null;
+    style: CSSProperties;
+    isEditing: boolean;
+    isAssetViewerEnabled: boolean;
+};
+
+type ImageComponentProps = {
+    image: Asset;
+    alt: string;
+    containerWidth: number;
+};
+
+const ImageWrapper = ({
     image,
-    blockSettings,
-    isEditing,
     appBridge,
+    children,
+    link,
+    style,
+    isEditing,
     isAssetViewerEnabled,
-    containerWidth,
-}: ImageProps & { isAssetViewerEnabled: boolean; containerWidth: number }) => {
+}: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
-    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
-    const { isFocused, focusProps } = useFocusRing();
 
-    const Image = (
-        <ResponsiveImage
-            testId="image-block-img"
-            image={image}
-            containerWidth={containerWidth}
-            alt={blockSettings.altText ?? ''}
-            style={{ maxWidth: image.width }}
-        />
-    );
-
-    const props = {
-        ...focusProps,
-        className: joinClassNames([
-            'tw-rounded tw-w-full tw-flex',
-            isFocused && FOCUS_STYLE,
-            mapAlignmentClasses[blockSettings.alignment],
-        ]),
+    const sharedProps = {
+        className: joinClassNames(['tw-flex tw-overflow-hidden', FOCUS_VISIBLE_STYLE]),
+        style,
     };
 
-    if (isEditing) {
-        return Image;
+    if (isEditing || (!link && !isAssetViewerEnabled)) {
+        return <div {...sharedProps}>{children}</div>;
     }
 
     if (link) {
         return (
             <a
-                {...props}
+                {...sharedProps}
                 href={link.link.link}
                 target={link.openInNewTab ? '_blank' : undefined}
                 rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
             >
-                {Image}
+                {children}
             </a>
         );
     }
 
     if (isAssetViewerEnabled) {
         return (
-            <button data-test-id="image-block-asset-viewer-button" {...props} onClick={() => open(image)}>
-                {Image}
+            <button data-test-id="image-block-asset-viewer-button" {...sharedProps} onClick={() => open(image)}>
+                {children}
             </button>
         );
     }
 
-    return Image;
+    return null;
 };
+
+export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentProps) => (
+    <ResponsiveImage
+        testId="image-block-img"
+        image={image}
+        containerWidth={containerWidth}
+        alt={alt}
+        style={{ maxWidth: image.width }}
+    />
+);
 
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const { containerWidth, setContainerRef } = useImageContainer();
@@ -91,55 +102,52 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
+    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
+
     return (
         <div
-            style={imageWrapperStyle}
             data-test-id="image-block-img-wrapper"
             ref={setContainerRef}
-            className="tw-flex tw-w-full tw-h-auto tw-overflow-hidden"
+            className={joinClassNames(['tw-flex tw-h-auto tw-relative', mapAlignmentClasses[blockSettings.alignment]])}
         >
-            <div className={`tw-relative tw-w-full tw-flex ${mapAlignmentClasses[blockSettings.alignment]}`}>
-                {containerWidth && (
-                    <ImageComponent
-                        containerWidth={containerWidth}
-                        appBridge={appBridge}
-                        blockSettings={blockSettings}
-                        image={image}
-                        isEditing={isEditing}
-                        isAssetViewerEnabled={isAssetViewerEnabled}
-                    />
-                )}
-                {!isEditing && (
-                    <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-                        <div
-                            className="tw-flex tw-gap-2"
-                            data-test-id="buttons-wrapper"
-                            style={getTotalImagePadding(blockSettings)}
-                        >
-                            {isDownloadable(
-                                blockSettings.security,
-                                blockSettings.downloadable,
-                                assetDownloadEnabled
-                            ) && (
-                                <DownloadButton
-                                    onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
-                                />
-                            )}
-
-                            <Attachments
-                                onUpload={onAttachmentsAdd}
-                                onDelete={onAttachmentDelete}
-                                onReplaceWithBrowse={onAttachmentReplace}
-                                onReplaceWithUpload={onAttachmentReplace}
-                                onSorted={onAttachmentsSorted}
-                                onBrowse={onAttachmentsAdd}
-                                items={attachments}
-                                appBridge={appBridge}
+            {containerWidth && (
+                <ImageWrapper
+                    appBridge={appBridge}
+                    isAssetViewerEnabled={isAssetViewerEnabled}
+                    link={link}
+                    style={imageWrapperStyle}
+                    isEditing={isEditing}
+                    image={image}
+                >
+                    <ImageComponent containerWidth={containerWidth} image={image} alt={blockSettings.altText ?? ''} />
+                </ImageWrapper>
+            )}
+            {!isEditing && (
+                <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
+                    <div
+                        className="tw-flex tw-gap-2"
+                        data-test-id="buttons-wrapper"
+                        style={getTotalImagePadding(blockSettings)}
+                    >
+                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
+                            <DownloadButton
+                                onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
                             />
-                        </div>
+                        )}
+
+                        <Attachments
+                            onUpload={onAttachmentsAdd}
+                            onDelete={onAttachmentDelete}
+                            onReplaceWithBrowse={onAttachmentReplace}
+                            onReplaceWithUpload={onAttachmentReplace}
+                            onSorted={onAttachmentsSorted}
+                            onBrowse={onAttachmentsAdd}
+                            items={attachments}
+                            appBridge={appBridge}
+                        />
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 };

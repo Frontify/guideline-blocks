@@ -3,7 +3,7 @@
 import { Color } from '@frontify/fondue';
 import { Security } from '@frontify/guideline-blocks-settings';
 
-type Link = { link: { link: string }; openInNewTab: boolean };
+export type Link = { link: { link: string }; openInNewTab: boolean };
 
 export type Settings = {
     hasLink?: boolean;
