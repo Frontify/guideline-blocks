@@ -1,25 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Link, type Settings, mapAlignmentClasses } from '../types';
-import {
-    Attachments,
-    DownloadButton,
-    Security,
-    isDownloadable,
-    joinClassNames,
-    useAttachmentsContext,
-} from '@frontify/guideline-blocks-settings';
-import { AppBridgeBlock, Asset, useAssetViewer, usePrivacySettings } from '@frontify/app-bridge';
-import { getImageWrapperStyle, getTotalImagePadding } from './helpers';
+import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-bridge';
 import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
+import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import { type Link, type Settings, mapAlignmentClasses } from '../types';
+
+import { getImageWrapperStyle } from './helpers';
 
 type ImageProps = {
     image: Asset;
     blockSettings: Settings;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
+    globalAssetViewerEnabled: boolean;
 };
 
 type ImageWrapperProps = {
@@ -97,12 +93,10 @@ export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentPro
     />
 );
 
-export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
+export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetViewerEnabled }: ImageProps) => {
     const { containerWidth, setContainerRef } = useImageContainer();
-    const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
-        useAttachmentsContext();
+
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
-    const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const { assetViewerEnabled, security } = blockSettings;
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
@@ -129,32 +123,6 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                 >
                     <ImageComponent containerWidth={containerWidth} image={image} alt={blockSettings.altText ?? ''} />
                 </ImageWrapper>
-            )}
-            {!isEditing && (
-                <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-                    <div
-                        className="tw-flex tw-gap-2"
-                        data-test-id="buttons-wrapper"
-                        style={getTotalImagePadding(blockSettings)}
-                    >
-                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
-                            <DownloadButton
-                                onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
-                            />
-                        )}
-
-                        <Attachments
-                            onUpload={onAttachmentsAdd}
-                            onDelete={onAttachmentDelete}
-                            onReplaceWithBrowse={onAttachmentReplace}
-                            onReplaceWithUpload={onAttachmentReplace}
-                            onSorted={onAttachmentsSorted}
-                            onBrowse={onAttachmentsAdd}
-                            items={attachments}
-                            appBridge={appBridge}
-                        />
-                    </div>
-                </div>
             )}
         </div>
     );
