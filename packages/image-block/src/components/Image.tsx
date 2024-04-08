@@ -50,7 +50,7 @@ const ImageWrapper = ({
     const { open } = useAssetViewer(appBridge);
 
     const sharedProps = {
-        className: joinClassNames(['tw-flex tw-overflow-hidden', FOCUS_VISIBLE_STYLE]),
+        className: joinClassNames(['tw-block tw-overflow-hidden', FOCUS_VISIBLE_STYLE]),
         style,
     };
 

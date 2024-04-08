@@ -132,7 +132,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         <BlockItemWrapper
                             shouldHideWrapper={!isEditing}
                             showAttachments
-                            shouldFillContainer={false}
                             toolbarItems={[
                                 image
                                     ? getEditAltTextToolbarButton({
