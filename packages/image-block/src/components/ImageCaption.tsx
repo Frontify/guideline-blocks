@@ -9,7 +9,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from './helpers';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { CaptionPosition, Ratio, type Settings, textRatioValues } from '../types';
+import { CaptionPosition, type Ratio, type Settings, textRatioValues } from '../types';
 
 type ImageCaptionProps = {
     blockId: string;
@@ -36,7 +36,12 @@ export const ImageCaption = ({
 }: ImageCaptionProps) => {
     const hasTitle = hasRichTextValue(name);
     const hasDescription = hasRichTextValue(description);
-    return isEditing || hasTitle || hasDescription ? (
+
+    if (!isEditing && !hasTitle && !hasDescription) {
+        return null;
+    }
+
+    return (
         <div
             className={
                 positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
@@ -73,5 +78,5 @@ export const ImageCaption = ({
                 />
             </div>
         </div>
-    ) : null;
+    );
 };

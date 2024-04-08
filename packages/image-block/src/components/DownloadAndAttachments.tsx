@@ -35,7 +35,7 @@ export const DownloadAndAttachments = ({
                 data-test-id="buttons-wrapper"
                 style={getTotalImagePadding(blockSettings)}
             >
-                {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
+                {image && isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
                     <DownloadButton onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })} />
                 )}
 

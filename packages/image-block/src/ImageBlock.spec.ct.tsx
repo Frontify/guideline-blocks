@@ -116,6 +116,23 @@ describe('Image Block', () => {
         cy.get(DownloadSelector).should('exist');
     });
 
+    it('should not render the download button if the image is not uploaded but there are attachments', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            editorState: false,
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: true,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [],
+                [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(DownloadSelector).should('not.exist');
+        cy.get(AttachmentsSelector).should('exist');
+    });
+
     it('should not render the download button if the security settings disallow it', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
