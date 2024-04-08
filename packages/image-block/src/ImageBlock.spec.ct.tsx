@@ -69,7 +69,7 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageComponentSelector).should('exist');
     });
 
-    it.only('should render the image responsively rounded to the nearest hundred pixel', () => {
+    it('should render the image responsively rounded to the nearest hundred pixel', () => {
         cy.viewport(240, 800);
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockAssets: {
