@@ -75,6 +75,9 @@ describe('Image Block', () => {
             blockAssets: {
                 [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
             },
+            blockSettings: {
+                positioning: CaptionPosition.Above,
+            },
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockImageComponentSelector).should('exist');
