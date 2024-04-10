@@ -6,7 +6,7 @@ import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactNode } from 'react';
 
-import { type Link, type Settings, mapAlignmentClasses } from '../types';
+import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
 
 import { getImageWrapperStyle } from './helpers';
 
@@ -26,6 +26,7 @@ type ImageWrapperProps = {
     style: CSSProperties;
     isEditing: boolean;
     isAssetViewerEnabled: boolean;
+    alignment: Alignment;
 };
 
 type ImageComponentProps = {
@@ -42,11 +43,16 @@ const ImageWrapper = ({
     style,
     isEditing,
     isAssetViewerEnabled,
+    alignment,
 }: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
 
     const sharedProps = {
-        className: joinClassNames(['tw-block tw-overflow-hidden', FOCUS_VISIBLE_STYLE]),
+        className: joinClassNames([
+            'tw-flex tw-overflow-hidden tw-w-full',
+            FOCUS_VISIBLE_STYLE,
+            mapAlignmentClasses[alignment],
+        ]),
         style,
     };
 
@@ -104,14 +110,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 
     return (
-        <div
-            data-test-id="image-block-image"
-            ref={setContainerRef}
-            className={joinClassNames([
-                'tw-flex tw-w-full tw-h-auto tw-relative',
-                mapAlignmentClasses[blockSettings.alignment],
-            ])}
-        >
+        <div data-test-id="image-block-image" ref={setContainerRef} className="tw-flex tw-w-full tw-h-auto tw-relative">
             {containerWidth && (
                 <ImageWrapper
                     appBridge={appBridge}
@@ -120,6 +119,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
                     style={imageWrapperStyle}
                     isEditing={isEditing}
                     image={image}
+                    alignment={blockSettings.alignment}
                 >
                     <ImageComponent containerWidth={containerWidth} image={image} alt={blockSettings.altText ?? ''} />
                 </ImageWrapper>
