@@ -15,9 +15,9 @@ import {
 import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
-const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
-const ImageBlockAssetViewerButtonSelector = '[data-test-id="image-block-asset-viewer-button"]';
-const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
+const ImageBlockImageComponentSelector = '[data-test-id="image-block-image-component"]';
+const ImageBlockAssetViewerButtonSelector = '[data-test-id="image-block-asset-viewer-wrapper"]';
+const ImageBlockDefaultWrapperSelector = '[data-test-id="image-block-default-wrapper"]';
 const ImageBlockCaption = '[data-test-id="image-caption"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="download-button"]';
@@ -65,7 +65,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should('exist');
     });
 
     it('should render the image responsively rounded to the nearest hundred pixel', () => {
@@ -74,28 +74,31 @@ describe('Image Block', () => {
             blockAssets: {
                 [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
             },
+            blockSettings: {
+                positioning: CaptionPosition.Above,
+            },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
-        cy.get(ImageBlockImageSelector).should(
+        cy.get(ImageBlockImageComponentSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
             'https://generic.url?width=300&format=webp&quality=75'
         );
         cy.viewport(280, 800);
-        cy.get(ImageBlockImageSelector).should(
+        cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
             'https://generic.url?width=300&format=webp&quality=75'
         );
         cy.viewport(400, 800);
-        cy.get(ImageBlockImageSelector).should(
+        cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
             'https://generic.url?width=400&format=webp&quality=75'
         );
         cy.viewport(401, 800);
-        cy.get(ImageBlockImageSelector).should(
+        cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
             'https://generic.url?width=500&format=webp&quality=75'
@@ -161,7 +164,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should('exist');
         cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
     });
 
@@ -181,7 +184,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should('exist');
         cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
     });
 
@@ -200,7 +203,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should('exist');
         cy.get(ImageBlockAssetViewerButtonSelector).should('not.exist');
     });
 
@@ -219,7 +222,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should('exist');
         cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
     });
 
@@ -286,7 +289,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'border', '1px solid rgb(0, 0, 255)');
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'border', '1px solid rgb(0, 0, 255)');
     });
 
     it('should change layout according to provided positioning', () => {
@@ -326,7 +329,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'backgroundColor', 'rgb(0, 0, 255)');
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'backgroundColor', 'rgb(0, 0, 255)');
     });
 
     it('should add padding provided', () => {
@@ -340,7 +343,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'padding', '16px');
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'padding', '16px');
     });
 
     it('should add alignment of the image if provided', () => {
@@ -353,7 +356,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(`${ImageBlockImageWrapperSelector} > div`).should('have.class', mapAlignmentClasses[Alignment.Right]);
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.class', mapAlignmentClasses[Alignment.Right]);
     });
 
     it('should add padding to buttons when padding is added to image', () => {

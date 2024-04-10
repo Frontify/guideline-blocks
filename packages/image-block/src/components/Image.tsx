@@ -1,12 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings, mapAlignmentClasses } from '../types';
+import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-bridge';
+import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
-import { useFocusRing } from '@react-aria/focus';
-import { AppBridgeBlock, Asset, useAssetViewer } from '@frontify/app-bridge';
-import { getImageWrapperStyle } from './helpers';
-import { FOCUS_STYLE } from '@frontify/fondue';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
+
+import { getImageWrapperStyle } from './helpers';
 
 type ImageProps = {
     image: Asset;
@@ -16,64 +18,82 @@ type ImageProps = {
     globalAssetViewerEnabled: boolean;
 };
 
-export const ImageComponent = ({
+type ImageWrapperProps = {
+    image: Asset;
+    appBridge: AppBridgeBlock;
+    children: ReactNode;
+    link: Link | null;
+    style: CSSProperties;
+    isEditing: boolean;
+    isAssetViewerEnabled: boolean;
+    alignment: Alignment;
+};
+
+type ImageComponentProps = {
+    image: Asset;
+    alt: string;
+    containerWidth: number;
+};
+
+const ImageWrapper = ({
     image,
-    blockSettings,
-    isEditing,
     appBridge,
+    children,
+    link,
+    style,
+    isEditing,
     isAssetViewerEnabled,
-    containerWidth,
-}: ImageProps & { isAssetViewerEnabled: boolean; containerWidth: number }) => {
+    alignment,
+}: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
-    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
-    const { isFocused, focusProps } = useFocusRing();
 
-    const Image = (
-        <ResponsiveImage
-            testId="image-block-img"
-            image={image}
-            containerWidth={containerWidth}
-            alt={blockSettings.altText ?? ''}
-            style={{ maxWidth: image.width }}
-        />
-    );
-
-    const props = {
-        ...focusProps,
+    const sharedProps = {
         className: joinClassNames([
-            'tw-rounded tw-w-full tw-flex',
-            isFocused && FOCUS_STYLE,
-            mapAlignmentClasses[blockSettings.alignment],
+            'tw-flex tw-overflow-hidden tw-w-full',
+            FOCUS_VISIBLE_STYLE,
+            mapAlignmentClasses[alignment],
         ]),
+        style,
     };
 
-    if (isEditing) {
-        return Image;
-    }
-
-    if (link) {
+    if (!isEditing && link) {
         return (
             <a
-                {...props}
+                {...sharedProps}
                 href={link.link.link}
                 target={link.openInNewTab ? '_blank' : undefined}
                 rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+                data-test-id="image-block-link-wrapper"
             >
-                {Image}
+                {children}
             </a>
         );
     }
 
-    if (isAssetViewerEnabled) {
+    if (!isEditing && isAssetViewerEnabled) {
         return (
-            <button data-test-id="image-block-asset-viewer-button" {...props} onClick={() => open(image)}>
-                {Image}
+            <button data-test-id="image-block-asset-viewer-wrapper" {...sharedProps} onClick={() => open(image)}>
+                {children}
             </button>
         );
     }
 
-    return Image;
+    return (
+        <div {...sharedProps} data-test-id="image-block-default-wrapper">
+            {children}
+        </div>
+    );
 };
+
+export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentProps) => (
+    <ResponsiveImage
+        testId="image-block-image-component"
+        image={image}
+        containerWidth={containerWidth}
+        alt={alt}
+        style={{ maxWidth: image.width }}
+    />
+);
 
 export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetViewerEnabled }: ImageProps) => {
     const { containerWidth, setContainerRef } = useImageContainer();
@@ -83,26 +103,23 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
+    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
+
     return (
-        <div
-            style={imageWrapperStyle}
-            data-test-id="image-block-img-wrapper"
-            ref={setContainerRef}
-            className="tw-flex tw-w-full tw-h-auto tw-overflow-hidden"
-        >
-            <div className={`tw-relative tw-w-full tw-flex ${mapAlignmentClasses[blockSettings.alignment]}`}>
-                {containerWidth && (
-                    <ImageComponent
-                        containerWidth={containerWidth}
-                        appBridge={appBridge}
-                        blockSettings={blockSettings}
-                        image={image}
-                        isEditing={isEditing}
-                        isAssetViewerEnabled={isAssetViewerEnabled}
-                        globalAssetViewerEnabled={globalAssetViewerEnabled}
-                    />
-                )}
-            </div>
+        <div data-test-id="image-block-image" ref={setContainerRef} className="tw-flex tw-w-full tw-h-auto tw-relative">
+            {containerWidth && (
+                <ImageWrapper
+                    appBridge={appBridge}
+                    isAssetViewerEnabled={isAssetViewerEnabled}
+                    link={link}
+                    style={imageWrapperStyle}
+                    isEditing={isEditing}
+                    image={image}
+                    alignment={blockSettings.alignment}
+                >
+                    <ImageComponent containerWidth={containerWidth} image={image} alt={blockSettings.altText ?? ''} />
+                </ImageWrapper>
+            )}
         </div>
     );
 };
