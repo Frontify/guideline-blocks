@@ -56,15 +56,7 @@ const ImageWrapper = ({
         style,
     };
 
-    if (isEditing || (!link && !isAssetViewerEnabled)) {
-        return (
-            <div {...sharedProps} data-test-id="image-block-default-wrapper">
-                {children}
-            </div>
-        );
-    }
-
-    if (link) {
+    if (!isEditing && link) {
         return (
             <a
                 {...sharedProps}
@@ -78,7 +70,7 @@ const ImageWrapper = ({
         );
     }
 
-    if (isAssetViewerEnabled) {
+    if (!isEditing && isAssetViewerEnabled) {
         return (
             <button data-test-id="image-block-asset-viewer-wrapper" {...sharedProps} onClick={() => open(image)}>
                 {children}
@@ -86,7 +78,11 @@ const ImageWrapper = ({
         );
     }
 
-    return null;
+    return (
+        <div {...sharedProps} data-test-id="image-block-default-wrapper">
+            {children}
+        </div>
+    );
 };
 
 export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentProps) => (
