@@ -15,7 +15,6 @@ import {
 import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
-const ImageBlockImageSelector = '[data-test-id="image-block-image"]';
 const ImageBlockImageComponentSelector = '[data-test-id="image-block-image-component"]';
 const ImageBlockAssetViewerButtonSelector = '[data-test-id="image-block-asset-viewer-wrapper"]';
 const ImageBlockDefaultWrapperSelector = '[data-test-id="image-block-default-wrapper"]';
