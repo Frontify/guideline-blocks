@@ -95,7 +95,7 @@ export const settings = defineSettings({
                 {
                     id: 'templateEditingNotificationSimple',
                     type: 'notification',
-                    text: 'Users can only make changes by selecting and editing fields in the settings panel without approvals. Read <article name> to learn more.',
+                    text: 'Users can only make changes by selecting and editing fields in the settings panel without approvals.',
                     show: (bundle: Bundle) => bundle.getBlock('templateEditing')?.value === TemplateEditing.Simple,
                     styles: {
                         type: NotificationStyleType.Info,
@@ -105,7 +105,7 @@ export const settings = defineSettings({
                 {
                     id: 'templateEditingNotificationAdvanced',
                     type: 'notification',
-                    text: 'Users can select layers and edit text directly. Read <article name> to learn more.',
+                    text: 'Users can select layers and edit text directly.',
                     show: (bundle: Bundle) => bundle.getBlock('templateEditing')?.value === TemplateEditing.Advanced,
                     styles: {
                         type: NotificationStyleType.Info,
