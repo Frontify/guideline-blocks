@@ -4,6 +4,7 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import { IconEnum } from '@frontify/fondue';
 import {
     type Bundle,
+    NotificationStyleType,
     Radius,
     appendUnit,
     defineSettings,
@@ -12,7 +13,6 @@ import {
     getBorderSettings,
     getPaddingSettings,
     minimumNumericalOrPixelOrAutoRule,
-    NotificationStyleType,
     numericalOrPixelRule,
     presetCustomValue,
     radiusStyleMap,
