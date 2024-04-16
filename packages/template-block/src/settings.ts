@@ -12,10 +12,10 @@ import {
     getBorderSettings,
     getPaddingSettings,
     minimumNumericalOrPixelOrAutoRule,
+    NotificationStyleType,
     numericalOrPixelRule,
     presetCustomValue,
     radiusStyleMap,
-    NotificationStyleType,
 } from '@frontify/guideline-blocks-settings';
 import {
     AnchoringType,
