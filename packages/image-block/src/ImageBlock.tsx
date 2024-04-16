@@ -128,6 +128,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             <div data-test-id="image-block" className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}>
                 <div
                     className={merge([
+                        'tw-relative',
                         attachmentCount > 0 && 'tw-min-h-11',
                         positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
                             ? 'tw-w-full'
