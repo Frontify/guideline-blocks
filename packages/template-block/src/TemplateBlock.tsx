@@ -40,7 +40,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (selectedTemplate !== null) {
             const { templateEditing } = blockSettings;
             if (templateEditing === TemplateEditing.Simple) {
-                const uri = `/publishing/template/${selectedTemplate.id}?referer=${window.location.href.replaceAll(
+                const uri = `/publishing/template/${selectedTemplate.id}?referer=${encodeURI(window.location.href)}`
                     '/',
                     '%2F'
                 )}`;
