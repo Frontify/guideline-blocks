@@ -8,6 +8,7 @@ import {
     AnchoringType,
     PreviewDisplayType,
     PreviewHeightType,
+    TemplateEditing,
     TextPositioningType,
     TextRatioType,
     paddingStyleMap,
@@ -637,5 +638,20 @@ describe('Template Block', () => {
         cy.get(CTA_BUTTON_SELECTOR)
             .should('have.attr', 'style')
             .and('match', /font-size: var\(--f-theme-settings-button-secondary-font-size\)/);
+    });
+
+    it('should set CTA path to CreationFormUri', () => {
+        const [TemplateBlockWithStubs] = withAppBridgeBlockStubs(TemplateBlock, {
+            editorState: false,
+            blockTemplates: {
+                template: [getTemplateDummyWithPages()],
+            },
+        });
+
+        mount(<TemplateBlockWithStubs />);
+        cy.get(CTA_BUTTON_SELECTOR).click({ force: true });
+        cy.on('url:changed', (newUrl) => {
+            expect(newUrl).to.contain(`/publishing/template/${TEMPLATE_ID}`);
+        });
     });
 });
