@@ -8,7 +8,6 @@ import {
     AnchoringType,
     PreviewDisplayType,
     PreviewHeightType,
-    TemplateEditing,
     TextPositioningType,
     TextRatioType,
     paddingStyleMap,
