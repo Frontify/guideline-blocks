@@ -648,7 +648,7 @@ describe('Template Block', () => {
         });
 
         mount(<TemplateBlockWithStubs />);
-        cy.get(CTA_BUTTON_SELECTOR).click({ force: true });
+        cy.get(CTA_BUTTON_SELECTOR).realClick();
         cy.on('url:changed', (newUrl) => {
             expect(newUrl).to.contain(`/publishing/template/${TEMPLATE_ID}`);
         });
