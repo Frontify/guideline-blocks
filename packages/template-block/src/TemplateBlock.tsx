@@ -45,18 +45,21 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (templateEditing === TemplateEditing.Simple) {
             const uri = `/publishing/template/${selectedTemplate.id}?referer=${encodeURI(window.location.href)}`;
             open(uri, '_self');
+        } else {
+            const previewUrl =
+                preview === PreviewType.Custom && previewCustom
+                    ? previewCustom.previewUrl
+                    : selectedTemplate.previewUrl;
+
+            const options: OpenNewPublicationPayload = {
+                template: {
+                    ...selectedTemplate,
+                    previewUrl,
+                },
+            };
+
+            await appBridge.dispatch(openNewPublication(options));
         }
-        const previewUrl =
-            preview === PreviewType.Custom && previewCustom ? previewCustom.previewUrl : selectedTemplate.previewUrl;
-
-        const options: OpenNewPublicationPayload = {
-            template: {
-                ...selectedTemplate,
-                previewUrl,
-            },
-        };
-
-        await appBridge.dispatch(openNewPublication(options));
     };
 
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
