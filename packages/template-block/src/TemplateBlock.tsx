@@ -9,7 +9,7 @@ import { AlertError } from './components/AlertError';
 import { CtaButton } from './components/CtaButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
-import { PreviewType } from './types';
+import { PreviewType, TemplateEditing } from './types';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -37,7 +37,15 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = useTemplateBlockData(appBridge);
 
     const handleNewPublication = async () => {
-        if (selectedTemplate !== null) {
+        if (!selectedTemplate) {
+            return;
+        }
+        const { templateEditing } = blockSettings;
+
+        if (templateEditing === TemplateEditing.Simple) {
+            const uri = `/publishing/template/${selectedTemplate.id}?referer=${encodeURI(window.location.href)}`;
+            open(uri, '_self');
+        } else {
             const previewUrl =
                 preview === PreviewType.Custom && previewCustom
                     ? previewCustom.previewUrl

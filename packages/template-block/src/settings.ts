@@ -4,6 +4,7 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import { IconEnum } from '@frontify/fondue';
 import {
     type Bundle,
+    NotificationStyleType,
     Radius,
     appendUnit,
     defineSettings,
@@ -21,6 +22,7 @@ import {
     PreviewDisplayType,
     PreviewHeightType,
     PreviewType,
+    TemplateEditing,
     TextPositioningType,
     TextRatioType,
     paddingStyleMap,
@@ -73,6 +75,44 @@ export const settings = defineSettings({
             label: 'Custom Preview',
             show: (bundle: Bundle) => bundle.getBlock('preview')?.value === PreviewType.Custom,
             showForTranslations: true,
+        },
+        {
+            id: 'templateEditingHeading',
+            type: 'sectionHeading',
+            blocks: [
+                {
+                    id: 'templateEditing',
+                    label: 'Template Editing',
+                    info: 'Choose how users can make changes to the template.',
+                    type: 'slider',
+                    choices: [
+                        { label: 'Simple', value: TemplateEditing.Simple },
+                        { label: 'Advanced', value: TemplateEditing.Advanced },
+                    ],
+                    defaultValue: TemplateEditing.Simple,
+                    showForTranslations: true,
+                },
+                {
+                    id: 'templateEditingNotificationSimple',
+                    type: 'notification',
+                    text: 'Users can only make changes by selecting and editing fields in the settings panel without approvals.',
+                    show: (bundle: Bundle) => bundle.getBlock('templateEditing')?.value === TemplateEditing.Simple,
+                    styles: {
+                        type: NotificationStyleType.Info,
+                    },
+                    showForTranslations: true,
+                },
+                {
+                    id: 'templateEditingNotificationAdvanced',
+                    type: 'notification',
+                    text: 'Users can select layers and edit text directly.',
+                    show: (bundle: Bundle) => bundle.getBlock('templateEditing')?.value === TemplateEditing.Advanced,
+                    styles: {
+                        type: NotificationStyleType.Info,
+                    },
+                    showForTranslations: true,
+                },
+            ],
         },
     ],
     layout: [

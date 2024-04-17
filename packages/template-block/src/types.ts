@@ -11,6 +11,7 @@ export type Settings = {
     // Basics
     template?: TemplateLegacy;
     templateId?: number;
+    templateEditing: TemplateEditing;
     preview: PreviewType;
     previewCustom?: Asset;
     buttonText?: string;
@@ -179,3 +180,8 @@ export const paddingStyleMap: Record<Padding, string> = {
     [Padding.Medium]: '20px',
     [Padding.Large]: '30px',
 };
+
+export enum TemplateEditing {
+    Simple = 'simple',
+    Advanced = 'advanced',
+}
