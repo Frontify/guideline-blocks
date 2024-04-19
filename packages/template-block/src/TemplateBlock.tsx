@@ -43,8 +43,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         const { templateEditing } = blockSettings;
 
         if (templateEditing === TemplateEditing.Simple) {
-            const uri = `/publishing/template/${selectedTemplate.id}?referer=${encodeURI(window.location.href)}`;
-            open(uri, '_self');
+            open(selectedTemplate.creationFormUri, '_self');
         } else {
             const previewUrl =
                 preview === PreviewType.Custom && previewCustom
