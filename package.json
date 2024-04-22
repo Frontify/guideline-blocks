@@ -3,8 +3,7 @@
     "private": true,
     "engines": {
         "node": ">=20",
-        "pnpm": ">=8.0.0 || <9.0.0",
-        "npm": "<=0"
+        "pnpm": ">=9.0.0"
     },
     "scripts": {
         "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} lint",
