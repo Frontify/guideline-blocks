@@ -13,7 +13,8 @@
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "types": ["@testing-library/jest-dom"]
     },
     "include": ["src/**/*", "../shared/src/**/*"],
     "exclude": ["node_modules", "dist"]
