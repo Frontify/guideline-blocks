@@ -116,7 +116,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -195,7 +195,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -262,7 +262,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -332,7 +332,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -402,7 +402,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -469,7 +469,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -557,7 +557,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@react-types/shared':
         specifier: ^3.19.0
         version: 3.22.1(react@18.2.0)
@@ -648,7 +648,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -724,7 +724,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -794,7 +794,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -870,7 +870,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -940,7 +940,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1004,7 +1004,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1080,7 +1080,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/autosize':
         specifier: ^4.0.1
         version: 4.0.3
@@ -1147,7 +1147,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1214,7 +1214,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1281,7 +1281,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.1(react@18.2.0)
@@ -1354,7 +1354,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.1(react@18.2.0)
@@ -1433,7 +1433,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -1506,7 +1506,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1573,7 +1573,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1731,7 +1731,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1801,7 +1801,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1868,7 +1868,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/react':
         specifier: ^18.2.70
         version: 18.2.79
@@ -1941,7 +1941,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -2026,7 +2026,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -2114,7 +2114,7 @@ importers:
         version: 0.16.1(eslint@8.57.0)(prettier@3.2.5)(react@18.2.0)(typescript@5.4.5)
       '@frontify/frontify-cli':
         specifier: ^5.6.13
-        version: 5.6.13(@types/node@20.12.7)(terser@5.30.4)
+        version: 5.6.15(@types/node@20.12.7)(terser@5.30.4)
       '@types/lodash':
         specifier: ^4.14.199
         version: 4.14.202
@@ -3526,8 +3526,8 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/frontify-cli@5.6.13':
-    resolution: {integrity: sha512-UkhvBWUAZreXw8pr+QksRkkJ0hmlSqgMrduB1xUfr+4zmGGsI3QWowSGOgFhaT0SDBw8DQNRq4Uqd8SZ9gmmdg==}
+  '@frontify/frontify-cli@5.6.15':
+    resolution: {integrity: sha512-bWbzANu+qBgGx9CqHeeudT5gV4Ssg2Ix/+9OAe7u+fHlUZuTfsI5EmPlLEdHOUPxTB1c0+Ews/R+F8w4PzUEzw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5768,6 +5768,14 @@ packages:
       ajv:
         optional: true
 
+  ajv-formats@3.0.1:
+    resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
+
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
 
@@ -5940,8 +5948,8 @@ packages:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
 
-  atomically@2.0.2:
-    resolution: {integrity: sha512-Xfmb4q5QV7uqTlVdMSTtO5eF4DCHfNOdaPyKlbFShkzeNP+3lj3yjjcbdjSmEY4+pDBKJ9g26aP+ImTe88UHoQ==}
+  atomically@2.0.3:
+    resolution: {integrity: sha512-kU6FmrwZ3Lx7/7y3hPS5QnbJfaohcIul5fGqf7ok+4KklIEk9tJ0C2IQPdacSbVUWv6zVHXEBWoWd6NrVMT7Cw==}
 
   autoprefixer@10.4.19:
     resolution: {integrity: sha512-BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==}
@@ -7031,8 +7039,8 @@ packages:
   fast-json-stable-stringify@2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
 
-  fast-json-stringify@5.13.0:
-    resolution: {integrity: sha512-XjTDWKHP3GoMQUOfnjYUbqeHeEt+PvYgvBdG2fRSmYaORILbSr8xTJvZX+w1YSAP5pw2NwKrGRmQleYueZEoxw==}
+  fast-json-stringify@5.14.1:
+    resolution: {integrity: sha512-J1Grbf0oSXV3lKsBf3itz1AvRk43qVrx3Ac10sNvi3LZaz1by4oDdYKFrJycPhS8+Gb7y8rgV/Jqw1UZVjyNvw==}
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
@@ -7040,8 +7048,8 @@ packages:
   fast-querystring@1.1.2:
     resolution: {integrity: sha512-g6KuKWmFXc0fID8WWH0jit4g0AGBoJhCkJMb1RmbsSEUNvQ+ZC8D6CUZ+GtF8nMzSPXnhiePyyqqipzNNEnHjg==}
 
-  fast-redact@3.4.0:
-    resolution: {integrity: sha512-2gwPvyna0zwBdxKnng1suu/dTL5s8XEy2ZqH8mwDUwJdDkV8w5kp+JV26mupdK68HmPMbm6yjW9m7/Ys/BHEHg==}
+  fast-redact@3.5.0:
+    resolution: {integrity: sha512-dwsoQlS7h9hMeYUq1W++23NDcBLV4KqONnITDV9DjfS3q1SgDGVrBdvvTLUotWtPSD7asWDV9/CmsZPy8Hf70A==}
     engines: {node: '>=6'}
 
   fast-uri@2.3.0:
@@ -7925,8 +7933,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  light-my-request@5.12.0:
-    resolution: {integrity: sha512-P526OX6E7aeCIfw/9UyJNsAISfcFETghysaWHQAlQYayynShT08MOj4c6fBCvTWBrHXSvqBAKDp3amUPSCQI4w==}
+  light-my-request@5.13.0:
+    resolution: {integrity: sha512-9IjUN9ZyCS9pTG+KqTDEQo68Sui2lHsYBrfMyVUTTZ3XhH8PMZq7xO94Kr+eP9dhi/kcKsx4N41p2IXEBil1pQ==}
 
   lighthouse-logger@1.4.2:
     resolution: {integrity: sha512-gPWxznF6TKmUHrOQjlVo2UbaL2EJ71mb2CCeRs/2qBpi4L/g4LUVc9+3lKQ6DTUZwJswfM7ainGrLO1+fOqa2g==}
@@ -8708,14 +8716,14 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  pino-abstract-transport@1.1.0:
-    resolution: {integrity: sha512-lsleG3/2a/JIWUtf9Q5gUNErBqwIu1tUKTT3dUzaf5DySw9ra1wcqKjJjLX1VTY64Wk1eEOYsVGSaGfCK85ekA==}
+  pino-abstract-transport@1.2.0:
+    resolution: {integrity: sha512-Guhh8EZfPCfH+PMXAb6rKOjGQEoy0xlAIn+irODG5kgfYV+BQ0rGYYWTIel3P5mmyXqkYkPmdIkywsn6QKUR1Q==}
 
   pino-std-serializers@6.2.2:
     resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
 
-  pino@8.19.0:
-    resolution: {integrity: sha512-oswmokxkav9bADfJ2ifrvfHUwad6MLp73Uat0IkQWY3iAw5xTRoznXbXksZs8oaOUMpmhVWD+PZogNzllWpJaA==}
+  pino@8.20.0:
+    resolution: {integrity: sha512-uhIfMj5TVp+WynVASaVEJFTncTUe4dHBq6CWplu/vBgvGHhvBvQfxz+vcOrnnBQdORH3izaGEurLfNlq3YxdFQ==}
     hasBin: true
 
   pirates@4.0.6:
@@ -9441,8 +9449,8 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
 
-  sonic-boom@3.8.0:
-    resolution: {integrity: sha512-ybz6OYOUjoQQCQ/i4LU8kaToD8ACtYP+Cj5qd2AO36bwbdewxWJ3ArmJ2cr6AvxlL2o0PqnCcPGUgkILbfkaCA==}
+  sonic-boom@3.8.1:
+    resolution: {integrity: sha512-y4Z8LCDBuum+PBP3lSV7RHrXscqksve/bi0as7mhwVnBW+/wUqKT/2Kb7um8yqcFy0duYbbPxzt89Zy2nOCaxg==}
 
   source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -9681,8 +9689,8 @@ packages:
   thenify@3.3.1:
     resolution: {integrity: sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==}
 
-  thread-stream@2.4.1:
-    resolution: {integrity: sha512-d/Ex2iWd1whipbT681JmTINKw0ZwOUBZm7+Gjs64DHuX34mmw8vJL2bFAaNacaW72zYiTJxSHi5abUuOi5nsfg==}
+  thread-stream@2.6.0:
+    resolution: {integrity: sha512-t4eNiKdGwd1EV6tx76mRbrOqwvkxz+ssOiQXEXw88m4p/Xp6679vg16sf39BAstRjHOiWIqp5+J2ylHk3pU30g==}
 
   three@0.163.0:
     resolution: {integrity: sha512-HlMgCb2TF/dTLRtknBnjUTsR8FsDqBY43itYop2+Zg822I+Kd0Ua2vs8CvfBVefXkBdNDrLMoRTGCIIpfCuDew==}
@@ -10361,8 +10369,8 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
-  zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  zod@3.23.3:
+    resolution: {integrity: sha512-tPvq1B/2Yu/dh2uAIH2/BhUlUeLIUvAjr6dpL/75I0pCYefHgjhXk1o1Kob3kTU8C7yU1j396jFHlsVWFi9ogg==}
 
   zustand-x@3.0.2:
     resolution: {integrity: sha512-tb4qMWbmgrWEdemb+LlrJiHI1ZMxwlQNz7jDHN5iA/vmU8xlpAX80MQZ2FNLP2KejBFEnsA1RWRAO/0D5O0rPw==}
@@ -11926,7 +11934,7 @@ snapshots:
 
   '@fastify/fast-json-stringify-compiler@4.3.0':
     dependencies:
-      fast-json-stringify: 5.13.0
+      fast-json-stringify: 5.14.1
 
   '@fastify/merge-json-schemas@0.1.1':
     dependencies:
@@ -12368,7 +12376,7 @@ snapshots:
       - zdog
       - zustand
 
-  '@frontify/frontify-cli@5.6.13(@types/node@20.12.7)(terser@5.30.4)':
+  '@frontify/frontify-cli@5.6.15(@types/node@20.12.7)(terser@5.30.4)':
     dependencies:
       '@fastify/cors': 9.0.1
       '@vitejs/plugin-react': 4.2.1(vite@4.5.3(@types/node@20.12.7)(terser@5.30.4))
@@ -12384,7 +12392,7 @@ snapshots:
       prompts: 2.4.2
       vite: 4.5.3(@types/node@20.12.7)(terser@5.30.4)
       vite-plugin-externals: 0.6.2(vite@4.5.3(@types/node@20.12.7)(terser@5.30.4))
-      zod: 3.22.4
+      zod: 3.23.3
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15742,8 +15750,8 @@ snapshots:
   '@vitejs/plugin-react@4.2.1(vite@4.5.3(@types/node@20.12.7)(terser@5.30.4))':
     dependencies:
       '@babel/core': 7.24.4
-      '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.24.4)
-      '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.24.4)
+      '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.4)
+      '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
       vite: 4.5.3(@types/node@20.12.7)(terser@5.30.4)
@@ -15895,6 +15903,10 @@ snapshots:
       indent-string: 4.0.0
 
   ajv-formats@2.1.1(ajv@8.12.0):
+    optionalDependencies:
+      ajv: 8.12.0
+
+  ajv-formats@3.0.1(ajv@8.12.0):
     optionalDependencies:
       ajv: 8.12.0
 
@@ -16083,7 +16095,7 @@ snapshots:
 
   atomic-sleep@1.0.0: {}
 
-  atomically@2.0.2:
+  atomically@2.0.3:
     dependencies:
       stubborn-fs: 1.2.5
       when-exit: 2.1.2
@@ -16484,7 +16496,7 @@ snapshots:
     dependencies:
       ajv: 8.12.0
       ajv-formats: 2.1.1(ajv@8.12.0)
-      atomically: 2.0.2
+      atomically: 2.0.3
       debounce-fn: 5.1.2
       dot-prop: 8.0.2
       env-paths: 3.0.0
@@ -17411,11 +17423,11 @@ snapshots:
 
   fast-json-stable-stringify@2.1.0: {}
 
-  fast-json-stringify@5.13.0:
+  fast-json-stringify@5.14.1:
     dependencies:
       '@fastify/merge-json-schemas': 0.1.1
       ajv: 8.12.0
-      ajv-formats: 2.1.1(ajv@8.12.0)
+      ajv-formats: 3.0.1(ajv@8.12.0)
       fast-deep-equal: 3.1.3
       fast-uri: 2.3.0
       json-schema-ref-resolver: 1.0.1
@@ -17427,7 +17439,7 @@ snapshots:
     dependencies:
       fast-decode-uri-component: 1.0.1
 
-  fast-redact@3.4.0: {}
+  fast-redact@3.5.0: {}
 
   fast-uri@2.3.0: {}
 
@@ -17445,10 +17457,10 @@ snapshots:
       abstract-logging: 2.0.1
       avvio: 8.3.0
       fast-content-type-parse: 1.1.0
-      fast-json-stringify: 5.13.0
+      fast-json-stringify: 5.14.1
       find-my-way: 8.1.0
-      light-my-request: 5.12.0
-      pino: 8.19.0
+      light-my-request: 5.13.0
+      pino: 8.20.0
       process-warning: 3.0.0
       proxy-addr: 2.0.7
       rfdc: 1.3.1
@@ -18320,7 +18332,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  light-my-request@5.12.0:
+  light-my-request@5.13.0:
     dependencies:
       cookie: 0.6.0
       process-warning: 3.0.0
@@ -19348,26 +19360,26 @@ snapshots:
 
   pify@4.0.1: {}
 
-  pino-abstract-transport@1.1.0:
+  pino-abstract-transport@1.2.0:
     dependencies:
       readable-stream: 4.5.2
       split2: 4.2.0
 
   pino-std-serializers@6.2.2: {}
 
-  pino@8.19.0:
+  pino@8.20.0:
     dependencies:
       atomic-sleep: 1.0.0
-      fast-redact: 3.4.0
+      fast-redact: 3.5.0
       on-exit-leak-free: 2.1.2
-      pino-abstract-transport: 1.1.0
+      pino-abstract-transport: 1.2.0
       pino-std-serializers: 6.2.2
       process-warning: 3.0.0
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
       safe-stable-stringify: 2.4.3
-      sonic-boom: 3.8.0
-      thread-stream: 2.4.1
+      sonic-boom: 3.8.1
+      thread-stream: 2.6.0
 
   pirates@4.0.6: {}
 
@@ -20243,7 +20255,7 @@ snapshots:
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
 
-  sonic-boom@3.8.0:
+  sonic-boom@3.8.1:
     dependencies:
       atomic-sleep: 1.0.0
 
@@ -20546,7 +20558,7 @@ snapshots:
     dependencies:
       any-promise: 1.3.0
 
-  thread-stream@2.4.1:
+  thread-stream@2.6.0:
     dependencies:
       real-require: 0.2.0
 
@@ -21225,7 +21237,7 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.5.2
 
-  zod@3.22.4: {}
+  zod@3.23.3: {}
 
   zustand-x@3.0.2(react-dom@18.2.0(react@18.2.0))(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@4.5.2(@types/react@18.2.79)(immer@9.0.21)(react@18.2.0)):
     dependencies:
