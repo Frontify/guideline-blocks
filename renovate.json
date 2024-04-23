@@ -12,11 +12,6 @@
         {
             "updateTypes": ["major"],
             "labels": ["dependencies", "dependencies-major"]
-        },
-        {
-            "matchPackagePatterns": ["@frontify/fondue"],
-            "groupName": "fondue",
-            "recreateWhen": "never"
         }
     ]
 }
