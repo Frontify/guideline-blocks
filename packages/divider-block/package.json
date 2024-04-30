@@ -32,7 +32,7 @@
     "dependencies": {
         "@frontify/app-bridge": "^3.6.0",
         "@frontify/fondue": "12.0.7",
-        "@frontify/guideline-blocks-settings": "^0.34.12",
+        "@frontify/guideline-blocks-settings": "^0.34.14",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
