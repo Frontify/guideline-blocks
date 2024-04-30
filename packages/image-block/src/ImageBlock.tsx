@@ -30,7 +30,7 @@ import {
     generateRandomId,
     merge,
 } from '@frontify/fondue';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
@@ -123,6 +123,70 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
+    const ImageWrapper = useMemo(() => {
+        return (
+            <BlockItemWrapper
+                shouldHideWrapper={!isEditing}
+                showAttachments
+                toolbarItems={[
+                    image
+                        ? getEditAltTextToolbarButton({
+                              localAltText,
+                              setLocalAltText,
+                              blockSettings,
+                              setBlockSettings,
+                          })
+                        : undefined,
+                    {
+                        type: 'button',
+                        icon: <IconTrashBin16 />,
+                        onClick: onRemoveAsset,
+                        tooltip: 'Delete',
+                    },
+                    {
+                        type: 'menu',
+                        items: [
+                            [
+                                {
+                                    title: 'Replace with upload',
+                                    icon: <IconArrowCircleUp20 />,
+                                    onClick: openFileDialog,
+                                },
+                                {
+                                    title: 'Replace with asset',
+                                    icon: <IconImageStack20 />,
+                                    onClick: onOpenAssetChooser,
+                                },
+                            ],
+                            [
+                                {
+                                    title: 'Delete',
+                                    icon: <IconTrashBin20 />,
+                                    style: MenuItemStyle.Danger,
+                                    onClick: onRemoveAsset,
+                                },
+                            ],
+                        ],
+                    },
+                ]}
+            >
+                {isLoading ? (
+                    <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
+                        <LoadingCircle />
+                    </div>
+                ) : (
+                    <Image
+                        appBridge={appBridge}
+                        blockSettings={blockSettings}
+                        isEditing={isEditing}
+                        image={image}
+                        globalAssetViewerEnabled={assetViewerEnabled}
+                    />
+                )}
+            </BlockItemWrapper>
+        );
+    }, [image, isLoading]);
+
     return (
         <div className="image-block">
             <div data-test-id="image-block" className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}>
@@ -142,82 +206,22 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                         image={image}
                         isEditing={isEditing}
                     />
-                    {image ? (
-                        <BlockItemWrapper
-                            shouldHideWrapper={!isEditing}
-                            showAttachments
-                            toolbarItems={[
-                                image
-                                    ? getEditAltTextToolbarButton({
-                                          localAltText,
-                                          setLocalAltText,
-                                          blockSettings,
-                                          setBlockSettings,
-                                      })
-                                    : undefined,
-                                {
-                                    type: 'button',
-                                    icon: <IconTrashBin16 />,
-                                    onClick: onRemoveAsset,
-                                    tooltip: 'Delete',
-                                },
-                                {
-                                    type: 'menu',
-                                    items: [
-                                        [
-                                            {
-                                                title: 'Replace with upload',
-                                                icon: <IconArrowCircleUp20 />,
-                                                onClick: openFileDialog,
-                                            },
-                                            {
-                                                title: 'Replace with asset',
-                                                icon: <IconImageStack20 />,
-                                                onClick: onOpenAssetChooser,
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                title: 'Delete',
-                                                icon: <IconTrashBin20 />,
-                                                style: MenuItemStyle.Danger,
-                                                onClick: onRemoveAsset,
-                                            },
-                                        ],
-                                    ],
-                                },
-                            ]}
-                        >
-                            {isLoading ? (
-                                <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
-                                    <LoadingCircle />
-                                </div>
-                            ) : (
-                                <Image
-                                    appBridge={appBridge}
-                                    blockSettings={blockSettings}
-                                    isEditing={isEditing}
-                                    image={image}
-                                    globalAssetViewerEnabled={assetViewerEnabled}
-                                />
-                            )}
-                        </BlockItemWrapper>
-                    ) : (
-                        isEditing && (
-                            <BlockItemWrapper
-                                shouldHideWrapper={attachmentCount === 0}
-                                showAttachments
-                                toolbarItems={[]}
-                            >
-                                <UploadPlaceholder
-                                    loading={isLoading}
-                                    onUploadClick={openFileDialog}
-                                    onFilesDrop={onFilesDrop}
-                                    onAssetChooseClick={onOpenAssetChooser}
-                                />
-                            </BlockItemWrapper>
-                        )
-                    )}
+                    {image
+                        ? ImageWrapper
+                        : isEditing && (
+                              <BlockItemWrapper
+                                  shouldHideWrapper={attachmentCount === 0}
+                                  showAttachments
+                                  toolbarItems={[]}
+                              >
+                                  <UploadPlaceholder
+                                      loading={isLoading}
+                                      onUploadClick={openFileDialog}
+                                      onFilesDrop={onFilesDrop}
+                                      onAssetChooseClick={onOpenAssetChooser}
+                                  />
+                              </BlockItemWrapper>
+                          )}
                 </div>
 
                 <ImageCaption
