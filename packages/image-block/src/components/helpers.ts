@@ -90,10 +90,15 @@ export const getTotalImagePadding = (blockSettings: Settings): CSSProperties => 
 const getPadding = (blockSettings: Settings): string =>
     blockSettings.hasCustomPadding ? blockSettings.paddingCustom : paddingValues[blockSettings.paddingChoice];
 
-export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => {
+const getBorderRadius = (blockSettings: Settings) => {
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
         : radiusValues[blockSettings.radiusChoice_cornerRadius];
+
+    return borderRadius ?? radiusValues[CornerRadius.None];
+};
+
+export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => {
     const border = blockSettings.hasBorder
         ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
         : undefined;
@@ -101,7 +106,13 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
     return {
         padding: getPadding(blockSettings),
         border,
-        borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
+        borderRadius: blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
         backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
+    };
+};
+
+export const getImageStyle = (blockSettings: Settings): CSSProperties => {
+    return {
+        borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
     };
 };
