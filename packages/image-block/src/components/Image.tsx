@@ -8,7 +8,7 @@ import { type CSSProperties, type ReactNode } from 'react';
 
 import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
 
-import { getImageWrapperStyle } from './helpers';
+import { getImageStyle, getImageWrapperStyle } from './helpers';
 
 type ImageProps = {
     image: Asset;
@@ -33,6 +33,7 @@ type ImageComponentProps = {
     image: Asset;
     alt: string;
     containerWidth: number;
+    style: CSSProperties;
 };
 
 const ImageWrapper = ({
@@ -85,13 +86,13 @@ const ImageWrapper = ({
     );
 };
 
-export const ImageComponent = ({ image, alt, containerWidth }: ImageComponentProps) => (
+export const ImageComponent = ({ image, alt, containerWidth, style }: ImageComponentProps) => (
     <ResponsiveImage
         testId="image-block-image-component"
         image={image}
         containerWidth={containerWidth}
         alt={alt}
-        style={{ maxWidth: image.width }}
+        style={{ ...style, maxWidth: image.width }}
     />
 );
 
@@ -99,6 +100,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
+    const imageStyle = getImageStyle(blockSettings);
     const { assetViewerEnabled, security } = blockSettings;
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
@@ -117,7 +119,12 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
                     image={image}
                     alignment={blockSettings.alignment}
                 >
-                    <ImageComponent containerWidth={containerWidth} image={image} alt={blockSettings.altText ?? ''} />
+                    <ImageComponent
+                        style={imageStyle}
+                        containerWidth={containerWidth}
+                        image={image}
+                        alt={blockSettings.altText ?? ''}
+                    />
                 </ImageWrapper>
             )}
         </div>

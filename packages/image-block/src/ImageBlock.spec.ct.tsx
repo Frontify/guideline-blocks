@@ -7,6 +7,7 @@ import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
     Alignment,
     CaptionPosition,
+    CornerRadius,
     Ratio,
     imageRatioValues,
     mapAlignmentClasses,
@@ -403,6 +404,35 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ButtonsWrapper).should('have.css', 'padding-top', '28px').and('have.css', 'padding-right', '28px');
+    });
+
+    it('should add border radius to image container when there is background color set', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockSettings: {
+                backgroundColor: { red: 255, green: 0, blue: 0 },
+                hasBackground: true,
+                radiusChoice_cornerRadius: CornerRadius.Large,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'border-radius', '12px');
+    });
+
+    it('should add border radius to image component when there is no background color set', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockSettings: {
+                hasBackground: false,
+                radiusChoice_cornerRadius: CornerRadius.Large,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageComponentSelector).should('have.css', 'border-radius', '12px');
     });
 
     it('should render the alt text button in the block toolbar', () => {
