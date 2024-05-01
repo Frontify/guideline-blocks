@@ -72,6 +72,7 @@ export const Image = ({
         if (image) {
             return isAssetViewerEnabled ? (
                 <button
+                    className="tw-w-full"
                     data-test-id="thumbnail-grid-block-asset-viewer-button"
                     onClick={() => openAssetInAssetViewer?.(image)}
                 >
