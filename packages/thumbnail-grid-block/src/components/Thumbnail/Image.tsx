@@ -42,7 +42,6 @@ export const Image = ({
                     style={thumbnailStyles.imageStyles}
                     testId="thumbnail-image"
                     image={image}
-                    className="tw-object-scale-down"
                     containerWidth={containerWidth}
                     alt={altText || image.title || image.fileName || ''}
                 />
