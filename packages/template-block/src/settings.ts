@@ -82,14 +82,14 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'templateEditing',
-                    label: 'Template Editing',
+                    label: 'Template editing',
                     info: 'Choose how users can make changes to the template.',
                     type: 'slider',
                     choices: [
                         { label: 'Simple', value: TemplateEditing.Simple },
                         { label: 'Advanced', value: TemplateEditing.Advanced },
                     ],
-                    defaultValue: TemplateEditing.Simple,
+                    defaultValue: TemplateEditing.Advanced,
                     showForTranslations: true,
                 },
                 {
