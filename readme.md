@@ -4,7 +4,7 @@
 
 ### Requirements:
 
--   Node 20
+-   Node 22
 -   [pnpm 9](https://pnpm.io/installation)
 -   Access to a Frontify styleguide
 
