@@ -926,8 +926,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       react-compare-slider:
-        specifier: ^2.2.0
-        version: 2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^3.0.0
+        version: 3.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
@@ -8846,8 +8846,9 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  react-compare-slider@2.2.0:
-    resolution: {integrity: sha512-I77xqulpoibZ9eqjn5wjpZL5IRpUZYcUlde70YaJ+MORGbUThrjTlHKl/UeGyCIPUWtPID5f5/zK9Q+1ovQLeA==}
+  react-compare-slider@3.1.0:
+    resolution: {integrity: sha512-TQVbZYmYyTIeKRmQciVXCmUwHjTThQTON7GfWfzMAOInRRG9tCiQnVXnCUd5DJ5l3Hngh4IEzOb9TG82gjoEhQ==}
+    engines: {node: '>=16.9.0'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
@@ -19217,7 +19218,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-compare-slider@2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-compare-slider@3.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
