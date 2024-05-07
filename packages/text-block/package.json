@@ -33,8 +33,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^3.6.0",
-        "@frontify/fondue": "12.0.7",
-        "@frontify/guideline-blocks-settings": "^0.34.14",
+        "@frontify/fondue": "12.0.10",
+        "@frontify/guideline-blocks-settings": "^0.34.15",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "^4.17.21",
         "react": "^18.2.0",
