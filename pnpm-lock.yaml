@@ -18,7 +18,7 @@ importers:
     dependencies:
       '@frontify/fondue':
         specifier: 12.0.10
-        version: 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
+        version: 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
       glob:
         specifier: ^10.3.4
         version: 10.3.10
@@ -43,13 +43,13 @@ importers:
         version: 5.0.7
       '@testing-library/jest-dom':
         specifier: ^6.4.5
-        version: 6.4.5(vitest@1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0)(happy-dom@14.7.1)(terser@5.31.0))
+        version: 6.4.5(vitest@1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0)(happy-dom@14.7.1)(terser@5.31.0))
       '@testing-library/react':
         specifier: ^15.0.6
         version: 15.0.7(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: ^20.12.10
-        version: 20.12.10
+        version: 20.12.12
       '@types/react':
         specifier: ^18.3.1
         version: 18.3.2
@@ -58,7 +58,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.11(@types/node@20.12.10)(terser@5.31.0))
+        version: 4.2.1(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))
       '@vitest/ui':
         specifier: ^1.4.0
         version: 1.5.0(vitest@1.4.0)
@@ -76,19 +76,19 @@ importers:
         version: 8.4.38
       tailwindcss:
         specifier: ^3.4.1
-        version: 3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5))
+        version: 3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.12.10)(typescript@5.4.5)
+        version: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
       typescript:
         specifier: ^5.4.3
         version: 5.4.5
       vite:
         specifier: ^5.2.6
-        version: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
+        version: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
       vitest:
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
+        version: 1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
 
   examples/asset-upload:
     dependencies:
@@ -1621,10 +1621,10 @@ importers:
         version: 3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1)
       '@frontify/fondue':
         specifier: 12.0.10
-        version: 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
+        version: 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: ^0.34.15
-        version: 0.34.15(@frontify/app-bridge@3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
+        version: 0.34.15(@frontify/app-bridge@3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
       '@uiw/react-codemirror':
         specifier: ^4.21.24
         version: 4.21.24(@babel/runtime@7.24.5)(@codemirror/autocomplete@6.16.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)(@lezer/common@1.2.1))(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.26.3)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1640,7 +1640,7 @@ importers:
         version: 15.0.7(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: ^20.12.10
-        version: 20.12.10
+        version: 20.12.12
       '@types/react':
         specifier: ^18.3.1
         version: 18.3.2
@@ -1685,22 +1685,22 @@ importers:
         version: 17.0.1
       tailwindcss:
         specifier: ^3.4.1
-        version: 3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5))
+        version: 3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.12.10)(typescript@5.4.5)
+        version: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
       typescript:
         specifier: ^5.4.3
         version: 5.4.5
       vite:
         specifier: ^5.2.6
-        version: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
+        version: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
       vite-plugin-dts:
         specifier: ^3.7.3
-        version: 3.7.3(@types/node@20.12.10)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.10)(terser@5.31.0))
+        version: 3.7.3(@types/node@20.12.12)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))
       vitest:
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
+        version: 1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
 
   packages/sketchfab-block:
     dependencies:
@@ -4934,9 +4934,6 @@ packages:
 
   '@types/node@18.19.33':
     resolution: {integrity: sha512-NR9+KrpSajr2qBVp/Yt5TU/rp+b5Mayi3+OlMlcg2cVCfRmcG5PWZ7S4+MG9PZ5gWBoc9Pd0BKSRViuBCRPu0A==}
-
-  '@types/node@20.12.10':
-    resolution: {integrity: sha512-Eem5pH9pmWBHoGAT8Dr5fdc5rYA+4NAovdM4EktRPVAAiJhmWWfQrA0cFhAbOsQdSfIHjAud6YdkbL69+zSKjw==}
 
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
@@ -11872,36 +11869,6 @@ snapshots:
       - '@types/eslint'
       - supports-color
 
-  '@frontify/fondue-charts@1.8.3(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)':
-    dependencies:
-      '@frontify/fondue-tokens': 3.5.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))
-      '@visx/axis': 3.10.1(react@18.3.1)
-      '@visx/glyph': 3.3.0(react@18.3.1)
-      '@visx/grid': 3.5.0(react@18.3.1)
-      '@visx/group': 3.3.0(react@18.3.1)
-      '@visx/hierarchy': 3.3.0(react@18.3.1)
-      '@visx/responsive': 3.10.2(react@18.3.1)
-      '@visx/scale': 3.5.0
-      '@visx/shape': 3.5.0(react@18.3.1)
-      '@visx/text': 3.3.0(react@18.3.1)
-      '@visx/tooltip': 3.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@visx/xychart': 3.10.2(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-spring: 9.7.3(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(three@0.163.0)(zdog@1.1.3)
-      use-font-face-observer: 1.2.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@react-three/fiber'
-      - konva
-      - react-konva
-      - react-native
-      - react-zdog
-      - tailwindcss
-      - three
-      - zdog
-
   '@frontify/fondue-charts@1.8.3(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)':
     dependencies:
       '@frontify/fondue-tokens': 3.5.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))
@@ -11946,131 +11913,9 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@frontify/fondue-tokens@3.5.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))':
-    dependencies:
-      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5))
-
   '@frontify/fondue-tokens@3.5.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))':
     dependencies:
       tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
-
-  ? '@frontify/fondue@12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))'
-  : dependencies:
-      '@ctrl/tinycolor': 4.0.4
-      '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/utilities': 3.2.2(react@18.3.1)
-      '@frontify/fondue-charts': 1.8.3(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)
-      '@frontify/fondue-components': 1.2.3(@frontify/fondue-icons@0.2.1(react@18.3.1))(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-icons': 0.2.1(react@18.3.1)
-      '@frontify/fondue-tokens': 3.5.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))
-      '@popperjs/core': 2.11.8
-      '@radix-ui/react-popover': 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toolbar': 1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/accordion': 3.0.0-alpha.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/aria-modal-polyfill': 3.7.8(react@18.3.1)
-      '@react-aria/breadcrumbs': 3.5.2(react@18.3.1)
-      '@react-aria/button': 3.9.3(react@18.3.1)
-      '@react-aria/checkbox': 3.7.0(react@18.3.1)
-      '@react-aria/combobox': 3.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/dialog': 3.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/focus': 3.12.0(react@18.3.1)
-      '@react-aria/interactions': 3.13.0(react@18.3.1)
-      '@react-aria/link': 3.3.5(react@18.3.1)
-      '@react-aria/listbox': 3.7.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/menu': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/overlays': 3.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/radio': 3.4.1(react@18.3.1)
-      '@react-aria/select': 3.8.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/selection': 3.12.0(react@18.3.1)
-      '@react-aria/table': 3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/tooltip': 3.3.3(react@18.3.1)
-      '@react-aria/utils': 3.14.1(react@18.3.1)
-      '@react-aria/visually-hidden': 3.6.0(react@18.3.1)
-      '@react-stately/checkbox': 3.3.2(react@18.3.1)
-      '@react-stately/collections': 3.4.4(react@18.3.1)
-      '@react-stately/combobox': 3.2.2(react@18.3.1)
-      '@react-stately/list': 3.5.4(react@18.3.1)
-      '@react-stately/menu': 3.4.4(react@18.3.1)
-      '@react-stately/overlays': 3.4.2(react@18.3.1)
-      '@react-stately/radio': 3.6.0(react@18.3.1)
-      '@react-stately/select': 3.3.2(react@18.3.1)
-      '@react-stately/table': 3.5.0(react@18.3.1)
-      '@react-stately/toggle': 3.4.2(react@18.3.1)
-      '@react-stately/tooltip': 3.2.2(react@18.3.1)
-      '@react-stately/tree': 3.3.4(react@18.3.1)
-      '@react-types/dialog': 3.4.5(react@18.3.1)
-      '@react-types/shared': 3.16.0(react@18.3.1)
-      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))
-      '@udecode/plate-alignment': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-autoformat': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-basic-marks': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-break': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-code-block': 31.3.4(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-combobox': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-core': 31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-emoji': 31.0.0(patch_hash=sfdyswlcet2fr7n2d3krjmwwuu)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-floating': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-indent': 31.1.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-link': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-list': 31.1.3(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-mention': 31.3.5(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-normalizers': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-paragraph': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-utils': 31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/react-utils': 31.0.0(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@udecode/slate': 31.0.0(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-react': 31.0.0(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-utils': 31.3.2(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/utils': 31.0.0
-      '@udecode/zustood': 2.0.0(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
-      '@xstate/immer': 0.3.3(immer@9.0.21)(xstate@4.38.3)
-      '@xstate/react': 1.6.3(@types/react@18.3.2)(react@18.3.1)(xstate@4.38.3)
-      date-fns: 3.6.0
-      escape-html: 1.0.3
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      immer: 9.0.21
-      is-hotkey: 0.2.0
-      react: 18.3.1
-      react-colorful: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-datepicker: 4.25.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dnd: 16.0.1(@types/node@20.12.10)(@types/react@18.3.2)(react@18.3.1)
-      react-dnd-html5-backend: 16.0.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-fast-compare: 3.2.2
-      react-is: 18.3.1
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-textarea-autosize: 8.5.3(@types/react@18.3.2)(react@18.3.1)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.2
-      slate: 0.102.0
-      slate-react: 0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0)
-      unified: 10.1.2
-      unist-util-visit: 5.0.0
-      xstate: 4.38.3
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@react-three/fiber'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - '@udecode/plate-common'
-      - '@xstate/fsm'
-      - konva
-      - react-konva
-      - react-native
-      - react-zdog
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - three
-      - zdog
-      - zustand
 
   ? '@frontify/fondue@12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))'
   : dependencies:
@@ -12217,41 +12062,6 @@ snapshots:
       - supports-color
       - terser
 
-  ? '@frontify/guideline-blocks-settings@0.34.15(@frontify/app-bridge@3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))'
-  : dependencies:
-      '@ctrl/tinycolor': 4.0.4
-      '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@frontify/app-bridge': 3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1)
-      '@frontify/fondue': 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
-      '@frontify/sidebar-settings': 0.9.16(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
-      '@react-aria/focus': 3.16.2(react@18.3.1)
-      '@react-stately/overlays': 3.6.5(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@react-three/fiber'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - '@udecode/plate-common'
-      - '@xstate/fsm'
-      - konva
-      - react-konva
-      - react-native
-      - react-zdog
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - three
-      - zdog
-      - zustand
-
   ? '@frontify/guideline-blocks-settings@0.34.15(@frontify/app-bridge@3.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))'
   : dependencies:
       '@ctrl/tinycolor': 4.0.4
@@ -12263,33 +12073,6 @@ snapshots:
       '@frontify/sidebar-settings': 0.9.16(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.12)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
       '@react-aria/focus': 3.16.2(react@18.3.1)
       '@react-stately/overlays': 3.6.5(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@react-three/fiber'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - '@udecode/plate-common'
-      - '@xstate/fsm'
-      - konva
-      - react-konva
-      - react-native
-      - react-zdog
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - three
-      - zdog
-      - zustand
-
-  ? '@frontify/sidebar-settings@0.9.16(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))'
-  : dependencies:
-      '@frontify/fondue': 12.0.10(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@react-three/fiber@8.16.2(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(three@0.163.0))(@types/node@20.12.10)(@types/react-dom@18.3.0)(@types/react@18.3.2)(@udecode/plate-common@31.3.2(@types/react@18.3.2)(immer@9.0.21)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react-konva@18.2.10(konva@9.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.4(@babel/core@7.24.5))(@types/react@18.3.2)(react@18.3.1))(react-zdog@1.2.2)(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))(three@0.163.0)(zdog@1.1.3)(zustand@4.5.2(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
@@ -12591,20 +12374,20 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@microsoft/api-extractor-model@7.28.3(@types/node@20.12.10)':
+  '@microsoft/api-extractor-model@7.28.3(@types/node@20.12.12)':
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.10)
+      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.12)
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/api-extractor@7.39.0(@types/node@20.12.10)':
+  '@microsoft/api-extractor@7.39.0(@types/node@20.12.12)':
     dependencies:
-      '@microsoft/api-extractor-model': 7.28.3(@types/node@20.12.10)
+      '@microsoft/api-extractor-model': 7.28.3(@types/node@20.12.12)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.10)
+      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.12)
       '@rushstack/rig-package': 0.5.1
       '@rushstack/ts-command-line': 4.17.1
       colors: 1.2.5
@@ -14256,7 +14039,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
 
-  '@rushstack/node-core-library@3.62.0(@types/node@20.12.10)':
+  '@rushstack/node-core-library@3.62.0(@types/node@20.12.12)':
     dependencies:
       colors: 1.2.5
       fs-extra: 7.0.1
@@ -14266,7 +14049,7 @@ snapshots:
       semver: 7.5.4
       z-schema: 5.0.5
     optionalDependencies:
-      '@types/node': 20.12.10
+      '@types/node': 20.12.12
 
   '@rushstack/rig-package@0.5.1':
     dependencies:
@@ -14329,11 +14112,6 @@ snapshots:
     dependencies:
       tslib: 2.6.2
 
-  '@tailwindcss/forms@0.5.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)))':
-    dependencies:
-      mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5))
-
   '@tailwindcss/forms@0.5.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))':
     dependencies:
       mini-svg-data-uri: 1.4.4
@@ -14350,7 +14128,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.5(vitest@1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0)(happy-dom@14.7.1)(terser@5.31.0))':
+  '@testing-library/jest-dom@6.4.5(vitest@1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0)(happy-dom@14.7.1)(terser@5.31.0))':
     dependencies:
       '@adobe/css-tools': 4.3.3
       '@babel/runtime': 7.24.5
@@ -14361,7 +14139,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
     optionalDependencies:
-      vitest: 1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
+      vitest: 1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
 
   '@testing-library/react@15.0.7(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -14488,10 +14266,6 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.12.10':
-    dependencies:
-      undici-types: 5.26.5
-
   '@types/node@20.12.12':
     dependencies:
       undici-types: 5.26.5
@@ -14521,7 +14295,7 @@ snapshots:
 
   '@types/set-cookie-parser@2.4.7':
     dependencies:
-      '@types/node': 20.12.10
+      '@types/node': 20.12.12
 
   '@types/sinon@17.0.3':
     dependencies:
@@ -14553,7 +14327,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.12.10
+      '@types/node': 20.12.12
     optional: true
 
   '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)':
@@ -15563,24 +15337,13 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.10)(terser@5.31.0))':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))':
     dependencies:
       '@babel/core': 7.24.5
       '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.24.5)
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))':
-    dependencies:
-      '@babel/core': 7.24.5
-      '@babel/plugin-transform-react-jsx-self': 7.24.5(@babel/core@7.24.5)
-      '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.14.2
       vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
@@ -15616,7 +15379,7 @@ snapshots:
       pathe: 1.1.2
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
+      vitest: 1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0)
 
   '@vitest/utils@1.4.0':
     dependencies:
@@ -19177,14 +18940,6 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)):
-    dependencies:
-      lilconfig: 3.1.1
-      yaml: 2.4.1
-    optionalDependencies:
-      postcss: 8.4.38
-      ts-node: 10.9.2(@types/node@20.12.10)(typescript@5.4.5)
-
   postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
     dependencies:
       lilconfig: 3.1.1
@@ -19337,18 +19092,6 @@ snapshots:
   react-dnd-html5-backend@16.0.1:
     dependencies:
       dnd-core: 16.0.1
-
-  react-dnd@16.0.1(@types/node@20.12.10)(@types/react@18.3.2)(react@18.3.1):
-    dependencies:
-      '@react-dnd/invariant': 4.0.2
-      '@react-dnd/shallowequal': 4.0.2
-      dnd-core: 16.0.1
-      fast-deep-equal: 3.1.3
-      hoist-non-react-statics: 3.3.2
-      react: 18.3.1
-    optionalDependencies:
-      '@types/node': 20.12.10
-      '@types/react': 18.3.2
 
   react-dnd@16.0.1(@types/node@20.12.12)(@types/react@18.3.2)(react@18.3.1):
     dependencies:
@@ -20241,33 +19984,6 @@ snapshots:
 
   tabbable@6.2.0: {}
 
-  tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5)):
-    dependencies:
-      '@alloc/quick-lru': 5.2.0
-      arg: 5.0.2
-      chokidar: 3.6.0
-      didyoumean: 1.2.2
-      dlv: 1.1.3
-      fast-glob: 3.3.2
-      glob-parent: 6.0.2
-      is-glob: 4.0.3
-      jiti: 1.21.0
-      lilconfig: 2.1.0
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      object-hash: 3.0.0
-      picocolors: 1.0.0
-      postcss: 8.4.38
-      postcss-import: 15.1.0(postcss@8.4.38)
-      postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5))
-      postcss-nested: 6.0.1(postcss@8.4.38)
-      postcss-selector-parser: 6.0.16
-      resolve: 1.22.8
-      sucrase: 3.35.0
-    transitivePeerDependencies:
-      - ts-node
-
   tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
@@ -20388,24 +20104,6 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-node@10.9.2(@types/node@20.12.10)(typescript@5.4.5):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.9
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 20.12.10
-      acorn: 8.11.3
-      acorn-walk: 8.3.2
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.4.5
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-
   ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -20423,7 +20121,6 @@ snapshots:
       typescript: 5.4.5
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    optional: true
 
   tslib@2.6.2: {}
 
@@ -20697,13 +20394,13 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite-node@1.4.0(@types/node@20.12.10)(terser@5.31.0):
+  vite-node@1.4.0(@types/node@20.12.12)(terser@5.31.0):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4(supports-color@8.1.1)
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -20714,9 +20411,9 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@3.7.3(@types/node@20.12.10)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.10)(terser@5.31.0)):
+  vite-plugin-dts@3.7.3(@types/node@20.12.12)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0)):
     dependencies:
-      '@microsoft/api-extractor': 7.39.0(@types/node@20.12.10)
+      '@microsoft/api-extractor': 7.39.0(@types/node@20.12.12)
       '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
       '@vue/language-core': 1.8.27(typescript@5.4.5)
       debug: 4.3.4(supports-color@8.1.1)
@@ -20724,7 +20421,7 @@ snapshots:
       typescript: 5.4.5
       vue-tsc: 1.8.27(typescript@5.4.5)
     optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
@@ -20738,16 +20435,6 @@ snapshots:
       magic-string: 0.25.9
       vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
 
-  vite@5.2.11(@types/node@20.12.10)(terser@5.31.0):
-    dependencies:
-      esbuild: 0.20.2
-      postcss: 8.4.38
-      rollup: 4.17.2
-    optionalDependencies:
-      '@types/node': 20.12.10
-      fsevents: 2.3.3
-      terser: 5.31.0
-
   vite@5.2.11(@types/node@20.12.12)(terser@5.31.0):
     dependencies:
       esbuild: 0.20.2
@@ -20758,7 +20445,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.31.0
 
-  vitest@1.4.0(@types/node@20.12.10)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0):
+  vitest@1.4.0(@types/node@20.12.12)(@vitest/ui@1.5.0(vitest@1.4.0))(happy-dom@14.7.1)(terser@5.31.0):
     dependencies:
       '@vitest/expect': 1.4.0
       '@vitest/runner': 1.4.0
@@ -20777,11 +20464,11 @@ snapshots:
       strip-literal: 2.0.0
       tinybench: 2.6.0
       tinypool: 0.8.2
-      vite: 5.2.11(@types/node@20.12.10)(terser@5.31.0)
-      vite-node: 1.4.0(@types/node@20.12.10)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
+      vite-node: 1.4.0(@types/node@20.12.12)(terser@5.31.0)
       why-is-node-running: 2.2.2
     optionalDependencies:
-      '@types/node': 20.12.10
+      '@types/node': 20.12.12
       '@vitest/ui': 1.5.0(vitest@1.4.0)
       happy-dom: 14.7.1
     transitivePeerDependencies:
