@@ -13,7 +13,7 @@ import { Settings } from '../types';
 type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
     isEditing: boolean;
-    image: Asset;
+    image?: Asset;
     blockSettings: Settings;
     assetDownloadEnabled: boolean;
 };
