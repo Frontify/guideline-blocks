@@ -83,11 +83,11 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         if (newImage.backgroundColor) {
             settings.backgroundColor = newImage.backgroundColor;
             settings.hasBackground = true;
-        } else {
-            settings.hasBackground = false;
         }
 
-        await setBlockSettings(settings);
+        if (Object.keys(settings).length > 0) {
+            await setBlockSettings(settings);
+        }
         await updateAssetIdsFromKey(IMAGE_ID, [newImage.id]);
         setIsLoading(false);
     };
