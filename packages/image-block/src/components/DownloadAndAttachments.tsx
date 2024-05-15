@@ -1,11 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    Attachments,
-    DownloadButton,
-    isDownloadable,
-    useAttachmentsContext,
-} from '@frontify/guideline-blocks-settings';
+import { Attachments, DownloadButton, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
 import { getTotalImagePadding } from './helpers';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { Settings } from '../types';
@@ -15,7 +10,7 @@ type DownloadAndAttachmentsProps = {
     isEditing: boolean;
     image?: Asset;
     blockSettings: Settings;
-    assetDownloadEnabled: boolean;
+    isDownloadable: boolean;
 };
 
 export const DownloadAndAttachments = ({
@@ -23,7 +18,7 @@ export const DownloadAndAttachments = ({
     isEditing,
     image,
     blockSettings,
-    assetDownloadEnabled,
+    isDownloadable,
 }: DownloadAndAttachmentsProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
@@ -35,12 +30,9 @@ export const DownloadAndAttachments = ({
                 data-test-id="buttons-wrapper"
                 style={getTotalImagePadding(blockSettings)}
             >
-                {image?.isDownloadProtected === false &&
-                    isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
-                        <DownloadButton
-                            onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })}
-                        />
-                    )}
+                {image && isDownloadable && (
+                    <DownloadButton onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })} />
+                )}
 
                 <Attachments
                     onUpload={onAttachmentsAdd}

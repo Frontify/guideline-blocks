@@ -17,6 +17,7 @@ import {
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
+    isDownloadable,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
@@ -56,6 +57,10 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
+    const isImageDownloadable =
+        image?.isDownloadProtected === false &&
+        isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled);
+
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
@@ -146,9 +151,9 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                 >
                     <DownloadAndAttachments
                         appBridge={appBridge}
-                        assetDownloadEnabled={assetDownloadEnabled}
                         blockSettings={blockSettings}
                         image={image}
+                        isDownloadable={isImageDownloadable}
                         isEditing={isEditing}
                     />
                     {image ? (
@@ -207,6 +212,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
                                     image={image}
+                                    isDownloadable={isImageDownloadable}
                                     globalAssetViewerEnabled={assetViewerEnabled}
                                 />
                             )}
