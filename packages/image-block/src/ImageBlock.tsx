@@ -64,6 +64,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     });
 
     const updateImage = async (newImage: Asset) => {
+        const settings: Partial<Settings> = {};
         const isFirstImageUpload = !image;
 
         if (isFirstImageUpload) {
@@ -74,11 +75,19 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
 
             const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
-                await setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, defaultImageName, 'center') });
+                settings.name = convertToRteValue(TextStyles.imageTitle, defaultImageName, 'center');
                 setTitleKey(generateRandomId());
             }
         }
 
+        if (newImage.backgroundColor) {
+            settings.backgroundColor = newImage.backgroundColor;
+            settings.hasBackground = true;
+        }
+
+        if (Object.keys(settings).length > 0) {
+            await setBlockSettings(settings);
+        }
         await updateAssetIdsFromKey(IMAGE_ID, [newImage.id]);
         setIsLoading(false);
     };
