@@ -16,6 +16,7 @@ type ImageProps = {
     isEditing: boolean;
     appBridge: AppBridgeBlock;
     globalAssetViewerEnabled: boolean;
+    isDownloadable: boolean;
 };
 
 type ImageWrapperProps = {
@@ -27,6 +28,7 @@ type ImageWrapperProps = {
     isEditing: boolean;
     isAssetViewerEnabled: boolean;
     alignment: Alignment;
+    isDownloadable: boolean;
 };
 
 type ImageComponentProps = {
@@ -45,6 +47,7 @@ const ImageWrapper = ({
     isEditing,
     isAssetViewerEnabled,
     alignment,
+    isDownloadable,
 }: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
 
@@ -73,7 +76,11 @@ const ImageWrapper = ({
 
     if (!isEditing && isAssetViewerEnabled) {
         return (
-            <button data-test-id="image-block-asset-viewer-wrapper" {...sharedProps} onClick={() => open(image)}>
+            <button
+                data-test-id="image-block-asset-viewer-wrapper"
+                {...sharedProps}
+                onClick={() => open(image, isDownloadable)}
+            >
                 {children}
             </button>
         );
@@ -96,7 +103,14 @@ export const ImageComponent = ({ image, alt, containerWidth, style }: ImageCompo
     />
 );
 
-export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetViewerEnabled }: ImageProps) => {
+export const Image = ({
+    image,
+    appBridge,
+    blockSettings,
+    isEditing,
+    globalAssetViewerEnabled,
+    isDownloadable,
+}: ImageProps) => {
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
@@ -118,6 +132,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, globalAssetV
                     isEditing={isEditing}
                     image={image}
                     alignment={blockSettings.alignment}
+                    isDownloadable={isDownloadable}
                 >
                     <ImageComponent
                         style={imageStyle}
