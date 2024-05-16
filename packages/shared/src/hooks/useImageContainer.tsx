@@ -2,7 +2,8 @@
 
 import { debounce } from '@frontify/fondue';
 import { useEffect, useRef, useState } from 'react';
-import { roundToNextHundred } from '../../../image-block/src/helpers';
+
+const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;
 
 export const useImageContainer = () => {
     const containerRef = useRef<HTMLElement | null>(null);
