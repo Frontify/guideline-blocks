@@ -82,7 +82,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    description: result.template.description,
+                    description: convertToRteValue(TextStyles.p, result.template.description),
                 });
                 setTemplateTextKey(templateTextKey + 1);
             } catch (error) {
