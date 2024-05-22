@@ -80,9 +80,11 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     useEffect(() => {
-        setBlockSettings({ items: itemsState });
+        if (isEditing) {
+            setBlockSettings({ items: itemsState });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemsState]);
+    }, [itemsState, isEditing]);
 
     const addItems = useCallback(
         (items: Thumbnail[]) => {
