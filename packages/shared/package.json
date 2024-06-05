@@ -44,7 +44,7 @@
         "@codemirror/lang-css": "^6.2.1",
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.0.10",
-        "@frontify/guideline-blocks-settings": "^0.34.15",
+        "@frontify/guideline-blocks-settings": "link:~/frontify/brand-sdk/packages/guideline-blocks-settings",
         "@uiw/react-codemirror": "^4.21.24"
     }
 }

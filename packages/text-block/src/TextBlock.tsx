@@ -23,16 +23,20 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div className="text-block">
-            <RichTextEditor
-                id={appBridge.getBlockId().toString()}
-                isEditing={isEditing}
-                value={content}
-                columns={columnNumber}
-                gap={gap}
-                plugins={plugins}
-                placeholder={PLACEHOLDER}
-                onTextChange={handleTextChange}
-            />
+            <div className="tw-@container">
+                <div className="@sm:tw-bg-red-50">
+                    <RichTextEditor
+                        id={appBridge.getBlockId().toString()}
+                        isEditing={isEditing}
+                        value={content}
+                        columns={columnNumber}
+                        gap={gap}
+                        plugins={plugins}
+                        placeholder={PLACEHOLDER}
+                        onTextChange={handleTextChange}
+                    />
+                </div>
+            </div>
         </div>
     );
 };
