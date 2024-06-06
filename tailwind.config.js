@@ -1,5 +1,5 @@
 module.exports = {
-    presets: [require("@frontify/fondue/tailwind")],
+    presets: [require("@frontify/guideline-blocks-settings/tailwind")],
     content: ["./{packages,examples}/*/src/**/*.{ts,tsx}"],
     corePlugins: {
         preflight: false,

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 module.exports = {
-    presets: [require('@frontify/fondue/tailwind')],
+    presets: [require('@frontify/guideline-blocks-settings/tailwind')],
     content: ['src/**/*.{ts,tsx}'],
     corePlugins: {
         preflight: false,
