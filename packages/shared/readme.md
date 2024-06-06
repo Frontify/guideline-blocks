@@ -18,7 +18,7 @@ To use React components you need to modify the `tailwind.config.js` inside the c
 
 ```
 module.exports = {
-    presets: [require('@frontify/fondue/tailwind'), require('../shared/tailwind.config')],
+    presets: [require('@frontify/guideline-blocks-settings/tailwind')],
     content: [
         'src/**/*.{ts,tsx}',
         '../shared/src/**/*.{ts,tsx}',
