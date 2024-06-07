@@ -163,43 +163,45 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     return (
         <div className="thumbnail-grid-block">
-            <Grid columnCount={blockSettings.columnCount} gap={gap}>
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragEnd={handleDragEnd}
-                    onDragStart={handleDragStart}
-                    modifiers={[restrictToParentElement]}
-                >
-                    <SortableContext items={itemsState} strategy={rectSortingStrategy}>
-                        {itemsState.map((item, i) => (
-                            <SortableItem
-                                key={item.id}
-                                item={item}
-                                isAssetViewerEnabled={isAssetViewerEnabled}
-                                image={blockAssets?.[item.id]?.[0]}
-                                isLoading={getIsItemUploading(item.id)}
-                                showDeleteButton={i !== itemsState.length - 1}
-                                openAssetInAssetViewer={openAssetInAssetViewer}
-                                {...thumbnailProps}
-                            />
-                        ))}
-                    </SortableContext>
-                    <DragOverlay>
-                        {draggedItem && (
-                            <Item
-                                key={draggedItem.id}
-                                item={draggedItem}
-                                image={blockAssets?.[draggedItem.id]?.[0]}
-                                isLoading={getIsItemUploading(draggedItem.id)}
-                                isDragging
-                                showDeleteButton={itemsState[itemsState.length - 1]?.id !== draggedItem.id}
-                                {...thumbnailProps}
-                            />
-                        )}
-                    </DragOverlay>
-                </DndContext>
-            </Grid>
+            <div className="tw-@container">
+                <Grid columnCount={blockSettings.columnCount} gap={gap}>
+                    <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragEnd={handleDragEnd}
+                        onDragStart={handleDragStart}
+                        modifiers={[restrictToParentElement]}
+                    >
+                        <SortableContext items={itemsState} strategy={rectSortingStrategy}>
+                            {itemsState.map((item, i) => (
+                                <SortableItem
+                                    key={item.id}
+                                    item={item}
+                                    isAssetViewerEnabled={isAssetViewerEnabled}
+                                    image={blockAssets?.[item.id]?.[0]}
+                                    isLoading={getIsItemUploading(item.id)}
+                                    showDeleteButton={i !== itemsState.length - 1}
+                                    openAssetInAssetViewer={openAssetInAssetViewer}
+                                    {...thumbnailProps}
+                                />
+                            ))}
+                        </SortableContext>
+                        <DragOverlay>
+                            {draggedItem && (
+                                <Item
+                                    key={draggedItem.id}
+                                    item={draggedItem}
+                                    image={blockAssets?.[draggedItem.id]?.[0]}
+                                    isLoading={getIsItemUploading(draggedItem.id)}
+                                    isDragging
+                                    showDeleteButton={itemsState[itemsState.length - 1]?.id !== draggedItem.id}
+                                    {...thumbnailProps}
+                                />
+                            )}
+                        </DragOverlay>
+                    </DndContext>
+                </Grid>
+            </div>
         </div>
     );
 };

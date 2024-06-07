@@ -52,7 +52,7 @@ describe('Thumbnail Grid Block', () => {
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailGridBlockSelector)
             .should('exist')
-            .should('have.class', 'xs:tw-grid-cols-2 md:tw-grid-cols-3')
+            .should('have.class', '@sm:tw-grid-cols-2 @md:tw-grid-cols-3')
             .should('have.css', 'gap', '30px');
         cy.get(ThumbnailItem).should('exist');
         cy.get(ThumbnailImage).should('not.exist');
