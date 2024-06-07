@@ -460,7 +460,7 @@ describe('Image Block', () => {
             editorState: true,
         });
         mount(
-            <div className="tw-p-10 [&_*]:tw-w-[800px]">
+            <div className="tw-p-10 [&>*]:tw-w-[800px]">
                 <ImageBlockWithStubs />
             </div>
         );
