@@ -51,15 +51,15 @@ export enum Ratio {
     Ratio1To2 = '1:2',
 }
 export const imageRatioValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(66.6666%-10px)]',
-    [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-[calc(50%-15px)]',
-    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(41.6666%-17.5px)]',
+    [Ratio.Ratio2To1]: 'tw-w-full @sm:tw-w-[calc(66.6666%-10px)]',
+    [Ratio.Ratio1To1]: 'tw-w-full @sm:tw-w-[calc(50%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full @sm:tw-w-[calc(41.6666%-17.5px)]',
 };
 
 export const textRatioValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-[calc(33.3333%-20px)]',
-    [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-[calc(50%-15px)]',
-    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-[calc(58.3333%-12.5px)]',
+    [Ratio.Ratio2To1]: 'tw-w-full @sm:tw-w-[calc(33.3333%-20px)]',
+    [Ratio.Ratio1To1]: 'tw-w-full @sm:tw-w-[calc(50%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full @sm:tw-w-[calc(58.3333%-12.5px)]',
 };
 
 export enum Padding {
@@ -105,6 +105,6 @@ export const mapAlignmentClasses: Record<Alignment, string> = {
 export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col tw-gap-3',
     [CaptionPosition.Above]: 'tw-flex-col-reverse tw-gap-3',
-    [CaptionPosition.Right]: 'tw-flex-col tw-gap-3 md:!tw-flex-row md:tw-gap-0 md:tw-justify-between',
-    [CaptionPosition.Left]: 'tw-flex-col tw-gap-3 md:!tw-flex-row-reverse md:tw-gap-0 md:tw-justify-between',
+    [CaptionPosition.Right]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row @sm:tw-gap-0 @sm:tw-justify-between',
+    [CaptionPosition.Left]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row-reverse @sm:tw-gap-0 @sm:tw-justify-between',
 };
