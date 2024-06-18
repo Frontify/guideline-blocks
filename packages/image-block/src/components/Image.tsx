@@ -96,16 +96,15 @@ const ImageWrapper = ({
     );
 };
 
-export const ImageComponent = ({ image, alt, containerWidth, style }: ImageComponentProps) =>
-    containerWidth ? (
-        <ResponsiveImage
-            testId="image-block-image-component"
-            image={image}
-            containerWidth={containerWidth}
-            alt={alt}
-            style={{ ...style, maxWidth: image.width }}
-        />
-    ) : null;
+export const ImageComponent = ({ image, alt, containerWidth, style }: ImageComponentProps) => (
+    <ResponsiveImage
+        testId="image-block-image-component"
+        image={image}
+        containerWidth={containerWidth}
+        alt={alt}
+        style={{ ...style, maxWidth: image.width }}
+    />
+);
 
 export const Image = ({
     image,

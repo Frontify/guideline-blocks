@@ -7,7 +7,7 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 
 type ResponsiveImageProps = {
     image: Asset;
-    containerWidth: number;
+    containerWidth: number | undefined;
     alt: string;
     format?: ImageFormat;
     quality?: number;
@@ -18,7 +18,7 @@ type ResponsiveImageProps = {
 
 export const ResponsiveImage = ({
     image,
-    containerWidth,
+    containerWidth = 0,
     alt,
     format = ImageFormat.WEBP,
     className = '',
