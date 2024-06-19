@@ -10,11 +10,11 @@ type GridProps = {
     gap: string;
 };
 const mapColumnCountToClassGrid = {
-    1: '',
-    2: '@sm:tw-grid-cols-2',
-    3: '@sm:tw-grid-cols-2 @md:tw-grid-cols-3',
-    4: '@sm:tw-grid-cols-2 @md:tw-grid-cols-3 @lg:tw-grid-cols-4',
-    5: '@sm:tw-grid-cols-2 @md:tw-grid-cols-3 @lg:tw-grid-cols-5',
+    1: 'tw-grid-cols-1 ',
+    2: 'tw-grid-cols-1 @sm:tw-grid-cols-2',
+    3: 'tw-grid-cols-1 @sm:tw-grid-cols-2 @md:tw-grid-cols-3',
+    4: 'tw-grid-cols-1 @sm:tw-grid-cols-2 @md:tw-grid-cols-4',
+    5: 'tw-grid-cols-1 @sm:tw-grid-cols-2 @md:tw-grid-cols-5',
 };
 
 export const Grid = ({ children, columnCount, gap }: GridProps) => (
