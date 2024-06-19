@@ -29,12 +29,13 @@ type ImageWrapperProps = {
     isAssetViewerEnabled: boolean;
     alignment: Alignment;
     isDownloadable: boolean;
+    setContainerRef: (element: HTMLElement | null) => void;
 };
 
 type ImageComponentProps = {
     image: Asset;
     alt: string;
-    containerWidth: number;
+    containerWidth: number | undefined;
     style: CSSProperties;
 };
 
@@ -47,6 +48,7 @@ const ImageWrapper = ({
     isEditing,
     isAssetViewerEnabled,
     alignment,
+    setContainerRef,
     isDownloadable,
 }: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
@@ -58,6 +60,7 @@ const ImageWrapper = ({
             mapAlignmentClasses[alignment],
         ]),
         style,
+        ref: setContainerRef,
     };
 
     if (!isEditing && link) {
@@ -122,26 +125,25 @@ export const Image = ({
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 
     return (
-        <div data-test-id="image-block-image" ref={setContainerRef} className="tw-flex tw-w-full tw-h-auto tw-relative">
-            {containerWidth && (
-                <ImageWrapper
-                    appBridge={appBridge}
-                    isAssetViewerEnabled={isAssetViewerEnabled}
-                    link={link}
-                    style={imageWrapperStyle}
-                    isEditing={isEditing}
+        <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative">
+            <ImageWrapper
+                appBridge={appBridge}
+                isAssetViewerEnabled={isAssetViewerEnabled}
+                link={link}
+                style={imageWrapperStyle}
+                setContainerRef={setContainerRef}
+                isEditing={isEditing}
+                image={image}
+                alignment={blockSettings.alignment}
+                isDownloadable={isDownloadable}
+            >
+                <ImageComponent
+                    style={imageStyle}
+                    containerWidth={containerWidth}
                     image={image}
-                    alignment={blockSettings.alignment}
-                    isDownloadable={isDownloadable}
-                >
-                    <ImageComponent
-                        style={imageStyle}
-                        containerWidth={containerWidth}
-                        image={image}
-                        alt={blockSettings.altText ?? ''}
-                    />
-                </ImageWrapper>
-            )}
+                    alt={blockSettings.altText ?? ''}
+                />
+            </ImageWrapper>
         </div>
     );
 };

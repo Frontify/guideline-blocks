@@ -16,8 +16,12 @@ export const useImageContainer = () => {
 
         const containerObserver = new ResizeObserver(
             debounce((entries) => {
-                const container = entries[0];
-                const newContainerWidth = roundToNextHundred(container.contentRect.width);
+                const container = entries[0] as ResizeObserverEntry;
+                const borderWidth = container.borderBoxSize[0].inlineSize - container.contentBoxSize[0].inlineSize;
+                const shouldRequestLargerImage = borderWidth > 0;
+                const newImageWidth = container.contentRect.width + (shouldRequestLargerImage ? 100 : 0);
+
+                const newContainerWidth = roundToNextHundred(newImageWidth);
                 const oldContainerWidth = roundToNextHundred(containerWidth ?? 0);
                 const containerWidthHasGrown = oldContainerWidth < newContainerWidth;
                 if (containerWidthHasGrown) {
@@ -33,7 +37,13 @@ export const useImageContainer = () => {
     const setContainerRef = (container: HTMLElement | null) => {
         if (!containerRef.current) {
             containerRef.current = container;
-            setContainerWidth(roundToNextHundred(container?.offsetWidth ?? 0));
+            const clientWidth = container?.clientWidth || 0;
+            const offsetWidth = container?.offsetWidth || 0;
+            const borderWidth = offsetWidth - clientWidth;
+            const shouldRequestLargerImage = borderWidth > 0;
+            const imageWidthToRequest = offsetWidth + (shouldRequestLargerImage ? 100 : 0);
+
+            setContainerWidth(roundToNextHundred(imageWidthToRequest));
         }
     };
 

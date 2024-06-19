@@ -106,6 +106,41 @@ describe('Image Block', () => {
         );
     });
 
+    it('should render the image responsively rounded to the second nearest hundred pixel if border is applied', () => {
+        cy.viewport(240, 800);
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockAssets: {
+                [IMAGE_ID]: [{ ...AssetDummy.with(1), genericUrl: 'https://generic.url?width={width}' }],
+            },
+            blockSettings: {
+                positioning: CaptionPosition.Above,
+                hasBorder: true,
+                borderWidth: '1px',
+                borderColor: { r: 0, g: 0, b: 255 },
+                borderStyle: 'solid',
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageComponentSelector).should('exist');
+        cy.get(ImageBlockImageComponentSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=400&format=webp&quality=75'
+        );
+        cy.viewport(340, 800);
+        cy.get(ImageBlockImageComponentSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=500&format=webp&quality=75'
+        );
+        cy.viewport(440, 800);
+        cy.get(ImageBlockImageComponentSelector).should(
+            'have.attr',
+            'src',
+            'https://generic.url?width=600&format=webp&quality=75'
+        );
+    });
+
     it('should render the download button if the image is uploaded and security settings allows it', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
