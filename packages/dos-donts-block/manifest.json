@@ -1,4 +1,14 @@
 {
     "appId": "cl5wa92p800010kw8fhpwvbjh",
-    "i18nFields": ["items"]
+    "i18nFields": ["items"],
+    "searchFields": [
+        {
+            "type": "string",
+            "settingId": "items.title"
+        },
+        {
+            "type": "fondueRte",
+            "settingId": "items.body"
+        }
+    ]
 }
