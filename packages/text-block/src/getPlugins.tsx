@@ -29,7 +29,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
-export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
+export const getPlugins = (appBridge: AppBridgeBlock, customClass?: string, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
     plugins.setPlugin([
         new SoftBreakPlugin(),
@@ -45,7 +45,7 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new LinkPlugin({ appBridge }),
         new ButtonPlugin({ appBridge }),
         new CodePlugin(),
-        new BreakAfterPlugin({ columns, gap }),
+        new BreakAfterPlugin({ gap, customClass }),
     ]);
     plugins.setPlugin([
         new AlignLeftPlugin({

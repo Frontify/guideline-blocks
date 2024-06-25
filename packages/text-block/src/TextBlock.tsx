@@ -10,6 +10,7 @@ import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
+import { getResponsiveColumnClasses } from './helpers';
 
 export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
@@ -17,7 +18,8 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
-    const plugins = useMemo(() => getPlugins(appBridge, columnNumber, gap), [appBridge, columnNumber, gap]);
+    const customClass = getResponsiveColumnClasses(columnNumber);
+    const plugins = useMemo(() => getPlugins(appBridge, customClass, gap), [appBridge, customClass, gap]);
 
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
@@ -27,7 +29,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                 id={appBridge.getBlockId().toString()}
                 isEditing={isEditing}
                 value={content}
-                columns={columnNumber}
+                customClass={customClass}
                 gap={gap}
                 plugins={plugins}
                 placeholder={PLACEHOLDER}
