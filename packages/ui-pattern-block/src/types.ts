@@ -70,6 +70,7 @@ export enum SandpackTemplate {
     Svelte = 'svelte',
     Vue = 'vue',
     Vanilla = 'vanilla',
+    Static = 'static',
 }
 
 export enum SandpackTheme {

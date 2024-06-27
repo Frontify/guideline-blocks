@@ -45,6 +45,22 @@ export const getDefaultFilesOfTemplate = (template: SandpackTemplate, preprocess
                 '/app.js': '',
             };
         }
+        case SandpackTemplate.Static: {
+            return {
+                '/index.html': `<!DOCTYPE html>
+<html>
+<head>
+  <script src='./index.js'></script>
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Hello world</h1>
+</body>
+</html>`,
+                '/index.js': 'console.log("Sandbox Ready")',
+                '/style.css': 'h1 { color: red; }',
+            };
+        }
         default: {
             return {};
         }
@@ -57,6 +73,20 @@ export const getToolbarButtons = (
     const { extension, label } = getCssExtension(preprocessor);
 
     return {
+        [SandpackTemplate.Static]: [
+            {
+                file: '/index.html',
+                label: 'index.html',
+            },
+            {
+                file: '/index.js',
+                label: 'index.js',
+            },
+            {
+                file: '/style.css',
+                label: 'style.css',
+            },
+        ],
         [SandpackTemplate.React]: [
             {
                 file: '/App.js',
@@ -124,4 +154,5 @@ export const initialActiveFile: Record<SandpackTemplate, string> = {
     [SandpackTemplate.Svelte]: '/App.svelte',
     [SandpackTemplate.Vue]: '/src/App.vue',
     [SandpackTemplate.Vanilla]: '/index.html',
+    [SandpackTemplate.Static]: '/index.html',
 };

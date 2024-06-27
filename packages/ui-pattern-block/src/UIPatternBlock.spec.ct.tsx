@@ -35,6 +35,7 @@ const templates = [
     SandpackTemplate.React,
     SandpackTemplate.Svelte,
     SandpackTemplate.Vue,
+    SandpackTemplate.Static,
 ];
 
 const assertDefaultSettings = () => {
@@ -417,11 +418,24 @@ describe('UI Pattern Block', () => {
         cy.get(AttachmentsSelector).should('exist');
     });
 
+    it('should not render external dependencies for Static template', () => {
+        const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
+            editorState: true,
+            blockId: 24,
+            blockSettings: {
+                ...DEFAULT_BLOCK_SETTINGS,
+                sandpackTemplate: SandpackTemplate.Static,
+            },
+        });
+        mount(<UIPatternBlockWithStubs />);
+        cy.get(DependencyAccordionSelector).should('not.exist');
+    });
+
     for (const [index, template] of templates.entries()) {
         it(`renders the correct toolbar buttons for template: ${template}`, () => {
             const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
                 editorState: true,
-                blockId: 24 + index,
+                blockId: 25 + index,
                 blockSettings: { ...DEFAULT_BLOCK_SETTINGS, sandpackTemplate: template },
             });
             mount(<UIPatternBlockWithStubs />);
