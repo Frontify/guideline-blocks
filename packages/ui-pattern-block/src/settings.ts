@@ -44,6 +44,10 @@ export const settings = defineSettings({
                     label: 'Vanilla',
                 },
                 {
+                    value: SandpackTemplate.Static,
+                    label: 'Static',
+                },
+                {
                     value: SandpackTemplate.React,
                     label: 'React',
                 },

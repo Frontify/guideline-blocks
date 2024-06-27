@@ -35,6 +35,7 @@ const templates = [
     SandpackTemplate.React,
     SandpackTemplate.Svelte,
     SandpackTemplate.Vue,
+    SandpackTemplate.Static,
 ];
 
 const assertDefaultSettings = () => {

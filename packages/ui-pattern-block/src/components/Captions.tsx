@@ -34,7 +34,7 @@ export const Captions = ({
     };
 
     return (
-        <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1'])}>
+        <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1 tw-w-full'])}>
             <RichTextEditor
                 id={`${appBridge.getBlockId().toString()}_title`}
                 value={title ?? convertToRteValue(TextStyles.imageTitle, '')}
