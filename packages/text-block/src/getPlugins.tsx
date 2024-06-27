@@ -8,7 +8,6 @@ import {
     AlignRightPlugin,
     AutoformatPlugin,
     BoldPlugin,
-    BreakAfterPlugin,
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
@@ -22,6 +21,7 @@ import {
     UnorderedListPlugin,
 } from '@frontify/fondue';
 import {
+    BreakAfterPlugin,
     ButtonPlugin,
     LinkPlugin,
     TextStylePluginsWithoutImage,
