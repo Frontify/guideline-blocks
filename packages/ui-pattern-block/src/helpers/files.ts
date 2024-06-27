@@ -57,7 +57,7 @@ export const getDefaultFilesOfTemplate = (template: SandpackTemplate, preprocess
   <h1>Hello world</h1>
 </body>
 </html>`,
-                '/index.js': 'console.log("Mounted")',
+                '/index.js': 'console.log("Sandbox Ready")',
                 '/style.css': 'h1 { color: red; }',
             };
         }
