@@ -11,7 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
 
-import { Alignment, Height, type Settings, TextAlignment, sandpackThemeValues } from './types';
+import { Alignment, Height, SandpackTemplate, type Settings, TextAlignment, sandpackThemeValues } from './types';
 import {
     DEFAULT_BLOCK_SETTINGS,
     EDITOR_CLASSES,
@@ -254,7 +254,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                         </SandpackLayout>
                     </SandpackProvider>
 
-                    {(isEditing || showNpmDependencies) && (
+                    {(isEditing || showNpmDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
                         <NPMDependencies
                             key={`npm_${isEditing.toString()}`}
                             npmDependencies={npmDependencies}
@@ -266,7 +266,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             readOnly={!isEditing}
                         />
                     )}
-                    {(isEditing || showExternalDependencies) && (
+                    {(isEditing || showExternalDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
                         <ExternalDependencies
                             key={`external_${isEditing.toString()}`}
                             externalDependencies={externalDependencies}
