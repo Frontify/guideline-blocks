@@ -560,7 +560,7 @@ importers:
         version: 5.7.4(@types/node@20.14.10)(terser@5.31.1)
       '@react-types/shared':
         specifier: ^3.19.0
-        version: 3.22.1(react@18.3.1)
+        version: 3.23.1(react@18.3.1)
       '@types/react':
         specifier: ^18.3.1
         version: 18.3.3
@@ -4735,11 +4735,6 @@ packages:
 
   '@react-types/select@3.9.4':
     resolution: {integrity: sha512-xI7dnOW2st91fPPcv6hdtrTdcfetYiqZuuVPZ5TRobY7Q10/Zqqe/KqtOw1zFKUj9xqNJe4Ov3xP5GSdcO60Eg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-
-  '@react-types/shared@3.22.1':
-    resolution: {integrity: sha512-PCpa+Vo6BKnRMuOEzy5zAZ3/H5tnQg1e80khMhK2xys0j6ZqzkgQC+fHMNZ7VDFNLqqNMj/o0eVeSBDh2POjkw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
@@ -13624,7 +13619,7 @@ snapshots:
     dependencies:
       '@react-aria/interactions': 3.21.3(react@18.3.1)
       '@react-aria/utils': 3.23.2(react@18.3.1)
-      '@react-types/shared': 3.22.1(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
       '@swc/helpers': 0.5.11
       clsx: 2.1.0
       react: 18.3.1
@@ -13864,7 +13859,7 @@ snapshots:
     dependencies:
       '@react-aria/ssr': 3.9.4(react@18.3.1)
       '@react-stately/utils': 3.10.1(react@18.3.1)
-      '@react-types/shared': 3.22.1(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
       '@swc/helpers': 0.5.11
       clsx: 2.1.0
       react: 18.3.1
@@ -14490,10 +14485,6 @@ snapshots:
   '@react-types/select@3.9.4(react@18.3.1)':
     dependencies:
       '@react-types/shared': 3.23.1(react@18.3.1)
-      react: 18.3.1
-
-  '@react-types/shared@3.22.1(react@18.3.1)':
-    dependencies:
       react: 18.3.1
 
   '@react-types/shared@3.23.1(react@18.3.1)':
