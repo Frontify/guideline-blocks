@@ -50,11 +50,11 @@ export const getDefaultFilesOfTemplate = (template: SandpackTemplate, preprocess
                 '/index.html': `<!DOCTYPE html>
 <html>
 <head>
-  <script src='./index.js'></script>
-  <link href="style.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <h1>Hello world</h1>
+  <script src="./index.js" type="text/javascript"></script>
 </body>
 </html>`,
                 '/index.js': 'console.log("Sandbox Ready")',
