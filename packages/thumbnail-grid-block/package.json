@@ -38,7 +38,7 @@
         "@dnd-kit/sortable": "^8.0.0",
         "@dnd-kit/utilities": "^3.2.1",
         "@frontify/app-bridge": "^3.9.1",
-        "@frontify/fondue": "12.1.10",
+        "@frontify/fondue": "12.1.14",
         "@frontify/guideline-blocks-settings": "0.36.1",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "^4.17.21",
