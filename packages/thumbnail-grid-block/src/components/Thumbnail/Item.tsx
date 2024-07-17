@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import {
     IconArrowCircleUp20,
@@ -14,7 +14,7 @@ import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
-import { SortableThumbnailItemProps, ThumbnailItemProps } from '../../types';
+import { SortableThumbnailItemProps, Thumbnail, ThumbnailItemProps } from '../../types';
 import {
     AssetChooserObjectType,
     FileExtensionSets,
@@ -86,6 +86,11 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
+
+        const updateRTEItem = useCallback(
+            (key: keyof Thumbnail, value: string) => updateItem({ ...item, [key]: value }),
+            [item, updateItem]
+        );
 
         return (
             <div
@@ -173,7 +178,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                                 title={title}
                                 isEditing={isEditing}
                                 description={description}
-                                updateItem={(key, value) => updateItem({ ...item, [key]: value })}
+                                updateItem={updateRTEItem}
                                 appBridge={appBridge}
                             />
                         )}

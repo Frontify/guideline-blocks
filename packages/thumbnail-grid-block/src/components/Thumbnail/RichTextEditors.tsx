@@ -4,7 +4,7 @@ import { Thumbnail } from '../../types';
 import { RichTextEditor, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 type RichTextEditorsProps = {
     isEditing: boolean;
@@ -15,7 +15,9 @@ type RichTextEditorsProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const RichTextEditors = ({ isEditing, updateItem, id, title, description, appBridge }: RichTextEditorsProps) => {
+export const RichTextEditors = memo((props: RichTextEditorsProps) => {
+    const { isEditing, updateItem, id, title, description, appBridge } = props;
+
     const memoizedTitle = useMemo(
         () => (
             <div className="[&>div>div>*]:!tw-mt-0">
@@ -51,4 +53,6 @@ export const RichTextEditors = ({ isEditing, updateItem, id, title, description,
             {memoizedDescription}
         </div>
     );
-};
+});
+
+RichTextEditors.displayName = 'RichTextEditors';
