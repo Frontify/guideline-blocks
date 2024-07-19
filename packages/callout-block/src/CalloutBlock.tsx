@@ -69,6 +69,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         '[&>div>*:last-child>span]:!tw-mb-0',
         '[&>div>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in edit mode
         '[&>div>div>*:last-child>span]:!tw-mb-0',
+        blockSettings.width === Width.HugContents && '[&>div]:!tw-@container-normal',
     ]);
 
     const customPaddingStyle = {
