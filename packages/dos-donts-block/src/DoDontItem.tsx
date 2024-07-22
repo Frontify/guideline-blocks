@@ -12,8 +12,10 @@ import {
     IconTrashBin20,
 } from '@frontify/fondue';
 import {
+    AssetChooserObjectType,
     BlockItemWrapper,
     BlockStyles,
+    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
@@ -80,7 +82,10 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const titleRef = useRef<HTMLTextAreaElement>(null);
 
     const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false });
+    const [openFileDialog, { selectedFiles }] = useFileInput({
+        multiple: false,
+        accept: 'image/*',
+    });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
@@ -115,6 +120,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             },
             {
                 multiSelection: false,
+                objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets.Images,
             }
         );
     };

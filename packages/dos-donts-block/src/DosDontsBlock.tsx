@@ -17,6 +17,7 @@ import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortab
 import {
     BlockInjectButton,
     BlockProps,
+    FileExtensionSets,
     THEME_PREFIX,
     joinClassNames,
     useDndSensors,
@@ -364,6 +365,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {
                 multiSelection: true,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets.Images,
             }
         );
     };
