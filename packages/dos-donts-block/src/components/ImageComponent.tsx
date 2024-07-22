@@ -25,6 +25,7 @@ const ImageComponent = ({
     radiusValue,
     dontColor,
     border,
+    alt,
 }: ImageComponentProps) => {
     const imageHeight = isCustomImageHeight ? customImageHeightValue : IMAGE_HEIGHT_VALUES[imageHeightChoice];
     const { containerWidth, setContainerRef } = useImageContainer();
@@ -61,7 +62,8 @@ const ImageComponent = ({
                                 imageDisplay === ImageFitChoice.FIT &&
                                 'tw-object-contain',
                         ])}
-                        alt=""
+                        alt={alt || ''}
+                        testId="do-dont-image"
                     />
                 )}
                 {hasStrikethrough && (
