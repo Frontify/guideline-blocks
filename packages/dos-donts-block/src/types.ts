@@ -76,7 +76,7 @@ export type SortableDoDontItemProps = {
     style: DoDontStyle;
     doColor: Color;
     dontColor: Color;
-    onChangeItem: (id: string, value: ValueType, type: ChangeType) => void;
+    onChangeItem: (id: string, change: Partial<Record<ChangeType, ValueType>>) => void;
     onChangeLocalItem: (id: string, value: ValueType, type: ChangeType) => void;
     title?: string;
     body?: string;
@@ -105,6 +105,7 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
+    alt?: string;
     addAssetIdsToKey?: (key: string, newAssetIds: number[]) => Promise<void>;
 };
 
@@ -160,6 +161,7 @@ export type ImageComponentProps = {
     hasBackground: boolean;
     backgroundColor: Color;
     dontColor: Color;
+    alt?: string;
 };
 
 export type Item = {
@@ -168,6 +170,7 @@ export type Item = {
     body: string;
     type: DoDontType;
     imageId?: number;
+    alt?: string;
 };
 
 export type EditorElement = {
@@ -224,6 +227,6 @@ export const columnsClasses: Record<number, string> = {
     4: 'tw-grid-cols-4',
 };
 
-export type ChangeType = 'title' | 'body' | 'type' | 'imageId';
+export type ChangeType = 'title' | 'body' | 'type' | 'imageId' | 'alt';
 
 export type ValueType = string | number | undefined;

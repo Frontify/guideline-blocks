@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react18';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
-import { DoDontSpacing, DoDontStyle, ItemIconChoice } from './types';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
+import { BlockMode, DoDontSpacing, DoDontStyle, DoDontType, ItemIconChoice } from './types';
 import './__tests__/themes.css';
 
 const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
@@ -13,6 +13,7 @@ const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
 const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
 const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
 const INTERNAL_LINK_SELECTOR = '[data-test-id="internal-link-selector"]';
+const IMAGE_SELECTOR = '[data-test-id="do-dont-image"]';
 
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
@@ -85,6 +86,34 @@ describe("Dos & Don'ts Block", () => {
         mount(<DosDontsBlockWithStubs />);
         cy.get(DosDontsHeading).first().should('have.css', 'color', 'rgb(0, 200, 165)');
         cy.get(DosDontsHeading).eq(1).should('have.css', 'color', 'rgb(255, 55, 90)');
+    });
+
+    it('renders alt text for images', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlockWrapper, {
+            blockSettings: {
+                mode: BlockMode.TEXT_AND_IMAGE,
+                columns: 2,
+                hasCustomDoColor: true,
+                hasCustomDontColor: true,
+                doColor: DO_COLOR_DEFAULT_VALUE,
+                dontColor: DONT_COLOR_DEFAULT_VALUE,
+                items: [
+                    {
+                        id: 1,
+                        body: 'Test',
+                        title: 'Test',
+                        alt: 'Alt text',
+                        imageId: 1,
+                        type: DoDontType.Do,
+                    },
+                ],
+            },
+            blockAssets: { itemImages: [AssetDummy.with(1)] },
+        });
+
+        mount(<DosDontsBlockWithStubs />);
+        cy.get(IMAGE_SELECTOR).should('exist');
+        cy.get(IMAGE_SELECTOR).should('have.attr', 'alt', 'Alt text');
     });
 
     it('writes content to a dos donts block', () => {

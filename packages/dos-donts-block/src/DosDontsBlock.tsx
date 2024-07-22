@@ -17,6 +17,7 @@ import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortab
 import {
     BlockInjectButton,
     BlockProps,
+    FileExtensionSets,
     THEME_PREFIX,
     joinClassNames,
     useDndSensors,
@@ -219,6 +220,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 title: '',
                 imageId: image.id,
                 type: selectedType,
+                alt: image.title || image.fileName || '',
             });
             assetIds.push(image.id);
         }
@@ -272,9 +274,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     }, []);
 
     const onChangeItem = useCallback(
-        (itemId: string, value: ValueType, type: ChangeType) => {
+        (itemId: string, change: Partial<Record<ChangeType, ValueType>>) => {
             setLocalItems((previousItems) => {
-                const newItems = previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
+                const newItems = previousItems.map((item) =>
+                    item.id === itemId ? ({ ...item, ...change } as Item) : item
+                );
                 setBlockSettings({
                     items: newItems,
                 });
@@ -329,6 +333,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         doIconAsset,
         hasCustomDontIcon,
         dontIconChoice,
+        alt: item.alt,
         dontIconAsset,
         mode,
         columns,
@@ -360,6 +365,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {
                 multiSelection: true,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets.Images,
             }
         );
     };

@@ -7,12 +7,15 @@ import {
     IconArrowMove16,
     IconArrowSwap20,
     IconImageStack20,
+    IconSpeechBubbleQuote20,
     IconTrashBin16,
     IconTrashBin20,
 } from '@frontify/fondue';
 import {
+    AssetChooserObjectType,
     BlockItemWrapper,
     BlockStyles,
+    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
@@ -25,6 +28,7 @@ import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
 import { IMAGES_ASSET_KEY } from './const';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -67,7 +71,10 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         radiusValue,
         addAssetIdsToKey,
         setActivatorNodeRef,
+        alt,
     } = props;
+    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -75,13 +82,16 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const titleRef = useRef<HTMLTextAreaElement>(null);
 
     const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false });
+    const [openFileDialog, { selectedFiles }] = useFileInput({
+        multiple: false,
+        accept: 'image/*',
+    });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
 
     const onBodyTextChange = useCallback(
-        (value: string) => value !== body && onChangeItem(id, value, 'body'),
+        (value: string) => value !== body && onChangeItem(id, { body: value }),
         [onChangeItem, body, id]
     );
 
@@ -97,9 +107,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const imageId = result[0]?.id;
+                const imageAlt = alt ?? result[0]?.title ?? result[0]?.fileName ?? '';
+                setLocalAltText(imageAlt);
                 if (addAssetIdsToKey) {
                     addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
-                        onChangeItem(id, imageId, 'imageId');
+                        onChangeItem(id, { imageId, alt: imageAlt });
                         setIsUploadLoading(false);
                     });
                 }
@@ -108,6 +120,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             },
             {
                 multiSelection: false,
+                objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets.Images,
             }
         );
     };
@@ -135,10 +149,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         if (doneAll) {
             (async (uploadResults) => {
                 const imageId = uploadResults?.[0]?.id;
+                const imageAlt = alt ?? uploadResults?.[0]?.title ?? uploadResults?.[0]?.fileName ?? '';
+                setLocalAltText(imageAlt);
                 if (addAssetIdsToKey) {
                     addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
                         setIsUploadLoading(false);
-                        onChangeItem(id, imageId, 'imageId');
+                        onChangeItem(id, { imageId, alt: imageAlt });
                     });
                 }
             })(uploadResults);
@@ -206,11 +222,14 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                     title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
                                     icon: <IconArrowSwap20 />,
                                     onClick: () =>
-                                        onChangeItem(
-                                            id,
-                                            type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
-                                            'type'
-                                        ),
+                                        onChangeItem(id, {
+                                            type: type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
+                                        }),
+                                },
+                                {
+                                    title: 'Set alt text',
+                                    onClick: () => setShowAltTextMenu(true),
+                                    icon: <IconSpeechBubbleQuote20 />,
                                 },
                             ],
                             [
@@ -224,10 +243,19 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     },
                 ]}
             >
+                <EditAltTextFlyout
+                    setShowAltTextMenu={setShowAltTextMenu}
+                    showAltTextMenu={showAltTextMenu}
+                    setLocalAltText={setLocalAltText}
+                    defaultAltText={alt}
+                    onSave={() => onChangeItem(id, { alt: localAltText })}
+                    localAltText={localAltText}
+                />
                 {mode === BlockMode.TEXT_AND_IMAGE && (
                     <ImageComponent
                         isEditing={editing}
                         id={id}
+                        alt={alt}
                         image={linkedImage}
                         onAssetChooseClick={onOpenAssetChooser}
                         onUploadClick={onUploadClick}
@@ -290,7 +318,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 rows={1}
                                 ref={titleRef}
                                 onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                                onBlur={() => onChangeItem(id, title, 'title')}
+                                onBlur={() => onChangeItem(id, { title })}
                                 style={
                                     {
                                         ...BlockStyles.heading3,
