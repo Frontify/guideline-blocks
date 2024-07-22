@@ -266,4 +266,23 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgb(50, 40, 145)');
         cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(255, 255, 255)');
     });
+
+    it('renders a callout block with the content hugged', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'Some random text',
+                type: Type.Note,
+                appearance: Appearance.Strong,
+                width: Width.HugContents,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+
+        cy.get(CalloutBlockSelector).should(($el) => {
+            const width = parseFloat($el.css('width'));
+            expect(width).to.be.greaterThan(130);
+            expect(width).to.be.lessThan(140);
+        });
+    });
 });
