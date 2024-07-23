@@ -10,6 +10,8 @@ const CompareSliderSelector = '[data-test-id="compare-slider-block-slider"]';
 const BlockInjectButtonSelector = '[data-test-id="block-inject-button"]';
 const LabelWrapperSelector = '[data-test-id="compare-slider-block-label-wrapper"]';
 const StrikethroughWrapperSelector = '[data-test-id="compare-slider-block-strikethrough-wrapper"]';
+const FirstAssetSelector = '[data-test-id="slider-item-first"]';
+const SecondAssetSelector = '[data-test-id="slider-item-second"]';
 
 describe('Compare Slider Block', () => {
     it('renders compare slider block', () => {
@@ -103,5 +105,23 @@ describe('Compare Slider Block', () => {
         });
         mount(<CompareSliderBlockWithStubs />);
         cy.get(StrikethroughWrapperSelector).should('exist');
+    });
+
+    it('renders the alt texts', () => {
+        const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
+            blockAssets: {
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+            },
+            blockSettings: {
+                firstAssetAlt: 'First alt text',
+                secondAssetAlt: 'Second alt text',
+            },
+        });
+        mount(<CompareSliderBlockWithStubs />);
+        cy.get(FirstAssetSelector).should('exist');
+        cy.get(FirstAssetSelector).should('have.attr', 'alt', 'First alt text');
+        cy.get(SecondAssetSelector).should('exist');
+        cy.get(SecondAssetSelector).should('have.attr', 'alt', 'Second alt text');
     });
 });

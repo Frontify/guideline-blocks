@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16 } from '@frontify/fondue';
+import { IconArrowCircleUp20, IconImageStack20, IconSpeechBubbleQuote20, IconTrashBin16 } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { Alignment, EditorOverlayProps, SliderImageSlot } from '../../types';
+import { useState } from 'react';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 
 export const EditorOverlay = ({
     alignment,
@@ -13,7 +15,16 @@ export const EditorOverlay = ({
     borderStyle,
     handleAssetDelete,
     renderLabel,
+    firstAlt,
+    secondAlt,
+    updateImageAlt,
 }: EditorOverlayProps) => {
+    const [showFirstAltTextMenu, setShowFirstAltTextMenu] = useState(false);
+    const [showSecondAltTextMenu, setShowSecondAltTextMenu] = useState(false);
+
+    const [firstLocalAltText, setFirstLocalAltText] = useState<string | undefined>(firstAlt);
+    const [secondLocalAltText, setSecondLocalAltText] = useState<string | undefined>(secondAlt);
+
     return (
         <>
             <div
@@ -47,11 +58,24 @@ export const EditorOverlay = ({
                                         icon: <IconImageStack20 />,
                                         onClick: () => openAssetChooser(SliderImageSlot.First),
                                     },
+                                    {
+                                        title: 'Set alt text',
+                                        onClick: () => setShowFirstAltTextMenu(true),
+                                        icon: <IconSpeechBubbleQuote20 />,
+                                    },
                                 ],
                             ],
                         },
                     ]}
                 >
+                    <EditAltTextFlyout
+                        setShowAltTextMenu={setShowFirstAltTextMenu}
+                        showAltTextMenu={showFirstAltTextMenu}
+                        setLocalAltText={setFirstLocalAltText}
+                        defaultAltText={firstAlt}
+                        onSave={() => updateImageAlt('firstAssetAlt', firstLocalAltText ?? '')}
+                        localAltText={firstLocalAltText}
+                    />
                     <div className="tw-w-full tw-h-full tw-pointer-events-none" />
                 </BlockItemWrapper>
             </div>
@@ -88,11 +112,24 @@ export const EditorOverlay = ({
                                         icon: <IconImageStack20 />,
                                         onClick: () => openAssetChooser(SliderImageSlot.Second),
                                     },
+                                    {
+                                        title: 'Set alt text',
+                                        onClick: () => setShowSecondAltTextMenu(true),
+                                        icon: <IconSpeechBubbleQuote20 />,
+                                    },
                                 ],
                             ],
                         },
                     ]}
                 >
+                    <EditAltTextFlyout
+                        setShowAltTextMenu={setShowSecondAltTextMenu}
+                        showAltTextMenu={showSecondAltTextMenu}
+                        setLocalAltText={setSecondLocalAltText}
+                        defaultAltText={secondAlt}
+                        onSave={() => updateImageAlt('secondAssetAlt', secondLocalAltText ?? '')}
+                        localAltText={secondLocalAltText}
+                    />
                     <div className="tw-w-full tw-h-full" />
                 </BlockItemWrapper>
             </div>
