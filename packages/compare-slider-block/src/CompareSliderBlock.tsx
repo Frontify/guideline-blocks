@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
 import {
@@ -59,10 +59,12 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         firstAssetLabel,
         firstAssetLabelPlacementHorizontal,
         firstAssetLabelPlacementVertical,
+        firstAssetAlt,
         secondAssetHasStrikethrough,
         secondAssetLabel,
         secondAssetLabelPlacementHorizontal,
         secondAssetLabelPlacementVertical,
+        secondAssetAlt,
         borderColor,
         borderStyle,
         borderWidth,
@@ -83,9 +85,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         backgroundColor,
     } = blockSettings;
 
-    const firstAssetTitle = firstAsset ? firstAsset[0].title : '';
+    const firstAssetTitle = firstAsset ? firstAssetAlt ?? '' : '';
     const firstAssetPreviewUrl = firstAsset ? firstAsset[0].previewUrl : '';
-    const secondAssetTitle = secondAsset ? secondAsset[0].title : '';
+    const secondAssetTitle = secondAsset ? secondAssetAlt ?? '' : '';
     const secondAssetPreviewUrl = secondAsset ? secondAsset[0].previewUrl : '';
 
     useEffect(() => {
@@ -121,10 +123,14 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         if (droppedFiles.length > 1) {
             return console.error('Please only upload one file per slot.');
         }
+        const initialAlt = droppedFiles[0].name ?? '';
+
         if (slotWithUploadInProgress === SliderImageSlot.First) {
             setIsFirstAssetLoading(true);
+            setBlockSettings({ firstAssetAlt: initialAlt });
         } else {
             setIsSecondAssetLoading(true);
+            setBlockSettings({ secondAssetAlt: initialAlt });
         }
         uploadFile(droppedFiles);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,10 +138,14 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (selectedFiles) {
+            const initialAlt = selectedFiles[0].name ?? '';
+
             if (slotWithUploadInProgress === SliderImageSlot.First) {
                 setIsFirstAssetLoading(true);
+                setBlockSettings({ firstAssetAlt: initialAlt });
             } else {
                 setIsSecondAssetLoading(true);
+                setBlockSettings({ secondAssetAlt: initialAlt });
             }
             uploadFile(selectedFiles);
         }
@@ -163,6 +173,13 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         setDroppedFiles(files);
     };
 
+    const updateImageAlt = useCallback(
+        (key: 'firstAssetAlt' | 'secondAssetAlt', newAlt: string) => {
+            setBlockSettings({ [key]: newAlt });
+        },
+        [setBlockSettings]
+    );
+
     const handleAssetDelete = (key: string, id: number) => {
         deleteAssetIdsFromKey(key, [id]);
     };
@@ -170,10 +187,14 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const onOpenAssetChooser = (slot: SliderImageSlot) => {
         openAssetChooser(
             async (result) => {
+                const initialAlt = result[0].title ?? result[0].fileName ?? '';
+
                 if (slot === SliderImageSlot.First) {
                     setIsFirstAssetLoading(true);
+                    setBlockSettings({ firstAssetAlt: initialAlt });
                 } else {
                     setIsSecondAssetLoading(true);
+                    setBlockSettings({ secondAssetAlt: initialAlt });
                 }
                 updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [result[0].id]);
                 closeAssetChooser();
@@ -245,6 +266,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
                         alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
                         className="tw-w-full tw-object-cover"
+                        data-test-id={`slider-item-${slot}`}
                         style={{ height: getImageHeight() }}
                     />
                 </div>
@@ -366,6 +388,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                                 borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
                                 renderLabel={renderLabel}
                                 handleAssetDelete={handleAssetDelete}
+                                firstAlt={firstAssetAlt}
+                                secondAlt={secondAssetAlt}
+                                updateImageAlt={updateImageAlt}
                             />
                         )}
                     </>

@@ -26,10 +26,12 @@ export type BlockSettings = {
     firstAssetLabel: string;
     firstAssetLabelPlacementHorizontal: LabelPlacement;
     firstAssetLabelPlacementVertical: LabelPlacement;
+    firstAssetAlt?: string;
 
     secondAssetLabel: string;
     secondAssetLabelPlacementHorizontal: LabelPlacement;
     secondAssetLabelPlacementVertical: LabelPlacement;
+    secondAssetAlt?: string;
 
     handle: Handle;
 
@@ -158,11 +160,14 @@ export type EditorOverlayProps = {
     alignment: Alignment;
     firstAsset: Asset[];
     secondAsset: Asset[];
+    firstAlt?: string;
+    secondAlt?: string;
     openAssetChooser: (slot: SliderImageSlot) => void;
     startFileDialogUpload: (slot: SliderImageSlot) => void;
     handleAssetDelete: (key: string, id: number) => void;
     borderStyle: CSSProperties;
     renderLabel: (slot: SliderImageSlot) => JSX.Element;
+    updateImageAlt: (key: 'firstAssetAlt' | 'secondAssetAlt', newAlt: string) => void;
 };
 
 export type StrikethroughWrapperProps = {
