@@ -4,7 +4,7 @@ import { IconInfo20, IconLightbulb20, IconMegaphone20 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import type { ReactNode } from 'react';
 
-import { Icon } from '../types';
+import { Icon, Type } from '../types';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CustomCalloutIcon } from './CustomCalloutIcon';
 
@@ -13,9 +13,10 @@ type CalloutIconProps = {
     isActive: boolean;
     appBridge: AppBridgeBlock;
     color?: string;
+    type: Type;
 };
-export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIconProps) => {
-    const icon = calloutIconMap(appBridge)[iconType];
+export const CalloutIcon = ({ iconType, isActive, appBridge, color, type }: CalloutIconProps) => {
+    const icon = calloutIconMap(appBridge, type)[iconType];
 
     return (
         <div
@@ -33,10 +34,10 @@ export const CalloutIcon = ({ iconType, isActive, appBridge, color }: CalloutIco
     );
 };
 
-const calloutIconMap = (appBridge: AppBridgeBlock): Record<Icon, ReactNode> => ({
+const calloutIconMap = (appBridge: AppBridgeBlock, type: Type): Record<Icon, ReactNode> => ({
     none: null,
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,
-    custom: <CustomCalloutIcon appBridge={appBridge} />,
+    custom: <CustomCalloutIcon appBridge={appBridge} type={type} />,
 });
