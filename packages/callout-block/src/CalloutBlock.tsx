@@ -120,6 +120,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                             isActive={hasRichTextValue(blockSettings.textValue)}
                             iconType={iconType}
                             color={textColor}
+                            type={type}
                         />
                     )}
                     <RichTextEditor

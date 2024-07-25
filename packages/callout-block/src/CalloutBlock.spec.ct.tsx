@@ -101,12 +101,14 @@ describe('Callout Block', () => {
             },
             blockSettings: {
                 iconSwitch: true,
+                type: Type.Note,
             },
         });
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutIconWrapperSelector).should('exist');
         cy.get(CalloutIconCustomSelector).should('exist');
+        cy.get(CalloutIconCustomSelector).should('have.attr', 'alt', 'note');
     });
 
     it('renders a callout block without icon', () => {
