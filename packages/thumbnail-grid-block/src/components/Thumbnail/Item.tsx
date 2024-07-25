@@ -81,6 +81,10 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         }, [selectedFiles]);
 
         useEffect(() => {
+            setLocalAltText(altText);
+        }, [altText]);
+
+        useEffect(() => {
             if (doneAll) {
                 onFilesUploaded(uploadResults, id);
             }

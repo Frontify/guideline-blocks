@@ -43,7 +43,7 @@ export const Image = ({
                     testId="thumbnail-image"
                     image={image}
                     containerWidth={containerWidth}
-                    alt={altText || image.title || image.fileName || ''}
+                    alt={altText || ''}
                 />
             ) : null;
 
