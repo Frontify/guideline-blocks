@@ -176,6 +176,26 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ThumbnailImage).first().click();
     });
 
+    it('should render empty alt texts', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: false,
+            blockSettings: {
+                ...defaultSettings,
+                items: [
+                    { ...ThumbnailDummy.with('1'), altText: '' },
+                    { ...ThumbnailDummy.with('2'), altText: '' },
+                ],
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+            },
+        });
+        mount(<ThumbnailGridBlockWithStubs />);
+        cy.get(ThumbnailImage).eq(0).should('have.attr', 'alt', '');
+        cy.get(ThumbnailImage).eq(1).should('have.attr', 'alt', '');
+    });
+
     // ALIGNMENT
     it('should render the image alignment in horizontal caption alignment', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {

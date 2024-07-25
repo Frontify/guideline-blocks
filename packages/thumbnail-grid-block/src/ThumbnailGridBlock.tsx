@@ -38,8 +38,9 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     const addNewItemsIfNeeded = (assetsToAdd: Asset[] | FileList) => {
         const [, ...newAssets] = Array.from(assetsToAdd as Asset[]);
-        const newItemsToAdd: Thumbnail[] = (newAssets || []).map(() => ({
+        const newItemsToAdd: Thumbnail[] = (newAssets || []).map((asset) => ({
             id: generateRandomId(),
+            altText: asset.title || asset.fileName,
         }));
         addItems(newItemsToAdd);
 
@@ -57,6 +58,11 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id])
         );
         await Promise.all(updateAssetIdPromises);
+        setItemsState((prev) =>
+            prev.map((item) =>
+                item.id === itemId ? { ...item, altText: selectedAssets[0].title || selectedAssets[0].fileName } : item
+            )
+        );
         setUploadingItemIds({ ...newUploadingItemIds, [itemId]: [] });
     };
 
@@ -76,6 +82,11 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             uploadedAssets[i] ? updateAssetIdsFromKey(uploadingItemId, [uploadedAssets[i].id]) : Promise.resolve()
         );
         await Promise.all(updateAssetIdPromises);
+        setItemsState((prev) =>
+            prev.map((item) =>
+                item.id === itemId ? { ...item, altText: uploadedAssets[0].title || uploadedAssets[0].fileName } : item
+            )
+        );
         setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
     };
 
