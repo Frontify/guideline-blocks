@@ -26,7 +26,7 @@ module.exports = (opts = {}) => {
                         .map((individualSelector) =>
                             individualSelector === opts.selector
                                 ? individualSelector
-                                : `${opts.scope} ${individualSelector}, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}, body > [data-radix-popper-content-wrapper]  ${individualSelector}`,
+                                : `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`,
                         )
                         .join(", "),
                 );
@@ -36,3 +36,11 @@ module.exports = (opts = {}) => {
 };
 
 module.exports.postcss = true;
+
+const getModalExtensions = (individualSelector) => {
+    if (!individualSelector.includes(".")) {
+        return "";
+    }
+
+    return `, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}, body > [data-radix-popper-content-wrapper]  ${individualSelector}`;
+};
