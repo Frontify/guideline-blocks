@@ -122,6 +122,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <div className="tw-flex-none">
                         <button
                             data-test-id="asset-kit-block-download-button"
+                            className="[&>div]:!tw-@container-normal"
                             disabled={isButtonDisabled}
                             onClick={isEditing ? undefined : startDownload}
                             onMouseEnter={() => setButtonHover(true)}
