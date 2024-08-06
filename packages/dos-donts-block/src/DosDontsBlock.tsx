@@ -143,19 +143,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     /**
-     * Save the design tokens to the settings initially
-     */
-    useEffect(() => {
-        if (!customDoColor && !customDontColor) {
-            setBlockSettings({
-                doColor,
-                dontColor,
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [customDoColor, customDontColor]);
-
-    /**
      * Create placeholders on mount if empty
      */
     useEffect(() => {
@@ -239,9 +226,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         (newItems: Item[]) => {
             setBlockSettings({
                 items: newItems,
+                ...(!customDoColor && !customDontColor
+                    ? {
+                          doColor,
+                          dontColor,
+                      }
+                    : {}),
             });
         },
-        [setBlockSettings]
+        [setBlockSettings, customDoColor, customDontColor, doColor, dontColor]
     );
 
     const setAndSaveItems = useCallback(
