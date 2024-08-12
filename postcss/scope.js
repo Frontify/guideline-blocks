@@ -42,5 +42,5 @@ const getModalExtensions = (individualSelector) => {
         return "";
     }
 
-    return `, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}, body > [data-radix-popper-content-wrapper]  ${individualSelector}`;
+    return `, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}`;
 };
