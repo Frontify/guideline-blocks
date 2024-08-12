@@ -112,6 +112,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             className={merge([
                                 isQuotationMarkType ? '' : accentLineClassName,
                                 textAlignmentClassNames[textAlignment],
+                                '[&>div]:!tw-@container-normal',
                             ])}
                         >
                             <RichTextEditor
