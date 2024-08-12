@@ -45,6 +45,6 @@
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.1.14",
         "@frontify/guideline-blocks-settings": "0.36.2",
-        "@uiw/react-codemirror": "^4.21.24"
+        "@uiw/react-codemirror": "^4.23.0"
     }
 }
