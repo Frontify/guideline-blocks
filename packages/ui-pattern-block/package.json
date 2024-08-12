@@ -33,7 +33,7 @@
         "typescript": "^5.4.3"
     },
     "dependencies": {
-        "@codesandbox/sandpack-react": "^2.12.1",
+        "@codesandbox/sandpack-react": "^2.18.2",
         "@codesandbox/sandpack-themes": "^2.0.21",
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.1.14",
