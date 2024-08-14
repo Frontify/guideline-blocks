@@ -96,8 +96,8 @@ importers:
         specifier: 12.1.14
         version: 12.1.14(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 0.36.2
-        version: 0.36.2(@frontify/app-bridge@3.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
+        specifier: 0.36.5
+        version: 0.36.5(@frontify/app-bridge@3.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3315,23 +3315,10 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@frontify/guideline-blocks-settings@0.36.2':
-    resolution: {integrity: sha512-oBld9QU8pfH93DGi9gV4bn/ZqKIw8W9TU9fjthIKJ0uok1Qanr6bHQ4sxyJB+KP0J/FyU0gWXRAgIZAfWX/GEA==}
-    peerDependencies:
-      '@frontify/app-bridge': ^3.0.0 || ^4.0.0-alpha.0
-      react: ^18
-      react-dom: ^18
-
   '@frontify/guideline-blocks-settings@0.36.5':
     resolution: {integrity: sha512-duH6w3N3O0UD8A8yrtvBMdUVtwxv6r+bGObvJL/FLuYX+4DgX2SUK0GF9ESrO2SwegE8WiqklIINDJDxYtkwBg==}
     peerDependencies:
       '@frontify/app-bridge': ^3.0.0 || ^4.0.0-alpha.0
-      react: ^18
-      react-dom: ^18
-
-  '@frontify/sidebar-settings@0.9.18':
-    resolution: {integrity: sha512-4eS27B2RQdV0xIjWpd6hU/MgweocnhdjcJhk6ZsCVgCLCqOih5ExX5XhURkRjdkd38yPvNAjKoVNI7SiqCHSaQ==}
-    peerDependencies:
       react: ^18
       react-dom: ^18
 
@@ -11897,7 +11884,7 @@ snapshots:
       '@react-aria/aria-modal-polyfill': 3.7.10(react@18.3.1)
       '@react-aria/breadcrumbs': 3.5.13(react@18.3.1)
       '@react-aria/button': 3.9.5(react@18.3.1)
-      '@react-aria/checkbox': 3.14.5(react@18.3.1)
+      '@react-aria/checkbox': 3.14.3(react@18.3.1)
       '@react-aria/combobox': 3.9.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/dialog': 3.5.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
@@ -12125,34 +12112,6 @@ snapshots:
       - supports-color
       - terser
 
-  '@frontify/guideline-blocks-settings@0.36.2(@frontify/app-bridge@3.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))':
-    dependencies:
-      '@ctrl/tinycolor': 4.1.0
-      '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@frontify/app-bridge': 3.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1)
-      '@frontify/fondue': 12.1.14(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
-      '@frontify/sidebar-settings': 0.9.18(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
-      '@react-aria/focus': 3.17.1(react@18.3.1)
-      '@react-stately/overlays': 3.6.7(react@18.3.1)
-      '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - react-native
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - zustand
-
   '@frontify/guideline-blocks-settings@0.36.5(@frontify/app-bridge@3.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@17.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@20.14.15)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@20.14.15)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))':
     dependencies:
       '@ctrl/tinycolor': 4.1.0
@@ -12193,25 +12152,6 @@ snapshots:
       '@react-aria/focus': 3.18.1(react@18.3.1)
       '@react-stately/overlays': 3.6.7(react@18.3.1)
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - react-native
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - zustand
-
-  '@frontify/sidebar-settings@0.9.18(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))':
-    dependencies:
-      '@frontify/fondue': 12.1.14(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.9)(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.9(ts-node@10.9.2(@types/node@22.2.0)(typescript@5.4.5)))(zustand@4.5.2(@types/react@18.3.3)(immer@10.1.1)(react@18.3.1))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
