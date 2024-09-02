@@ -94,6 +94,6 @@ describe('ImageContainer', () => {
         } as HTMLDivElement;
 
         const result = new ImageContainer(imageContainer).node;
-        expect(JSON.stringify(result)).toMatchObject(JSON.stringify(expectedContainer));
+        expect(JSON.stringify(result)).toBe(JSON.stringify(expectedContainer));
     });
 });

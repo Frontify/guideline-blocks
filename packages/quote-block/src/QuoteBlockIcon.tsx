@@ -26,6 +26,6 @@ export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     sizeChoice,
     appBridge,
 }) => {
-    const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
+    const size = isCustomSize ? (sizeValue ?? '') : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
     return quoteIconMap(size, color, customIconId, appBridge)[quoteStyle];
 };

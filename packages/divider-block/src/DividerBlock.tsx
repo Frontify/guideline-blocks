@@ -44,7 +44,7 @@ export const DividerBlock = ({ appBridge }: BlockProps) => {
                             'tw-border-t tw-m-0 tw-w-full',
                             dividerStyleClasses[
                                 blockSettings.isLine === DividerStyle.Solid
-                                    ? blockSettings.style ?? STYLE_DEFAULT_VALUE
+                                    ? (blockSettings.style ?? STYLE_DEFAULT_VALUE)
                                     : DividerStyle.NoLine
                             ],
                         ])}

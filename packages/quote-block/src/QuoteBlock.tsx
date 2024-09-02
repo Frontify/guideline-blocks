@@ -48,16 +48,16 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const isFullWidth =
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
-    const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
+    const textAlignment = !isQuotationMarkType ? 'left' : (blockSettings.textAlignment ?? 'left');
 
     const themeStyle = getComputedStyle(document.body);
     const iconColor = blockSettings.isCustomQuotesColor
         ? toRgbaString(blockSettings.quotesColor ?? DEFAULT_COLOR_VALUE)
-        : themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE);
+        : (themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE));
 
     const accentLineColor = blockSettings.isCustomLineColor
         ? toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE)
-        : themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE);
+        : (themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE));
 
     const borderStyles = blockSettings.showAccentLine
         ? {
@@ -98,7 +98,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             quoteStyle={
                                 blockSettings.isCustomQuoteStyleLeft
                                     ? QuoteStyle.Custom
-                                    : blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp
+                                    : (blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp)
                             }
                         />
                     )}
@@ -137,7 +137,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             quoteStyle={
                                 blockSettings.isCustomQuoteStyleRight
                                     ? QuoteStyle.Custom
-                                    : blockSettings.quoteStyleRight ?? QuoteStyle.None
+                                    : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
                             }
                         />
                     )}
