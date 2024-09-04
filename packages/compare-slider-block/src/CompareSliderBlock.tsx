@@ -85,9 +85,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         backgroundColor,
     } = blockSettings;
 
-    const firstAssetTitle = firstAsset ? firstAssetAlt ?? '' : '';
+    const firstAssetTitle = firstAsset ? (firstAssetAlt ?? '') : '';
     const firstAssetPreviewUrl = firstAsset ? firstAsset[0].previewUrl : '';
-    const secondAssetTitle = secondAsset ? secondAssetAlt ?? '' : '';
+    const secondAssetTitle = secondAsset ? (secondAssetAlt ?? '') : '';
     const secondAssetPreviewUrl = secondAsset ? secondAsset[0].previewUrl : '';
 
     useEffect(() => {
