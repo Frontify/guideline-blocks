@@ -9,7 +9,7 @@
         "noImplicitThis": true,
         "sourceMap": true,
         "strict": true,
-        "target": "es6",
+        "target": "ES2020",
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
         "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
