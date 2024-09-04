@@ -29,8 +29,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^3.9.1",
-        "@frontify/fondue": "12.1.14",
-        "@frontify/guideline-blocks-settings": "0.36.5",
+        "@frontify/fondue": "12.2.6",
+        "@frontify/guideline-blocks-settings": "0.36.7",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-compare-slider": "^3.0.0",

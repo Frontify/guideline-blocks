@@ -13,7 +13,7 @@ const FlyoutMenuSelector = '[data-test-id="flyout-menu"]';
 const TextInputSelector = '[data-test-id="text-input"]';
 const CancelButtonSelector = '[data-test-id="cancel-button"]';
 const SaveButtonSelector = '[data-test-id="save-button"]';
-const TooltipSelector = '[data-test-id="toolbar-button-tooltip"]';
+const TooltipSelector = '[data-test-id="fondue-tooltip-content"]';
 
 describe('getEditAltTextToolbarButton', () => {
     it('should display flyout screen and set localAltText', () => {
@@ -123,6 +123,6 @@ describe('getEditAltTextToolbarButton', () => {
         );
 
         cy.get(ToolbarFlyoutSelector).should('have.length', 1).focus();
-        cy.get(TooltipSelector).should('be.visible').and('have.text', 'Set alt text');
+        cy.get(TooltipSelector).children('div').should('be.visible').and('have.text', 'Set alt text');
     });
 });
