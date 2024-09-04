@@ -43,8 +43,8 @@
     "dependencies": {
         "@codemirror/lang-css": "^6.2.1",
         "@frontify/app-bridge": "^3.9.1",
-        "@frontify/fondue": "12.1.14",
-        "@frontify/guideline-blocks-settings": "0.36.6",
+        "@frontify/fondue": "12.2.6",
+        "@frontify/guideline-blocks-settings": "0.36.7",
         "@uiw/react-codemirror": "^4.23.0"
     }
 }
