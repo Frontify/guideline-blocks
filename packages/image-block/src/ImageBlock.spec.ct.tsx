@@ -84,25 +84,25 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=300&format=webp&quality=75'
+            'https://generic.url?width=300&format=webp&quality=100'
         );
         cy.viewport(280, 800);
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=300&format=webp&quality=75'
+            'https://generic.url?width=300&format=webp&quality=100'
         );
         cy.viewport(400, 800);
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=400&format=webp&quality=75'
+            'https://generic.url?width=400&format=webp&quality=100'
         );
         cy.viewport(401, 800);
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=500&format=webp&quality=75'
+            'https://generic.url?width=500&format=webp&quality=100'
         );
     });
 
@@ -125,19 +125,19 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=400&format=webp&quality=75'
+            'https://generic.url?width=400&format=webp&quality=100'
         );
         cy.viewport(340, 800);
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=500&format=webp&quality=75'
+            'https://generic.url?width=500&format=webp&quality=100'
         );
         cy.viewport(440, 800);
         cy.get(ImageBlockImageComponentSelector).should(
             'have.attr',
             'src',
-            'https://generic.url?width=600&format=webp&quality=75'
+            'https://generic.url?width=600&format=webp&quality=100'
         );
     });
 

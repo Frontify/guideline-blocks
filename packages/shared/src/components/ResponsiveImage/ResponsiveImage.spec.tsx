@@ -26,7 +26,7 @@ describe('ResponsiveImage', () => {
     it('should add the webp format and quality by default', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=800&format=webp&quality=75'
+            'https://generic.url?width=800&format=webp&quality=100'
         );
     });
 
@@ -42,7 +42,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage format={ImageFormat.JPG} image={HIGH_RES_ASSET} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=800&format=jpg&quality=75'
+            'https://generic.url?width=800&format=jpg&quality=100'
         );
     });
 
@@ -58,7 +58,7 @@ describe('ResponsiveImage', () => {
     it('should request the image width to match the container width', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=600&format=webp&quality=75'
+            'https://generic.url?width=600&format=webp&quality=100'
         );
     });
 
@@ -69,7 +69,7 @@ describe('ResponsiveImage', () => {
         });
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=1200&format=webp&quality=75'
+            'https://generic.url?width=1200&format=webp&quality=100'
         );
     });
 
@@ -78,7 +78,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, width: 200, height: 200 }} containerWidth={600} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=200&format=webp&quality=75'
+            'https://generic.url?width=200&format=webp&quality=100'
         );
     });
 

@@ -23,7 +23,7 @@ export const ResponsiveImage = ({
     format = ImageFormat.WEBP,
     className = '',
     style,
-    quality = 75,
+    quality = 100,
     testId = 'responsive-image',
 }: ResponsiveImageProps) => {
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
