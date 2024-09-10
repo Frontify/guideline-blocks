@@ -9,7 +9,7 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
+import { Button, ButtonEmphasis, IconArrowExpand, IconCross } from '@frontify/fondue';
 
 import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
@@ -23,6 +23,7 @@ import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
+import { FigmaEmptyBlock } from './FigmaEmptyBlock';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
@@ -102,19 +103,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         );
     };
-
-    const FigmaEmptyBlock = () => (
-        <button
-            data-test-id="figma-empty-block"
-            className="tw-group tw-w-full tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
-            onClick={onOpenAssetChooser}
-        >
-            <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
-                <IconSuitcase size={IconSize.Size32} />
-            </div>
-            <span className="tw-text-text-x-weak group-hover:tw-text-black">Choose Figma asset</span>
-        </button>
-    );
 
     const ShowFigmaLink = useCallback(
         ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
@@ -260,7 +248,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <ReferenceErrorMessage originalUrl={referenceUrl} />
             ) : (
                 <>
-                    {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
+                    {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />}
                     {isAssetAvailable && !isLivePreview && (
                         <ShowImagePreview
                             hasBorder={hasBorder}
