@@ -110,7 +110,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -131,13 +131,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -189,7 +189,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -210,13 +210,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -256,7 +256,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -277,13 +277,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -326,7 +326,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -347,13 +347,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -396,7 +396,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -414,13 +414,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -463,7 +463,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -481,13 +481,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -551,7 +551,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -575,13 +575,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -642,7 +642,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -663,13 +663,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -718,7 +718,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -739,13 +739,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -788,7 +788,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -806,13 +806,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -864,7 +864,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -882,13 +882,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -934,7 +934,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -952,13 +952,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -998,7 +998,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1013,13 +1013,13 @@ importers:
         version: 10.4.20(postcss@8.4.44)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1074,7 +1074,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1095,10 +1095,10 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1141,7 +1141,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1159,13 +1159,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1208,7 +1208,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1226,13 +1226,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1275,7 +1275,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1299,13 +1299,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1348,7 +1348,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1372,13 +1372,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1424,7 +1424,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1448,13 +1448,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1500,7 +1500,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1518,13 +1518,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1567,7 +1567,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1585,13 +1585,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1631,7 +1631,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@testing-library/react':
         specifier: ^16.0.1
         version: 16.0.1(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1652,13 +1652,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -1725,7 +1725,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1743,13 +1743,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1795,7 +1795,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1813,13 +1813,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1862,7 +1862,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1883,13 +1883,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -1935,7 +1935,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -1956,13 +1956,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -2020,7 +2020,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -2044,13 +2044,13 @@ importers:
         version: 1.13.0(cypress@13.14.2)
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -2108,7 +2108,7 @@ importers:
         version: 7.25.2
       '@frontify/eslint-config-react':
         specifier: 0.16.1
-        version: 0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
+        version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
         version: 5.7.8(@types/node@22.5.5)(terser@5.31.2)
@@ -2132,13 +2132,13 @@ importers:
         version: 13.14.2
       eslint:
         specifier: ^8.57.0
-        version: 8.57.0
+        version: 8.57.1
       eslint-plugin-jsx-a11y:
         specifier: ^6.9.0
-        version: 6.9.0(eslint@8.57.0)
+        version: 6.9.0(eslint@8.57.1)
       eslint-plugin-notice:
         specifier: ^0.9.10
-        version: 0.9.10(eslint@8.57.0)
+        version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
@@ -2161,10 +2161,6 @@ packages:
     resolution: {integrity: sha512-3ghTmzhOmUqeN6U3QmUnKRUxI7OMLbJA4hHUY/eS/FhWJgxbiGgcaELbolWnBAOpajPXcsNQGYEj9brd59WH6A==}
     peerDependencies:
       cypress: 2 - 13
-
-  '@aashutoshrathi/word-wrap@1.2.6':
-    resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
-    engines: {node: '>=0.10.0'}
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
@@ -2625,8 +2621,8 @@ packages:
   '@codemirror/commands@6.6.0':
     resolution: {integrity: sha512-qnY+b7j1UNcTS31Eenuc/5YJB6gQOzkUoNmJQc0rznwqSRpeaWWpjkWy2C/MPTcePpsKJEM26hXrOXl1+nceXg==}
 
-  '@codemirror/commands@6.6.1':
-    resolution: {integrity: sha512-iBfKbyIoXS1FGdsKcZmnrxmbc8VcbMrSgD7AVrsnX+WyAYjmUDWvE93dt5D874qS4CCVu4O1JpbagHdXbbLiOw==}
+  '@codemirror/commands@6.6.2':
+    resolution: {integrity: sha512-Fq7eWOl1Rcbrfn6jD8FPCj9Auaxdm5nIK5RYOeW7ughnd/rY5AmPg6b+CfsG39ZHdwiwe8lde3q8uR7CF5S0yQ==}
 
   '@codemirror/lang-angular@0.1.3':
     resolution: {integrity: sha512-xgeWGJQQl1LyStvndWtruUvb4SnBZDAu/gvFH/ZU+c0W25tQR8e5hq7WTwiIY2dNxnf+49mRiGI/9yxIwB6f5w==}
@@ -2702,6 +2698,9 @@ packages:
 
   '@codemirror/language@6.10.2':
     resolution: {integrity: sha512-kgbTYTo0Au6dCSc/TFy7fK3fpJmgHDv1sG1KNQKJXVi+xBTEeBPY/M30YXiU6mMXeH+YIDLsbrT4ZwNRdtF+SA==}
+
+  '@codemirror/language@6.10.3':
+    resolution: {integrity: sha512-kDqEU5sCP55Oabl6E7m5N+vZRoc0iWqgDVhEKifcHzPzjqCegcO4amfrYVL9PmPZpl4G0yjkpTpUO/Ui8CzO8A==}
 
   '@codemirror/legacy-modes@6.4.0':
     resolution: {integrity: sha512-5m/K+1A6gYR0e+h/dEde7LoGimMjRtWXZFg4Lo70cc8HzjSdHe3fLwjWMR0VRl5KFT1SxalSap7uMgPKF28wBA==}
@@ -2942,16 +2941,16 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
-  '@eslint-community/regexpp@4.10.0':
-    resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
+  '@eslint-community/regexpp@4.11.1':
+    resolution: {integrity: sha512-m4DVN9ZqskZoLU5GlWZadwDnYo3vAEydiUayB9widCl9ffWx2IvPnp6n3on5rJmziJSw9Bv+Z3ChDVdMwXCY8Q==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
   '@eslint/eslintrc@2.1.4':
     resolution: {integrity: sha512-269Z39MS6wVJtsoUl10L60WdkhJVdPG24Q4eZTH3nnF6lpvSShEK3wQjDX9JRWAUPvPh7COouPpU9IrqaZFvtQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@eslint/js@8.57.0':
-    resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
+  '@eslint/js@8.57.1':
+    resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
   '@fastify/ajv-compiler@3.6.0':
@@ -3122,8 +3121,8 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
-  '@humanwhocodes/config-array@0.11.14':
-    resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
+  '@humanwhocodes/config-array@0.13.0':
+    resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
     deprecated: Use @eslint/config-array instead
 
@@ -3131,8 +3130,8 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
-  '@humanwhocodes/object-schema@2.0.2':
-    resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+  '@humanwhocodes/object-schema@2.0.3':
+    resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
   '@internationalized/date@3.5.5':
@@ -5495,8 +5494,8 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
-  ansi-regex@6.0.1:
-    resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
+  ansi-regex@6.1.0:
+    resolution: {integrity: sha512-7HSX4QQb4CspciLpVFwyRe79O3xsIZDDLER21kERQ71oaPodF8jL725AgJMFAYbooIqolJoRLuM81SpeUkpkvA==}
     engines: {node: '>=12'}
 
   ansi-styles@3.2.1:
@@ -6685,8 +6684,8 @@ packages:
     resolution: {integrity: sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  eslint@8.57.0:
-    resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
+  eslint@8.57.1:
+    resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
 
@@ -6699,8 +6698,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  esquery@1.5.0:
-    resolution: {integrity: sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==}
+  esquery@1.6.0:
+    resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
     engines: {node: '>=0.10'}
 
   esrecurse@4.3.0:
@@ -6887,9 +6886,6 @@ packages:
   flat-cache@3.2.0:
     resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
     engines: {node: ^10.12.0 || >=12.0.0}
-
-  flatted@3.2.9:
-    resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
 
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
@@ -7169,8 +7165,8 @@ packages:
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
-  ignore@5.3.1:
-    resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
+  ignore@5.3.2:
+    resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
   image-size@1.1.1:
@@ -8347,8 +8343,8 @@ packages:
   optics-ts@2.4.1:
     resolution: {integrity: sha512-HaYzMHvC80r7U/LqAd4hQyopDezC60PO2qF5GuIwALut2cl5rK1VWHsqTp0oqoJJWjiv6uXKqsO+Q2OO0C3MmQ==}
 
-  optionator@0.9.3:
-    resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
+  optionator@0.9.4:
+    resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
   ora@5.4.1:
@@ -10101,6 +10097,10 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  word-wrap@1.2.5:
+    resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
+    engines: {node: '>=0.10.0'}
+
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
@@ -10243,8 +10243,6 @@ snapshots:
   '@4tw/cypress-drag-drop@2.2.5(cypress@13.14.2)':
     dependencies:
       cypress: 13.14.2
-
-  '@aashutoshrathi/word-wrap@1.2.6': {}
 
   '@adobe/css-tools@4.4.0': {}
 
@@ -10876,6 +10874,20 @@ snapshots:
       '@codemirror/view': 6.33.0
       '@lezer/common': 1.2.1
 
+  '@codemirror/autocomplete@6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)':
+    dependencies:
+      '@codemirror/language': 6.10.3
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
+      '@lezer/common': 1.2.1
+
+  '@codemirror/autocomplete@6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)(@lezer/common@1.2.1)':
+    dependencies:
+      '@codemirror/language': 6.10.3
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.33.0
+      '@lezer/common': 1.2.1
+
   '@codemirror/commands@6.6.0':
     dependencies:
       '@codemirror/language': 6.10.2
@@ -10883,9 +10895,9 @@ snapshots:
       '@codemirror/view': 6.32.0
       '@lezer/common': 1.2.1
 
-  '@codemirror/commands@6.6.1':
+  '@codemirror/commands@6.6.2':
     dependencies:
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.33.0
       '@lezer/common': 1.2.1
@@ -10926,8 +10938,8 @@ snapshots:
 
   '@codemirror/lang-css@6.3.0(@codemirror/view@6.32.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
-      '@codemirror/language': 6.10.2
+      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/css': 1.1.9
@@ -10936,8 +10948,8 @@ snapshots:
 
   '@codemirror/lang-go@6.0.1(@codemirror/view@6.32.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
-      '@codemirror/language': 6.10.2
+      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/go': 1.0.0
@@ -11060,8 +11072,8 @@ snapshots:
 
   '@codemirror/lang-sql@6.7.1(@codemirror/view@6.32.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
-      '@codemirror/language': 6.10.2
+      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
@@ -11096,8 +11108,8 @@ snapshots:
 
   '@codemirror/lang-yaml@6.1.1(@codemirror/view@6.32.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
-      '@codemirror/language': 6.10.2
+      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
@@ -11127,7 +11139,7 @@ snapshots:
       '@codemirror/lang-wast': 6.0.2
       '@codemirror/lang-xml': 6.1.0
       '@codemirror/lang-yaml': 6.1.1(@codemirror/view@6.32.0)
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.3
       '@codemirror/legacy-modes': 6.4.0
     transitivePeerDependencies:
       - '@codemirror/view'
@@ -11141,9 +11153,18 @@ snapshots:
       '@lezer/lr': 1.4.1
       style-mod: 4.1.2
 
+  '@codemirror/language@6.10.3':
+    dependencies:
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.33.0
+      '@lezer/common': 1.2.1
+      '@lezer/highlight': 1.2.0
+      '@lezer/lr': 1.4.1
+      style-mod: 4.1.2
+
   '@codemirror/legacy-modes@6.4.0':
     dependencies:
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.3
 
   '@codemirror/lint@6.5.0':
     dependencies:
@@ -11161,7 +11182,7 @@ snapshots:
 
   '@codemirror/theme-one-dark@6.1.2':
     dependencies:
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.3
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.33.0
       '@lezer/highlight': 1.2.0
@@ -11377,20 +11398,20 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@eslint-community/eslint-utils@4.4.0(eslint@8.57.0)':
+  '@eslint-community/eslint-utils@4.4.0(eslint@8.57.1)':
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/regexpp@4.10.0': {}
+  '@eslint-community/regexpp@4.11.1': {}
 
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.4
+      debug: 4.3.7(supports-color@8.1.1)
       espree: 9.6.1
       globals: 13.24.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       minimatch: 3.1.2
@@ -11398,7 +11419,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@8.57.0': {}
+  '@eslint/js@8.57.1': {}
 
   '@fastify/ajv-compiler@3.6.0':
     dependencies:
@@ -11515,32 +11536,32 @@ snapshots:
       sinon: 18.0.0
       type-fest: 4.20.1
 
-  '@frontify/eslint-config-basic@0.18.0(eslint@8.57.0)(prettier@3.3.3)':
+  '@frontify/eslint-config-basic@0.18.0(eslint@8.57.1)(prettier@3.3.3)':
     dependencies:
-      eslint: 8.57.0
-      eslint-config-prettier: 8.10.0(eslint@8.57.0)
+      eslint: 8.57.1
+      eslint-config-prettier: 8.10.0(eslint@8.57.1)
       eslint-plugin-html: 7.1.0
-      eslint-plugin-jsonc: 2.13.0(eslint@8.57.0)
-      eslint-plugin-lodash: 7.4.0(eslint@8.57.0)
-      eslint-plugin-markdown: 3.0.1(eslint@8.57.0)
+      eslint-plugin-jsonc: 2.13.0(eslint@8.57.1)
+      eslint-plugin-lodash: 7.4.0(eslint@8.57.1)
+      eslint-plugin-markdown: 3.0.1(eslint@8.57.1)
       eslint-plugin-no-only-tests: 3.1.0
-      eslint-plugin-node: 11.1.0(eslint@8.57.0)
-      eslint-plugin-prettier: 5.1.3(eslint-config-prettier@8.10.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.3)
-      eslint-plugin-promise: 6.1.1(eslint@8.57.0)
-      eslint-plugin-unicorn: 48.0.1(eslint@8.57.0)
-      eslint-plugin-yml: 1.12.2(eslint@8.57.0)
+      eslint-plugin-node: 11.1.0(eslint@8.57.1)
+      eslint-plugin-prettier: 5.1.3(eslint-config-prettier@8.10.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
+      eslint-plugin-promise: 6.1.1(eslint@8.57.1)
+      eslint-plugin-unicorn: 48.0.1(eslint@8.57.1)
+      eslint-plugin-yml: 1.12.2(eslint@8.57.1)
       prettier: 3.3.3
       yaml-eslint-parser: 1.2.2
     transitivePeerDependencies:
       - '@types/eslint'
       - supports-color
 
-  '@frontify/eslint-config-react@0.16.1(eslint@8.57.0)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)':
+  '@frontify/eslint-config-react@0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)':
     dependencies:
-      '@frontify/eslint-config-typescript': 0.16.1(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)
-      eslint: 8.57.0
-      eslint-plugin-react: 7.33.2(eslint@8.57.0)
-      eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
+      '@frontify/eslint-config-typescript': 0.16.1(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)
+      eslint: 8.57.1
+      eslint-plugin-react: 7.33.2(eslint@8.57.1)
+      eslint-plugin-react-hooks: 4.6.0(eslint@8.57.1)
       prettier: 3.3.3
       react: 18.3.1
     transitivePeerDependencies:
@@ -11548,12 +11569,12 @@ snapshots:
       - supports-color
       - typescript
 
-  '@frontify/eslint-config-typescript@0.16.1(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)':
+  '@frontify/eslint-config-typescript@0.16.1(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)':
     dependencies:
-      '@frontify/eslint-config-basic': 0.18.0(eslint@8.57.0)(prettier@3.3.3)
-      '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
-      '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.5.4)
-      eslint: 8.57.0
+      '@frontify/eslint-config-basic': 0.18.0(eslint@8.57.1)(prettier@3.3.3)
+      '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/parser': 6.21.0(eslint@8.57.1)(typescript@5.5.4)
+      eslint: 8.57.1
       prettier: 3.3.3
       typescript: 5.5.4
     transitivePeerDependencies:
@@ -11812,17 +11833,17 @@ snapshots:
       '@hapi/hoek': 9.3.0
     optional: true
 
-  '@humanwhocodes/config-array@0.11.14':
+  '@humanwhocodes/config-array@0.13.0':
     dependencies:
-      '@humanwhocodes/object-schema': 2.0.2
-      debug: 4.3.4
+      '@humanwhocodes/object-schema': 2.0.3
+      debug: 4.3.7(supports-color@8.1.1)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
-  '@humanwhocodes/object-schema@2.0.2': {}
+  '@humanwhocodes/object-schema@2.0.3': {}
 
   '@internationalized/date@3.5.5':
     dependencies:
@@ -14058,18 +14079,18 @@ snapshots:
       '@types/node': 22.5.5
     optional: true
 
-  '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
+  '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
-      '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.5.4)
+      '@eslint-community/regexpp': 4.11.1
+      '@typescript-eslint/parser': 6.21.0(eslint@8.57.1)(typescript@5.5.4)
       '@typescript-eslint/scope-manager': 6.21.0
-      '@typescript-eslint/type-utils': 6.21.0(eslint@8.57.0)(typescript@5.5.4)
-      '@typescript-eslint/utils': 6.21.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/type-utils': 6.21.0(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/utils': 6.21.0(eslint@8.57.1)(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 6.21.0
       debug: 4.3.7(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.1
       graphemer: 1.4.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       natural-compare: 1.4.0
       semver: 7.6.3
       ts-api-utils: 1.2.1(typescript@5.5.4)
@@ -14078,14 +14099,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4)':
+  '@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/scope-manager': 6.21.0
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 6.21.0
       debug: 4.3.7(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.1
     optionalDependencies:
       typescript: 5.5.4
     transitivePeerDependencies:
@@ -14096,12 +14117,12 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/visitor-keys': 6.21.0
 
-  '@typescript-eslint/type-utils@6.21.0(eslint@8.57.0)(typescript@5.5.4)':
+  '@typescript-eslint/type-utils@6.21.0(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.5.4)
-      '@typescript-eslint/utils': 6.21.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/utils': 6.21.0(eslint@8.57.1)(typescript@5.5.4)
       debug: 4.3.7(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.1
       ts-api-utils: 1.2.1(typescript@5.5.4)
     optionalDependencies:
       typescript: 5.5.4
@@ -14125,15 +14146,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@6.21.0(eslint@8.57.0)(typescript@5.5.4)':
+  '@typescript-eslint/utils@6.21.0(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
       '@types/json-schema': 7.0.15
       '@types/semver': 7.5.7
       '@typescript-eslint/scope-manager': 6.21.0
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.5.4)
-      eslint: 8.57.0
+      eslint: 8.57.1
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
@@ -15222,9 +15243,9 @@ snapshots:
       negotiator: 0.6.3
     optional: true
 
-  acorn-jsx@5.3.2(acorn@8.11.3):
+  acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
-      acorn: 8.11.3
+      acorn: 8.12.1
 
   acorn-walk@8.3.2: {}
 
@@ -15304,7 +15325,7 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
-  ansi-regex@6.0.1: {}
+  ansi-regex@6.1.0: {}
 
   ansi-styles@3.2.1:
     dependencies:
@@ -15813,9 +15834,9 @@ snapshots:
 
   codemirror@6.0.1(@lezer/common@1.2.1):
     dependencies:
-      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)(@lezer/common@1.2.1)
-      '@codemirror/commands': 6.6.1
-      '@codemirror/language': 6.10.2
+      '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)(@lezer/common@1.2.1)
+      '@codemirror/commands': 6.6.2
+      '@codemirror/language': 6.10.3
       '@codemirror/lint': 6.5.0
       '@codemirror/search': 6.5.6
       '@codemirror/state': 6.4.1
@@ -16609,18 +16630,18 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-compat-utils@0.4.1(eslint@8.57.0):
+  eslint-compat-utils@0.4.1(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       semver: 7.6.3
 
-  eslint-config-prettier@8.10.0(eslint@8.57.0):
+  eslint-config-prettier@8.10.0(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
 
-  eslint-plugin-es@3.0.1(eslint@8.57.0):
+  eslint-plugin-es@3.0.1(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       eslint-utils: 2.1.0
       regexpp: 3.2.0
 
@@ -16628,18 +16649,18 @@ snapshots:
     dependencies:
       htmlparser2: 8.0.2
 
-  eslint-plugin-jsonc@2.13.0(eslint@8.57.0):
+  eslint-plugin-jsonc@2.13.0(eslint@8.57.1):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
-      eslint: 8.57.0
-      eslint-compat-utils: 0.4.1(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
+      eslint: 8.57.1
+      eslint-compat-utils: 0.4.1(eslint@8.57.1)
       espree: 9.6.1
       graphemer: 1.4.0
       jsonc-eslint-parser: 2.4.0
       natural-compare: 1.4.0
       synckit: 0.6.2
 
-  eslint-plugin-jsx-a11y@6.9.0(eslint@8.57.0):
+  eslint-plugin-jsx-a11y@6.9.0(eslint@8.57.1):
     dependencies:
       aria-query: 5.1.3
       array-includes: 3.1.8
@@ -16650,7 +16671,7 @@ snapshots:
       damerau-levenshtein: 1.0.8
       emoji-regex: 9.2.2
       es-iterator-helpers: 1.0.19
-      eslint: 8.57.0
+      eslint: 8.57.1
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
       language-tags: 1.0.9
@@ -16659,62 +16680,62 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.0
 
-  eslint-plugin-lodash@7.4.0(eslint@8.57.0):
+  eslint-plugin-lodash@7.4.0(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       lodash: 4.17.21
 
-  eslint-plugin-markdown@3.0.1(eslint@8.57.0):
+  eslint-plugin-markdown@3.0.1(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       mdast-util-from-markdown: 0.8.5
     transitivePeerDependencies:
       - supports-color
 
   eslint-plugin-no-only-tests@3.1.0: {}
 
-  eslint-plugin-node@11.1.0(eslint@8.57.0):
+  eslint-plugin-node@11.1.0(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
-      eslint-plugin-es: 3.0.1(eslint@8.57.0)
+      eslint: 8.57.1
+      eslint-plugin-es: 3.0.1(eslint@8.57.1)
       eslint-utils: 2.1.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       minimatch: 3.1.2
       resolve: 1.22.8
       semver: 6.3.1
 
-  eslint-plugin-notice@0.9.10(eslint@8.57.0):
+  eslint-plugin-notice@0.9.10(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       find-root: 1.1.0
       lodash: 4.17.21
       metric-lcs: 0.1.2
 
-  eslint-plugin-prettier@5.1.3(eslint-config-prettier@8.10.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.3):
+  eslint-plugin-prettier@5.1.3(eslint-config-prettier@8.10.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
       prettier: 3.3.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.8
     optionalDependencies:
-      eslint-config-prettier: 8.10.0(eslint@8.57.0)
+      eslint-config-prettier: 8.10.0(eslint@8.57.1)
 
-  eslint-plugin-promise@6.1.1(eslint@8.57.0):
+  eslint-plugin-promise@6.1.1(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
 
-  eslint-plugin-react-hooks@4.6.0(eslint@8.57.0):
+  eslint-plugin-react-hooks@4.6.0(eslint@8.57.1):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.1
 
-  eslint-plugin-react@7.33.2(eslint@8.57.0):
+  eslint-plugin-react@7.33.2(eslint@8.57.1):
     dependencies:
       array-includes: 3.1.7
       array.prototype.flatmap: 1.3.2
       array.prototype.tosorted: 1.1.3
       doctrine: 2.1.0
       es-iterator-helpers: 1.0.17
-      eslint: 8.57.0
+      eslint: 8.57.1
       estraverse: 5.3.0
       jsx-ast-utils: 3.3.5
       minimatch: 3.1.2
@@ -16727,14 +16748,14 @@ snapshots:
       semver: 6.3.1
       string.prototype.matchall: 4.0.10
 
-  eslint-plugin-unicorn@48.0.1(eslint@8.57.0):
+  eslint-plugin-unicorn@48.0.1(eslint@8.57.1):
     dependencies:
       '@babel/helper-validator-identifier': 7.24.7
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
       ci-info: 3.9.0
       clean-regexp: 1.0.0
-      eslint: 8.57.0
-      esquery: 1.5.0
+      eslint: 8.57.1
+      esquery: 1.6.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
       jsesc: 3.0.2
@@ -16746,11 +16767,11 @@ snapshots:
       semver: 7.6.3
       strip-indent: 3.0.0
 
-  eslint-plugin-yml@1.12.2(eslint@8.57.0):
+  eslint-plugin-yml@1.12.2(eslint@8.57.1):
     dependencies:
       debug: 4.3.7(supports-color@8.1.1)
-      eslint: 8.57.0
-      eslint-compat-utils: 0.4.1(eslint@8.57.0)
+      eslint: 8.57.1
+      eslint-compat-utils: 0.4.1(eslint@8.57.1)
       lodash: 4.17.21
       natural-compare: 1.4.0
       yaml-eslint-parser: 1.2.2
@@ -16770,26 +16791,26 @@ snapshots:
 
   eslint-visitor-keys@3.4.3: {}
 
-  eslint@8.57.0:
+  eslint@8.57.1:
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
-      '@eslint-community/regexpp': 4.10.0
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
+      '@eslint-community/regexpp': 4.11.1
       '@eslint/eslintrc': 2.1.4
-      '@eslint/js': 8.57.0
-      '@humanwhocodes/config-array': 0.11.14
+      '@eslint/js': 8.57.1
+      '@humanwhocodes/config-array': 0.13.0
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
       '@ungap/structured-clone': 1.2.0
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
-      debug: 4.3.4
+      debug: 4.3.7(supports-color@8.1.1)
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.2.2
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      esquery: 1.5.0
+      esquery: 1.6.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
       file-entry-cache: 6.0.1
@@ -16797,7 +16818,7 @@ snapshots:
       glob-parent: 6.0.2
       globals: 13.24.0
       graphemer: 1.4.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       is-path-inside: 3.0.3
@@ -16807,7 +16828,7 @@ snapshots:
       lodash.merge: 4.6.2
       minimatch: 3.1.2
       natural-compare: 1.4.0
-      optionator: 0.9.3
+      optionator: 0.9.4
       strip-ansi: 6.0.1
       text-table: 0.2.0
     transitivePeerDependencies:
@@ -16815,14 +16836,14 @@ snapshots:
 
   espree@9.6.1:
     dependencies:
-      acorn: 8.11.3
-      acorn-jsx: 5.3.2(acorn@8.11.3)
+      acorn: 8.12.1
+      acorn-jsx: 5.3.2(acorn@8.12.1)
       eslint-visitor-keys: 3.4.3
 
   esprima@4.0.1:
     optional: true
 
-  esquery@1.5.0:
+  esquery@1.6.0:
     dependencies:
       estraverse: 5.3.0
 
@@ -17067,11 +17088,9 @@ snapshots:
 
   flat-cache@3.2.0:
     dependencies:
-      flatted: 3.2.9
+      flatted: 3.3.1
       keyv: 4.5.4
       rimraf: 3.0.2
-
-  flatted@3.2.9: {}
 
   flatted@3.3.1: {}
 
@@ -17256,7 +17275,7 @@ snapshots:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.3.1
+      ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
 
@@ -17364,7 +17383,7 @@ snapshots:
 
   ieee754@1.2.1: {}
 
-  ignore@5.3.1: {}
+  ignore@5.3.2: {}
 
   image-size@1.1.1:
     dependencies:
@@ -18860,14 +18879,14 @@ snapshots:
 
   optics-ts@2.4.1: {}
 
-  optionator@0.9.3:
+  optionator@0.9.4:
     dependencies:
-      '@aashutoshrathi/word-wrap': 1.2.6
       deep-is: 0.1.4
       fast-levenshtein: 2.0.6
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
+      word-wrap: 1.2.5
 
   ora@5.4.1:
     dependencies:
@@ -20058,7 +20077,7 @@ snapshots:
 
   strip-ansi@7.1.0:
     dependencies:
-      ansi-regex: 6.0.1
+      ansi-regex: 6.1.0
 
   strip-final-newline@2.0.0: {}
 
@@ -20853,6 +20872,8 @@ snapshots:
     dependencies:
       siginfo: 2.0.0
       stackback: 0.0.2
+
+  word-wrap@1.2.5: {}
 
   wrap-ansi@6.2.0:
     dependencies:
