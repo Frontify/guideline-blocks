@@ -37,7 +37,7 @@
         "@codesandbox/sandpack-themes": "^2.0.21",
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.2.10",
-        "@frontify/guideline-blocks-settings": "0.36.7",
+        "@frontify/guideline-blocks-settings": "0.36.9",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@mantine/core": "^7.1.2",
         "lodash": "^4.17.21",
