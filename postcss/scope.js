@@ -24,7 +24,7 @@ module.exports = (opts = {}) => {
                     originalSelector
                         .split(/(?<!\\),\s*/g)
                         .map((individualSelector) =>
-                            individualSelector === opts.selector
+                            !individualSelector.startsWith("tw")
                                 ? individualSelector
                                 : `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`,
                         )
