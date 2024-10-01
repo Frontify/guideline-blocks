@@ -3,8 +3,8 @@
 import {
     FileExtensionSets,
     IconEnum,
-    NotificationBlockDividerPosition,
-    NotificationStyleType,
+    // NotificationBlockDividerPosition,
+    // NotificationStyleType,
     Security,
     appendUnit,
     defineSettings,
@@ -27,55 +27,66 @@ export const ALLOWED_EXTENSIONS = [
     ...FileExtensionSets.Images,
     ...FileExtensionSets.Documents,
     ...FileExtensionSets.Templates,
+    ...FileExtensionSets.Audio,
+    'json',
 ];
 
+const PLAYBACK_ID = 'playback';
+const RESIZE_ID = 'resize';
+const LOOP_ID = 'loop';
+const FRAME_ID = 'frame';
+const SPEED_ID = 'speed';
+const MODE_ID = 'mode';
+
+export const LOTTIE_ID = 'lottie';
+
 export const settings = defineSettings({
-    basics: [
-        {
-            id: 'imageSection',
-            type: 'sectionHeading',
-            label: '',
-            blocks: [
-                {
-                    id: IMAGE_ID,
-                    type: 'assetInput',
-                    label: 'Image',
-                    size: 'small',
-                    extensions: ALLOWED_EXTENSIONS,
-                },
-                {
-                    id: 'hasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'linkObject',
-                            type: 'link',
-                            clearable: true,
-                        },
-                    ],
-                },
-            ],
-            showForTranslations: true,
-        },
-        {
-            id: 'imageResolutionInfo',
-            type: 'notification',
-            title: 'Image resolution',
-            text: 'The correct pixel density (former 2x setting) is now provided automatically based on the device.',
-            styles: {
-                type: NotificationStyleType.Info,
-                icon: true,
-                divider: NotificationBlockDividerPosition.Top,
-            },
-            footer: {
-                label: 'Follow our guide for image resolution',
-                href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
-                target: '_blank',
-            },
-        },
-    ],
+    // basics: [
+    //     {
+    //         id: 'imageSection',
+    //         type: 'sectionHeading',
+    //         label: '',
+    //         blocks: [
+    //             // {
+    //             //     id: IMAGE_ID,
+    //             //     type: 'assetInput',
+    //             //     label: 'Image',
+    //             //     size: 'small',
+    //             //     extensions: ALLOWED_EXTENSIONS,
+    //             // },
+    //             // {
+    //             //     id: 'hasLink',
+    //             //     type: 'switch',
+    //             //     label: 'Link',
+    //             //     defaultValue: false,
+    //             //     on: [
+    //             //         {
+    //             //             id: 'linkObject',
+    //             //             type: 'link',
+    //             //             clearable: true,
+    //             //         },
+    //             //     ],
+    //             // },
+    //         ],
+    //         // showForTranslations: true,
+    //     },
+    //     {
+    //         id: 'imageResolutionInfo',
+    //         type: 'notification',
+    //         title: 'Image resolution',
+    //         text: 'The correct pixel density (former 2x setting) is now provided automatically based on the device.',
+    //         styles: {
+    //             type: NotificationStyleType.Info,
+    //             icon: true,
+    //             divider: NotificationBlockDividerPosition.Top,
+    //         },
+    //         footer: {
+    //             label: 'Follow our guide for image resolution',
+    //             href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
+    //             target: '_blank',
+    //         },
+    //     },
+    // ],
     layout: [
         {
             id: POSITIONING_ID,
@@ -89,20 +100,20 @@ export const settings = defineSettings({
                 { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
             ],
         },
-        {
-            id: 'ratio',
-            label: 'Ratio',
-            type: 'segmentedControls',
-            defaultValue: Ratio.Ratio2To1,
-            show: (bundle) =>
-                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
-                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
-            choices: [
-                { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
-                { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
-                { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
-            ],
-        },
+        // {
+        //     id: 'ratio',
+        //     label: 'Ratio',
+        //     type: 'segmentedControls',
+        //     defaultValue: Ratio.Ratio2To1,
+        //     show: (bundle) =>
+        //         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
+        //         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
+        //     choices: [
+        //         { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
+        //         { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
+        //         { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
+        //     ],
+        // },
         {
             id: 'alignment',
             type: 'segmentedControls',
@@ -163,6 +174,123 @@ export const settings = defineSettings({
                             label: 'L',
                         },
                     ],
+                },
+            ],
+        },
+    ],
+    playback: [
+        {
+            id: PLAYBACK_ID,
+            type: 'checklist',
+            label: 'Animation Plays:',
+            choices: [
+                {
+                    id: 'once',
+                    label: 'Once',
+                },
+                {
+                    id: 'hover',
+                    label: 'On hover',
+                },
+            ],
+        },
+        {
+            id: RESIZE_ID,
+            type: 'segmentedControls',
+            label: 'Auto Resize',
+            defaultValue: 'yes',
+            choices: [
+                {
+                    value: 'yes',
+                    label: 'Yes',
+                },
+                {
+                    value: 'no',
+                    label: 'No',
+                },
+            ],
+        },
+        {
+            id: LOOP_ID,
+            type: 'segmentedControls',
+            label: 'Loop',
+            defaultValue: 'yes',
+            choices: [
+                {
+                    value: 'yes',
+                    label: 'Yes',
+                },
+                {
+                    value: 'no',
+                    label: 'No',
+                },
+            ],
+        },
+        {
+            id: FRAME_ID,
+            type: 'segmentedControls',
+            label: 'Frame interpolation',
+            defaultValue: 'yes',
+            choices: [
+                {
+                    value: 'yes',
+                    label: 'Yes',
+                },
+                {
+                    value: 'no',
+                    label: 'No',
+                },
+            ],
+        },
+        {
+            id: SPEED_ID,
+            type: 'segmentedControls',
+            label: 'Speed',
+            defaultValue: '0.5',
+            choices: [
+                {
+                    value: 0.5,
+                    label: '0.5x',
+                },
+                {
+                    value: 1.0,
+                    label: '1x',
+                },
+                {
+                    value: 1.5,
+                    label: '1.5x',
+                },
+                {
+                    value: 2.0,
+                    label: '2x',
+                },
+                {
+                    value: 2.5,
+                    label: '2.5x',
+                },
+            ],
+        },
+        {
+            id: MODE_ID,
+            type: 'dropdown',
+            label: 'Mode',
+            defaultValue: 'forward',
+            choices: [
+                {
+                    value: 'forward',
+                    label: 'Forward',
+                },
+                {
+                    value: 'reverse',
+                    label: 'Reverse',
+                },
+                {
+                    value: 'bounce',
+                    label: 'Bounce',
+                },
+                {
+                    value: 'reverse_bounce',
+                    label: 'Reverse Bounce',
                 },
             ],
         },
