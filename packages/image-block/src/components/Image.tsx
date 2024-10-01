@@ -10,6 +10,8 @@ import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../typ
 
 import { getImageStyle, getImageWrapperStyle } from './helpers';
 
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 type ImageProps = {
     image: Asset;
     blockSettings: Settings;
@@ -137,12 +139,13 @@ export const Image = ({
                 alignment={blockSettings.alignment}
                 isDownloadable={isDownloadable}
             >
-                <ImageComponent
+                {/* <ImageComponent
                     style={imageStyle}
                     containerWidth={containerWidth}
                     image={image}
                     alt={blockSettings.altText ?? ''}
-                />
+                /> */}
+                <DotLottieReact src={image.originUrl} autoplay={true} loop={true} />
             </ImageWrapper>
         </div>
     );
