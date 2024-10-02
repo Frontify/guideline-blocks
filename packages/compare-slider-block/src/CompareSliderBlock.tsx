@@ -260,7 +260,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     const renderSliderItem = (slot: SliderImageSlot) => {
         return (
-            <div>
+            <div className="tw-grow">
                 <div style={{ background: hasBackground ? toRgbaString(backgroundColor) : undefined }}>
                     <img
                         src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
@@ -315,7 +315,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 borderRadius={getBorderRadius()}
             >
                 <Label
-                    blockId={appBridge.getBlockId().toString()}
+                    blockId={appBridge.context('blockId').get().toString()}
                     isEditing={isEditing}
                     value={label}
                     onBlur={(newValue: string) => setBlockSettings({ [key]: newValue })}
