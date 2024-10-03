@@ -6,6 +6,11 @@ import { Security } from '@frontify/guideline-blocks-settings';
 export type Link = { link: { link: string }; openInNewTab: boolean };
 
 export type Settings = {
+    frameInterpolation: string;
+    mode: string;
+    speed: number;
+    loop: string;
+    playback: any;
     hasLink?: boolean;
     linkObject?: Link;
     image?: string;
