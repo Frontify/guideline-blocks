@@ -30,7 +30,7 @@ import {
     generateRandomId,
     merge,
 } from '@frontify/fondue';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
@@ -142,7 +142,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                 setIsInView(entry.isIntersecting);
             },
             {
-                threshold: 0.2,
+                threshold: 0.01,
             }
         );
         const imageBlock = componentRef.current;
@@ -193,11 +193,11 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     toolbarItems={[
                                         image
                                             ? getEditAltTextToolbarButton({
-                                                localAltText,
-                                                setLocalAltText,
-                                                blockSettings,
-                                                setBlockSettings,
-                                            })
+                                                  localAltText,
+                                                  setLocalAltText,
+                                                  blockSettings,
+                                                  setBlockSettings,
+                                              })
                                             : undefined,
                                         {
                                             type: 'button',
