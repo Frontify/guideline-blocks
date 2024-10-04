@@ -142,15 +142,16 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                 setIsInView(entry.isIntersecting);
             },
             {
-                threshold: 0.5,
+                threshold: 0.2,
             }
         );
-        if (componentRef.current) {
-            observer.observe(componentRef.current);
+        const imageBlock = componentRef.current;
+        if (imageBlock) {
+            observer.observe(imageBlock);
         }
         return () => {
-            if (componentRef.current) {
-                observer.unobserve(componentRef.current);
+            if (imageBlock) {
+                observer.unobserve(imageBlock);
             }
         };
     }, []);
