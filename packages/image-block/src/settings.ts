@@ -31,13 +31,6 @@ export const ALLOWED_EXTENSIONS = [
     'json',
 ];
 
-const PLAYBACK_ID = 'playback';
-const RESIZE_ID = 'resize';
-const LOOP_ID = 'loop';
-const FRAME_ID = 'frame';
-const SPEED_ID = 'speed';
-const MODE_ID = 'mode';
-
 export const LOTTIE_ID = 'lottie';
 
 export const settings = defineSettings({
@@ -180,9 +173,10 @@ export const settings = defineSettings({
     ],
     playback: [
         {
-            id: PLAYBACK_ID,
+            id: 'playback',
             type: 'checklist',
             label: 'Animation Plays:',
+            defaultValue: ['once'],
             choices: [
                 {
                     id: 'once',
@@ -195,7 +189,7 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: RESIZE_ID,
+            id: 'resize',
             type: 'segmentedControls',
             label: 'Auto Resize',
             defaultValue: 'yes',
@@ -210,24 +204,30 @@ export const settings = defineSettings({
                 },
             ],
         },
+        // {
+        //     id: 'loop',
+        //     type: 'segmentedControls',
+        //     label: 'Loop',
+        //     defaultValue: 'yes',
+        //     choices: [
+        //         {
+        //             value: 'yes',
+        //             label: 'Yes',
+        //         },
+        //         {
+        //             value: 'no',
+        //             label: 'No',
+        //         },
+        //     ],
+        // },
         {
-            id: LOOP_ID,
-            type: 'segmentedControls',
+            id: 'loop',
+            type: 'switch',
             label: 'Loop',
-            defaultValue: 'yes',
-            choices: [
-                {
-                    value: 'yes',
-                    label: 'Yes',
-                },
-                {
-                    value: 'no',
-                    label: 'No',
-                },
-            ],
+            defaultValue: true,
         },
         {
-            id: FRAME_ID,
+            id: 'frameInterpolation',
             type: 'segmentedControls',
             label: 'Frame interpolation',
             defaultValue: 'yes',
@@ -243,7 +243,7 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: SPEED_ID,
+            id: 'speed',
             type: 'segmentedControls',
             label: 'Speed',
             defaultValue: '0.5',
@@ -271,7 +271,7 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: MODE_ID,
+            id: 'mode',
             type: 'dropdown',
             label: 'Mode',
             defaultValue: 'forward',
