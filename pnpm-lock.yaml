@@ -113,7 +113,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -192,7 +192,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -259,7 +259,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -329,7 +329,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -399,7 +399,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -466,7 +466,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -554,7 +554,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@react-types/shared':
         specifier: ^3.24.1
         version: 3.24.1(react@18.3.1)
@@ -645,7 +645,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -721,7 +721,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -791,7 +791,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -867,7 +867,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -937,7 +937,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1001,7 +1001,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1077,7 +1077,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/autosize':
         specifier: ^4.0.3
         version: 4.0.3
@@ -1144,7 +1144,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1211,7 +1211,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1278,7 +1278,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.3(react@18.3.1)
@@ -1351,7 +1351,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@react-aria/interactions':
         specifier: ^3.17.0
         version: 3.21.3(react@18.3.1)
@@ -1427,7 +1427,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@testing-library/react':
         specifier: ^16.0.1
         version: 16.0.1(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1503,7 +1503,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1570,7 +1570,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1728,7 +1728,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1798,7 +1798,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1865,7 +1865,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.10
@@ -1938,7 +1938,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/lodash-es':
         specifier: ^4.17.9
         version: 4.17.12
@@ -2023,7 +2023,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -2111,7 +2111,7 @@ importers:
         version: 0.16.1(eslint@8.57.1)(prettier@3.3.3)(react@18.3.1)(typescript@5.5.4)
       '@frontify/frontify-cli':
         specifier: ^5.7.5
-        version: 5.7.9(@types/node@22.7.4)(terser@5.31.2)
+        version: 5.7.11(@types/node@22.7.4)(terser@5.31.2)
       '@types/lodash':
         specifier: ^4.14.199
         version: 4.17.9
@@ -3117,8 +3117,8 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/frontify-cli@5.7.9':
-    resolution: {integrity: sha512-sUugBVUbyVVKKDuzBa+jazsmo3lnts5kYvDwqhCYuy0WV3RJL+CvARu8mkKYSsaLiq0eWx1N+s7LP+99RqdREA==}
+  '@frontify/frontify-cli@5.7.11':
+    resolution: {integrity: sha512-MC81b02HwckzQE5utxrNGIlDMihTsL7PhRbi7BqXLMv6XWOSLdtsR3E9OPRQ/zCZH3gnblRM9JrIrsyv/BNTQg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4127,26 +4127,26 @@ packages:
       '@types/react':
         optional: true
 
-  '@react-spring/animated@9.7.4':
-    resolution: {integrity: sha512-7As+8Pty2QlemJ9O5ecsuPKjmO0NKvmVkRR1n6mEotFgWar8FKuQt2xgxz3RTgxcccghpx1YdS1FCdElQNexmQ==}
+  '@react-spring/animated@9.7.5':
+    resolution: {integrity: sha512-Tqrwz7pIlsSDITzxoLS3n/v/YCUHQdOIKtOJf4yL6kYVSDTSmVK1LI1Q3M/uu2Sx4X3pIWF3xLUhlsA6SPNTNg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/core@9.7.4':
-    resolution: {integrity: sha512-GzjA44niEJBFUe9jN3zubRDDDP2E4tBlhNlSIkTChiNf9p4ZQlgXBg50qbXfSXHQPHak/ExYxwhipKVsQ/sUTw==}
+  '@react-spring/core@9.7.5':
+    resolution: {integrity: sha512-rmEqcxRcu7dWh7MnCcMXLvrf6/SDlSokLaLTxiPlAYi11nN3B5oiCUAblO72o+9z/87j2uzxa2Inm8UbLjXA+w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/rafz@9.7.4':
-    resolution: {integrity: sha512-mqDI6rW0Ca8IdryOMiXRhMtVGiEGLIO89vIOyFQXRIwwIMX30HLya24g9z4olDvFyeDW3+kibiKwtZnA4xhldA==}
+  '@react-spring/rafz@9.7.5':
+    resolution: {integrity: sha512-5ZenDQMC48wjUzPAm1EtwQ5Ot3bLIAwwqP2w2owG5KoNdNHpEJV263nGhCeKKmuA3vG2zLLOdu3or6kuDjA6Aw==}
 
-  '@react-spring/shared@9.7.4':
-    resolution: {integrity: sha512-bEPI7cQp94dOtCFSEYpxvLxj0+xQfB5r9Ru1h8OMycsIq7zFZon1G0sHrBLaLQIWeMCllc4tVDYRTLIRv70C8w==}
+  '@react-spring/shared@9.7.5':
+    resolution: {integrity: sha512-wdtoJrhUeeyD/PP/zo+np2s1Z820Ohr/BbuVYv+3dVLW7WctoiN7std8rISoYoHpUXtbkpesSKuPIw/6U1w1Pw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@react-spring/types@9.7.4':
-    resolution: {integrity: sha512-iQVztO09ZVfsletMiY+DpT/JRiBntdsdJ4uqk3UJFhrhS8mIC9ZOZbmfGSRs/kdbNPQkVyzucceDicQ/3Mlj9g==}
+  '@react-spring/types@9.7.5':
+    resolution: {integrity: sha512-HVj7LrZ4ReHWBimBvu2SKND3cDVUPWKLqRTmWe/fNY6o1owGOX0cAHbdPDTMelgBlVbrTKrre6lFkhqGZErK/g==}
 
   '@react-spring/web@9.7.3':
     resolution: {integrity: sha512-BXt6BpS9aJL/QdVqEIX9YoUy8CE6TJrU0mNCqSoxdXlIeNcEBWOfIyE6B14ENNsyQKS3wOWkiJfco0tCr/9tUg==}
@@ -4382,19 +4382,9 @@ packages:
       rollup:
         optional: true
 
-  '@rollup/rollup-android-arm-eabi@4.22.5':
-    resolution: {integrity: sha512-SU5cvamg0Eyu/F+kLeMXS7GoahL+OoizlclVFX3l5Ql6yNlywJJ0OuqTzUx0v+aHhPHEB/56CT06GQrRrGNYww==}
-    cpu: [arm]
-    os: [android]
-
   '@rollup/rollup-android-arm-eabi@4.24.0':
     resolution: {integrity: sha512-Q6HJd7Y6xdB48x8ZNVDOqsbh2uByBhgK8PiQgPhwkIw/HC/YX5Ghq2mQY5sRMZWHb3VsFkWooUVOZHKr7DmDIA==}
     cpu: [arm]
-    os: [android]
-
-  '@rollup/rollup-android-arm64@4.22.5':
-    resolution: {integrity: sha512-S4pit5BP6E5R5C8S6tgU/drvgjtYW76FBuG6+ibG3tMvlD1h9LHVF9KmlmaUBQ8Obou7hEyS+0w+IR/VtxwNMQ==}
-    cpu: [arm64]
     os: [android]
 
   '@rollup/rollup-android-arm64@4.24.0':
@@ -4402,19 +4392,9 @@ packages:
     cpu: [arm64]
     os: [android]
 
-  '@rollup/rollup-darwin-arm64@4.22.5':
-    resolution: {integrity: sha512-250ZGg4ipTL0TGvLlfACkIxS9+KLtIbn7BCZjsZj88zSg2Lvu3Xdw6dhAhfe/FjjXPVNCtcSp+WZjVsD3a/Zlw==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@rollup/rollup-darwin-arm64@4.24.0':
     resolution: {integrity: sha512-bIv+X9xeSs1XCk6DVvkO+S/z8/2AMt/2lMqdQbMrmVpgFvXlmde9mLcbQpztXm1tajC3raFDqegsH18HQPMYtA==}
     cpu: [arm64]
-    os: [darwin]
-
-  '@rollup/rollup-darwin-x64@4.22.5':
-    resolution: {integrity: sha512-D8brJEFg5D+QxFcW6jYANu+Rr9SlKtTenmsX5hOSzNYVrK5oLAEMTUgKWYJP+wdKyCdeSwnapLsn+OVRFycuQg==}
-    cpu: [x64]
     os: [darwin]
 
   '@rollup/rollup-darwin-x64@4.24.0':
@@ -4422,18 +4402,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.22.5':
-    resolution: {integrity: sha512-PNqXYmdNFyWNg0ma5LdY8wP+eQfdvyaBAojAXgO7/gs0Q/6TQJVXAXe8gwW9URjbS0YAammur0fynYGiWsKlXw==}
-    cpu: [arm]
-    os: [linux]
-
   '@rollup/rollup-linux-arm-gnueabihf@4.24.0':
     resolution: {integrity: sha512-0KXvIJQMOImLCVCz9uvvdPgfyWo93aHHp8ui3FrtOP57svqrF/roSSR5pjqL2hcMp0ljeGlU4q9o/rQaAQ3AYA==}
-    cpu: [arm]
-    os: [linux]
-
-  '@rollup/rollup-linux-arm-musleabihf@4.22.5':
-    resolution: {integrity: sha512-kSSCZOKz3HqlrEuwKd9TYv7vxPYD77vHSUvM2y0YaTGnFc8AdI5TTQRrM1yIp3tXCKrSL9A7JLoILjtad5t8pQ==}
     cpu: [arm]
     os: [linux]
 
@@ -4442,18 +4412,8 @@ packages:
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-gnu@4.22.5':
-    resolution: {integrity: sha512-oTXQeJHRbOnwRnRffb6bmqmUugz0glXaPyspp4gbQOPVApdpRrY/j7KP3lr7M8kTfQTyrBUzFjj5EuHAhqH4/w==}
-    cpu: [arm64]
-    os: [linux]
-
   '@rollup/rollup-linux-arm64-gnu@4.24.0':
     resolution: {integrity: sha512-i0xTLXjqap2eRfulFVlSnM5dEbTVque/3Pi4g2y7cxrs7+a9De42z4XxKLYJ7+OhE3IgxvfQM7vQc43bwTgPwA==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@rollup/rollup-linux-arm64-musl@4.22.5':
-    resolution: {integrity: sha512-qnOTIIs6tIGFKCHdhYitgC2XQ2X25InIbZFor5wh+mALH84qnFHvc+vmWUpyX97B0hNvwNUL4B+MB8vJvH65Fw==}
     cpu: [arm64]
     os: [linux]
 
@@ -4462,19 +4422,9 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.22.5':
-    resolution: {integrity: sha512-TMYu+DUdNlgBXING13rHSfUc3Ky5nLPbWs4bFnT+R6Vu3OvXkTkixvvBKk8uO4MT5Ab6lC3U7x8S8El2q5o56w==}
-    cpu: [ppc64]
-    os: [linux]
-
   '@rollup/rollup-linux-powerpc64le-gnu@4.24.0':
     resolution: {integrity: sha512-2XFFPJ2XMEiF5Zi2EBf4h73oR1V/lycirxZxHZNc93SqDN/IWhYYSYj8I9381ikUFXZrz2v7r2tOVk2NBwxrWw==}
     cpu: [ppc64]
-    os: [linux]
-
-  '@rollup/rollup-linux-riscv64-gnu@4.22.5':
-    resolution: {integrity: sha512-PTQq1Kz22ZRvuhr3uURH+U/Q/a0pbxJoICGSprNLAoBEkyD3Sh9qP5I0Asn0y0wejXQBbsVMRZRxlbGFD9OK4A==}
-    cpu: [riscv64]
     os: [linux]
 
   '@rollup/rollup-linux-riscv64-gnu@4.24.0':
@@ -4482,28 +4432,13 @@ packages:
     cpu: [riscv64]
     os: [linux]
 
-  '@rollup/rollup-linux-s390x-gnu@4.22.5':
-    resolution: {integrity: sha512-bR5nCojtpuMss6TDEmf/jnBnzlo+6n1UhgwqUvRoe4VIotC7FG1IKkyJbwsT7JDsF2jxR+NTnuOwiGv0hLyDoQ==}
-    cpu: [s390x]
-    os: [linux]
-
   '@rollup/rollup-linux-s390x-gnu@4.24.0':
     resolution: {integrity: sha512-mjBaoo4ocxJppTorZVKWFpy1bfFj9FeCMJqzlMQGjpNPY9JwQi7OuS1axzNIk0nMX6jSgy6ZURDZ2w0QW6D56g==}
     cpu: [s390x]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-gnu@4.22.5':
-    resolution: {integrity: sha512-N0jPPhHjGShcB9/XXZQWuWBKZQnC1F36Ce3sDqWpujsGjDz/CQtOL9LgTrJ+rJC8MJeesMWrMWVLKKNR/tMOCA==}
-    cpu: [x64]
-    os: [linux]
-
   '@rollup/rollup-linux-x64-gnu@4.24.0':
     resolution: {integrity: sha512-ZXFk7M72R0YYFN5q13niV0B7G8/5dcQ9JDp8keJSfr3GoZeXEoMHP/HlvqROA3OMbMdfr19IjCeNAnPUG93b6A==}
-    cpu: [x64]
-    os: [linux]
-
-  '@rollup/rollup-linux-x64-musl@4.22.5':
-    resolution: {integrity: sha512-uBa2e28ohzNNwjr6Uxm4XyaA1M/8aTgfF2T7UIlElLaeXkgpmIJ2EitVNQxjO9xLLLy60YqAgKn/AqSpCUkE9g==}
     cpu: [x64]
     os: [linux]
 
@@ -4512,29 +4447,14 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-win32-arm64-msvc@4.22.5':
-    resolution: {integrity: sha512-RXT8S1HP8AFN/Kr3tg4fuYrNxZ/pZf1HemC5Tsddc6HzgGnJm0+Lh5rAHJkDuW3StI0ynNXukidROMXYl6ew8w==}
-    cpu: [arm64]
-    os: [win32]
-
   '@rollup/rollup-win32-arm64-msvc@4.24.0':
     resolution: {integrity: sha512-VXBrnPWgBpVDCVY6XF3LEW0pOU51KbaHhccHw6AS6vBWIC60eqsH19DAeeObl+g8nKAz04QFdl/Cefta0xQtUQ==}
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-ia32-msvc@4.22.5':
-    resolution: {integrity: sha512-ElTYOh50InL8kzyUD6XsnPit7jYCKrphmddKAe1/Ytt74apOxDq5YEcbsiKs0fR3vff3jEneMM+3I7jbqaMyBg==}
-    cpu: [ia32]
-    os: [win32]
-
   '@rollup/rollup-win32-ia32-msvc@4.24.0':
     resolution: {integrity: sha512-xrNcGDU0OxVcPTH/8n/ShH4UevZxKIO6HJFK0e15XItZP2UcaiLFd5kiX7hJnqCbSztUF8Qot+JWBC/QXRPYWQ==}
     cpu: [ia32]
-    os: [win32]
-
-  '@rollup/rollup-win32-x64-msvc@4.22.5':
-    resolution: {integrity: sha512-+lvL/4mQxSV8MukpkKyyvfwhH266COcWlXE/1qxwN08ajovta3459zrjLghYMgDerlzNwLAcFpvU+WWE5y6nAQ==}
-    cpu: [x64]
     os: [win32]
 
   '@rollup/rollup-win32-x64-msvc@4.24.0':
@@ -9052,11 +8972,6 @@ packages:
   robust-predicates@3.0.2:
     resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
 
-  rollup@4.22.5:
-    resolution: {integrity: sha512-WoinX7GeQOFMGznEcWA1WrTQCd/tpEbMkc3nuMs9BT0CPjMdSjPMTVClwWd4pgSQwJdP65SK9mTCNvItlr5o7w==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-
   rollup@4.24.0:
     resolution: {integrity: sha512-DOmrlGSXNk1DM0ljiQA+i+o0rSLhtii1je5wgk60j49d1jHT5YYttBv1iWOnYSTG+fZZESUOSNiAl89SIet+Cg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -10420,8 +10335,7 @@ snapshots:
 
   '@babel/helper-plugin-utils@7.24.8': {}
 
-  '@babel/helper-plugin-utils@7.25.7':
-    optional: true
+  '@babel/helper-plugin-utils@7.25.7': {}
 
   '@babel/helper-remap-async-to-generator@7.25.7(@babel/core@7.25.7)':
     dependencies:
@@ -10771,7 +10685,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.25.7
       '@babel/helper-plugin-utils': 7.25.7
-    optional: true
 
   '@babel/plugin-transform-react-jsx-source@7.24.7(@babel/core@7.25.7)':
     dependencies:
@@ -10782,7 +10695,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.25.7
       '@babel/helper-plugin-utils': 7.25.7
-    optional: true
 
   '@babel/plugin-transform-react-jsx@7.25.7(@babel/core@7.25.7)':
     dependencies:
@@ -11995,7 +11907,7 @@ snapshots:
       - tailwindcss
       - zustand
 
-  '@frontify/frontify-cli@5.7.9(@types/node@22.7.4)(terser@5.31.2)':
+  '@frontify/frontify-cli@5.7.11(@types/node@22.7.4)(terser@5.31.2)':
     dependencies:
       '@fastify/cors': 9.0.1
       '@vitejs/plugin-react': 4.3.2(vite@5.4.8(@types/node@22.7.4)(terser@5.31.2))
@@ -13653,35 +13565,35 @@ snapshots:
       '@types/react': 18.3.10
     optional: true
 
-  '@react-spring/animated@9.7.4(react@18.3.1)':
+  '@react-spring/animated@9.7.5(react@18.3.1)':
     dependencies:
-      '@react-spring/shared': 9.7.4(react@18.3.1)
-      '@react-spring/types': 9.7.4
+      '@react-spring/shared': 9.7.5(react@18.3.1)
+      '@react-spring/types': 9.7.5
       react: 18.3.1
 
-  '@react-spring/core@9.7.4(react@18.3.1)':
+  '@react-spring/core@9.7.5(react@18.3.1)':
     dependencies:
-      '@react-spring/animated': 9.7.4(react@18.3.1)
-      '@react-spring/shared': 9.7.4(react@18.3.1)
-      '@react-spring/types': 9.7.4
+      '@react-spring/animated': 9.7.5(react@18.3.1)
+      '@react-spring/shared': 9.7.5(react@18.3.1)
+      '@react-spring/types': 9.7.5
       react: 18.3.1
 
-  '@react-spring/rafz@9.7.4': {}
+  '@react-spring/rafz@9.7.5': {}
 
-  '@react-spring/shared@9.7.4(react@18.3.1)':
+  '@react-spring/shared@9.7.5(react@18.3.1)':
     dependencies:
-      '@react-spring/rafz': 9.7.4
-      '@react-spring/types': 9.7.4
+      '@react-spring/rafz': 9.7.5
+      '@react-spring/types': 9.7.5
       react: 18.3.1
 
-  '@react-spring/types@9.7.4': {}
+  '@react-spring/types@9.7.5': {}
 
   '@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@react-spring/animated': 9.7.4(react@18.3.1)
-      '@react-spring/core': 9.7.4(react@18.3.1)
-      '@react-spring/shared': 9.7.4(react@18.3.1)
-      '@react-spring/types': 9.7.4
+      '@react-spring/animated': 9.7.5(react@18.3.1)
+      '@react-spring/core': 9.7.5(react@18.3.1)
+      '@react-spring/shared': 9.7.5(react@18.3.1)
+      '@react-spring/types': 9.7.5
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -13977,97 +13889,49 @@ snapshots:
     optionalDependencies:
       rollup: 4.24.0
 
-  '@rollup/rollup-android-arm-eabi@4.22.5':
-    optional: true
-
   '@rollup/rollup-android-arm-eabi@4.24.0':
-    optional: true
-
-  '@rollup/rollup-android-arm64@4.22.5':
     optional: true
 
   '@rollup/rollup-android-arm64@4.24.0':
     optional: true
 
-  '@rollup/rollup-darwin-arm64@4.22.5':
-    optional: true
-
   '@rollup/rollup-darwin-arm64@4.24.0':
-    optional: true
-
-  '@rollup/rollup-darwin-x64@4.22.5':
     optional: true
 
   '@rollup/rollup-darwin-x64@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.22.5':
-    optional: true
-
   '@rollup/rollup-linux-arm-gnueabihf@4.24.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm-musleabihf@4.22.5':
     optional: true
 
   '@rollup/rollup-linux-arm-musleabihf@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-arm64-gnu@4.22.5':
-    optional: true
-
   '@rollup/rollup-linux-arm64-gnu@4.24.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm64-musl@4.22.5':
     optional: true
 
   '@rollup/rollup-linux-arm64-musl@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.22.5':
-    optional: true
-
   '@rollup/rollup-linux-powerpc64le-gnu@4.24.0':
-    optional: true
-
-  '@rollup/rollup-linux-riscv64-gnu@4.22.5':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-s390x-gnu@4.22.5':
-    optional: true
-
   '@rollup/rollup-linux-s390x-gnu@4.24.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-gnu@4.22.5':
     optional: true
 
   '@rollup/rollup-linux-x64-gnu@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-musl@4.22.5':
-    optional: true
-
   '@rollup/rollup-linux-x64-musl@4.24.0':
-    optional: true
-
-  '@rollup/rollup-win32-arm64-msvc@4.22.5':
     optional: true
 
   '@rollup/rollup-win32-arm64-msvc@4.24.0':
     optional: true
 
-  '@rollup/rollup-win32-ia32-msvc@4.22.5':
-    optional: true
-
   '@rollup/rollup-win32-ia32-msvc@4.24.0':
-    optional: true
-
-  '@rollup/rollup-win32-x64-msvc@4.22.5':
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.24.0':
@@ -15412,8 +15276,8 @@ snapshots:
   '@vitejs/plugin-react@4.3.2(vite@5.4.8(@types/node@22.7.4)(terser@5.31.2))':
     dependencies:
       '@babel/core': 7.25.7
-      '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.7)
-      '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.7)
+      '@babel/plugin-transform-react-jsx-self': 7.25.7(@babel/core@7.25.7)
+      '@babel/plugin-transform-react-jsx-source': 7.25.7(@babel/core@7.25.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
       vite: 5.4.8(@types/node@22.7.4)(terser@5.31.2)
@@ -19960,28 +19824,6 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rollup@4.22.5:
-    dependencies:
-      '@types/estree': 1.0.6
-    optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.22.5
-      '@rollup/rollup-android-arm64': 4.22.5
-      '@rollup/rollup-darwin-arm64': 4.22.5
-      '@rollup/rollup-darwin-x64': 4.22.5
-      '@rollup/rollup-linux-arm-gnueabihf': 4.22.5
-      '@rollup/rollup-linux-arm-musleabihf': 4.22.5
-      '@rollup/rollup-linux-arm64-gnu': 4.22.5
-      '@rollup/rollup-linux-arm64-musl': 4.22.5
-      '@rollup/rollup-linux-powerpc64le-gnu': 4.22.5
-      '@rollup/rollup-linux-riscv64-gnu': 4.22.5
-      '@rollup/rollup-linux-s390x-gnu': 4.22.5
-      '@rollup/rollup-linux-x64-gnu': 4.22.5
-      '@rollup/rollup-linux-x64-musl': 4.22.5
-      '@rollup/rollup-win32-arm64-msvc': 4.22.5
-      '@rollup/rollup-win32-ia32-msvc': 4.22.5
-      '@rollup/rollup-win32-x64-msvc': 4.22.5
-      fsevents: 2.3.3
-
   rollup@4.24.0:
     dependencies:
       '@types/estree': 1.0.6
@@ -21093,7 +20935,7 @@ snapshots:
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
-      rollup: 4.22.5
+      rollup: 4.24.0
     optionalDependencies:
       '@types/node': 22.7.4
       fsevents: 2.3.3
