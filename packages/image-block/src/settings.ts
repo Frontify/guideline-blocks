@@ -22,6 +22,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 export const IMAGE_ID = 'image';
+export const LOTTIE_URL_ID = 'lottieUrl';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 export const ALLOWED_EXTENSIONS = [
     ...FileExtensionSets.Images,
@@ -176,11 +177,11 @@ export const settings = defineSettings({
             id: 'playback',
             type: 'checklist',
             label: 'Animation Plays:',
-            defaultValue: ['once'],
+            defaultValue: ['autoplay'],
             choices: [
                 {
-                    id: 'once',
-                    label: 'Once',
+                    id: 'autoplay',
+                    label: 'Autoplay',
                 },
                 {
                     id: 'hover',
@@ -190,36 +191,10 @@ export const settings = defineSettings({
         },
         {
             id: 'resize',
-            type: 'segmentedControls',
+            type: 'switch',
             label: 'Auto Resize',
-            defaultValue: 'yes',
-            choices: [
-                {
-                    value: 'yes',
-                    label: 'Yes',
-                },
-                {
-                    value: 'no',
-                    label: 'No',
-                },
-            ],
+            defaultValue: true,
         },
-        // {
-        //     id: 'loop',
-        //     type: 'segmentedControls',
-        //     label: 'Loop',
-        //     defaultValue: 'yes',
-        //     choices: [
-        //         {
-        //             value: 'yes',
-        //             label: 'Yes',
-        //         },
-        //         {
-        //             value: 'no',
-        //             label: 'No',
-        //         },
-        //     ],
-        // },
         {
             id: 'loop',
             type: 'switch',
@@ -228,19 +203,9 @@ export const settings = defineSettings({
         },
         {
             id: 'frameInterpolation',
-            type: 'segmentedControls',
+            type: 'switch',
             label: 'Frame interpolation',
-            defaultValue: 'yes',
-            choices: [
-                {
-                    value: 'yes',
-                    label: 'Yes',
-                },
-                {
-                    value: 'no',
-                    label: 'No',
-                },
-            ],
+            defaultValue: true,
         },
         {
             id: 'speed',
@@ -315,6 +280,13 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
+    // custom: [
+    //     {
+    //         id: 'lottieUrl',
+    //         type: 'textarea',
+    //         defaultValue: '',
+    //     },
+    // ],
     security: [
         ...getSecurityGlobalControlSetting(),
         {
