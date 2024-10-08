@@ -2,14 +2,16 @@
 
 import { Color } from '@frontify/fondue';
 import { Security } from '@frontify/guideline-blocks-settings';
+import { Mode } from '@lottiefiles/dotlottie-react';
 
 export type Link = { link: { link: string }; openInNewTab: boolean };
 
 export type Settings = {
+    lottieUrl?: string | null;
     frameInterpolation: string;
-    mode: string;
+    mode: Mode | undefined;
     speed: number;
-    loop: string;
+    loop: boolean;
     playback: any;
     hasLink?: boolean;
     linkObject?: Link;
