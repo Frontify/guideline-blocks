@@ -8,9 +8,9 @@ import { type CSSProperties, type ReactNode } from 'react';
 
 import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
 
-import { getImageStyle, getImageWrapperStyle } from './helpers';
+import { getFrameInterpolationSetting, getImageStyle, getImageWrapperStyle, getPlaybackSettings } from './helpers';
 
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { DotLottieReact, Mode } from '@lottiefiles/dotlottie-react';
 
 type ImageProps = {
     image: Asset;
@@ -120,12 +120,19 @@ export const Image = ({
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
     const imageStyle = getImageStyle(blockSettings);
+    // const loop = getLoopSetting(blockSettings);
+    const frameInterpolation = getFrameInterpolationSetting(blockSettings);
+    const playbackSettings = getPlaybackSettings(blockSettings);
+    console.log('playbackSettings', playbackSettings);
+    console.log('playback hover', playbackSettings.playOnHover);
     const { assetViewerEnabled, security } = blockSettings;
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 
+    console.log('block settings in image', blockSettings);
+    console.log('loop', blockSettings.loop);
     return (
         <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative">
             <ImageWrapper
@@ -145,7 +152,20 @@ export const Image = ({
                     image={image}
                     alt={blockSettings.altText ?? ''}
                 /> */}
-                <DotLottieReact src={image.originUrl} autoplay={true} loop={true} />
+                <DotLottieReact
+                    autoplay={playbackSettings.autoplay}
+                    loop={blockSettings.loop}
+                    src={image.originUrl}
+                    speed={blockSettings.speed}
+                    // data
+                    mode={blockSettings.mode}
+                    // backgroundColor=''
+                    // segments
+                    // renderConfig
+                    playOnHover={playbackSettings.playOnHover}
+                    // dotLottieRefCallback=
+                    useFrameInterpolation={frameInterpolation}
+                />
             </ImageWrapper>
         </div>
     );
