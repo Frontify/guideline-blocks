@@ -35,7 +35,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
-import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
+import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID, LOTTIE_URL_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import '@frontify/guideline-blocks-settings/styles';
@@ -121,6 +121,15 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         uploadFile(files[0]);
     };
 
+    const addUrlToBlockSettings = (url: string) => {
+        setBlockSettings({ lottieUrl: url });
+        setIsLoading(false);
+    };
+    const handleUrlSubmit = (url: string) => {
+        setIsLoading(true);
+        addUrlToBlockSettings(url);
+    };
+
     useEffect(() => {
         if (selectedFiles) {
             setIsLoading(true);
@@ -136,6 +145,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    // Intersection Observer to check if image is in view
+    // animation is not triggered if image is not in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -259,6 +270,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                             onUploadClick={openFileDialog}
                                             onFilesDrop={onFilesDrop}
                                             onAssetChooseClick={onOpenAssetChooser}
+                                            onUrlSubmit={(url) => handleUrlSubmit(url)}
                                         />
                                     </BlockItemWrapper>
                                 )
