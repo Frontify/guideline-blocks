@@ -22,7 +22,7 @@ type ImageProps = {
 };
 
 type ImageWrapperProps = {
-    image: Asset;
+    image?: Asset;
     appBridge: AppBridgeBlock;
     children: ReactNode;
     link: Link | null;
