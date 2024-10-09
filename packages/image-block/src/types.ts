@@ -12,7 +12,7 @@ export type Settings = {
     mode: Mode | undefined;
     speed: number;
     loop: boolean;
-    playback: any;
+    playback: string;
     hasLink?: boolean;
     linkObject?: Link;
     image?: string;
