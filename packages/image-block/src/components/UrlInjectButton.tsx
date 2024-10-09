@@ -1,17 +1,8 @@
 /* eslint-disable unicorn/no-nested-ternary */
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type FileExtension, FileExtensionSets } from '@frontify/app-bridge';
-import {
-    ActionMenu,
-    Flyout,
-    IconArrowCircleUp20,
-    IconExclamationMarkTriangle,
-    IconImageStack20,
-    LoadingCircle,
-    MenuItemContentSize,
-} from '@frontify/fondue';
-import { type DragEventHandler, type MouseEventHandler, useRef, useState } from 'react';
+import { ActionMenu, Flyout, IconExclamationMarkTriangle, LoadingCircle } from '@frontify/fondue';
+import { useRef, useState } from 'react';
 
 // import { joinClassNames } from '../../utilities/react/joinClassNames';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -38,7 +29,6 @@ export const UrlInjectButton = ({
     // onDrop,
     label,
     icon,
-    secondaryLabel,
     isLoading,
     fillParentContainer,
     // onAssetChooseClick,
