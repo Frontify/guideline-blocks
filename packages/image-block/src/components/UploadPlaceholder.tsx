@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus24, IconLink24 } from '@frontify/fondue';
+import { IconLink24, IconPlus24 } from '@frontify/fondue';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { UrlInjectButton } from './UrlInjectButton';
 
@@ -10,7 +10,6 @@ type UploadPlaceholderProps = {
     onAssetChooseClick: () => void;
     loading: boolean;
     onUrlSubmit: (url: string) => void;
-
 };
 
 export const UploadPlaceholder = ({
@@ -21,7 +20,7 @@ export const UploadPlaceholder = ({
     loading,
 }: UploadPlaceholderProps) => {
     return (
-        <div className="mod block tw-w-full flex flex-row tw-gap-3">
+        <div className="mod block tw-w-full tw-flex tw-flex-row tw-gap-3">
             <div className="block tw-h-64 tw-w-1/2">
                 <BlockInjectButton
                     label="Add or drop your image here"
