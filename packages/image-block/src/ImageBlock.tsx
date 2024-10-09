@@ -58,6 +58,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const componentRef = useRef(null);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
+    const [lottieUrl, setLottieUrl] = useState<string | null>(blockSettings.lottieUrl ? blockSettings.lottieUrl : null);
     const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
     const isDownloadable = isImageDownloadable(
         blockSettings.security,
@@ -144,6 +145,12 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
+
+    useEffect(() => {
+        if (lottieUrl) {
+            setBlockSettings({ lottieUrl });
+        }
+    }, [lottieUrl]);
 
     // Intersection Observer to check if image is in view
     // animation is not triggered if image is not in view
