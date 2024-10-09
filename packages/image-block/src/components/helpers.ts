@@ -116,3 +116,14 @@ export const getImageStyle = (blockSettings: Settings): CSSProperties => {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
     };
 };
+
+export const getFrameInterpolationSetting = (blockSettings: Settings): boolean => {
+    const frameInterpolation = blockSettings.frameInterpolation === 'yes' ? true : false;
+    return frameInterpolation;
+};
+
+export const getPlaybackSettings = (blockSettings: Settings): { playOnHover: boolean; autoplay: boolean } => {
+    const playOnHover = blockSettings.playback?.includes('hover') ? true : false;
+    const autoplay = blockSettings.playback?.includes('once') ? true : false;
+    return { playOnHover, autoplay };
+};
