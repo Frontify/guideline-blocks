@@ -141,27 +141,27 @@ export async function validateLottieUrl(
         }
 
         // For .json files, validate JSON structure
-        if (url.pathname.endsWith('.json')) {
-            try {
-                const json = await response.json();
-                // Here you could add additional checks to validate the Lottie JSON structure
-                // if (!isValidLottieJson(json)) {
-                //     return {
-                //         isValid: false,
-                //         validatedUrl: url.toString(),
-                //         errorMessage: 'The file is not a valid Lottie animation'
-                //     };
-                // }
-            } catch (error) {
-                console.error('Error parsing JSON:', error);
-                return {
-                    isValid: false,
-                    validatedUrl: url.toString(),
-                    // errorMessage: 'The file is not a valid JSON',
-                    errorMessage: 'Please enter a valid LottieFiles URL',
-                };
-            }
-        }
+        // if (url.pathname.endsWith('.json')) {
+        //     try {
+        //         const json = await response.json();
+        //         // Here you could add additional checks to validate the Lottie JSON structure
+        //         // if (!isValidLottieJson(json)) {
+        //         //     return {
+        //         //         isValid: false,
+        //         //         validatedUrl: url.toString(),
+        //         //         errorMessage: 'The file is not a valid Lottie animation'
+        //         //     };
+        //         // }
+        //     } catch (error) {
+        //         console.error('Error parsing JSON:', error);
+        //         return {
+        //             isValid: false,
+        //             validatedUrl: url.toString(),
+        //             // errorMessage: 'The file is not a valid JSON',
+        //             errorMessage: 'Please enter a valid LottieFiles URL',
+        //         };
+        //     }
+        // }
 
         // For .lottie files, we can't easily validate the content
     } catch (error) {
