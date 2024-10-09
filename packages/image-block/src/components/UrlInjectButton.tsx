@@ -69,7 +69,7 @@ export const UrlInjectButton = ({
             ref={divRef}
             data-test-id="block-inject-button"
             className={joinClassNames([
-                'tw-font-body tw-relative tw-text-sm tw-leading-4 tw-border tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full first:tw-rounded-tl last:tw-rounded-br',
+                'tw-font-body tw-relative tw-text-sm tw-leading-4 tw-border tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-w-full first:tw-rounded-tl last:tw-rounded-br',
                 verticalLayout
                     ? '[&:not(:first-child)]:tw-border-t-0 first:tw-rounded-tr last:tw-rounded-bl'
                     : '[&:not(:first-child)]:tw-border-l-0  first:tw-rounded-bl last:tw-rounded-tr',
@@ -87,20 +87,20 @@ export const UrlInjectButton = ({
             {isLoading ? (
                 <LoadingCircle />
             ) : (
-                <div className="tw-flex tw-flex-col tw-items-start">
-                    {icon && <div>{icon}</div>}
-                    {label && <div className="tw-font-medium">{label}</div>}
-                    {secondaryLabel && <div className="tw-font-normal">{secondaryLabel}</div>}
+                <div className="tw-flex tw-flex-col tw-items-center">
+                    <div className="tw-flex tw-flex-row tw-items-center tw-gap-1 tw-pb-2">
+                        <div>{icon}</div>
+                        <div className="tw-font-medium">{label}</div>
+                    </div>
                     <div>
                         <input
                             id="lottie-url-input"
-                            className="tw-input tw-input-sm tw-w-full tw-font-normal tw-text-black"
-                            placeholder="lottie.host/..."
-                            style={{ height: '36px', width: '196px', border: '1px solid #080808' }}
+                            className="tw-input tw-input-sm tw-w-full tw-font-normal tw-w-32 tw-h-8 tw-rounded tw-border tw-border-gray-100 .tw-border-blank-state-line"
+                            placeholder="https://..."
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                         />
-                        <button onClick={handleSubmit}>Embed</button>
+                        <button onClick={handleSubmit}>Save</button>
                     </div>
                     {errorMsg && (
                         <div className=" tw-flex tw-items-center tw-justify-center tw-text-red-60 tw-font-medium">
