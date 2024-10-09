@@ -15,7 +15,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { Alignment, CaptionPosition, Padding, Ratio, paddingValues, radiusValues } from './types';
+import { Alignment, CaptionPosition, Padding, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
