@@ -57,12 +57,9 @@ export const UrlInjectButton = ({
     return (
         <div
             ref={divRef}
-            data-test-id="block-inject-button"
+            data-test-id="url-inject-button"
             className={joinClassNames([
-                'tw-font-body tw-relative tw-text-sm tw-leading-4 tw-border tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-w-full first:tw-rounded-tl last:tw-rounded-br',
-                verticalLayout
-                    ? '[&:not(:first-child)]:tw-border-t-0 first:tw-rounded-tr last:tw-rounded-bl'
-                    : '[&:not(:first-child)]:tw-border-l-0  first:tw-rounded-bl last:tw-rounded-tr',
+                'tw-font-body tw-relative tw-text-sm tw-leading-4  tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-w-full tw-rounded',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
                 menuPosition && 'tw-bg-blank-state-pressed-inverse',
                 errorMsg ? '!tw-border-red-50 !tw-cursor-not-allowed' : ' tw-border-blank-state-line',
@@ -82,15 +79,23 @@ export const UrlInjectButton = ({
                         <div>{icon}</div>
                         <div className="tw-font-medium">{label}</div>
                     </div>
-                    <div>
+                    <div className="tw-flex tw-flex-row tw-gap-x-3">
                         <input
                             id="lottie-url-input"
-                            className="tw-input tw-input-sm tw-w-full tw-font-normal tw-w-32 tw-h-8 tw-rounded tw-border tw-border-gray-100 .tw-border-blank-state-line"
+                                // className="tw-input tw-input-sm tw-w-full tw-font-normal tw-w-32 tw-h-8 tw-rounded tw-border tw-border-gray-100 .tw-border-blank-state-line"
+                            className="tw-flex tw-items-center tw-h-9 tw-gap-2 tw-px-3 tw-border tw-transition tw-rounded tw-text-body-small tw-font-sans tw-relative tw-bg-base dark:tw-bg-transparent tw-border-solid focus-within:tw-border-line-xx-strong focus-within:hover:tw-border-line-xx-strong hover:tw-border-line-x-strong tw-border-line-strong dark:tw-border-line-strong"
                             placeholder="https://..."
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                         />
-                        <button onClick={handleSubmit}>Save</button>
+                        <button
+                            className="tw-bg-button-strong-background tw-border-button-strong-border hover:tw-bg-button-strong-background-hover active:tw-bg-button-strong-background-pressed  tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-outline-none tw-font-body tw-font-medium  tw-rounded tw-px-4 tw-h-9 tw-text-body-medium"
+                            onClick={handleSubmit}
+                        >
+                            <span className="tw-text-button-strong-icon group-hover:tw-text-button-strong-icon-hover group-active:tw-text-button-strong-text-pressed ">
+                                Save
+                            </span>
+                        </button>
                     </div>
                     {errorMsg && (
                         <div className=" tw-flex tw-items-center tw-justify-center tw-text-red-60 tw-font-medium">
