@@ -83,8 +83,8 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                // errorMessage: 'URL must be from lottie.host',
-                errorMessage: 'Please enter a valid LottieFiles URL',
+                errorMessage: 'URL must be from lottie.host',
+                // errorMessage: 'Please enter a valid LottieFiles URL',
             };
         }
 
@@ -93,16 +93,16 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                // errorMessage: 'URL must end with .json or .lottie',
-                errorMessage: 'Please enter a valid LottieFiles URL',
+                errorMessage: 'URL must end with .json or .lottie',
+                // errorMessage: 'Please enter a valid LottieFiles URL',
             };
         }
     } catch (error) {
         return {
             isValid: false,
             validatedUrl: urlString,
-            // errorMessage: `Invalid URL: ${(error as Error).message}`,
-            errorMessage: 'Please enter a valid LottieFiles URL',
+            errorMessage: `Invalid URL: ${(error as Error).message}`,
+            // errorMessage: 'Please enter a valid LottieFiles URL',
         };
     }
 
@@ -123,8 +123,8 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                // errorMessage: `Server returned status ${response.status}: ${response.statusText}`,
-                errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+                errorMessage: `Server returned status ${response.status}: ${response.statusText}`,
+                // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
             };
         }
 
@@ -135,8 +135,8 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                // errorMessage: `The URL does not point to a valid Lottie ${url.pathname.endsWith('.json') ? 'JSON' : 'dotlottie'} file`,
-                errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+                errorMessage: `The URL does not point to a valid Lottie ${url.pathname.endsWith('.json') ? 'JSON' : 'dotlottie'} file`,
+                // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
             };
         }
 
@@ -169,8 +169,8 @@ export async function validateLottieUrl(
         return {
             isValid: false,
             validatedUrl: url.toString(),
-            // errorMessage: `Unable to connect to the server or parse the response: ${(error as Error).message}`,
-            errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+            errorMessage: `Unable to connect to the server or parse the response: ${(error as Error).message}`,
+            // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
         };
     }
 
