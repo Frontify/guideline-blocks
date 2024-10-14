@@ -35,13 +35,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
-import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID, LOTTIE_URL_ID } from './settings';
+import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
-import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { isImageDownloadable } from './helpers/isImageDownloadable';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
@@ -58,7 +57,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const componentRef = useRef(null);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
-    const [lottieUrl, setLottieUrl] = useState<string | null>(blockSettings.lottieUrl ? blockSettings.lottieUrl : null);
+    const lottieUrl = blockSettings.lottieUrl;
     const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
     const isDownloadable = isImageDownloadable(
         blockSettings.security,
@@ -67,6 +66,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         image
     );
 
+    console.log('blockId', blockId);
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
@@ -91,10 +91,10 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             }
         }
 
-        if (newImage.backgroundColor) {
-            settings.backgroundColor = newImage.backgroundColor;
-            settings.hasBackground = true;
-        }
+        // if (newImage.backgroundColor) {
+        //     settings.backgroundColor = newImage.backgroundColor;
+        //     settings.hasBackground = true;
+        // }
 
         if (Object.keys(settings).length > 0) {
             await setBlockSettings(settings);
@@ -122,8 +122,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         uploadFile(files[0]);
     };
 
-    const addUrlToBlockSettings = (url: string) => {
-        setBlockSettings({ lottieUrl: url });
+    const addUrlToBlockSettings = async (url: string) => {
+        await setBlockSettings({ lottieUrl: url });
         setIsLoading(false);
     };
     const handleUrlSubmit = (url: string) => {
@@ -145,12 +145,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
-
-    useEffect(() => {
-        if (lottieUrl) {
-            setBlockSettings({ lottieUrl });
-        }
-    }, [lottieUrl]);
 
     // Intersection Observer to check if image is in view
     // animation is not triggered if image is not in view
@@ -175,9 +169,13 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     }, []);
 
     const onRemoveAsset = () => {
-        setBlockSettings({ altText: undefined });
+        setBlockSettings({ altText: undefined, lottieUrl: undefined });
         setLocalAltText(undefined);
-        deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
+        if (image) {
+            deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
+        }
+        console.log('image', image);
+        console.log('blockAssets', blockAssets);
     };
 
     return (
@@ -197,57 +195,59 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     : imageRatioValues[ratio],
                             ])}
                         >
-                            <DownloadAndAttachments
+                            {/* <DownloadAndAttachments
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 image={image}
                                 isDownloadable={isDownloadable}
                                 isEditing={isEditing}
-                            />
-                            {image ? (
+                            /> */}
+                            {image || lottieUrl !== undefined ? (
                                 <BlockItemWrapper
                                     shouldHideWrapper={!isEditing}
-                                    showAttachments
+                                    showAttachments={false}
                                     toolbarItems={[
-                                        image
-                                            ? getEditAltTextToolbarButton({
-                                                  localAltText,
-                                                  setLocalAltText,
-                                                  blockSettings,
-                                                  setBlockSettings,
-                                              })
-                                            : undefined,
+                                        getEditAltTextToolbarButton({
+                                            localAltText,
+                                            setLocalAltText,
+                                            blockSettings,
+                                            setBlockSettings,
+                                        }),
                                         {
                                             type: 'button',
                                             icon: <IconTrashBin16 />,
                                             onClick: onRemoveAsset,
                                             tooltip: 'Delete',
                                         },
-                                        {
-                                            type: 'menu',
-                                            items: [
-                                                [
-                                                    {
-                                                        title: 'Replace with upload',
-                                                        icon: <IconArrowCircleUp20 />,
-                                                        onClick: openFileDialog,
-                                                    },
-                                                    {
-                                                        title: 'Replace with asset',
-                                                        icon: <IconImageStack20 />,
-                                                        onClick: onOpenAssetChooser,
-                                                    },
-                                                ],
-                                                [
-                                                    {
-                                                        title: 'Delete',
-                                                        icon: <IconTrashBin20 />,
-                                                        style: MenuItemStyle.Danger,
-                                                        onClick: onRemoveAsset,
-                                                    },
-                                                ],
-                                            ],
-                                        },
+                                        ...(image
+                                            ? [
+                                                  {
+                                                      type: 'menu' as const,
+                                                      items: [
+                                                          [
+                                                              {
+                                                                  title: 'Replace with upload',
+                                                                  icon: <IconArrowCircleUp20 />,
+                                                                  onClick: openFileDialog,
+                                                              },
+                                                              {
+                                                                  title: 'Replace with asset',
+                                                                  icon: <IconImageStack20 />,
+                                                                  onClick: onOpenAssetChooser,
+                                                              },
+                                                          ],
+                                                          [
+                                                              {
+                                                                  title: 'Delete',
+                                                                  icon: <IconTrashBin20 />,
+                                                                  style: MenuItemStyle.Danger,
+                                                                  onClick: onRemoveAsset,
+                                                              },
+                                                          ],
+                                                      ],
+                                                  },
+                                              ]
+                                            : []),
                                     ]}
                                 >
                                     {isLoading ? (
@@ -259,7 +259,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                             appBridge={appBridge}
                                             blockSettings={blockSettings}
                                             isEditing={isEditing}
-                                            image={image}
+                                            imageSource={image || lottieUrl}
                                             isDownloadable={isDownloadable}
                                             globalAssetViewerEnabled={assetViewerEnabled}
                                         />
