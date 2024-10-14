@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconLink24, IconPlus24 } from '@frontify/fondue';
-import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+// import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+import { BlockInjectButton } from './BlockInjectButton';
 import { UrlInjectButton } from './UrlInjectButton';
 
 type UploadPlaceholderProps = {
@@ -20,8 +21,8 @@ export const UploadPlaceholder = ({
     loading,
 }: UploadPlaceholderProps) => {
     return (
-        <div className="mod block tw-w-full tw-flex tw-flex-row tw-gap-3">
-            <div className="block tw-h-64 tw-w-1/2">
+        <div className="tw-w-full tw-flex tw-flex-row tw-border tw-rounded">
+            <div className="tw-h-48 md:tw-w-1/2 sm:tw-w-full">
                 <BlockInjectButton
                     label="Add or drop your image here"
                     icon={<IconPlus24 />}
@@ -32,13 +33,11 @@ export const UploadPlaceholder = ({
                     isLoading={loading}
                 />
             </div>
-            <div className="block tw-h-64 tw-w-1/2">
+            <div className="block tw-h-48 tw-h-48 md:tw-w-1/2 sm:tw-w-full">
                 <UrlInjectButton
                     label="Enter a URL"
                     icon={<IconLink24 />}
                     fillParentContainer={true}
-                    // onUploadClick={onUploadClick}
-                    // onAssetChooseClick={onAssetChooseClick}
                     isLoading={loading}
                     onUrlSubmit={onUrlSubmit}
                 />
