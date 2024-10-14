@@ -124,6 +124,10 @@ export const getFrameInterpolationSetting = (blockSettings: Settings): boolean =
 
 export const getPlaybackSettings = (blockSettings: Settings): { playOnHover: boolean; autoplay: boolean } => {
     const playOnHover = blockSettings.playback?.includes('hover') ? true : false;
-    const autoplay = blockSettings.playback?.includes('once') ? true : false;
+    const autoplay = blockSettings.playback?.includes('autoplay') ? true : false;
     return { playOnHover, autoplay };
 };
+
+// const toCssRgbaString = (color: Color): string => {
+//     return `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
+// };
