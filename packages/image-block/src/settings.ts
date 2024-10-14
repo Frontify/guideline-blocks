@@ -3,8 +3,6 @@
 import {
     FileExtensionSets,
     IconEnum,
-    // NotificationBlockDividerPosition,
-    // NotificationStyleType,
     Security,
     appendUnit,
     defineSettings,
@@ -35,52 +33,6 @@ export const ALLOWED_EXTENSIONS = [
 export const LOTTIE_ID = 'lottie';
 
 export const settings = defineSettings({
-    // basics: [
-    //     {
-    //         id: 'imageSection',
-    //         type: 'sectionHeading',
-    //         label: '',
-    //         blocks: [
-    //             // {
-    //             //     id: IMAGE_ID,
-    //             //     type: 'assetInput',
-    //             //     label: 'Image',
-    //             //     size: 'small',
-    //             //     extensions: ALLOWED_EXTENSIONS,
-    //             // },
-    //             // {
-    //             //     id: 'hasLink',
-    //             //     type: 'switch',
-    //             //     label: 'Link',
-    //             //     defaultValue: false,
-    //             //     on: [
-    //             //         {
-    //             //             id: 'linkObject',
-    //             //             type: 'link',
-    //             //             clearable: true,
-    //             //         },
-    //             //     ],
-    //             // },
-    //         ],
-    //         // showForTranslations: true,
-    //     },
-    //     {
-    //         id: 'imageResolutionInfo',
-    //         type: 'notification',
-    //         title: 'Image resolution',
-    //         text: 'The correct pixel density (former 2x setting) is now provided automatically based on the device.',
-    //         styles: {
-    //             type: NotificationStyleType.Info,
-    //             icon: true,
-    //             divider: NotificationBlockDividerPosition.Top,
-    //         },
-    //         footer: {
-    //             label: 'Follow our guide for image resolution',
-    //             href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
-    //             target: '_blank',
-    //         },
-    //     },
-    // ],
     layout: [
         {
             id: POSITIONING_ID,
@@ -94,20 +46,6 @@ export const settings = defineSettings({
                 { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
             ],
         },
-        // {
-        //     id: 'ratio',
-        //     label: 'Ratio',
-        //     type: 'segmentedControls',
-        //     defaultValue: Ratio.Ratio2To1,
-        //     show: (bundle) =>
-        //         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
-        //         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
-        //     choices: [
-        //         { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
-        //         { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
-        //         { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
-        //     ],
-        // },
         {
             id: 'alignment',
             type: 'segmentedControls',
@@ -280,13 +218,6 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
-    // custom: [
-    //     {
-    //         id: 'lottieUrl',
-    //         type: 'textarea',
-    //         defaultValue: '',
-    //     },
-    // ],
     security: [
         ...getSecurityGlobalControlSetting(),
         {
