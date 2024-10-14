@@ -1,19 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-bridge';
 import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
-import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
-import { type CSSProperties, type ReactNode } from 'react';
+import { useImageContainer } from '@frontify/guideline-blocks-shared';
+import { useEffect, type CSSProperties, type ReactNode } from 'react';
 
 import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
 
-import { getFrameInterpolationSetting, getImageStyle, getImageWrapperStyle, getPlaybackSettings } from './helpers';
+import { getFrameInterpolationSetting, getImageWrapperStyle, getPlaybackSettings } from './helpers';
 
-import { DotLottieReact, Mode } from '@lottiefiles/dotlottie-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+type ImageSource = Asset | string;
 
 type ImageProps = {
-    image: Asset;
+    // image: Asset;
+    imageSource: ImageSource;
     blockSettings: Settings;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
@@ -22,7 +26,8 @@ type ImageProps = {
 };
 
 type ImageWrapperProps = {
-    image?: Asset;
+    // image?: Asset;
+    imageSource?: ImageSource;
     appBridge: AppBridgeBlock;
     children: ReactNode;
     link: Link | null;
@@ -34,15 +39,9 @@ type ImageWrapperProps = {
     setContainerRef: (element: HTMLElement | null) => void;
 };
 
-type ImageComponentProps = {
-    image: Asset;
-    alt: string;
-    containerWidth: number | undefined;
-    style: CSSProperties;
-};
-
 const ImageWrapper = ({
-    image,
+    // image,
+    imageSource,
     appBridge,
     children,
     link,
@@ -79,12 +78,13 @@ const ImageWrapper = ({
         );
     }
 
-    if (!isEditing && isAssetViewerEnabled) {
+    if (!isEditing && isAssetViewerEnabled && typeof imageSource !== 'string') {
         return (
             <button
                 data-test-id="image-block-asset-viewer-wrapper"
                 {...sharedProps}
-                onClick={() => open(image, isDownloadable)}
+                // onClick={() => image && open(image, isDownloadable)}
+                onClick={() => imageSource && open(imageSource, isDownloadable)}
             >
                 {children}
             </button>
@@ -98,41 +98,31 @@ const ImageWrapper = ({
     );
 };
 
-export const ImageComponent = ({ image, alt, containerWidth, style }: ImageComponentProps) => (
-    <ResponsiveImage
-        testId="image-block-image-component"
-        image={image}
-        containerWidth={containerWidth}
-        alt={alt}
-        style={{ ...style, maxWidth: image.width }}
-    />
-);
-
 export const Image = ({
-    image,
+    imageSource,
     appBridge,
     blockSettings,
     isEditing,
     globalAssetViewerEnabled,
     isDownloadable,
 }: ImageProps) => {
-    const { containerWidth, setContainerRef } = useImageContainer();
+    const { setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
-    const imageStyle = getImageStyle(blockSettings);
+    // const imageStyle = getImageStyle(blockSettings);
     // const loop = getLoopSetting(blockSettings);
-    const frameInterpolation = getFrameInterpolationSetting(blockSettings);
-    const playbackSettings = getPlaybackSettings(blockSettings);
+    let frameInterpolation = getFrameInterpolationSetting(blockSettings);
+    let playbackSettings = getPlaybackSettings(blockSettings);
     console.log('playbackSettings', playbackSettings);
     console.log('playback hover', playbackSettings.playOnHover);
+    console.log('playback autoplay', playbackSettings.autoplay);
+    console.log('blocksettings', blockSettings);
     const { assetViewerEnabled, security } = blockSettings;
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 
-    console.log('block settings in image', blockSettings);
-    console.log('loop', blockSettings.loop);
     return (
         <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative">
             <ImageWrapper
@@ -142,28 +132,17 @@ export const Image = ({
                 style={imageWrapperStyle}
                 setContainerRef={setContainerRef}
                 isEditing={isEditing}
-                image={image}
+                imageSource={imageSource}
                 alignment={blockSettings.alignment}
                 isDownloadable={isDownloadable}
             >
-                {/* <ImageComponent
-                    style={imageStyle}
-                    containerWidth={containerWidth}
-                    image={image}
-                    alt={blockSettings.altText ?? ''}
-                /> */}
                 <DotLottieReact
                     autoplay={playbackSettings.autoplay}
                     loop={blockSettings.loop}
-                    src={image.originUrl}
+                    src={typeof imageSource === 'string' ? imageSource : imageSource.originUrl}
                     speed={blockSettings.speed}
-                    // data
                     mode={blockSettings.mode}
-                    // backgroundColor=''
-                    // segments
-                    // renderConfig
                     playOnHover={playbackSettings.playOnHover}
-                    // dotLottieRefCallback=
                     useFrameInterpolation={frameInterpolation}
                 />
             </ImageWrapper>
