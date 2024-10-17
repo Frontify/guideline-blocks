@@ -7,6 +7,8 @@ import { Mode } from '@lottiefiles/dotlottie-react';
 export type Link = { link: { link: string }; openInNewTab: boolean };
 
 export type Settings = {
+    autoplay: boolean | undefined;
+    hover: boolean | undefined;
     lottieUrl?: string | null;
     frameInterpolation: string;
     mode: Mode | undefined;
