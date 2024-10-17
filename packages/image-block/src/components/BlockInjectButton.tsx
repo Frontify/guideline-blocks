@@ -94,7 +94,7 @@ export const BlockInjectButton = ({
             ref={buttonRef}
             data-test-id="block-inject-button"
             className={joinClassNames([
-                'tw-font-body tw-relative tw-text-sm tw-leading-4  tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full md:tw-border-r  tw-rounded-tl md:tw-rounded-bl sm:tw-rounded-tr md:tw-rounded-tr-none sm:tw-border-b md:tw-border-b-0 lg:tw-border-b-0',
+                'tw-font-body tw-relative tw-text-sm tw-leading-4  tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full md:tw-border-r tw-rounded-tl md:tw-rounded-bl tw-rounded-tr sm:tw-rounded-tr md:tw-rounded-tr-none max-md:tw-border-b md:tw-border-b-0 lg:tw-border-b-0',
                 isDisabled && 'tw-pointer-events-none',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
                 isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
@@ -112,7 +112,6 @@ export const BlockInjectButton = ({
                 onDrop
                     ? (event) => {
                           setIsDraggingOver(true);
-                          // is now only used for images, can be adapted if needed
                           if (validFileType === 'Images') {
                               for (const item of Array.from(event.dataTransfer.items)) {
                                   if (!item?.type?.startsWith('image/')) {
