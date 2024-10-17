@@ -6,14 +6,12 @@ import {
     Security,
     appendUnit,
     defineSettings,
-    getBorderRadiusSettings,
-    getBorderSettings,
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { Alignment, CaptionPosition, Padding, paddingValues, radiusValues } from './types';
+import { Alignment, CaptionPosition, Padding, paddingValues } from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -111,21 +109,35 @@ export const settings = defineSettings({
         },
     ],
     playback: [
+        //     {
+        //         id: 'playback',
+        //         type: 'checklist',
+        //         label: 'Animation Plays:',
+        //         defaultValue: ['autoplay'],
+        //         choices: [
+        //             {
+        //                 id: 'autoplay',
+        //                 value: 'autoplay',
+        //                 label: 'Autoplay',
+        //             },
+        //             {
+        //                 id: 'hover',
+        //                 value: 'hover',
+        //                 label: 'On hover',
+        //             },
+        //         ],
+        //     },
         {
-            id: 'playback',
-            type: 'checklist',
-            label: 'Animation Plays:',
-            defaultValue: ['autoplay'],
-            choices: [
-                {
-                    id: 'autoplay',
-                    label: 'Autoplay',
-                },
-                {
-                    id: 'hover',
-                    label: 'On hover',
-                },
-            ],
+            id: 'autoplay',
+            type: 'switch',
+            label: 'Autoplay',
+            defaultValue: true,
+        },
+        {
+            id: 'hover',
+            type: 'switch',
+            label: 'Play on hover',
+            defaultValue: true,
         },
         {
             id: 'resize',
@@ -212,11 +224,11 @@ export const settings = defineSettings({
                 },
             ],
         },
-        getBorderSettings(),
-        getBorderRadiusSettings({
-            id: 'cornerRadius',
-            radiusStyleMap: radiusValues,
-        }),
+        // getBorderSettings(),
+        // getBorderRadiusSettings({
+        //     id: 'cornerRadius',
+        //     radiusStyleMap: radiusValues,
+        // }),
     ],
     security: [
         ...getSecurityGlobalControlSetting(),
