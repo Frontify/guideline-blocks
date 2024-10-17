@@ -1,63 +1,6 @@
 /* eslint-disable unicorn/no-nested-ternary */
-// /* (c) Copyright Frontify Ltd., all rights reserved. */
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-// export async function validateLottieUrl(
-//     url: string
-// ): Promise<{ isValid: boolean; validatedUrl: string; errorMessage?: string }> {
-//     url = url.trim();
-
-//     if (!url.startsWith('https://lottie.host') && !url.startsWith('lottie.host')) {
-//         return {
-//             isValid: false,
-//             validatedUrl: url,
-//             // errorMessage: 'URL must start with https://lottie.host or lottie.host',
-//             errorMessage: 'Please enter a valid LottieFiles URL',
-//         };
-//     }
-
-//     if (url.startsWith('lottie.host')) {
-//         url = `https://${url}`;
-//     }
-
-//     if (!url.endsWith('.json') && !url.endsWith('.lottie')) {
-//         return {
-//             isValid: false,
-//             validatedUrl: url,
-//             // errorMessage: 'URL must end with .json or .lottie',
-//             errorMessage: 'Please enter a valid LottieFiles URL',
-//         };
-//     }
-
-//     // Check server
-//     try {
-//         const response = await fetch(url, {
-//             method: 'GET',
-//             headers: {
-//                 Accept: 'application/json, application/octet-stream',
-//             },
-//         });
-//         if (!response.ok) {
-//             return {
-//                 isValid: false,
-//                 validatedUrl: url,
-//                 // errorMessage: `Server returned status ${response.status}: ${response.statusText}`,
-//                 errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
-//             };
-//         }
-//     } catch (error) {
-//         return {
-//             isValid: false,
-//             validatedUrl: url,
-//             // errorMessage: `Unable to connect to the server: ${(error as Error).message}`,
-//             errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
-//         };
-//     }
-
-//     return {
-//         isValid: true,
-//         validatedUrl: url,
-//     };
-// }
 export async function validateLottieUrl(
     input: string
 ): Promise<{ isValid: boolean; validatedUrl: string; errorMessage?: string }> {
@@ -83,8 +26,8 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                errorMessage: 'URL must be from lottie.host',
-                // errorMessage: 'Please enter a valid LottieFiles URL',
+                // errorMessage: 'URL must be from lottie.host',
+                errorMessage: 'Please enter a valid LottieFiles URL',
             };
         }
 
@@ -93,16 +36,16 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                errorMessage: 'URL must end with .json or .lottie',
-                // errorMessage: 'Please enter a valid LottieFiles URL',
+                // errorMessage: 'URL must end with .json or .lottie',
+                errorMessage: 'Please enter a valid LottieFiles URL',
             };
         }
     } catch (error) {
         return {
             isValid: false,
             validatedUrl: urlString,
-            errorMessage: `Invalid URL: ${(error as Error).message}`,
-            // errorMessage: 'Please enter a valid LottieFiles URL',
+            // errorMessage: `Invalid URL: ${(error as Error).message}`,
+            errorMessage: 'Please enter a valid LottieFiles URL',
         };
     }
 
@@ -123,8 +66,8 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                errorMessage: `Server returned status ${response.status}: ${response.statusText}`,
-                // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+                // errorMessage: `Server returned status ${response.status}: ${response.statusText}`,
+                errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
             };
         }
 
@@ -135,42 +78,17 @@ export async function validateLottieUrl(
             return {
                 isValid: false,
                 validatedUrl: url.toString(),
-                errorMessage: `The URL does not point to a valid Lottie ${url.pathname.endsWith('.json') ? 'JSON' : 'dotlottie'} file`,
-                // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+                // errorMessage: `The URL does not point to a valid Lottie ${url.pathname.endsWith('.json') ? 'JSON' : 'dotlottie'} file`,
+                errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
             };
         }
-
-        // For .json files, validate JSON structure
-        // if (url.pathname.endsWith('.json')) {
-        //     try {
-        //         const json = await response.json();
-        //         // Here you could add additional checks to validate the Lottie JSON structure
-        //         // if (!isValidLottieJson(json)) {
-        //         //     return {
-        //         //         isValid: false,
-        //         //         validatedUrl: url.toString(),
-        //         //         errorMessage: 'The file is not a valid Lottie animation'
-        //         //     };
-        //         // }
-        //     } catch (error) {
-        //         console.error('Error parsing JSON:', error);
-        //         return {
-        //             isValid: false,
-        //             validatedUrl: url.toString(),
-        //             // errorMessage: 'The file is not a valid JSON',
-        //             errorMessage: 'Please enter a valid LottieFiles URL',
-        //         };
-        //     }
-        // }
-
-        // For .lottie files, we can't easily validate the content
     } catch (error) {
         console.error('Error during fetch:', error);
         return {
             isValid: false,
             validatedUrl: url.toString(),
-            errorMessage: `Unable to connect to the server or parse the response: ${(error as Error).message}`,
-            // errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
+            // errorMessage: `Unable to connect to the server or parse the response: ${(error as Error).message}`,
+            errorMessage: "Something went wrong! We're having trouble connecting to LottieFiles",
         };
     }
 
