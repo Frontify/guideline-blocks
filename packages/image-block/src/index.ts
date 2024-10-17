@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ImageBlock } from './ImageBlock';
+import { LottieBlock } from './LottieBlock';
 import { settings } from './settings';
 import { defineBlock } from '@frontify/guideline-blocks-settings';
 
 export default defineBlock({
-    block: ImageBlock,
+    block: LottieBlock,
     settings,
 });
