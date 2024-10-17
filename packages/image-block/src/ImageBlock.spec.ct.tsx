@@ -2,7 +2,7 @@
 
 import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
-import { ImageBlock } from './ImageBlock';
+import { LottieBlock } from './LottieBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
     Alignment,
@@ -30,7 +30,7 @@ const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"
 
 const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps) => {
     const Component = () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, appBridgeProps);
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(LottieBlock, appBridgeProps);
         return (
             <div className="[&_[data-test-id='image-block-img-wrapper']]:tw-w-screen">
                 <ImageBlockWithStubs />
@@ -488,7 +488,7 @@ describe('Image Block', () => {
     });
 
     it('should render the delete button in the block toolbar', () => {
-        const [ImageBlockWithStubs, appBridge] = withAppBridgeBlockStubs(ImageBlock, {
+        const [ImageBlockWithStubs, appBridge] = withAppBridgeBlockStubs(LottieBlock, {
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
