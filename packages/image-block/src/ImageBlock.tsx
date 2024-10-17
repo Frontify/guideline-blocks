@@ -52,7 +52,9 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const blockId = String(appBridge.context('blockId').get());
     const { altText, name, positioning, ratio, description } = blockSettings;
     const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
+    const [urlIsLoading, setUrlIsLoading] = useState(false);
+    const [uploadIsLoading, setUploadIsLoading] = useState(false);
     const [isInView, setIsInView] = useState(false);
     const componentRef = useRef(null);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -71,7 +73,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isLoading && setIsLoading(true),
+        onUploadProgress: () => !uploadIsLoading && setUploadIsLoading(true),
     });
 
     const updateImage = async (newImage: Asset) => {
@@ -100,13 +102,13 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             await setBlockSettings(settings);
         }
         await updateAssetIdsFromKey(IMAGE_ID, [newImage.id]);
-        setIsLoading(false);
+        setUploadIsLoading(false);
     };
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
             async (result) => {
-                setIsLoading(true);
+                setUploadIsLoading(true);
                 updateImage(result[0]);
                 closeAssetChooser();
             },
@@ -118,22 +120,22 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     };
 
     const onFilesDrop = (files: FileList) => {
-        setIsLoading(true);
+        setUploadIsLoading(true);
         uploadFile(files[0]);
     };
 
     const addUrlToBlockSettings = async (url: string) => {
         await setBlockSettings({ lottieUrl: url });
-        setIsLoading(false);
+        setUrlIsLoading(false);
     };
     const handleUrlSubmit = (url: string) => {
-        setIsLoading(true);
+        setUrlIsLoading(true);
         addUrlToBlockSettings(url);
     };
 
     useEffect(() => {
         if (selectedFiles) {
-            setIsLoading(true);
+            setUploadIsLoading(true);
             uploadFile(selectedFiles[0]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -195,13 +197,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                     : imageRatioValues[ratio],
                             ])}
                         >
-                            {/* <DownloadAndAttachments
-                                appBridge={appBridge}
-                                blockSettings={blockSettings}
-                                image={image}
-                                isDownloadable={isDownloadable}
-                                isEditing={isEditing}
-                            /> */}
                             {image || lottieUrl !== undefined ? (
                                 <BlockItemWrapper
                                     shouldHideWrapper={!isEditing}
@@ -250,7 +245,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                             : []),
                                     ]}
                                 >
-                                    {isLoading ? (
+                                    {urlIsLoading || uploadIsLoading ? (
                                         <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
                                             <LoadingCircle />
                                         </div>
@@ -273,7 +268,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                         toolbarItems={[]}
                                     >
                                         <UploadPlaceholder
-                                            loading={isLoading}
+                                            urlLoading={urlIsLoading}
+                                            fileLoading={uploadIsLoading}
                                             onUploadClick={openFileDialog}
                                             onFilesDrop={onFilesDrop}
                                             onAssetChooseClick={onOpenAssetChooser}

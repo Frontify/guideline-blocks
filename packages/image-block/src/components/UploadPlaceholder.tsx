@@ -9,7 +9,8 @@ type UploadPlaceholderProps = {
     onUploadClick: () => void;
     onFilesDrop: (files: FileList) => void;
     onAssetChooseClick: () => void;
-    loading: boolean;
+    urlLoading: boolean;
+    fileLoading: boolean;
     onUrlSubmit: (url: string) => void;
 };
 
@@ -18,7 +19,8 @@ export const UploadPlaceholder = ({
     onFilesDrop,
     onAssetChooseClick,
     onUrlSubmit,
-    loading,
+    urlLoading,
+    fileLoading,
 }: UploadPlaceholderProps) => {
     return (
         <div className="tw-w-full tw-flex tw-flex-row tw-border tw-rounded">
@@ -30,7 +32,8 @@ export const UploadPlaceholder = ({
                     onUploadClick={onUploadClick}
                     onAssetChooseClick={onAssetChooseClick}
                     onDrop={onFilesDrop}
-                    isLoading={loading}
+                    isLoading={fileLoading}
+                    isDisabled={urlLoading}
                 />
             </div>
             <div className="block tw-h-48 tw-h-48 md:tw-w-1/2 sm:tw-w-full">
@@ -38,7 +41,8 @@ export const UploadPlaceholder = ({
                     label="Enter a URL"
                     icon={<IconLink24 />}
                     fillParentContainer={true}
-                    isLoading={loading}
+                    isLoading={urlLoading}
+                    isDisabled={fileLoading}
                     onUrlSubmit={onUrlSubmit}
                 />
             </div>

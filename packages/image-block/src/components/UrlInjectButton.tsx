@@ -23,6 +23,7 @@ interface UrlInjectButtonProps {
     // withMenu?: boolean;
     // onClick?: () => void;
     verticalLayout?: boolean;
+    isDisabled: boolean;
 }
 
 export const UrlInjectButton = ({
@@ -37,7 +38,8 @@ export const UrlInjectButton = ({
     // onClick,
     // validFileType,
     onUrlSubmit,
-    verticalLayout,
+    // verticalLayout,
+    isDisabled,
 }: UrlInjectButtonProps) => {
     // const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
@@ -60,6 +62,7 @@ export const UrlInjectButton = ({
             data-test-id="url-inject-button"
             className={joinClassNames([
                 'tw-font-body tw-relative tw-text-sm tw-leading-4  tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-w-full tw-rounded',
+                isDisabled && 'tw-pointer-events-none',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
                 menuPosition && 'tw-bg-blank-state-pressed-inverse',
                 errorMsg ? '!tw-border-red-50 !tw-cursor-not-allowed' : ' tw-border-blank-state-line',
@@ -82,7 +85,7 @@ export const UrlInjectButton = ({
                     <div className="tw-flex tw-flex-row tw-gap-x-3">
                         <input
                             id="lottie-url-input"
-                                // className="tw-input tw-input-sm tw-w-full tw-font-normal tw-w-32 tw-h-8 tw-rounded tw-border tw-border-gray-100 .tw-border-blank-state-line"
+                            // className="tw-input tw-input-sm tw-w-full tw-font-normal tw-w-32 tw-h-8 tw-rounded tw-border tw-border-gray-100 .tw-border-blank-state-line"
                             className="tw-flex tw-items-center tw-h-9 tw-gap-2 tw-px-3 tw-border tw-transition tw-rounded tw-text-body-small tw-font-sans tw-relative tw-bg-base dark:tw-bg-transparent tw-border-solid focus-within:tw-border-line-xx-strong focus-within:hover:tw-border-line-xx-strong hover:tw-border-line-x-strong tw-border-line-strong dark:tw-border-line-strong"
                             placeholder="https://..."
                             value={inputValue}

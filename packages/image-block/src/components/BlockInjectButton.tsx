@@ -29,7 +29,7 @@ type BlockInjectButtonProps = {
     onAssetChooseClick?: () => void;
     withMenu?: boolean;
     onClick?: () => void;
-    verticalLayout?: boolean;
+    isDisabled: boolean;
 };
 
 export const BlockInjectButton = ({
@@ -44,7 +44,7 @@ export const BlockInjectButton = ({
     withMenu = true,
     onClick,
     validFileType,
-    verticalLayout,
+    isDisabled,
 }: BlockInjectButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
@@ -95,6 +95,7 @@ export const BlockInjectButton = ({
             data-test-id="block-inject-button"
             className={joinClassNames([
                 'tw-font-body tw-relative tw-text-sm tw-leading-4  tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full md:tw-border-r  tw-rounded-tl md:tw-rounded-bl sm:tw-rounded-tr md:tw-rounded-tr-none sm:tw-border-b md:tw-border-b-0 lg:tw-border-b-0',
+                isDisabled && 'tw-pointer-events-none',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
                 isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
                 menuPosition && 'tw-bg-blank-state-pressed-inverse',
