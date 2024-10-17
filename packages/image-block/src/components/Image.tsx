@@ -5,18 +5,22 @@ import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-b
 import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useImageContainer } from '@frontify/guideline-blocks-shared';
-import { useEffect, type CSSProperties, type ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
 
 import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
 
-import { getFrameInterpolationSetting, getImageWrapperStyle, getPlaybackSettings } from './helpers';
+import {
+    getFrameInterpolationSetting,
+    getImageWrapperStyle,
+    // getPlaybackSettings
+} from './helpers';
 
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 type ImageSource = Asset | string;
 
 type ImageProps = {
-    // image: Asset;
+    key: number;
     imageSource: ImageSource;
     blockSettings: Settings;
     isEditing: boolean;
@@ -26,7 +30,6 @@ type ImageProps = {
 };
 
 type ImageWrapperProps = {
-    // image?: Asset;
     imageSource?: ImageSource;
     appBridge: AppBridgeBlock;
     children: ReactNode;
@@ -40,7 +43,6 @@ type ImageWrapperProps = {
 };
 
 const ImageWrapper = ({
-    // image,
     imageSource,
     appBridge,
     children,
@@ -83,7 +85,6 @@ const ImageWrapper = ({
             <button
                 data-test-id="image-block-asset-viewer-wrapper"
                 {...sharedProps}
-                // onClick={() => image && open(image, isDownloadable)}
                 onClick={() => imageSource && open(imageSource, isDownloadable)}
             >
                 {children}
@@ -99,6 +100,7 @@ const ImageWrapper = ({
 };
 
 export const Image = ({
+    key,
     imageSource,
     appBridge,
     blockSettings,
@@ -109,14 +111,11 @@ export const Image = ({
     const { setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
-    // const imageStyle = getImageStyle(blockSettings);
-    // const loop = getLoopSetting(blockSettings);
-    let frameInterpolation = getFrameInterpolationSetting(blockSettings);
-    let playbackSettings = getPlaybackSettings(blockSettings);
-    console.log('playbackSettings', playbackSettings);
-    console.log('playback hover', playbackSettings.playOnHover);
-    console.log('playback autoplay', playbackSettings.autoplay);
-    console.log('blocksettings', blockSettings);
+    const frameInterpolation = getFrameInterpolationSetting(blockSettings);
+
+    // for use with checklist in settings
+    // const playbackSettings = getPlaybackSettings(blockSettings);
+
     const { assetViewerEnabled, security } = blockSettings;
 
     const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
@@ -126,6 +125,7 @@ export const Image = ({
     return (
         <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative">
             <ImageWrapper
+                key={key}
                 appBridge={appBridge}
                 isAssetViewerEnabled={isAssetViewerEnabled}
                 link={link}
@@ -137,12 +137,13 @@ export const Image = ({
                 isDownloadable={isDownloadable}
             >
                 <DotLottieReact
-                    autoplay={playbackSettings.autoplay}
+                    key={key}
+                    autoplay={blockSettings.autoplay}
                     loop={blockSettings.loop}
                     src={typeof imageSource === 'string' ? imageSource : imageSource.originUrl}
                     speed={blockSettings.speed}
                     mode={blockSettings.mode}
-                    playOnHover={playbackSettings.playOnHover}
+                    playOnHover={blockSettings.hover}
                     useFrameInterpolation={frameInterpolation}
                 />
             </ImageWrapper>
