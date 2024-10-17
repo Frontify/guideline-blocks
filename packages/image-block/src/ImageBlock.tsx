@@ -67,8 +67,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         assetDownloadEnabled,
         image
     );
-
-    console.log('blockId', blockId);
+    const [imageBlockKey, setImageBlockKey] = useState(0);
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
@@ -176,6 +175,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         if (image) {
             deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
         }
+        setImageBlockKey((prevKey) => prevKey + 1);
         console.log('image', image);
         console.log('blockAssets', blockAssets);
     };
@@ -251,6 +251,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                         </div>
                                     ) : (
                                         <Image
+                                            key={imageBlockKey}
                                             appBridge={appBridge}
                                             blockSettings={blockSettings}
                                             isEditing={isEditing}
