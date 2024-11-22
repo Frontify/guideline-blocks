@@ -12,8 +12,9 @@ export const IconInfo = ({ title }: IconProps) => {
             name="IconInfo20"
             aria-hidden="true"
             data-test-id="callout-icon-info"
+            aria-labelledby="infoTitle"
         >
-            <title>{title}</title>
+            <title id="infoTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"

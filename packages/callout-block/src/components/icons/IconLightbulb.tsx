@@ -11,8 +11,9 @@ export const IconLightbulb = ({ title }: IconProps) => {
             className="tw-flex tw-items-center tw-justify-center tw-fill-current"
             name="IconLightbulb20"
             aria-hidden="true"
+            aria-labelledby="lightbulbTitle"
         >
-            <title>{title}</title>
+            <title id="lightbulbTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"

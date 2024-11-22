@@ -11,8 +11,9 @@ export const IconMegaphone = ({ title }: IconProps) => {
             className="tw-flex tw-items-center tw-justify-center tw-fill-current"
             name="IconMegaphone20"
             aria-hidden="true"
+            aria-labelledby="megaphoneTitle"
         >
-            <title>{title}</title>
+            <title id="megaphoneTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"
