@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconInfo20, IconLightbulb20, IconMegaphone20 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import type { ReactNode } from 'react';
 
 import { Icon, Type } from '../types';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CustomCalloutIcon } from './CustomCalloutIcon';
+import { IconInfo, IconLightbulb, IconMegaphone } from './icons/';
 
 type CalloutIconProps = {
     iconType: Icon;
@@ -36,8 +36,8 @@ export const CalloutIcon = ({ iconType, isActive, appBridge, color, type }: Call
 
 const calloutIconMap = (appBridge: AppBridgeBlock, type: Type): Record<Icon, ReactNode> => ({
     none: null,
-    info: <IconInfo20 data-test-id="callout-icon-info" />,
-    lightbulb: <IconLightbulb20 />,
-    megaphone: <IconMegaphone20 />,
+    info: <IconInfo title={type} />,
+    lightbulb: <IconLightbulb title={type} />,
+    megaphone: <IconMegaphone title={type} />,
     custom: <CustomCalloutIcon appBridge={appBridge} type={type} />,
 });
