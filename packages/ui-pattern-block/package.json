@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",
-        "@frontify/eslint-config-react": "0.16.1",
+        "@frontify/eslint-config-react": "0.17.7",
         "@frontify/frontify-cli": "^5.7.5",
         "@types/lodash": "^4.14.199",
         "@types/lodash-es": "^4.17.9",
