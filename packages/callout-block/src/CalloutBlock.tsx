@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import {
     BlockProps,
@@ -20,6 +20,7 @@ import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, pa
 import '@frontify/fondue/style';
 import '@frontify/guideline-blocks-settings/styles';
 import 'tailwindcss/tailwind.css';
+import { ICON_ASSET_ID } from './settings';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -27,6 +28,15 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
+
+    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
+
+    useEffect(() => {
+        if (!blockSettings.iconSwitch && customIcon && isEditing) {
+            deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
+        }
+    }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
 
     useEffect(() => {
         const updateStyles = () => {
@@ -116,9 +126,9 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div data-test-id="callout-content" className={textDivClassNames}>
                     {iconType !== Icon.None && (
                         <CalloutIcon
-                            appBridge={appBridge}
                             isActive={hasRichTextValue(blockSettings.textValue)}
                             iconType={iconType}
+                            customIcon={customIcon}
                             color={textColor}
                             type={type}
                         />
