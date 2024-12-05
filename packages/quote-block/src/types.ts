@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type AppBridgeBlock } from '@frontify/app-bridge';
+import { type Asset } from '@frontify/app-bridge';
 import { type Color } from '@frontify/fondue';
 import { type CSSProperties } from 'react';
 
@@ -82,6 +82,5 @@ export enum QuotationMarksAnchoring {
 
 export type CustomIconProps = {
     style: CSSProperties;
-    customIconId: string;
-    appBridge: AppBridgeBlock;
+    customIcon: Asset | undefined;
 };

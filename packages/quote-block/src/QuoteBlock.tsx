@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     AutoformatPlugin,
     BoldPlugin,
@@ -21,7 +21,7 @@ import {
     convertToRteValue,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import 'tailwindcss/tailwind.css';
@@ -44,6 +44,29 @@ customPlugins
 export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+
+    const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const customLeftIcon = blockAssets?.[CUSTOM_QUOTE_STYLE_LEFT_ID]?.[0];
+    const customRightIcon = blockAssets?.[CUSTOM_QUOTE_STYLE_RIGHT_ID]?.[0];
+
+    useEffect(() => {
+        if (!isEditing) {
+            return;
+        }
+        if (!blockSettings.isCustomQuoteStyleRight && customRightIcon) {
+            deleteAssetIdsFromKey(CUSTOM_QUOTE_STYLE_RIGHT_ID, [customRightIcon.id]);
+        }
+        if (!blockSettings.isCustomQuoteStyleLeft && customLeftIcon) {
+            deleteAssetIdsFromKey(CUSTOM_QUOTE_STYLE_LEFT_ID, [customLeftIcon.id]);
+        }
+    }, [
+        blockSettings.isCustomQuoteStyleLeft,
+        blockSettings.isCustomQuoteStyleRight,
+        customRightIcon,
+        customLeftIcon,
+        deleteAssetIdsFromKey,
+        isEditing,
+    ]);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const isFullWidth =
@@ -89,12 +112,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div className={getWrapperClasses()}>
                     {isQuotationMarkType && (
                         <QuoteBlockIcon
-                            appBridge={appBridge}
                             color={iconColor}
                             isCustomSize={blockSettings.isCustomSize}
                             sizeValue={sizeValue}
                             sizeChoice={blockSettings.sizeChoice}
-                            customIconId={CUSTOM_QUOTE_STYLE_LEFT_ID}
+                            customIcon={customLeftIcon}
                             quoteStyle={
                                 blockSettings.isCustomQuoteStyleLeft
                                     ? QuoteStyle.Custom
@@ -128,12 +150,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     </div>
                     {isQuotationMarkType && (
                         <QuoteBlockIcon
-                            appBridge={appBridge}
                             color={iconColor}
                             isCustomSize={blockSettings.isCustomSize}
                             sizeValue={sizeValue}
                             sizeChoice={blockSettings.sizeChoice}
-                            customIconId={CUSTOM_QUOTE_STYLE_RIGHT_ID}
+                            customIcon={customRightIcon}
                             quoteStyle={
                                 blockSettings.isCustomQuoteStyleRight
                                     ? QuoteStyle.Custom

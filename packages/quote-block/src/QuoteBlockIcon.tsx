@@ -5,11 +5,10 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/guideline-blocks-settings/styles';
 import { QuoteSize, type QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
-import { type AppBridgeBlock } from '@frontify/app-bridge';
+import { Asset } from '@frontify/app-bridge';
 
 export type QuoteBlockIconProps = {
-    customIconId: string;
-    appBridge: AppBridgeBlock;
+    customIcon: Asset | undefined;
     quoteStyle: QuoteStyle;
     color: string;
     isCustomSize?: boolean;
@@ -18,14 +17,13 @@ export type QuoteBlockIconProps = {
 };
 
 export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
-    customIconId,
+    customIcon,
     quoteStyle,
     color,
     isCustomSize,
     sizeValue,
     sizeChoice,
-    appBridge,
 }) => {
     const size = isCustomSize ? (sizeValue ?? '') : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
-    return quoteIconMap(size, color, customIconId, appBridge)[quoteStyle];
+    return quoteIconMap(size, color, customIcon)[quoteStyle];
 };
