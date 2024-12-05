@@ -50,6 +50,9 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const customRightIcon = blockAssets?.[CUSTOM_QUOTE_STYLE_RIGHT_ID]?.[0];
 
     useEffect(() => {
+        if (!isEditing) {
+            return;
+        }
         if (!blockSettings.isCustomQuoteStyleRight && customRightIcon) {
             deleteAssetIdsFromKey(CUSTOM_QUOTE_STYLE_RIGHT_ID, [customRightIcon.id]);
         }
@@ -62,6 +65,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
         customRightIcon,
         customLeftIcon,
         deleteAssetIdsFromKey,
+        isEditing,
     ]);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
