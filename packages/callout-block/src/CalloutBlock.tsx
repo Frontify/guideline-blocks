@@ -33,10 +33,10 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
     useEffect(() => {
-        if (!blockSettings.iconSwitch && customIcon) {
+        if (!blockSettings.iconSwitch && customIcon && isEditing) {
             deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
         }
-    }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey]);
+    }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
 
     useEffect(() => {
         const updateStyles = () => {
