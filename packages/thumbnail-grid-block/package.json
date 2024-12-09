@@ -39,7 +39,7 @@
         "@dnd-kit/utilities": "^3.2.1",
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.2.10",
-        "@frontify/guideline-blocks-settings": "0.36.9",
+        "@frontify/guideline-blocks-settings": "0.36.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "^4.17.21",
         "react": "^18.3.1",
