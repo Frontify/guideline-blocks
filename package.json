@@ -41,7 +41,7 @@
         "vitest": "^2.0.5"
     },
     "dependencies": {
-        "@frontify/fondue": "12.2.10",
+        "@frontify/fondue": "12.2.13",
         "glob": "^11.0.0",
         "happy-dom": "^15.7.3",
         "react": "^18.3.1",
@@ -52,5 +52,5 @@
             "@udecode/plate-emoji@31.0.0": "patches/@udecode__plate-emoji@31.0.0.patch"
         }
     },
-    "packageManager": "pnpm@9.1.2"
+    "packageManager": "pnpm@9.15.3"
 }

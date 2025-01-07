@@ -1,5 +1,7 @@
+import guidelineBlocksSettings from "@frontify/guideline-blocks-settings/tailwind";
+
 module.exports = {
-    presets: [require("@frontify/guideline-blocks-settings/tailwind")],
+    presets: [guidelineBlocksSettings],
     content: ["./{packages,examples}/*/src/**/*.{ts,tsx}"],
     corePlugins: {
         preflight: false,
