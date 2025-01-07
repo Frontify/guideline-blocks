@@ -23,10 +23,9 @@ module.exports = (opts = {}) => {
                 rule.selectors = rule.selectors.map((originalSelector) =>
                     originalSelector
                         .split(/(?<!\\),\s*/g)
-                        .map((individualSelector) =>
-                            !individualSelector.includes("tw-")
-                                ? individualSelector
-                                : `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`,
+                        .map(
+                            (individualSelector) =>
+                                `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`,
                         )
                         .join(", "),
                 );
