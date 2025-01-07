@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "^7.25.2",
+        "@babel/core": "^7.26.0",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.7.5",
         "@types/react": "^18.3.5",
@@ -39,9 +39,9 @@
         "@frontify/fondue": "12.2.13",
         "@frontify/guideline-blocks-settings": "0.36.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "@uiw/codemirror-extensions-langs": "^4.23.0",
-        "@uiw/codemirror-themes-all": "^4.23.0",
-        "@uiw/react-codemirror": "^4.23.0",
+        "@uiw/codemirror-extensions-langs": "^4.23.7",
+        "@uiw/codemirror-themes-all": "^4.23.7",
+        "@uiw/react-codemirror": "^4.23.7",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     }

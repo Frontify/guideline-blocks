@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "^7.25.2",
+        "@babel/core": "^7.26.0",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.7.5",
         "@types/autosize": "^4.0.3",
