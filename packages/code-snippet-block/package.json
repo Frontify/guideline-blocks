@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "^7.25.2",
+        "@babel/core": "^7.26.0",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.7.5",
         "@types/react": "^18.3.5",
@@ -32,16 +32,16 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "@codemirror/language": "^6.10.2",
-        "@codemirror/state": "^6.4.1",
-        "@codemirror/view": "^6.32.0",
+        "@codemirror/language": "^6.10.8",
+        "@codemirror/state": "^6.5.0",
+        "@codemirror/view": "^6.36.1",
         "@frontify/app-bridge": "^3.9.1",
         "@frontify/fondue": "12.2.13",
         "@frontify/guideline-blocks-settings": "0.36.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "@uiw/codemirror-extensions-langs": "^4.23.0",
-        "@uiw/codemirror-themes-all": "^4.23.0",
-        "@uiw/react-codemirror": "^4.23.0",
+        "@uiw/codemirror-extensions-langs": "^4.23.7",
+        "@uiw/codemirror-themes-all": "^4.23.7",
+        "@uiw/react-codemirror": "^4.23.7",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     }
