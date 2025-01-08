@@ -10,6 +10,7 @@ import {
     IconSpeechBubbleQuote20,
     IconTrashBin16,
     IconTrashBin20,
+    merge,
 } from '@frontify/fondue';
 import {
     AssetChooserObjectType,
@@ -173,7 +174,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const memoizedRichTextEditor = useMemo(
         () => (
             <RichTextEditor
-                id={`${appBridge.getBlockId()}-${id}-editor`}
+                id={`${appBridge.context('blockId').get()}-${id}-editor`}
                 isEditing={editing}
                 value={body}
                 onTextChange={onBodyTextChange}
@@ -186,7 +187,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     );
 
     return (
-        <div className="tw-relative">
+        <div className={merge(['tw-relative', isDragging && 'tw-bg-base'])}>
             <BlockItemWrapper
                 outlineOffset={0}
                 isDragging={isDragging}
