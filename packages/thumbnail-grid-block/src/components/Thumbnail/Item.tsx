@@ -101,9 +101,14 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 key={id}
                 ref={ref}
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
-                className={merge([!isEditing && !image && 'tw-hidden', 'tw-w-full tw-h-full tw-bg-white'])}
+                className={merge([
+                    !isEditing && !image && 'tw-hidden',
+                    'tw-w-full tw-h-full',
+                    isDragging && 'tw-bg-base',
+                ])}
             >
                 <BlockItemWrapper
+                    outlineOffset={0}
                     isDragging={isDragging}
                     shouldFillContainer={true}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
