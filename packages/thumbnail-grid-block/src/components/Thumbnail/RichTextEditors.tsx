@@ -17,12 +17,13 @@ type RichTextEditorsProps = {
 
 export const RichTextEditors = memo((props: RichTextEditorsProps) => {
     const { isEditing, updateItem, id, title, description, appBridge } = props;
+    const blockId = appBridge.context('blockId').get();
 
     const memoizedTitle = useMemo(
         () => (
             <div className="[&>div>div>*]:!tw-mt-0">
                 <RichTextEditor
-                    id={`${id}-title`}
+                    id={`${id}-title-${blockId}`}
                     isEditing={isEditing}
                     onTextChange={(value) => updateItem('title', value)}
                     value={title ?? convertToRteValue(TextStyles.heading3)}
@@ -31,12 +32,12 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
                 />
             </div>
         ),
-        [id, title, isEditing, updateItem]
+        [id, title, isEditing, blockId, updateItem]
     );
     const memoizedDescription = useMemo(
         () => (
             <RichTextEditor
-                id={`${id}-description`}
+                id={`${id}-description-${blockId}`}
                 isEditing={isEditing}
                 value={description ?? convertToRteValue()}
                 plugins={getCaptionPlugins(appBridge)}
@@ -44,7 +45,7 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
                 placeholder="Add a description"
             />
         ),
-        [id, description, isEditing, updateItem, appBridge]
+        [id, description, isEditing, blockId, updateItem, appBridge]
     );
 
     return (
