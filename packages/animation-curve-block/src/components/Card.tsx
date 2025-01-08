@@ -79,10 +79,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         return (
             <div
                 ref={ref}
-                className="tw-bg-base"
+                className={isDragging ? 'tw-bg-base' : ''}
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
             >
                 <BlockItemWrapper
+                    outlineOffset={0}
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
@@ -109,7 +110,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (textShown || hasParameter) && 'tw-pb-4',
-                            'tw-flex tw-flex-col tw-relative tw-bg-base',
+                            'tw-flex tw-flex-col tw-relative',
                         ])}
                         style={{
                             ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
