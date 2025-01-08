@@ -9,6 +9,8 @@
  * @type {import('postcss').PluginCreator}
  */
 module.exports = (opts = {}) => {
+    const tagSelectorRegex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
+
     return {
         postcssPlugin: "scope",
         Root(root) {
@@ -23,9 +25,11 @@ module.exports = (opts = {}) => {
                 rule.selectors = rule.selectors.map((originalSelector) =>
                     originalSelector
                         .split(/(?<!\\),\s*/g)
-                        .map(
-                            (individualSelector) =>
-                                `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`,
+                        .map((individualSelector) =>
+                            individualSelector.includes("tw-") ||
+                            tagSelectorRegex.test(individualSelector)
+                                ? `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`
+                                : individualSelector,
                         )
                         .join(", "),
                 );
