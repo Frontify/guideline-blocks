@@ -186,8 +186,9 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     );
 
     return (
-        <div className="tw-bg-base tw-relative">
+        <div className="tw-relative">
             <BlockItemWrapper
+                outlineOffset={0}
                 isDragging={isDragging}
                 shouldHideWrapper={replaceWithPlaceholder || !editing}
                 shouldHideComponent={replaceWithPlaceholder}
