@@ -368,15 +368,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][columns - 1]
             : [
                   'tw-grid-cols-1',
-                  'md:tw-grid-cols-2 sm:tw-grid-cols-1',
-                  'lg:tw-grid-cols-3 md:tw-grid-cols-2 sm:tw-grid-cols-1',
-                  'lg:tw-grid-cols-4 md:tw-grid-cols-2 sm:tw-grid-cols-1',
+                  '@sm:tw-grid-cols-2',
+                  '@md:tw-grid-cols-3 @sm:tw-grid-cols-2',
+                  '@md:tw-grid-cols-4 @sm:tw-grid-cols-2',
               ][columns - 1];
 
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <div className="dos-donts-block">
+        <div className="dos-donts-block tw-@container">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
