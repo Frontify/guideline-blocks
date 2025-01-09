@@ -22,17 +22,25 @@ module.exports = (opts = {}) => {
                 ) {
                     return;
                 }
-                rule.selectors = rule.selectors.map((originalSelector) =>
-                    originalSelector
-                        .split(/(?<!\\),\s*/g)
-                        .map((individualSelector) =>
-                            individualSelector.includes("tw-") ||
-                            tagSelectorRegex.test(individualSelector)
-                                ? `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`
-                                : individualSelector,
-                        )
-                        .join(", "),
-                );
+                rule.selectors = rule.selectors
+                    .map((originalSelector) =>
+                        originalSelector
+                            .split(/(?<!\\),\s*/g)
+                            .map((individualSelector) => {
+                                if (
+                                    individualSelector === "*" ||
+                                    individualSelector.startsWith(":") ||
+                                    tagSelectorRegex.test(individualSelector) ||
+                                    individualSelector.includes("tw-")
+                                ) {
+                                    return `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`;
+                                }
+
+                                return individualSelector;
+                            })
+                            .join(", "),
+                    )
+                    .filter(Boolean);
             });
         },
     };
