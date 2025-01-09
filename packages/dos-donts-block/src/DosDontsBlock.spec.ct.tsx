@@ -68,7 +68,7 @@ describe("Dos & Don'ts Block", () => {
         });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).should('have.class', 'lg:tw-grid-cols-3');
+        cy.get(DosDontsBlockSelector).should('have.class', '@md:tw-grid-cols-3');
         cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '20px');
     });
 
