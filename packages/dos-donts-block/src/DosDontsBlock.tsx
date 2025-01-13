@@ -188,6 +188,34 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isContainerSmall, setisContainerSmall] = useState<boolean>(false);
+    const CONTAINER_SMALL_LIMIT = 200;
+
+    useEffect(() => {
+        const container = containerRef.current;
+
+        if (!container) {
+            return;
+        }
+
+        const observer = new ResizeObserver((entries) => {
+            if (entries[entries.length - 1].contentRect.width < CONTAINER_SMALL_LIMIT) {
+                setisContainerSmall(true);
+            } else {
+                setisContainerSmall(false);
+            }
+        });
+
+        observer.observe(container);
+
+        return () => {
+            if (container) {
+                observer.unobserve(container);
+            }
+        };
+    }, [containerRef, isEditing]);
+
     const addItem = (type: DoDontType) => {
         const newItems: Item[] = [...localItems, { id: generateRandomId(), body: '', title: '', type }];
         setAndSaveItems(newItems);
@@ -376,7 +404,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <div className="dos-donts-block tw-@container">
+        <div ref={containerRef} className="dos-donts-block tw-@container">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
@@ -420,14 +448,22 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                             />
                         </div>
                     )}
-                    <div className="tw-flex tw-w-full">
+                    <div
+                        data-test-id="dos-donts-block-add-buttons"
+                        className={joinClassNames([
+                            'tw-flex tw-w-full tw-flex-col',
+                            `@[${CONTAINER_SMALL_LIMIT}px]:tw-flex-row`,
+                        ])}
+                    >
                         <BlockInjectButton
+                            verticalLayout={isContainerSmall}
                             label="Add do"
                             withMenu={false}
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
                         <BlockInjectButton
+                            verticalLayout={isContainerSmall}
                             label="Add don't"
                             withMenu={false}
                             icon={<IconCrossCircle20 />}
