@@ -14,6 +14,7 @@ const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
 const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
 const INTERNAL_LINK_SELECTOR = '[data-test-id="internal-link-selector"]';
 const IMAGE_SELECTOR = '[data-test-id="do-dont-image"]';
+const DND_ADD_BUTTONS = '[data-test-id="dos-donts-block-add-buttons"]';
 
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
@@ -185,5 +186,45 @@ describe("Dos & Don'ts Block", () => {
 
         cy.get(FLOATING_BUTTON_BUTTON).should('exist').click();
         cy.get(INTERNAL_LINK_SELECTOR).should('exist');
+    });
+
+    describe('Add buttons', () => {
+        it('should stack on top of each other on containers that are smaller than 200px', () => {
+            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+                editorState: true,
+                blockSettings: {
+                    style: DoDontStyle.Icons,
+                    dontIconChoice: ItemIconChoice.CHECKMARK,
+                    doIconChoice: ItemIconChoice.CHECKMARK,
+                },
+            });
+
+            mount(
+                <div className="tw-w-[150px]">
+                    <DosDontsBlockWithStubs />
+                </div>
+            );
+
+            cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'column');
+        });
+
+        it('should be rendered side by side on contianers larger than 200px', () => {
+            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+                editorState: true,
+                blockSettings: {
+                    style: DoDontStyle.Icons,
+                    dontIconChoice: ItemIconChoice.CHECKMARK,
+                    doIconChoice: ItemIconChoice.CHECKMARK,
+                },
+            });
+
+            mount(
+                <div className="tw-w-[250px]">
+                    <DosDontsBlockWithStubs />
+                </div>
+            );
+
+            cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'row');
+        });
     });
 });
