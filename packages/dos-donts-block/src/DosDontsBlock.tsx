@@ -188,6 +188,34 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isContainerSmall, setisContainerSmall] = useState<boolean>(false);
+    const CONTAINER_SMALL_LIMIT = 440; // this is the value defined in tailwind for @sm
+
+    useEffect(() => {
+        const container = containerRef.current;
+
+        if (!container) {
+            return;
+        }
+
+        const observer = new ResizeObserver((entries) => {
+            if (entries[entries.length - 1].contentRect.width < CONTAINER_SMALL_LIMIT) {
+                setisContainerSmall(true);
+            } else {
+                setisContainerSmall(false);
+            }
+        });
+
+        observer.observe(container);
+
+        return () => {
+            if (container) {
+                observer.unobserve(container);
+            }
+        };
+    }, [containerRef, isEditing]);
+
     const addItem = (type: DoDontType) => {
         const newItems: Item[] = [...localItems, { id: generateRandomId(), body: '', title: '', type }];
         setAndSaveItems(newItems);
@@ -368,15 +396,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][columns - 1]
             : [
                   'tw-grid-cols-1',
-                  'md:tw-grid-cols-2 sm:tw-grid-cols-1',
-                  'lg:tw-grid-cols-3 md:tw-grid-cols-2 sm:tw-grid-cols-1',
-                  'lg:tw-grid-cols-4 md:tw-grid-cols-2 sm:tw-grid-cols-1',
+                  '@sm:tw-grid-cols-2',
+                  '@md:tw-grid-cols-3 @sm:tw-grid-cols-2',
+                  '@md:tw-grid-cols-4 @sm:tw-grid-cols-2',
               ][columns - 1];
 
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <div className="dos-donts-block">
+        <div ref={containerRef} className="dos-donts-block tw-@container">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
@@ -420,14 +448,19 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                             />
                         </div>
                     )}
-                    <div className="tw-flex tw-w-full">
+                    <div
+                        data-test-id="dos-donts-block-add-buttons"
+                        className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
+                    >
                         <BlockInjectButton
+                            verticalLayout={isContainerSmall}
                             label="Add do"
                             withMenu={false}
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
                         <BlockInjectButton
+                            verticalLayout={isContainerSmall}
                             label="Add don't"
                             withMenu={false}
                             icon={<IconCrossCircle20 />}
