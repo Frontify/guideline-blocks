@@ -189,7 +189,7 @@ describe("Dos & Don'ts Block", () => {
     });
 
     describe('Add buttons', () => {
-        it('should stack on top of each other on containers that are smaller than 200px', () => {
+        it('should stack on top of each other on containers below @sm(440px) breakpoint', () => {
             const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
                 editorState: true,
                 blockSettings: {
@@ -208,7 +208,7 @@ describe("Dos & Don'ts Block", () => {
             cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'column');
         });
 
-        it('should be rendered side by side on contianers larger than 200px', () => {
+        it('should be rendered side by side on containers larger than @sm(440px) breakpoint', () => {
             const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
                 editorState: true,
                 blockSettings: {
@@ -219,7 +219,7 @@ describe("Dos & Don'ts Block", () => {
             });
 
             mount(
-                <div className="tw-w-[250px]">
+                <div className="tw-w-[500px]">
                     <DosDontsBlockWithStubs />
                 </div>
             );

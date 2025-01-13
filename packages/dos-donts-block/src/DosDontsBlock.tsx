@@ -190,7 +190,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setisContainerSmall] = useState<boolean>(false);
-    const CONTAINER_SMALL_LIMIT = 200;
+    const CONTAINER_SMALL_LIMIT = 440; // this is the value defined in tailwind for @sm
 
     useEffect(() => {
         const container = containerRef.current;
@@ -450,10 +450,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     )}
                     <div
                         data-test-id="dos-donts-block-add-buttons"
-                        className={joinClassNames([
-                            'tw-flex tw-w-full tw-flex-col',
-                            `@[${CONTAINER_SMALL_LIMIT}px]:tw-flex-row`,
-                        ])}
+                        className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
                     >
                         <BlockInjectButton
                             verticalLayout={isContainerSmall}
