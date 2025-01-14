@@ -118,6 +118,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
     const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
     const themeStyle = useMemo(() => getComputedStyle(document.body), []);
     const defaultDoColor = useMemo(
@@ -187,9 +189,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
-
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
     useEffect(() => {
         const container = containerRef.current;
