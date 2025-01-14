@@ -38,7 +38,7 @@ import {
     generateRandomId,
 } from '@frontify/fondue';
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
+import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -190,7 +190,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
-    const CONTAINER_SMALL_LIMIT = 440; // this is the value defined in tailwind for @sm
 
     useEffect(() => {
         const container = containerRef.current;
