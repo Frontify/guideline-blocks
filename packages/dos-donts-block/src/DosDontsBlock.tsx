@@ -200,11 +200,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const observer = new ResizeObserver((entries) => {
-            if (entries[entries.length - 1].contentRect.width < CONTAINER_SMALL_LIMIT) {
-                setisContainerSmall(true);
-            } else {
-                setisContainerSmall(false);
-            }
+    const lastEntry = entries[entries.length - 1];
+    const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
+    setIsContainerSmall(isSmall);
         });
 
         observer.observe(container);
