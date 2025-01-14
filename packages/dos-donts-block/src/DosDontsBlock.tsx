@@ -398,7 +398,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                   'tw-grid-cols-1',
                   '@sm:tw-grid-cols-2',
                   '@md:tw-grid-cols-3 @sm:tw-grid-cols-2',
-                  '@md:tw-grid-cols-4 @sm:tw-grid-cols-2',
+                  '@md:tw-grid-cols-4 @sm:tw-grid-cols-3 @xs:tw-grid-cols-2',
               ][columns - 1];
 
     const activeItem = localItems.find((x) => x.id === activeId);
