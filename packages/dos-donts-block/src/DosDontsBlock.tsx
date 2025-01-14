@@ -10,6 +10,7 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
+import throttle from 'lodash/throttle';
 
 import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
@@ -197,11 +198,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             return;
         }
 
-        const observer = new ResizeObserver((entries) => {
+        const throttledFn = throttle((entries) => {
             const lastEntry = entries[entries.length - 1];
             const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
+
             setIsContainerSmall(isSmall);
-        });
+        }, 200);
+
+        const observer = new ResizeObserver(throttledFn);
 
         observer.observe(container);
 
