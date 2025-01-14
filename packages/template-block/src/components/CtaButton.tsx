@@ -40,7 +40,7 @@ export const CtaButton = ({
             onClick={isEditing ? undefined : handleNewPublication}
             onMouseEnter={() => setButtonHover(true)}
             onMouseLeave={() => setButtonHover(false)}
-            className={`disabled:tw-opacity-50 ${marginOverwrites} [&>div]:!tw-@container-normal`}
+            className={`disabled:tw-opacity-50 ${marginOverwrites} [&>div]:!tw-@container-normal tw-max-w-full`}
             style={{
                 ...buttonStyles,
                 ...(buttonHover ? buttonStyles?.hover : null),
