@@ -230,7 +230,7 @@ const getTextCtaWrapperClass = (
     textPositioning: TextPositioningType,
     textRatio: TextRatioType
 ): string => {
-    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
+    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : 'tw-flex-col @sm:tw-flex-row';
     const flexBasis =
         hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
             ? textRatioToFlexBasis[textRatio]

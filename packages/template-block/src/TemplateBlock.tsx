@@ -68,7 +68,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }
 
     return (
-        <div data-test-id="container" className="template-block">
+        <div data-test-id="container" className="template-block tw-@container">
             <div data-test-id="card" style={cardStyles}>
                 {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
@@ -120,7 +120,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 {isEditing && !hasPreview && (
                     <div
                         data-test-id="cta-editing-no-preview"
-                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded"
+                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded tw-flex-col @sm:tw-flex-row"
                     >
                         <div>
                             <Text size="large" color="x-weak">
