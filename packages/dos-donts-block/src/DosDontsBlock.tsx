@@ -189,7 +189,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [doneAll, uploadResults]);
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isContainerSmall, setisContainerSmall] = useState<boolean>(false);
+    const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
     const CONTAINER_SMALL_LIMIT = 440; // this is the value defined in tailwind for @sm
 
     useEffect(() => {
@@ -200,9 +200,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const observer = new ResizeObserver((entries) => {
-    const lastEntry = entries[entries.length - 1];
-    const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
-    setIsContainerSmall(isSmall);
+            const lastEntry = entries[entries.length - 1];
+            const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
+            setIsContainerSmall(isSmall);
         });
 
         observer.observe(container);
