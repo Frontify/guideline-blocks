@@ -2,7 +2,8 @@
 
 import { type ReactElement } from 'react';
 import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, Text } from '@frontify/fondue';
+import { Text } from '@frontify/fondue';
+import { Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 
 import { AlertError } from './components/AlertError';
@@ -130,8 +131,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
 
                         <Button
-                            emphasis={selectedTemplate ? ButtonEmphasis.Default : ButtonEmphasis.Strong}
-                            onClick={handleOpenTemplateChooser}
+                            className="tw-line-clamp-2"
+                            emphasis={selectedTemplate ? 'default' : 'strong'}
+                            onPress={handleOpenTemplateChooser}
                         >
                             {selectedTemplate ? 'Replace template' : 'Choose existing template'}
                         </Button>
