@@ -4,5 +4,10 @@
         { "type": "string", "settingId": "authorName" },
         { "type": "fondueRte", "settingId": "content" }
     ],
+
+    "dataFields": [
+        { "key": "author", "settingId": "author" },
+        { "key": "quote", "settingId": "content" }
+    ],
     "i18nFields": ["content"]
 }

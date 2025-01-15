@@ -18,7 +18,7 @@
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.7.5",
         "@types/autosize": "^4.0.3",
-        "@types/lodash": "^4.14.199",
+        "@types/lodash": "^4.17.14",
         "@types/react": "^18.3.5",
         "@types/react-dom": "^18.3.0",
         "autoprefixer": "^10.4.20",
@@ -39,7 +39,7 @@
         "@frontify/fondue": "12.2.13",
         "@frontify/guideline-blocks-settings": "0.36.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "autosize": "^6.0.0",
+        "autosize": "^6.0.1",
         "lodash": "^4.17.21",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
