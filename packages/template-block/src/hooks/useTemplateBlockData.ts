@@ -221,7 +221,7 @@ const getTextClasses = (
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
-    const selfAlign = hasTitleOnly ? 'tw-self-center' : '';
+    const selfAlign = hasTitleOnly ? 'tw-self-center tw-w-full @sm:tw-w-auto' : '';
     return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
@@ -230,7 +230,7 @@ const getTextCtaWrapperClass = (
     textPositioning: TextPositioningType,
     textRatio: TextRatioType
 ): string => {
-    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : '';
+    const textCtaWrapperFlexDirection = hasPreview ? 'tw-flex-col' : 'tw-flex-col @sm:tw-flex-row';
     const flexBasis =
         hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
             ? textRatioToFlexBasis[textRatio]

@@ -2,7 +2,8 @@
 
 import { type ReactElement } from 'react';
 import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, Text } from '@frontify/fondue';
+import { Text } from '@frontify/fondue';
+import { Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 
 import { AlertError } from './components/AlertError';
@@ -68,7 +69,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }
 
     return (
-        <div data-test-id="container" className="template-block">
+        <div data-test-id="container" className="template-block tw-@container">
             <div data-test-id="card" style={cardStyles}>
                 {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
@@ -120,7 +121,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 {isEditing && !hasPreview && (
                     <div
                         data-test-id="cta-editing-no-preview"
-                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded"
+                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded tw-flex-col @sm:tw-flex-row"
                     >
                         <div>
                             <Text size="large" color="x-weak">
@@ -130,8 +131,9 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
 
                         <Button
-                            emphasis={selectedTemplate ? ButtonEmphasis.Default : ButtonEmphasis.Strong}
-                            onClick={handleOpenTemplateChooser}
+                            className="tw-line-clamp-2"
+                            emphasis={selectedTemplate ? 'default' : 'strong'}
+                            onPress={handleOpenTemplateChooser}
                         >
                             {selectedTemplate ? 'Replace template' : 'Choose existing template'}
                         </Button>
