@@ -167,7 +167,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
 
 export const gridClasses: Record<number, string> = {
     1: 'tw-grid-cols-1',
-    2: 'tw-grid-cols-1 xs:tw-grid-cols-2',
-    3: 'tw-grid-cols-1 xs:tw-grid-cols-2 md:tw-grid-cols-3',
-    4: 'tw-grid-cols-1 xs:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4',
+    2: 'tw-grid-cols-1 @xs:tw-grid-cols-2',
+    3: 'tw-grid-cols-1 @xs:tw-grid-cols-2 @md:tw-grid-cols-3',
+    4: 'tw-grid-cols-1 @xs:tw-grid-cols-2 @sm:tw-grid-cols-3 @md:tw-grid-cols-4',
 };
