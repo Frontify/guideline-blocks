@@ -1060,7 +1060,7 @@ importers:
         specifier: workspace:*
         version: link:../shared
       autosize:
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: 6.0.1
       lodash:
         specifier: ^4.17.21
@@ -1085,7 +1085,7 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       '@types/lodash':
-        specifier: ^4.14.199
+        specifier: ^4.17.14
         version: 4.17.14
       '@types/react':
         specifier: ^18.3.5
@@ -2119,7 +2119,7 @@ importers:
         specifier: ^5.7.5
         version: 5.7.11(@types/node@22.10.1)(terser@5.31.2)
       '@types/lodash':
-        specifier: ^4.14.199
+        specifier: ^4.17.14
         version: 4.17.14
       '@types/lodash-es':
         specifier: ^4.17.9
