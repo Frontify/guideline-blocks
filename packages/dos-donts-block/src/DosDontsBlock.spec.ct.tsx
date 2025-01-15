@@ -14,6 +14,7 @@ const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
 const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
 const INTERNAL_LINK_SELECTOR = '[data-test-id="internal-link-selector"]';
 const IMAGE_SELECTOR = '[data-test-id="do-dont-image"]';
+const DND_ADD_BUTTONS = '[data-test-id="dos-donts-block-add-buttons"]';
 
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
@@ -68,7 +69,7 @@ describe("Dos & Don'ts Block", () => {
         });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).should('have.class', 'lg:tw-grid-cols-3');
+        cy.get(DosDontsBlockSelector).should('have.class', '@md:tw-grid-cols-3');
         cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '20px');
     });
 
@@ -185,5 +186,41 @@ describe("Dos & Don'ts Block", () => {
 
         cy.get(FLOATING_BUTTON_BUTTON).should('exist').click();
         cy.get(INTERNAL_LINK_SELECTOR).should('exist');
+    });
+
+    describe('Add buttons', () => {
+        it('should stack on top of each other on containers below @sm(440px) breakpoint', () => {
+            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+                editorState: true,
+                blockSettings: {
+                    style: DoDontStyle.Icons,
+                    dontIconChoice: ItemIconChoice.CHECKMARK,
+                    doIconChoice: ItemIconChoice.CHECKMARK,
+                },
+            });
+
+            cy.viewport(150, 500);
+
+            mount(<DosDontsBlockWithStubs />);
+
+            cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'column');
+        });
+
+        it('should be rendered side by side on containers larger than @sm(440px) breakpoint', () => {
+            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+                editorState: true,
+                blockSettings: {
+                    style: DoDontStyle.Icons,
+                    dontIconChoice: ItemIconChoice.CHECKMARK,
+                    doIconChoice: ItemIconChoice.CHECKMARK,
+                },
+            });
+
+            cy.viewport(500, 500);
+
+            mount(<DosDontsBlockWithStubs />);
+
+            cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'row');
+        });
     });
 });
