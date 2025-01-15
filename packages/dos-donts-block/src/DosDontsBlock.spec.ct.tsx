@@ -199,11 +199,9 @@ describe("Dos & Don'ts Block", () => {
                 },
             });
 
-            mount(
-                <div className="tw-w-[150px]">
-                    <DosDontsBlockWithStubs />
-                </div>
-            );
+            cy.viewport(150, 500);
+
+            mount(<DosDontsBlockWithStubs />);
 
             cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'column');
         });
@@ -218,11 +216,9 @@ describe("Dos & Don'ts Block", () => {
                 },
             });
 
-            mount(
-                <div className="tw-w-[500px]">
-                    <DosDontsBlockWithStubs />
-                </div>
-            );
+            cy.viewport(500, 500);
+
+            mount(<DosDontsBlockWithStubs />);
 
             cy.get(DND_ADD_BUTTONS).should('have.css', 'flex-direction', 'row');
         });
