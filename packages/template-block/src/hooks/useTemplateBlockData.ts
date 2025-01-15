@@ -221,7 +221,7 @@ const getTextClasses = (
         hasPreview && [TextPositioningType.Top, TextPositioningType.Bottom].includes(textPositioning)
             ? horizontalAlignmentToTextAlign[textAnchoringHorizontal]
             : 'tw-text-left';
-    const selfAlign = hasTitleOnly ? 'tw-self-center' : '';
+    const selfAlign = hasTitleOnly ? 'tw-self-center tw-w-full @sm:tw-w-auto' : '';
     return `tw-grow ${textAlign} ${selfAlign}`;
 };
 
