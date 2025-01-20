@@ -206,9 +206,11 @@ const getPreviewClasses = (
     textPositioning: TextPositioningType,
     textRatio: TextRatioType
 ): string => {
-    return hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
+    const classes = hasPreview && [TextPositioningType.Right, TextPositioningType.Left].includes(textPositioning)
         ? textRatioToInverseFlexBasis[textRatio]
         : '';
+
+    return `${classes} tw-w-full`
 };
 
 const getTextClasses = (
