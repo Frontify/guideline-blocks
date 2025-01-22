@@ -14,7 +14,7 @@
     "devDependencies": {
         "@babel/core": "^7.26.0",
         "@frontify/eslint-config-react": "0.16.1",
-        "@frontify/frontify-cli": "^5.7.5",
+        "@frontify/frontify-cli": "^5.8.4",
         "@types/react": "^18.3.5",
         "@types/react-dom": "^18.3.0",
         "autoprefixer": "^10.4.20",
@@ -28,9 +28,9 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^3.9.1",
+        "@frontify/app-bridge": "^3.11.1",
         "@frontify/fondue": "12.2.13",
-        "@frontify/guideline-blocks-settings": "0.36.11",
+        "@frontify/guideline-blocks-settings": "0.36.12",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-compare-slider": "^3.1.0",

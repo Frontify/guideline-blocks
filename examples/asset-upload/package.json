@@ -15,7 +15,7 @@
     "devDependencies": {
         "@babel/core": "^7.25.2",
         "@frontify/eslint-config-react": "0.16.1",
-        "@frontify/frontify-cli": "^5.7.5",
+        "@frontify/frontify-cli": "^5.8.4",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@types/react": "^18.3.5",
         "@types/react-dom": "^18.3.0",
@@ -31,9 +31,9 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^3.9.1",
+        "@frontify/app-bridge": "^3.11.1",
         "@frontify/fondue": "12.2.13",
-        "@frontify/guideline-blocks-settings": "0.36.11",
+        "@frontify/guideline-blocks-settings": "0.36.12",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     }
