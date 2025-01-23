@@ -9,8 +9,6 @@
  * @type {import('postcss').PluginCreator}
  */
 module.exports = (opts = {}) => {
-    const tagSelectorRegex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
-
     return {
         postcssPlugin: "scope",
         Root(root) {
@@ -26,10 +24,7 @@ module.exports = (opts = {}) => {
                     originalSelector
                         .split(/(?<!\\),\s*/g)
                         .map((individualSelector) =>
-                            individualSelector.includes("tw-") ||
-                            tagSelectorRegex.test(individualSelector)
-                                ? `${opts.scope} ${individualSelector}${getModalExtensions(individualSelector)}`
-                                : individualSelector,
+                            getScopedSelector(individualSelector, opts.scope),
                         )
                         .join(", "),
                 );
@@ -40,10 +35,27 @@ module.exports = (opts = {}) => {
 
 module.exports.postcss = true;
 
-const getModalExtensions = (individualSelector) => {
-    if (!individualSelector.includes(".")) {
+const tagSelectorRegex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
+
+const getScopedSelector = (selector, scope) => {
+    // Replace :root with .selector, so variables are only applied to the block
+    if (selector === ":root") {
+        return scope;
+    }
+
+    // Prefix all rules with .selector that match the condition
+    if (selector.includes("tw-") || tagSelectorRegex.test(selector)) {
+        return `${scope} ${selector}${getModalExtensions(selector)}`;
+    }
+
+    // Return the original rule
+    return selector;
+};
+
+const getModalExtensions = (selector) => {
+    if (!selector.includes(".")) {
         return "";
     }
 
-    return `, body > [role='toolbar'] ${individualSelector}, body > [data-overlay-container] ${individualSelector}`;
+    return `, body > [role='toolbar'] ${selector}, body > [data-overlay-container] ${selector}`;
 };
