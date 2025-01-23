@@ -36,7 +36,7 @@
         "@dnd-kit/sortable": "^10.0.0",
         "@frontify/app-bridge": "^3.11.1",
         "@frontify/fondue": "12.2.13",
-        "@frontify/guideline-blocks-settings": "0.36.12",
+        "@frontify/guideline-blocks-settings": "0.36.13",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
