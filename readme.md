@@ -6,7 +6,7 @@
 
 -   Node 22
 -   [pnpm 9](https://pnpm.io/installation)
--   Access to a Frontify styleguide
+-   Access to a Frontify guideline
 
 ### Setup
 
@@ -29,7 +29,7 @@
     ```
 5. Go to your Frontify guideline
 6. Switch to edit mode
-   ![Styleguide Edit mode](./docs/styleguide-edit-mode.png)
+   ![Guideline Edit mode](./docs/guideline-edit-mode.png)
 7. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
 8. Choose port (default is 5600) and click OK
