@@ -131,6 +131,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 ...BlockStyles.buttonPrimary,
                                 ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
                                 ...(isButtonDisabled ? { opacity: 0.5 } : null),
+                                overflow: 'visible',
                             }}
                         >
                             <RichTextEditor
