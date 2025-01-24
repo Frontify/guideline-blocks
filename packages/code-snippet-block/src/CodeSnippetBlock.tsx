@@ -205,6 +205,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
                                     style={getStyle()}
                                     onClick={handleCopy}
+                                    aria-live="assertive"
                                 >
                                     {getCopyButtonText()}
                                 </button>
