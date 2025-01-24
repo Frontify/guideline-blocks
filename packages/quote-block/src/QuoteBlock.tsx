@@ -127,7 +127,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
 
                     <div
                         data-test-id="quote-block-author"
-                        className={isFullWidth && isQuotationMarkType ? 'tw-flex-1 tw-w-full' : 'tw-min-w-[1rem]'}
+                        className={
+                            isFullWidth && isQuotationMarkType
+                                ? 'tw-flex-1 tw-w-full tw-overflow-hidden'
+                                : 'tw-min-w-[1rem]'
+                        }
                     >
                         <div
                             style={isQuotationMarkType ? {} : borderStyles}
@@ -146,7 +150,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                 isEditing={isEditing}
                             />
                         </div>
-                        {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
+                        {showAuthor && <p className="tw-text-right tw-break-all">{`- ${blockSettings.authorName}`}</p>}
                     </div>
                     {isQuotationMarkType && (
                         <QuoteBlockIcon
