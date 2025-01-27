@@ -54,7 +54,6 @@ export const ImageCaption = ({
                     positioning === CaptionPosition.Below && 'tw-mt-3',
                     'tw-gap-1 tw-flex-1 tw-w-full',
                 ])}
-                style={{ wordBreak: 'break-word' }}
                 data-test-id="image-caption"
             >
                 <RichTextEditor
