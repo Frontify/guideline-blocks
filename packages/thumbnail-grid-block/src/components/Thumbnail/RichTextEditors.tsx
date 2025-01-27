@@ -49,7 +49,7 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
     );
 
     return (
-        <div className="tw-w-full" style={{ wordBreak: 'break-word' }} data-test-id="thumbnail-rte">
+        <div className="tw-w-full" data-test-id="thumbnail-rte">
             {memoizedTitle}
             {memoizedDescription}
         </div>
