@@ -434,7 +434,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 ) : null}
             </DndContext>
             {isEditing && (
-                <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">
+                <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9 tw-flex-col @md:tw-flex-row">
                     {mode === BlockMode.TEXT_AND_IMAGE && (
                         <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
                             <BlockInjectButton
