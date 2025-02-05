@@ -189,7 +189,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-base'])}>
             <BlockItemWrapper
-                outlineOffset={0}
                 isDragging={isDragging}
                 shouldHideWrapper={replaceWithPlaceholder || !editing}
                 shouldHideComponent={replaceWithPlaceholder}

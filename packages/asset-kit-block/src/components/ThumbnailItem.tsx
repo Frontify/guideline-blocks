@@ -52,7 +52,6 @@ export const ThumbnailItem = ({
 
     return (
         <BlockItemWrapper
-            outlineOffset={0}
             shouldHideWrapper={!isEditing}
             toolbarItems={[
                 {

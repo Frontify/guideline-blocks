@@ -36,7 +36,6 @@ export const EditorOverlay = ({
             >
                 <BlockItemWrapper
                     shouldFillContainer
-                    outlineOffset={1}
                     toolbarItems={[
                         {
                             type: 'button',
@@ -90,7 +89,7 @@ export const EditorOverlay = ({
             >
                 <BlockItemWrapper
                     shouldFillContainer
-                    outlineOffset={1}
+                    outlineOffset={-1}
                     toolbarItems={[
                         {
                             type: 'button',

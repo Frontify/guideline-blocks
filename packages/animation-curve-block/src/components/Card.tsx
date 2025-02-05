@@ -83,7 +83,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
             >
                 <BlockItemWrapper
-                    outlineOffset={0}
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
