@@ -108,7 +108,6 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 ])}
             >
                 <BlockItemWrapper
-                    outlineOffset={0}
                     isDragging={isDragging}
                     shouldFillContainer={true}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
