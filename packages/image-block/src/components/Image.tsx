@@ -125,7 +125,7 @@ export const Image = ({
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 
     return (
-        <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative">
+        <div data-test-id="image-block-image" className="tw-flex tw-w-full tw-h-auto tw-relative tw-overflow-hidden">
             <ImageWrapper
                 appBridge={appBridge}
                 isAssetViewerEnabled={isAssetViewerEnabled}
