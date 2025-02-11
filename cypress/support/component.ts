@@ -5,5 +5,6 @@ global.process ||= {};
 //@ts-ignore
 global.process.env ||= {};
 
+import "@frontify/fondue/style";
 import "cypress-real-events/support";
 import "./structuredClone";
