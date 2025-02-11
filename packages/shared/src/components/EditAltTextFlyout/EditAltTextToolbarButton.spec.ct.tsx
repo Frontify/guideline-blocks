@@ -7,6 +7,7 @@ import { mount } from 'cypress/react18';
 import { getEditAltTextToolbarButton } from './EditAltTextToolbarButton';
 
 import '@frontify/guideline-blocks-settings/styles';
+import 'tailwindcss/tailwind.css';
 
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 const FlyoutMenuSelector = '[data-test-id="flyout-menu"]';

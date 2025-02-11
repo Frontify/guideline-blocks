@@ -9,7 +9,7 @@ import { Radius } from '@frontify/guideline-blocks-settings';
 import { ATTACHMENTS_ASSET_ID } from './settings';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
-const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div';
+const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div > div';
 const UiPatternBlockWrapperSelector = '[data-test-id="ui-pattern-block-wrapper"]';
 const ToolbarTabButtonSelector = '[data-test-id="toolbar-tab-btn"]';
 const ToolbarSelector = '[data-test-id="ui-pattern-files-toolbar"]';
