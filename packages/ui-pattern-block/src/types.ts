@@ -19,7 +19,7 @@ import {
     nightOwl,
     sandpackDark,
 } from '@codesandbox/sandpack-themes';
-import { SandpackTheme as ReactSandpackTheme } from '@codesandbox/sandpack-react/types';
+import { SandpackTheme as ReactSandpackTheme } from '@codesandbox/sandpack-react';
 
 export type Settings = {
     // layout
