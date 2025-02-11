@@ -40,6 +40,7 @@ import {
 } from '@frontify/fondue';
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -405,113 +406,115 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div ref={containerRef} className="dos-donts-block tw-@container">
-            <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToParentElement]}
-            >
-                <SortableContext items={localItems} strategy={rectSortingStrategy}>
-                    <div
-                        data-test-id="dos-donts-block"
-                        ref={wrapperRef}
-                        className={joinClassNames(['tw-grid', gridClassName])}
-                        style={{
-                            columnGap,
-                            rowGap,
-                        }}
-                    >
-                        {localItems.map((item) => (
-                            <SortableDoDontItem key={item.id} {...getDoDontItemProps(item)} />
-                        ))}
-                    </div>
-                </SortableContext>
-                {activeItem ? (
-                    <DragOverlay>
-                        <DoDontItem key={activeItem.id} isDragging={true} {...getDoDontItemProps(activeItem)} />
-                    </DragOverlay>
-                ) : null}
-            </DndContext>
-            {isEditing && (
-                <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9 tw-flex-wrap">
-                    {mode === BlockMode.TEXT_AND_IMAGE && (
-                        <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
+            <StyleProvider>
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    modifiers={[restrictToParentElement]}
+                >
+                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                        <div
+                            data-test-id="dos-donts-block"
+                            ref={wrapperRef}
+                            className={joinClassNames(['tw-grid', gridClassName])}
+                            style={{
+                                columnGap,
+                                rowGap,
+                            }}
+                        >
+                            {localItems.map((item) => (
+                                <SortableDoDontItem key={item.id} {...getDoDontItemProps(item)} />
+                            ))}
+                        </div>
+                    </SortableContext>
+                    {activeItem ? (
+                        <DragOverlay>
+                            <DoDontItem key={activeItem.id} isDragging={true} {...getDoDontItemProps(activeItem)} />
+                        </DragOverlay>
+                    ) : null}
+                </DndContext>
+                {isEditing && (
+                    <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9 tw-flex-wrap">
+                        {mode === BlockMode.TEXT_AND_IMAGE && (
+                            <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
+                                <BlockInjectButton
+                                    label="Add images"
+                                    secondaryLabel="Or drop them here"
+                                    icon={<IconPlus20 />}
+                                    onUploadClick={openFileDialog}
+                                    onAssetChooseClick={onOpenAssetChooser}
+                                    onDrop={setSelectedFiles}
+                                    isLoading={isUploadLoading}
+                                />
+                            </div>
+                        )}
+                        <div
+                            data-test-id="dos-donts-block-add-buttons"
+                            className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
+                        >
                             <BlockInjectButton
-                                label="Add images"
-                                secondaryLabel="Or drop them here"
-                                icon={<IconPlus20 />}
-                                onUploadClick={openFileDialog}
-                                onAssetChooseClick={onOpenAssetChooser}
-                                onDrop={setSelectedFiles}
-                                isLoading={isUploadLoading}
+                                verticalLayout={isContainerSmall}
+                                label="Add do"
+                                withMenu={false}
+                                icon={<IconCheckMarkCircle20 />}
+                                onClick={() => addItem(DoDontType.Do)}
+                            />
+                            <BlockInjectButton
+                                verticalLayout={isContainerSmall}
+                                label="Add don't"
+                                withMenu={false}
+                                icon={<IconCrossCircle20 />}
+                                onClick={() => addItem(DoDontType.Dont)}
                             />
                         </div>
-                    )}
-                    <div
-                        data-test-id="dos-donts-block-add-buttons"
-                        className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
-                    >
-                        <BlockInjectButton
-                            verticalLayout={isContainerSmall}
-                            label="Add do"
-                            withMenu={false}
-                            icon={<IconCheckMarkCircle20 />}
-                            onClick={() => addItem(DoDontType.Do)}
-                        />
-                        <BlockInjectButton
-                            verticalLayout={isContainerSmall}
-                            label="Add don't"
-                            withMenu={false}
-                            icon={<IconCrossCircle20 />}
-                            onClick={() => addItem(DoDontType.Dont)}
-                        />
                     </div>
-                </div>
-            )}
-            <Modal
-                visual={{ pattern: PatternDesign.Typography, foregroundColor: PatternTheme.Green }}
-                isOpen={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
-            >
-                <Modal.Header title="What should be the type of those images?" />
-                <Modal.Body>
-                    <div>You can always change the type later on each item.</div>
-                </Modal.Body>
-                <Modal.Footer
-                    buttons={
-                        [
-                            {
-                                children: 'Cancel',
-                                onClick: () => {
-                                    setSelectedAssets(undefined);
-                                    setSelectedFiles(null);
-                                    setSelectedType(undefined);
+                )}
+                <Modal
+                    visual={{ pattern: PatternDesign.Typography, foregroundColor: PatternTheme.Green }}
+                    isOpen={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
+                >
+                    <Modal.Header title="What should be the type of those images?" />
+                    <Modal.Body>
+                        <div>You can always change the type later on each item.</div>
+                    </Modal.Body>
+                    <Modal.Footer
+                        buttons={
+                            [
+                                {
+                                    children: 'Cancel',
+                                    onClick: () => {
+                                        setSelectedAssets(undefined);
+                                        setSelectedFiles(null);
+                                        setSelectedType(undefined);
+                                    },
+                                    style: ButtonStyle.Default,
+                                    emphasis: ButtonEmphasis.Weak,
                                 },
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Weak,
-                            },
-                            {
-                                children: 'Add as Do',
-                                onClick: () => {
-                                    setSelectedType(DoDontType.Do);
+                                {
+                                    children: 'Add as Do',
+                                    onClick: () => {
+                                        setSelectedType(DoDontType.Do);
+                                    },
+                                    icon: <IconCheckMarkCircle20 />,
+                                    style: ButtonStyle.Default,
+                                    emphasis: ButtonEmphasis.Default,
                                 },
-                                icon: <IconCheckMarkCircle20 />,
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Default,
-                            },
-                            {
-                                children: "Add as Don't",
-                                onClick: () => {
-                                    setSelectedType(DoDontType.Dont);
+                                {
+                                    children: "Add as Don't",
+                                    onClick: () => {
+                                        setSelectedType(DoDontType.Dont);
+                                    },
+                                    icon: <IconCrossCircle20 />,
+                                    style: ButtonStyle.Default,
+                                    emphasis: ButtonEmphasis.Default,
                                 },
-                                icon: <IconCrossCircle20 />,
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Default,
-                            },
-                        ] as unknown as [ModalButton, ModalButton]
-                    }
-                />
-            </Modal>
+                            ] as unknown as [ModalButton, ModalButton]
+                        }
+                    />
+                </Modal>
+            </StyleProvider>
         </div>
     );
 };

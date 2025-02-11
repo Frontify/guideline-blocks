@@ -22,13 +22,12 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect } from 'react';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
-import 'tailwindcss/tailwind.css';
+
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
 import { LineType, QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
 import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 const customPlugins = new PluginComposer();
 customPlugins
@@ -108,66 +107,70 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div className="quote-block">
-            <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-                <div className={getWrapperClasses()}>
-                    {isQuotationMarkType && (
-                        <QuoteBlockIcon
-                            color={iconColor}
-                            isCustomSize={blockSettings.isCustomSize}
-                            sizeValue={sizeValue}
-                            sizeChoice={blockSettings.sizeChoice}
-                            customIcon={customLeftIcon}
-                            quoteStyle={
-                                blockSettings.isCustomQuoteStyleLeft
-                                    ? QuoteStyle.Custom
-                                    : (blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp)
-                            }
-                        />
-                    )}
-
-                    <div
-                        data-test-id="quote-block-author"
-                        className={
-                            isFullWidth && isQuotationMarkType
-                                ? 'tw-flex-1 tw-w-full tw-overflow-hidden'
-                                : 'tw-min-w-[1rem]'
-                        }
-                    >
-                        <div
-                            style={isQuotationMarkType ? {} : borderStyles}
-                            className={merge([
-                                isQuotationMarkType ? '' : accentLineClassName,
-                                textAlignmentClassNames[textAlignment],
-                                '[&>div]:!tw-@container-normal',
-                            ])}
-                        >
-                            <RichTextEditor
-                                id={appBridge.getBlockId().toString()}
-                                placeholder={isEditing ? 'Add your quote text here' : undefined}
-                                value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
-                                onTextChange={onChangeContent}
-                                plugins={customPlugins}
-                                isEditing={isEditing}
+            <StyleProvider>
+                <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
+                    <div className={getWrapperClasses()}>
+                        {isQuotationMarkType && (
+                            <QuoteBlockIcon
+                                color={iconColor}
+                                isCustomSize={blockSettings.isCustomSize}
+                                sizeValue={sizeValue}
+                                sizeChoice={blockSettings.sizeChoice}
+                                customIcon={customLeftIcon}
+                                quoteStyle={
+                                    blockSettings.isCustomQuoteStyleLeft
+                                        ? QuoteStyle.Custom
+                                        : (blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp)
+                                }
                             />
-                        </div>
-                        {showAuthor && <p className="tw-text-right tw-break-all">{`- ${blockSettings.authorName}`}</p>}
-                    </div>
-                    {isQuotationMarkType && (
-                        <QuoteBlockIcon
-                            color={iconColor}
-                            isCustomSize={blockSettings.isCustomSize}
-                            sizeValue={sizeValue}
-                            sizeChoice={blockSettings.sizeChoice}
-                            customIcon={customRightIcon}
-                            quoteStyle={
-                                blockSettings.isCustomQuoteStyleRight
-                                    ? QuoteStyle.Custom
-                                    : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
+                        )}
+
+                        <div
+                            data-test-id="quote-block-author"
+                            className={
+                                isFullWidth && isQuotationMarkType
+                                    ? 'tw-flex-1 tw-w-full tw-overflow-hidden'
+                                    : 'tw-min-w-[1rem]'
                             }
-                        />
-                    )}
+                        >
+                            <div
+                                style={isQuotationMarkType ? {} : borderStyles}
+                                className={merge([
+                                    isQuotationMarkType ? '' : accentLineClassName,
+                                    textAlignmentClassNames[textAlignment],
+                                    '[&>div]:!tw-@container-normal',
+                                ])}
+                            >
+                                <RichTextEditor
+                                    id={appBridge.getBlockId().toString()}
+                                    placeholder={isEditing ? 'Add your quote text here' : undefined}
+                                    value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
+                                    onTextChange={onChangeContent}
+                                    plugins={customPlugins}
+                                    isEditing={isEditing}
+                                />
+                            </div>
+                            {showAuthor && (
+                                <p className="tw-text-right tw-break-all">{`- ${blockSettings.authorName}`}</p>
+                            )}
+                        </div>
+                        {isQuotationMarkType && (
+                            <QuoteBlockIcon
+                                color={iconColor}
+                                isCustomSize={blockSettings.isCustomSize}
+                                sizeValue={sizeValue}
+                                sizeChoice={blockSettings.sizeChoice}
+                                customIcon={customRightIcon}
+                                quoteStyle={
+                                    blockSettings.isCustomQuoteStyleRight
+                                        ? QuoteStyle.Custom
+                                        : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
+                                }
+                            />
+                        )}
+                    </div>
                 </div>
-            </div>
+            </StyleProvider>
         </div>
     );
 };

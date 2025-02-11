@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
-import 'tailwindcss/tailwind.css';
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
@@ -14,6 +11,7 @@ import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
 import { gridClasses } from './constants';
 import { BlankSlate, Card, SortableCard } from './components';
 import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -57,62 +55,64 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
 
     return (
         <div className="animation-curve-block tw-@container">
-            <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                onDragStart={handleDragStart}
-                modifiers={[restrictToParentElement]}
-            >
-                <div
-                    data-test-id="animation-curve-block"
-                    className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
-                    style={{
-                        gap,
-                    }}
+            <StyleProvider>
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                    onDragStart={handleDragStart}
+                    modifiers={[restrictToParentElement]}
                 >
-                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
-                        {localItems?.map((animationCurve) => (
-                            <SortableCard
-                                appBridge={appBridge}
-                                key={animationCurve.id}
-                                animationCurve={animationCurve}
-                                isEditing={isEditing}
-                                blockSettings={blockSettings}
-                                onDelete={deleteAnimationCurve}
-                                onUpdate={updateAnimationCurve}
-                                setCanvasHeight={setCanvasHeight}
-                            />
-                        ))}
-                        <DragOverlay>
-                            {activeItem && (
-                                <Card
+                    <div
+                        data-test-id="animation-curve-block"
+                        className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
+                        style={{
+                            gap,
+                        }}
+                    >
+                        <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                            {localItems?.map((animationCurve) => (
+                                <SortableCard
                                     appBridge={appBridge}
-                                    key={activeItem.id}
-                                    animationCurve={activeItem}
+                                    key={animationCurve.id}
+                                    animationCurve={animationCurve}
                                     isEditing={isEditing}
-                                    isDragging={true}
                                     blockSettings={blockSettings}
                                     onDelete={deleteAnimationCurve}
                                     onUpdate={updateAnimationCurve}
                                     setCanvasHeight={setCanvasHeight}
                                 />
-                            )}
-                        </DragOverlay>
-                    </SortableContext>
-                    {isEditing && (
-                        <BlankSlate
-                            key={localItems.length}
-                            appBridge={appBridge}
-                            content={localItems}
-                            hasBorder={hasBorder}
-                            setLocalItems={setLocalItems}
-                            setBlockSettings={setBlockSettings}
-                            canvasHeight={canvasHeight}
-                        />
-                    )}
-                </div>
-            </DndContext>
+                            ))}
+                            <DragOverlay>
+                                {activeItem && (
+                                    <Card
+                                        appBridge={appBridge}
+                                        key={activeItem.id}
+                                        animationCurve={activeItem}
+                                        isEditing={isEditing}
+                                        isDragging={true}
+                                        blockSettings={blockSettings}
+                                        onDelete={deleteAnimationCurve}
+                                        onUpdate={updateAnimationCurve}
+                                        setCanvasHeight={setCanvasHeight}
+                                    />
+                                )}
+                            </DragOverlay>
+                        </SortableContext>
+                        {isEditing && (
+                            <BlankSlate
+                                key={localItems.length}
+                                appBridge={appBridge}
+                                content={localItems}
+                                hasBorder={hasBorder}
+                                setLocalItems={setLocalItems}
+                                setBlockSettings={setBlockSettings}
+                                canvasHeight={canvasHeight}
+                            />
+                        )}
+                    </div>
+                </DndContext>
+            </StyleProvider>
         </div>
     );
 };

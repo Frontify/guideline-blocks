@@ -3,3 +3,4 @@
 export * from './CssValueDisplay';
 export * from './EditAltTextFlyout';
 export * from './ResponsiveImage';
+export * from './StyleProvider';

@@ -4,12 +4,11 @@ import { ReactElement, useCallback, useMemo } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
-import 'tailwindcss/tailwind.css';
+
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
@@ -23,16 +22,18 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div className="text-block">
-            <RichTextEditor
-                id={appBridge.getBlockId().toString()}
-                isEditing={isEditing}
-                value={content}
-                columns={columnNumber}
-                gap={gap}
-                plugins={plugins}
-                placeholder={PLACEHOLDER}
-                onTextChange={handleTextChange}
-            />
+            <StyleProvider>
+                <RichTextEditor
+                    id={appBridge.getBlockId().toString()}
+                    isEditing={isEditing}
+                    value={content}
+                    columns={columnNumber}
+                    gap={gap}
+                    plugins={plugins}
+                    placeholder={PLACEHOLDER}
+                    onTextChange={handleTextChange}
+                />
+            </StyleProvider>
         </div>
     );
 };

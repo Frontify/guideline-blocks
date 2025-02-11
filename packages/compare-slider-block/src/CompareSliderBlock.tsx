@@ -33,6 +33,7 @@ import {
     UploadView,
 } from './components';
 import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -349,53 +350,55 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     }
     return (
         <div className="compare-slider-block">
-            <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
-                {isFirstAssetLoaded && isSecondAssetLoaded && (
-                    <>
-                        <div
-                            data-test-id="compare-slider-block-slider"
-                            className="tw-w-full tw-overflow-hidden tw-relative"
-                            style={{
-                                ...getBorderStyle(),
-                                borderRadius: getBorderRadius(),
-                            }}
-                        >
-                            <ReactCompareSlider
-                                position={currentSliderPosition}
-                                onPositionChange={setCurrentSliderPosition}
-                                itemOne={renderSliderItem(SliderImageSlot.First)}
-                                itemTwo={renderSliderItem(SliderImageSlot.Second)}
-                                handle={
-                                    <SliderLine
-                                        alignment={alignment}
-                                        handle={handle}
-                                        sliderColor={sliderColor}
-                                        sliderStyle={sliderStyle}
-                                        sliderWidth={sliderWidth}
-                                    />
-                                }
-                                portrait={alignment === Alignment.Vertical}
-                                onlyHandleDraggable
-                            />
-                        </div>
-                        {isEditing && (
-                            <EditorOverlay
-                                alignment={alignment}
-                                openAssetChooser={onOpenAssetChooser}
-                                startFileDialogUpload={startFileDialogUpload}
-                                firstAsset={firstAsset}
-                                secondAsset={secondAsset}
-                                borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
-                                renderLabel={renderLabel}
-                                handleAssetDelete={handleAssetDelete}
-                                firstAlt={firstAssetAlt}
-                                secondAlt={secondAssetAlt}
-                                updateImageAlt={updateImageAlt}
-                            />
-                        )}
-                    </>
-                )}
-            </div>
+            <StyleProvider>
+                <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
+                    {isFirstAssetLoaded && isSecondAssetLoaded && (
+                        <>
+                            <div
+                                data-test-id="compare-slider-block-slider"
+                                className="tw-w-full tw-overflow-hidden tw-relative"
+                                style={{
+                                    ...getBorderStyle(),
+                                    borderRadius: getBorderRadius(),
+                                }}
+                            >
+                                <ReactCompareSlider
+                                    position={currentSliderPosition}
+                                    onPositionChange={setCurrentSliderPosition}
+                                    itemOne={renderSliderItem(SliderImageSlot.First)}
+                                    itemTwo={renderSliderItem(SliderImageSlot.Second)}
+                                    handle={
+                                        <SliderLine
+                                            alignment={alignment}
+                                            handle={handle}
+                                            sliderColor={sliderColor}
+                                            sliderStyle={sliderStyle}
+                                            sliderWidth={sliderWidth}
+                                        />
+                                    }
+                                    portrait={alignment === Alignment.Vertical}
+                                    onlyHandleDraggable
+                                />
+                            </div>
+                            {isEditing && (
+                                <EditorOverlay
+                                    alignment={alignment}
+                                    openAssetChooser={onOpenAssetChooser}
+                                    startFileDialogUpload={startFileDialogUpload}
+                                    firstAsset={firstAsset}
+                                    secondAsset={secondAsset}
+                                    borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
+                                    renderLabel={renderLabel}
+                                    handleAssetDelete={handleAssetDelete}
+                                    firstAlt={firstAssetAlt}
+                                    secondAlt={secondAssetAlt}
+                                    updateImageAlt={updateImageAlt}
+                                />
+                            )}
+                        </>
+                    )}
+                </div>
+            </StyleProvider>
         </div>
     );
 };

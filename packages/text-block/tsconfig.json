@@ -3,7 +3,7 @@
         "esModuleInterop": true,
         "isolatedModules": true,
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,

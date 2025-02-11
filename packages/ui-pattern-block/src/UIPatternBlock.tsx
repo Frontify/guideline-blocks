@@ -30,6 +30,7 @@ import { useDebounce } from './hooks';
 import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
 import { ATTACHMENTS_ASSET_ID } from './settings';
 import { AttachmentsButton } from './components/AttachmentsButton';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -174,112 +175,114 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     return (
         <div key={sandpackTemplate} data-test-id="ui-pattern-block" className="ui-pattern-block">
-            <div
-                className={joinClassNames([
-                    'tw-flex tw-gap-3',
-                    labelPosition === TextAlignment.Top ? 'tw-flex-col' : 'tw-flex-col-reverse',
-                ])}
-            >
-                <div className="tw-flex tw-justify-between tw-gap-3 tw-items-start">
-                    <Captions
-                        appBridge={appBridge}
-                        title={title}
-                        description={description}
-                        onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
-                        onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
-                        isEditing={isEditing}
-                    />
-                    <AttachmentsButton appBridge={appBridge} />
-                </div>
-
+            <StyleProvider>
                 <div
-                    data-test-id="ui-pattern-block-wrapper"
-                    style={{
-                        ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
-                        borderRadius,
-                    }}
                     className={joinClassNames([
-                        'tw-rounded tw-bg-white tw-overflow-hidden tw-group',
-                        // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
-                        hasBorder && 'bordered',
+                        'tw-flex tw-gap-3',
+                        labelPosition === TextAlignment.Top ? 'tw-flex-col' : 'tw-flex-col-reverse',
                     ])}
                 >
-                    <SandpackProvider
-                        files={templateFiles}
-                        template={sandpackTemplate}
-                        customSetup={parsedNpmDependencies}
-                        theme={sandpackThemeValues[sandpackTheme]}
-                        key={sandpackRestartInitiators.map((i) => i.toString()).join('')}
-                        options={{
-                            classes: EDITOR_CLASSES,
-                            activeFile: initialActiveFile[sandpackTemplate],
-                            externalResources: [cssToInject, ...parsedExternalDependencies],
-                        }}
-                    >
-                        <SandpackLayout className="tw-flex tw-flex-col">
-                            {isResponsivePreviewOpen && (
-                                <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
-                            )}
-                            <SandpackPreview
-                                ref={previewRef}
-                                style={{
-                                    height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
-                                    padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
-                                    ...(hasBackground && {
-                                        ...getBackgroundColorStyles(backgroundColor),
-                                        backgroundImage: 'none',
-                                    }),
-                                }}
-                                showRefreshButton={false}
-                                showOpenInCodeSandbox={false}
-                                className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white [&>div>iframe]:!tw-max-h-none"
-                            />
-                            {(isEditing || showCode) && (
-                                <CodeEditor
-                                    key={`editor_${isEditing.toString()}`}
-                                    isCodeEditable={isEditing || isCodeEditable}
-                                    showResetButton={showResetButton}
-                                    showSandboxLink={showSandboxLink}
-                                    showResponsivePreview={showResponsivePreview}
-                                    onResponsivePreviewOpen={() => setIsResponsivePreviewOpen(true)}
-                                    onCodeChange={onCodeChange}
-                                    onResetFilesToDefault={onResetFiles}
-                                    onResetRun={onResetRun}
-                                    hasCodeChanges={!isEditing && hasCodeChanges}
-                                    template={sandpackTemplate}
-                                    shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
-                                    preprocessor={preprocessor}
-                                />
-                            )}
-                        </SandpackLayout>
-                    </SandpackProvider>
+                    <div className="tw-flex tw-justify-between tw-gap-3 tw-items-start">
+                        <Captions
+                            appBridge={appBridge}
+                            title={title}
+                            description={description}
+                            onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
+                            onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
+                            isEditing={isEditing}
+                        />
+                        <AttachmentsButton appBridge={appBridge} />
+                    </div>
 
-                    {(isEditing || showNpmDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
-                        <NPMDependencies
-                            key={`npm_${isEditing.toString()}`}
-                            npmDependencies={npmDependencies}
-                            shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
-                            onNpmDependenciesChanged={(newDependencies) =>
-                                onDependenciesChanged(newDependencies, 'npm')
-                            }
-                            borderRadius={showExternalDependencies ? undefined : borderRadius}
-                            readOnly={!isEditing}
-                        />
-                    )}
-                    {(isEditing || showExternalDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
-                        <ExternalDependencies
-                            key={`external_${isEditing.toString()}`}
-                            externalDependencies={externalDependencies}
-                            shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
-                            onExternalDependenciesChanged={(newDependencies) =>
-                                onDependenciesChanged(newDependencies, 'external')
-                            }
-                            borderRadius={borderRadius}
-                            readOnly={!isEditing}
-                        />
-                    )}
+                    <div
+                        data-test-id="ui-pattern-block-wrapper"
+                        style={{
+                            ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                            borderRadius,
+                        }}
+                        className={joinClassNames([
+                            'tw-rounded tw-bg-white tw-overflow-hidden tw-group',
+                            // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
+                            hasBorder && 'bordered',
+                        ])}
+                    >
+                        <SandpackProvider
+                            files={templateFiles}
+                            template={sandpackTemplate}
+                            customSetup={parsedNpmDependencies}
+                            theme={sandpackThemeValues[sandpackTheme]}
+                            key={sandpackRestartInitiators.map((i) => i.toString()).join('')}
+                            options={{
+                                classes: EDITOR_CLASSES,
+                                activeFile: initialActiveFile[sandpackTemplate],
+                                externalResources: [cssToInject, ...parsedExternalDependencies],
+                            }}
+                        >
+                            <SandpackLayout className="tw-flex tw-flex-col">
+                                {isResponsivePreviewOpen && (
+                                    <ResponsivePreview onClose={() => setIsResponsivePreviewOpen(false)} />
+                                )}
+                                <SandpackPreview
+                                    ref={previewRef}
+                                    style={{
+                                        height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
+                                        padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
+                                        ...(hasBackground && {
+                                            ...getBackgroundColorStyles(backgroundColor),
+                                            backgroundImage: 'none',
+                                        }),
+                                    }}
+                                    showRefreshButton={false}
+                                    showOpenInCodeSandbox={false}
+                                    className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white [&>div>iframe]:!tw-max-h-none"
+                                />
+                                {(isEditing || showCode) && (
+                                    <CodeEditor
+                                        key={`editor_${isEditing.toString()}`}
+                                        isCodeEditable={isEditing || isCodeEditable}
+                                        showResetButton={showResetButton}
+                                        showSandboxLink={showSandboxLink}
+                                        showResponsivePreview={showResponsivePreview}
+                                        onResponsivePreviewOpen={() => setIsResponsivePreviewOpen(true)}
+                                        onCodeChange={onCodeChange}
+                                        onResetFilesToDefault={onResetFiles}
+                                        onResetRun={onResetRun}
+                                        hasCodeChanges={!isEditing && hasCodeChanges}
+                                        template={sandpackTemplate}
+                                        shouldCollapseCodeByDefault={!isEditing && shouldCollapseCodeByDefault}
+                                        preprocessor={preprocessor}
+                                    />
+                                )}
+                            </SandpackLayout>
+                        </SandpackProvider>
+
+                        {(isEditing || showNpmDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
+                            <NPMDependencies
+                                key={`npm_${isEditing.toString()}`}
+                                npmDependencies={npmDependencies}
+                                shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
+                                onNpmDependenciesChanged={(newDependencies) =>
+                                    onDependenciesChanged(newDependencies, 'npm')
+                                }
+                                borderRadius={showExternalDependencies ? undefined : borderRadius}
+                                readOnly={!isEditing}
+                            />
+                        )}
+                        {(isEditing || showExternalDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
+                            <ExternalDependencies
+                                key={`external_${isEditing.toString()}`}
+                                externalDependencies={externalDependencies}
+                                shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
+                                onExternalDependenciesChanged={(newDependencies) =>
+                                    onDependenciesChanged(newDependencies, 'external')
+                                }
+                                borderRadius={borderRadius}
+                                readOnly={!isEditing}
+                            />
+                        )}
+                    </div>
                 </div>
-            </div>
+            </StyleProvider>
         </div>
     );
 }, ATTACHMENTS_ASSET_ID);

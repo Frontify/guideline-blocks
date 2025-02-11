@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC } from 'react';
-import 'tailwindcss/tailwind.css';
-import '@frontify/guideline-blocks-settings/styles';
 import { QuoteSize, type QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
 import { Asset } from '@frontify/app-bridge';
