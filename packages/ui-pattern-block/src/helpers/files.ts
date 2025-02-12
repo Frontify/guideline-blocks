@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { SandpackFiles } from '@codesandbox/sandpack-react/types';
+import type { SandpackFiles } from '@codesandbox/sandpack-react';
 import { Preprocessor, SandpackTemplate } from '../types';
 
 export const getCssExtension = (preprocessor: Preprocessor) => {

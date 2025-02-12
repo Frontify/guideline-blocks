@@ -17,10 +17,8 @@ import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
-import '@frontify/fondue/style';
-import '@frontify/guideline-blocks-settings/styles';
-import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -113,36 +111,38 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div className="callout-block">
-            <div
-                data-test-id="callout-block"
-                style={{
-                    ...overwrittenThemeSettings,
-                    backgroundColor,
-                    ...customPaddingStyle,
-                    ...customCornerRadiusStyle,
-                }}
-                className={containerDivClassNames}
-            >
-                <div data-test-id="callout-content" className={textDivClassNames}>
-                    {iconType !== Icon.None && (
-                        <CalloutIcon
-                            isActive={hasRichTextValue(blockSettings.textValue)}
-                            iconType={iconType}
-                            customIcon={customIcon}
-                            color={textColor}
-                            type={type}
+            <StyleProvider>
+                <div
+                    data-test-id="callout-block"
+                    style={{
+                        ...overwrittenThemeSettings,
+                        backgroundColor,
+                        ...customPaddingStyle,
+                        ...customCornerRadiusStyle,
+                    }}
+                    className={containerDivClassNames}
+                >
+                    <div data-test-id="callout-content" className={textDivClassNames}>
+                        {iconType !== Icon.None && (
+                            <CalloutIcon
+                                isActive={hasRichTextValue(blockSettings.textValue)}
+                                iconType={iconType}
+                                customIcon={customIcon}
+                                color={textColor}
+                                type={type}
+                            />
+                        )}
+                        <RichTextEditor
+                            id={appBridge.getBlockId().toString()}
+                            isEditing={isEditing}
+                            onTextChange={handleTextChange}
+                            placeholder="Type your text here"
+                            value={blockSettings.textValue}
+                            plugins={plugins}
                         />
-                    )}
-                    <RichTextEditor
-                        id={appBridge.getBlockId().toString()}
-                        isEditing={isEditing}
-                        onTextChange={handleTextChange}
-                        placeholder="Type your text here"
-                        value={blockSettings.textValue}
-                        plugins={plugins}
-                    />
+                    </div>
                 </div>
-            </div>
+            </StyleProvider>
         </div>
     );
 };

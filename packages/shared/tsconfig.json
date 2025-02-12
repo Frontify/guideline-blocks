@@ -3,7 +3,7 @@
         "esModuleInterop": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "noUnusedLocals": true,
         "strict": true,
         "target": "ES2020",

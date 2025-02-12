@@ -6,6 +6,5 @@ global.process ||= {};
 global.process.env ||= {};
 
 import "@frontify/fondue/style";
-import "tailwindcss/tailwind.css";
 import "cypress-real-events/support";
 import "./structuredClone";

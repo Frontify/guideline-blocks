@@ -14,9 +14,7 @@ import { Button, ButtonEmphasis, IconArrowExpand, IconCross } from '@frontify/fo
 import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import '@frontify/guideline-blocks-settings/styles';
-import '@frontify/fondue/style';
-import 'tailwindcss/tailwind.css';
+
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
@@ -24,6 +22,7 @@ import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
@@ -244,23 +243,27 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div ref={ref} data-test-id="figma-block" className="figma-block">
-            {referenceUrl ? (
-                <ReferenceErrorMessage originalUrl={referenceUrl} />
-            ) : (
-                <>
-                    {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />}
-                    {isAssetAvailable && !isLivePreview && (
-                        <ShowImagePreview
-                            hasBorder={hasBorder}
-                            hasBackground={hasBackground}
-                            height={isCustomHeight ? heightValue : heights[heightChoice]}
-                            showFigmaLink={showFigmaLink}
-                        />
-                    )}
-                    {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
-                    {showFigmaLiveModal && <FigmaLivePortal />}
-                </>
-            )}
+            <StyleProvider>
+                {referenceUrl ? (
+                    <ReferenceErrorMessage originalUrl={referenceUrl} />
+                ) : (
+                    <>
+                        {isInEditMode && !isAssetAvailable && (
+                            <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
+                        )}
+                        {isAssetAvailable && !isLivePreview && (
+                            <ShowImagePreview
+                                hasBorder={hasBorder}
+                                hasBackground={hasBackground}
+                                height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                showFigmaLink={showFigmaLink}
+                            />
+                        )}
+                        {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
+                        {showFigmaLiveModal && <FigmaLivePortal />}
+                    </>
+                )}
+            </StyleProvider>
         </div>
     );
 };
