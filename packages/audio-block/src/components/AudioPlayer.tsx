@@ -13,6 +13,7 @@ import { ReactElement } from 'react';
 
 type AudioPlayerProps = {
     audio: Asset;
+    caption: null | Asset;
     isEditing: boolean;
     isLoading: boolean;
     openFileDialog: () => void;
@@ -22,6 +23,7 @@ type AudioPlayerProps = {
 
 export const AudioPlayer = ({
     audio,
+    caption,
     isEditing,
     isLoading,
     openFileDialog,
@@ -66,8 +68,10 @@ export const AudioPlayer = ({
                     className={joinClassNames(['tw-w-full tw-outline-none', FOCUS_VISIBLE_STYLE])}
                     controlsList="nodownload"
                     preload="metadata"
-                    src={audio.genericUrl}
-                />
+                >
+                    <source src={audio.genericUrl} />
+                    {caption && <track src={caption?.originUrl} kind="captions" />}
+                </audio>
             )}
         </BlockItemWrapper>
     );
