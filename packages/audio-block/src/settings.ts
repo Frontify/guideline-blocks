@@ -12,7 +12,6 @@ import {
 } from '@frontify/guideline-blocks-settings';
 
 export const AUDIO_ID = 'audio';
-export const CAPTION_ID = 'caption';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 
 export const settings = defineSettings({
@@ -24,16 +23,6 @@ export const settings = defineSettings({
             info: 'Select an audio file to play.',
             size: 'small',
             extensions: FileExtensionSets.Audio,
-            objectTypes: [AssetChooserObjectType.File],
-            showForTranslations: true,
-        },
-        {
-            id: CAPTION_ID,
-            type: 'assetInput',
-            label: 'Closed Captions',
-            info: 'Select a VTT or SRT file for closed captions.',
-            size: 'small',
-            extensions: ['vtt', 'srt'],
             objectTypes: [AssetChooserObjectType.File],
             showForTranslations: true,
         },

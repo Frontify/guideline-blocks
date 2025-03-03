@@ -29,7 +29,7 @@ import { useEffect, useState } from 'react';
 
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
-import { ATTACHMENTS_ASSET_ID, AUDIO_ID, CAPTION_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { type BlockSettings, TextPosition } from './types';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
@@ -46,7 +46,6 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-    const caption = blockAssets?.[CAPTION_ID]?.[0];
     const blockId = appBridge.context('blockId').get();
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -128,7 +127,6 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                     {audio ? (
                         <AudioPlayer
                             audio={audio}
-                            caption={caption}
                             isEditing={isEditing}
                             isLoading={isLoading}
                             openFileDialog={openFileDialog}

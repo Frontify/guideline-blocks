@@ -13,7 +13,6 @@ import { ReactElement } from 'react';
 
 type AudioPlayerProps = {
     audio: Asset;
-    caption: null | Asset;
     isEditing: boolean;
     isLoading: boolean;
     openFileDialog: () => void;
@@ -23,7 +22,6 @@ type AudioPlayerProps = {
 
 export const AudioPlayer = ({
     audio,
-    caption,
     isEditing,
     isLoading,
     openFileDialog,
@@ -70,7 +68,6 @@ export const AudioPlayer = ({
                     preload="metadata"
                 >
                     <source src={audio.genericUrl} />
-                    {caption && <track src={caption?.originUrl} kind="captions" />}
                 </audio>
             )}
         </BlockItemWrapper>
