@@ -21,7 +21,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <div className="text-block">
+        <div className="text-block tw-min-h-9">
             <StyleProvider>
                 <RichTextEditor
                     id={appBridge.getBlockId().toString()}
