@@ -93,8 +93,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -169,8 +169,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -236,8 +236,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -306,8 +306,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -376,8 +376,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -455,8 +455,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -534,8 +534,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -601,8 +601,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -674,8 +674,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -750,8 +750,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -817,8 +817,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -884,8 +884,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -957,8 +957,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1030,8 +1030,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1106,8 +1106,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1176,8 +1176,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.5.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.5.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.5.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1264,8 +1264,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1331,8 +1331,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1401,8 +1401,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1471,8 +1471,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -1638,8 +1638,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
-        specifier: 12.5.1
-        version: 12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
+        specifier: 12.7.0
+        version: 12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
         specifier: 0.36.14
         version: 0.36.14(@frontify/app-bridge@3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
@@ -2399,10 +2399,6 @@ packages:
     resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.26.7':
-    resolution: {integrity: sha512-AOPI3D+a8dXnja+iwsUqGRjr1BbZIe771sXdapOtYI531gSqpi92vXivKcq2asu/DFpdl1ceFAKZyRzK2PCVcQ==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.26.9':
     resolution: {integrity: sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==}
     engines: {node: '>=6.9.0'}
@@ -2894,28 +2890,11 @@ packages:
       prettier: '>=3.0.0'
       typescript: '>=5.0.0'
 
-  '@frontify/fondue-charts@3.0.0':
-    resolution: {integrity: sha512-5pkAZsxglW9h9TPs7pw0i90k9wytLwndbZeAJ3EWFpMmB5e8KcUYFvyDDSwR+td7aBHXeAVjZFnRzA8zYOr5GA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@frontify/fondue-tokens': ^3.7.0
-      react: ^18
-      react-dom: ^18
-
   '@frontify/fondue-charts@4.0.0':
     resolution: {integrity: sha512-3ZJVumZrBuu8pbWvSe0PsrSzlg8M8+regAh9xrNjZCm740vkhhX67F4MzsKoOp9H2qb7LF5sIWyQg5z2MDG4+A==}
     engines: {node: '>=18'}
     peerDependencies:
       '@frontify/fondue-tokens': ^4.0.0
-      react: ^18
-      react-dom: ^18
-
-  '@frontify/fondue-components@12.0.1':
-    resolution: {integrity: sha512-XKd1M2IxjMVIF+7t7dgP5WcM8SVesaPRI/zRnA568zdpaGOwYlmFozwoz/feML8haSw5Da2dheWvb7ssI7PyiQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@frontify/fondue-icons': ^0.12.0
-      '@frontify/fondue-tokens': ^3.7.0
       react: ^18
       react-dom: ^18
 
@@ -2928,24 +2907,11 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/fondue-icons@0.12.0':
-    resolution: {integrity: sha512-N9Q++aezxN7gAoidRjCsxKRCGYWhsqhn2U3Aonm/f3Ocr1SB3v7civN/0prkPV9dZFJiox6Oc5yCSiO6UuE5Mw==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: ^18
-
   '@frontify/fondue-icons@0.13.1':
     resolution: {integrity: sha512-olamLKrThM9lNTZj0448yNRsBLzMqhIbrCB4ukMovxYmW1eySQjFoPf6FgX5c6VdRAenfqa+ODC7S4yRxSJFMA==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18
-
-  '@frontify/fondue-tokens@3.7.0':
-    resolution: {integrity: sha512-42AHVto6/yyJBXqm9bkNJGRFZg1WfoAN6PwbTrgdguJg0By4Eq5Bjs1HypftlPcKMaDib1PVLEDPYn/0el4wMg==}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-      tailwindcss: ^3.0.0
 
   '@frontify/fondue-tokens@4.0.0':
     resolution: {integrity: sha512-LRE9OH1kF7hXUTL+/ND26nEehks8M/p7gBCPG5mekgLZBqIz931Uxtq2gfCwtJ6LXrJ2Jlxqt9EfgZAmYvtGRA==}
@@ -2953,13 +2919,6 @@ packages:
       react: ^18
       react-dom: ^18
       tailwindcss: ^3.0.0
-
-  '@frontify/fondue@12.5.1':
-    resolution: {integrity: sha512-E8H0KDHdZbKSSwxvkwq3Vt421lSwjIow18pKu/Y5eBXYvIas7RI5Sa18u4OnR1sygA4CafBF6sFNfkCsU7DwlA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
 
   '@frontify/fondue@12.7.0':
     resolution: {integrity: sha512-UQlfLrBOG52Vnr2jciGz+uy9lUvA43ERamkkVdXcsp1jC0Wv6D5+9uFHwRfndyf1mDZiDfUUvg5c7CZXXW+a9Q==}
@@ -11062,10 +11021,6 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@babel/runtime@7.26.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.26.9':
     dependencies:
       regenerator-runtime: 0.14.1
@@ -11831,48 +11786,6 @@ snapshots:
       - '@types/eslint'
       - supports-color
 
-  '@frontify/fondue-charts@3.0.0(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-      '@visx/axis': 3.12.0(react@18.3.1)
-      '@visx/glyph': 3.12.0(react@18.3.1)
-      '@visx/grid': 3.12.0(react@18.3.1)
-      '@visx/group': 3.12.0(react@18.3.1)
-      '@visx/hierarchy': 3.12.0(react@18.3.1)
-      '@visx/responsive': 3.12.0(react@18.3.1)
-      '@visx/scale': 3.12.0
-      '@visx/shape': 3.12.0(react@18.3.1)
-      '@visx/text': 3.12.0(react@18.3.1)
-      '@visx/tooltip': 3.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@visx/xychart': 3.12.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      use-font-face-observer: 1.2.2(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-
-  '@frontify/fondue-charts@3.0.0(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-      '@visx/axis': 3.12.0(react@18.3.1)
-      '@visx/glyph': 3.12.0(react@18.3.1)
-      '@visx/grid': 3.12.0(react@18.3.1)
-      '@visx/group': 3.12.0(react@18.3.1)
-      '@visx/hierarchy': 3.12.0(react@18.3.1)
-      '@visx/responsive': 3.12.0(react@18.3.1)
-      '@visx/scale': 3.12.0
-      '@visx/shape': 3.12.0(react@18.3.1)
-      '@visx/text': 3.12.0(react@18.3.1)
-      '@visx/tooltip': 3.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@visx/xychart': 3.12.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      use-font-face-observer: 1.2.2(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-
   '@frontify/fondue-charts@4.0.0(@frontify/fondue-tokens@4.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@frontify/fondue-tokens': 4.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
@@ -11914,66 +11827,6 @@ snapshots:
       use-font-face-observer: 1.2.2(react@18.3.1)
     transitivePeerDependencies:
       - '@react-spring/web'
-
-  '@frontify/fondue-components@12.0.1(@frontify/fondue-icons@0.12.0(react@18.3.1))(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))':
-    dependencies:
-      '@frontify/fondue-icons': 0.12.0(react@18.3.1)
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-      '@radix-ui/react-checkbox': 1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dialog': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dropdown-menu': 2.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-label': 2.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-popover': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-progress': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-scroll-area': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-select': 2.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-separator': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-slider': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-slot': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-switch': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tabs': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toggle-group': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.1.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      downshift: 9.0.8(react@18.3.1)
-      react: 18.3.1
-      react-colorful: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      tailwind-merge: 2.6.0
-      tailwind-variants: 0.3.1(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-dom'
-      - tailwindcss
-
-  '@frontify/fondue-components@12.0.1(@frontify/fondue-icons@0.12.0(react@18.3.1))(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))':
-    dependencies:
-      '@frontify/fondue-icons': 0.12.0(react@18.3.1)
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-      '@radix-ui/react-checkbox': 1.1.3(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dialog': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dropdown-menu': 2.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-label': 2.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-popover': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-progress': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-scroll-area': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-select': 2.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-separator': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-slider': 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-slot': 1.1.1(@types/react@18.3.18)(react@18.3.1)
-      '@radix-ui/react-switch': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tabs': 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toggle-group': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.1.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      downshift: 9.0.8(react@18.3.1)
-      react: 18.3.1
-      react-colorful: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      tailwind-merge: 2.6.0
-      tailwind-variants: 0.3.1(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-dom'
-      - tailwindcss
 
   '@frontify/fondue-components@14.1.0(@frontify/fondue-icons@0.13.1(react@18.3.1))(@frontify/fondue-tokens@4.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))':
     dependencies:
@@ -12037,25 +11890,9 @@ snapshots:
       - '@types/react-dom'
       - tailwindcss
 
-  '@frontify/fondue-icons@0.12.0(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
   '@frontify/fondue-icons@0.13.1(react@18.3.1)':
     dependencies:
       react: 18.3.1
-
-  '@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))':
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))
-
-  '@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))':
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))
 
   '@frontify/fondue-tokens@4.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))':
     dependencies:
@@ -12068,226 +11905,6 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))
-
-  '@frontify/fondue@12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))':
-    dependencies:
-      '@ctrl/tinycolor': 4.1.0
-      '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/utilities': 3.2.2(react@18.3.1)
-      '@floating-ui/dom': 1.6.13
-      '@frontify/fondue-charts': 3.0.0(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-components': 12.0.1(@frontify/fondue-icons@0.12.0(react@18.3.1))(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-      '@frontify/fondue-icons': 0.12.0(react@18.3.1)
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-      '@popperjs/core': 2.11.8
-      '@radix-ui/react-popover': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toolbar': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.1.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/accordion': 3.0.0-alpha.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/aria-modal-polyfill': 3.7.13(react@18.3.1)
-      '@react-aria/breadcrumbs': 3.5.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/checkbox': 3.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/combobox': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/dialog': 3.5.21(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/link': 3.7.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/listbox': 3.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/menu': 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/overlays': 3.25.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/radio': 3.10.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/select': 3.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/selection': 3.22.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/table': 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/tooltip': 3.7.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/visually-hidden': 3.8.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-stately/checkbox': 3.6.11(react@18.3.1)
-      '@react-stately/collections': 3.12.1(react@18.3.1)
-      '@react-stately/combobox': 3.10.2(react@18.3.1)
-      '@react-stately/list': 3.11.2(react@18.3.1)
-      '@react-stately/menu': 3.9.1(react@18.3.1)
-      '@react-stately/overlays': 3.6.13(react@18.3.1)
-      '@react-stately/radio': 3.10.10(react@18.3.1)
-      '@react-stately/select': 3.6.10(react@18.3.1)
-      '@react-stately/table': 3.13.1(react@18.3.1)
-      '@react-stately/toggle': 3.8.1(react@18.3.1)
-      '@react-stately/tooltip': 3.5.1(react@18.3.1)
-      '@react-stately/tree': 3.8.7(react@18.3.1)
-      '@react-types/dialog': 3.5.15(react@18.3.1)
-      '@react-types/shared': 3.27.0(react@18.3.1)
-      '@tailwindcss/forms': 0.5.10(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))
-      '@udecode/plate-alignment': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-autoformat': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-basic-marks': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-break': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-code-block': 31.3.4(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-combobox': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-common': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-core': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-emoji': 31.4.0(patch_hash=xgzyqg57rjybsy5kuq2ehpempi)(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-floating': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-indent': 31.1.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-link': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-list': 31.1.3(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-mention': 31.3.5(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-normalizers': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-paragraph': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-utils': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/react-utils': 31.0.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@udecode/slate': 31.0.0(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-react': 31.0.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-utils': 31.3.2(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/utils': 31.0.0
-      '@udecode/zustood': 2.0.0(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
-      date-fns: 3.6.0
-      escape-html: 1.0.3
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      immer: 10.1.1
-      is-hotkey: 0.2.0
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-colorful: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-datepicker: 6.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dnd: 16.0.1(@types/node@22.10.1)(@types/react@18.3.18)(react@18.3.1)
-      react-dnd-html5-backend: 16.0.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-fast-compare: 3.2.2
-      react-is: 18.3.1
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-textarea-autosize: 8.5.7(@types/react@18.3.18)(react@18.3.1)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.2
-      slate: 0.102.0
-      slate-react: 0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0)
-      unified: 10.1.2
-      unist-util-visit: 5.0.0
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - react-native
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - zustand
-
-  '@frontify/fondue@12.5.1(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.5.5)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))':
-    dependencies:
-      '@ctrl/tinycolor': 4.1.0
-      '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/modifiers': 7.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dnd-kit/utilities': 3.2.2(react@18.3.1)
-      '@floating-ui/dom': 1.6.13
-      '@frontify/fondue-charts': 3.0.0(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-components': 12.0.1(@frontify/fondue-icons@0.12.0(react@18.3.1))(@frontify/fondue-tokens@3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-      '@frontify/fondue-icons': 0.12.0(react@18.3.1)
-      '@frontify/fondue-tokens': 3.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-      '@popperjs/core': 2.11.8
-      '@radix-ui/react-popover': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toolbar': 1.1.1(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip': 1.1.7(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/accordion': 3.0.0-alpha.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/aria-modal-polyfill': 3.7.13(react@18.3.1)
-      '@react-aria/breadcrumbs': 3.5.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/checkbox': 3.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/combobox': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/dialog': 3.5.21(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/link': 3.7.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/listbox': 3.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/menu': 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/overlays': 3.25.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/radio': 3.10.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/select': 3.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/selection': 3.22.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/table': 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/tooltip': 3.7.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/visually-hidden': 3.8.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-stately/checkbox': 3.6.11(react@18.3.1)
-      '@react-stately/collections': 3.12.1(react@18.3.1)
-      '@react-stately/combobox': 3.10.2(react@18.3.1)
-      '@react-stately/list': 3.11.2(react@18.3.1)
-      '@react-stately/menu': 3.9.1(react@18.3.1)
-      '@react-stately/overlays': 3.6.13(react@18.3.1)
-      '@react-stately/radio': 3.10.10(react@18.3.1)
-      '@react-stately/select': 3.6.10(react@18.3.1)
-      '@react-stately/table': 3.13.1(react@18.3.1)
-      '@react-stately/toggle': 3.8.1(react@18.3.1)
-      '@react-stately/tooltip': 3.5.1(react@18.3.1)
-      '@react-stately/tree': 3.8.7(react@18.3.1)
-      '@react-types/dialog': 3.5.15(react@18.3.1)
-      '@react-types/shared': 3.27.0(react@18.3.1)
-      '@tailwindcss/forms': 0.5.10(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
-      '@udecode/plate-alignment': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-autoformat': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-basic-marks': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-break': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-code-block': 31.3.4(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-combobox': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-common': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-core': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-emoji': 31.4.0(patch_hash=xgzyqg57rjybsy5kuq2ehpempi)(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-floating': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-indent': 31.1.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-link': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-list': 31.1.3(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-mention': 31.3.5(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-normalizers': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-paragraph': 31.0.0(@udecode/plate-common@31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/plate-utils': 31.3.2(@types/react@18.3.18)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/react-utils': 31.0.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@udecode/slate': 31.0.0(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-react': 31.0.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate-history@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0)
-      '@udecode/slate-utils': 31.3.2(slate-history@0.100.0(slate@0.102.0))(slate@0.102.0)
-      '@udecode/utils': 31.0.0
-      '@udecode/zustood': 2.0.0(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))
-      date-fns: 3.6.0
-      escape-html: 1.0.3
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      immer: 10.1.1
-      is-hotkey: 0.2.0
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-colorful: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-datepicker: 6.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-dnd: 16.0.1(@types/node@22.5.5)(@types/react@18.3.18)(react@18.3.1)
-      react-dnd-html5-backend: 16.0.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-fast-compare: 3.2.2
-      react-is: 18.3.1
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-textarea-autosize: 8.5.7(@types/react@18.3.18)(react@18.3.1)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.2
-      slate: 0.102.0
-      slate-react: 0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0)
-      unified: 10.1.2
-      unist-util-visit: 5.0.0
-    transitivePeerDependencies:
-      - '@react-spring/web'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - react-native
-      - scheduler
-      - slate-history
-      - slate-hyperscript
-      - supports-color
-      - tailwindcss
-      - zustand
 
   '@frontify/fondue@12.7.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.10.1)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(slate-history@0.100.0(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.1)(typescript@5.5.4)))(zustand@4.5.2(@types/react@18.3.18)(immer@10.1.1)(react@18.3.1))':
     dependencies:
@@ -15295,7 +14912,7 @@ snapshots:
 
   '@udecode/react-utils@31.0.0(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@radix-ui/react-slot': 1.1.1(@types/react@18.3.18)(react@18.3.1)
+      '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@18.3.1)
       '@udecode/utils': 31.0.0
       clsx: 1.2.1
       react: 18.3.1
@@ -17215,7 +16832,7 @@ snapshots:
 
   downshift@6.1.12(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.9
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.3.1
@@ -17224,7 +16841,7 @@ snapshots:
 
   downshift@9.0.8(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.9
       compute-scroll-into-view: 3.1.0
       prop-types: 15.8.1
       react: 18.3.1
@@ -20311,7 +19928,7 @@ snapshots:
 
   react-textarea-autosize@8.5.7(@types/react@18.3.18)(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.9
       react: 18.3.1
       use-composed-ref: 1.3.0(react@18.3.1)
       use-latest: 1.2.1(@types/react@18.3.18)(react@18.3.1)
@@ -20417,7 +20034,7 @@ snapshots:
 
   redux@4.2.1:
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.26.9
 
   reflect.getprototypeof@1.0.5:
     dependencies:
