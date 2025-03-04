@@ -7,6 +7,7 @@ import { PLACEHOLDER } from './settings';
 
 const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
+const TextBlockWrapper = '[data-test-id="text-block-wrapper"]';
 
 const defaultContent = [
     {
@@ -79,7 +80,7 @@ describe('Text Block', () => {
 
         mount(<TextBlockWithStubs />);
 
-        cy.get('.text-block').should('have.css', 'min-height', '36px');
+        cy.get(TextBlockWrapper).should('have.css', 'min-height', '36px');
     });
 
     it('should not have a minimum height of 36px when editing mode is of', () => {
@@ -89,6 +90,6 @@ describe('Text Block', () => {
 
         mount(<TextBlockWithStubs />);
 
-        cy.get('.text-block').should('not.have.css', 'min-height', '36px');
+        cy.get(TextBlockWrapper).should('not.have.css', 'min-height', '36px');
     });
 });

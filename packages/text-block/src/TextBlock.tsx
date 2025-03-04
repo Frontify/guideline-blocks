@@ -22,7 +22,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <div className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
+        <div data-test-id="text-block-wrapper" className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
             <StyleProvider>
                 <RichTextEditor
                     id={appBridge.getBlockId().toString()}
