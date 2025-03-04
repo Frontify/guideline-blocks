@@ -72,7 +72,7 @@ describe('Text Block', () => {
         cy.get(TextBlockSelectorHtml).should('have.text', 'string');
     });
 
-    it('should have a minimum height of 36px', () => {
+    it('should have a minimum height of 36px when editing mode is on', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
             editorState: true,
         });
@@ -80,5 +80,15 @@ describe('Text Block', () => {
         mount(<TextBlockWithStubs />);
 
         cy.get('.text-block').should('have.css', 'min-height', '36px');
+    });
+
+    it('should not have a minimum height of 36px when editing mode is of', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            editorState: false,
+        });
+
+        mount(<TextBlockWithStubs />);
+
+        cy.get('.text-block').should('not.have.css', 'min-height', '36px');
     });
 });
