@@ -7,6 +7,7 @@ import { PLACEHOLDER } from './settings';
 
 const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
+const TextBlockWrapper = '[data-test-id="text-block-wrapper"]';
 
 const defaultContent = [
     {
@@ -70,5 +71,25 @@ describe('Text Block', () => {
 
         mount(<TextBlockWithStubs />);
         cy.get(TextBlockSelectorHtml).should('have.text', 'string');
+    });
+
+    it('should have a minimum height of 36px when editing mode is on', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            editorState: true,
+        });
+
+        mount(<TextBlockWithStubs />);
+
+        cy.get(TextBlockWrapper).should('have.css', 'min-height', '36px');
+    });
+
+    it('should not have a minimum height of 36px when editing mode is of', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            editorState: false,
+        });
+
+        mount(<TextBlockWithStubs />);
+
+        cy.get(TextBlockWrapper).should('not.have.css', 'min-height', '36px');
     });
 });

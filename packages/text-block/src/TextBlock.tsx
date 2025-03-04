@@ -3,6 +3,7 @@
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
+import { merge } from '@frontify/fondue';
 import { BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
 
 import { PLACEHOLDER } from './settings';
@@ -21,7 +22,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <div className="text-block">
+        <div data-test-id="text-block-wrapper" className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
             <StyleProvider>
                 <RichTextEditor
                     id={appBridge.getBlockId().toString()}

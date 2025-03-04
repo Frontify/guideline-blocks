@@ -36,7 +36,7 @@
         "@dnd-kit/modifiers": "^9.0.0",
         "@dnd-kit/sortable": "^10.0.0",
         "@frontify/app-bridge": "^3.11.1",
-        "@frontify/fondue": "12.5.1",
+        "@frontify/fondue": "12.7.0",
         "@frontify/guideline-blocks-settings": "0.36.14",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "autosize": "^6.0.1",
