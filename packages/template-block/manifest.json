@@ -3,7 +3,6 @@
     "i18nFields": ["title", "description", "buttonText"],
     "searchFields": [
         { "type": "fondueRte", "settingId": "title" },
-        { "type": "fondueRte", "settingId": "description" },
-        { "type": "fondueRte", "settingId": "buttonText" }
+        { "type": "fondueRte", "settingId": "description" }
     ]
 }
