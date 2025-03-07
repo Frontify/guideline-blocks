@@ -12,7 +12,6 @@ export const AssetSelection = ({
     isUploadingAssets,
     setIsUploadingAssets,
     addAssetIdsToKey,
-    saveDownloadUrl,
     currentAssets,
 }: AssetSelectionProps) => {
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -27,7 +26,6 @@ export const AssetSelection = ({
             (assetsObject) => {
                 setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                saveDownloadUrl('');
                 addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
                 closeAssetChooser();
             },
@@ -58,7 +56,6 @@ export const AssetSelection = ({
         if (doneAll && uploadResults) {
             (async (assetsObject) => {
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                saveDownloadUrl('');
                 await addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds);
                 setIsUploadingAssets(false);
             })(uploadResults);

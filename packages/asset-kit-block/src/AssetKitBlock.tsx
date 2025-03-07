@@ -20,7 +20,7 @@ import {
 import { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
-import { blockStyle, transformDateStringToDate } from './helpers';
+import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
@@ -37,7 +37,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         description,
         hasBorder_blocks,
         hasBackgroundBlocks,
-        downloadUrlBlock,
         showThumbnails = true,
         showCount = true,
         assetCountColor,
@@ -49,13 +48,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
-        if (downloadUrlBlock) {
-            const expirationTimestamp = getExpirationTimestamp(downloadUrlBlock);
-            if (!isNaN(expirationTimestamp) && expirationTimestamp > Date.now()) {
-                return downloadAssets(downloadUrlBlock);
-            }
-        }
-
         generateBulkDownload(blockAssets);
     };
 
@@ -67,18 +59,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         announceToScreenReader();
     };
 
-    const getExpirationTimestamp = (downloadUrl: string) => {
-        const creationDate = transformDateStringToDate(downloadUrl.split('X-Amz-Date=')[1]?.split('&')[0] ?? '');
-        const lifetime = downloadUrl.split('X-Amz-Expires=')[1]?.split('&')[0] ?? 0;
-        return creationDate.getTime() + Number(lifetime) * 1000;
-    };
-
-    const saveDownloadUrl = (newDownloadUrlBlock: string) => {
-        if (downloadUrlBlock !== newDownloadUrlBlock) {
-            setBlockSettings({ downloadUrlBlock: newDownloadUrlBlock });
-        }
-    };
-
     const announceToScreenReader = () => {
         if (screenReaderRef.current) {
             screenReaderRef.current.innerText = 'Your package has been downloaded.';
@@ -88,7 +68,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     useEffect(() => {
         if (status === AssetBulkDownloadState.Ready && downloadUrl) {
             downloadAssets(downloadUrl);
-            saveDownloadUrl(downloadUrl);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
@@ -165,7 +144,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                             currentAssets={currentAssets}
                             deleteAssetIdsFromKey={deleteAssetIdsFromKey}
                             updateAssetIdsFromKey={updateAssetIdsFromKey}
-                            saveDownloadUrl={saveDownloadUrl}
                             isEditing={isEditing}
                             showThumbnails={showThumbnails}
                             showCount={showCount}
@@ -178,7 +156,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 isUploadingAssets={isUploadingAssets}
                                 setIsUploadingAssets={setIsUploadingAssets}
                                 addAssetIdsToKey={addAssetIdsToKey}
-                                saveDownloadUrl={saveDownloadUrl}
                                 currentAssets={currentAssets}
                             />
                         )}
