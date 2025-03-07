@@ -43,7 +43,6 @@ export type AssetGridProps = {
     countColor?: Color;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
-    saveDownloadUrl: (downloadUrlBlock: string) => void;
 };
 
 export type AssetSelectionProps = {
@@ -52,7 +51,6 @@ export type AssetSelectionProps = {
     currentAssets: Asset[];
     addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
     setIsUploadingAssets: (isUploadingAssets: boolean) => void;
-    saveDownloadUrl: (downloadUrlBlock: string) => void;
 };
 
 export type DownloadMessageProps = {
