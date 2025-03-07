@@ -89,7 +89,9 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     useEffect(() => {
-        setBlockSettings({ items: itemsState });
+        if (blockSettings.items !== itemsState && isEditing) {
+            setBlockSettings({ items: itemsState });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemsState]);
 
