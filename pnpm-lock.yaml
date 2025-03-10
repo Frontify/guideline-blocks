@@ -85,7 +85,7 @@ importers:
         version: 5.4.14(@types/node@22.5.5)(terser@5.31.2)
       vitest:
         specifier: ^2.0.5
-        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   examples/asset-upload:
     dependencies:
@@ -125,7 +125,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -201,7 +201,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -268,7 +268,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -338,7 +338,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -408,7 +408,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -496,7 +496,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -569,7 +569,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -633,7 +633,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       eslint:
         specifier: ^8.57.0
         version: 8.57.1
@@ -718,7 +718,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -782,7 +782,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -849,7 +849,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -919,7 +919,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -992,7 +992,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1071,7 +1071,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1138,7 +1138,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1256,7 +1256,7 @@ importers:
         version: 4.1.0(@types/node@22.5.5)(rollup@4.32.0)(typescript@5.5.4)(vite@5.4.14(@types/node@22.5.5)(terser@5.31.2))
       vitest:
         specifier: ^2.0.0
-        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   packages/sketchfab-block:
     dependencies:
@@ -1296,7 +1296,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1366,7 +1366,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1433,7 +1433,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1509,7 +1509,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1594,7 +1594,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -1685,7 +1685,7 @@ importers:
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.21(postcss@8.4.49)
       cypress:
         specifier: ^13.14.1
         version: 13.14.2
@@ -2539,6 +2539,9 @@ packages:
   '@codemirror/view@6.36.3':
     resolution: {integrity: sha512-N2bilM47QWC8Hnx0rMdDxO2x2ImJ1FvZWXubwKgjeoOrWwEiFrtpA7SFHcuZ+o2Ze2VzbkgbzWVj4+V18LVkeg==}
 
+  '@codemirror/view@6.36.4':
+    resolution: {integrity: sha512-ZQ0V5ovw/miKEXTvjgzRyjnrk9TwriUB1k4R5p7uNnHR9Hus+D1SXHGdJshijEzPFjU25xea/7nhIeSqYFKdbA==}
+
   '@codesandbox/nodebox@0.1.8':
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
 
@@ -3086,8 +3089,8 @@ packages:
   '@lezer/python@1.1.14':
     resolution: {integrity: sha512-ykDOb2Ti24n76PJsSa4ZoDF0zH12BSw1LGfQXCYJhJyOGiFTfGaX0Du66Ze72R+u/P35U+O6I9m8TFXov1JzsA==}
 
-  '@lezer/python@1.1.15':
-    resolution: {integrity: sha512-aVQ43m2zk4FZYedCqL0KHPEUsqZOrmAvRhkhHlVPnDD1HODDyyQv5BRIuod4DadkgBEZd53vQOtXTonNbEgjrQ==}
+  '@lezer/python@1.1.16':
+    resolution: {integrity: sha512-ievIWylIZA5rNgAyHgA06/Y76vMUISKaYL9WrtjU8rCTTEzyZYo2jz9ER2YBdnN6dxCyS7eaK4HJCzamoAMKZw==}
 
   '@lezer/rust@1.0.2':
     resolution: {integrity: sha512-Lz5sIPBdF2FUXcWeCu1//ojFAZqzTQNRga0aYv6dYXqJqPfMdCAI0NzajWUd4Xijj1IKJLtjoXRPMvTKWBcqKg==}
@@ -4600,8 +4603,8 @@ packages:
   '@types/node-forge@1.3.11':
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
 
-  '@types/node@18.19.78':
-    resolution: {integrity: sha512-m1ilZCTwKLkk9rruBJXFeYN0Bc5SbjirwYX/Td3MqPfioYbgun3IvK/m8dQxMCnrPGZPg1kvXjp3SIekCN/ynw==}
+  '@types/node@18.19.80':
+    resolution: {integrity: sha512-kEWeMwMeIvxYkeg1gTc01awpwLbfMRZXdIhwRcakd/KlK53jmRC26LqcbIt7fnAQTu5GzlnWmzA3H6+l1u6xxQ==}
 
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
@@ -5307,6 +5310,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.14.1:
+    resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   aggregate-error@3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
@@ -5522,8 +5530,8 @@ packages:
   atomically@2.0.3:
     resolution: {integrity: sha512-kU6FmrwZ3Lx7/7y3hPS5QnbJfaohcIul5fGqf7ok+4KklIEk9tJ0C2IQPdacSbVUWv6zVHXEBWoWd6NrVMT7Cw==}
 
-  autoprefixer@10.4.20:
-    resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
+  autoprefixer@10.4.21:
+    resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -5627,11 +5635,6 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
-  browserslist@4.23.3:
-    resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
   browserslist@4.24.4:
     resolution: {integrity: sha512-KDi1Ny1gSePi1vm0q4oxSF8b4DR44GF4BbmS2YdhPLOEqd8pDviZOGH/GsmRwoWJ2+5Lr085X7naowMwKHDG1A==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -5708,11 +5711,8 @@ packages:
     resolution: {integrity: sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==}
     engines: {node: '>=10'}
 
-  caniuse-lite@1.0.30001651:
-    resolution: {integrity: sha512-9Cf+Xv1jJNe1xPZLGuUXLNkE1BoDkqRqYyFJ9TDYSqhduqA4hu4oR9HluGoWYQC/aj8WHjsGVV+bwkh0+tegRg==}
-
-  caniuse-lite@1.0.30001700:
-    resolution: {integrity: sha512-2S6XIXwaE7K7erT8dY+kLQcpa5ms63XlRkMkReXjle+kf6c5g38vyMl+Z5y8dSxOFDhcFe+nxnn261PLxBSQsQ==}
+  caniuse-lite@1.0.30001703:
+    resolution: {integrity: sha512-kRlAGTRWgPsOj7oARC9m1okJEXdL/8fekFVcxA8Hl7GH4r/sN4OJn/i6Flde373T50KS7Y37oFbMwlE8+F42kQ==}
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -6301,11 +6301,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.5.101:
-    resolution: {integrity: sha512-L0ISiQrP/56Acgu4/i/kfPwWSgrzYZUnQrC0+QPFuhqlLP1Ir7qzPPDVS9BcKIyWTRU8+o6CC8dKw38tSWhYIA==}
-
-  electron-to-chromium@1.5.6:
-    resolution: {integrity: sha512-jwXWsM5RPf6j9dPYzaorcBSUg6AiqocPEyMpkchkvntaH9HGfOOMZwxMJjDY/XEs3T5dM7uyH1VhRMkqUU9qVw==}
+  electron-to-chromium@1.5.113:
+    resolution: {integrity: sha512-wjT2O4hX+wdWPJ76gWSkMhcHAV2PTMX+QetUCPYEdCIe+cxmgzzSSiGRCKW8nuh4mwKZlpv0xvoW7OF2X+wmHg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -6784,8 +6781,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.262.0:
-    resolution: {integrity: sha512-K3asSw4s2/sRoUC4xD2OfGi04gdYCCFRgkcwEXi5JyfFhS0HrFWLcDPp55ttv95OY5970WKl4T+7hWrnuOAUMQ==}
+  flow-parser@0.263.0:
+    resolution: {integrity: sha512-F0Tr7SUvZ4BQYglFOkr8rCTO5FPjCwMhm/6i57h40F80Oz/hzzkqte4lGO0vGJ7THQonuXcTyYqCdKkAwt5d2w==}
     engines: {node: '>=0.4.0'}
 
   fontfaceobserver@2.1.0:
@@ -8092,9 +8089,6 @@ packages:
   node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
 
-  node-releases@2.0.18:
-    resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
-
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
 
@@ -8349,9 +8343,6 @@ packages:
 
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
-
-  picocolors@1.0.1:
-    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -9639,14 +9630,8 @@ packages:
     resolution: {integrity: sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==}
     engines: {node: '>=8'}
 
-  update-browserslist-db@1.1.0:
-    resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
-    hasBin: true
-    peerDependencies:
-      browserslist: '>= 4.21.0'
-
-  update-browserslist-db@1.1.2:
-    resolution: {integrity: sha512-PPypAm5qvlD7XMZC3BujecnaOxwhrtoFR+Dqkk5Aa/6DssiH0ibKoketaj9w8LP7Bont1rYeoV5plxD7RTEPRg==}
+  update-browserslist-db@1.1.3:
+    resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -11069,6 +11054,13 @@ snapshots:
       '@codemirror/view': 6.36.3
       '@lezer/common': 1.2.3
 
+  '@codemirror/autocomplete@6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.4)(@lezer/common@1.2.3)':
+    dependencies:
+      '@codemirror/language': 6.10.8
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.36.4
+      '@lezer/common': 1.2.3
+
   '@codemirror/commands@6.6.0':
     dependencies:
       '@codemirror/language': 6.10.8
@@ -11087,7 +11079,7 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.10.8
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
       '@lezer/common': 1.2.3
 
   '@codemirror/lang-angular@0.1.3':
@@ -11163,11 +11155,11 @@ snapshots:
 
   '@codemirror/lang-javascript@6.2.3':
     dependencies:
-      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.3)(@lezer/common@1.2.3)
+      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.4)(@lezer/common@1.2.3)
       '@codemirror/language': 6.10.8
       '@codemirror/lint': 6.8.4
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
       '@lezer/common': 1.2.3
       '@lezer/javascript': 1.4.19
 
@@ -11216,11 +11208,11 @@ snapshots:
 
   '@codemirror/lang-markdown@6.3.2':
     dependencies:
-      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.3)(@lezer/common@1.2.3)
+      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.4)(@lezer/common@1.2.3)
       '@codemirror/lang-html': 6.4.9
       '@codemirror/language': 6.10.8
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
       '@lezer/common': 1.2.3
       '@lezer/markdown': 1.4.2
 
@@ -11248,7 +11240,7 @@ snapshots:
       '@codemirror/language': 6.10.8
       '@codemirror/state': 6.5.2
       '@lezer/common': 1.2.3
-      '@lezer/python': 1.1.15
+      '@lezer/python': 1.1.16
     transitivePeerDependencies:
       - '@codemirror/view'
 
@@ -11364,7 +11356,7 @@ snapshots:
   '@codemirror/search@6.5.6':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
       crelt: 1.0.6
 
   '@codemirror/state@6.5.2':
@@ -11375,7 +11367,7 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.10.8
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
       '@lezer/highlight': 1.2.1
 
   '@codemirror/view@6.36.2':
@@ -11385,6 +11377,12 @@ snapshots:
       w3c-keyname: 2.2.8
 
   '@codemirror/view@6.36.3':
+    dependencies:
+      '@codemirror/state': 6.5.2
+      style-mod: 4.1.2
+      w3c-keyname: 2.2.8
+
+  '@codemirror/view@6.36.4':
     dependencies:
       '@codemirror/state': 6.5.2
       style-mod: 4.1.2
@@ -12460,7 +12458,7 @@ snapshots:
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
 
-  '@lezer/python@1.1.15':
+  '@lezer/python@1.1.16':
     dependencies:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
@@ -14196,7 +14194,7 @@ snapshots:
 
   '@rnx-kit/chromium-edge-launcher@1.0.0':
     dependencies:
-      '@types/node': 18.19.78
+      '@types/node': 18.19.80
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -14520,7 +14518,7 @@ snapshots:
       '@types/node': 22.10.1
     optional: true
 
-  '@types/node@18.19.78':
+  '@types/node@18.19.80':
     dependencies:
       undici-types: 5.26.5
     optional: true
@@ -15665,7 +15663,7 @@ snapshots:
       pathe: 1.1.2
       sirv: 2.0.4
       tinyrainbow: 1.2.0
-      vitest: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+      vitest: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   '@vitest/utils@2.0.5':
     dependencies:
@@ -15753,6 +15751,9 @@ snapshots:
   acorn@8.12.1: {}
 
   acorn@8.14.0: {}
+
+  acorn@8.14.1:
+    optional: true
 
   aggregate-error@3.1.0:
     dependencies:
@@ -15999,13 +16000,13 @@ snapshots:
       stubborn-fs: 1.2.5
       when-exit: 2.1.4
 
-  autoprefixer@10.4.20(postcss@8.4.49):
+  autoprefixer@10.4.21(postcss@8.4.49):
     dependencies:
-      browserslist: 4.23.3
-      caniuse-lite: 1.0.30001651
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001703
       fraction.js: 4.3.7
       normalize-range: 0.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.1
       postcss: 8.4.49
       postcss-value-parser: 4.2.0
 
@@ -16122,19 +16123,12 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  browserslist@4.23.3:
-    dependencies:
-      caniuse-lite: 1.0.30001651
-      electron-to-chromium: 1.5.6
-      node-releases: 2.0.18
-      update-browserslist-db: 1.1.0(browserslist@4.23.3)
-
   browserslist@4.24.4:
     dependencies:
-      caniuse-lite: 1.0.30001700
-      electron-to-chromium: 1.5.101
+      caniuse-lite: 1.0.30001703
+      electron-to-chromium: 1.5.113
       node-releases: 2.0.19
-      update-browserslist-db: 1.1.2(browserslist@4.24.4)
+      update-browserslist-db: 1.1.3(browserslist@4.24.4)
 
   bser@2.1.1:
     dependencies:
@@ -16202,9 +16196,7 @@ snapshots:
   camelcase@6.3.0:
     optional: true
 
-  caniuse-lite@1.0.30001651: {}
-
-  caniuse-lite@1.0.30001700: {}
+  caniuse-lite@1.0.30001703: {}
 
   caseless@0.12.0: {}
 
@@ -16336,13 +16328,13 @@ snapshots:
 
   codemirror@6.0.1(@lezer/common@1.2.3):
     dependencies:
-      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.3)(@lezer/common@1.2.3)
+      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.8)(@codemirror/state@6.5.2)(@codemirror/view@6.36.4)(@lezer/common@1.2.3)
       '@codemirror/commands': 6.8.0
       '@codemirror/language': 6.10.8
       '@codemirror/lint': 6.8.4
       '@codemirror/search': 6.5.6
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.36.3
+      '@codemirror/view': 6.36.4
     transitivePeerDependencies:
       - '@lezer/common'
 
@@ -16858,9 +16850,7 @@ snapshots:
   ee-first@1.1.1:
     optional: true
 
-  electron-to-chromium@1.5.101: {}
-
-  electron-to-chromium@1.5.6: {}
+  electron-to-chromium@1.5.113: {}
 
   emoji-regex@8.0.0: {}
 
@@ -17608,7 +17598,7 @@ snapshots:
   flow-enums-runtime@0.0.6:
     optional: true
 
-  flow-parser@0.262.0:
+  flow-parser@0.263.0:
     optional: true
 
   fontfaceobserver@2.1.0: {}
@@ -18303,7 +18293,7 @@ snapshots:
       '@babel/register': 7.25.9(@babel/core@7.26.9)
       babel-core: 7.0.0-bridge.0(@babel/core@7.26.9)
       chalk: 4.1.2
-      flow-parser: 0.262.0
+      flow-parser: 0.263.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -19246,8 +19236,6 @@ snapshots:
   node-int64@0.4.0:
     optional: true
 
-  node-releases@2.0.18: {}
-
   node-releases@2.0.19: {}
 
   node-stream-zip@1.15.0:
@@ -19510,8 +19498,6 @@ snapshots:
   pend@1.2.0: {}
 
   performance-now@2.1.0: {}
-
-  picocolors@1.0.1: {}
 
   picocolors@1.1.1: {}
 
@@ -20745,7 +20731,7 @@ snapshots:
   terser@5.31.2:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.14.0
+      acorn: 8.14.1
       commander: 2.20.3
       source-map-support: 0.5.21
     optional: true
@@ -21067,13 +21053,7 @@ snapshots:
 
   untildify@4.0.0: {}
 
-  update-browserslist-db@1.1.0(browserslist@4.23.3):
-    dependencies:
-      browserslist: 4.23.3
-      escalade: 3.2.0
-      picocolors: 1.0.1
-
-  update-browserslist-db@1.1.2(browserslist@4.24.4):
+  update-browserslist-db@1.1.3(browserslist@4.24.4):
     dependencies:
       browserslist: 4.24.4
       escalade: 3.2.0
@@ -21273,7 +21253,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.31.2
 
-  vitest@2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2):
+  vitest@2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2):
     dependencies:
       '@vitest/expect': 2.1.9
       '@vitest/mocker': 2.1.9(msw@1.3.5(typescript@5.5.4))(vite@5.4.14(@types/node@22.5.5)(terser@5.31.2))
