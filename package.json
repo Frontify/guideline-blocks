@@ -52,5 +52,5 @@
             "@udecode/plate-emoji@31.4.0": "patches/@udecode__plate-emoji@31.4.0.patch"
         }
     },
-    "packageManager": "pnpm@9.15.5"
+    "packageManager": "pnpm@9.15.9"
 }
