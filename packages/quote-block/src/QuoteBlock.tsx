@@ -151,7 +151,12 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                 />
                             </div>
                             {showAuthor && (
-                                <p className="tw-text-right tw-break-all tw-text-[color:--f-theme-settings-body-color]">{`- ${blockSettings.authorName}`}</p>
+                                <p
+                                    className="tw-text-right tw-break-all"
+                                    style={{
+                                        color: `${THEME_PREFIX}body-color`,
+                                    }}
+                                >{`- ${blockSettings.authorName}`}</p>
                             )}
                         </div>
                         {isQuotationMarkType && (
