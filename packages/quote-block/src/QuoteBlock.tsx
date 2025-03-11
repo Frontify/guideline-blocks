@@ -142,7 +142,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                 ])}
                             >
                                 <RichTextEditor
-                                    id={appBridge.getBlockId().toString()}
+                                    id={String(appBridge.context('blockId').get())}
                                     placeholder={isEditing ? 'Add your quote text here' : undefined}
                                     value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                                     onTextChange={onChangeContent}
@@ -151,7 +151,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                 />
                             </div>
                             {showAuthor && (
-                                <p className="tw-text-right tw-break-all">{`- ${blockSettings.authorName}`}</p>
+                                <p className="tw-text-right tw-break-all tw-text-[color:--f-theme-settings-body-color]">{`- ${blockSettings.authorName}`}</p>
                             )}
                         </div>
                         {isQuotationMarkType && (
