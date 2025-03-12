@@ -15,6 +15,7 @@ import {
 import {
     AllTextStylePlugins,
     BlockProps,
+    BlockStyles,
     RichTextEditor,
     THEME_PREFIX,
     TextStyles,
@@ -154,7 +155,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <p
                                     className="tw-text-right tw-break-all"
                                     style={{
-                                        color: `var(${THEME_PREFIX}body-color)`,
+                                        color: BlockStyles[TextStyles.p].color,
                                     }}
                                 >{`- ${blockSettings.authorName}`}</p>
                             )}
