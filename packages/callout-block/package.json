@@ -24,7 +24,6 @@
         "eslint": "^8.57.0",
         "eslint-plugin-jsx-a11y": "^6.9.0",
         "eslint-plugin-notice": "^0.9.10",
-        "mitt": "^3.0.1",
         "postcss": "^8.4.44",
         "prettier": "^3.3.3",
         "sinon": "^18.0.0",
