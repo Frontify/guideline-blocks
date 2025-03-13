@@ -31,7 +31,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
     const designSettingsStyleTag =
-        document.getElementById('theme-design-settings') ?? document.getElementById('design-settings')!;
+        document.getElementById('theme-design-settings') ?? document.getElementById('design-settings');
 
     useEffect(() => {
         if (!blockSettings.iconSwitch && customIcon && isEditing) {
@@ -50,7 +50,9 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
         const styleChangeObserver = new MutationObserver(() => updateStyles());
 
-        styleChangeObserver.observe(designSettingsStyleTag, { childList: true });
+        if (designSettingsStyleTag) {
+            styleChangeObserver.observe(designSettingsStyleTag, { childList: true });
+        }
 
         return () => {
             styleChangeObserver.disconnect();
