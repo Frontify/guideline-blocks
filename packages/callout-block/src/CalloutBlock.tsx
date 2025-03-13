@@ -30,6 +30,9 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
+    const designSettingsStyleTag =
+        document.getElementById('theme-design-settings') ?? document.getElementById('design-settings')!;
+
     useEffect(() => {
         if (!blockSettings.iconSwitch && customIcon && isEditing) {
             deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
@@ -43,12 +46,14 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
             setTextColor(textColor);
         };
 
-        window.emitter.on('HubAppearanceUpdated', updateStyles);
-
         updateStyles();
 
+        const styleChangeObserver = new MutationObserver(() => updateStyles());
+
+        styleChangeObserver.observe(designSettingsStyleTag, { childList: true });
+
         return () => {
-            window.emitter.off('HubAppearanceUpdated', updateStyles);
+            styleChangeObserver.disconnect();
         };
     }, [appearance, type]);
 
