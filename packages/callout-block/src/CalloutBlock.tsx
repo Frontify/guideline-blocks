@@ -11,7 +11,7 @@ import {
     joinClassNames,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
@@ -30,6 +30,20 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
+    const designSettingsStyleTagRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+        designSettingsStyleTagRef.current =
+            document.getElementById('theme-design-settings') ?? document.getElementById('design-settings');
+    }, []);
+
+    const updateStyles = useCallback(() => {
+        const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(type, appearance);
+
+        setBackgroundColor((prev) => (prev !== newBgColor ? newBgColor : prev));
+        setTextColor((prev) => (prev !== newTextColor ? newTextColor : prev));
+    }, [type, appearance]);
+
     useEffect(() => {
         if (!blockSettings.iconSwitch && customIcon && isEditing) {
             deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
@@ -37,20 +51,20 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
 
     useEffect(() => {
-        const updateStyles = () => {
-            const { backgroundColor, textColor } = computeStyles(type, appearance);
-            setBackgroundColor(backgroundColor);
-            setTextColor(textColor);
-        };
-
-        window.emitter.on('HubAppearanceUpdated', updateStyles);
-
         updateStyles();
 
+        if (!designSettingsStyleTagRef.current) {
+            return;
+        }
+
+        const styleChangeObserver = new MutationObserver(() => updateStyles());
+
+        styleChangeObserver.observe(designSettingsStyleTagRef.current, { childList: true });
+
         return () => {
-            window.emitter.off('HubAppearanceUpdated', updateStyles);
+            styleChangeObserver.disconnect();
         };
-    }, [appearance, type]);
+    }, [updateStyles]);
 
     const handleTextChange = useCallback((textValue: string) => setBlockSettings({ textValue }), [setBlockSettings]);
 
