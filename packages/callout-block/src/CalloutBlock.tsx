@@ -48,11 +48,13 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
         updateStyles();
 
+        if (!designSettingsStyleTag) {
+            return;
+        }
+
         const styleChangeObserver = new MutationObserver(() => updateStyles());
 
-        if (designSettingsStyleTag) {
-            styleChangeObserver.observe(designSettingsStyleTag, { childList: true });
-        }
+        styleChangeObserver.observe(designSettingsStyleTag, { childList: true });
 
         return () => {
             styleChangeObserver.disconnect();
