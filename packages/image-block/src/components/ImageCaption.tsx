@@ -1,12 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    RichTextEditor,
-    TextStyles,
-    convertToRteValue,
-    hasRichTextValue,
-    joinClassNames,
-} from '@frontify/guideline-blocks-settings';
+import { RichTextEditor, TextStyles, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from './helpers';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CaptionPosition, type Ratio, type Settings, textRatioValues } from '../types';
@@ -49,13 +43,7 @@ export const ImageCaption = ({
                     : textRatioValues[ratio]
             }
         >
-            <div
-                className={joinClassNames([
-                    positioning === CaptionPosition.Below && 'tw-mt-3',
-                    'tw-gap-1 tw-flex-1 tw-w-full',
-                ])}
-                data-test-id="image-caption"
-            >
+            <div className="tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
                 <RichTextEditor
                     key={titleKey}
                     id={`${blockId}_title`}
