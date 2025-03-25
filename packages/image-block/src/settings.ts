@@ -29,6 +29,14 @@ export const ALLOWED_EXTENSIONS = [
     ...FileExtensionSets.Templates,
 ];
 
+export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255 };
+export const DEFAULT_BORDER_COLOR = {
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
+};
+
 export const settings = defineSettings({
     basics: [
         {
@@ -177,11 +185,11 @@ export const settings = defineSettings({
                 {
                     id: 'backgroundColor',
                     type: 'colorInput',
-                    defaultValue: { red: 255, green: 255, blue: 255 },
+                    defaultValue: DEFAULT_BACKGROUND_COLOR,
                 },
             ],
         },
-        getBorderSettings(),
+        getBorderSettings({ defaultColor: DEFAULT_BORDER_COLOR }),
         getBorderRadiusSettings({
             id: 'cornerRadius',
             radiusStyleMap: radiusValues,
