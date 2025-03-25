@@ -43,7 +43,7 @@ export type Settings = {
     buttonStyle: RichTextButtonStyle;
 
     hasBackground: boolean;
-    backgroundColor: Color;
+    backgroundColor: Color | null;
 
     hasColor_title: boolean;
     colorValue_title: Color;
@@ -64,7 +64,7 @@ export type Settings = {
     radiusChoice_blockCard: Radius;
 
     hasBackgroundTemplatePreview: boolean;
-    backgroundColorTemplatePreview: Color;
+    backgroundColorTemplatePreview: Color | null;
 
     hasBorder_templatePreview: boolean;
     borderWidth_templatePreview: string;
