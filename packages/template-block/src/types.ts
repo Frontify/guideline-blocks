@@ -57,7 +57,7 @@ export type Settings = {
     hasBorder_blockCard: boolean;
     borderWidth_blockCard: string;
     borderStyle_blockCard: BorderStyle;
-    borderColor_blockCard: Color;
+    borderColor_blockCard: Color | null;
 
     hasRadius_blockCard: boolean;
     radiusValue_blockCard: string;
@@ -69,7 +69,7 @@ export type Settings = {
     hasBorder_templatePreview: boolean;
     borderWidth_templatePreview: string;
     borderStyle_templatePreview: BorderStyle;
-    borderColor_templatePreview: Color;
+    borderColor_templatePreview: Color | null;
 
     hasRadius_templatePreview: boolean;
     radiusValue_templatePreview: string;

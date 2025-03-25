@@ -31,6 +31,7 @@ import {
 import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 
 export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255, alpha: 1 };
+export const DEFAULT_BORDER_COLOR = { red: 234, green: 235, blue: 235, alpha: 1 };
 
 export const settings = defineSettings({
     main: [],
@@ -393,6 +394,7 @@ export const settings = defineSettings({
                     ...getBorderSettings({
                         id: 'blockCard',
                         defaultValue: true,
+                        defaultColor: DEFAULT_BORDER_COLOR,
                     }),
                 },
                 {
@@ -427,6 +429,7 @@ export const settings = defineSettings({
                     ...getBorderSettings({
                         id: 'templatePreview',
                         defaultValue: true,
+                        defaultColor: DEFAULT_BORDER_COLOR,
                     }),
                 },
                 {
