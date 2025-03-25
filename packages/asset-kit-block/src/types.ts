@@ -7,20 +7,20 @@ import { CSSProperties } from 'react';
 
 export type Settings = {
     hasBackgroundBlocks?: boolean;
-    backgroundColorBlocks?: Color;
+    backgroundColorBlocks?: Color | null;
     hasBorder_blocks?: boolean;
     borderStyle_blocks?: BorderStyle;
     borderWidth_blocks?: string;
-    borderColor_blocks?: Color;
+    borderColor_blocks?: Color | null;
     hasRadius_blocks?: boolean;
     radiusChoice_blocks: Radius;
     radiusValue_blocks?: number;
     hasBackgroundThumbnails?: boolean;
-    backgroundColorThumbnails?: Color;
+    backgroundColorThumbnails?: Color | null;
     hasBorder_thumbnails?: boolean;
     borderStyle_thumbnails?: BorderStyle;
     borderWidth_thumbnails?: string;
-    borderColor_thumbnails?: Color;
+    borderColor_thumbnails?: Color | null;
     hasRadius_thumbnails?: boolean;
     radiusChoice_thumbnails: Radius;
     radiusValue_thumbnails?: number;

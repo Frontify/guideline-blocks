@@ -19,9 +19,14 @@ export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     } = blockSetting;
 
     return {
-        ...(hasBackgroundThumbnails && getBackgroundColorStyles(backgroundColorThumbnails)),
+        ...(hasBackgroundThumbnails &&
+            getBackgroundColorStyles(backgroundColorThumbnails || BACKGROUND_COLOR_DEFAULT_VALUE)),
         ...(hasBorder_thumbnails &&
-            getBorderStyles(borderStyle_thumbnails, borderWidth_thumbnails, borderColor_thumbnails)),
+            getBorderStyles(
+                borderStyle_thumbnails,
+                borderWidth_thumbnails,
+                borderColor_thumbnails || BACKGROUND_COLOR_DEFAULT_VALUE
+            )),
         ...getRadiusStyles(radiusChoice_thumbnails, hasRadius_thumbnails, radiusValue_thumbnails),
     };
 };
@@ -39,8 +44,9 @@ export const blockStyle = (blockSetting: Settings): CSSProperties => {
         radiusValue_blocks,
     } = blockSetting;
     return {
-        ...(hasBackgroundBlocks && getBackgroundColorStyles(backgroundColorBlocks)),
-        ...(hasBorder_blocks && getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks)),
+        ...(hasBackgroundBlocks && getBackgroundColorStyles(backgroundColorBlocks || BACKGROUND_COLOR_DEFAULT_VALUE)),
+        ...(hasBorder_blocks &&
+            getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks || BORDER_COLOR_DEFAULT_VALUE)),
         ...getRadiusStyles(radiusChoice_blocks, hasRadius_blocks, radiusValue_blocks),
     };
 };
