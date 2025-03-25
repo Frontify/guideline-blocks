@@ -25,6 +25,34 @@ import {
     heightMapWithPixel,
 } from './types';
 
+export const DEFAULT_BACKGROUND_COLOR = {
+    red: 255,
+    green: 255,
+    blue: 255,
+    alpha: 1,
+};
+
+export const DEFAULT_LINE_COLOR = {
+    red: 0,
+    green: 0,
+    blue: 0,
+    alpha: 1,
+};
+
+export const DEFAULT_STRIKETHROUGH_COLOR = {
+    red: 255,
+    green: 0,
+    blue: 0,
+    alpha: 1,
+};
+
+export const DEFAULT_BORDER_COLOR = {
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
+};
+
 export const settings = defineSettings({
     main: [
         {
@@ -318,12 +346,8 @@ export const settings = defineSettings({
                         {
                             id: 'sliderColor',
                             type: 'colorInput',
-                            defaultValue: {
-                                red: 0,
-                                green: 0,
-                                blue: 0,
-                                alpha: 1,
-                            },
+                            clearable: false,
+                            defaultValue: DEFAULT_LINE_COLOR,
                         },
                     ],
                 },
@@ -342,12 +366,7 @@ export const settings = defineSettings({
                         {
                             id: 'backgroundColor',
                             type: 'colorInput',
-                            defaultValue: {
-                                red: 0,
-                                green: 0,
-                                blue: 0,
-                                alpha: 1,
-                            },
+                            defaultValue: DEFAULT_BACKGROUND_COLOR,
                         },
                     ],
                 },
@@ -383,12 +402,8 @@ export const settings = defineSettings({
                 {
                     id: 'customStrikeThroughColor',
                     type: 'colorInput',
-                    defaultValue: {
-                        red: 255,
-                        green: 0,
-                        blue: 0,
-                        alpha: 1,
-                    },
+                    clearable: false,
+                    defaultValue: DEFAULT_STRIKETHROUGH_COLOR,
                     show: (bundle) => bundle.getBlock('strikethroughColorSource')?.value === InheritSettings.OVERRIDE,
                 },
             ],

@@ -16,7 +16,7 @@ export type BlockSettings = {
 
     hasBorder: boolean;
     borderStyle: BorderStyle;
-    borderColor: Color;
+    borderColor: Color | null;
     borderWidth: string;
 
     hasRadius: boolean;
@@ -35,18 +35,18 @@ export type BlockSettings = {
 
     handle: Handle;
 
-    sliderColor: Color;
+    sliderColor: Color | null;
     sliderWidth: string;
     sliderStyle: BorderStyle;
 
-    backgroundColor: Color;
+    backgroundColor: Color | null;
     hasBackground: boolean;
 
     firstAssetHasStrikethrough: boolean;
     secondAssetHasStrikethrough: boolean;
 
     strikethroughColorSource: InheritSettings;
-    customStrikeThroughColor: Color;
+    customStrikeThroughColor: Color | null;
 };
 
 export enum SliderImageSlot {
