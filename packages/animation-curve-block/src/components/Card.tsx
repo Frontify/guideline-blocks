@@ -14,7 +14,13 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
 import { AnimationCurve, CardProps, SortableCardProps } from '../types';
-import { DEFAULT_ANIMATION_CANVAS_VIEWBOX } from '../constants';
+import {
+    DEFAULT_ANIMATION_CANVAS_VIEWBOX,
+    DEFAULT_BACKGROUND_COLOR,
+    DEFAULT_BORDER_COLOR,
+    DEFAULT_GRID_COLOR,
+    DEFAULT_LINE_COLOR,
+} from '../constants';
 import { AnimationCanvas, AnimationCurveFlyout, CardText } from './';
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -112,7 +118,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             'tw-flex tw-flex-col tw-relative',
                         ])}
                         style={{
-                            ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                            ...(hasBorder &&
+                                getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR)),
                             ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
                         }}
                     >
@@ -146,7 +153,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             ])}
                             style={{
                                 ...(hasBackground && {
-                                    ...getBackgroundColorStyles(backgroundColor),
+                                    ...getBackgroundColorStyles(backgroundColor || DEFAULT_BACKGROUND_COLOR),
                                     ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
                                 }),
                             }}
@@ -155,9 +162,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 animationFunction={animationFunction}
                                 showGrid={hasGrid}
                                 showEndPoints={hasEndpoints}
-                                lineColor={lineColor}
-                                endpointColor={endpointsColor}
-                                gridColor={gridColor}
+                                lineColor={lineColor || DEFAULT_LINE_COLOR}
+                                endpointColor={endpointsColor || DEFAULT_LINE_COLOR}
+                                gridColor={gridColor || DEFAULT_GRID_COLOR}
                                 viewBox={DEFAULT_ANIMATION_CANVAS_VIEWBOX}
                                 shouldAnimate={isHovered && hasMotion}
                                 setCanvasHeight={setCanvasHeight}
