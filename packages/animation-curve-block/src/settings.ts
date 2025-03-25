@@ -8,6 +8,7 @@ import {
     getBorderSettings,
     getGutterSettings,
 } from '@frontify/guideline-blocks-settings';
+import { DEFAULT_GRID_COLOR, DEFAULT_LINE_COLOR } from './constants';
 
 const COLUMNS_ID = 'columns';
 const LINE_COLOR_ID = 'lineColor';
@@ -85,7 +86,7 @@ export const settings = defineSettings({
             id: LINE_COLOR_ID,
             label: 'Line',
             type: 'colorInput',
-            defaultValue: { red: 45, green: 50, blue: 50, alpha: 1 },
+            defaultValue: DEFAULT_LINE_COLOR,
         },
         {
             id: END_POINTS_ID,
@@ -96,7 +97,7 @@ export const settings = defineSettings({
                 {
                     id: END_POINTS_COLOR_ID,
                     type: 'colorInput',
-                    defaultValue: { red: 45, green: 50, blue: 50, alpha: 1 },
+                    defaultValue: DEFAULT_LINE_COLOR,
                 },
             ],
         },
@@ -109,7 +110,7 @@ export const settings = defineSettings({
                 {
                     id: GRID_COLOR_ID,
                     type: 'colorInput',
-                    defaultValue: { red: 153, green: 153, blue: 153, alpha: 1 },
+                    defaultValue: DEFAULT_GRID_COLOR,
                 },
             ],
         },

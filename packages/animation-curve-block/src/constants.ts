@@ -16,11 +16,10 @@ export const DEFAULT_ANIMATION_CANVAS_VIEWBOX: Size = {
     height: 200,
 };
 
-export const DEFAULT_LINE_COLOR: Color = {
-    red: 45,
-    green: 50,
-    blue: 50,
-};
+export const DEFAULT_LINE_COLOR: Color = { red: 45, green: 50, blue: 50, alpha: 1 };
+export const DEFAULT_GRID_COLOR: Color = { red: 153, green: 153, blue: 153, alpha: 1 };
+export const DEFAULT_BORDER_COLOR: Color = { red: 234, green: 235, blue: 235, alpha: 1 };
+export const DEFAULT_BACKGROUND_COLOR: Color = { red: 241, green: 241, blue: 241, alpha: 1 };
 
 export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
     {
