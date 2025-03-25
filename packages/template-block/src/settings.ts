@@ -30,6 +30,8 @@ import {
 } from './types';
 import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 
+export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255, alpha: 1 };
+
 export const settings = defineSettings({
     main: [],
     basics: [
@@ -384,7 +386,7 @@ export const settings = defineSettings({
                 {
                     ...getBackgroundSettings({
                         defaultValue: true,
-                        defaultColor: { red: 255, green: 255, blue: 255, alpha: 1 },
+                        defaultColor: DEFAULT_BACKGROUND_COLOR,
                     }),
                 },
                 {
@@ -418,7 +420,7 @@ export const settings = defineSettings({
                     ...getBackgroundSettings({
                         id: 'TemplatePreview',
                         defaultValue: true,
-                        defaultColor: { red: 255, green: 255, blue: 255, alpha: 1 },
+                        defaultColor: DEFAULT_BACKGROUND_COLOR,
                     }),
                 },
                 {

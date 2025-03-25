@@ -38,6 +38,7 @@ import {
     textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from '../types';
+import { DEFAULT_BACKGROUND_COLOR } from '../settings';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -142,7 +143,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         blockSettings,
         cardStyles: getCardStyles(
             hasBackground,
-            backgroundColor,
+            backgroundColor || DEFAULT_BACKGROUND_COLOR,
             hasCustomPaddingValue_blockCard,
             paddingValue_blockCard,
             paddingChoice_blockCard,

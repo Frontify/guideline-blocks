@@ -11,6 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewImage } from './PreviewImage';
 import { TemplatePreviewProps } from './types';
+import { DEFAULT_BACKGROUND_COLOR } from '../settings';
 
 export const TemplatePreview = ({
     appBridge,
@@ -57,7 +58,7 @@ export const TemplatePreview = ({
                     data-test-id="preview-wrapper"
                     style={{
                         ...(hasBackgroundTemplatePreview && {
-                            ...getBackgroundColorStyles(backgroundColorTemplatePreview),
+                            ...getBackgroundColorStyles(backgroundColorTemplatePreview || DEFAULT_BACKGROUND_COLOR),
                         }),
                         borderRadius,
                         border,
