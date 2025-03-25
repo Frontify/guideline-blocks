@@ -35,6 +35,13 @@ import {
 import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
+import {
+    DEFAULT_BACKGROUND_COLOR,
+    DEFAULT_BORDER_COLOR,
+    DEFAULT_LINE_COLOR,
+    DEFAULT_STRIKETHROUGH_COLOR,
+} from './settings';
+
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -248,7 +255,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const getBorderStyle = () => {
-        return hasBorder ? { borderWidth, borderColor: toRgbaString(borderColor), borderStyle } : {};
+        return hasBorder
+            ? { borderWidth, borderColor: toRgbaString(borderColor || DEFAULT_BORDER_COLOR), borderStyle }
+            : {};
     };
 
     const getBorderRadius = () => {
@@ -262,7 +271,13 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const renderSliderItem = (slot: SliderImageSlot) => {
         return (
             <div className="tw-grow">
-                <div style={{ background: hasBackground ? toRgbaString(backgroundColor) : undefined }}>
+                <div
+                    style={{
+                        background: hasBackground
+                            ? toRgbaString(backgroundColor || DEFAULT_BACKGROUND_COLOR)
+                            : undefined,
+                    }}
+                >
                     <img
                         src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
                         alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
@@ -293,7 +308,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 <Strikethrough
                     color={
                         strikethroughColorSource === InheritSettings.OVERRIDE
-                            ? toRgbaString(customStrikeThroughColor)
+                            ? toRgbaString(customStrikeThroughColor || DEFAULT_STRIKETHROUGH_COLOR)
                             : style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)
                     }
                 />
@@ -371,7 +386,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                                         <SliderLine
                                             alignment={alignment}
                                             handle={handle}
-                                            sliderColor={sliderColor}
+                                            sliderColor={sliderColor || DEFAULT_LINE_COLOR}
                                             sliderStyle={sliderStyle}
                                             sliderWidth={sliderWidth}
                                         />
