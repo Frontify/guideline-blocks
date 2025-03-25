@@ -38,7 +38,7 @@ import {
     textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from '../types';
-import { DEFAULT_BACKGROUND_COLOR } from '../settings';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -153,7 +153,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             hasBorder_blockCard,
             borderWidth_blockCard,
             borderStyle_blockCard,
-            borderColor_blockCard
+            borderColor_blockCard || DEFAULT_BORDER_COLOR
         ),
         contentClasses: getContentClasses(hasPreview, textPositioning, textAnchoringVertical),
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),

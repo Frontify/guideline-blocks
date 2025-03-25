@@ -11,7 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { PreviewImage } from './PreviewImage';
 import { TemplatePreviewProps } from './types';
-import { DEFAULT_BACKGROUND_COLOR } from '../settings';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
 export const TemplatePreview = ({
     appBridge,
@@ -45,7 +45,7 @@ export const TemplatePreview = ({
         ? radiusValue_templatePreview
         : radiusStyleMap[radiusChoice_templatePreview];
     const border = hasBorder_templatePreview
-        ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview)}`
+        ? `${borderWidth_templatePreview} ${borderStyle_templatePreview} ${toRgbaString(borderColor_templatePreview || DEFAULT_BORDER_COLOR)}`
         : 'none';
     const height = isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple];
     const enableCta = !isEditing && template !== null;
