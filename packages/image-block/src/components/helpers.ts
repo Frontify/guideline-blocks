@@ -29,6 +29,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
 const textStylePlugins = [
     new SoftBreakPlugin(),
@@ -100,14 +101,16 @@ const getBorderRadius = (blockSettings: Settings) => {
 
 export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => {
     const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
+        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor || DEFAULT_BORDER_COLOR)}`
         : undefined;
 
     return {
         padding: getPadding(blockSettings),
         border,
         borderRadius: blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
-        backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
+        backgroundColor: blockSettings.hasBackground
+            ? toRgbaString(blockSettings.backgroundColor || DEFAULT_BACKGROUND_COLOR)
+            : undefined,
     };
 };
 

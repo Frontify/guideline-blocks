@@ -13,8 +13,8 @@ export type Settings = {
     altText?: string;
     description?: string;
     alignment: Alignment;
-    backgroundColor: Color;
-    borderColor: Color;
+    backgroundColor: Color | null;
+    borderColor: Color | null;
     borderStyle: BorderStyle;
     borderWidth: string;
     downloadable: boolean;
