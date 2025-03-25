@@ -41,6 +41,7 @@ import {
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -346,9 +347,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         body: item.body,
         type: item.type,
         style,
-        doColor,
+        doColor: doColor || DO_COLOR_DEFAULT_VALUE,
         linkedImage: getLinkedImageOfItem(item),
-        dontColor,
+        dontColor: dontColor || DONT_COLOR_DEFAULT_VALUE,
         editing: isEditing,
         hasCustomDoIcon,
         doIconChoice,
@@ -365,8 +366,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         imageDisplay,
         imageHeightChoice,
         hasStrikethrough,
-        backgroundColor,
-        borderColor,
+        backgroundColor: backgroundColor || DEFAULT_BACKGROUND_COLOR,
+        borderColor: borderColor || DEFAULT_BORDER_COLOR,
         borderStyle,
         hasBackground,
         hasBorder,
