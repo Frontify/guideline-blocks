@@ -22,6 +22,9 @@ import {
     ItemIconChoice,
 } from './types';
 
+export const DEFAULT_BACKGROUND_COLOR = { red: 241, green: 241, blue: 241 };
+export const DEFAULT_BORDER_COLOR = { red: 234, green: 235, blue: 235, alpha: 1 };
+
 export const settings = defineSettings({
     main: [
         {
@@ -393,7 +396,7 @@ export const settings = defineSettings({
                         {
                             id: 'backgroundColor',
                             type: 'colorInput',
-                            defaultValue: { red: 241, green: 241, blue: 241 },
+                            defaultValue: DEFAULT_BACKGROUND_COLOR,
                         },
                     ],
                     show: (bundle) =>
@@ -405,7 +408,9 @@ export const settings = defineSettings({
                         bundle.getBlock('imageDisplay')?.value === ImageFitChoice.FIT,
                 },
                 {
-                    ...getBorderSettings(),
+                    ...getBorderSettings({
+                        defaultColor: DEFAULT_BORDER_COLOR,
+                    }),
                     show: (bundle) => bundle.getBlock('mode')?.value === BlockMode.TEXT_AND_IMAGE,
                 },
                 {

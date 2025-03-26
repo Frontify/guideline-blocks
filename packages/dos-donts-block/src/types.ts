@@ -35,20 +35,20 @@ export type Settings = {
 
     hasCustomDoColor: boolean;
     hasCustomDontColor: boolean;
-    doColor: Color;
-    dontColor: Color;
+    doColor: Color | null;
+    dontColor: Color | null;
 
     hasBorder: boolean;
     borderWidth: string;
     borderStyle: BorderStyle;
-    borderColor: Color;
+    borderColor: Color | null;
 
     hasRadius: boolean;
     radiusValue: string;
     radiusChoice: Radius;
 
     hasBackground: boolean;
-    backgroundColor: Color;
+    backgroundColor: Color | null;
 
     items: Item[];
 };
