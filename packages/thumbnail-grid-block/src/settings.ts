@@ -26,6 +26,8 @@ const widthMap: Record<string, string> = {
     '75%': '75%',
 };
 
+export const DEFAULT_BORDER_COLOR = { red: 234, green: 235, blue: 235, alpha: 1 };
+
 export const settings = defineSettings({
     layout: [
         {
@@ -197,7 +199,7 @@ export const settings = defineSettings({
             label: 'Image',
             blocks: [
                 getBackgroundSettings({ preventDefaultColor: true }),
-                getBorderSettings(),
+                getBorderSettings({ defaultColor: DEFAULT_BORDER_COLOR }),
                 getBorderRadiusSettings(),
             ],
         },
