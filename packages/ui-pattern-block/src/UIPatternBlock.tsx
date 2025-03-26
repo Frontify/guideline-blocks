@@ -13,6 +13,8 @@ import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider }
 
 import { Alignment, Height, SandpackTemplate, type Settings, TextAlignment, sandpackThemeValues } from './types';
 import {
+    BACKGROUND_COLOR_DEFAULT_VALUE,
+    BORDER_COLOR_DEFAULT_VALUE,
     DEFAULT_BLOCK_SETTINGS,
     EDITOR_CLASSES,
     centeringCss,
@@ -80,7 +82,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     const cssToInject = useMemo(() => {
         const alignmentCss = alignment === Alignment.Center ? centeringCss : '';
-        const backgroundCss = hasBackground ? getBackgroundCss(backgroundColor) : '';
+        const backgroundCss = hasBackground ? getBackgroundCss(backgroundColor || BACKGROUND_COLOR_DEFAULT_VALUE) : '';
         const hasAutoHeight = !isCustomHeight && heightChoice === Height.Auto;
         return getScriptToInject(getCssToInject(hasAutoHeight, alignmentCss, backgroundCss));
     }, [hasBackground, backgroundColor, alignment, isCustomHeight, heightChoice]);
@@ -197,7 +199,8 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                     <div
                         data-test-id="ui-pattern-block-wrapper"
                         style={{
-                            ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                            ...(hasBorder &&
+                                getBorderStyles(borderStyle, borderWidth, borderColor || BORDER_COLOR_DEFAULT_VALUE)),
                             borderRadius,
                         }}
                         className={joinClassNames([
@@ -228,7 +231,9 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                                         height: getHeightStyle(isCustomHeight, customHeightValue, heightChoice),
                                         padding: getPaddingStyle(hasCustomPadding, paddingCustom, paddingChoice),
                                         ...(hasBackground && {
-                                            ...getBackgroundColorStyles(backgroundColor),
+                                            ...getBackgroundColorStyles(
+                                                backgroundColor || BACKGROUND_COLOR_DEFAULT_VALUE
+                                            ),
                                             backgroundImage: 'none',
                                         }),
                                     }}

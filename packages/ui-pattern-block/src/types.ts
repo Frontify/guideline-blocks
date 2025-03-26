@@ -44,11 +44,11 @@ export type Settings = {
 
     // style
     hasBackground: boolean;
-    backgroundColor: Color;
+    backgroundColor: Color | null;
     hasBorder: boolean;
     borderStyle: BorderStyle;
     borderWidth: string;
-    borderColor: Color;
+    borderColor: Color | null;
     hasRadius: boolean;
     radiusChoice: Radius;
     radiusValue?: number;
