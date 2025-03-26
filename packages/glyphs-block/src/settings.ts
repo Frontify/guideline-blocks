@@ -14,6 +14,9 @@ import { getFontWeights, getFonts } from './helpers';
 export const DEFAULT_CHARS =
     'Aa, Bb, Cc, Dd, Ee, Ff, Gg, Hh, Ii, Jj, Kk, Ll, Mm, Nn, Oo, Pp, Qq, Rr, Ss, Tt, Uu, Vv, Ww, Xx, Yy, Zz, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9';
 
+export const BLACK_COLOR = { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' };
+export const WHITE_COLOR = { red: 255, green: 255, blue: 255, alpha: 1, name: 'White' };
+
 const HAS_BACKGROUND_ID = 'hasBackground';
 const FONT_FAMILY_ID = 'fontFamily';
 const FONT_SIZE_ID = 'fontSize';
@@ -73,7 +76,7 @@ export const settings = defineSettings({
                 {
                     id: 'fontColor',
                     type: 'colorInput',
-                    defaultValue: { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' },
+                    defaultValue: BLACK_COLOR,
                 },
             ],
             layout: MultiInputLayout.Columns,
@@ -87,11 +90,11 @@ export const settings = defineSettings({
                 {
                     id: 'backgroundColor',
                     type: 'colorInput',
-                    defaultValue: { red: 255, green: 255, blue: 255, alpha: 1, name: 'White' },
+                    defaultValue: WHITE_COLOR,
                 },
             ],
         },
-        getBorderSettings({ defaultValue: true, defaultColor: { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' } }),
+        getBorderSettings({ defaultValue: true, defaultColor: BLACK_COLOR }),
         getBorderRadiusSettings(),
     ],
 });
