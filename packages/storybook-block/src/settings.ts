@@ -120,5 +120,8 @@ export const settings = defineSettings({
             ],
         },
     ],
-    style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
+    style: [
+        getBorderSettings({ defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
+        getBorderRadiusSettings({ dependentSettingId: 'hasBorder' }),
+    ],
 });

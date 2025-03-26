@@ -86,7 +86,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             style={
                 hasBorder
                     ? {
-                          borderColor: toRgbaString(borderColor),
+                          borderColor: toRgbaString(borderColor || BORDER_COLOR_DEFAULT_VALUE),
                           borderStyle,
                           borderWidth,
                           borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
