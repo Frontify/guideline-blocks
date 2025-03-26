@@ -8,6 +8,7 @@ import {
     getExtendedBorderRadiusSettings,
 } from '@frontify/guideline-blocks-settings';
 import { languageNameMap, themeNameMap } from './types';
+import { DEFAULT_BORDER_COLOR } from './constants';
 
 export const settings = defineSettings({
     main: [
@@ -43,7 +44,7 @@ export const settings = defineSettings({
             size: 'small',
             choices: Object.entries(themeNameMap).map(([value, label]) => ({ value, label })),
         },
-        getBorderSettings({ defaultValue: true }),
+        getBorderSettings({ defaultValue: true, defaultColor: DEFAULT_BORDER_COLOR }),
         getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),
     ],
 });
