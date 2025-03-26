@@ -17,6 +17,7 @@ import {
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
+    isDownloadable,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
@@ -39,7 +40,6 @@ import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
-import { isImageDownloadable } from './helpers/isImageDownloadable';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled } = usePrivacySettings(appBridge);
@@ -54,11 +54,10 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
-    const isDownloadable = isImageDownloadable(
+    const isAssetDownloadable = isDownloadable(
         blockSettings.security,
         blockSettings.downloadable,
-        assetDownloadEnabled,
-        image
+        assetDownloadEnabled
     );
 
     const [openFileDialog, { selectedFiles }] = useFileInput({
@@ -158,7 +157,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 image={image}
-                                isDownloadable={isDownloadable}
+                                isAssetDownloadable={isAssetDownloadable}
                                 isEditing={isEditing}
                             />
                             {image ? (
@@ -217,7 +216,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                             blockSettings={blockSettings}
                                             isEditing={isEditing}
                                             image={image}
-                                            isDownloadable={isDownloadable}
+                                            isDownloadable={isAssetDownloadable}
                                             globalAssetViewerEnabled={assetViewerEnabled}
                                         />
                                     )}
