@@ -24,6 +24,7 @@ import { FC, useEffect, useState } from 'react';
 import './styles.css';
 import { headerThemes } from './headerThemes';
 import { Language, Settings, languageNameMap } from './types';
+import { DEFAULT_BORDER_COLOR } from './constants';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -112,7 +113,9 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     style={{
                         fontFamily: 'Menlo, Courier, monospace',
                         fontSize: '12px',
-                        border: hasBorder ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor)}` : 'none',
+                        border: hasBorder
+                            ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor || DEFAULT_BORDER_COLOR)}`
+                            : 'none',
                         borderRadius: customCornerRadiusStyle.borderRadius,
                     }}
                 >

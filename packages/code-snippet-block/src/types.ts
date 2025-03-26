@@ -107,7 +107,7 @@ export enum CodeSnippetBorderStyle {
 export type Settings = {
     theme?: Theme;
     content?: string;
-    borderColor: Color;
+    borderColor: Color | null;
     language?: Language;
     hasBorder?: boolean;
     withHeading?: boolean;
