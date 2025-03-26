@@ -4,13 +4,14 @@ import { Attachments, DownloadButton, useAttachmentsContext } from '@frontify/gu
 import { getTotalImagePadding } from './helpers';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { Settings } from '../types';
+import { isImageDownloadable } from '../helpers/isImageDownloadable';
 
 type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
     isEditing: boolean;
     image?: Asset;
     blockSettings: Settings;
-    isDownloadable: boolean;
+    isAssetDownloadable: boolean;
 };
 
 export const DownloadAndAttachments = ({
@@ -18,10 +19,11 @@ export const DownloadAndAttachments = ({
     isEditing,
     image,
     blockSettings,
-    isDownloadable,
+    isAssetDownloadable,
 }: DownloadAndAttachmentsProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
+    const isDownloadable = isImageDownloadable(isAssetDownloadable, image);
 
     return !isEditing ? (
         <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
