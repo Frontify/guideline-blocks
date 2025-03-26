@@ -10,7 +10,7 @@ export type Settings = {
     heightValue?: string;
     positioning?: StorybookPosition;
     hasBorder?: boolean;
-    borderColor: Color;
+    borderColor: Color | null;
     borderStyle: StorybookBorderStyle;
     borderWidth: string;
     hasRadius?: boolean;
