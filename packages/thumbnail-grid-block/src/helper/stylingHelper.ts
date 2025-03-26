@@ -4,6 +4,7 @@ import { CaptionPosition, HorizontalAlignment, Settings, ThumbnailStylesProps, V
 import { merge } from '@frontify/fondue';
 import { getBorderStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
+import { DEFAULT_BORDER_COLOR } from '../settings';
 
 const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col tw-justify-start',
@@ -66,7 +67,7 @@ const getImageStyle = (blockSettings: Settings): CSSProperties => {
     } = blockSettings;
 
     const color = hasBackground && backgroundColor ? toRgbaString(backgroundColor) : undefined;
-    const border = hasBorder ? getBorderStyles(borderStyle, borderWidth, borderColor) : {};
+    const border = hasBorder ? getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR) : {};
     const borderRadius = hasRadius ? radiusValue : radiusStyleMap[radiusChoice ?? 'none'];
 
     return {
