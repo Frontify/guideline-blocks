@@ -4,7 +4,7 @@ import { useBlockSettings } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 import { getRadiusValue } from './helpers';
-import { DEFAULT_CHARS } from './settings';
+import { BLACK_COLOR, DEFAULT_CHARS, WHITE_COLOR } from './settings';
 import { BlockProps, Settings } from './types';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
@@ -36,10 +36,10 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
 
         const style = {
             ...(hasBackground && {
-                backgroundColor: toRgbaString(backgroundColor),
+                backgroundColor: toRgbaString(backgroundColor || WHITE_COLOR),
             }),
             ...(hasBorder && {
-                outline: `${toRgbaString(borderColor)} ${borderStyle} ${borderWidth}`,
+                outline: `${toRgbaString(borderColor || BLACK_COLOR)} ${borderStyle} ${borderWidth}`,
             }),
             ...(index === 0 && {
                 borderTopLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
@@ -77,7 +77,7 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
                         fontWeight: blockSettings.fontWeight,
                         fontSize: blockSettings.fontSize,
                         fontFamily: fontFamily || 'inherit',
-                        color: toRgbaString(fontColor),
+                        color: toRgbaString(fontColor || BLACK_COLOR),
                         ...(hasBorder && {
                             gap: borderWidth,
                             padding: borderWidth,

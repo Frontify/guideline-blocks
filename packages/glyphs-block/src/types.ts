@@ -10,16 +10,16 @@ export type BlockProps = {
 
 export type Settings = {
     hasBackground: boolean;
-    backgroundColor: Color;
+    backgroundColor: Color | null;
     chars: string;
-    fontColor: Color;
+    fontColor: Color | null;
     fontWeight: string;
     fontSize: string;
     fontFamily: string;
     hasBorder: boolean;
     borderStyle: string;
     borderWidth: string;
-    borderColor: Color;
+    borderColor: Color | null;
     radiusChoice: Radius;
     hasRadius: boolean;
     radiusValue: string;
