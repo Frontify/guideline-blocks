@@ -21,7 +21,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
 
     const getCopyButtonClasses = (isLeft: boolean) => {
         return joinClassNames([
-            'tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex',
+            'tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex group-focus:tw-inline-flex',
             isLeft && gradientOrientation === 90 ? 'tw-pl-1' : 'tw-pr-1',
         ]);
     };
@@ -70,8 +70,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                 right: isOutOfBounds ? '0%' : 'auto',
             }}
         >
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-            <div
+            <button
                 className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
                 onClick={() => copy(toHex6or8String(gradientColor.color))}
             >
@@ -87,7 +86,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                     </span>
                     <span className="tw-text-x-weak tw-text-xs tw-pl-1">{toHex6or8String(gradientColor.color)}</span>
                 </div>
-                <button className={getCopyButtonClasses(gradientColor.isReverse || false)}>
+                <div className={getCopyButtonClasses(gradientColor.isReverse || false)}>
                     {isCopied ? (
                         <span data-test-id="square-badge-checkmark">
                             <IconCheckMark16 />
@@ -97,8 +96,8 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                             <IconClipboard16 />
                         </span>
                     )}
-                </button>
-            </div>
+                </div>
+            </button>
         </div>
     );
 };
