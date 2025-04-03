@@ -24,7 +24,6 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
     const onPreviewClose = useCallback(() => {
         // Move the tab index back to where it was before modal open
         activeElementOnMount?.focus();
-        activeElementOnMount?.blur();
         onClose();
     }, [onClose, activeElementOnMount]);
 
