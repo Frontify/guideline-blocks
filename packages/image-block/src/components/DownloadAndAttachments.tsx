@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Attachments, DownloadButton, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
+import { announce } from '@react-aria/live-announcer';
 import { getTotalImagePadding } from './helpers';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { Settings } from '../types';
 import { isImageDownloadable } from '../helpers/isImageDownloadable';
+import { useCallback } from 'react';
 
 type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
@@ -25,6 +27,16 @@ export const DownloadAndAttachments = ({
         useAttachmentsContext();
     const isDownloadable = isImageDownloadable(isAssetDownloadable, image);
 
+    const onDownloadHandler = useCallback(() => {
+        if (!image) {
+            return;
+        }
+
+        announce('File downloaded successfully');
+
+        appBridge.dispatch({ name: 'downloadAsset', payload: image });
+    }, [appBridge, image]);
+
     return !isEditing ? (
         <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
             <div
@@ -32,9 +44,7 @@ export const DownloadAndAttachments = ({
                 data-test-id="buttons-wrapper"
                 style={getTotalImagePadding(blockSettings)}
             >
-                {image && isDownloadable && (
-                    <DownloadButton onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: image })} />
-                )}
+                {image && isDownloadable && <DownloadButton onDownload={onDownloadHandler} />}
 
                 <Attachments
                     onUpload={onAttachmentsAdd}

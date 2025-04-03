@@ -36,6 +36,7 @@
         "@frontify/fondue": "12.7.0",
         "@frontify/guideline-blocks-settings": "0.36.14",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "@react-aria/live-announcer": "^3.4.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     }
