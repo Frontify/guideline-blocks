@@ -106,7 +106,7 @@ export const settings = defineSettings({
             label: 'Positioning',
             type: 'segmentedControls',
             defaultValue: StorybookPosition.Vertical,
-            info: 'Where the UI elements are in relation to one another',
+            info: "Where the UI elements are in relation to one another. Some settings won't apply if the container is too narrow.",
             show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
             choices: [
                 {

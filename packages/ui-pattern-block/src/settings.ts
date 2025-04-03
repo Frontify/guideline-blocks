@@ -204,6 +204,7 @@ export const settings = defineSettings({
                     id: 'alignment',
                     type: 'segmentedControls',
                     label: 'Alignment',
+                    info: "Some settings won't apply if the container is too narrow.",
                     defaultValue: Alignment.Left,
                     choices: [
                         {

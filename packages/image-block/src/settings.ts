@@ -88,6 +88,7 @@ export const settings = defineSettings({
         {
             id: POSITIONING_ID,
             label: 'Positioning',
+            info: "Some settings won't apply if the container is too narrow.",
             type: 'segmentedControls',
             defaultValue: CaptionPosition.Below,
             choices: [

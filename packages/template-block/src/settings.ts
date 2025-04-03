@@ -141,7 +141,7 @@ export const settings = defineSettings({
                     label: 'Positioning',
                     type: 'slider',
                     defaultValue: TextPositioningType.Right,
-                    info: 'Where the UI elements are in relation to one another',
+                    info: "Where the UI elements are in relation to one another. Some settings won't apply if the container is too narrow.",
                     choices: [
                         {
                             value: TextPositioningType.Bottom,
@@ -166,7 +166,7 @@ export const settings = defineSettings({
                     label: 'Ratio',
                     type: 'slider',
                     defaultValue: TextRatioType.OneHalf,
-                    info: 'The text to image width ratio.',
+                    info: "The text to image width ratio. Some settings won't apply if the container is too narrow.",
                     show: (bundle: Bundle) => {
                         const textPositioning = bundle.getBlock('textPositioning')?.value;
                         return (

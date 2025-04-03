@@ -213,6 +213,7 @@ export const settings = defineSettings({
             id: 'quotationMarksAnchoring',
             type: 'segmentedControls',
             label: 'Quotation marks anchoring',
+            info: "Some settings won't apply if the container is too narrow.",
             defaultValue: QuotationMarksAnchoring.FullWidth,
             choices: [
                 {
