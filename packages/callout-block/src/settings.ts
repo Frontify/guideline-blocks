@@ -126,7 +126,7 @@ export const settings = defineSettings({
                     type: 'segmentedControls',
                     label: 'Width',
                     defaultValue: Width.FullWidth,
-                    info: 'Determines the width of the content',
+                    info: "Determines the width of the content. Some settings won't apply if the container is too narrow.",
                     choices: [
                         {
                             label: 'Full Width',
@@ -142,6 +142,7 @@ export const settings = defineSettings({
                     id: 'alignment',
                     type: 'segmentedControls',
                     label: 'Alignment',
+                    info: "Some settings won't apply if the container is too narrow.",
                     defaultValue: Alignment.Left,
                     show: (bundle) => bundle.getBlock('width')?.value === Width.HugContents,
                     choices: [

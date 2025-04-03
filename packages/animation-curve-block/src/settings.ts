@@ -29,6 +29,7 @@ export const settings = defineSettings({
                     id: COLUMNS_ID,
                     label: 'Columns',
                     type: 'slider',
+                    info: "Some settings won't apply if the container is too narrow.",
                     defaultValue: 3,
                     choices: [
                         {
