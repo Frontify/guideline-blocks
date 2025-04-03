@@ -371,7 +371,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         <>
                             <div
                                 data-test-id="compare-slider-block-slider"
-                                className="tw-w-full tw-overflow-hidden tw-relative"
+                                className="tw-w-full tw-overflow-hidden tw-relative  [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
                                 style={{
                                     ...getBorderStyle(),
                                     borderRadius: getBorderRadius(),

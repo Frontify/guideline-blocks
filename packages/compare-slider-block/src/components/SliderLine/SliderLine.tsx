@@ -93,7 +93,8 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
     return (
         <div
             className={joinClassNames([
-                ' tw-flex tw-justify-center tw-items-center tw-absolute',
+                'handle',
+                'tw-flex tw-justify-center tw-items-center tw-absolute tw-ring-blue',
                 alignment === Alignment.Horizontal
                     ? 'tw-top-0 tw-h-full tw-w-3 -tw-translate-x-1/2 tw-cursor-ew-resize'
                     : 'tw-left-0 tw-w-full tw-h-3 -tw-translate-y-1/2 tw-cursor-ns-resize',
