@@ -48,6 +48,7 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                         highlightActiveLineGutter: false,
                         highlightActiveLine: false,
                     }}
+                    onCreateEditor={(view) => view.dom.querySelector('.cm-content')?.setAttribute('aria-label', 'CSS')}
                     placeholder={cssValue ? '' : placeholder}
                 />
             </div>
