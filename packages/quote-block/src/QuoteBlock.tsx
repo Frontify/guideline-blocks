@@ -126,7 +126,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             />
                         )}
 
-                        <div
+                        <figure
                             data-test-id="quote-block-author"
                             className={
                                 isFullWidth && isQuotationMarkType
@@ -134,7 +134,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                     : 'tw-min-w-[1rem]'
                             }
                         >
-                            <div
+                            <blockquote
                                 style={isQuotationMarkType ? {} : borderStyles}
                                 className={merge([
                                     isQuotationMarkType ? '' : accentLineClassName,
@@ -150,16 +150,18 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                     plugins={customPlugins}
                                     isEditing={isEditing}
                                 />
-                            </div>
+                            </blockquote>
                             {showAuthor && (
-                                <p
+                                <figcaption
                                     className="tw-text-right tw-break-all"
                                     style={{
                                         color: BlockStyles[TextStyles.p].color,
                                     }}
-                                >{`- ${blockSettings.authorName}`}</p>
+                                >
+                                    {`- ${blockSettings.authorName}`}
+                                </figcaption>
                             )}
-                        </div>
+                        </figure>
                         {isQuotationMarkType && (
                             <QuoteBlockIcon
                                 color={iconColor}
