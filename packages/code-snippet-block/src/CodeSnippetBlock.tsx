@@ -19,7 +19,7 @@ import { BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/gu
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import './styles.css';
 import { headerThemes } from './headerThemes';
@@ -34,6 +34,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
     const extensions = [] as Extension[];
     const [isCopied, setIsCopied] = useState(false);
+    const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
 
     useEffect(() => {
         setSelectedLanguage(blockSettings.language ?? 'plain');
@@ -128,6 +129,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                             >
                                 {isEditing ? (
                                     <div
+                                        id={labelId}
                                         className="tw-max-w-[150px]"
                                         style={
                                             {
@@ -155,7 +157,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                         />
                                     </div>
                                 ) : (
-                                    <span>{languageNameMap[selectedLanguage]}</span>
+                                    <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
                                 )}
                                 <button
                                     data-test-id="header-copy-button"
@@ -184,6 +186,9 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 lintKeymap: false,
                                 autocompletion: false,
                             }}
+                            onCreateEditor={(view) =>
+                                view.dom.querySelector('.cm-content')?.setAttribute('aria-labelledby', labelId)
+                            }
                             placeholder={isEditing ? '< please add snippet here >' : ''}
                         />
                         {!withHeading && (
