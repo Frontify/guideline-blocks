@@ -13,6 +13,7 @@ interface Props {
 export const ToolbarButton = ({ icon, tooltip, onClick, triggerElement }: Props): ReactElement => {
     return (
         <LegacyTooltip
+            data-test-id="toolbar-icon-btn"
             content={<div className="tw-min-w-[70px] tw-text-center">{tooltip}</div>}
             position={TooltipPosition.Top}
             hoverDelay={75}
@@ -22,7 +23,6 @@ export const ToolbarButton = ({ icon, tooltip, onClick, triggerElement }: Props)
                 triggerElement ?? (
                     <Button
                         aria-label={tooltip}
-                        data-test-id="toolbar-icon-btn"
                         onClick={onClick}
                         icon={icon}
                         size={ButtonSize.Small}
