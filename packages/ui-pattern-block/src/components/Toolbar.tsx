@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement } from 'react';
-import { UnstyledOpenInCodeSandboxButton, useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
+import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { getToolbarButtons } from '../helpers';
 import { Preprocessor, SandpackTemplate } from '../types';
@@ -15,8 +15,8 @@ import {
     IconClipboard16,
     useCopy,
 } from '@frontify/fondue';
-import { IconSandBox } from './icons';
 import { ToolbarButton } from './ToolbarButton';
+import { OpenInSandboxButton } from './OpenInSandboxButton';
 
 interface Props {
     isEditorCollapsed: boolean;
@@ -90,10 +90,9 @@ export const Toolbar = ({
             <div className="tw-flex tw-items-center tw-gap-3 tw-h-full">
                 <div className="tw-flex tw-gap-0.5 tw-items-center">
                     {showSandboxLink && (
-                        <UnstyledOpenInCodeSandboxButton tabIndex={-1}>
-                            <ToolbarButton icon={<IconSandBox />} tooltip="Open in CodeSandbox" />
-                        </UnstyledOpenInCodeSandboxButton>
+                        <ToolbarButton triggerElement={<OpenInSandboxButton />} tooltip="Open in CodeSandbox" />
                     )}
+
                     <ToolbarButton
                         icon={<IconClipboard16 />}
                         tooltip={status === 'idle' ? 'Copy code' : 'Copied!'}
