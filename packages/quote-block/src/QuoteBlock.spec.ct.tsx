@@ -38,7 +38,7 @@ describe('Quote Block', () => {
         });
 
         mount(<QuoteBlockWithStubs />);
-        cy.get(QuoteBlockSelector).find('> div > div').should('have.css', 'border-left');
+        cy.get(QuoteBlockSelector).find('> div > figure').should('have.css', 'border-left');
     });
 
     it('renders a quote block with two selected quotation marks', () => {
