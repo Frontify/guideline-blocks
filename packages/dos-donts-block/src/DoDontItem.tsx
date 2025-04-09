@@ -44,10 +44,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         body = '',
         editing = false,
         onRemoveSelf,
-        hasCustomDoIcon,
-        hasCustomDontIcon,
-        dontIconAsset,
-        doIconAsset,
         dontIconChoice,
         doIconChoice,
         hasStrikethrough,
@@ -294,15 +290,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 !title ? 'tw-opacity-30' : '',
                             ])}
                         >
-                            <IconComponent
-                                type={type}
-                                hasCustomDoIcon={hasCustomDoIcon}
-                                doIconChoice={doIconChoice}
-                                doIconAsset={doIconAsset}
-                                hasCustomDontIcon={hasCustomDontIcon}
-                                dontIconChoice={dontIconChoice}
-                                dontIconAsset={dontIconAsset}
-                            />
+                            <IconComponent type={type} doIconChoice={doIconChoice} dontIconChoice={dontIconChoice} />
                         </div>
                     )}
                     <div className="tw-w-full tw-flex tw-items-center">

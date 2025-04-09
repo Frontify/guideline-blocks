@@ -39,7 +39,7 @@ import {
     generateRandomId,
 } from '@frontify/fondue';
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
+import { CONTAINER_SMALL_LIMIT, IMAGES_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 
@@ -49,10 +49,7 @@ export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const shouldFetchAssets =
-        blockSettings.mode === BlockMode.TEXT_AND_IMAGE ||
-        blockSettings.hasCustomDoIcon ||
-        blockSettings.hasCustomDontIcon;
+    const shouldFetchAssets = blockSettings.mode === BlockMode.TEXT_AND_IMAGE;
 
     return shouldFetchAssets ? (
         <AssetsProvider appBridge={appBridge}>
@@ -80,9 +77,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [activeId, setActiveId] = useState<string | undefined>(undefined);
     const {
         style,
-        hasCustomDoIcon,
         doIconChoice,
-        hasCustomDontIcon,
         dontIconChoice,
         hasStrikethrough,
         columns,
@@ -118,8 +113,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const itemImages = blockAssets?.[IMAGES_ASSET_KEY];
-    const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
-    const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
@@ -351,13 +344,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         linkedImage: getLinkedImageOfItem(item),
         dontColor: dontColor || DONT_COLOR_DEFAULT_VALUE,
         editing: isEditing,
-        hasCustomDoIcon,
         doIconChoice,
-        doIconAsset,
-        hasCustomDontIcon,
         dontIconChoice,
         alt: item.alt,
-        dontIconAsset,
         mode,
         columns,
         appBridge,

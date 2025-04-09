@@ -9,10 +9,8 @@ export type Settings = {
 
     style: DoDontStyle;
 
-    hasCustomDoIcon: boolean;
     doIconChoice: ItemIconChoice;
 
-    hasCustomDontIcon: boolean;
     dontIconChoice: ItemIconChoice;
 
     hasStrikethrough: boolean;
@@ -82,12 +80,8 @@ export type SortableDoDontItemProps = {
     body?: string;
     editing: boolean;
     onRemoveSelf: (itemId: string) => void;
-    hasCustomDoIcon: boolean;
     doIconChoice: ItemIconChoice;
-    hasCustomDontIcon: boolean;
     dontIconChoice: ItemIconChoice;
-    doIconAsset: Asset[] | undefined;
-    dontIconAsset: Asset[] | undefined;
     mode: BlockMode;
     linkedImage?: Asset;
     appBridge: AppBridgeBlock;
@@ -131,12 +125,8 @@ export type ItemToolbarProps = {
 };
 
 export type IconComponentProps = {
-    hasCustomDoIcon: boolean;
     doIconChoice: ItemIconChoice;
-    doIconAsset: Asset[] | undefined;
-    hasCustomDontIcon: boolean;
     dontIconChoice: ItemIconChoice;
-    dontIconAsset: Asset[] | undefined;
     type: DoDontType;
 };
 
