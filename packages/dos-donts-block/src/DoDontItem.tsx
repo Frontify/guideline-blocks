@@ -111,7 +111,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 const imageAlt = alt ?? result[0]?.title ?? result[0]?.fileName ?? '';
                 setLocalAltText(imageAlt);
                 if (addAssetIdsToKey) {
-                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
+                    addAssetIdsToKey(id, [imageId]).then(() => {
                         onChangeItem(id, { imageId, alt: imageAlt });
                         setIsUploadLoading(false);
                     });
@@ -153,7 +153,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 const imageAlt = alt ?? uploadResults?.[0]?.title ?? uploadResults?.[0]?.fileName ?? '';
                 setLocalAltText(imageAlt);
                 if (addAssetIdsToKey) {
-                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
+                    addAssetIdsToKey(id, [imageId]).then(() => {
                         setIsUploadLoading(false);
                         onChangeItem(id, { imageId, alt: imageAlt });
                     });
@@ -326,8 +326,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                         marginBottom: 0,
                                         marginTop: 0,
                                         color: headingColor,
+                                        WebkitTextFillColor: headingColor,
                                         '--placeholder-color': headingColor,
-                                        '-webkit-text-fill-color': headingColor,
                                     } as CSSProperties
                                 }
                                 value={title}
