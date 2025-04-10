@@ -70,6 +70,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         radiusChoice,
         radiusValue,
         addAssetIdsToKey,
+        deleteAssetIdsFromKey,
         setActivatorNodeRef,
         alt,
     } = props;
@@ -109,6 +110,9 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 const asset = result[0];
                 const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
+                if (deleteAssetIdsFromKey && linkedImage) {
+                    deleteAssetIdsFromKey(id, [linkedImage.id]);
+                }
                 if (addAssetIdsToKey) {
                     addAssetIdsToKey(id, [asset.id]).then(() => {
                         onChangeItem(id, { alt: imageAlt });
@@ -151,6 +155,9 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 const asset = uploadResults?.[0];
                 const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
+                if (deleteAssetIdsFromKey && linkedImage) {
+                    deleteAssetIdsFromKey(id, [linkedImage.id]);
+                }
                 if (addAssetIdsToKey) {
                     addAssetIdsToKey(id, [asset.id]).then(() => {
                         setIsUploadLoading(false);

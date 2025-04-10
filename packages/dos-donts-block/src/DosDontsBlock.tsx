@@ -379,6 +379,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue,
         borderWidth,
         addAssetIdsToKey,
+        deleteAssetIdsFromKey,
         activeId,
     });
 
