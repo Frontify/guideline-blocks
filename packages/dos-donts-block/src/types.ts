@@ -169,6 +169,9 @@ export type Item = {
     title: string;
     body: string;
     type: DoDontType;
+    /**
+     * @deprecated This field is deprecated. Store it on the block assets with the Item.id as key.
+     */
     imageId?: number;
     alt?: string;
 };
