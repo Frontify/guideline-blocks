@@ -230,6 +230,6 @@ export const columnsClasses: Record<number, string> = {
     4: 'tw-grid-cols-4',
 };
 
-export type ChangeType = 'title' | 'body' | 'type' | 'imageId' | 'alt';
+export type ChangeType = 'title' | 'body' | 'type' | 'alt';
 
 export type ValueType = string | number | undefined;
