@@ -28,7 +28,6 @@ import { CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, 
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-import { IMAGES_ASSET_KEY } from './const';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
