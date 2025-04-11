@@ -183,6 +183,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             icon={<IconArrowExpand />}
                             onClick={() => toggleFigmaLiveModal(true)}
                             emphasis={ButtonEmphasis.Default}
+                            aria-label="allow fullscreen"
                         />
                     </div>
                 )}
@@ -224,6 +225,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
                         }}
                         emphasis={ButtonEmphasis.Default}
+                        aria-label="close"
                     />
                 </div>
 
