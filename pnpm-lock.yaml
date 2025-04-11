@@ -6767,8 +6767,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.266.1:
-    resolution: {integrity: sha512-dON6h+yO7FGa/FO5NQCZuZHN0o3I23Ev6VYOJf9d8LpdrArHPt39wE++LLmueNV/hNY5hgWGIIrgnrDkRcXkPg==}
+  flow-parser@0.267.0:
+    resolution: {integrity: sha512-eBgyFHiT/CHevT225CVQbwnAwRKLjqgtkkpDBMvNGV2C/Tz8x4Zr9FZeWed/cSWhRTiUhH7MXpIWSHkrzvaqdA==}
     engines: {node: '>=0.4.0'}
 
   fontfaceobserver@2.1.0:
@@ -17589,7 +17589,7 @@ snapshots:
   flow-enums-runtime@0.0.6:
     optional: true
 
-  flow-parser@0.266.1:
+  flow-parser@0.267.0:
     optional: true
 
   fontfaceobserver@2.1.0: {}
@@ -18284,7 +18284,7 @@ snapshots:
       '@babel/register': 7.25.9(@babel/core@7.26.10)
       babel-core: 7.0.0-bridge.0(@babel/core@7.26.10)
       chalk: 4.1.2
-      flow-parser: 0.266.1
+      flow-parser: 0.267.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
