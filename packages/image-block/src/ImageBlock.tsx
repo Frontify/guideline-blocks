@@ -74,13 +74,12 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
-            setBlockSettings({ altText: defaultImageName });
+            settings.altText = defaultImageName;
             setLocalAltText(defaultImageName);
 
             const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
                 settings.name = convertToRteValue(TextStyles.imageTitle, defaultImageName, 'center');
-                setTitleKey(generateRandomId());
             }
         }
 
@@ -92,7 +91,13 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         if (Object.keys(settings).length > 0) {
             await setBlockSettings(settings);
         }
+
         await updateAssetIdsFromKey(IMAGE_ID, [newImage.id]);
+
+        if (settings.name) {
+            setTitleKey(generateRandomId());
+        }
+
         setIsLoading(false);
     };
 
