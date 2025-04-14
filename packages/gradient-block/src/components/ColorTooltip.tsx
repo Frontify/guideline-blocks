@@ -14,7 +14,8 @@ export const ColorTooltip = ({
     setShowColorModal,
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
-    const left = gradientColor.position > 95 ? `calc(${gradientColor.position}% - 8px)` : `${gradientColor.position}%`;
+    const isAlmostOverflowing = gradientColor.position > 95;
+    const left = isAlmostOverflowing ? `calc(${gradientColor.position}% - 8px)` : `${gradientColor.position}%`;
     const { hoverProps, isHovered } = useHover({});
 
     return (
@@ -51,6 +52,7 @@ export const ColorTooltip = ({
                         setColors={setColors}
                         setShowColorModal={setShowColorModal}
                         setCurrentlyEditingPosition={setCurrentlyEditingPosition}
+                        isAlmostOverflowing={isAlmostOverflowing}
                     />
                 ) : null}
             </div>
