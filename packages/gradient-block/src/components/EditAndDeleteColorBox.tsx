@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonEmphasis, ButtonSize, IconPen16, IconTrashBin16 } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonSize, IconPen16, IconTrashBin16, merge } from '@frontify/fondue';
 import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
 
 export const EditAndDeleteColorBox = ({
@@ -9,6 +9,7 @@ export const EditAndDeleteColorBox = ({
     setColors,
     setShowColorModal,
     setCurrentlyEditingPosition,
+    isAlmostOverflowing,
 }: EditAndDeleteColorBoxProps) => {
     const deleteColor = (color: GradientColor) => {
         setColors(gradientColors.filter((colorItem) => colorItem.position !== color.position));
@@ -17,7 +18,10 @@ export const EditAndDeleteColorBox = ({
     return (
         <div
             data-test-id="edit-and-delete-color-box"
-            className="tw-flex tw-mt-2.5 -tw-ml-8 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white"
+            className={merge([
+                'tw-flex tw-mt-2.5 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white',
+                isAlmostOverflowing ? '-tw-ml-8' : '-tw-ml-4',
+            ])}
         >
             <Button
                 aria-label="Edit color"
