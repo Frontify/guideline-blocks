@@ -80,6 +80,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
             const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
                 settings.name = convertToRteValue(TextStyles.imageTitle, defaultImageName, 'center');
+                await setBlockSettings({ name: settings.name });
                 setTitleKey(generateRandomId());
             }
         }
