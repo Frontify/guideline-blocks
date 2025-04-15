@@ -65,7 +65,7 @@ export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useContext(AssetsContext);
+    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useContext(AssetsContext);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -378,8 +378,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
         borderWidth,
-        addAssetIdsToKey,
-        deleteAssetIdsFromKey,
+        updateAssetIdsFromKey,
         activeId,
     });
 

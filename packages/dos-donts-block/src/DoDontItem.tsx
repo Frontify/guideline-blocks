@@ -69,8 +69,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         hasRadius,
         radiusChoice,
         radiusValue,
-        addAssetIdsToKey,
-        deleteAssetIdsFromKey,
+        updateAssetIdsFromKey,
         setActivatorNodeRef,
         alt,
     } = props;
@@ -105,19 +104,15 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: Asset[]) => {
+            async (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
                 const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
-                if (deleteAssetIdsFromKey && linkedImage) {
-                    deleteAssetIdsFromKey(id, [linkedImage.id]);
-                }
-                if (addAssetIdsToKey) {
-                    addAssetIdsToKey(id, [asset.id]).then(() => {
-                        onChangeItem(id, { alt: imageAlt });
-                        setIsUploadLoading(false);
-                    });
+                if (updateAssetIdsFromKey) {
+                    await updateAssetIdsFromKey(id, [asset.id]);
+                    onChangeItem(id, { alt: imageAlt });
+                    setIsUploadLoading(false);
                 }
 
                 closeAssetChooser();
@@ -155,14 +150,10 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 const asset = uploadResults?.[0];
                 const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
-                if (deleteAssetIdsFromKey && linkedImage) {
-                    deleteAssetIdsFromKey(id, [linkedImage.id]);
-                }
-                if (addAssetIdsToKey) {
-                    addAssetIdsToKey(id, [asset.id]).then(() => {
-                        setIsUploadLoading(false);
-                        onChangeItem(id, { alt: imageAlt });
-                    });
+                if (updateAssetIdsFromKey) {
+                    await updateAssetIdsFromKey(id, [asset.id]);
+                    setIsUploadLoading(false);
+                    onChangeItem(id, { alt: imageAlt });
                 }
             })(uploadResults);
         }

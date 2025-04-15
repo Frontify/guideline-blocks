@@ -106,8 +106,7 @@ export type SortableDoDontItemProps = {
     hasBackground: boolean;
     backgroundColor: Color;
     alt?: string;
-    addAssetIdsToKey?: (key: string, newAssetIds: number[]) => Promise<void>;
-    deleteAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
+    updateAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
