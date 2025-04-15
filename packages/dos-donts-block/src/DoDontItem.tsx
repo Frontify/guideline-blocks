@@ -297,7 +297,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             }}
                             className={joinClassNames([
                                 'tw-mr-2 tw-w-auto tw-flex tw-items-center',
-                                !title ? 'tw-opacity-30' : '',
+                                !title ? 'tw-opacity-70' : '',
                             ])}
                         >
                             <IconComponent
@@ -340,7 +340,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 disabled={!editing}
                                 aria-label="Title"
                                 placeholder={editing ? 'Add a title' : ''}
-                                className="tw-text-s tw-pointer-ev tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-30 tw-placeholder-opacity-30 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                                className="tw-text-s tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
                             />
                         </span>
                     </div>

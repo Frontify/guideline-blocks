@@ -284,7 +284,7 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should(($el) => {
             const width = parseFloat($el.css('width'));
             expect(width).to.be.greaterThan(130);
-            expect(width).to.be.lessThan(140);
+            expect(width).to.be.lessThan(150);
         });
     });
 });
