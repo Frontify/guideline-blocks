@@ -65,7 +65,7 @@ export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useContext(AssetsContext);
+    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useContext(AssetsContext);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -228,28 +228,25 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             return;
         }
         const newItems: Item[] = [];
-        const assetIds = [];
         setIsUploadLoading(true);
         for (const image of assets) {
+            const itemId = generateRandomId();
             newItems.push({
-                id: generateRandomId(),
+                id: itemId,
                 body: '',
                 title: '',
-                imageId: image.id,
                 type: selectedType,
                 alt: image.title || image.fileName || '',
             });
-            assetIds.push(image.id);
+            if (addAssetIdsToKey) {
+                addAssetIdsToKey(itemId, [image.id]);
+            }
         }
-        if (addAssetIdsToKey) {
-            addAssetIdsToKey(IMAGES_ASSET_KEY, assetIds).then(() => {
-                setAndSaveItems([...localItems, ...newItems]);
-                setIsUploadLoading(false);
-                setSelectedType(undefined);
-                setSelectedAssets(undefined);
-                setSelectedFiles(null);
-            });
-        }
+        setAndSaveItems([...localItems, ...newItems]);
+        setIsUploadLoading(false);
+        setSelectedType(undefined);
+        setSelectedAssets(undefined);
+        setSelectedFiles(null);
     };
 
     const saveItems = useCallback(
@@ -282,7 +279,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 const newItems = prevItems.filter((item) => item.id !== itemId);
                 setBlockSettings({ items: newItems });
                 if (itemToRemove?.imageId && deleteAssetIdsFromKey) {
-                    deleteAssetIdsFromKey(IMAGES_ASSET_KEY, [itemToRemove?.imageId]);
+                    deleteAssetIdsFromKey(itemToRemove.id, [itemToRemove?.imageId]);
                 }
                 return newItems;
             });
@@ -332,9 +329,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const getLinkedImageOfItem = (item: Item) => {
+        if ((blockAssets?.[item.id] ?? []).length > 0) {
+            return blockAssets?.[item.id][0];
+        }
+
         if (!itemImages) {
             return;
         }
+
+        // legacy case (after migration gone)
         return itemImages.find((asset) => asset.id === item.imageId);
     };
 
@@ -375,7 +378,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
         borderWidth,
-        addAssetIdsToKey,
+        updateAssetIdsFromKey,
         activeId,
     });
 

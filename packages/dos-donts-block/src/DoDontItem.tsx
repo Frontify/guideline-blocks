@@ -28,7 +28,6 @@ import { CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, 
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-import { IMAGES_ASSET_KEY } from './const';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
@@ -70,7 +69,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         hasRadius,
         radiusChoice,
         radiusValue,
-        addAssetIdsToKey,
+        updateAssetIdsFromKey,
         setActivatorNodeRef,
         alt,
     } = props;
@@ -105,16 +104,15 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: Asset[]) => {
+            async (result: Asset[]) => {
                 setIsUploadLoading(true);
-                const imageId = result[0]?.id;
-                const imageAlt = alt ?? result[0]?.title ?? result[0]?.fileName ?? '';
+                const asset = result[0];
+                const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
-                if (addAssetIdsToKey) {
-                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
-                        onChangeItem(id, { imageId, alt: imageAlt });
-                        setIsUploadLoading(false);
-                    });
+                if (updateAssetIdsFromKey) {
+                    await updateAssetIdsFromKey(id, [asset.id]);
+                    onChangeItem(id, { alt: imageAlt });
+                    setIsUploadLoading(false);
                 }
 
                 closeAssetChooser();
@@ -149,14 +147,13 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     useEffect(() => {
         if (doneAll) {
             (async (uploadResults) => {
-                const imageId = uploadResults?.[0]?.id;
-                const imageAlt = alt ?? uploadResults?.[0]?.title ?? uploadResults?.[0]?.fileName ?? '';
+                const asset = uploadResults?.[0];
+                const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
                 setLocalAltText(imageAlt);
-                if (addAssetIdsToKey) {
-                    addAssetIdsToKey(IMAGES_ASSET_KEY, [imageId]).then(() => {
-                        setIsUploadLoading(false);
-                        onChangeItem(id, { imageId, alt: imageAlt });
-                    });
+                if (updateAssetIdsFromKey) {
+                    await updateAssetIdsFromKey(id, [asset.id]);
+                    setIsUploadLoading(false);
+                    onChangeItem(id, { alt: imageAlt });
                 }
             })(uploadResults);
         }
@@ -326,8 +323,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                         marginBottom: 0,
                                         marginTop: 0,
                                         color: headingColor,
+                                        WebkitTextFillColor: headingColor,
                                         '--placeholder-color': headingColor,
-                                        '-webkit-text-fill-color': headingColor,
                                     } as CSSProperties
                                 }
                                 value={title}

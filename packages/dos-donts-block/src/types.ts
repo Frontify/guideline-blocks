@@ -106,7 +106,7 @@ export type SortableDoDontItemProps = {
     hasBackground: boolean;
     backgroundColor: Color;
     alt?: string;
-    addAssetIdsToKey?: (key: string, newAssetIds: number[]) => Promise<void>;
+    updateAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
@@ -169,6 +169,9 @@ export type Item = {
     title: string;
     body: string;
     type: DoDontType;
+    /**
+     * @deprecated This field is deprecated. Store it on the block assets with the Item.id as key.
+     */
     imageId?: number;
     alt?: string;
 };
@@ -227,6 +230,6 @@ export const columnsClasses: Record<number, string> = {
     4: 'tw-grid-cols-4',
 };
 
-export type ChangeType = 'title' | 'body' | 'type' | 'imageId' | 'alt';
+export type ChangeType = 'title' | 'body' | 'type' | 'alt';
 
 export type ValueType = string | number | undefined;
