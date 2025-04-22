@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react
+import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ExampleBlock } from './ExampleBlock';
 

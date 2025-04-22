@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react
+import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
