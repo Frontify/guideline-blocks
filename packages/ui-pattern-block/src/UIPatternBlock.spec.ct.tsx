@@ -188,7 +188,8 @@ describe('UI Pattern Block', () => {
         });
         mount(<UIPatternBlockWithStubs />);
         cy.get(CodeEditorContentEditableSelector).should('have.attr', 'contenteditable', 'true');
-        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+        cy.get(CodeEditorContentEditableSelector).click().realType('New changes');
+        cy.get(CodeEditorContentEditableSelector).should('contain', 'New changes');
     });
 
     it('should not allow code edit in view mode if not set in settings', () => {
@@ -209,7 +210,8 @@ describe('UI Pattern Block', () => {
         });
         mount(<UIPatternBlockWithStubs />);
         cy.get(DiscardChangesButtonSelector).should('not.exist');
-        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+        cy.get(CodeEditorContentEditableSelector).click().realType('New changes');
+        cy.get(CodeEditorContentEditableSelector).should('contain', 'New changes');
         cy.get(DiscardChangesButtonSelector).should('exist');
         cy.get(DiscardChangesButtonSelector).click();
         cy.get(DiscardChangesButtonSelector).should('not.exist');
@@ -223,7 +225,8 @@ describe('UI Pattern Block', () => {
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
         });
         mount(<UIPatternBlockWithStubs />);
-        cy.get(CodeEditorContentEditableSelector).click().type('New changes').should('contain', 'New changes');
+        cy.get(CodeEditorContentEditableSelector).click().realType('New changes');
+        cy.get(CodeEditorContentEditableSelector).should('contain', 'New changes');
         cy.get(DiscardChangesButtonSelector).should('not.exist');
     });
 
