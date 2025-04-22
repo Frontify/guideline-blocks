@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { UploadPlaceholder } from './UploadPlaceholder';
 
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';

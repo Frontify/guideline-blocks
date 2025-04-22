@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';

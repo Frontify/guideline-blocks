@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 
 import { getEditAltTextToolbarButton } from './EditAltTextToolbarButton';
 

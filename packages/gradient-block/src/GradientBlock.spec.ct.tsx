@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { HEIGHT_OF_SQUARE_BADGE } from './constants';
 import { GradientBlock } from './GradientBlock';
 import {

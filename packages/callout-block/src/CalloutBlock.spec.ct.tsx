@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';

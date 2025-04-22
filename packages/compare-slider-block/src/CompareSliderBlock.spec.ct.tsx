@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { CompareSliderBlock } from './CompareSliderBlock';
 import { convertToRteValue } from '@frontify/guideline-blocks-settings';

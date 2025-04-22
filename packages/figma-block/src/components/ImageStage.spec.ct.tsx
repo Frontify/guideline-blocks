@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { ImageStage } from './ImageStage';
 
 const IMAGE_STAGE_SELECTOR = '[id="image-stage"]';
