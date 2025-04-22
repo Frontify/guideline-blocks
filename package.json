@@ -22,7 +22,7 @@
     },
     "devDependencies": {
         "@4tw/cypress-drag-drop": "^2.3.0",
-        "@babel/core": "^7.26.0",
+        "@babel/core": "^7.26.10",
         "@cypress/vite-dev-server": "^5.2.0",
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.1",
