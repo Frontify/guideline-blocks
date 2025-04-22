@@ -51,7 +51,10 @@
     "pnpm": {
         "patchedDependencies": {
             "@udecode/plate-emoji@31.4.0": "patches/@udecode__plate-emoji@31.4.0.patch"
-        }
+        },
+        "onlyBuiltDependencies": [
+            "cypress"
+        ]
     },
     "packageManager": "pnpm@10.9.0"
 }
