@@ -85,7 +85,7 @@ importers:
         version: 5.4.18(@types/node@22.5.5)(terser@5.31.2)
       vitest:
         specifier: ^2.0.5
-        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   examples/asset-upload:
     dependencies:
@@ -1250,7 +1250,7 @@ importers:
         version: 4.1.0(@types/node@22.5.5)(rollup@4.40.0)(typescript@5.5.4)(vite@5.4.16(@types/node@22.5.5)(terser@5.31.2))
       vitest:
         specifier: ^2.0.0
-        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+        version: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   packages/sketchfab-block:
     dependencies:
@@ -11965,27 +11965,6 @@ snapshots:
       - '@types/eslint'
       - supports-color
 
-  '@frontify/fondue-charts@5.0.3(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@frontify/fondue-tokens': 4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))
-      '@visx/axis': 3.12.0(react@18.3.1)
-      '@visx/glyph': 3.12.0(react@18.3.1)
-      '@visx/grid': 3.12.0(react@18.3.1)
-      '@visx/group': 3.12.0(react@18.3.1)
-      '@visx/hierarchy': 3.12.0(react@18.3.1)
-      '@visx/responsive': 3.12.0(react@18.3.1)
-      '@visx/scale': 3.12.0
-      '@visx/shape': 3.12.0(react@18.3.1)
-      '@visx/text': 3.12.0(react@18.3.1)
-      '@visx/tooltip': 3.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@visx/xychart': 3.12.0(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash-es: 4.17.21
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      use-font-face-observer: 1.3.0(react@18.3.1)
-    transitivePeerDependencies:
-      - '@react-spring/web'
-
   '@frontify/fondue-charts@5.0.3(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@frontify/fondue-tokens': 4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
@@ -12007,10 +11986,10 @@ snapshots:
     transitivePeerDependencies:
       - '@react-spring/web'
 
-  '@frontify/fondue-components@16.0.4(@frontify/fondue-icons@0.15.2(react@18.3.1))(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))':
+  '@frontify/fondue-components@16.0.4(@frontify/fondue-icons@0.15.2(react@18.3.1))(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))':
     dependencies:
       '@frontify/fondue-icons': 0.15.2(react@18.3.1)
-      '@frontify/fondue-tokens': 4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))
+      '@frontify/fondue-tokens': 4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4)))
       '@radix-ui/react-accordion': 1.2.4(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-checkbox': 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-dialog': 1.1.7(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12093,8 +12072,8 @@ snapshots:
       '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@floating-ui/dom': 1.6.13
-      '@frontify/fondue-charts': 5.0.3(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-components': 16.0.4(@frontify/fondue-icons@0.15.2(react@18.3.1))(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))
+      '@frontify/fondue-charts': 5.0.3(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@frontify/fondue-components': 16.0.4(@frontify/fondue-icons@0.15.2(react@18.3.1))(@frontify/fondue-tokens@4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.5.4))))(@types/react-dom@18.3.5(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))
       '@frontify/fondue-icons': 0.15.2(react@18.3.1)
       '@frontify/fondue-tokens': 4.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.5.4)))
       '@popperjs/core': 2.11.8
@@ -15914,7 +15893,7 @@ snapshots:
       pathe: 1.1.2
       sirv: 2.0.4
       tinyrainbow: 1.2.0
-      vitest: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
+      vitest: 2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2)
 
   '@vitest/utils@2.0.5':
     dependencies:
@@ -21534,7 +21513,7 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.31.2
 
-  vitest@2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5(vitest@2.1.9))(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2):
+  vitest@2.1.9(@types/node@22.5.5)(@vitest/ui@2.0.5)(happy-dom@15.10.2)(msw@1.3.5(typescript@5.5.4))(terser@5.31.2):
     dependencies:
       '@vitest/expect': 2.1.9
       '@vitest/mocker': 2.1.9(msw@1.3.5(typescript@5.5.4))(vite@5.4.18(@types/node@22.5.5)(terser@5.31.2))
