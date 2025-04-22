@@ -137,7 +137,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     borderColor={borderColor}
                     borderWidth={borderWidth}
                     isMobile={isMobile}
-                    hasBackground={!hasLimitedOptions && hasBackground}
+                    hasBackground={hasBackground}
                     backgroundColor={backgroundColor}
                     hasRadius={hasRadius}
                     radiusValue={radiusValue}
