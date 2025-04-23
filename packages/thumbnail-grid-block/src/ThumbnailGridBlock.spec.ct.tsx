@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
 import { CaptionPosition, HorizontalAlignment, Thumbnail, VerticalAlignment } from './types';

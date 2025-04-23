@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { BlockContainerStub } from '../../tests/BlockContainerStub';
 
 const IMAGE_CONTAINER_SELECTOR = '[id="image-container"]';

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { EditAltTextFlyout } from './EditAltTextFlyout';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import React from 'react';
 
 const FlyoutMenu = '[data-test-id="flyout-menu"]';

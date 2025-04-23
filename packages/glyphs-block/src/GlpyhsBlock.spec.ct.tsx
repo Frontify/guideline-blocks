@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { GlyphsBlock } from './GlyphsBlock';
 import { BorderStyle, Radius, radiusStyleMap } from '@frontify/guideline-blocks-settings';
 

@@ -2,7 +2,7 @@
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Security } from '@frontify/guideline-blocks-settings';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
