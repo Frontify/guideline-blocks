@@ -54,7 +54,21 @@ const assertDefaultSettings = () => {
 describe('UI Pattern Block', () => {
     beforeEach(() => {
         cy.intercept('**');
+        Object.defineProperty(window, 'crypto', {
+            value: {
+                ...window.crypto,
+                subtle: {
+                    digest: async () => {
+                        const fake = new Uint8Array(32);
+                        return fake.buffer;
+                    },
+                },
+                getRandomValues: () => 1,
+            },
+            configurable: true,
+        });
     });
+
     it('renders an empty ui pattern block with default settings in edit mode', () => {
         const [UIPatternBlockWithStubs] = withAppBridgeBlockStubs(UIPatternBlock, {
             editorState: true,
@@ -102,7 +116,7 @@ describe('UI Pattern Block', () => {
                 ...DEFAULT_BLOCK_SETTINGS,
                 files: {
                     [SandpackTemplate.Vanilla]: {
-                        '/index.html': 'Testing',
+                        '/index.html': '<div>Testing</div>',
                     },
                 },
             },
@@ -119,7 +133,7 @@ describe('UI Pattern Block', () => {
                 ...DEFAULT_BLOCK_SETTINGS,
                 files: {
                     [SandpackTemplate.Vanilla]: {
-                        '/index.html': 'Testing',
+                        '/index.html': '<div>Testing</div>',
                         '/app.js': 'console.log("Hello")',
                     },
                 },
@@ -140,7 +154,7 @@ describe('UI Pattern Block', () => {
 
                 files: {
                     [SandpackTemplate.Vanilla]: {
-                        '/index.html': 'Testing',
+                        '/index.html': '<div>Testing</div>',
                         '/app.js': 'console.log("Hello")',
                     },
                 },
@@ -199,7 +213,7 @@ describe('UI Pattern Block', () => {
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS },
         });
         mount(<UIPatternBlockWithStubs />);
-        cy.get(CodeEditorContentEditableSelector).should('have.attr', 'contenteditable', 'false');
+        cy.get(CodeEditorSelector).should('not.have.attr', 'contenteditable');
     });
 
     it('should render discard changes button only in view mode if there are changes', () => {
