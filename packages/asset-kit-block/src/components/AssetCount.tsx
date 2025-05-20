@@ -16,5 +16,9 @@ export const AssetCount = ({ count, color }: AssetCountProps): ReactElement => {
         );
     }
 
-    return <div className="tw-text-black-50">Add assets to make them available</div>;
+    return (
+        <div style={{ color: BlockStyles[TextStyles.p].color }} className="tw-opacity-70">
+            Add assets to make them available
+        </div>
+    );
 };
