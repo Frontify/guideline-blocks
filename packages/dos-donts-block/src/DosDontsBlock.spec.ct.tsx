@@ -108,7 +108,7 @@ describe("Dos & Don'ts Block", () => {
                     },
                 ],
             },
-            blockAssets: { itemImages: [AssetDummy.with(1)] },
+            blockAssets: { 1: [AssetDummy.with(1)] },
         });
 
         mount(<DosDontsBlockWithStubs />);
