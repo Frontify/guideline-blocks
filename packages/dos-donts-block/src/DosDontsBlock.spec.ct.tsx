@@ -104,7 +104,6 @@ describe("Dos & Don'ts Block", () => {
                         body: 'Test',
                         title: 'Test',
                         alt: 'Alt text',
-                        imageId: 1,
                         type: DoDontType.Do,
                     },
                 ],
