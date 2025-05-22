@@ -273,22 +273,19 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const removeItemById = useCallback(
         (itemId: string) => {
-            let updatedItems: Item[] = [];
-
             setLocalItems((prevItems) => {
-                updatedItems = prevItems.filter((item) => item.id !== itemId);
+                const updatedItems = prevItems.filter((item) => item.id !== itemId);
+                setBlockSettings({ items: updatedItems });
+                if (blockAssets && deleteAssetIdsFromKey) {
+                    const asset = blockAssets[itemId]?.[0];
+                    const assetId = asset?.id;
+                    if (assetId) {
+                        deleteAssetIdsFromKey(itemId, [assetId]);
+                    }
+                }
+
                 return updatedItems;
             });
-
-            setBlockSettings({ items: updatedItems });
-
-            if (blockAssets && deleteAssetIdsFromKey) {
-                const asset = blockAssets[itemId]?.[0];
-                const assetId = asset?.id;
-                if (assetId) {
-                    deleteAssetIdsFromKey(itemId, [assetId]);
-                }
-            }
         },
         [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
     );
