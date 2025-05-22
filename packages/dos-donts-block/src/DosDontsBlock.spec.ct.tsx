@@ -104,12 +104,11 @@ describe("Dos & Don'ts Block", () => {
                         body: 'Test',
                         title: 'Test',
                         alt: 'Alt text',
-                        imageId: 1,
                         type: DoDontType.Do,
                     },
                 ],
             },
-            blockAssets: { itemImages: [AssetDummy.with(1)] },
+            blockAssets: { 1: [AssetDummy.with(1)] },
         });
 
         mount(<DosDontsBlockWithStubs />);

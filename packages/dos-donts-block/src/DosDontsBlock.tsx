@@ -39,7 +39,7 @@ import {
     generateRandomId,
 } from '@frontify/fondue';
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY, IMAGES_ASSET_KEY } from './const';
+import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 
@@ -117,7 +117,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
     const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
-    const itemImages = blockAssets?.[IMAGES_ASSET_KEY];
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
     const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
@@ -275,18 +274,21 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const removeItemById = useCallback(
         (itemId: string) => {
             setLocalItems((prevItems) => {
-                const itemToRemove = prevItems.find((item) => item.id === itemId);
-                const newItems = prevItems.filter((item) => item.id !== itemId);
-                setBlockSettings({ items: newItems });
-                if (itemToRemove?.imageId && deleteAssetIdsFromKey) {
-                    deleteAssetIdsFromKey(itemToRemove.id, [itemToRemove?.imageId]);
+                const updatedItems = prevItems.filter((item) => item.id !== itemId);
+                setBlockSettings({ items: updatedItems });
+                if (blockAssets && deleteAssetIdsFromKey) {
+                    const asset = blockAssets[itemId]?.[0];
+                    const assetId = asset?.id;
+                    if (assetId) {
+                        deleteAssetIdsFromKey(itemId, [assetId]);
+                    }
                 }
-                return newItems;
+
+                return updatedItems;
             });
         },
-        [deleteAssetIdsFromKey, setBlockSettings]
+        [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
     );
-
     const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
             previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
@@ -328,19 +330,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
     };
 
-    const getLinkedImageOfItem = (item: Item) => {
-        if ((blockAssets?.[item.id] ?? []).length > 0) {
-            return blockAssets?.[item.id][0];
-        }
-
-        if (!itemImages) {
-            return;
-        }
-
-        // legacy case (after migration gone)
-        return itemImages.find((asset) => asset.id === item.imageId);
-    };
-
     const getDoDontItemProps = (item: Item) => ({
         id: item.id,
         onChangeItem,
@@ -351,7 +340,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         type: item.type,
         style,
         doColor: doColor || DO_COLOR_DEFAULT_VALUE,
-        linkedImage: getLinkedImageOfItem(item),
+        linkedImage: blockAssets?.[item.id]?.[0],
         dontColor: dontColor || DONT_COLOR_DEFAULT_VALUE,
         editing: isEditing,
         hasCustomDoIcon,
