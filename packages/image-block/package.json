@@ -34,7 +34,7 @@
     "dependencies": {
         "@frontify/app-bridge": "^3.11.1",
         "@frontify/fondue": "12.9.3",
-        "@frontify/guideline-blocks-settings": "0.37.4",
+        "@frontify/guideline-blocks-settings": "0.37.5",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/live-announcer": "^3.4.1",
         "react": "^18.3.1",
