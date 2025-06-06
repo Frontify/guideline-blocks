@@ -46,12 +46,11 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
 
     const hasTitle = title && hasRichTextValue(title);
     const hasDescription = description && hasRichTextValue(description);
-    const shouldDisplayComponent = isEditing || hasTitle || hasDescription;
 
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const hasAssets = currentAssets.length > 0;
+    const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
-
-    const shouldHideComponent = currentAssets.length === 0 && !isEditing;
 
     const startDownload = () => {
         generateBulkDownload(blockAssets);
