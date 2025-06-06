@@ -25,7 +25,7 @@ import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
-export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
+export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -44,7 +44,12 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         buttonText,
     } = blockSettings;
 
+    const hasTitle = title && hasRichTextValue(title);
+    const hasDescription = description && hasRichTextValue(description);
+
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const hasAssets = currentAssets.length > 0;
+    const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
@@ -76,6 +81,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         [AssetBulkDownloadState.Error, AssetBulkDownloadState.Pending, AssetBulkDownloadState.Started].includes(
             status
         ) || currentAssets.length === 0;
+
+    if (!shouldDisplayComponent) {
+        return null;
+    }
 
     return (
         <div className="asset-kit-block">

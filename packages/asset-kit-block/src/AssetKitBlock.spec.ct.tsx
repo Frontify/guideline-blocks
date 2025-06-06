@@ -29,9 +29,15 @@ const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const PINK: Color = { red: 255, green: 0, blue: 255, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
 
+const TITLE_DUMMY = `[{"type":"heading3","children":[{"text":"test","textStyle":"heading3"}]}]`;
+
 describe('AssetKit Block', () => {
     it('renders a AssetKit block', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock);
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                title: TITLE_DUMMY,
+            },
+        });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_SELECTOR).should('exist');
     });
@@ -48,7 +54,7 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_DESCRIPTION_HTML).should('not.exist');
     });
 
-    it('should show the information section if in edit mode', () => {
+    it('should show the information section if in edit mode but no info was provide', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             editorState: true,
             blockSettings: {
@@ -312,10 +318,13 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_ITEM_WRAPPER).first().should('have.css', 'outline-style', 'solid');
     });
 
-    it('should disable the button if no assets are set', () => {
+    it('should disable the download button if no assets are set', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [],
+            },
+            blockSettings: {
+                title: TITLE_DUMMY,
             },
         });
         mount(<AssetKitBlockWithStubs />);
