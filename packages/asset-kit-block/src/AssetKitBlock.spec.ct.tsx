@@ -29,7 +29,7 @@ const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const PINK: Color = { red: 255, green: 0, blue: 255, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
 
-const TITLE_DUMMY = `[{"type":"heading3","children":[{"text":"test","textStyle":"heading3"}]}]`;
+const TITLE_DUMMY = '[{"type":"heading3","children":[{"text":"test","textStyle":"heading3"}]}]';
 
 describe('AssetKit Block', () => {
     it('renders a AssetKit block', () => {
