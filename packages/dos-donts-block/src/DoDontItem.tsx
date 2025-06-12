@@ -107,7 +107,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             async (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
-                const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
+                const imageAlt = alt ?? asset.alternativeText ?? '';
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
@@ -148,7 +148,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         if (doneAll) {
             (async (uploadResults) => {
                 const asset = uploadResults?.[0];
-                const imageAlt = alt ?? asset.title ?? asset.fileName ?? '';
+                const imageAlt = alt ?? asset.alternativeText ?? '';
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);

@@ -141,7 +141,7 @@ export const Image = ({
                     style={imageStyle}
                     containerWidth={containerWidth}
                     image={image}
-                    alt={blockSettings.altText ?? ''}
+                    alt={blockSettings.altText ?? image.alternativeText ?? ''}
                 />
             </ImageWrapper>
         </div>

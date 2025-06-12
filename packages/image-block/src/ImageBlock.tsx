@@ -70,12 +70,12 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const updateImage = async (newImage: Asset) => {
         const settings: Partial<Settings> = {};
         const isFirstImageUpload = !image;
-
+        console.log('ImageBlock: updateImage', newImage);
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
-            settings.altText = defaultImageName;
-            setLocalAltText(defaultImageName);
+            settings.altText = newImage?.alternativeText ?? '';
+            setLocalAltText(newImage?.alternativeText ?? '');
 
             const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
