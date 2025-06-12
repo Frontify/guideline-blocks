@@ -147,7 +147,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         <RichTextEditor
-                            id={appBridge.getBlockId().toString()}
+                            id={String(appBridge.context('blockId').get())}
                             isEditing={isEditing}
                             onTextChange={handleTextChange}
                             placeholder="Type your text here"

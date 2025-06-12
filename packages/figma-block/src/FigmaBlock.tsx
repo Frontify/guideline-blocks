@@ -63,7 +63,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     useEffect(() => {
         setReferenceUrl(
             (
-                document.querySelector(`[data-block="${appBridge.getBlockId()}"].referenced`) as
+                document.querySelector(`[data-block="${String(appBridge.context('blockId').get())}"].referenced`) as
                     | HTMLDivElement
                     | undefined
             )?.dataset.referenceUrl || ''

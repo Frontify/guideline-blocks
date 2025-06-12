@@ -25,7 +25,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
         <div data-test-id="text-block-wrapper" className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
             <StyleProvider>
                 <RichTextEditor
-                    id={appBridge.getBlockId().toString()}
+                    id={String(appBridge.context('blockId').get())}
                     isEditing={isEditing}
                     value={content}
                     columns={columnNumber}
