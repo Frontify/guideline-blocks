@@ -74,8 +74,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
-            settings.altText = defaultImageName;
-            setLocalAltText(defaultImageName);
+            settings.altText = newImage?.alternativeText ?? '';
+            setLocalAltText(newImage?.alternativeText ?? '');
 
             const hasManuallyEditedName = hasRichTextValue(name);
             if (!hasManuallyEditedName) {
