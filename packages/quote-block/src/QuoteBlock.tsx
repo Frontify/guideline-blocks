@@ -174,6 +174,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                                         ? QuoteStyle.Custom
                                         : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
                                 }
+                                position="bottom"
                             />
                         )}
                     </div>

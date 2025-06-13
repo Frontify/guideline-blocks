@@ -12,6 +12,7 @@ export type QuoteBlockIconProps = {
     isCustomSize?: boolean;
     sizeValue?: string;
     sizeChoice?: QuoteSize;
+    position?: 'top' | 'bottom';
 };
 
 export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
@@ -21,7 +22,8 @@ export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     isCustomSize,
     sizeValue,
     sizeChoice,
+    position = 'top',
 }) => {
     const size = isCustomSize ? (sizeValue ?? '') : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
-    return quoteIconMap(size, color, customIcon)[quoteStyle];
+    return quoteIconMap(size, color, customIcon, position)[quoteStyle];
 };
