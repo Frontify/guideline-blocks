@@ -92,7 +92,7 @@ export const ThumbnailItem = ({
                         className="tw-object-cover tw-w-full tw-h-full"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
-                        alt={asset.title}
+                        alt={asset.alternativeText ?? asset.title}
                     />
                 )}
             </div>
