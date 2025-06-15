@@ -18,7 +18,7 @@ importers:
         version: 12.9.3(@react-spring/web@9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.15.31)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3)))(zustand@4.5.6(@types/react@18.3.23)(immer@10.1.1)(react@18.3.1))
       glob:
         specifier: ^11.0.0
-        version: 11.0.2
+        version: 11.0.3
       happy-dom:
         specifier: ^15.7.3
         version: 15.11.7
@@ -70,7 +70,7 @@ importers:
         version: 1.3.5(typescript@5.8.3)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.17(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3))
@@ -125,7 +125,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -140,7 +140,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -201,7 +201,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -219,7 +219,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -268,7 +268,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -286,7 +286,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -338,7 +338,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -356,7 +356,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -408,7 +408,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -423,7 +423,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -447,7 +447,7 @@ importers:
         version: 6.5.2
       '@codemirror/view':
         specifier: ^6.36.1
-        version: 6.37.1
+        version: 6.37.2
       '@frontify/app-bridge':
         specifier: ^4.0.0-alpha.41
         version: 4.0.0-alpha.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
@@ -462,13 +462,13 @@ importers:
         version: link:../shared
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.23.7
-        version: 4.23.12(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.11.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)
+        version: 4.23.13(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.11.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)
       '@uiw/codemirror-themes-all':
         specifier: ^4.23.7
-        version: 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+        version: 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
       '@uiw/react-codemirror':
         specifier: ^4.23.7
-        version: 4.23.12(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.1)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.23.13(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -493,7 +493,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -511,7 +511,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -566,7 +566,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -581,7 +581,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -630,7 +630,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       eslint:
         specifier: ^8.57.0
         version: 8.57.1
@@ -642,7 +642,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -715,7 +715,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -727,7 +727,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -779,7 +779,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -794,7 +794,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -846,7 +846,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -861,7 +861,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -907,7 +907,7 @@ importers:
         version: 5.8.8(@types/node@22.15.31)
       '@react-aria/interactions':
         specifier: ^3.17.0
-        version: 3.25.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.23
@@ -916,7 +916,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -934,7 +934,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -980,7 +980,7 @@ importers:
         version: 5.8.8(@types/node@22.15.31)
       '@react-aria/interactions':
         specifier: ^3.17.0
-        version: 3.25.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.23
@@ -989,7 +989,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1007,7 +1007,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1065,7 +1065,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1080,7 +1080,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1132,7 +1132,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1147,7 +1147,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1177,7 +1177,7 @@ importers:
         version: 0.37.5(@frontify/app-bridge@4.0.0-alpha.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1))(@react-spring/web@9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.15.31)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3)))(zustand@4.5.6(@types/react@18.3.23)(immer@10.1.1)(react@18.3.1))
       '@uiw/react-codemirror':
         specifier: ^4.23.7
-        version: 4.23.12(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.1)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.23.13(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.26.10
@@ -1220,7 +1220,7 @@ importers:
         version: 1.3.5(typescript@5.8.3)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1290,7 +1290,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1305,7 +1305,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1335,7 +1335,7 @@ importers:
         version: link:../shared
       '@react-aria/interactions':
         specifier: ^3.17.0
-        version: 3.25.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1360,7 +1360,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1375,7 +1375,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1427,7 +1427,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1445,7 +1445,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1503,7 +1503,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1518,7 +1518,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1588,7 +1588,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1606,7 +1606,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1679,7 +1679,7 @@ importers:
         version: 18.3.7(@types/react@18.3.23)
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.5)
       cypress:
         specifier: ^14.3.1
         version: 14.4.1
@@ -1694,7 +1694,7 @@ importers:
         version: 0.9.10(eslint@8.57.1)
       postcss:
         specifier: ^8.4.44
-        version: 8.5.4
+        version: 8.5.5
       prettier:
         specifier: ^3.3.3
         version: 3.5.3
@@ -1870,6 +1870,9 @@ packages:
   '@codemirror/lang-markdown@6.3.2':
     resolution: {integrity: sha512-c/5MYinGbFxYl4itE9q/rgN/sMTjOr8XL5OWnC+EaRMLfCbVUmmubTJfdgpfcSS2SCaT7b+Q+xi3l6CgoE+BsA==}
 
+  '@codemirror/lang-markdown@6.3.3':
+    resolution: {integrity: sha512-1fn1hQAPWlSSMCvnF810AkhWpNLkJpl66CRfIy3vVl20Sl4NwChkorCHqpMtNbXr1EuMJsrDnhEpjZxKZ2UX3A==}
+
   '@codemirror/lang-php@6.0.1':
     resolution: {integrity: sha512-ublojMdw/PNWa7qdN5TMsjmqkNuTBD3k6ndZ4Z0S25SBAiweFGyY68AS3xNcIOlb6DDFDvKlinLQ40vSLqf8xA==}
 
@@ -1927,8 +1930,8 @@ packages:
   '@codemirror/theme-one-dark@6.1.2':
     resolution: {integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==}
 
-  '@codemirror/view@6.37.1':
-    resolution: {integrity: sha512-Qy4CAUwngy/VQkEz0XzMKVRcckQuqLYWKqVpDDDghBe5FSXSqfVrJn49nw3ePZHxRUz4nRmb05Lgi+9csWo4eg==}
+  '@codemirror/view@6.37.2':
+    resolution: {integrity: sha512-XD3LdgQpxQs5jhOOZ2HRVT+Rj59O4Suc7g2ULvZ+Yi8eCkickrkZ5JFuoDhs2ST1mNI5zSsNYgR3NGa4OUrbnw==}
 
   '@codesandbox/nodebox@0.1.8':
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
@@ -2345,6 +2348,14 @@ packages:
   '@internationalized/string@3.2.6':
     resolution: {integrity: sha512-LR2lnM4urJta5/wYJVV7m8qk5DrMZmLRTuFhbQO5b9/sKLHgty6unQy1Li4+Su2DWydmB4aZdS5uxBRXIq2aAw==}
 
+  '@isaacs/balanced-match@4.0.1':
+    resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
+    engines: {node: 20 || >=22}
+
+  '@isaacs/brace-expansion@5.0.0':
+    resolution: {integrity: sha512-ZT55BDLV0yv0RBm2czMiZ+SqCGO7AvmOM3G/w2xhVPH+te0aKgFjmBvGlL1dH+ql2tgGO3MVrbb3jCKyvpgnxA==}
+    engines: {node: 20 || >=22}
+
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -2408,6 +2419,9 @@ packages:
 
   '@lezer/markdown@1.4.2':
     resolution: {integrity: sha512-iYewCigG/517D0xJPQd7RGaCjZAFwROiH8T9h7OTtz0bRVtkxzFhGBFJ9JGKgBBs4uuo1cvxzyQ5iKhDLMcLUQ==}
+
+  '@lezer/markdown@1.4.3':
+    resolution: {integrity: sha512-kfw+2uMrQ/wy/+ONfrH83OkdFNM0ye5Xq96cLlaCy7h5UT9FO54DU4oRoIc0CSBh5NWmWuiIJA7NGLMJbQ+Oxg==}
 
   '@lezer/php@1.0.2':
     resolution: {integrity: sha512-GN7BnqtGRpFyeoKSEqxvGvhJQiI4zkgmYnDk/JIyc7H7Ifc1tkPnUn/R2R8meH3h/aBf5rzjvU8ZQoyiNDtDrA==}
@@ -3084,8 +3098,8 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
-  '@react-aria/interactions@3.25.2':
-    resolution: {integrity: sha512-BWyZXBT4P17b9C9HfOIT2glDFMH9nUCfQF7vZ5FEeXNBudH/8OcSbzyBUG4Dg3XPtkOem5LP59ocaizkl32Tvg==}
+  '@react-aria/interactions@3.25.3':
+    resolution: {integrity: sha512-J1bhlrNtjPS/fe5uJQ+0c7/jiXniwa4RQlP+Emjfc/iuqpW2RhbF9ou5vROcLzWIyaW8tVMZ468J68rAs/aZ5A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
@@ -4095,8 +4109,8 @@ packages:
     peerDependencies:
       zustand: '>=4.3.9'
 
-  '@uiw/codemirror-extensions-basic-setup@4.23.12':
-    resolution: {integrity: sha512-l9vuiXOTFDBetYrRLDmz3jDxQHDsrVAZ2Y6dVfmrqi2AsulsDu+y7csW0JsvaMqo79rYkaIZg8yeqmDgMb7VyQ==}
+  '@uiw/codemirror-extensions-basic-setup@4.23.13':
+    resolution: {integrity: sha512-U1CnDFpq6ydNqrRDS5Bdnvgso8ezwwbrmKvmAD3hmoVyRDsDU6HTtmcV+w0rZ3kElUCkKI5lY0DMvTTQ4+L3RQ==}
     peerDependencies:
       '@codemirror/autocomplete': '>=6.0.0'
       '@codemirror/commands': '>=6.0.0'
@@ -4106,129 +4120,129 @@ packages:
       '@codemirror/state': '>=6.0.0'
       '@codemirror/view': '>=6.0.0'
 
-  '@uiw/codemirror-extensions-langs@4.23.12':
-    resolution: {integrity: sha512-Wbom4IWdoXYw3h9QSq/I4LCbmhDWYeJFv4FNCMd3USdFA5400IchrxMSEFgawpu6Bl8Qoyyzx+saIrQoWYfdQQ==}
+  '@uiw/codemirror-extensions-langs@4.23.13':
+    resolution: {integrity: sha512-QwDL/l7VRmqxHxFUkGhCuTzG+lyRDAbRlZ0HXzVDCIeMK1+1nXJ6wPiLAjIYzSsfwqUzD12yO+FfFjYNwYHVRw==}
     peerDependencies:
       '@codemirror/language-data': '>=6.0.0'
       '@codemirror/legacy-modes': '>=6.0.0'
 
-  '@uiw/codemirror-theme-abcdef@4.23.12':
-    resolution: {integrity: sha512-Jd7RpoUIMP01N3MRieVlUlMgh683E84lCGjHsDd4IgosgrZYfHJITJZVgOiRk+ei+lGUdDOQmr/jg3Zug7Lgxg==}
+  '@uiw/codemirror-theme-abcdef@4.23.13':
+    resolution: {integrity: sha512-n7rcYYitdLSwqirWGTC8MGJRO4esmU1LFLDul1qhKCbQyY6O5t+dzpCNlsH2cgiMhhr2so/XG/FRUGcMcSZQTw==}
 
-  '@uiw/codemirror-theme-abyss@4.23.12':
-    resolution: {integrity: sha512-oQbTTH+YV0os0kXDidhOgNeoMhDF7edF/O04wUO/75DTVcaBT+NHWO2BsR4R/vX8/FylUJEOUAoRYdX2mEfnVw==}
+  '@uiw/codemirror-theme-abyss@4.23.13':
+    resolution: {integrity: sha512-7e74zeYPo5n2KqT2PHiX8UVqfCrgu5CXxqycQm6d/66widnGS3AOXXM+utNRjc9j2ESHubtty4JsBfI86Q012Q==}
 
-  '@uiw/codemirror-theme-androidstudio@4.23.12':
-    resolution: {integrity: sha512-2PDjsaAvPxctvF5+i0eL1ntiZI/Vvi72aHSGIZNFMM5NKSCG6z+n9fn9Ci49Dy2JXkTnO8T20G89/DWhGd36cw==}
+  '@uiw/codemirror-theme-androidstudio@4.23.13':
+    resolution: {integrity: sha512-DcZmRGjFiU0mWCYqlrUPsKe5pWzoHP2Ab/QWckLTrHRDWuRjB+8bydqXupOWqfrxZqYM6dR5ptpwZCrMnMpFVg==}
 
-  '@uiw/codemirror-theme-andromeda@4.23.12':
-    resolution: {integrity: sha512-XM3WQkHmQr/h/uQlODiP6twa81UDNfNAmGcyWww+3HQIGU8eIRFQ1ZGGgT8tZKgCmdfMOC3p0/qr0d6r3/TfYQ==}
+  '@uiw/codemirror-theme-andromeda@4.23.13':
+    resolution: {integrity: sha512-KzmSaTEvc1IikN55OfXxaAYNp9puLsy8AjIXD+wUo0nAVhuRQXaw09x2EE7QIX31hOBOwyaCk97KMYkZPKQVrw==}
 
-  '@uiw/codemirror-theme-atomone@4.23.12':
-    resolution: {integrity: sha512-W4/GOQ5Flw7n59/29UD1uJV2iIVxzr7B/7oPTotn0/2BBArRbJNjOEWYQ1b/OgMl3+mZjNozaYgtr44tHHNSfg==}
+  '@uiw/codemirror-theme-atomone@4.23.13':
+    resolution: {integrity: sha512-k/ebwmO0BPdpCjZDPoei3+9FdbO8ChUgy4lozTtpWQTuG2H1IvGlH6ikLdVKdD3QjsL1IDkGx41Ih07clSZE9Q==}
 
-  '@uiw/codemirror-theme-aura@4.23.12':
-    resolution: {integrity: sha512-BnFsSAH+22CvD3AoQIEzRl8s07CR4SOGcrR2cQJWFLFSb7hlEa0myIEx9H4oEHtE1T40meKTx3pk2dpJTqL+IA==}
+  '@uiw/codemirror-theme-aura@4.23.13':
+    resolution: {integrity: sha512-fNEwb8Rq5VSykXmHabKH/JU0OZj4vVgs8Qr4/4xwmxj8t/v1gOIThJNd1/8ZTMFsmZ8aBORIacfwuqEquqDfdA==}
 
-  '@uiw/codemirror-theme-basic@4.23.12':
-    resolution: {integrity: sha512-KepDYk/yb1DPV733N0UwbngRlHmFjGR5gh4UOXZic9yI14ndx8jEJsa36Em8THNSCqhSpmn1zeCbnXBxhyF4rA==}
+  '@uiw/codemirror-theme-basic@4.23.13':
+    resolution: {integrity: sha512-7GYiryQZSZFpKuskc0d//Pn81z0OtnHhEQp3tZ5Jn2GQuMEHdZt9RomLLzqJTqOXOXVm37cKuYbd47XWcgejmw==}
 
-  '@uiw/codemirror-theme-bbedit@4.23.12':
-    resolution: {integrity: sha512-g5kHD1qTKCjINicbgLEi9MXR4r41klmum4kvFyo/SURwmjTDmetUB+MIqb0fvkcG9VzCiitxHVBl8ZNKxF8PWw==}
+  '@uiw/codemirror-theme-bbedit@4.23.13':
+    resolution: {integrity: sha512-7Yc3iQFEecbaQisy5YC+9aov/PVGSKZAEGRR86C+keC/3yxAe6jcg9a/rVuafegm70pKAhO+beGZGjot0k3DVQ==}
 
-  '@uiw/codemirror-theme-bespin@4.23.12':
-    resolution: {integrity: sha512-XuJlDs5fw2yNUBWRsjamExVlt/EsoZQmlZ97qYhK4CDvc/TjHZysVaMApGcwG56CJhGexf5BAxi8xJCFaDTEdQ==}
+  '@uiw/codemirror-theme-bespin@4.23.13':
+    resolution: {integrity: sha512-9VQ+utZYQBFTjXPNkWNwVwdjVCznp9q0bq6YCsvN/hH9y1iW5O4RlUqU6cmxJaNndkJS88FtpyO1c+HKxJ08FA==}
 
-  '@uiw/codemirror-theme-console@4.23.12':
-    resolution: {integrity: sha512-HnTjbG5+9tQf3Q+2GxsbVrrFfTjf0X+kd6npGMuiAzeakbJVQ+/yzGQVAg4mLU0nnGMZtoayTcdWcuacSIi38A==}
+  '@uiw/codemirror-theme-console@4.23.13':
+    resolution: {integrity: sha512-EtNsXdi5nVQ7uqHLhfpIlIHyGJfuIf9DkpcjWgLtpWYINGa9BGVwkNlke40tSf3P0J+QKxeFGJL0sdMRe6uhHA==}
 
-  '@uiw/codemirror-theme-copilot@4.23.12':
-    resolution: {integrity: sha512-ZICTJQCaFgJI2pJUHuj2NoEd7PZWsOGta1a5jk2SFwlr9JHPkOqrxZixwcoEMEuqtPGdoW+ezXa21H/mlik83g==}
+  '@uiw/codemirror-theme-copilot@4.23.13':
+    resolution: {integrity: sha512-vr3Ywydm0tV3b3Pty1YEKpvWF0InPuE0tQkynM7DVXxyit7SuSOXXjlZvAGlzUss8oospUpxYBLrSlJFyqxFXQ==}
 
-  '@uiw/codemirror-theme-darcula@4.23.12':
-    resolution: {integrity: sha512-+TsLGgPrwmjTyTXEOnjtNCsTpE1B6WDESTEeqFtdonLh2xkkT2URwpaRNumVeeTQ9ink/UBTIiGWmtAWiOa+Iw==}
+  '@uiw/codemirror-theme-darcula@4.23.13':
+    resolution: {integrity: sha512-eQbKRuFlxJRgpRfikMQDCyG+bk9iGbCmKnKTDxP9/b0qlRP3dnF5mdAe2VqBNapxju0Cn+cy8Wu8s7z0GiYzWg==}
 
-  '@uiw/codemirror-theme-dracula@4.23.12':
-    resolution: {integrity: sha512-ZTNKHvXCOdvXF62mLOkrumu5UeegK/Iip7lCwzW3ZdV4HgljDbnWshyLY6M8iLrjTI1QbYjVGJzt7J5lg5xgOA==}
+  '@uiw/codemirror-theme-dracula@4.23.13':
+    resolution: {integrity: sha512-Puw9aqYHA/r4iwIo+JMyIZ9taX2xkTAX4jOz8qVwI4x8LE+PvcF4jVLJkdBHmQEQEzZrKq4vrjrLnviZ2LStKw==}
 
-  '@uiw/codemirror-theme-duotone@4.23.12':
-    resolution: {integrity: sha512-8FUZQyUBJTLaxPU4trS7M658F0NTQ3rAjKCw4jW1N/LlUb9zedgxuGA8Ta/YWg05UbuqHKnMXpFlEXKlLzQqUA==}
+  '@uiw/codemirror-theme-duotone@4.23.13':
+    resolution: {integrity: sha512-JZWgBc7i9UBPgVW+35fML7YF8JHSG98PvV1wwa37J2UIQ4csrbgfvh/2g3EPMOPyHZrw9IrNZFLqpIWMJNP4KQ==}
 
-  '@uiw/codemirror-theme-eclipse@4.23.12':
-    resolution: {integrity: sha512-SVyvHPtrmS47IAnREuqG3YcAFJziLoFNtXg4dXX1IGjJzrT1ONGAn9vfMx0KNWOdGHpFUUFjiH8G3igI0VhZZA==}
+  '@uiw/codemirror-theme-eclipse@4.23.13':
+    resolution: {integrity: sha512-773gbWBg740h+YLaS7+78BoIPJzsvHYD6uEvmShMdN3bqUPsPtoLNf/+8SFGoF0PU24n9mrm+H8HH5twbhjd3w==}
 
-  '@uiw/codemirror-theme-github@4.23.12':
-    resolution: {integrity: sha512-yxgycQxA1fNVdrjIZ7H7pq+9Q+BeKLmD5oq5oOlw7kVJrnToOMBylv5oIWplVd2s2LFo47lIhWrVC9Ay3b6Baw==}
+  '@uiw/codemirror-theme-github@4.23.13':
+    resolution: {integrity: sha512-e75jgCl6Zf7sC63ntyl4r2GU6ekqKbyfIB4g6EnneQlIzJQiDTM+mU0/pDR5hLTyGQdxQpcDs9EmDqfEyejGSQ==}
 
-  '@uiw/codemirror-theme-gruvbox-dark@4.23.12':
-    resolution: {integrity: sha512-5SHwgUjpqSDpcWGM3xSWYZYZPRxq8XfrXB1XoHMkfz7pR5sXuJQ/sj09XM5vG+NiaCXGTvXITxq4QoixczpOqg==}
+  '@uiw/codemirror-theme-gruvbox-dark@4.23.13':
+    resolution: {integrity: sha512-GugvLaFUA2gAvVZtdTfYccm3DmADZZou9VzJMuyLwUCFNKMRTL5nSIRaQZlNTvJYp3tRrPEMoIjqsyxqbB4DBg==}
 
-  '@uiw/codemirror-theme-kimbie@4.23.12':
-    resolution: {integrity: sha512-kr+9nKzPgjVDyfPxRMjbRADrLhYjDsNyQIv4yXEgOdmVBxh6w2yzP0zFB1oEds+xzTsx5uLr1O4m2GfRRJx3xw==}
+  '@uiw/codemirror-theme-kimbie@4.23.13':
+    resolution: {integrity: sha512-ue4lh1z3bnDKYaNRPF0/OYHe5lSnfgpgSsR6uj7z2LcYaMmKIAf8R84SozWot7IN6IjfHLKVC5Zv0Iz0wb8VmA==}
 
-  '@uiw/codemirror-theme-material@4.23.12':
-    resolution: {integrity: sha512-M7yo5mE0QDKjWm02sN6Sw3Ld4/3XvAuJZcEdKYgqmiGI7GKL/nAV8HDfD8iMNm0HGnyozK402WLzb84oB57gAg==}
+  '@uiw/codemirror-theme-material@4.23.13':
+    resolution: {integrity: sha512-UrAi2ETtmkf2oblJp1cGiMXl/+S/rsQL/TF6+J/jDN9+fXIsluSm1E5Odg6SCWzdhmNgfeS6OxMcdHfkftapnA==}
 
-  '@uiw/codemirror-theme-monokai-dimmed@4.23.12':
-    resolution: {integrity: sha512-cFLtLIR8UT7/32imXsiEONBMHbHsqfXjOXe01PfzvDclghE1TDm/4kn12pG6mjztphnngnxQfYNSn6/eQTOq0Q==}
+  '@uiw/codemirror-theme-monokai-dimmed@4.23.13':
+    resolution: {integrity: sha512-lUF1N+faBd4mLHPFpMNT3uxAbT9/LfdyTsGTw1OsI4VcX51D+8GeW1KTcz1cDeHlJ2IVuG8sbJgAd3cSTTMAeA==}
 
-  '@uiw/codemirror-theme-monokai@4.23.12':
-    resolution: {integrity: sha512-axDkBX+txR4NKZLrEkFd+m50UQS579UEqneHz1cTQ8r0z7OYjAZo+7CwdXF5BliJOgaRTC617fyUqEr4X6UCkQ==}
+  '@uiw/codemirror-theme-monokai@4.23.13':
+    resolution: {integrity: sha512-R69hxAvAwhNlP9iOeY9b7Bnk7zCLb1951FWuNMRkMq+tpJJJ9sZ6UdME3Q0dKZwokU+kd2Pzjot2SpZ/Gdd+tA==}
 
-  '@uiw/codemirror-theme-noctis-lilac@4.23.12':
-    resolution: {integrity: sha512-iXc9O0AfeiUp4OXRf+u7nLfz5SQpcCVtvbOxb0+18taAsyisikkKcejUwCUk0hVauW9VKL2FErDkOOzn5z1FtQ==}
+  '@uiw/codemirror-theme-noctis-lilac@4.23.13':
+    resolution: {integrity: sha512-V/K6yhswPlvKL6pGp5QkaWAzGsxhC50vaUTQlzsm7dGN+ffwE4ufX4NRSJkPisRzM3GlxdYTTi0tu1112Xur+A==}
 
-  '@uiw/codemirror-theme-nord@4.23.12':
-    resolution: {integrity: sha512-U8w3VIuim9H1lEzReeNyv1+uwnPO+gc3gLXCFwxpwF/XDrTQf5TjQFL+c1AGVCYM/Ywf5sflUcF96C3z634r6g==}
+  '@uiw/codemirror-theme-nord@4.23.13':
+    resolution: {integrity: sha512-khQ4YklsTdeSN+ixF/JiCaig2zpLeqtd+fJdtK1iXH3u6BBWRNzPeTXZ519+9zHjuGeUDgCtuYqUy92YNlM87Q==}
 
-  '@uiw/codemirror-theme-okaidia@4.23.12':
-    resolution: {integrity: sha512-iunSHnMoCxJMUX1usfEQFIFzKhv807aMArMJ324y49nZLkmwZDuGNLYg2x4MUvdGyD9Ksa9N5eujoq++SekfGg==}
+  '@uiw/codemirror-theme-okaidia@4.23.13':
+    resolution: {integrity: sha512-0GPJ45l6FaB4mV9gVCbI8WehhfqaG3iB7Bma41fJcBoqTV26ocgzhTMCNs3JrdYu4EMNwVc7uLm7wm839mk5Mw==}
 
-  '@uiw/codemirror-theme-quietlight@4.23.12':
-    resolution: {integrity: sha512-p/btvByFWjRGNTQXRySOiInub3njLEoepPGqhU8V099ndmprzl3ef9bO5ANWDM7R8p6uciYUp6hS2u+PJPtu8g==}
+  '@uiw/codemirror-theme-quietlight@4.23.13':
+    resolution: {integrity: sha512-1EgWh1aVAVs9zNeuvGZQMYLHpt3i5kCc02eA5xPc6Ibyu3rc9WWqP1cdSybZ3lw4/GJGQyZxyjL6mNs4jwiitg==}
 
-  '@uiw/codemirror-theme-red@4.23.12':
-    resolution: {integrity: sha512-m9Xu01Ko1WuLThuYDdOQqVS6YgGV5Xz9s0Qv1idIbKNeu/HX8BGeWnjrxjkv6EhIX0zH+uN4wcWELZ7dHZZx6A==}
+  '@uiw/codemirror-theme-red@4.23.13':
+    resolution: {integrity: sha512-JaNXcyGC0KvWsOaPlAiYVdJP52P/3J3/8jizwKU8VAhXHm/YDUyLAnAHzHXL5W2IYHlYxqd7mMOoagY8Lj0k/Q==}
 
-  '@uiw/codemirror-theme-solarized@4.23.12':
-    resolution: {integrity: sha512-qAh5jS7P/qwLAJ93OP9r4Z3DdZh0SFq0uhwYXckSVVYtuypiYf3ZSpQLuiSQ7I/B9BMPtENt7GgthFIun21PYA==}
+  '@uiw/codemirror-theme-solarized@4.23.13':
+    resolution: {integrity: sha512-e6sota2PFvAubVlcWJnfFW1fpggZvU7BFtz/5wzSmBDMmZmAL2PQCGf8cv4W0XNVTFm/n8AnSmSTHJZfzCnljA==}
 
-  '@uiw/codemirror-theme-sublime@4.23.12':
-    resolution: {integrity: sha512-fblzQo2xIZqznuu26FhkUST0JFdcJS1pWGJfJUpR49/cY1yni7LW5m30oAklJT2NpPW2ZFi4YkhCqkOfEzXYAQ==}
+  '@uiw/codemirror-theme-sublime@4.23.13':
+    resolution: {integrity: sha512-bdT27xQNNIVKURTdN40mNJYtBYzcdpJInsn7ggs9eZY2RI1b/bFblCJNSyepGBFRt/KewDDu6ih/cmixHGZJwg==}
 
-  '@uiw/codemirror-theme-tokyo-night-day@4.23.12':
-    resolution: {integrity: sha512-wT/A0SI7aD9j3WQXkLlk3mLk81kZ8ZGD1Okz+YIk+DngH0uD730c5ZMv6AUSHbqAtPePgsjSOHMNS/IQfPOunQ==}
+  '@uiw/codemirror-theme-tokyo-night-day@4.23.13':
+    resolution: {integrity: sha512-YqO5w5LTLbZdPRFQNVbDk9VbDxV6QPG5UpDdC2QmeoMGkifxTBcUgTvXUzUS6/KU4/iw4DxMBssTcBnZBTHnBA==}
 
-  '@uiw/codemirror-theme-tokyo-night-storm@4.23.12':
-    resolution: {integrity: sha512-vBk7OMWmkNlReajWdApBe009SgE6h1D8GnmaamjLklnzuIjEDyy2HnbvRxK4cwaNBGDDT5SGRWVbiiKssLTQdQ==}
+  '@uiw/codemirror-theme-tokyo-night-storm@4.23.13':
+    resolution: {integrity: sha512-bL7NQsYSo7AztsVu0WADft4QMqUhhkhP6GVfEPAzi0fEHn+v7HKTelv9C1ljq2y0OCK2IDxhpd3Biy9To1jX/g==}
 
-  '@uiw/codemirror-theme-tokyo-night@4.23.12':
-    resolution: {integrity: sha512-4J4+RhN2qXeqNouY79K/0g69xjgTxqefZdfHv7Y7xFh0n76oR387ojHxut+98rcEOX7GKGXn8tXRoyhWWZVcxg==}
+  '@uiw/codemirror-theme-tokyo-night@4.23.13':
+    resolution: {integrity: sha512-FhvtU9RTYVxUwhl8K/6jJKC5IRnBgm76WCEtACsdfgvHS4qTa6m9E66qTbUUkfHi2G19GiO/RQVlU6cXgndiIw==}
 
-  '@uiw/codemirror-theme-tomorrow-night-blue@4.23.12':
-    resolution: {integrity: sha512-84aXg/k5kERu3iri48sGT/8uap2OQKELjt2Hv+js3mZcBUm7rM39NuSvXueSXhCoR4HjA3aV5q3rvUph9peZeg==}
+  '@uiw/codemirror-theme-tomorrow-night-blue@4.23.13':
+    resolution: {integrity: sha512-opz1ikxFo3LNkYU6TSd9YY7aE7I4dB3tEltJS9VB7zJh4ddrEiaNBVaGdjwVIl1Sqm448e2Uul0Eo5J0si9gzg==}
 
-  '@uiw/codemirror-theme-vscode@4.23.12':
-    resolution: {integrity: sha512-ePBaUQiixrpmSoZJWCGXUStKmcM8G0VBv3UqwPR+kNGBjqDife76Gbhv77izSeEI3zRPzL+683BOdclkvWnsMg==}
+  '@uiw/codemirror-theme-vscode@4.23.13':
+    resolution: {integrity: sha512-Fn79r3NBMPP/hF9ui1e8VCyEjVbZ+rW2MIIGgq/LOkLXZSDXEZRa6NhRt991IuZ6e0R8bprrx3TGVQnkVfODbQ==}
 
-  '@uiw/codemirror-theme-white@4.23.12':
-    resolution: {integrity: sha512-f2pHnI1UWNQQ3d8A+zNveMQMqE7RVFoMcgCAp5owM6EDI+o0RjyqUPDLH9H1mvCPc84qEMG7ZZrxjaG0C7oG1g==}
+  '@uiw/codemirror-theme-white@4.23.13':
+    resolution: {integrity: sha512-objVXKwMYwWmLyUxTxzvmz3IkpLUNrScO2X/5dcNPrkClj7Kc/Tkhc61sreq4DGVYN7jFu9bCOwhDdG6+bht1A==}
 
-  '@uiw/codemirror-theme-xcode@4.23.12':
-    resolution: {integrity: sha512-9KnTjhXFqwGphQl18CGRzRc6yB8SZkyv4L7u+j1QOq/nFmk3i44HKuHiuKY+J+XfFq3Cmxg629o3CK4ecMsvUQ==}
+  '@uiw/codemirror-theme-xcode@4.23.13':
+    resolution: {integrity: sha512-Q57CoaPCC7xr55zOV+502V4GgyNqgz2r8UBeLnOVzfMX2xS5YzsZgah7kUdmliN+PQAveohdmhuhzynhpbAz+g==}
 
-  '@uiw/codemirror-themes-all@4.23.12':
-    resolution: {integrity: sha512-nXBqEfbPUK2BQgPfC/18IlWX/jDKRFLVnSANK+NJBhz6coht+VVXfcGPcahjh+HfTvvWb+Ld6ZQAXBBpHxR6Cw==}
+  '@uiw/codemirror-themes-all@4.23.13':
+    resolution: {integrity: sha512-VwQQC05fCPp3ev74ceT9gqcHIIBB0LKr8SoiIgmrtGcn+3b+vKxD0ywTL9zPGCJzLq+CTaAwNyDH77q1zZuYmQ==}
 
-  '@uiw/codemirror-themes@4.23.12':
-    resolution: {integrity: sha512-8etEByfS9yttFZW0rcWhdZc7/JXJKRWlU5lHmJCI3GydZNGCzydNA+HtK9nWKpJUndVc58Q2sqSC5OIcwq8y6A==}
+  '@uiw/codemirror-themes@4.23.13':
+    resolution: {integrity: sha512-thk4X8VNl15XPoDiOXdkeMAIIHQOoc5lPfmgOvrhPXHzt4zvH5efLWBw3zgpwuOWF+Uk6sYrS0eumtsSO/kgcA==}
     peerDependencies:
       '@codemirror/language': '>=6.0.0'
       '@codemirror/state': '>=6.0.0'
       '@codemirror/view': '>=6.0.0'
 
-  '@uiw/react-codemirror@4.23.12':
-    resolution: {integrity: sha512-yseqWdzoAAGAW7i/NiU8YrfSLVOEBjQvSx1KpDTFVV/nn0AlAZoDVTIPEBgdXrPlVUQoCrwgpEaj3uZCklk9QA==}
+  '@uiw/react-codemirror@4.23.13':
+    resolution: {integrity: sha512-y65ULzxOAfpxrA/8epoAOeCfmJXu9z0P62BbGOkITJTtU7WI59KfPbbwj35npSsMAkAmDE841qZo2I8jst/THg==}
     peerDependencies:
       '@babel/runtime': '>=7.11.0'
       '@codemirror/state': '>=6.0.0'
@@ -5810,8 +5824,8 @@ packages:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
 
-  glob@11.0.2:
-    resolution: {integrity: sha512-YT7U7Vye+t5fZ/QMkBFrTJ7ZQxInIUjwyAjVj84CYXqgBdv30MFUPGnBR6sQaVq6Is15wYJUsnzTuWaGRBhBAQ==}
+  glob@11.0.3:
+    resolution: {integrity: sha512-2Nim7dha1KVkaiF4q6Dj+ngPPMdfvLJEOpZk/jKiUAkqKebpGAWQXAq9z1xu9HKu5lWfqw/FASuccEjyznjPaA==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -6172,8 +6186,8 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jackspeak@4.1.0:
-    resolution: {integrity: sha512-9DDdhb5j6cpeitCbvLO7n7J4IxnbM6hoF6O1g4HQ5TfhvvKN8ywDM7668ZhMHRqVmxqhps/F6syWK2KcPxYlkw==}
+  jackspeak@4.1.1:
+    resolution: {integrity: sha512-zptv57P3GpL+O0I7VdMJNBZCu+BPHVQUk55Ft8/QCJjTVxrnJHuVuX/0Bl2A6/+2oyR/ZMEuFKwmzqqZ/U5nPQ==}
     engines: {node: 20 || >=22}
 
   jiti@1.21.7:
@@ -6596,8 +6610,8 @@ packages:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
     hasBin: true
 
-  minimatch@10.0.1:
-    resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
+  minimatch@10.0.3:
+    resolution: {integrity: sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==}
     engines: {node: 20 || >=22}
 
   minimatch@3.0.8:
@@ -6984,8 +6998,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.4:
-    resolution: {integrity: sha512-QSa9EBe+uwlGTFmHsPKokv3B/oEMQZxfqW0QqNCyhpa6mB1afzulwn8hihglqAb2pOw+BJgNlmXQ8la2VeHB7w==}
+  postcss@8.5.5:
+    resolution: {integrity: sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -8411,14 +8425,14 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.0
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
 
   '@codemirror/commands@6.8.1':
     dependencies:
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
 
   '@codemirror/lang-angular@0.1.3':
@@ -8467,7 +8481,7 @@ snapshots:
       '@codemirror/lang-javascript': 6.2.3
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/css': 1.1.11
       '@lezer/html': 1.3.10
@@ -8483,7 +8497,7 @@ snapshots:
       '@codemirror/language': 6.11.1
       '@codemirror/lint': 6.8.5
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/javascript': 1.5.1
 
@@ -8493,7 +8507,7 @@ snapshots:
       '@codemirror/language': 6.11.1
       '@codemirror/lint': 6.8.5
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/javascript': 1.5.1
 
@@ -8523,7 +8537,7 @@ snapshots:
       '@codemirror/lang-html': 6.4.9
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -8534,9 +8548,19 @@ snapshots:
       '@codemirror/lang-html': 6.4.9
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/markdown': 1.4.2
+
+  '@codemirror/lang-markdown@6.3.3':
+    dependencies:
+      '@codemirror/autocomplete': 6.18.6
+      '@codemirror/lang-html': 6.4.9
+      '@codemirror/language': 6.11.1
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.37.2
+      '@lezer/common': 1.2.3
+      '@lezer/markdown': 1.4.3
 
   '@codemirror/lang-php@6.0.1':
     dependencies:
@@ -8614,7 +8638,7 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/xml': 1.0.6
 
@@ -8640,7 +8664,7 @@ snapshots:
       '@codemirror/lang-json': 6.0.1
       '@codemirror/lang-less': 6.0.2
       '@codemirror/lang-liquid': 6.2.3
-      '@codemirror/lang-markdown': 6.3.2
+      '@codemirror/lang-markdown': 6.3.3
       '@codemirror/lang-php': 6.0.1
       '@codemirror/lang-python': 6.2.1
       '@codemirror/lang-rust': 6.0.1
@@ -8656,7 +8680,7 @@ snapshots:
   '@codemirror/language@6.11.0':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -8665,7 +8689,7 @@ snapshots:
   '@codemirror/language@6.11.1':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -8678,13 +8702,13 @@ snapshots:
   '@codemirror/lint@6.8.5':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       crelt: 1.0.6
 
   '@codemirror/search@6.5.10':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       crelt: 1.0.6
 
   '@codemirror/state@6.5.2':
@@ -8695,10 +8719,10 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/highlight': 1.2.1
 
-  '@codemirror/view@6.37.1':
+  '@codemirror/view@6.37.2':
     dependencies:
       '@codemirror/state': 6.5.2
       crelt: 1.0.6
@@ -8728,7 +8752,7 @@ snapshots:
       '@codemirror/lang-javascript': 6.2.3
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@codesandbox/sandpack-client': 2.19.8
       '@lezer/highlight': 1.2.1
       '@react-hook/intersection-observer': 3.1.2(react@18.3.1)
@@ -9365,6 +9389,12 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.17
 
+  '@isaacs/balanced-match@4.0.1': {}
+
+  '@isaacs/brace-expansion@5.0.0':
+    dependencies:
+      '@isaacs/balanced-match': 4.0.1
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -9456,6 +9486,11 @@ snapshots:
       '@lezer/common': 1.2.3
 
   '@lezer/markdown@1.4.2':
+    dependencies:
+      '@lezer/common': 1.2.3
+      '@lezer/highlight': 1.2.1
+
+  '@lezer/markdown@1.4.3':
     dependencies:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
@@ -10289,7 +10324,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@react-aria/interactions@3.25.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@react-aria/interactions@3.25.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-aria/ssr': 3.9.9(react@18.3.1)
       '@react-aria/utils': 3.29.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10813,22 +10848,22 @@ snapshots:
       '@react-types/shared': 3.29.0(react@18.3.1)
       react: 18.3.1
 
-  '@replit/codemirror-lang-csharp@6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)':
+  '@replit/codemirror-lang-csharp@6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
 
-  '@replit/codemirror-lang-nix@6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)':
+  '@replit/codemirror-lang-nix@6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -10838,7 +10873,7 @@ snapshots:
       '@codemirror/language': 6.11.1
       '@lezer/highlight': 1.2.1
 
-  '@replit/codemirror-lang-svelte@6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.3)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)':
+  '@replit/codemirror-lang-svelte@6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.3)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-css': 6.3.1
@@ -10846,7 +10881,7 @@ snapshots:
       '@codemirror/lang-javascript': 6.2.3
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/javascript': 1.5.1
@@ -11533,7 +11568,7 @@ snapshots:
       - react-native
       - scheduler
 
-  '@uiw/codemirror-extensions-basic-setup@4.23.12(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-extensions-basic-setup@4.23.13(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
@@ -11541,9 +11576,9 @@ snapshots:
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.10
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
 
-  '@uiw/codemirror-extensions-langs@4.23.12(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.11.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)':
+  '@uiw/codemirror-extensions-langs@4.23.13(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.11.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)':
     dependencies:
       '@codemirror/lang-angular': 0.1.3
       '@codemirror/lang-cpp': 6.0.2
@@ -11567,10 +11602,10 @@ snapshots:
       '@codemirror/language-data': 6.5.1
       '@codemirror/legacy-modes': 6.5.1
       '@nextjournal/lang-clojure': 1.0.0
-      '@replit/codemirror-lang-csharp': 6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)
-      '@replit/codemirror-lang-nix': 6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)
+      '@replit/codemirror-lang-csharp': 6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)
+      '@replit/codemirror-lang-nix': 6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/lr@1.4.2)
       '@replit/codemirror-lang-solidity': 6.0.2(@codemirror/language@6.11.1)
-      '@replit/codemirror-lang-svelte': 6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.3)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)
+      '@replit/codemirror-lang-svelte': 6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.3)(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)
       codemirror-lang-mermaid: 0.5.0
     transitivePeerDependencies:
       - '@codemirror/autocomplete'
@@ -11582,343 +11617,343 @@ snapshots:
       - '@lezer/javascript'
       - '@lezer/lr'
 
-  '@uiw/codemirror-theme-abcdef@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-abcdef@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-abyss@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-abyss@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-androidstudio@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-androidstudio@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-andromeda@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-andromeda@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-atomone@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-atomone@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-aura@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-aura@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-basic@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-basic@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-bbedit@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-bbedit@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-bespin@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-bespin@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-console@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-console@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-copilot@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-copilot@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-darcula@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-darcula@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-dracula@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-dracula@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-duotone@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-duotone@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-eclipse@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-eclipse@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-github@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-github@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-gruvbox-dark@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-gruvbox-dark@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-kimbie@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-kimbie@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-material@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-material@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-monokai-dimmed@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-monokai-dimmed@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-monokai@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-monokai@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-noctis-lilac@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-noctis-lilac@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-nord@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-nord@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-okaidia@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-okaidia@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-quietlight@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-quietlight@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-red@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-red@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-solarized@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-solarized@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-sublime@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-sublime@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night-day@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-tokyo-night-day@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night-storm@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-tokyo-night-storm@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-tokyo-night@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tomorrow-night-blue@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-tomorrow-night-blue@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-vscode@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-vscode@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-white@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-white@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-xcode@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-theme-xcode@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-themes-all@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-themes-all@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
-      '@uiw/codemirror-theme-abcdef': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-abyss': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-androidstudio': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-andromeda': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-atomone': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-aura': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-basic': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-bbedit': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-bespin': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-console': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-copilot': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-darcula': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-dracula': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-duotone': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-eclipse': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-github': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-gruvbox-dark': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-kimbie': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-material': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-monokai': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-monokai-dimmed': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-noctis-lilac': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-nord': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-okaidia': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-quietlight': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-red': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-solarized': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-sublime': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-tokyo-night': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-tokyo-night-day': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-tokyo-night-storm': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-tomorrow-night-blue': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-vscode': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-white': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-theme-xcode': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
-      '@uiw/codemirror-themes': 4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@uiw/codemirror-theme-abcdef': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-abyss': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-androidstudio': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-andromeda': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-atomone': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-aura': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-basic': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-bbedit': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-bespin': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-console': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-copilot': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-darcula': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-dracula': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-duotone': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-eclipse': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-github': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-gruvbox-dark': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-kimbie': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-material': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-monokai': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-monokai-dimmed': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-noctis-lilac': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-nord': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-okaidia': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-quietlight': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-red': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-solarized': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-sublime': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-tokyo-night': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-tokyo-night-day': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-tokyo-night-storm': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-tomorrow-night-blue': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-vscode': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-white': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-theme-xcode': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
+      '@uiw/codemirror-themes': 4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-themes@4.23.12(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)':
+  '@uiw/codemirror-themes@4.23.13(@codemirror/language@6.11.1)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)':
     dependencies:
       '@codemirror/language': 6.11.1
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
 
-  '@uiw/react-codemirror@4.23.12(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.1)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@uiw/react-codemirror@4.23.13(@babel/runtime@7.27.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.2)(codemirror@6.0.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.27.6
       '@codemirror/commands': 6.8.1
       '@codemirror/state': 6.5.2
       '@codemirror/theme-one-dark': 6.1.2
-      '@codemirror/view': 6.37.1
-      '@uiw/codemirror-extensions-basic-setup': 4.23.12(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/view@6.37.1)
+      '@codemirror/view': 6.37.2
+      '@uiw/codemirror-extensions-basic-setup': 4.23.13(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/view@6.37.2)
       codemirror: 6.0.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -12475,14 +12510,14 @@ snapshots:
       stubborn-fs: 1.2.5
       when-exit: 2.1.4
 
-  autoprefixer@10.4.21(postcss@8.5.4):
+  autoprefixer@10.4.21(postcss@8.5.5):
     dependencies:
       browserslist: 4.24.4
       caniuse-lite: 1.0.30001715
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.4
+      postcss: 8.5.5
       postcss-value-parser: 4.2.0
 
   autosize@6.0.1: {}
@@ -12718,7 +12753,7 @@ snapshots:
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.10
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.37.1
+      '@codemirror/view': 6.37.2
 
   color-convert@2.0.1:
     dependencies:
@@ -13878,11 +13913,11 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.0.2:
+  glob@11.0.3:
     dependencies:
       foreground-child: 3.3.1
-      jackspeak: 4.1.0
-      minimatch: 10.0.1
+      jackspeak: 4.1.1
+      minimatch: 10.0.3
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.0
@@ -14239,7 +14274,7 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jackspeak@4.1.0:
+  jackspeak@4.1.1:
     dependencies:
       '@isaacs/cliui': 8.0.2
 
@@ -14784,9 +14819,9 @@ snapshots:
 
   mini-svg-data-uri@1.4.4: {}
 
-  minimatch@10.0.1:
+  minimatch@10.0.3:
     dependencies:
-      brace-expansion: 2.0.1
+      '@isaacs/brace-expansion': 5.0.0
 
   minimatch@3.0.8:
     dependencies:
@@ -15152,29 +15187,29 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-import@15.1.0(postcss@8.5.4):
+  postcss-import@15.1.0(postcss@8.5.5):
     dependencies:
-      postcss: 8.5.4
+      postcss: 8.5.5
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.5.4):
+  postcss-js@4.0.1(postcss@8.5.5):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.5.4
+      postcss: 8.5.5
 
-  postcss-load-config@4.0.2(postcss@8.5.4)(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3)):
+  postcss-load-config@4.0.2(postcss@8.5.5)(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3)):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.7.1
     optionalDependencies:
-      postcss: 8.5.4
+      postcss: 8.5.5
       ts-node: 10.9.2(@types/node@22.15.31)(typescript@5.8.3)
 
-  postcss-nested@6.2.0(postcss@8.5.4):
+  postcss-nested@6.2.0(postcss@8.5.5):
     dependencies:
-      postcss: 8.5.4
+      postcss: 8.5.5
       postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.1.2:
@@ -15184,7 +15219,7 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.4:
+  postcss@8.5.5:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -15979,11 +16014,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.4
-      postcss-import: 15.1.0(postcss@8.5.4)
-      postcss-js: 4.0.1(postcss@8.5.4)
-      postcss-load-config: 4.0.2(postcss@8.5.4)(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3))
-      postcss-nested: 6.2.0(postcss@8.5.4)
+      postcss: 8.5.5
+      postcss-import: 15.1.0(postcss@8.5.5)
+      postcss-js: 4.0.1(postcss@8.5.5)
+      postcss-load-config: 4.0.2(postcss@8.5.5)(ts-node@10.9.2(@types/node@22.15.31)(typescript@5.8.3))
+      postcss-nested: 6.2.0(postcss@8.5.5)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.10
       sucrase: 3.35.0
@@ -16388,7 +16423,7 @@ snapshots:
   vite@5.4.19(@types/node@22.15.31):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.5.4
+      postcss: 8.5.5
       rollup: 4.40.0
     optionalDependencies:
       '@types/node': 22.15.31
