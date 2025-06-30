@@ -14,8 +14,8 @@ const getTextColor = (appearance: Appearance, color: string, backgroundColor: st
     return defaultTextColor;
 };
 
-const getAccentColor = (type: Type): string => {
-    const style = getComputedStyle(document.body);
+const getAccentColor = (type: Type, hostElement: HTMLDivElement | null): string => {
+    const style = getComputedStyle(hostElement ?? document.body);
     switch (type) {
         case Type.Info:
             return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
@@ -28,8 +28,8 @@ const getAccentColor = (type: Type): string => {
     }
 };
 
-export const computeStyles = (type: Type, appearance: Appearance) => {
-    const accentColor = getAccentColor(type);
+export const computeStyles = (type: Type, appearance: Appearance, hostElement: HTMLDivElement | null) => {
+    const accentColor = getAccentColor(type, hostElement);
     const backgroundColor = appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
     const textColor = getTextColor(appearance, accentColor, backgroundColor);
     return { backgroundColor, textColor };
