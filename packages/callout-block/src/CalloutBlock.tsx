@@ -19,6 +19,7 @@ import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, pa
 
 import { ICON_ASSET_ID } from './settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { isThemeEnabled } from './helpers/theme';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -26,6 +27,8 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
+    const hostElement = useRef<HTMLDivElement>(null);
+    const isTheme = isThemeEnabled();
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
@@ -33,12 +36,19 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const designSettingsStyleTagRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
-        designSettingsStyleTagRef.current =
-            document.getElementById('theme-design-settings') ?? document.getElementById('design-settings');
+        if (hostElement.current) {
+            designSettingsStyleTagRef.current = isTheme
+                ? (hostElement.current?.closest('[data-section]')?.firstChild as HTMLElement)
+                : document.getElementById('design-settings');
+        }
     }, []);
 
     const updateStyles = useCallback(() => {
-        const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(type, appearance);
+        const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(
+            type,
+            appearance,
+            hostElement.current
+        );
 
         setBackgroundColor((prev) => (prev !== newBgColor ? newBgColor : prev));
         setTextColor((prev) => (prev !== newTextColor ? newTextColor : prev));
@@ -59,7 +69,10 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
         const styleChangeObserver = new MutationObserver(() => updateStyles());
 
-        styleChangeObserver.observe(designSettingsStyleTagRef.current, { childList: true });
+        styleChangeObserver.observe(designSettingsStyleTagRef.current, {
+            childList: !isTheme,
+            attributes: true,
+        });
 
         return () => {
             styleChangeObserver.disconnect();
@@ -124,7 +137,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
 
     return (
-        <div className="callout-block">
+        <div ref={hostElement} className="callout-block">
             <StyleProvider>
                 <div
                     data-test-id="callout-block"
