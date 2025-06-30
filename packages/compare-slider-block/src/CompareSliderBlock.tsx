@@ -195,16 +195,16 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const onOpenAssetChooser = (slot: SliderImageSlot) => {
         openAssetChooser(
             async (result) => {
-                const initialAlt = result[0].title ?? result[0].fileName ?? '';
+                const { alternativeText, title, fileName, id } = result[0];
 
-                if (slot === SliderImageSlot.First) {
-                    setIsFirstAssetLoading(true);
-                    setBlockSettings({ firstAssetAlt: initialAlt });
-                } else {
-                    setIsSecondAssetLoading(true);
-                    setBlockSettings({ secondAssetAlt: initialAlt });
-                }
-                updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [result[0].id]);
+                const initialAlt = alternativeText ?? title ?? fileName ?? '';
+                const isFirstSlot = slot === SliderImageSlot.First;
+                const setAssetLoading = isFirstSlot ? setIsFirstAssetLoading : setIsSecondAssetLoading;
+                const prefix = isFirstSlot ? 'first' : 'second';
+
+                setAssetLoading(true);
+                setBlockSettings({ [`${prefix}AssetAlt`]: initialAlt });
+                updateAssetIdsFromKey(`${prefix}Asset`, [id]);
                 closeAssetChooser();
             },
             {
@@ -371,7 +371,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         <>
                             <div
                                 data-test-id="compare-slider-block-slider"
-                                className="tw-w-full tw-overflow-hidden tw-relative  [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
+                                className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
                                 style={{
                                     ...getBorderStyle(),
                                     borderRadius: getBorderRadius(),
