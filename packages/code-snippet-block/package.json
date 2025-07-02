@@ -36,7 +36,7 @@
         "@codemirror/state": "^6.5.0",
         "@codemirror/view": "^6.36.1",
         "@frontify/app-bridge": "^4.0.0-alpha.41",
-        "@frontify/fondue": "12.9.3",
+        "@frontify/fondue": "12.10.1",
         "@frontify/guideline-blocks-settings": "0.37.5",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@uiw/codemirror-extensions-langs": "^4.23.7",
