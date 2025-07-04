@@ -183,6 +183,39 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [body, shouldRerenderDependency, editing, appBridge, id]
     );
 
+    const renderTitle = useCallback(() => {
+        const styles = {
+            ...BlockStyles.heading3,
+            marginBottom: 0,
+            marginTop: 0,
+            color: headingColor,
+            WebkitTextFillColor: headingColor,
+            '--placeholder-color': headingColor,
+        };
+
+        if (editing) {
+            return (
+                <textarea
+                    rows={1}
+                    ref={titleRef}
+                    onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
+                    onBlur={() => onChangeItem(id, { title })}
+                    style={styles}
+                    value={title}
+                    aria-label="Title"
+                    placeholder="Add a title"
+                    className="tw-text-s tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                />
+            );
+        }
+
+        return (
+            <h3 style={styles} className="tw-text-s tw-w-full tw-text-text-weak tw-break-words tw-whitespace-pre-wrap">
+                {title}
+            </h3>
+        );
+    }, [editing, onChangeItem, onChangeLocalItem, title, titleRef, headingColor]);
+
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-base'])}>
             <BlockItemWrapper
@@ -312,27 +345,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 display: 'inline-flex',
                             }}
                         >
-                            <textarea
-                                rows={1}
-                                ref={titleRef}
-                                onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                                onBlur={() => onChangeItem(id, { title })}
-                                style={
-                                    {
-                                        ...BlockStyles.heading3,
-                                        marginBottom: 0,
-                                        marginTop: 0,
-                                        color: headingColor,
-                                        WebkitTextFillColor: headingColor,
-                                        '--placeholder-color': headingColor,
-                                    } as CSSProperties
-                                }
-                                value={title}
-                                disabled={!editing}
-                                aria-label="Title"
-                                placeholder={editing ? 'Add a title' : ''}
-                                className="tw-text-s tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
-                            />
+                            {renderTitle()}
                         </span>
                     </div>
                 </div>
