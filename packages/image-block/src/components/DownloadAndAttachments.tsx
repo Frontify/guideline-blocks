@@ -25,6 +25,7 @@ export const DownloadAndAttachments = ({
 }: DownloadAndAttachmentsProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachmentsContext();
+
     const isDownloadable = isImageDownloadable(isAssetDownloadable, image);
 
     const onDownloadHandler = useCallback(() => {
@@ -33,18 +34,22 @@ export const DownloadAndAttachments = ({
         }
 
         announce('File downloaded successfully');
-
         appBridge.dispatch({ name: 'downloadAsset', payload: image });
     }, [appBridge, image]);
 
-    return !isEditing ? (
+    if (isEditing) {
+        return null;
+    }
+
+    const imageAriaLabel = image?.alternativeText ? `Download ${image.alternativeText}` : 'Download image';
+    const paddingStyle = getTotalImagePadding(blockSettings);
+
+    return (
         <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-            <div
-                className="tw-flex tw-gap-2"
-                data-test-id="buttons-wrapper"
-                style={getTotalImagePadding(blockSettings)}
-            >
-                {image && isDownloadable && <DownloadButton onDownload={onDownloadHandler} />}
+            <div className="tw-flex tw-gap-2" data-test-id="buttons-wrapper" style={paddingStyle}>
+                {image && isDownloadable && (
+                    <DownloadButton onDownload={onDownloadHandler} ariaLabel={imageAriaLabel} />
+                )}
 
                 <Attachments
                     onUpload={onAttachmentsAdd}
@@ -58,5 +63,5 @@ export const DownloadAndAttachments = ({
                 />
             </div>
         </div>
-    ) : null;
+    );
 };

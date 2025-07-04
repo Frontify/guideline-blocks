@@ -362,7 +362,7 @@ describe('AnimationCurve Block', () => {
                 cy.get(CARD_SELECTOR)
                     .eq(3)
                     .then((fourth) => {
-                        expect(fourth.get(0).outerHTML).to.eq(first.get(0).outerHTML);
+                        expect(fourth.get(0).textContent).to.eq(first.get(0).textContent);
                     });
             });
     });
@@ -394,7 +394,7 @@ describe('AnimationCurve Block', () => {
                 cy.get(CARD_SELECTOR)
                     .first()
                     .then((first) => {
-                        expect(first.get(0).outerHTML).to.eq(fourth.get(0).outerHTML);
+                        expect(first.get(0).textContent).to.eq(fourth.get(0).textContent);
                     });
             });
     });

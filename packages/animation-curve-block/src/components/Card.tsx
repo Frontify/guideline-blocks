@@ -177,7 +177,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         </div>
                         {textShown && (
                             <CardText
-                                id={animationCurve.id}
                                 appBridge={appBridge}
                                 title={title ?? ''}
                                 description={description ?? ''}

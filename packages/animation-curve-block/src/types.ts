@@ -158,7 +158,6 @@ export type CardProps = SortableCardProps & {
 };
 
 export type CardTextProps = {
-    id: string;
     appBridge: AppBridgeBlock;
     title: string;
     description: string;
