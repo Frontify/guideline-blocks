@@ -90,7 +90,7 @@ importers:
   examples/asset-upload:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -166,7 +166,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -233,7 +233,7 @@ importers:
   packages/asset-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -303,7 +303,7 @@ importers:
   packages/audio-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -373,7 +373,7 @@ importers:
   packages/callout-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -449,7 +449,7 @@ importers:
         specifier: ^6.36.1
         version: 6.38.0
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -528,7 +528,7 @@ importers:
   packages/compare-slider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -595,7 +595,7 @@ importers:
   packages/divider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -668,7 +668,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -744,7 +744,7 @@ importers:
   packages/example:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -811,7 +811,7 @@ importers:
   packages/figma-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -878,7 +878,7 @@ importers:
   packages/glyphs-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -951,7 +951,7 @@ importers:
   packages/gradient-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1024,7 +1024,7 @@ importers:
   packages/image-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1097,7 +1097,7 @@ importers:
   packages/quote-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1167,7 +1167,7 @@ importers:
         specifier: ^6.3.1
         version: 6.3.1
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1255,7 +1255,7 @@ importers:
   packages/sketchfab-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1322,7 +1322,7 @@ importers:
   packages/storybook-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1392,7 +1392,7 @@ importers:
   packages/template-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1462,7 +1462,7 @@ importers:
   packages/text-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1547,7 +1547,7 @@ importers:
         specifier: ^3.2.1
         version: 3.2.2(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
@@ -1629,7 +1629,7 @@ importers:
         specifier: ^2.0.21
         version: 2.0.21
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.41
+        specifier: ^4.0.0-alpha.42
         version: 4.0.0-alpha.42(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@18.0.1)
       '@frontify/fondue':
         specifier: 12.10.1
