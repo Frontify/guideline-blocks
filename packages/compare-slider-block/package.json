@@ -28,9 +28,9 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^4.0.0-alpha.41",
+        "@frontify/app-bridge": "^4.0.0-alpha.42",
         "@frontify/fondue": "12.10.1",
-        "@frontify/guideline-blocks-settings": "0.37.5",
+        "@frontify/guideline-blocks-settings": "0.38.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-compare-slider": "^3.1.0",
