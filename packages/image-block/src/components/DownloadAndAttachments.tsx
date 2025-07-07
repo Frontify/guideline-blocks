@@ -12,6 +12,7 @@ type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
     isEditing: boolean;
     image?: Asset;
+    altText?: string;
     blockSettings: Settings;
     isAssetDownloadable: boolean;
 };
@@ -20,6 +21,7 @@ export const DownloadAndAttachments = ({
     appBridge,
     isEditing,
     image,
+    altText,
     blockSettings,
     isAssetDownloadable,
 }: DownloadAndAttachmentsProps) => {
@@ -41,7 +43,7 @@ export const DownloadAndAttachments = ({
         return null;
     }
 
-    const imageAriaLabel = image?.alternativeText ? `Download ${image.alternativeText}` : 'Download image';
+    const imageAriaLabel = altText ? `Download ${altText}` : 'Download image';
     const paddingStyle = getTotalImagePadding(blockSettings);
 
     return (

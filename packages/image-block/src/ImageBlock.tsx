@@ -162,6 +162,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 image={image}
+                                altText={altText}
                                 isAssetDownloadable={isAssetDownloadable}
                                 isEditing={isEditing}
                             />
