@@ -44,7 +44,7 @@ import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
-    const { assetDownloadEnabled, assetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -152,7 +152,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
-    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : blockAssetViewerEnabled;
+    const isAssetViewerEnabled = security === Security.Custom ? blockAssetViewerEnabled : globalAssetViewerEnabled;
     const ariaLabel = getDownloadAriaLabel(isAssetViewerEnabled, hasLink, altText, image?.title);
 
     return (
