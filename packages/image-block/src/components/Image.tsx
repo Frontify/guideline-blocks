@@ -15,7 +15,7 @@ type ImageProps = {
     blockSettings: Settings;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
-    globalAssetViewerEnabled: boolean;
+    isAssetViewerEnabled: boolean;
     isDownloadable: boolean;
 };
 
@@ -111,16 +111,13 @@ export const Image = ({
     appBridge,
     blockSettings,
     isEditing,
-    globalAssetViewerEnabled,
+    isAssetViewerEnabled,
     isDownloadable,
 }: ImageProps) => {
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
     const imageStyle = getImageStyle(blockSettings);
-    const { assetViewerEnabled, security } = blockSettings;
-
-    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
 
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 

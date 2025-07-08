@@ -12,7 +12,7 @@ type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
     isEditing: boolean;
     image?: Asset;
-    altText?: string;
+    ariaLabel: string;
     blockSettings: Settings;
     isAssetDownloadable: boolean;
 };
@@ -21,7 +21,7 @@ export const DownloadAndAttachments = ({
     appBridge,
     isEditing,
     image,
-    altText,
+    ariaLabel,
     blockSettings,
     isAssetDownloadable,
 }: DownloadAndAttachmentsProps) => {
@@ -43,15 +43,12 @@ export const DownloadAndAttachments = ({
         return null;
     }
 
-    const imageAriaLabel = altText ? `Download ${altText}` : 'Download image';
     const paddingStyle = getTotalImagePadding(blockSettings);
 
     return (
         <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
             <div className="tw-flex tw-gap-2" data-test-id="buttons-wrapper" style={paddingStyle}>
-                {image && isDownloadable && (
-                    <DownloadButton onDownload={onDownloadHandler} ariaLabel={imageAriaLabel} />
-                )}
+                {image && isDownloadable && <DownloadButton onDownload={onDownloadHandler} ariaLabel={ariaLabel} />}
 
                 <Attachments
                     onUpload={onAttachmentsAdd}
