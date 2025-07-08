@@ -2,7 +2,7 @@
 
 import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-bridge';
 import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
-import { Security, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactNode } from 'react';
 

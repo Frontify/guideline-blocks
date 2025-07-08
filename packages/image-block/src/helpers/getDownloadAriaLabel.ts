@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const getDownloadAriaLabel = (
     hasAssetViewer: boolean,
     hasLink?: boolean,
