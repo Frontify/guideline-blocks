@@ -14,6 +14,7 @@ import {
 import {
     BlockItemWrapper,
     BlockProps,
+    Security,
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
@@ -40,15 +41,25 @@ import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
+import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
 
 export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
-    const { assetDownloadEnabled, assetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = String(appBridge.context('blockId').get());
-    const { altText, name, positioning, ratio, description } = blockSettings;
+    const {
+        altText,
+        name,
+        positioning,
+        ratio,
+        description,
+        hasLink,
+        assetViewerEnabled: blockAssetViewerEnabled,
+        security,
+    } = blockSettings;
     const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -141,6 +152,9 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
+    const isAssetViewerEnabled = security === Security.Custom ? blockAssetViewerEnabled : globalAssetViewerEnabled;
+    const ariaLabel = getDownloadAriaLabel(isAssetViewerEnabled, hasLink, altText, image?.title);
+
     return (
         <div className="image-block">
             <StyleProvider>
@@ -162,7 +176,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 appBridge={appBridge}
                                 blockSettings={blockSettings}
                                 image={image}
-                                altText={altText}
+                                ariaLabel={ariaLabel}
                                 isAssetDownloadable={isAssetDownloadable}
                                 isEditing={isEditing}
                             />
@@ -223,7 +237,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                             isEditing={isEditing}
                                             image={image}
                                             isDownloadable={isAssetDownloadable}
-                                            globalAssetViewerEnabled={assetViewerEnabled}
+                                            isAssetViewerEnabled={isAssetViewerEnabled}
                                         />
                                     )}
                                 </BlockItemWrapper>
