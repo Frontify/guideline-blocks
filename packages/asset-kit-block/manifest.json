@@ -4,5 +4,5 @@
         { "type": "fondueRte", "settingId": "title" },
         { "type": "fondueRte", "settingId": "description" }
     ],
-    "i18nFields": ["title", "description"]
+    "i18nFields": ["title", "description", "buttonText"]
 }
