@@ -22,7 +22,7 @@ import {
 export const ALT_TEXT_FLYOUT_ID = 'alt-text';
 
 export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => (
-    <div className="tw-flex tw-gap-x-3 tw-rounded-b tw-justify-end tw-p-4 tw-bg-base tw-border-t tw-border-line">
+    <div className="tw-flex tw-gap-x-3 tw-rounded-b tw-justify-end tw-w-full tw-bg-base">
         <Button
             style={ButtonStyle.Default}
             emphasis={ButtonEmphasis.Default}
