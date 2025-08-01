@@ -28,7 +28,6 @@ import {
     IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,
-    MenuItemStyle,
     generateRandomId,
     merge,
 } from '@frontify/fondue';
@@ -218,7 +217,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                                     {
                                                         title: 'Delete',
                                                         icon: <IconTrashBin20 />,
-                                                        style: MenuItemStyle.Danger,
+                                                        style: 'danger',
                                                         onClick: onRemoveAsset,
                                                     },
                                                 ],
