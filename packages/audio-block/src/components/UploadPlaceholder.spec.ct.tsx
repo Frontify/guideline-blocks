@@ -4,7 +4,7 @@ import { mount } from 'cypress/react';
 import { UploadPlaceholder } from './UploadPlaceholder';
 
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
-const LoadingCircle = '[data-test-id="loading-circle"]';
+const LoadingCircle = '[data-test-id="fondue-loading-circle-content"]';
 
 describe('Upload Placeholder', () => {
     it('renders an upload placeholder', () => {
