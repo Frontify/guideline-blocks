@@ -2,8 +2,8 @@
 
 import { useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
-import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, MenuItemStyle, merge } from '@frontify/fondue';
-import { BlockItemWrapper, ToolbarFlyoutMenuItem } from '@frontify/guideline-blocks-settings';
+import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, merge } from '@frontify/fondue';
+import { BlockItemWrapper, MenuToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 import { PreviewImageProps } from './types';
@@ -38,7 +38,7 @@ export const PreviewImage = ({
     const [isHovered, setIsHovered] = useState(false);
 
     const getItemWrapperMenu = () => {
-        const menuItems: ToolbarFlyoutMenuItem[] = [
+        const menuItems: MenuToolbarItem['items'][0] = [
             {
                 title: 'Set alt text',
                 onClick: () => setShowAltTextMenu(true),
@@ -55,7 +55,7 @@ export const PreviewImage = ({
             menuItems.push({
                 title: 'Delete custom preview',
                 onClick: () => handleDeleteCustomPreview(previewCustom.id),
-                style: MenuItemStyle.Danger,
+                style: 'danger',
                 icon: <IconTrashBin />,
             });
         }

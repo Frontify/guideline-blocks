@@ -18,7 +18,7 @@ const DownloadButtonSelector = '[data-test-id="download-button"]';
 const AttachmentsTriggerSelector = '[data-test-id="attachments-flyout-button"]';
 const ViewModeAddonsSelector = '[data-test-id="view-mode-addons"]';
 const BlockWrapperSelector = '[data-test-id="block-item-wrapper"]';
-const UploadMenu = '[data-test-id="menu-item-title"]';
+const UploadMenu = '[data-test-id="fondue-dropdown-subtrigger"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
 const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
