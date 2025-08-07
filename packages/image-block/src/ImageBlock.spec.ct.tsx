@@ -186,8 +186,13 @@ describe('Image Block', () => {
 
     it('should render the asset viewer when the assetViewerEnabled setting is not present', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
+            editorState: false,
             blockSettings: {
                 security: Security.Custom,
+                assetViewerEnabled: undefined,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
