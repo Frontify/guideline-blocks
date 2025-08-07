@@ -184,11 +184,10 @@ describe('Image Block', () => {
         cy.get(DownloadSelector).should('not.exist');
     });
 
-    it('should render the asset viewer when the assetViewerEnabled setting is undefined', () => {
+    it('should render the asset viewer when the assetViewerEnabled setting is not present', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 security: Security.Custom,
-                assetViewerEnabled: undefined,
             },
         });
         mount(<ImageBlockWithStubs />);
