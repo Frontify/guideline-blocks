@@ -137,7 +137,9 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
 };
 
 export const getImageObjectFitValue = ({ autosizing }: Settings) => {
-    if (autosizing === Autosizing.Fit) return 'cover';
+    if (autosizing === Autosizing.Fit) {
+        return 'cover';
+    }
 
     return autosizing;
 };
