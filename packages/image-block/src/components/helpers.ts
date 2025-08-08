@@ -117,5 +117,19 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
 export const getImageStyle = (blockSettings: Settings): CSSProperties => {
     return {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
+        aspectRatio: getImageRatioValue(blockSettings),
     };
+};
+
+export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspectRatio'] => {
+    let aspectRatioValue: CSSProperties['aspectRatio'] = 'auto';
+
+    const { hasCustomRatio, ratioCustom, ratioChoice } = blockSettings;
+    const ratio = hasCustomRatio ? ratioCustom : ratioChoice;
+
+    if (ratio && ratio !== 'none') {
+        aspectRatioValue = ratio.replace(':', '/');
+    }
+
+    return aspectRatioValue;
 };

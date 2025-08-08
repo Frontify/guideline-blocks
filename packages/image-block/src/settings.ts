@@ -15,12 +15,23 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { Alignment, CaptionPosition, Padding, Ratio, paddingValues, radiusValues } from './types';
+import {
+    Alignment,
+    CaptionPosition,
+    Padding,
+    Ratio,
+    imageAspectRatioValues,
+    paddingValues,
+    radiusValues,
+} from './types';
+import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
+const RATIO_CHOICE_ID = 'ratioChoice';
+const RATIO_CUSTOM_ID = 'ratioCustom';
 export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 export const ALLOWED_EXTENSIONS = [
@@ -86,6 +97,37 @@ export const settings = defineSettings({
     ],
     layout: [
         {
+            id: 'hasCustomRatio',
+            type: 'switch',
+            defaultValue: false,
+            switchLabel: 'Custom',
+            label: 'Ratio',
+            info: 'The aspect ratio of the image.',
+            onChange: (bundle) => presetCustomValue(bundle, RATIO_CHOICE_ID, RATIO_CUSTOM_ID, imageAspectRatioValues),
+            on: [
+                {
+                    id: RATIO_CUSTOM_ID,
+                    type: 'input',
+                    rules: [aspectRatioFormatRule, aspectRatioNumberRule],
+                    onChange: (bundle) => appendUnit(bundle, RATIO_CUSTOM_ID),
+                },
+            ],
+            off: [
+                {
+                    id: RATIO_CHOICE_ID,
+                    type: 'segmentedControls',
+                    defaultValue: Ratio.RatioNone,
+                    choices: [
+                        { value: Ratio.RatioNone, label: 'None' },
+                        { value: Ratio.Ratio1To1, label: '1:1' },
+                        { value: Ratio.Ratio3To2, label: '3:2' },
+                        { value: Ratio.Ratio4To3, label: '4:3' },
+                        { value: Ratio.Ratio16To9, label: '16:9' },
+                    ],
+                },
+            ],
+        },
+        {
             id: POSITIONING_ID,
             label: 'Positioning',
             info: "Some settings won't apply if the container is too narrow.",
@@ -96,20 +138,6 @@ export const settings = defineSettings({
                 { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
                 { value: CaptionPosition.Right, icon: IconEnum.MediaObjectTextRight },
                 { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
-            ],
-        },
-        {
-            id: 'ratio',
-            label: 'Ratio',
-            type: 'segmentedControls',
-            defaultValue: Ratio.Ratio2To1,
-            show: (bundle) =>
-                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
-                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
-            choices: [
-                { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
-                { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
-                { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
             ],
         },
         {

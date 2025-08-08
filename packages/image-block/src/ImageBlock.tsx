@@ -28,6 +28,7 @@ import {
     IconTrashBin16,
     IconTrashBin20,
     LoadingCircle,
+    MenuItemStyle,
     generateRandomId,
     merge,
 } from '@frontify/fondue';
@@ -37,7 +38,7 @@ import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
+import { CaptionPosition, type Settings, mapCaptionPositionClasses } from './types';
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
@@ -53,7 +54,6 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
         altText,
         name,
         positioning,
-        ratio,
         description,
         hasLink,
         assetViewerEnabled: blockAssetViewerEnabled,
@@ -167,9 +167,9 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             className={merge([
                                 'tw-relative',
                                 attachmentCount > 0 && 'tw-min-h-11',
-                                positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
-                                    ? 'tw-w-full'
-                                    : imageRatioValues[ratio],
+                                [CaptionPosition.Above, CaptionPosition.Below].includes(positioning)
+                                    ? 'tw-flex-1'
+                                    : 'tw-flex-[3]',
                             ])}
                         >
                             <DownloadAndAttachments
@@ -218,7 +218,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                                     {
                                                         title: 'Delete',
                                                         icon: <IconTrashBin20 />,
-                                                        style: 'danger',
+                                                        style: MenuItemStyle.Danger,
                                                         onClick: onRemoveAsset,
                                                     },
                                                 ],
@@ -265,9 +265,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             isEditing={isEditing}
                             description={description}
                             name={name}
-                            positioning={positioning}
                             appBridge={appBridge}
-                            ratio={ratio}
                             setBlockSettings={setBlockSettings}
                         />
                     </div>
