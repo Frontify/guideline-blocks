@@ -6,7 +6,7 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactNode } from 'react';
 
-import { Alignment, type Link, type Settings, mapAlignmentClasses } from '../types';
+import { type Link, type Settings } from '../types';
 
 import { getImageStyle, getImageWrapperStyle } from './helpers';
 
@@ -27,7 +27,6 @@ type ImageWrapperProps = {
     style: CSSProperties;
     isEditing: boolean;
     isAssetViewerEnabled: boolean;
-    alignment: Alignment;
     isDownloadable: boolean;
     setContainerRef: (element: HTMLElement | null) => void;
 };
@@ -47,18 +46,13 @@ const ImageWrapper = ({
     style,
     isEditing,
     isAssetViewerEnabled,
-    alignment,
     setContainerRef,
     isDownloadable,
 }: ImageWrapperProps) => {
     const { open } = useAssetViewer(appBridge);
 
     const sharedProps = {
-        className: joinClassNames([
-            'tw-flex tw-overflow-hidden tw-w-full',
-            FOCUS_VISIBLE_STYLE,
-            mapAlignmentClasses[alignment],
-        ]),
+        className: joinClassNames(['tw-flex tw-overflow-hidden tw-w-full', FOCUS_VISIBLE_STYLE]),
         style,
         ref: setContainerRef,
     };
@@ -131,7 +125,6 @@ export const Image = ({
                 setContainerRef={setContainerRef}
                 isEditing={isEditing}
                 image={image}
-                alignment={blockSettings.alignment}
                 isDownloadable={isDownloadable}
             >
                 <ImageComponent

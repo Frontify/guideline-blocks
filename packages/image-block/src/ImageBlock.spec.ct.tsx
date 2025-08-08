@@ -4,7 +4,7 @@ import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from 
 import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { Alignment, CaptionPosition, CornerRadius, mapAlignmentClasses, mapCaptionPositionClasses } from './types';
+import { CaptionPosition, CornerRadius, mapCaptionPositionClasses } from './types';
 import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
@@ -349,7 +349,7 @@ describe('Image Block', () => {
         cy.get(ImageBlockSelector).should('have.class', mapCaptionPositionClasses[CaptionPosition.Right]);
     });
 
-    it.only('should apply image aspect ratio', () => {
+    it('should apply image aspect ratio', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasCustomRatio: false,
@@ -361,6 +361,33 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockImageComponentSelector).should('have.css', 'aspectRatio', '1 / 1');
+    });
+
+    it('should apply object fit css style on image', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockSettings: {
+                autosizing: 'fill',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageComponentSelector).should('have.css', 'objectFit', 'fill');
+    });
+
+    it('should apply object position css style on image', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockSettings: {
+                verticalAlignment: 'center',
+                horizontalAlignment: 'center',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockImageComponentSelector).should('have.css', 'objectPosition', '50% 50%');
     });
 
     it('should add background color if provided', () => {
@@ -389,19 +416,6 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'padding', '16px');
-    });
-
-    it('should add alignment of the image if provided', () => {
-        const ImageBlockWithStubs = getImageBlockWithContainer({
-            blockSettings: {
-                alignment: Alignment.Right,
-            },
-            blockAssets: {
-                [IMAGE_ID]: [AssetDummy.with(1)],
-            },
-        });
-        mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockDefaultWrapperSelector).should('have.class', mapAlignmentClasses[Alignment.Right]);
     });
 
     it('should add padding to buttons when padding is added to image', () => {

@@ -16,10 +16,12 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 import {
-    Alignment,
+    Autosizing,
     CaptionPosition,
+    HorizontalAlignment,
     Padding,
     Ratio,
+    VerticalAlignment,
     imageAspectRatioValues,
     paddingValues,
     radiusValues,
@@ -127,6 +129,45 @@ export const settings = defineSettings({
                 },
             ],
         },
+
+        {
+            id: 'autosizing',
+            type: 'segmentedControls',
+            label: 'Auto sizing',
+            info: 'Choose how the asset scales and aligns. None fits it up to its original size, Fit scales it to fit the block size, and Fill crops it to cover all available space.',
+            defaultValue: Autosizing.None,
+            choices: [
+                { value: Autosizing.None, label: 'None' },
+                { value: Autosizing.Fit, label: 'Fit' },
+                { value: Autosizing.Fill, label: 'Fill' },
+            ],
+        },
+        {
+            id: 'alignment',
+            type: 'multiInput',
+            blocks: [
+                {
+                    id: 'verticalAlignment',
+                    type: 'dropdown',
+                    defaultValue: 'center',
+                    choices: [
+                        { value: VerticalAlignment.Left, label: 'Left', icon: 'ArrowAlignLeft' },
+                        { value: VerticalAlignment.Center, label: 'Center', icon: 'ArrowAlignVerticalCentre' },
+                        { value: VerticalAlignment.Right, label: 'Right', icon: 'ArrowAlignRight' },
+                    ],
+                },
+                {
+                    id: 'horizontalAlignment',
+                    type: 'dropdown',
+                    defaultValue: 'center',
+                    choices: [
+                        { value: HorizontalAlignment.Top, label: 'Top', icon: 'ArrowAlignUp' },
+                        { value: HorizontalAlignment.Center, label: 'Center', icon: 'ArrowAlignHorizontalCentre' },
+                        { value: HorizontalAlignment.Bottom, label: 'Bottom', icon: 'ArrowAlignDown' },
+                    ],
+                },
+            ],
+        },
         {
             id: POSITIONING_ID,
             label: 'Positioning',
@@ -138,27 +179,6 @@ export const settings = defineSettings({
                 { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
                 { value: CaptionPosition.Right, icon: IconEnum.MediaObjectTextRight },
                 { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
-            ],
-        },
-        {
-            id: 'alignment',
-            type: 'segmentedControls',
-            label: 'Alignment',
-            info: 'For images that are smaller than the width of the Content Block.',
-            defaultValue: Alignment.Center,
-            choices: [
-                {
-                    value: Alignment.Left,
-                    icon: IconEnum.ArrowAlignLeft,
-                },
-                {
-                    value: Alignment.Center,
-                    icon: IconEnum.ArrowAlignVerticalCentre,
-                },
-                {
-                    value: Alignment.Right,
-                    icon: IconEnum.ArrowAlignRight,
-                },
             ],
         },
         {
