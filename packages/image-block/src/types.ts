@@ -28,7 +28,6 @@ export type Settings = {
     radiusChoice_cornerRadius: CornerRadius;
     radiusValue_cornerRadius: string;
     positioning: CaptionPosition;
-    // ratio: Ratio;
     security: Security;
     hasCustomRatio: boolean;
     ratioChoice: Ratio;
