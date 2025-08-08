@@ -102,7 +102,7 @@ export const ImageComponent = ({ image, alt, containerWidth, style }: ImageCompo
         image={image}
         containerWidth={containerWidth}
         alt={alt}
-        style={{ ...style, maxWidth: image.width }}
+        style={style}
     />
 );
 
