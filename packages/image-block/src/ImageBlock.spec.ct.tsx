@@ -4,15 +4,7 @@ import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from 
 import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import {
-    Alignment,
-    CaptionPosition,
-    CornerRadius,
-    Ratio,
-    imageRatioValues,
-    mapAlignmentClasses,
-    mapCaptionPositionClasses,
-} from './types';
+import { Alignment, CaptionPosition, CornerRadius, mapAlignmentClasses, mapCaptionPositionClasses } from './types';
 import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
@@ -357,17 +349,18 @@ describe('Image Block', () => {
         cy.get(ImageBlockSelector).should('have.class', mapCaptionPositionClasses[CaptionPosition.Right]);
     });
 
-    it('should change width according to provided ratio', () => {
+    it.only('should apply image aspect ratio', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
-                ratio: Ratio.Ratio1To2,
+                hasCustomRatio: false,
+                ratioChoice: '1:1',
             },
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(`${ImageBlockSelector}>div`).should('have.class', imageRatioValues[Ratio.Ratio1To2]);
+        cy.get(ImageBlockImageComponentSelector).should('have.css', 'aspectRatio', '1 / 1');
     });
 
     it('should add background color if provided', () => {
