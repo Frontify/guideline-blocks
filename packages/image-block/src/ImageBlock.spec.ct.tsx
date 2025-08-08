@@ -184,6 +184,22 @@ describe('Image Block', () => {
         cy.get(DownloadSelector).should('not.exist');
     });
 
+    it('should render the asset viewer when the assetViewerEnabled setting is not present', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            editorState: false,
+            blockSettings: {
+                security: Security.Custom,
+                assetViewerEnabled: undefined,
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockSelector).should('exist');
+        cy.get(ImageBlockAssetViewerButtonSelector).should('exist');
+    });
+
     it('should render as a button if the custom security settings allow it even if the global is disabled', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             editorState: false,
