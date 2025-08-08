@@ -12,7 +12,6 @@ export type Settings = {
     name?: string;
     altText?: string;
     description?: string;
-    alignment: Alignment;
     backgroundColor: Color | null;
     borderColor: Color | null;
     borderStyle: BorderStyle;
@@ -33,13 +32,10 @@ export type Settings = {
     hasCustomRatio: boolean;
     ratioChoice: Ratio;
     ratioCustom: string;
+    autosizing: Autosizing;
+    verticalAlignment: VerticalAlignment;
+    horizontalAlignment: HorizontalAlignment;
 };
-
-export enum Alignment {
-    Left = 'Left',
-    Center = 'Center',
-    Right = 'Right',
-}
 
 export enum CaptionPosition {
     Below = 'Below',
@@ -114,15 +110,33 @@ export const radiusValues: Record<CornerRadius, string> = {
     [CornerRadius.Large]: '12px',
 };
 
-export const mapAlignmentClasses: Record<Alignment, string> = {
-    [Alignment.Left]: 'tw-justify-start',
-    [Alignment.Center]: 'tw-justify-center',
-    [Alignment.Right]: 'tw-justify-end',
-};
-
 export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col tw-gap-3',
     [CaptionPosition.Above]: 'tw-flex-col-reverse tw-gap-3',
     [CaptionPosition.Right]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row @sm:tw-gap-0 @sm:tw-justify-between',
     [CaptionPosition.Left]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row-reverse @sm:tw-gap-0 @sm:tw-justify-between',
 };
+
+export enum Autosizing {
+    None = 'none',
+    Fit = 'fit',
+    Fill = 'fill',
+}
+
+export const autosizingValues: Record<Autosizing, string> = {
+    [Autosizing.None]: 'none',
+    [Autosizing.Fit]: 'fit',
+    [Autosizing.Fill]: 'fill',
+};
+
+export enum VerticalAlignment {
+    Left = 'left',
+    Center = 'center',
+    Right = 'right',
+}
+
+export enum HorizontalAlignment {
+    Top = 'top',
+    Center = 'center',
+    Bottom = 'bottom',
+}

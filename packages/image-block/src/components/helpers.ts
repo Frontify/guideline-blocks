@@ -27,7 +27,7 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
+import { Autosizing, CornerRadius, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
@@ -118,6 +118,8 @@ export const getImageStyle = (blockSettings: Settings): CSSProperties => {
     return {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
         aspectRatio: getImageRatioValue(blockSettings),
+        objectFit: getImageObjectFitValue(blockSettings),
+        objectPosition: getImageObjectPositionValue(blockSettings),
     };
 };
 
@@ -132,4 +134,16 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
     }
 
     return aspectRatioValue;
+};
+
+export const getImageObjectFitValue = ({ autosizing }: Settings) => {
+    if (autosizing === Autosizing.Fit) {
+        return 'cover';
+    }
+
+    return autosizing;
+};
+
+const getImageObjectPositionValue = ({ verticalAlignment, horizontalAlignment }: Settings) => {
+    return `${verticalAlignment} ${horizontalAlignment}`;
 };
