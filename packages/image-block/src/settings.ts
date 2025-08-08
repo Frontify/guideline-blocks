@@ -102,7 +102,7 @@ export const settings = defineSettings({
             defaultValue: false,
             switchLabel: 'Custom',
             label: 'Ratio',
-            info: 'The aspect ratio of the image.',
+            info: 'Easily unify your assets across multiple blocks with a set aspect ratio.',
             onChange: (bundle) => presetCustomValue(bundle, RATIO_CHOICE_ID, RATIO_CUSTOM_ID, imageAspectRatioValues),
             on: [
                 {
