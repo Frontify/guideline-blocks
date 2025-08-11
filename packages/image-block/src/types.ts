@@ -28,6 +28,7 @@ export type Settings = {
     radiusChoice_cornerRadius: CornerRadius;
     radiusValue_cornerRadius: string;
     positioning: CaptionPosition;
+    ratio: Ratio;
     security: Security;
     hasCustomRatio: boolean;
     ratioChoice: Ratio;
@@ -46,7 +47,7 @@ export enum CaptionPosition {
     Right = 'Right',
     Left = 'Left',
 }
-export enum Ratio {
+export enum ImageAspectRatio {
     RatioNone = 'none',
     Ratio1To1 = '1:1',
     Ratio3To2 = '3:2',
@@ -54,12 +55,29 @@ export enum Ratio {
     Ratio16To9 = '16:9',
 }
 
-export const imageAspectRatioValues: Record<Ratio, string> = {
-    [Ratio.RatioNone]: 'none',
-    [Ratio.Ratio1To1]: '1:1',
-    [Ratio.Ratio3To2]: '3:2',
-    [Ratio.Ratio4To3]: '4:3',
-    [Ratio.Ratio16To9]: '16:9',
+export enum Ratio {
+    Ratio2To1 = '2:1',
+    Ratio1To1 = '1:1',
+    Ratio1To2 = '1:2',
+}
+export const imageRatioValues: Record<Ratio, string> = {
+    [Ratio.Ratio2To1]: 'tw-w-full @sm:tw-w-[calc(66.6666%-10px)]',
+    [Ratio.Ratio1To1]: 'tw-w-full @sm:tw-w-[calc(50%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full @sm:tw-w-[calc(41.6666%-17.5px)]',
+};
+
+export const textRatioValues: Record<Ratio, string> = {
+    [Ratio.Ratio2To1]: 'tw-w-full @sm:tw-w-[calc(33.3333%-20px)]',
+    [Ratio.Ratio1To1]: 'tw-w-full @sm:tw-w-[calc(50%-15px)]',
+    [Ratio.Ratio1To2]: 'tw-w-full @sm:tw-w-[calc(58.3333%-12.5px)]',
+};
+
+export const imageAspectRatioValues: Record<ImageAspectRatio, string> = {
+    [ImageAspectRatio.RatioNone]: 'none',
+    [ImageAspectRatio.Ratio1To1]: '1:1',
+    [ImageAspectRatio.Ratio3To2]: '3:2',
+    [ImageAspectRatio.Ratio4To3]: '4:3',
+    [ImageAspectRatio.Ratio16To9]: '16:9',
 };
 
 export enum Padding {

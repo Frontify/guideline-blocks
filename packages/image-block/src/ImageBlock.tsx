@@ -37,7 +37,7 @@ import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
-import { CaptionPosition, type Settings, mapCaptionPositionClasses } from './types';
+import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
@@ -52,6 +52,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const {
         altText,
         name,
+        ratio,
         positioning,
         description,
         hasLink,
@@ -167,8 +168,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                                 'tw-relative',
                                 attachmentCount > 0 && 'tw-min-h-11',
                                 [CaptionPosition.Above, CaptionPosition.Below].includes(positioning)
-                                    ? 'tw-flex-1'
-                                    : 'tw-flex-[3]',
+                                    ? 'tw-w-full'
+                                    : imageRatioValues[ratio],
                             ])}
                         >
                             <DownloadAndAttachments
@@ -264,7 +265,9 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             isEditing={isEditing}
                             description={description}
                             name={name}
+                            positioning={positioning}
                             appBridge={appBridge}
+                            ratio={ratio}
                             setBlockSettings={setBlockSettings}
                         />
                     </div>

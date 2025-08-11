@@ -20,6 +20,7 @@ import {
     CaptionPosition,
     Padding,
     Ratio,
+    ImageAspectRatio,
     imageAspectRatioValues,
     paddingValues,
     radiusValues,
@@ -116,13 +117,13 @@ export const settings = defineSettings({
                 {
                     id: RATIO_CHOICE_ID,
                     type: 'segmentedControls',
-                    defaultValue: Ratio.RatioNone,
+                    defaultValue: ImageAspectRatio.RatioNone,
                     choices: [
-                        { value: Ratio.RatioNone, label: 'None' },
-                        { value: Ratio.Ratio1To1, label: '1:1' },
-                        { value: Ratio.Ratio3To2, label: '3:2' },
-                        { value: Ratio.Ratio4To3, label: '4:3' },
-                        { value: Ratio.Ratio16To9, label: '16:9' },
+                        { value: ImageAspectRatio.RatioNone, label: 'None' },
+                        { value: ImageAspectRatio.Ratio1To1, label: '1:1' },
+                        { value: ImageAspectRatio.Ratio3To2, label: '3:2' },
+                        { value: ImageAspectRatio.Ratio4To3, label: '4:3' },
+                        { value: ImageAspectRatio.Ratio16To9, label: '16:9' },
                     ],
                 },
             ],
@@ -138,6 +139,20 @@ export const settings = defineSettings({
                 { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
                 { value: CaptionPosition.Right, icon: IconEnum.MediaObjectTextRight },
                 { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
+            ],
+        },
+        {
+            id: 'ratio',
+            label: 'Ratio',
+            type: 'segmentedControls',
+            defaultValue: Ratio.Ratio2To1,
+            show: (bundle) =>
+                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
+                bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
+            choices: [
+                { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
+                { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
+                { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
             ],
         },
         {
