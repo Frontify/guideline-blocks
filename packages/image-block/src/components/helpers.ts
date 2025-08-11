@@ -147,15 +147,14 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
     return aspectRatioValue;
 };
 
-export const getImageObjectFitValue = ({ autosizing }: Settings) => {
-    if (autosizing === Autosizing.None) {
-        return 'scale-down';
-    }
-    if (autosizing === Autosizing.Fit) {
-        return 'cover';
-    }
+export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties['objectFit'] => {
+    const map: Record<Autosizing, CSSProperties['objectFit']> = {
+        [Autosizing.None]: 'scale-down',
+        [Autosizing.Fit]: 'contain',
+        [Autosizing.Fill]: 'cover',
+    };
 
-    return autosizing;
+    return map[autosizing];
 };
 
 const getImageObjectPositionValue = ({ alignment: verticalAlignment, horizontalAlignment }: Settings) => {

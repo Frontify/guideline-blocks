@@ -26,15 +26,15 @@ describe('getImageRatioValue()', () => {
 });
 
 describe('getImageObjectFitValue()', () => {
-    it('should return cover for autosizing=fit', () => {
-        expect(getImageObjectFitValue({ autosizing: 'fit' } as Settings)).toEqual('cover');
+    it('should return contain for autosizing=fit', () => {
+        expect(getImageObjectFitValue({ autosizing: 'fit' } as Settings)).toEqual('contain');
+    });
+
+    it('should return cover for autosizing=fill', () => {
+        expect(getImageObjectFitValue({ autosizing: 'fill' } as Settings)).toEqual('cover');
     });
 
     it('should return scale-down for autosizing=none', () => {
         expect(getImageObjectFitValue({ autosizing: 'none' } as Settings)).toEqual('scale-down');
-    });
-
-    it('should return autosizing value unchanged', () => {
-        expect(getImageObjectFitValue({ autosizing: 'fill' } as Settings)).toEqual('fill');
     });
 });
