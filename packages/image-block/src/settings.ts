@@ -18,12 +18,12 @@ import {
 import {
     Alignment,
     CaptionPosition,
-    Padding,
-    Ratio,
     ImageAspectRatio,
     imageAspectRatioValues,
+    Padding,
     paddingValues,
     radiusValues,
+    Ratio,
 } from './types';
 import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
 
