@@ -33,7 +33,7 @@ export type Settings = {
     ratioChoice: Ratio;
     ratioCustom: string;
     autosizing: Autosizing;
-    verticalAlignment: VerticalAlignment;
+    alignment: VerticalAlignment;
     horizontalAlignment: HorizontalAlignment;
 };
 

@@ -111,7 +111,7 @@ export const Image = ({
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
-    const imageStyle = getImageStyle(blockSettings);
+    const imageStyle = getImageStyle(blockSettings, image.height);
 
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
 

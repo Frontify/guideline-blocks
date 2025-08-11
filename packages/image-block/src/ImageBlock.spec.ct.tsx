@@ -392,7 +392,7 @@ describe('Image Block', () => {
     it('should apply object position css style on image', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
-                verticalAlignment: 'center',
+                alignment: 'center',
                 horizontalAlignment: 'center',
             },
             blockAssets: {

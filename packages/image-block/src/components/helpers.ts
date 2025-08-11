@@ -114,13 +114,24 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
     };
 };
 
-export const getImageStyle = (blockSettings: Settings): CSSProperties => {
+export const getImageStyle = (blockSettings: Settings, height: number): CSSProperties => {
     return {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
         aspectRatio: getImageRatioValue(blockSettings),
         objectFit: getImageObjectFitValue(blockSettings),
         objectPosition: getImageObjectPositionValue(blockSettings),
+        maxHeight: getMaxHeightValue(blockSettings, height),
     };
+};
+
+export const getMaxHeightValue = (blockSettings: Settings, height: number): CSSProperties['maxHeight'] => {
+    const aspectRatio = getImageRatioValue(blockSettings);
+    const objectFit = getImageObjectFitValue(blockSettings);
+
+    if (aspectRatio === 'auto' && objectFit === 'scale-down') {
+        return height;
+    }
+    return undefined;
 };
 
 export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspectRatio'] => {
@@ -137,6 +148,9 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
 };
 
 export const getImageObjectFitValue = ({ autosizing }: Settings) => {
+    if (autosizing === Autosizing.None) {
+        return 'scale-down';
+    }
     if (autosizing === Autosizing.Fit) {
         return 'cover';
     }
@@ -144,6 +158,6 @@ export const getImageObjectFitValue = ({ autosizing }: Settings) => {
     return autosizing;
 };
 
-const getImageObjectPositionValue = ({ verticalAlignment, horizontalAlignment }: Settings) => {
+const getImageObjectPositionValue = ({ alignment: verticalAlignment, horizontalAlignment }: Settings) => {
     return `${verticalAlignment} ${horizontalAlignment}`;
 };

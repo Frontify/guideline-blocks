@@ -30,8 +30,11 @@ describe('getImageObjectFitValue()', () => {
         expect(getImageObjectFitValue({ autosizing: 'fit' } as Settings)).toEqual('cover');
     });
 
+    it('should return scale-down for autosizing=none', () => {
+        expect(getImageObjectFitValue({ autosizing: 'none' } as Settings)).toEqual('scale-down');
+    });
+
     it('should return autosizing value unchanged', () => {
-        expect(getImageObjectFitValue({ autosizing: 'none' } as Settings)).toEqual('none');
         expect(getImageObjectFitValue({ autosizing: 'fill' } as Settings)).toEqual('fill');
     });
 });

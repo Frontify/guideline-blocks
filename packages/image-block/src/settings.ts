@@ -144,11 +144,11 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: 'alignment',
+            id: 'alignmentWrapper',
             type: 'multiInput',
             blocks: [
                 {
-                    id: 'verticalAlignment',
+                    id: 'alignment',
                     type: 'dropdown',
                     defaultValue: 'center',
                     choices: [
