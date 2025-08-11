@@ -8,10 +8,10 @@ import {
     Alignment,
     CaptionPosition,
     CornerRadius,
+    Ratio,
     imageRatioValues,
     mapAlignmentClasses,
     mapCaptionPositionClasses,
-    Ratio,
 } from './types';
 import { Security } from '@frontify/guideline-blocks-settings';
 

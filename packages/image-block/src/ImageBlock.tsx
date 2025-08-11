@@ -52,8 +52,8 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const {
         altText,
         name,
-        ratio,
         positioning,
+        ratio,
         description,
         hasLink,
         assetViewerEnabled: blockAssetViewerEnabled,
