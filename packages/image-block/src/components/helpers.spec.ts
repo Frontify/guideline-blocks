@@ -20,7 +20,7 @@ describe('getImageRatioValue()', () => {
     });
 
     it('should return auto for hasCustomRatio=false and ratioChoice set on none', () => {
-        const settings = { hasCustomRatio: false, ratioChoice: 'none' } as Settings;
+        const settings = { hasCustomRatio: false, ratioChoice: 'none' } as unknown as Settings;
         expect(getImageRatioValue(settings)).toEqual('auto');
     });
 });
