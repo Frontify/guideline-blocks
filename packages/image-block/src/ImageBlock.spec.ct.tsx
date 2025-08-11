@@ -386,7 +386,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageComponentSelector).should('have.css', 'objectFit', 'fill');
+        cy.get(ImageBlockImageComponentSelector).should('have.css', 'objectFit', 'cover');
     });
 
     it('should apply object position css style on image', () => {
