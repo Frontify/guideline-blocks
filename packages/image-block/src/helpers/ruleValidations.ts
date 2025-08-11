@@ -5,6 +5,9 @@ import { Rule } from '@frontify/guideline-blocks-settings';
 export const aspectRatioFormatRule: Rule<string> = {
     errorMessage: 'Please use the proper format for the image aspect ratio x:y',
     validate: (value: string) => {
+        if (value === 'none') {
+            return true;
+        }
         const values = value.split(':');
 
         if (values.filter(Boolean).length !== 2) {
@@ -22,6 +25,10 @@ export const aspectRatioFormatRule: Rule<string> = {
 export const aspectRatioNumberRule: Rule<string> = {
     errorMessage: 'Please use values greater than 0',
     validate: (value: string) => {
+        if (value === 'none') {
+            return true;
+        }
+
         const [width, height] = value.split(':').map(Number);
 
         return width > 0 && height > 0;

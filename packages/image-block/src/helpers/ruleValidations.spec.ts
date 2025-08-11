@@ -10,6 +10,10 @@ describe('aspectRatioFormatRule', () => {
         expect(aspectRatioFormatRule.validate('4:3')).toBe(true);
     });
 
+    it('should accept the token none', () => {
+        expect(aspectRatioFormatRule.validate('none')).toBe(true);
+    });
+
     it('should reject aspect ratio without colon separator', () => {
         const result = aspectRatioFormatRule.validate('169');
         expect(result).toBe(false);
@@ -45,6 +49,10 @@ describe('aspectRatioNumberRule', () => {
         expect(aspectRatioFormatRule.validate('16:9')).toBe(true);
         expect(aspectRatioFormatRule.validate('1:1')).toBe(true);
         expect(aspectRatioFormatRule.validate('4:3')).toBe(true);
+    });
+
+    it('should accept the token none', () => {
+        expect(aspectRatioFormatRule.validate('none')).toBe(true);
     });
 
     it('should reject aspect ratio with zero width', () => {
