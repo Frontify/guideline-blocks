@@ -19,11 +19,11 @@ import {
     Alignment,
     CaptionPosition,
     ImageAspectRatio,
-    imageAspectRatioValues,
     Padding,
+    Ratio,
+    imageAspectRatioValues,
     paddingValues,
     radiusValues,
-    Ratio,
 } from './types';
 import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
 
