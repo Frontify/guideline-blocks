@@ -167,7 +167,7 @@ export const ImageBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
                             className={merge([
                                 'tw-relative',
                                 attachmentCount > 0 && 'tw-min-h-11',
-                                positioning === CaptionPosition.Above || positioning === CaptionPosition.Below
+                                [CaptionPosition.Above, CaptionPosition.Below].includes(positioning)
                                     ? 'tw-w-full'
                                     : imageRatioValues[ratio],
                             ])}

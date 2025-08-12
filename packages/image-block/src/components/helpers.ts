@@ -27,7 +27,7 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
+import { Autosizing, CornerRadius, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
@@ -114,8 +114,49 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
     };
 };
 
-export const getImageStyle = (blockSettings: Settings): CSSProperties => {
+export const getImageStyle = (blockSettings: Settings, height: number): CSSProperties => {
     return {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
+        aspectRatio: getImageRatioValue(blockSettings),
+        objectFit: getImageObjectFitValue(blockSettings),
+        objectPosition: getImageObjectPositionValue(blockSettings),
+        maxHeight: getMaxHeightValue(blockSettings, height),
     };
+};
+
+export const getMaxHeightValue = (blockSettings: Settings, height: number): CSSProperties['maxHeight'] => {
+    const aspectRatio = getImageRatioValue(blockSettings);
+    const objectFit = getImageObjectFitValue(blockSettings);
+
+    if (aspectRatio === 'auto' && objectFit === 'scale-down') {
+        return height;
+    }
+    return undefined;
+};
+
+export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspectRatio'] => {
+    let aspectRatioValue: CSSProperties['aspectRatio'] = 'auto';
+
+    const { hasCustomRatio, ratioCustom, ratioChoice } = blockSettings;
+    const ratio = hasCustomRatio ? ratioCustom : ratioChoice;
+
+    if (ratio && ratio !== 'none') {
+        aspectRatioValue = ratio.replace(':', '/');
+    }
+
+    return aspectRatioValue;
+};
+
+export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties['objectFit'] => {
+    const map: Record<Autosizing, CSSProperties['objectFit']> = {
+        [Autosizing.None]: 'scale-down',
+        [Autosizing.Fit]: 'contain',
+        [Autosizing.Fill]: 'cover',
+    };
+
+    return map[autosizing];
+};
+
+const getImageObjectPositionValue = ({ alignment: verticalAlignment, horizontalAlignment }: Settings) => {
+    return `${verticalAlignment} ${horizontalAlignment}`;
 };

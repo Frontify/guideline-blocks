@@ -12,7 +12,6 @@ export type Settings = {
     name?: string;
     altText?: string;
     description?: string;
-    alignment: Alignment;
     backgroundColor: Color | null;
     borderColor: Color | null;
     borderStyle: BorderStyle;
@@ -30,19 +29,26 @@ export type Settings = {
     positioning: CaptionPosition;
     ratio: Ratio;
     security: Security;
+    hasCustomRatio: boolean;
+    ratioChoice: Ratio;
+    ratioCustom: string;
+    autosizing: Autosizing;
+    alignment: VerticalAlignment;
+    horizontalAlignment: HorizontalAlignment;
 };
-
-export enum Alignment {
-    Left = 'Left',
-    Center = 'Center',
-    Right = 'Right',
-}
 
 export enum CaptionPosition {
     Below = 'Below',
     Above = 'Above',
     Right = 'Right',
     Left = 'Left',
+}
+export enum ImageAspectRatio {
+    RatioNone = 'none',
+    Ratio1To1 = '1:1',
+    Ratio3To2 = '3:2',
+    Ratio4To3 = '4:3',
+    Ratio16To9 = '16:9',
 }
 
 export enum Ratio {
@@ -60,6 +66,14 @@ export const textRatioValues: Record<Ratio, string> = {
     [Ratio.Ratio2To1]: 'tw-w-full @sm:tw-w-[calc(33.3333%-20px)]',
     [Ratio.Ratio1To1]: 'tw-w-full @sm:tw-w-[calc(50%-15px)]',
     [Ratio.Ratio1To2]: 'tw-w-full @sm:tw-w-[calc(58.3333%-12.5px)]',
+};
+
+export const imageAspectRatioValues: Record<ImageAspectRatio, string> = {
+    [ImageAspectRatio.RatioNone]: 'none',
+    [ImageAspectRatio.Ratio1To1]: '1:1',
+    [ImageAspectRatio.Ratio3To2]: '3:2',
+    [ImageAspectRatio.Ratio4To3]: '4:3',
+    [ImageAspectRatio.Ratio16To9]: '16:9',
 };
 
 export enum Padding {
@@ -96,15 +110,33 @@ export const radiusValues: Record<CornerRadius, string> = {
     [CornerRadius.Large]: '12px',
 };
 
-export const mapAlignmentClasses: Record<Alignment, string> = {
-    [Alignment.Left]: 'tw-justify-start',
-    [Alignment.Center]: 'tw-justify-center',
-    [Alignment.Right]: 'tw-justify-end',
-};
-
 export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col tw-gap-3',
     [CaptionPosition.Above]: 'tw-flex-col-reverse tw-gap-3',
     [CaptionPosition.Right]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row @sm:tw-gap-0 @sm:tw-justify-between',
     [CaptionPosition.Left]: 'tw-flex-col tw-gap-3 @sm:!tw-flex-row-reverse @sm:tw-gap-0 @sm:tw-justify-between',
 };
+
+export enum Autosizing {
+    None = 'none',
+    Fit = 'fit',
+    Fill = 'fill',
+}
+
+export const autosizingValues: Record<Autosizing, string> = {
+    [Autosizing.None]: 'none',
+    [Autosizing.Fit]: 'fit',
+    [Autosizing.Fill]: 'fill',
+};
+
+export enum VerticalAlignment {
+    Left = 'left',
+    Center = 'center',
+    Right = 'right',
+}
+
+export enum HorizontalAlignment {
+    Top = 'top',
+    Center = 'center',
+    Bottom = 'bottom',
+}
