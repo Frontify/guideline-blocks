@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, it } from 'vitest';
-import { getImageObjectFitValue, getImageRatioValue } from './helpers';
+import { getImageObjectFitValue, getImageObjectPositionValue, getImageRatioValue } from './helpers';
 import { type Settings } from '../types';
 
 describe('getImageRatioValue()', () => {
@@ -36,5 +36,28 @@ describe('getImageObjectFitValue()', () => {
 
     it('should return scale-down for autosizing=none', () => {
         expect(getImageObjectFitValue({ autosizing: 'none' } as Settings)).toEqual('scale-down');
+    });
+});
+
+describe('getImageObjectPositionValue()', () => {
+    it('should return provided vertical and horizontal alignment', () => {
+        expect(
+            getImageObjectPositionValue({ alignment: 'left', horizontalAlignment: 'top' } as Settings, {
+                focalPointX: 0.5,
+                focalPointY: 0.5,
+            })
+        ).toEqual('left top');
+    });
+
+    it('should return provided focal point', () => {
+        expect(
+            getImageObjectPositionValue(
+                { alignment: 'left', horizontalAlignment: 'top', useFocalPoint: true, autosizing: 'fill' } as Settings,
+                {
+                    focalPointX: 0.5,
+                    focalPointY: 0.5,
+                }
+            )
+        ).toEqual('50% 50%');
     });
 });

@@ -130,7 +130,6 @@ export const settings = defineSettings({
                 },
             ],
         },
-
         {
             id: 'autosizing',
             type: 'segmentedControls',
@@ -151,6 +150,9 @@ export const settings = defineSettings({
                     id: 'alignment',
                     type: 'dropdown',
                     defaultValue: 'center',
+                    disabled: (bundle) =>
+                        bundle.getBlock('useFocalPoint')?.value === true &&
+                        bundle.getBlock('autosizing')?.value === Autosizing.Fill,
                     choices: [
                         { value: VerticalAlignment.Left, label: 'Left', icon: 'ArrowAlignLeft' },
                         { value: VerticalAlignment.Center, label: 'Center', icon: 'ArrowAlignVerticalCentre' },
@@ -161,6 +163,9 @@ export const settings = defineSettings({
                     id: 'horizontalAlignment',
                     type: 'dropdown',
                     defaultValue: 'center',
+                    disabled: (bundle) =>
+                        bundle.getBlock('useFocalPoint')?.value === true &&
+                        bundle.getBlock('autosizing')?.value === Autosizing.Fill,
                     choices: [
                         { value: HorizontalAlignment.Top, label: 'Top', icon: 'ArrowAlignUp' },
                         { value: HorizontalAlignment.Center, label: 'Center', icon: 'ArrowAlignHorizontalCentre' },
@@ -168,6 +173,13 @@ export const settings = defineSettings({
                     ],
                 },
             ],
+        },
+        {
+            id: 'useFocalPoint',
+            type: 'switch',
+            label: 'Use focal point',
+            info: 'Aligns your asset around its predefined focal point, if one is available.',
+            show: (bundle) => bundle.getBlock('autosizing')?.value === Autosizing.Fill,
         },
         {
             id: POSITIONING_ID,
