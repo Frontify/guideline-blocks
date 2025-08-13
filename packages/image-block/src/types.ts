@@ -35,6 +35,7 @@ export type Settings = {
     autosizing: Autosizing;
     alignment: VerticalAlignment;
     horizontalAlignment: HorizontalAlignment;
+    useFocalPoint: boolean;
 };
 
 export enum CaptionPosition {
@@ -140,3 +141,9 @@ export enum HorizontalAlignment {
     Center = 'center',
     Bottom = 'bottom',
 }
+
+export type ImageInformation = {
+    height: number;
+    focalPointX: number;
+    focalPointY: number;
+};

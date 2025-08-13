@@ -27,7 +27,7 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { Autosizing, CornerRadius, Settings, paddingValues, radiusValues } from '../types';
+import { Autosizing, CornerRadius, ImageInformation, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
@@ -114,12 +114,13 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
     };
 };
 
-export const getImageStyle = (blockSettings: Settings, height: number): CSSProperties => {
+export const getImageStyle = (blockSettings: Settings, imageInformation: ImageInformation): CSSProperties => {
+    const { height, focalPointX, focalPointY } = imageInformation;
     return {
         borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
         aspectRatio: getImageRatioValue(blockSettings),
         objectFit: getImageObjectFitValue(blockSettings),
-        objectPosition: getImageObjectPositionValue(blockSettings),
+        objectPosition: getImageObjectPositionValue(blockSettings, { focalPointX, focalPointY }),
         maxHeight: getMaxHeightValue(blockSettings, height),
     };
 };
@@ -157,6 +158,12 @@ export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties[
     return map[autosizing];
 };
 
-const getImageObjectPositionValue = ({ alignment: verticalAlignment, horizontalAlignment }: Settings) => {
+export const getImageObjectPositionValue = (
+    { alignment: verticalAlignment, horizontalAlignment, useFocalPoint, autosizing }: Settings,
+    { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
+) => {
+    if (useFocalPoint && autosizing === Autosizing.Fill) {
+        return `${(focalPointX ?? 0.5) * 100}% ${(focalPointY ?? 0.5) * 100}%`;
+    }
     return `${verticalAlignment} ${horizontalAlignment}`;
 };
