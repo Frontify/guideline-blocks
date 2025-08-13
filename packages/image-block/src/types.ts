@@ -131,9 +131,9 @@ export const autosizingValues: Record<Autosizing, string> = {
 };
 
 export enum VerticalAlignment {
-    Left = 'left',
-    Center = 'center',
-    Right = 'right',
+    Left = 'Left',
+    Center = 'Center',
+    Right = 'Right',
 }
 
 export enum HorizontalAlignment {
