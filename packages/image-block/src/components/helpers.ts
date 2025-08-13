@@ -160,10 +160,10 @@ export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties[
 
 export const getImageObjectPositionValue = (
     { alignment: verticalAlignment, horizontalAlignment, useFocalPoint, autosizing }: Settings,
-    { focalPointX = 0.5, focalPointY = 0.5 }: { focalPointX: number; focalPointY: number }
+    { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
 ) => {
     if (useFocalPoint && autosizing === Autosizing.Fill) {
-        return `${focalPointX * 100}% ${focalPointY * 100}%`;
+        return `${(focalPointX ?? 0.5) * 100}% ${(focalPointY ?? 0.5) * 100}%`;
     }
     return `${verticalAlignment} ${horizontalAlignment}`;
 };
