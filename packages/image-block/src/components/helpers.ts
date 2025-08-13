@@ -157,7 +157,7 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
     return aspectRatioValue;
 };
 
-export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties['objectFit'] => {
+export const getImageObjectFitValue = ({ autosizing = Autosizing.None }: Settings): CSSProperties['objectFit'] => {
     const map: Record<Autosizing, CSSProperties['objectFit']> = {
         [Autosizing.None]: 'scale-down',
         [Autosizing.Fit]: 'contain',
@@ -172,7 +172,7 @@ export const getImageObjectPositionValue = (
         alignment: verticalAlignment = VerticalAlignment.Center,
         horizontalAlignment = HorizontalAlignment.Center,
         useFocalPoint,
-        autosizing,
+        autosizing = Autosizing.None,
     }: Settings,
     { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
 ) => {
