@@ -165,5 +165,5 @@ export const getImageObjectPositionValue = (
     if (useFocalPoint && autosizing === Autosizing.Fill) {
         return `${(focalPointX ?? 0.5) * 100}% ${(focalPointY ?? 0.5) * 100}%`;
     }
-    return `${verticalAlignment} ${horizontalAlignment}`;
+    return `${verticalAlignment.toLowerCase()} ${horizontalAlignment.toLowerCase()}`;
 };
