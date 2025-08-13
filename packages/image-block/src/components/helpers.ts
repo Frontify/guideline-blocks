@@ -27,7 +27,16 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { Autosizing, CornerRadius, ImageInformation, Settings, paddingValues, radiusValues } from '../types';
+import {
+    Autosizing,
+    CornerRadius,
+    HorizontalAlignment,
+    ImageInformation,
+    Settings,
+    VerticalAlignment,
+    paddingValues,
+    radiusValues,
+} from '../types';
 import { CSSProperties } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
@@ -159,7 +168,12 @@ export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties[
 };
 
 export const getImageObjectPositionValue = (
-    { alignment: verticalAlignment, horizontalAlignment, useFocalPoint, autosizing }: Settings,
+    {
+        alignment: verticalAlignment = VerticalAlignment.Center,
+        horizontalAlignment = HorizontalAlignment.Center,
+        useFocalPoint,
+        autosizing,
+    }: Settings,
     { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
 ) => {
     if (useFocalPoint && autosizing === Autosizing.Fill) {
