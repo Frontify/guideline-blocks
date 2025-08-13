@@ -140,7 +140,7 @@ export const settings = defineSettings({
                     id: 'autosizing',
                     type: 'segmentedControls',
                     label: 'Auto sizing',
-                    info: 'Choose how the asset scales and aligns. None fits it up to its original size, Fit scales it to fit the block size, and Fill crops it to cover all available space.',
+                    info: 'Choose how the asset scales. None fits it up to its original size, Fit scales it to fit the block size, and Fill crops it to cover all available space.',
                     defaultValue: Autosizing.None,
                     choices: [
                         { value: Autosizing.None, label: 'None' },
@@ -151,6 +151,7 @@ export const settings = defineSettings({
                 {
                     id: 'alignmentWrapper',
                     type: 'multiInput',
+                    label: 'Alignment',
                     blocks: [
                         {
                             id: 'alignment',

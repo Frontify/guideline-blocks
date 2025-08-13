@@ -42,7 +42,7 @@ describe('getImageObjectFitValue()', () => {
 describe('getImageObjectPositionValue()', () => {
     it('should return provided vertical and horizontal alignment', () => {
         expect(
-            getImageObjectPositionValue({ alignment: 'left', horizontalAlignment: 'top' } as Settings, {
+            getImageObjectPositionValue({ alignment: 'Left', horizontalAlignment: 'top' } as Settings, {
                 focalPointX: 0.5,
                 focalPointY: 0.5,
             })
@@ -52,7 +52,7 @@ describe('getImageObjectPositionValue()', () => {
     it('should return provided focal point', () => {
         expect(
             getImageObjectPositionValue(
-                { alignment: 'left', horizontalAlignment: 'top', useFocalPoint: true, autosizing: 'fill' } as Settings,
+                { alignment: 'Left', horizontalAlignment: 'top', useFocalPoint: true, autosizing: 'fill' } as Settings,
                 {
                     focalPointX: 0.5,
                     focalPointY: 0.5,

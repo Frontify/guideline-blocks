@@ -27,7 +27,16 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { Autosizing, CornerRadius, ImageInformation, Settings, paddingValues, radiusValues } from '../types';
+import {
+    Autosizing,
+    CornerRadius,
+    HorizontalAlignment,
+    ImageInformation,
+    Settings,
+    VerticalAlignment,
+    paddingValues,
+    radiusValues,
+} from '../types';
 import { CSSProperties } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
@@ -148,7 +157,7 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
     return aspectRatioValue;
 };
 
-export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties['objectFit'] => {
+export const getImageObjectFitValue = ({ autosizing = Autosizing.None }: Settings): CSSProperties['objectFit'] => {
     const map: Record<Autosizing, CSSProperties['objectFit']> = {
         [Autosizing.None]: 'scale-down',
         [Autosizing.Fit]: 'contain',
@@ -159,11 +168,16 @@ export const getImageObjectFitValue = ({ autosizing }: Settings): CSSProperties[
 };
 
 export const getImageObjectPositionValue = (
-    { alignment: verticalAlignment, horizontalAlignment, useFocalPoint, autosizing }: Settings,
+    {
+        alignment: verticalAlignment = VerticalAlignment.Center,
+        horizontalAlignment = HorizontalAlignment.Center,
+        useFocalPoint,
+        autosizing = Autosizing.None,
+    }: Settings,
     { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
 ) => {
     if (useFocalPoint && autosizing === Autosizing.Fill) {
         return `${(focalPointX ?? 0.5) * 100}% ${(focalPointY ?? 0.5) * 100}%`;
     }
-    return `${verticalAlignment} ${horizontalAlignment}`;
+    return `${verticalAlignment.toLowerCase()} ${horizontalAlignment.toLowerCase()}`;
 };
