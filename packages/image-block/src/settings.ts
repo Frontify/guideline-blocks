@@ -129,8 +129,8 @@ export const settings = defineSettings({
                             choices: [
                                 { value: ImageAspectRatio.RatioNone, label: 'None' },
                                 { value: ImageAspectRatio.Ratio1To1, label: '1:1' },
-                                { value: ImageAspectRatio.Ratio3To2, label: '3:2' },
                                 { value: ImageAspectRatio.Ratio4To3, label: '4:3' },
+                                { value: ImageAspectRatio.Ratio3To2, label: '3:2' },
                                 { value: ImageAspectRatio.Ratio16To9, label: '16:9' },
                             ],
                         },
@@ -156,7 +156,7 @@ export const settings = defineSettings({
                         {
                             id: 'alignment',
                             type: 'dropdown',
-                            defaultValue: 'center',
+                            defaultValue: 'Center',
                             disabled: (bundle) =>
                                 bundle.getBlock('useFocalPoint')?.value === true &&
                                 bundle.getBlock('autosizing')?.value === Autosizing.Fill,
@@ -192,6 +192,49 @@ export const settings = defineSettings({
                     info: 'Aligns your asset around its predefined focal point, if one is available.',
                     show: (bundle) => bundle.getBlock('autosizing')?.value === Autosizing.Fill,
                 },
+                {
+                    id: 'hasCustomPadding',
+                    type: 'switch',
+                    defaultValue: false,
+                    switchLabel: 'Custom',
+                    label: 'Padding',
+                    info: 'The spacing around the image.',
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
+                    on: [
+                        {
+                            id: PADDING_CUSTOM_ID,
+                            type: 'input',
+                            rules: [numericalOrPixelRule],
+                            onChange: (bundle) => appendUnit(bundle, PADDING_CUSTOM_ID),
+                        },
+                    ],
+                    off: [
+                        {
+                            id: PADDING_CHOICE_ID,
+                            type: 'segmentedControls',
+                            defaultValue: Padding.None,
+                            choices: [
+                                {
+                                    value: Padding.None,
+                                    label: 'None',
+                                },
+                                {
+                                    value: Padding.Small,
+                                    label: 'S',
+                                },
+                                {
+                                    value: Padding.Medium,
+                                    label: 'M',
+                                },
+                                {
+                                    value: Padding.Large,
+                                    label: 'L',
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -224,48 +267,6 @@ export const settings = defineSettings({
                         { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
                         { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
                         { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
-                    ],
-                },
-            ],
-        },
-        {
-            id: 'hasCustomPadding',
-            type: 'switch',
-            defaultValue: false,
-            switchLabel: 'Custom',
-            label: 'Padding',
-            info: 'The spacing around the image.',
-            onChange: (bundle) => presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
-            on: [
-                {
-                    id: PADDING_CUSTOM_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle) => appendUnit(bundle, PADDING_CUSTOM_ID),
-                },
-            ],
-            off: [
-                {
-                    id: PADDING_CHOICE_ID,
-                    type: 'segmentedControls',
-                    defaultValue: Padding.None,
-                    choices: [
-                        {
-                            value: Padding.None,
-                            label: 'None',
-                        },
-                        {
-                            value: Padding.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: Padding.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: Padding.Large,
-                            label: 'L',
-                        },
                     ],
                 },
             ],
