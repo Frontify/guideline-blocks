@@ -3,8 +3,6 @@
 import {
     FileExtensionSets,
     IconEnum,
-    NotificationBlockDividerPosition,
-    NotificationStyleType,
     Security,
     appendUnit,
     defineSettings,
@@ -80,22 +78,6 @@ export const settings = defineSettings({
                 },
             ],
             showForTranslations: true,
-        },
-        {
-            id: 'imageResolutionInfo',
-            type: 'notification',
-            title: 'Image resolution',
-            text: 'The correct pixel density (former 2x setting) is now provided automatically based on the device.',
-            styles: {
-                type: NotificationStyleType.Info,
-                icon: true,
-                divider: NotificationBlockDividerPosition.Top,
-            },
-            footer: {
-                label: 'Follow our guide for image resolution',
-                href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
-                target: '_blank',
-            },
         },
     ],
     layout: [
