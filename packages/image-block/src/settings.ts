@@ -57,17 +57,20 @@ export const settings = defineSettings({
             label: 'Image',
             size: 'small',
             extensions: ALLOWED_EXTENSIONS,
+            showForTranslations: true,
         },
         {
             id: 'hasLink',
             type: 'switch',
             label: 'Link',
             defaultValue: false,
+            showForTranslations: true,
             on: [
                 {
                     id: 'linkObject',
                     type: 'link',
                     clearable: true,
+                    showForTranslations: true,
                 },
             ],
         },
