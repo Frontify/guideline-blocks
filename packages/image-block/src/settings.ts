@@ -52,32 +52,24 @@ export const DEFAULT_BORDER_COLOR = {
 export const settings = defineSettings({
     basics: [
         {
-            id: 'imageSection',
-            type: 'sectionHeading',
-            label: '',
-            blocks: [
+            id: IMAGE_ID,
+            type: 'assetInput',
+            label: 'Image',
+            size: 'small',
+            extensions: ALLOWED_EXTENSIONS,
+        },
+        {
+            id: 'hasLink',
+            type: 'switch',
+            label: 'Link',
+            defaultValue: false,
+            on: [
                 {
-                    id: IMAGE_ID,
-                    type: 'assetInput',
-                    label: 'Image',
-                    size: 'small',
-                    extensions: ALLOWED_EXTENSIONS,
-                },
-                {
-                    id: 'hasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'linkObject',
-                            type: 'link',
-                            clearable: true,
-                        },
-                    ],
+                    id: 'linkObject',
+                    type: 'link',
+                    clearable: true,
                 },
             ],
-            showForTranslations: true,
         },
     ],
     layout: [
