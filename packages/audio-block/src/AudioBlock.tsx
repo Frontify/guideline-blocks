@@ -15,6 +15,7 @@ import {
 } from '@frontify/app-bridge';
 import { generateRandomId } from '@frontify/fondue';
 import {
+    AttachmentOperationsProvider,
     type BlockProps,
     DownloadButton,
     RichTextEditor,
@@ -23,7 +24,6 @@ import {
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
-    withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 
@@ -36,13 +36,14 @@ import { StyleProvider } from '@frontify/guideline-blocks-shared';
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
-export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) => {
+export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-    const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const blockAssetsBundle = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = blockAssetsBundle;
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
@@ -115,78 +116,86 @@ export const AudioBlock = withAttachmentsProvider(({ appBridge }: BlockProps) =>
     const descriptionValue = blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION;
 
     return (
-        <div className="audio-block">
-            <StyleProvider>
-                <div
-                    data-test-id="audio-block"
-                    className={joinClassNames([
-                        'tw-flex tw-gap-3',
-                        blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
-                    ])}
-                >
-                    {audio ? (
-                        <AudioPlayer
-                            audio={audio}
-                            isEditing={isEditing}
-                            isLoading={isLoading}
-                            openFileDialog={openFileDialog}
-                            openAssetChooser={onOpenAssetChooser}
-                            onRemoveAsset={onRemoveAsset}
-                        />
-                    ) : (
-                        isEditing && (
-                            <UploadPlaceholder
-                                onUploadClick={openFileDialog}
-                                onAssetChooseClick={onOpenAssetChooser}
-                                onFilesDrop={onFilesDrop}
-                                loading={isLoading}
+        <AttachmentOperationsProvider
+            blockAssetBundle={blockAssetsBundle}
+            assetId={ATTACHMENTS_ASSET_ID}
+            appBridge={appBridge}
+        >
+            <div className="audio-block">
+                <StyleProvider>
+                    <div
+                        data-test-id="audio-block"
+                        className={joinClassNames([
+                            'tw-flex tw-gap-3',
+                            blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
+                        ])}
+                    >
+                        {audio ? (
+                            <AudioPlayer
+                                audio={audio}
+                                isEditing={isEditing}
+                                isLoading={isLoading}
+                                openFileDialog={openFileDialog}
+                                openAssetChooser={onOpenAssetChooser}
+                                onRemoveAsset={onRemoveAsset}
                             />
-                        )
-                    )}
-                    <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
-                        <div className="tw-flex-1">
-                            <div data-test-id="block-title">
-                                <RichTextEditor
-                                    key={titleKey}
-                                    id={`${blockId}-title`}
-                                    plugins={titlePlugins}
-                                    isEditing={isEditing}
-                                    onTextChange={onTitleChange}
-                                    value={titleValue}
-                                    placeholder="Asset name"
-                                    showSerializedText={hasRichTextValue(titleValue)}
+                        ) : (
+                            isEditing && (
+                                <UploadPlaceholder
+                                    onUploadClick={openFileDialog}
+                                    onAssetChooseClick={onOpenAssetChooser}
+                                    onFilesDrop={onFilesDrop}
+                                    loading={isLoading}
                                 />
-                            </div>
-
-                            <div data-test-id="block-description">
-                                <RichTextEditor
-                                    id={`${blockId}-description`}
-                                    plugins={getDescriptionPlugins(appBridge)}
-                                    isEditing={isEditing}
-                                    onTextChange={onDescriptionChange}
-                                    value={descriptionValue}
-                                    placeholder="Add a description here"
-                                    showSerializedText={hasRichTextValue(descriptionValue)}
-                                />
-                            </div>
-                        </div>
-                        {audio && !isEditing && (
-                            <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
-                                {isDownloadable(
-                                    blockSettings.security,
-                                    blockSettings.downloadable,
-                                    assetDownloadEnabled
-                                ) && (
-                                    <DownloadButton
-                                        onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: audio })}
-                                    />
-                                )}
-                                <BlockAttachments appBridge={appBridge} />
-                            </div>
+                            )
                         )}
+                        <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
+                            <div className="tw-flex-1">
+                                <div data-test-id="block-title">
+                                    <RichTextEditor
+                                        key={titleKey}
+                                        id={`${blockId}-title`}
+                                        plugins={titlePlugins}
+                                        isEditing={isEditing}
+                                        onTextChange={onTitleChange}
+                                        value={titleValue}
+                                        placeholder="Asset name"
+                                        showSerializedText={hasRichTextValue(titleValue)}
+                                    />
+                                </div>
+
+                                <div data-test-id="block-description">
+                                    <RichTextEditor
+                                        id={`${blockId}-description`}
+                                        plugins={getDescriptionPlugins(appBridge)}
+                                        isEditing={isEditing}
+                                        onTextChange={onDescriptionChange}
+                                        value={descriptionValue}
+                                        placeholder="Add a description here"
+                                        showSerializedText={hasRichTextValue(descriptionValue)}
+                                    />
+                                </div>
+                            </div>
+                            {audio && !isEditing && (
+                                <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
+                                    {isDownloadable(
+                                        blockSettings.security,
+                                        blockSettings.downloadable,
+                                        assetDownloadEnabled
+                                    ) && (
+                                        <DownloadButton
+                                            onDownload={() =>
+                                                appBridge.dispatch({ name: 'downloadAsset', payload: audio })
+                                            }
+                                        />
+                                    )}
+                                    <BlockAttachments appBridge={appBridge} />
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            </StyleProvider>
-        </div>
+                </StyleProvider>
+            </div>
+        </AttachmentOperationsProvider>
     );
-}, ATTACHMENTS_ASSET_ID);
+};
