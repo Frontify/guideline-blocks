@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
-import { describe, expect, it, test } from 'vitest';
-import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { fireEvent, render } from '@testing-library/react';
 
 import { Asset, AssetDummy } from '@frontify/app-bridge';
 import { ResponsiveImage } from './ResponsiveImage';
@@ -88,18 +88,31 @@ describe('ResponsiveImage', () => {
         expect(getByTestId(ResponsiveImageSelector).getAttribute('height')).toBe('1000');
     });
 
+    it('should set aspect-ratio before image load and remove it after load', () => {
+        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
+        const img = getByTestId(ResponsiveImageSelector);
+
+        expect(img.getAttribute('style')).toContain('aspect-ratio: 2000 / 1000');
+
+        fireEvent.load(img);
+
+        expect(img.style.aspectRatio).toBe('');
+    });
+
     it('should use provided style', () => {
         const { getByTestId } = render(
             <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} style={{ maxWidth: 2000 }} alt="" />
         );
-        expect(getByTestId(ResponsiveImageSelector).getAttribute('style')).toBe('max-width: 2000px;');
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('style')).toContain('max-width: 2000px;');
     });
 
     it('should use provided classnames', () => {
         const { getByTestId } = render(
             <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} className="test-class" alt="" />
         );
-        expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe('tw-flex tw-w-full test-class');
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe(
+            'tw-flex tw-bg-box-neutral tw-w-full test-class'
+        );
     });
 
     it('should add alt text', () => {
@@ -109,7 +122,7 @@ describe('ResponsiveImage', () => {
         expect(getByTestId(ResponsiveImageSelector).getAttribute('alt')).toBe('Frontify');
     });
 
-    test('should have lazy loading enabled', () => {
+    it('should have lazy loading enabled', () => {
         const { getByTestId } = render(<ResponsiveImage image={AssetDummy.with(1)} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('loading')).toBe('lazy');
     });
