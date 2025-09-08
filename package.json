@@ -56,5 +56,5 @@
             "cypress"
         ]
     },
-    "packageManager": "pnpm@10.9.0"
+    "packageManager": "pnpm@10.15.1"
 }
