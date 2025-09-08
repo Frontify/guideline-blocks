@@ -16,7 +16,7 @@ import {
     merge,
 } from '@frontify/fondue';
 import { BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { langs } from '@uiw/codemirror-extensions-langs';
+import { loadLanguage, langs, langNames } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, useEffect, useMemo, useState } from 'react';
@@ -71,6 +71,9 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         );
 
     const getCurrentLanguageFromLangs = () => {
+        console.log(langs, selectedLanguage);
+        console.log(langNames, selectedLanguage);
+
         if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
             return langs[selectedLanguage];
         }
@@ -185,6 +188,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 highlightActiveLine: false,
                                 lintKeymap: false,
                                 autocompletion: false,
+                                syntaxHighlighting: true,
                             }}
                             onCreateEditor={(view) =>
                                 view.dom.querySelector('.cm-content')?.setAttribute('aria-labelledby', labelId)
