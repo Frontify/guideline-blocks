@@ -352,7 +352,7 @@ export const settings = defineSettings({
     ],
     style: [
         {
-            id: 'cardStyleHeading',
+            id: 'buttonStyleHeading',
             type: 'sectionHeading',
             label: 'Button',
             blocks: [
