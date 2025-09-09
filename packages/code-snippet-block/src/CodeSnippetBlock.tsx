@@ -185,6 +185,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 highlightActiveLine: false,
                                 lintKeymap: false,
                                 autocompletion: false,
+                                syntaxHighlighting: true,
                             }}
                             onCreateEditor={(view) =>
                                 view.dom.querySelector('.cm-content')?.setAttribute('aria-labelledby', labelId)
