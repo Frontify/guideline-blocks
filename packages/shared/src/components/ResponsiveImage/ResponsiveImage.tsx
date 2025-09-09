@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { type CSSProperties, useMemo } from 'react';
+import React, { type CSSProperties, useCallback, useMemo, useState } from 'react';
 import { Asset } from '@frontify/app-bridge';
 import { ImageFormat } from '../../types';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -26,6 +26,7 @@ export const ResponsiveImage = ({
     quality = 100,
     testId = 'responsive-image',
 }: ResponsiveImageProps) => {
+    const [isLoaded, setIsLoaded] = useState(false);
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidth = image.width ?? containerWidth;
     const imageHeight = image.height ?? 0;
@@ -52,12 +53,17 @@ export const ResponsiveImage = ({
         };
     }, [imageHeight, imageWidth, style]);
 
+    const handleImageLoaded = useCallback(() => {
+        setIsLoaded(true);
+    }, [setIsLoaded]);
+
     return (
         <img
             data-test-id={testId}
-            className={joinClassNames(['tw-flex tw-bg-box-neutral tw-w-full', className])}
+            className={joinClassNames(['tw-flex tw-w-full', !isLoaded && 'tw-bg-box-neutral', className])}
             loading="lazy"
             decoding="async"
+            onLoad={handleImageLoaded}
             src={sourceOptimised}
             style={stylesToApply}
             alt={alt}

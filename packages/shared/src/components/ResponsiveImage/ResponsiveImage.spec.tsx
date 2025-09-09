@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { Asset, AssetDummy } from '@frontify/app-bridge';
 import { ResponsiveImage } from './ResponsiveImage';
@@ -118,8 +118,22 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} className="test-class" alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe(
-            'tw-flex tw-bg-box-neutral tw-w-full test-class'
+            'tw-flex tw-w-full tw-bg-box-neutral test-class'
         );
+    });
+
+    it('should remove placeholder after load', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} className="test-class" alt="" />
+        );
+
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe(
+            'tw-flex tw-w-full tw-bg-box-neutral test-class'
+        );
+
+        const img = getByTestId(ResponsiveImageSelector);
+        fireEvent.load(img);
+        expect(img.getAttribute('class')).toBe('tw-flex tw-w-full test-class');
     });
 
     it('should add alt text', () => {
