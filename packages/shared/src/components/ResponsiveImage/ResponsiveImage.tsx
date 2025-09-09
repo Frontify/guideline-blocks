@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { type CSSProperties } from 'react';
+import React, { type CSSProperties, useMemo } from 'react';
 import { Asset } from '@frontify/app-bridge';
 import { ImageFormat } from '../../types';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -45,13 +45,21 @@ export const ResponsiveImage = ({
 
     const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
 
+    const stylesToApply = useMemo(() => {
+        return {
+            ...style,
+            aspectRatio: style?.aspectRatio === 'auto' ? `${imageWidth} / ${imageHeight}` : style?.aspectRatio,
+        };
+    }, [imageHeight, imageWidth, style]);
+
     return (
         <img
             data-test-id={testId}
-            className={joinClassNames(['tw-flex tw-w-full', className])}
+            className={joinClassNames(['tw-flex tw-bg-box-neutral tw-w-full', className])}
             loading="lazy"
+            decoding="async"
             src={sourceOptimised}
-            style={style}
+            style={stylesToApply}
             alt={alt}
             {...dimensions}
         />

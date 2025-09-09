@@ -62,6 +62,7 @@ describe('Image Block', () => {
     });
 
     it('should render the image responsively rounded to the nearest hundred pixel', () => {
+        window.devicePixelRatio = 1;
         cy.viewport(240, 800);
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockAssets: {
