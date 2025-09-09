@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { Asset, AssetDummy } from '@frontify/app-bridge';
 import { ResponsiveImage } from './ResponsiveImage';
@@ -88,15 +88,22 @@ describe('ResponsiveImage', () => {
         expect(getByTestId(ResponsiveImageSelector).getAttribute('height')).toBe('1000');
     });
 
-    it('should set aspect-ratio before image load and remove it after load', () => {
-        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
+    it('should set aspect-ratio to imageWidth/imageHeight if user set one is auto', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" style={{ aspectRatio: 'auto' }} />
+        );
         const img = getByTestId(ResponsiveImageSelector);
 
         expect(img.getAttribute('style')).toContain('aspect-ratio: 2000 / 1000');
+    });
 
-        fireEvent.load(img);
+    it('should pass through aspect-ratio any ratio different than auto', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" style={{ aspectRatio: '1/2' }} />
+        );
+        const img = getByTestId(ResponsiveImageSelector);
 
-        expect(img.style.aspectRatio).toBe('');
+        expect(img.getAttribute('style')).toContain('aspect-ratio: 1 / 2');
     });
 
     it('should use provided style', () => {

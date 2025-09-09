@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { type CSSProperties, useCallback, useMemo, useState } from 'react';
+import React, { type CSSProperties, useMemo } from 'react';
 import { Asset } from '@frontify/app-bridge';
 import { ImageFormat } from '../../types';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -26,7 +26,6 @@ export const ResponsiveImage = ({
     quality = 100,
     testId = 'responsive-image',
 }: ResponsiveImageProps) => {
-    const [imageLoaded, setImageLoaded] = useState(false);
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
     const imageWidth = image.width ?? containerWidth;
     const imageHeight = image.height ?? 0;
@@ -45,13 +44,13 @@ export const ResponsiveImage = ({
     const sourceOptimised = `${sourceWithWidth}${conversionParams}`;
 
     const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
-    const handleImageLoad = useCallback(() => {
-        setImageLoaded(true);
-    }, [setImageLoaded]);
 
     const stylesToApply = useMemo(() => {
-        return !imageLoaded ? { ...style, aspectRatio: `${imageWidth} / ${imageHeight}` } : style;
-    }, [imageHeight, imageLoaded, imageWidth, style]);
+        return {
+            ...style,
+            aspectRatio: style?.aspectRatio === 'auto' ? `${imageWidth} / ${imageHeight}` : style?.aspectRatio,
+        };
+    }, [imageHeight, imageWidth, style]);
 
     return (
         <img
@@ -60,7 +59,6 @@ export const ResponsiveImage = ({
             loading="lazy"
             decoding="async"
             src={sourceOptimised}
-            onLoad={handleImageLoad}
             style={stylesToApply}
             alt={alt}
             {...dimensions}
