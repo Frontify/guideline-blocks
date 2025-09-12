@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
 import {
@@ -33,7 +33,7 @@ import {
     UploadView,
 } from './components';
 import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { ResponsiveImage, StyleProvider, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 import {
     DEFAULT_BACKGROUND_COLOR,
@@ -45,13 +45,11 @@ import {
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
+    const { containerWidth, setContainerRef } = useImageContainer();
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
-
-    const sliderRef = useRef<HTMLDivElement | null>(null);
-
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [isFirstAssetLoading, setIsFirstAssetLoading] = useState<boolean>(false);
     const [isSecondAssetLoading, setIsSecondAssetLoading] = useState<boolean>(false);
@@ -214,22 +212,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
-    const calculateAutoImageHeight = (): number => {
-        const currentSliderWidth = sliderRef.current?.clientWidth;
-        if (!firstAsset || !secondAsset || !currentSliderWidth) {
-            return 0;
-        }
-
-        const assetWithSmallerAspectRatio =
-            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
-                ? secondAsset[0]
-                : firstAsset[0];
-
-        return Math.round(
-            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width
-        );
-    };
-
     const getUploadViewHeight = (): number => {
         if (hasCustomHeight) {
             return parseInt(customHeight);
@@ -240,18 +222,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         }
 
         return heightMap.m;
-    };
-
-    const getImageHeight = (): number => {
-        if (hasCustomHeight) {
-            return parseInt(customHeight);
-        }
-
-        if (height !== Height.Auto) {
-            return heightMap[height];
-        }
-
-        return calculateAutoImageHeight();
     };
 
     const getBorderStyle = () => {
@@ -278,12 +248,12 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                             : undefined,
                     }}
                 >
-                    <img
-                        src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
-                        alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
+                    <ResponsiveImage
+                        image={slot === SliderImageSlot.First ? firstAsset[0] : secondAsset[0]}
+                        alt={slot === SliderImageSlot.First ? firstAssetAlt || '' : secondAssetAlt || ''}
+                        containerWidth={containerWidth}
                         className="tw-w-full tw-object-cover"
-                        data-test-id={`slider-item-${slot}`}
-                        style={{ height: getImageHeight() }}
+                        testId={slot === SliderImageSlot.First ? 'first-slider-image' : 'second-slider-image'}
                     />
                 </div>
 
@@ -366,7 +336,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     return (
         <div className="compare-slider-block">
             <StyleProvider>
-                <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
+                <div
+                    data-test-id="compare-slider-block"
+                    ref={setContainerRef}
+                    className="tw-w-full tw-flex tw-relative"
+                >
                     {isFirstAssetLoaded && isSecondAssetLoaded && (
                         <>
                             <div
