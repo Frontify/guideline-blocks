@@ -253,7 +253,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         alt={slot === SliderImageSlot.First ? firstAssetAlt || '' : secondAssetAlt || ''}
                         containerWidth={containerWidth}
                         className="tw-w-full tw-object-cover"
-                        testId={slot === SliderImageSlot.First ? 'first-slider-image' : 'second-slider-image'}
+                        testId={`slider-item-${slot}`}
                     />
                 </div>
 
