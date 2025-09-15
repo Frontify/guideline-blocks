@@ -213,4 +213,31 @@ describe('Compare Slider Block', () => {
             expect(getByTestId(SecondAssetSelector)).toHaveStyle({ height: '500px' });
         });
     });
+
+    it('should set height correctly if custom height is set 242px', async () => {
+        const customHeight = '242px';
+        const [CompareSliderBlockStub] = withAppBridgeBlockStubs(CompareSliderBlock, {
+            blockAssets: {
+                firstAsset: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/100', width: 200, height: 100 },
+                ],
+                secondAsset: [
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200', width: 200, height: 200 },
+                ],
+            },
+            blockSettings: {
+                hasCustomHeight: true,
+                customHeight: customHeight,
+            },
+            editorState: true,
+        });
+        const { getByTestId } = render(<CompareSliderBlockStub />);
+
+        await waitFor(() => {
+            expect(getByTestId(FirstAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(FirstAssetSelector)).toHaveStyle({ height: customHeight });
+            expect(getByTestId(SecondAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(SecondAssetSelector)).toHaveStyle({ height: customHeight });
+        });
+    });
 });
