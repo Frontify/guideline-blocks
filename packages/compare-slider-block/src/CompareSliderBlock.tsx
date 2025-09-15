@@ -53,11 +53,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const sliderRef = useRef<HTMLDivElement | null>(null);
 
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
-    const [isFirstAssetLoading, setIsFirstAssetLoading] = useState<boolean>(false);
-    const [isSecondAssetLoading, setIsSecondAssetLoading] = useState<boolean>(false);
+    const [assetLoadingStatus, setAssetLoadingStatus] = useState({
+        [SliderImageSlot.First]: false,
+        [SliderImageSlot.Second]: false,
+    });
     const [slotWithUploadInProgress, setSlotWithUploadInProgress] = useState<SliderImageSlot>();
-    const [isFirstAssetLoaded, setIsFirstAssetLoaded] = useState(false);
-    const [isSecondAssetLoaded, setIsSecondAssetLoaded] = useState(false);
     const [currentSliderPosition, setCurrentSliderPosition] = useState(50);
 
     const { firstAsset, secondAsset } = blockAssets;
@@ -99,25 +99,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const secondAssetPreviewUrl = secondAsset ? secondAsset[0].previewUrl : '';
 
     useEffect(() => {
-        if (firstAssetPreviewUrl) {
-            const firstImage = new Image();
-            firstImage.onload = () => {
-                setIsFirstAssetLoaded(true);
-                setIsFirstAssetLoading(false);
-            };
-            firstImage.src = firstAssetPreviewUrl;
-        }
-        if (secondAssetPreviewUrl) {
-            const secondImage = new Image();
-            secondImage.onload = () => {
-                setIsSecondAssetLoaded(true);
-                setIsSecondAssetLoading(false);
-            };
-            secondImage.src = secondAssetPreviewUrl;
-        }
-    }, [firstAssetPreviewUrl, secondAssetPreviewUrl]);
-
-    useEffect(() => {
         if (isEditing) {
             setCurrentSliderPosition(50);
         }
@@ -134,10 +115,10 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         const initialAlt = droppedFiles[0].name ?? '';
 
         if (slotWithUploadInProgress === SliderImageSlot.First) {
-            setIsFirstAssetLoading(true);
+            setAssetLoadingStatus((prev) => ({ ...prev, [SliderImageSlot.First]: true }));
             setBlockSettings({ firstAssetAlt: initialAlt });
         } else {
-            setIsSecondAssetLoading(true);
+            setAssetLoadingStatus((prev) => ({ ...prev, [SliderImageSlot.Second]: true }));
             setBlockSettings({ secondAssetAlt: initialAlt });
         }
         uploadFile(droppedFiles);
@@ -149,10 +130,10 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             const initialAlt = selectedFiles[0].name ?? '';
 
             if (slotWithUploadInProgress === SliderImageSlot.First) {
-                setIsFirstAssetLoading(true);
+                setAssetLoadingStatus((prev) => ({ ...prev, [SliderImageSlot.First]: true }));
                 setBlockSettings({ firstAssetAlt: initialAlt });
             } else {
-                setIsSecondAssetLoading(true);
+                setAssetLoadingStatus((prev) => ({ ...prev, [SliderImageSlot.Second]: true }));
                 setBlockSettings({ secondAssetAlt: initialAlt });
             }
             uploadFile(selectedFiles);
@@ -165,6 +146,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             (async (uploadResults) => {
                 const resultId = uploadResults[0].id;
                 await updateAssetIdsFromKey(slotAssetSettingMap[slotWithUploadInProgress], [resultId]);
+                setAssetLoadingStatus((prev) => ({ ...prev, [slotWithUploadInProgress]: false }));
             })(uploadResults);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -177,7 +159,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     const startDragAndDropUpload = (files: FileList, slot: SliderImageSlot) => {
         setSlotWithUploadInProgress(slot);
-
         setDroppedFiles(files);
     };
 
@@ -199,10 +180,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
                 const initialAlt = alternativeText ?? title ?? fileName ?? '';
                 const isFirstSlot = slot === SliderImageSlot.First;
-                const setAssetLoading = isFirstSlot ? setIsFirstAssetLoading : setIsSecondAssetLoading;
                 const prefix = isFirstSlot ? 'first' : 'second';
 
-                setAssetLoading(true);
+                setAssetLoadingStatus((prev) => ({ ...prev, [slot]: true }));
                 setBlockSettings({ [`${prefix}AssetAlt`]: initialAlt });
                 updateAssetIdsFromKey(`${prefix}Asset`, [id]);
                 closeAssetChooser();
@@ -215,13 +195,13 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const calculateAutoImageHeight = (): number => {
-        const currentSliderWidth = sliderRef.current?.clientWidth;
+        const currentSliderWidth = sliderRef.current?.clientWidth || 0;
         if (!firstAsset || !secondAsset || !currentSliderWidth) {
-            return 0;
+            return heightMap.m;
         }
 
         const assetWithSmallerAspectRatio =
-            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
+            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / secondAsset[0].height
                 ? secondAsset[0]
                 : firstAsset[0];
 
@@ -268,7 +248,19 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         return radiusStyleMap[radiusChoice];
     };
 
+    const handleImageLoad = (slot: SliderImageSlot) => {
+        setAssetLoadingStatus((prev) => ({ ...prev, [slot]: false }));
+    };
+
+    const handleImageError = (slot: SliderImageSlot) => {
+        setAssetLoadingStatus((prev) => ({ ...prev, [slot]: false }));
+        console.warn(`Failed to load image for slot: ${slot}`);
+    };
+
     const renderSliderItem = (slot: SliderImageSlot) => {
+        const previewUrl = slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl;
+        const title = slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle;
+
         return (
             <div className="tw-grow">
                 <div
@@ -278,15 +270,18 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                             : undefined,
                     }}
                 >
-                    <img
-                        src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
-                        alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
-                        className="tw-w-full tw-object-cover"
-                        data-test-id={`slider-item-${slot}`}
-                        style={{ height: getImageHeight() }}
-                    />
+                    {previewUrl && (
+                        <img
+                            src={previewUrl}
+                            alt={title}
+                            className="tw-w-full tw-object-cover"
+                            data-test-id={`slider-item-${slot}`}
+                            style={{ height: getImageHeight() }}
+                            onLoad={() => handleImageLoad(slot)}
+                            onError={() => handleImageError(slot)}
+                        />
+                    )}
                 </div>
-
                 {renderStrikethrough(slot)}
                 {!isEditing && renderLabel(slot)}
             </div>
@@ -350,8 +345,8 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             >
                 <UploadView
                     alignment={alignment}
-                    isFirstAssetLoading={isFirstAssetLoading}
-                    isSecondAssetLoading={isSecondAssetLoading}
+                    isFirstAssetLoading={assetLoadingStatus[SliderImageSlot.First]}
+                    isSecondAssetLoading={assetLoadingStatus[SliderImageSlot.Second]}
                     openAssetChooser={onOpenAssetChooser}
                     startDragAndDropUpload={startDragAndDropUpload}
                     startFileDialogUpload={startFileDialogUpload}
@@ -363,54 +358,51 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             </div>
         );
     }
+
     return (
         <div className="compare-slider-block">
             <StyleProvider>
                 <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
-                    {isFirstAssetLoaded && isSecondAssetLoaded && (
-                        <>
-                            <div
-                                data-test-id="compare-slider-block-slider"
-                                className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
-                                style={{
-                                    ...getBorderStyle(),
-                                    borderRadius: getBorderRadius(),
-                                }}
-                            >
-                                <ReactCompareSlider
-                                    position={currentSliderPosition}
-                                    onPositionChange={setCurrentSliderPosition}
-                                    itemOne={renderSliderItem(SliderImageSlot.First)}
-                                    itemTwo={renderSliderItem(SliderImageSlot.Second)}
-                                    handle={
-                                        <SliderLine
-                                            alignment={alignment}
-                                            handle={handle}
-                                            sliderColor={sliderColor || DEFAULT_LINE_COLOR}
-                                            sliderStyle={sliderStyle}
-                                            sliderWidth={sliderWidth}
-                                        />
-                                    }
-                                    portrait={alignment === Alignment.Vertical}
-                                    onlyHandleDraggable
-                                />
-                            </div>
-                            {isEditing && (
-                                <EditorOverlay
+                    <div
+                        data-test-id="compare-slider-block-slider"
+                        className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
+                        style={{
+                            ...getBorderStyle(),
+                            borderRadius: getBorderRadius(),
+                        }}
+                    >
+                        <ReactCompareSlider
+                            position={currentSliderPosition}
+                            onPositionChange={setCurrentSliderPosition}
+                            itemOne={renderSliderItem(SliderImageSlot.First)}
+                            itemTwo={renderSliderItem(SliderImageSlot.Second)}
+                            handle={
+                                <SliderLine
                                     alignment={alignment}
-                                    openAssetChooser={onOpenAssetChooser}
-                                    startFileDialogUpload={startFileDialogUpload}
-                                    firstAsset={firstAsset}
-                                    secondAsset={secondAsset}
-                                    borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
-                                    renderLabel={renderLabel}
-                                    handleAssetDelete={handleAssetDelete}
-                                    firstAlt={firstAssetAlt}
-                                    secondAlt={secondAssetAlt}
-                                    updateImageAlt={updateImageAlt}
+                                    handle={handle}
+                                    sliderColor={sliderColor || DEFAULT_LINE_COLOR}
+                                    sliderStyle={sliderStyle}
+                                    sliderWidth={sliderWidth}
                                 />
-                            )}
-                        </>
+                            }
+                            portrait={alignment === Alignment.Vertical}
+                            onlyHandleDraggable
+                        />
+                    </div>
+                    {isEditing && (
+                        <EditorOverlay
+                            alignment={alignment}
+                            openAssetChooser={onOpenAssetChooser}
+                            startFileDialogUpload={startFileDialogUpload}
+                            firstAsset={firstAsset}
+                            secondAsset={secondAsset}
+                            borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
+                            renderLabel={renderLabel}
+                            handleAssetDelete={handleAssetDelete}
+                            firstAlt={firstAssetAlt}
+                            secondAlt={secondAssetAlt}
+                            updateImageAlt={updateImageAlt}
+                        />
                     )}
                 </div>
             </StyleProvider>

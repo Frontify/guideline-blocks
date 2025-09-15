@@ -188,4 +188,29 @@ describe('Compare Slider Block', () => {
             expect(getByTestId(SecondAssetSelector)).toHaveAttribute('alt', 'Second alt text');
         });
     });
+
+    it('should calculate the image height based on the image aspect ratio if height setting is set to auto', async () => {
+        const [CompareSliderBlockStub] = withAppBridgeBlockStubs(CompareSliderBlock, {
+            blockAssets: {
+                firstAsset: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/100', width: 200, height: 100 },
+                ],
+                secondAsset: [
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200', width: 200, height: 200 },
+                ],
+            },
+            blockSettings: {
+                height: 'auto',
+            },
+            editorState: true,
+        });
+        const { getByTestId } = render(<CompareSliderBlockStub />);
+
+        await waitFor(() => {
+            expect(getByTestId(FirstAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(FirstAssetSelector)).toHaveStyle({ height: '500px' });
+            expect(getByTestId(SecondAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(SecondAssetSelector)).toHaveStyle({ height: '500px' });
+        });
+    });
 });
