@@ -14,8 +14,6 @@ type ResponsiveImageProps = {
     className?: string;
     style?: CSSProperties;
     testId?: string;
-    onLoad?: () => void;
-    onError?: () => void;
 };
 
 export const ResponsiveImage = ({
@@ -27,8 +25,6 @@ export const ResponsiveImage = ({
     style,
     quality = 100,
     testId = 'responsive-image',
-    onLoad,
-    onError,
 }: ResponsiveImageProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
@@ -59,8 +55,7 @@ export const ResponsiveImage = ({
 
     const handleImageLoaded = useCallback(() => {
         setIsLoaded(true);
-        onLoad && onLoad();
-    }, [setIsLoaded, onLoad]);
+    }, [setIsLoaded]);
 
     return (
         <img
@@ -69,7 +64,6 @@ export const ResponsiveImage = ({
             loading="lazy"
             decoding="async"
             onLoad={handleImageLoaded}
-            onError={onError}
             src={sourceOptimised}
             style={stylesToApply}
             alt={alt}
