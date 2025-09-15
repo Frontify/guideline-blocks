@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
 import {
@@ -49,8 +49,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
-
-    const sliderRef = useRef<HTMLDivElement | null>(null);
 
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [assetLoadingStatus, setAssetLoadingStatus] = useState({
@@ -109,9 +107,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             return;
         }
 
-        if (droppedFiles.length > 1) {
-            return console.error('Please only upload one file per slot.');
-        }
         const initialAlt = droppedFiles[0].name ?? '';
 
         if (slotWithUploadInProgress === SliderImageSlot.First) {
@@ -177,7 +172,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         openAssetChooser(
             async (result) => {
                 const { alternativeText, title, fileName, id } = result[0];
-
                 const initialAlt = alternativeText ?? title ?? fileName ?? '';
                 const isFirstSlot = slot === SliderImageSlot.First;
                 const prefix = isFirstSlot ? 'first' : 'second';
@@ -194,44 +188,24 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
-    const calculateAutoImageHeight = (): number => {
-        const currentSliderWidth = sliderRef.current?.clientWidth;
-        if (!firstAsset || !secondAsset || !currentSliderWidth) {
-            return 0;
+    const getContainerAspectRatio = useMemo((): string => {
+        if (!firstAsset || !secondAsset) {
+            return '16/9';
         }
+        const firstAspectRatio = firstAsset[0].width / firstAsset[0].height;
+        const secondAspectRatio = secondAsset[0].width / secondAsset[0].height;
+        const minAspectRatio = Math.min(firstAspectRatio, secondAspectRatio);
+        return `${minAspectRatio}/1`;
+    }, [firstAsset, secondAsset]);
 
-        const assetWithSmallerAspectRatio =
-            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
-                ? secondAsset[0]
-                : firstAsset[0];
-
-        return Math.round(
-            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width
-        );
-    };
-
-    const getUploadViewHeight = (): number => {
+    const getContainerHeight = (): string => {
         if (hasCustomHeight) {
-            return parseInt(customHeight);
+            return `${parseInt(customHeight)}px`;
         }
-
         if (height !== Height.Auto) {
-            return heightMap[height];
+            return `${heightMap[height]}px`;
         }
-
-        return heightMap.m;
-    };
-
-    const getImageHeight = (): number => {
-        if (hasCustomHeight) {
-            return parseInt(customHeight);
-        }
-
-        if (height !== Height.Auto) {
-            return heightMap[height];
-        }
-
-        return calculateAutoImageHeight();
+        return 'auto';
     };
 
     const getBorderStyle = () => {
@@ -244,7 +218,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         if (hasRadius) {
             return radiusValue;
         }
-
         return radiusStyleMap[radiusChoice];
     };
 
@@ -268,17 +241,21 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                         background: hasBackground
                             ? toRgbaString(backgroundColor || DEFAULT_BACKGROUND_COLOR)
                             : undefined,
+                        aspectRatio: height === Height.Auto ? getContainerAspectRatio : undefined,
                     }}
+                    data-test-id={`slider-item-container-${slot}`}
                 >
                     {previewUrl && (
                         <img
                             src={previewUrl}
                             alt={title}
-                            className="tw-w-full tw-object-cover"
+                            className="tw-w-full tw-h-full tw-object-cover"
                             data-test-id={`slider-item-${slot}`}
-                            style={{ height: getImageHeight() }}
                             onLoad={() => handleImageLoad(slot)}
                             onError={() => handleImageError(slot)}
+                            style={{
+                                height: height === Height.Auto ? 'undefined' : getContainerHeight(),
+                            }}
                         />
                     )}
                 </div>
@@ -338,10 +315,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     if (isEditing && (!firstAsset || !secondAsset)) {
         return (
             <div
-                style={{
-                    height: getUploadViewHeight(),
-                }}
                 className="tw-flex"
+                style={{
+                    height: getContainerHeight(),
+                    aspectRatio: height === Height.Auto ? getContainerAspectRatio : undefined,
+                }}
             >
                 <UploadView
                     alignment={alignment}
@@ -362,13 +340,14 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     return (
         <div className="compare-slider-block">
             <StyleProvider>
-                <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
+                <div data-test-id="compare-slider-block" className="tw-w-full tw-flex tw-relative">
                     <div
                         data-test-id="compare-slider-block-slider"
                         className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
                         style={{
                             ...getBorderStyle(),
                             borderRadius: getBorderRadius(),
+                            height: getContainerHeight(),
                         }}
                     >
                         <ReactCompareSlider

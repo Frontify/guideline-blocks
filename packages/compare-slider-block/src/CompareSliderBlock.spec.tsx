@@ -12,7 +12,9 @@ const BlockInjectButtonSelector = 'block-inject-button';
 const LabelWrapperSelector = 'compare-slider-block-label-wrapper';
 const StrikethroughWrapperSelector = 'compare-slider-block-strikethrough-wrapper';
 const FirstAssetSelector = 'slider-item-first';
+const FirstAssetWrapper = 'slider-item-container-first';
 const SecondAssetSelector = 'slider-item-second';
+const SecondAssetWrapper = 'slider-item-container-second';
 const RteContentSelector = 'rte-content-html';
 
 describe('Compare Slider Block', () => {
@@ -189,7 +191,7 @@ describe('Compare Slider Block', () => {
         });
     });
 
-    it('should calculate the image height based on the image aspect ratio if height setting is set to auto', async () => {
+    it('should calculate the aspect ratio based on the image aspect ratio if height setting is set to auto', async () => {
         const [CompareSliderBlockStub] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
                 firstAsset: [
@@ -208,9 +210,9 @@ describe('Compare Slider Block', () => {
 
         await waitFor(() => {
             expect(getByTestId(FirstAssetSelector)).toBeInTheDocument();
-            expect(getByTestId(FirstAssetSelector)).toHaveStyle({ height: '500px' });
+            expect(getByTestId(FirstAssetWrapper)).toHaveStyle({ aspectRatio: '1 / 1' });
             expect(getByTestId(SecondAssetSelector)).toBeInTheDocument();
-            expect(getByTestId(SecondAssetSelector)).toHaveStyle({ height: '500px' });
+            expect(getByTestId(SecondAssetWrapper)).toHaveStyle({ aspectRatio: '1 / 1' });
         });
     });
 
@@ -235,8 +237,10 @@ describe('Compare Slider Block', () => {
 
         await waitFor(() => {
             expect(getByTestId(FirstAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(CompareSliderSelector)).toHaveStyle({ height: customHeight });
             expect(getByTestId(FirstAssetSelector)).toHaveStyle({ height: customHeight });
             expect(getByTestId(SecondAssetSelector)).toBeInTheDocument();
+            expect(getByTestId(CompareSliderSelector)).toHaveStyle({ height: customHeight });
             expect(getByTestId(SecondAssetSelector)).toHaveStyle({ height: customHeight });
         });
     });
