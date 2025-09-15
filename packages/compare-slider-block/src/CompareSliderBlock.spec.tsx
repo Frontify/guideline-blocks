@@ -227,7 +227,7 @@ describe('Compare Slider Block', () => {
             },
             blockSettings: {
                 hasCustomHeight: true,
-                customHeight: customHeight,
+                customHeight,
             },
             editorState: true,
         });
