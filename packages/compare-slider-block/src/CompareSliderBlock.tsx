@@ -33,7 +33,7 @@ import {
     UploadView,
 } from './components';
 import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { ResponsiveImage, StyleProvider, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 import {
     DEFAULT_BACKGROUND_COLOR,
@@ -45,6 +45,7 @@ import {
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
+    const { containerWidth, setContainerRef } = useImageContainer();
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
@@ -221,18 +222,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         return radiusStyleMap[radiusChoice];
     };
 
-    const handleImageLoad = (slot: SliderImageSlot) => {
-        setAssetLoadingStatus((prev) => ({ ...prev, [slot]: false }));
-    };
-
-    const handleImageError = (slot: SliderImageSlot) => {
-        setAssetLoadingStatus((prev) => ({ ...prev, [slot]: false }));
-        console.warn(`Failed to load image for slot: ${slot}`);
-    };
-
     const renderSliderItem = (slot: SliderImageSlot) => {
-        const previewUrl = slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl;
-        const title = slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle;
+        if (!firstAsset || !secondAsset) {
+            return null;
+        }
+        const asset = slot === SliderImageSlot.First ? firstAsset[0] : secondAsset[0];
 
         return (
             <div className="tw-grow">
@@ -245,19 +239,16 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     }}
                     data-test-id={`slider-item-container-${slot}`}
                 >
-                    {previewUrl && (
-                        <img
-                            src={previewUrl}
-                            alt={title}
-                            className="tw-w-full tw-h-full tw-object-cover"
-                            data-test-id={`slider-item-${slot}`}
-                            onLoad={() => handleImageLoad(slot)}
-                            onError={() => handleImageError(slot)}
-                            style={{
-                                height: height === Height.Auto ? 'undefined' : getContainerHeight(),
-                            }}
-                        />
-                    )}
+                    <ResponsiveImage
+                        image={asset}
+                        alt={slot === SliderImageSlot.First ? firstAssetAlt || '' : secondAssetAlt || ''}
+                        containerWidth={containerWidth}
+                        testId={`slider-item-${slot}`}
+                        className="tw-w-full tw-h-full tw-object-cover"
+                        style={{
+                            height: height === Height.Auto ? 'undefined' : getContainerHeight(),
+                        }}
+                    />
                 </div>
                 {renderStrikethrough(slot)}
                 {!isEditing && renderLabel(slot)}
@@ -314,25 +305,27 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     if (isEditing && (!firstAsset || !secondAsset)) {
         return (
-            <div
-                className="tw-flex"
-                style={{
-                    height: getContainerHeight(),
-                    aspectRatio: height === Height.Auto ? getContainerAspectRatio : undefined,
-                }}
-            >
-                <UploadView
-                    alignment={alignment}
-                    isFirstAssetLoading={assetLoadingStatus[SliderImageSlot.First]}
-                    isSecondAssetLoading={assetLoadingStatus[SliderImageSlot.Second]}
-                    openAssetChooser={onOpenAssetChooser}
-                    startDragAndDropUpload={startDragAndDropUpload}
-                    startFileDialogUpload={startFileDialogUpload}
-                    firstAssetPreviewUrl={firstAssetPreviewUrl}
-                    firstAssetTitle={firstAssetTitle}
-                    secondAssetPreviewUrl={secondAssetPreviewUrl}
-                    secondAssetTitle={secondAssetTitle}
-                />
+            <div className="compare-slider-block">
+                <div
+                    className="tw-flex"
+                    style={{
+                        height: getContainerHeight(),
+                        aspectRatio: height === Height.Auto ? getContainerAspectRatio : undefined,
+                    }}
+                >
+                    <UploadView
+                        alignment={alignment}
+                        isFirstAssetLoading={assetLoadingStatus[SliderImageSlot.First]}
+                        isSecondAssetLoading={assetLoadingStatus[SliderImageSlot.Second]}
+                        openAssetChooser={onOpenAssetChooser}
+                        startDragAndDropUpload={startDragAndDropUpload}
+                        startFileDialogUpload={startFileDialogUpload}
+                        firstAssetPreviewUrl={firstAssetPreviewUrl}
+                        firstAssetTitle={firstAssetTitle}
+                        secondAssetPreviewUrl={secondAssetPreviewUrl}
+                        secondAssetTitle={secondAssetTitle}
+                    />
+                </div>
             </div>
         );
     }
@@ -340,7 +333,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     return (
         <div className="compare-slider-block">
             <StyleProvider>
-                <div data-test-id="compare-slider-block" className="tw-w-full tw-flex tw-relative">
+                <div
+                    data-test-id="compare-slider-block"
+                    ref={setContainerRef}
+                    className="tw-w-full tw-flex tw-relative"
+                >
                     <div
                         data-test-id="compare-slider-block-slider"
                         className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
