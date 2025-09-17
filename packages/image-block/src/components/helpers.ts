@@ -31,6 +31,7 @@ import {
     Autosizing,
     CornerRadius,
     HorizontalAlignment,
+    ImageAspectRatio,
     ImageInformation,
     Settings,
     VerticalAlignment,
@@ -109,24 +110,38 @@ const getBorderRadius = (blockSettings: Settings) => {
 };
 
 export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => {
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor || DEFAULT_BORDER_COLOR)}`
+    const {
+        hasCustomRatio,
+        ratioCustom,
+        ratioChoice,
+        hasBackground,
+        autosizing,
+        borderWidth,
+        borderStyle,
+        borderColor,
+        hasBorder,
+        backgroundColor,
+    } = blockSettings;
+    const ratio = hasCustomRatio ? ratioCustom : ratioChoice;
+
+    const border = hasBorder
+        ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor || DEFAULT_BORDER_COLOR)}`
         : undefined;
+    console.log(ratio);
+    const shouldNotApplyBorderRadius =
+        !hasBackground && autosizing !== Autosizing.Fill && ratio !== ImageAspectRatio.RatioNone;
 
     return {
         padding: getPadding(blockSettings),
         border,
-        borderRadius: blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
-        backgroundColor: blockSettings.hasBackground
-            ? toRgbaString(blockSettings.backgroundColor || DEFAULT_BACKGROUND_COLOR)
-            : undefined,
+        borderRadius: shouldNotApplyBorderRadius ? undefined : getBorderRadius(blockSettings),
+        backgroundColor: hasBackground ? toRgbaString(backgroundColor || DEFAULT_BACKGROUND_COLOR) : undefined,
     };
 };
 
 export const getImageStyle = (blockSettings: Settings, imageInformation: ImageInformation): CSSProperties => {
     const { height, focalPointX, focalPointY } = imageInformation;
     return {
-        borderRadius: !blockSettings.hasBackground ? getBorderRadius(blockSettings) : undefined,
         aspectRatio: getImageRatioValue(blockSettings),
         objectFit: getImageObjectFitValue(blockSettings),
         objectPosition: getImageObjectPositionValue(blockSettings, { focalPointX, focalPointY }),

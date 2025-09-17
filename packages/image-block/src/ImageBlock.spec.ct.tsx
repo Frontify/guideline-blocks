@@ -493,10 +493,11 @@ describe('Image Block', () => {
         cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'border-radius', '12px');
     });
 
-    it('should add border radius to image component when there is no background color set', () => {
+    it('should add border radius to image container when ratio is none', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 hasBackground: false,
+                ratioChoice: 'none',
                 radiusChoice_cornerRadius: CornerRadius.Large,
             },
             blockAssets: {
@@ -504,7 +505,23 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageComponentSelector).should('have.css', 'border-radius', '12px');
+        cy.get(ImageBlockDefaultWrapperSelector).should('have.css', 'border-radius', '12px');
+    });
+
+    it('should not add border radius to image container when autosizing is fit and ratio is not none', () => {
+        const ImageBlockWithStubs = getImageBlockWithContainer({
+            blockSettings: {
+                hasBackground: false,
+                radiusChoice_cornerRadius: CornerRadius.Large,
+                autosizing: 'fit',
+                ratioChoice: '1:2',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockDefaultWrapperSelector).should('not.have.css', 'border-radius', '12px');
     });
 
     it('should render the alt text button in the block toolbar', () => {
