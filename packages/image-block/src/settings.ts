@@ -271,11 +271,11 @@ export const settings = defineSettings({
             }),
             info: 'Adjust how rounded the corners of the image container are.',
             show: (bundle) =>
-                !!bundle.getBlock('hasBackground')?.value ||
-                bundle.getBlock('autosizing')?.value === Autosizing.Fill ||
-                !!(
-                    !bundle.getBlock('hasCustomRatio')?.value &&
-                    bundle.getBlock('ratioChoice')?.value === ImageAspectRatio.RatioNone
+                Boolean(
+                    bundle.getBlock('hasBackground')?.value ||
+                        bundle.getBlock('autosizing')?.value === Autosizing.Fill ||
+                        (!bundle.getBlock('hasCustomRatio')?.value &&
+                            bundle.getBlock('ratioChoice')?.value === ImageAspectRatio.RatioNone)
                 ),
         },
     ],
