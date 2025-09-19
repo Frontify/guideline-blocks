@@ -264,10 +264,20 @@ export const settings = defineSettings({
             ],
         },
         getBorderSettings({ defaultColor: DEFAULT_BORDER_COLOR }),
-        getBorderRadiusSettings({
-            id: 'cornerRadius',
-            radiusStyleMap: radiusValues,
-        }),
+        {
+            ...getBorderRadiusSettings({
+                id: 'cornerRadius',
+                radiusStyleMap: radiusValues,
+            }),
+            info: 'Adjust how rounded the corners of the image container are.',
+            show: (bundle) =>
+                Boolean(
+                    bundle.getBlock('hasBackground')?.value ||
+                        bundle.getBlock('autosizing')?.value === Autosizing.Fill ||
+                        (!bundle.getBlock('hasCustomRatio')?.value &&
+                            bundle.getBlock('ratioChoice')?.value === ImageAspectRatio.RatioNone)
+                ),
+        },
     ],
     security: [
         ...getSecurityGlobalControlSetting(),
