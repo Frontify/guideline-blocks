@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
 import {
@@ -33,7 +33,7 @@ import {
     UploadView,
 } from './components';
 import { BlockProps, THEME_PREFIX, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { ResponsiveImage, StyleProvider, useImageContainer } from '@frontify/guideline-blocks-shared';
 
 import {
     DEFAULT_BACKGROUND_COLOR,
@@ -50,8 +50,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
 
-    const sliderRef = useRef<HTMLDivElement | null>(null);
-
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [isFirstAssetLoading, setIsFirstAssetLoading] = useState<boolean>(false);
     const [isSecondAssetLoading, setIsSecondAssetLoading] = useState<boolean>(false);
@@ -59,6 +57,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [isFirstAssetLoaded, setIsFirstAssetLoaded] = useState(false);
     const [isSecondAssetLoaded, setIsSecondAssetLoaded] = useState(false);
     const [currentSliderPosition, setCurrentSliderPosition] = useState(50);
+    const { containerWidth, setContainerRef } = useImageContainer();
 
     const { firstAsset, secondAsset } = blockAssets;
     const {
@@ -215,8 +214,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const calculateAutoImageHeight = (): number => {
-        const currentSliderWidth = sliderRef.current?.clientWidth;
-        if (!firstAsset || !secondAsset || !currentSliderWidth) {
+        if (!firstAsset || !secondAsset || !containerWidth) {
             return 0;
         }
 
@@ -225,9 +223,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 ? secondAsset[0]
                 : firstAsset[0];
 
-        return Math.round(
-            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width
-        );
+        return Math.round((assetWithSmallerAspectRatio.height * containerWidth) / assetWithSmallerAspectRatio.width);
     };
 
     const getUploadViewHeight = (): number => {
@@ -278,11 +274,12 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                             : undefined,
                     }}
                 >
-                    <img
-                        src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
+                    <ResponsiveImage
+                        containerWidth={containerWidth}
+                        image={slot === SliderImageSlot.First ? firstAsset[0] : secondAsset[0]}
                         alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
                         className="tw-w-full tw-object-cover"
-                        data-test-id={`slider-item-${slot}`}
+                        testId={`slider-item-${slot}`}
                         style={{ height: getImageHeight() }}
                     />
                 </div>
@@ -366,7 +363,11 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     return (
         <div className="compare-slider-block">
             <StyleProvider>
-                <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
+                <div
+                    data-test-id="compare-slider-block"
+                    ref={setContainerRef}
+                    className="tw-w-full tw-flex tw-relative"
+                >
                     {isFirstAssetLoaded && isSecondAssetLoaded && (
                         <>
                             <div
