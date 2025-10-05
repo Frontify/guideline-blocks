@@ -907,7 +907,7 @@ importers:
         version: 5.9.3(@types/node@24.5.2)
       '@react-aria/interactions':
         specifier: ^3.25.5
-        version: 3.25.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.24
@@ -980,7 +980,7 @@ importers:
         version: 5.9.3(@types/node@24.5.2)
       '@react-aria/interactions':
         specifier: ^3.25.5
-        version: 3.25.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.24
@@ -1335,7 +1335,7 @@ importers:
         version: link:../shared
       '@react-aria/interactions':
         specifier: ^3.25.5
-        version: 3.25.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.25.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1834,6 +1834,9 @@ packages:
   '@codemirror/commands@6.8.1':
     resolution: {integrity: sha512-KlGVYufHMQzxbdQONiLyGQDUW0itrLZwq3CcY7xpv9ZLRHqzkBSoteocBHtMCoY7/Ci4xhzSrToIeLg7FxHuaw==}
 
+  '@codemirror/commands@6.9.0':
+    resolution: {integrity: sha512-454TVgjhO6cMufsyyGN70rGIfJxJEjcqjBG2x2Y03Y/+Fm99d3O/Kv1QDYWuG6hvxsgmjXmBuATikIIYvERX+w==}
+
   '@codemirror/lang-angular@0.1.4':
     resolution: {integrity: sha512-oap+gsltb/fzdlTQWD6BFF4bSLKcDnlxDsLdePiJpCVNKWXSTAbiiQeYI3UmES+BLAdkmIC1WjyztC1pi/bX4g==}
 
@@ -1846,8 +1849,8 @@ packages:
   '@codemirror/lang-go@6.0.1':
     resolution: {integrity: sha512-7fNvbyNylvqCphW9HD6WFnRpcDjr+KXX/FgqXy5H5ZS0eC5edDljukm/yNgYkwTsgp2busdod50AOTIy6Jikfg==}
 
-  '@codemirror/lang-html@6.4.10':
-    resolution: {integrity: sha512-h/SceTVsN5r+WE+TVP2g3KDvNoSzbSrtZXCKo4vkKdbfT5t4otuVgngGdFukOO/rwRD2++pCxoh6xD4TEVMkQA==}
+  '@codemirror/lang-html@6.4.11':
+    resolution: {integrity: sha512-9NsXp7Nwp891pQchI7gPdTwBuSuT3K65NGTHWHNJ55HjYcHLllr0rbIZNdOzas9ztc1EUVBlHou85FFZS4BNnw==}
 
   '@codemirror/lang-html@6.4.9':
     resolution: {integrity: sha512-aQv37pIMSlueybId/2PVSP6NPnmurFDVmZwzc7jszd2KAF8qd4VBbvNYPXWQq90WIARjsdVkPbw29pszmHws3Q==}
@@ -1875,6 +1878,9 @@ packages:
 
   '@codemirror/lang-markdown@6.3.4':
     resolution: {integrity: sha512-fBm0BO03azXnTAsxhONDYHi/qWSI+uSEIpzKM7h/bkIc9fHnFp9y7KTMXKON0teNT97pFhc1a9DQTtWBYEZ7ug==}
+
+  '@codemirror/lang-markdown@6.4.0':
+    resolution: {integrity: sha512-ZeArR54seh4laFbUTVy0ZmQgO+C/cxxlW4jEoQMhL3HALScBpZBeZcLzrQmJsTEx4is9GzOe0bFAke2B1KZqeA==}
 
   '@codemirror/lang-php@6.0.2':
     resolution: {integrity: sha512-ZKy2v1n8Fc8oEXj0Th0PUMXzQJ0AIR6TaZU+PbDHExFwdu+guzOA4jmCHS1Nz4vbFezwD7LyBdDnddSJeScMCA==}
@@ -3149,6 +3155,12 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
+  '@react-aria/interactions@3.25.6':
+    resolution: {integrity: sha512-5UgwZmohpixwNMVkMvn9K1ceJe6TzlRlAfuYoQDUuOkk62/JVJNDLAPKIf5YMRc7d2B0rmfgaZLMtbREb0Zvkw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
   '@react-aria/label@3.7.21':
     resolution: {integrity: sha512-8G+059/GZahgQbrhMcCcVcrjm7W+pfzrypH/Qkjo7C1yqPGt6geeFwWeOIbiUZoI0HD9t9QvQPryd6m46UC7Tg==}
     peerDependencies:
@@ -3238,6 +3250,12 @@ packages:
 
   '@react-aria/utils@3.30.1':
     resolution: {integrity: sha512-zETcbDd6Vf9GbLndO6RiWJadIZsBU2MMm23rBACXLmpRztkrIqPEb2RVdlLaq1+GklDx0Ii6PfveVjx+8S5U6A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
+  '@react-aria/utils@3.31.0':
+    resolution: {integrity: sha512-ABOzCsZrWzf78ysswmguJbx3McQUja7yeGj6/vZo4JVsZNlxAN+E9rs381ExBRI0KzVo6iBTeX5De8eMZPJXig==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
@@ -3444,6 +3462,11 @@ packages:
 
   '@react-types/shared@3.32.0':
     resolution: {integrity: sha512-t+cligIJsZYFMSPFMvsJMjzlzde06tZMOIOFa1OV5Z0BcMowrb2g4mB57j/9nP28iJIRYn10xCniQts+qadrqQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
+  '@react-types/shared@3.32.1':
+    resolution: {integrity: sha512-famxyD5emrGGpFuUlgOP6fVW2h/ZaF405G5KDi3zPHzyjAWys/8W6NAVJtNbkCkhedmvL0xOhvt8feGXyXaw5w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
@@ -8425,6 +8448,13 @@ snapshots:
       '@codemirror/view': 6.38.4
       '@lezer/common': 1.2.3
 
+  '@codemirror/commands@6.9.0':
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.4
+      '@lezer/common': 1.2.3
+
   '@codemirror/lang-angular@0.1.4':
     dependencies:
       '@codemirror/lang-html': 6.4.9
@@ -8455,7 +8485,7 @@ snapshots:
       '@lezer/common': 1.2.3
       '@lezer/go': 1.0.1
 
-  '@codemirror/lang-html@6.4.10':
+  '@codemirror/lang-html@6.4.11':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-css': 6.3.1
@@ -8528,7 +8558,7 @@ snapshots:
   '@codemirror/lang-liquid@6.3.0':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/lang-html': 6.4.10
+      '@codemirror/lang-html': 6.4.11
       '@codemirror/language': 6.11.3
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.4
@@ -8540,6 +8570,16 @@ snapshots:
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-html': 6.4.9
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.4
+      '@lezer/common': 1.2.3
+      '@lezer/markdown': 1.4.3
+
+  '@codemirror/lang-markdown@6.4.0':
+    dependencies:
+      '@codemirror/autocomplete': 6.18.6
+      '@codemirror/lang-html': 6.4.11
       '@codemirror/language': 6.11.3
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.4
@@ -8634,13 +8674,13 @@ snapshots:
       '@codemirror/lang-cpp': 6.0.3
       '@codemirror/lang-css': 6.3.1
       '@codemirror/lang-go': 6.0.1
-      '@codemirror/lang-html': 6.4.10
+      '@codemirror/lang-html': 6.4.11
       '@codemirror/lang-java': 6.0.2
       '@codemirror/lang-javascript': 6.2.4
       '@codemirror/lang-json': 6.0.2
       '@codemirror/lang-less': 6.0.2
       '@codemirror/lang-liquid': 6.3.0
-      '@codemirror/lang-markdown': 6.3.4
+      '@codemirror/lang-markdown': 6.4.0
       '@codemirror/lang-php': 6.0.2
       '@codemirror/lang-python': 6.2.1
       '@codemirror/lang-rust': 6.0.2
@@ -10571,6 +10611,16 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
+  '@react-aria/interactions@3.25.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@react-aria/ssr': 3.9.10(react@18.3.1)
+      '@react-aria/utils': 3.31.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-stately/flags': 3.1.2
+      '@react-types/shared': 3.32.1(react@18.3.1)
+      '@swc/helpers': 0.5.17
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   '@react-aria/label@3.7.21(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-aria/utils': 3.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10765,6 +10815,17 @@ snapshots:
       '@react-stately/flags': 3.1.2
       '@react-stately/utils': 3.10.8(react@18.3.1)
       '@react-types/shared': 3.32.0(react@18.3.1)
+      '@swc/helpers': 0.5.17
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@react-aria/utils@3.31.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@react-aria/ssr': 3.9.10(react@18.3.1)
+      '@react-stately/flags': 3.1.2
+      '@react-stately/utils': 3.10.8(react@18.3.1)
+      '@react-types/shared': 3.32.1(react@18.3.1)
       '@swc/helpers': 0.5.17
       clsx: 2.1.1
       react: 18.3.1
@@ -11036,6 +11097,10 @@ snapshots:
       react: 18.3.1
 
   '@react-types/shared@3.32.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@react-types/shared@3.32.1(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
@@ -13012,7 +13077,7 @@ snapshots:
   codemirror@6.0.2:
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/commands': 6.8.1
+      '@codemirror/commands': 6.9.0
       '@codemirror/language': 6.11.3
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
