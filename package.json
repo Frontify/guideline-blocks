@@ -44,7 +44,7 @@
     "dependencies": {
         "@frontify/fondue": "12.12.5",
         "glob": "^11.0.3",
-        "happy-dom": "^18.0.1",
+        "happy-dom": "^20.0.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
