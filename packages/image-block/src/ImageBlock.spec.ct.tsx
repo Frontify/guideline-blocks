@@ -354,6 +354,7 @@ describe('Image Block', () => {
         const ImageBlockWithStubs = getImageBlockWithContainer({
             blockSettings: {
                 ratio: Ratio.Ratio1To2,
+                positioning: CaptionPosition.Right,
             },
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
