@@ -30,7 +30,7 @@ export type Settings = {
     ratio: Ratio;
     security: Security;
     hasCustomRatio: boolean;
-    ratioChoice: Ratio;
+    ratioChoice: ImageAspectRatio;
     ratioCustom: string;
     autosizing: Autosizing;
     alignment: VerticalAlignment;

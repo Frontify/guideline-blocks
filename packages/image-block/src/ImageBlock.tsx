@@ -41,10 +41,12 @@ import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionCla
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
+import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);

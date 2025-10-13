@@ -26,6 +26,7 @@ import {
     radiusValues,
 } from './types';
 import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
+import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -41,13 +42,22 @@ export const ALLOWED_EXTENSIONS = [
     ...FileExtensionSets.Templates,
 ];
 
-export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255 };
-export const DEFAULT_BORDER_COLOR = {
-    red: 234,
-    green: 235,
-    blue: 235,
-    alpha: 1,
-};
+const {
+    hasLink,
+    hasCustomRatio,
+    ratioChoice,
+    autosizing,
+    alignment,
+    horizontalAlignment,
+    hasCustomPadding,
+    paddingChoice,
+    positioning,
+    ratio,
+    hasBackground,
+    backgroundColor,
+    borderColor,
+    assetViewerEnabled,
+} = DEFAULT_IMAGE_BLOCK_SETTINGS;
 
 export const settings = defineSettings({
     basics: [
@@ -63,7 +73,7 @@ export const settings = defineSettings({
             id: 'hasLink',
             type: 'switch',
             label: 'Link',
-            defaultValue: false,
+            defaultValue: hasLink,
             showForTranslations: true,
             on: [
                 {
@@ -84,7 +94,7 @@ export const settings = defineSettings({
                 {
                     id: 'hasCustomRatio',
                     type: 'switch',
-                    defaultValue: false,
+                    defaultValue: hasCustomRatio,
                     switchLabel: 'Custom',
                     label: 'Ratio',
                     info: 'Easily unify your assets across multiple blocks with a set aspect ratio.',
@@ -102,7 +112,7 @@ export const settings = defineSettings({
                         {
                             id: RATIO_CHOICE_ID,
                             type: 'segmentedControls',
-                            defaultValue: ImageAspectRatio.RatioNone,
+                            defaultValue: ratioChoice,
                             choices: [
                                 { value: ImageAspectRatio.RatioNone, label: 'None' },
                                 { value: ImageAspectRatio.Ratio1To1, label: '1:1' },
@@ -118,7 +128,7 @@ export const settings = defineSettings({
                     type: 'segmentedControls',
                     label: 'Auto sizing',
                     info: 'Choose how the asset scales. None fits it up to its original size, Fit scales it to fit the block size, and Fill crops it to cover all available space.',
-                    defaultValue: Autosizing.None,
+                    defaultValue: autosizing,
                     choices: [
                         { value: Autosizing.None, label: 'None' },
                         { value: Autosizing.Fit, label: 'Fit' },
@@ -133,7 +143,7 @@ export const settings = defineSettings({
                         {
                             id: 'alignment',
                             type: 'dropdown',
-                            defaultValue: 'Center',
+                            defaultValue: alignment,
                             disabled: (bundle) =>
                                 bundle.getBlock('useFocalPoint')?.value === true &&
                                 bundle.getBlock('autosizing')?.value === Autosizing.Fill,
@@ -146,7 +156,7 @@ export const settings = defineSettings({
                         {
                             id: 'horizontalAlignment',
                             type: 'dropdown',
-                            defaultValue: 'center',
+                            defaultValue: horizontalAlignment,
                             disabled: (bundle) =>
                                 bundle.getBlock('useFocalPoint')?.value === true &&
                                 bundle.getBlock('autosizing')?.value === Autosizing.Fill,
@@ -172,7 +182,7 @@ export const settings = defineSettings({
                 {
                     id: 'hasCustomPadding',
                     type: 'switch',
-                    defaultValue: false,
+                    defaultValue: hasCustomPadding,
                     switchLabel: 'Custom',
                     label: 'Padding',
                     info: 'The spacing around the image.',
@@ -190,7 +200,7 @@ export const settings = defineSettings({
                         {
                             id: PADDING_CHOICE_ID,
                             type: 'segmentedControls',
-                            defaultValue: Padding.None,
+                            defaultValue: paddingChoice,
                             choices: [
                                 {
                                     value: Padding.None,
@@ -224,7 +234,7 @@ export const settings = defineSettings({
                     label: 'Positioning',
                     info: "Some settings won't apply if the container is too narrow.",
                     type: 'segmentedControls',
-                    defaultValue: CaptionPosition.Below,
+                    defaultValue: positioning,
                     choices: [
                         { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
                         { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
@@ -236,7 +246,7 @@ export const settings = defineSettings({
                     id: 'ratio',
                     label: 'Ratio',
                     type: 'segmentedControls',
-                    defaultValue: Ratio.Ratio2To1,
+                    defaultValue: ratio,
                     show: (bundle) =>
                         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
                         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
@@ -254,16 +264,16 @@ export const settings = defineSettings({
             id: HAS_BACKGROUND_ID,
             type: 'switch',
             label: 'Background',
-            defaultValue: false,
+            defaultValue: hasBackground,
             on: [
                 {
                     id: 'backgroundColor',
                     type: 'colorInput',
-                    defaultValue: DEFAULT_BACKGROUND_COLOR,
+                    defaultValue: backgroundColor,
                 },
             ],
         },
-        getBorderSettings({ defaultColor: DEFAULT_BORDER_COLOR }),
+        getBorderSettings({ defaultColor: borderColor }),
         {
             ...getBorderRadiusSettings({
                 id: 'cornerRadius',
@@ -286,7 +296,7 @@ export const settings = defineSettings({
             label: 'Asset viewer',
             info: "When disabled, viewers won't be able to open the image in the asset detail view.",
             type: 'switch',
-            defaultValue: true,
+            defaultValue: assetViewerEnabled,
             show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
         getSecurityDownloadableSetting(),

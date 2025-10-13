@@ -39,7 +39,7 @@ import {
     radiusValues,
 } from '../types';
 import { CSSProperties } from 'react';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../const';
 
 const textStylePlugins = [
     new SoftBreakPlugin(),
