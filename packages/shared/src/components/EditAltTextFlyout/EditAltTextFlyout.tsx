@@ -3,7 +3,7 @@
 import React from 'react';
 import { FormControl, HelperPosition } from '@frontify/fondue';
 import { IconCheckMark } from '@frontify/fondue/icons';
-import { Button, Flyout as FlyoutNew, TextInput } from '@frontify/fondue/components';
+import { Button, Flyout, TextInput } from '@frontify/fondue/components';
 import {
     type EditAltTextFlyoutFooterProps,
     type EditAltTextFlyoutProps,
@@ -55,15 +55,15 @@ export const EditAltTextFlyout = ({
     onSave,
     localAltText,
 }: EditAltTextFlyoutProps) => (
-    <FlyoutNew.Root open={showAltTextMenu}>
-        <FlyoutNew.Trigger>
+    <Flyout.Root open={showAltTextMenu}>
+        <Flyout.Trigger>
             <div className="tw-absolute tw-top-0 tw-right-6" />
-        </FlyoutNew.Trigger>
-        <FlyoutNew.Content side="bottom" align="start" padding="comfortable" maxWidth="320px">
-            <FlyoutNew.Body>
+        </Flyout.Trigger>
+        <Flyout.Content side="bottom" align="start" padding="comfortable" maxWidth="320px">
+            <Flyout.Body>
                 <EditAltTextFlyoutScreen setLocalAltText={setLocalAltText} localAltText={localAltText} />
-            </FlyoutNew.Body>
-            <FlyoutNew.Footer>
+            </Flyout.Body>
+            <Flyout.Footer>
                 <BaseEditAltTextFlyoutFooter
                     onCancel={() => {
                         setLocalAltText(defaultAltText);
@@ -74,7 +74,7 @@ export const EditAltTextFlyout = ({
                         setShowAltTextMenu(false);
                     }}
                 />
-            </FlyoutNew.Footer>
-        </FlyoutNew.Content>
-    </FlyoutNew.Root>
+            </Flyout.Footer>
+        </Flyout.Content>
+    </Flyout.Root>
 );
