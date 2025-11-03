@@ -27,14 +27,12 @@ import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } fro
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
-    ButtonEmphasis,
-    ButtonStyle,
+    FrontifyPattern,
     IconCheckMarkCircle20,
     IconCrossCircle20,
     IconPlus20,
-    Modal,
-    ModalButton,
     PatternDesign,
+    PatternScale,
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
@@ -42,6 +40,7 @@ import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
+import { Button, Dialog } from '@frontify/fondue/components';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -385,6 +384,12 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
+    const closeDialog = () => {
+        setSelectedAssets(undefined);
+        setSelectedFiles(null);
+        setSelectedType(undefined);
+    };
+
     const gridClassName =
         keepSideBySide && columns.toString() === '2'
             ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][columns - 1]
@@ -464,49 +469,45 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                         </div>
                     </div>
                 )}
-                <Modal
-                    visual={{ pattern: PatternDesign.Typography, foregroundColor: PatternTheme.Green }}
-                    isOpen={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
-                >
-                    <Modal.Header title="What should be the type of those images?" />
-                    <Modal.Body>
-                        <div>You can always change the type later on each item.</div>
-                    </Modal.Body>
-                    <Modal.Footer
-                        buttons={
-                            [
-                                {
-                                    children: 'Cancel',
-                                    onClick: () => {
-                                        setSelectedAssets(undefined);
-                                        setSelectedFiles(null);
-                                        setSelectedType(undefined);
-                                    },
-                                    style: ButtonStyle.Default,
-                                    emphasis: ButtonEmphasis.Weak,
-                                },
-                                {
-                                    children: 'Add as Do',
-                                    onClick: () => {
-                                        setSelectedType(DoDontType.Do);
-                                    },
-                                    icon: <IconCheckMarkCircle20 />,
-                                    style: ButtonStyle.Default,
-                                    emphasis: ButtonEmphasis.Default,
-                                },
-                                {
-                                    children: "Add as Don't",
-                                    onClick: () => {
-                                        setSelectedType(DoDontType.Dont);
-                                    },
-                                    icon: <IconCrossCircle20 />,
-                                    style: ButtonStyle.Default,
-                                    emphasis: ButtonEmphasis.Default,
-                                },
-                            ] as unknown as [ModalButton, ModalButton]
+                <Dialog.Root
+                    open={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
+                    onOpenChange={(isOpen) => {
+                        if (!isOpen) {
+                            closeDialog();
                         }
-                    />
-                </Modal>
+                    }}
+                >
+                    <Dialog.Content padding="comfortable" showUnderlay>
+                        <Dialog.SideContent>
+                            <div className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden">
+                                <FrontifyPattern
+                                    scale={PatternScale.XXL}
+                                    pattern={PatternDesign.Typography}
+                                    foregroundColor={PatternTheme.Green}
+                                />
+                            </div>
+                        </Dialog.SideContent>
+                        <Dialog.Header>
+                            <span className="tw-font-bold">What should be the type of those images?</span>
+                        </Dialog.Header>
+                        <Dialog.Body>
+                            <div>You can always change the type later on each item.</div>
+                        </Dialog.Body>
+                        <Dialog.Footer>
+                            <div className="tw-flex tw-gap-3 tw-flex-wrap">
+                                <Button onPress={closeDialog} emphasis="weak">
+                                    Cancel
+                                </Button>
+                                <Button onPress={() => setSelectedType(DoDontType.Do)} emphasis="default">
+                                    <IconCheckMarkCircle20 /> Add as Do
+                                </Button>
+                                <Button onPress={() => setSelectedType(DoDontType.Dont)} emphasis="default">
+                                    <IconCrossCircle20 /> Add as Don&apos;t
+                                </Button>
+                            </div>
+                        </Dialog.Footer>
+                    </Dialog.Content>
+                </Dialog.Root>
             </StyleProvider>
         </div>
     );
