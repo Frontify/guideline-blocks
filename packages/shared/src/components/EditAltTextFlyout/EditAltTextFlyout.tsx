@@ -1,18 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { MutableRefObject } from 'react';
-import {
-    Button,
-    ButtonEmphasis,
-    ButtonSize,
-    ButtonStyle,
-    Flyout,
-    FlyoutPlacement,
-    FormControl,
-    HelperPosition,
-    IconCheckMark16,
-    TextInput,
-} from '@frontify/fondue';
+import React from 'react';
+import { FormControl, HelperPosition } from '@frontify/fondue';
+import { IconCheckMark } from '@frontify/fondue/icons';
+import { Button, Flyout, TextInput } from '@frontify/fondue/components';
 import {
     type EditAltTextFlyoutFooterProps,
     type EditAltTextFlyoutProps,
@@ -22,30 +13,19 @@ import {
 export const ALT_TEXT_FLYOUT_ID = 'alt-text';
 
 export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => (
-    <div className="tw-flex tw-gap-x-3 tw-rounded-b tw-justify-end tw-w-full tw-bg-base">
-        <Button
-            style={ButtonStyle.Default}
-            emphasis={ButtonEmphasis.Default}
-            data-test-id="cancel-button"
-            onClick={onCancel}
-            size={ButtonSize.Medium}
-        >
+    <div className="tw-flex tw-gap-x-3 w-justify-end tw-w-full">
+        <Button emphasis="default" data-test-id="cancel-button" onPress={onCancel}>
             Cancel
         </Button>
-        <Button
-            style={ButtonStyle.Default}
-            emphasis={ButtonEmphasis.Strong}
-            icon={<IconCheckMark16 />}
-            data-test-id="save-button"
-            onClick={onSave}
-        >
+        <Button data-test-id="save-button" onPress={onSave}>
+            <IconCheckMark size={16} />
             Save
         </Button>
     </div>
 );
 
 export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => (
-    <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[320px]" data-test-id="flyout-menu">
+    <div className="tw-flex tw-flex-col" data-test-id="flyout-menu">
         <FormControl
             label={{
                 children: 'Alt text',
@@ -58,7 +38,7 @@ export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditA
         >
             <TextInput
                 value={localAltText}
-                onChange={setLocalAltText}
+                onChange={(event) => setLocalAltText(event.target.value)}
                 id="alt-text-input"
                 placeholder="Enter alt text"
                 data-test-id="alt-text-input"
@@ -75,30 +55,26 @@ export const EditAltTextFlyout = ({
     onSave,
     localAltText,
 }: EditAltTextFlyoutProps) => (
-    <Flyout
-        fitContent
-        isTriggerDisabled
-        trigger={(_, ref) => (
-            <div className="tw-absolute tw-top-0 tw-right-6" ref={ref as MutableRefObject<HTMLDivElement>} />
-        )}
-        onOpenChange={setShowAltTextMenu}
-        hug={false}
-        isOpen={showAltTextMenu}
-        placement={FlyoutPlacement.BottomLeft}
-        legacyFooter={false}
-        fixedFooter={
-            <BaseEditAltTextFlyoutFooter
-                onCancel={() => {
-                    setLocalAltText(defaultAltText);
-                    setShowAltTextMenu(false);
-                }}
-                onSave={() => {
-                    onSave();
-                    setShowAltTextMenu(false);
-                }}
-            />
-        }
-    >
-        <EditAltTextFlyoutScreen setLocalAltText={setLocalAltText} localAltText={localAltText} />
-    </Flyout>
+    <Flyout.Root open={showAltTextMenu}>
+        <Flyout.Trigger>
+            <div className="tw-absolute tw-top-0 tw-right-6" />
+        </Flyout.Trigger>
+        <Flyout.Content side="bottom" align="start" padding="comfortable" maxWidth="320px">
+            <Flyout.Body>
+                <EditAltTextFlyoutScreen setLocalAltText={setLocalAltText} localAltText={localAltText} />
+            </Flyout.Body>
+            <Flyout.Footer>
+                <BaseEditAltTextFlyoutFooter
+                    onCancel={() => {
+                        setLocalAltText(defaultAltText);
+                        setShowAltTextMenu(false);
+                    }}
+                    onSave={() => {
+                        onSave();
+                        setShowAltTextMenu(false);
+                    }}
+                />
+            </Flyout.Footer>
+        </Flyout.Content>
+    </Flyout.Root>
 );

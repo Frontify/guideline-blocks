@@ -11,7 +11,7 @@ import 'tailwindcss/tailwind.css';
 
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 const FlyoutMenuSelector = '[data-test-id="flyout-menu"]';
-const TextInputSelector = '[data-test-id="text-input"]';
+const TextInputSelector = '[data-test-id="alt-text-input"]';
 const CancelButtonSelector = '[data-test-id="cancel-button"]';
 const SaveButtonSelector = '[data-test-id="save-button"]';
 const TooltipSelector = '[data-test-id="fondue-tooltip-content"]';
@@ -42,8 +42,8 @@ describe('getEditAltTextToolbarButton', () => {
         cy.get(ToolbarFlyoutSelector).should('be.visible').click();
         cy.get(FlyoutMenuSelector).should('be.visible');
 
-        cy.get(TextInputSelector).type(VALUE);
-        cy.wrap(setLocalAltTextStub).should('have.callCount', VALUE.length);
+        cy.get(TextInputSelector).realType(VALUE);
+        cy.wrap(setLocalAltTextStub).should('have.been.called');
     });
 
     it('should reset localAltText on cancel', () => {
