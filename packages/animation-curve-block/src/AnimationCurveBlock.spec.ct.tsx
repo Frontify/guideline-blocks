@@ -23,12 +23,12 @@ const ANIMATION_CURVES_CANVAS_PATH_SELECTOR = '[data-test-id="animation-curves-c
 const BLOCK_ITEM_WRAPPER = '[data-test-id="block-item-wrapper"]';
 const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const FLYOUT_SELECTOR = '[role="dialog"]';
-const BUTTON_SELECTOR = '[data-test-id="button"]';
+const BUTTON_SELECTOR = '[data-test-id="fondue-button"]';
 const ENDPOINT_SELECTOR = '[data-test-id="endpoint"]';
 const STARTPOINT_SELECTOR = '[data-test-id="startPoint"]';
-const TEXT_INPUT_SELECTOR = '[data-test-id="text-input"]';
-const DROPDOWN_SELECTOR = '[data-test-id="dropdown-trigger"]';
-const DROWDOWN_ITEM_SELECTOR = '[data-test-id="menu-item"]';
+const TEXT_INPUT_SELECTOR = '[data-test-id="fondue-text-input"] input';
+const DROPDOWN_SELECTOR = '[data-test-id="fondue-select"]';
+const DROWDOWN_ITEM_SELECTOR = '[data-test-id="fondue-select-item"]';
 const CSS_VALUE_SELECTOR = '[data-test-id="css-value-display"]';
 
 class AnimationCurveDummy {
@@ -434,7 +434,11 @@ describe('AnimationCurve Block', () => {
                 content: [AnimationCurveDummy.with()],
             },
         });
-        mount(<AssetKitBlockWithStubs />);
+        mount(
+            <div style={{ padding: 20 }}>
+                <AssetKitBlockWithStubs />
+            </div>
+        );
         cy.get(CARD_SELECTOR).should('have.length', 1);
         cy.get(BLANK_SLATE_BUTTON_SELECTOR).click();
         cy.get(FLYOUT_SELECTOR).should('exist');
@@ -525,22 +529,22 @@ describe('AnimationCurve Block', () => {
         cy.get(FLYOUT_SELECTOR).should('exist');
 
         //x1
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear().realType('1.1');
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('1.1');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear().realType('0.25');
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('0.25');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear().realPress('ArrowDown');
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realPress('ArrowDown');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear();
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear().realType('0.25');
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true });
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('0.25');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
 
         //x2
-        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear().realType('1.1');
+        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear({ force: true }).realType('1.1');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
-        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear().realType('.25');
+        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear({ force: true }).realType('.25');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
-        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear().realPress('ArrowDown');
+        cy.get(TEXT_INPUT_SELECTOR).eq(2).clear({ force: true }).realPress('ArrowDown');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
     });
 
