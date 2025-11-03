@@ -9,7 +9,8 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, IconArrowExpand, IconCross } from '@frontify/fondue';
+import { IconArrowExpand, IconCross } from '@frontify/fondue/icons';
+import { Button } from '@frontify/fondue/components';
 
 import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
@@ -180,11 +181,13 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 {allowFullScreen && (
                     <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                         <Button
-                            icon={<IconArrowExpand />}
-                            onClick={() => toggleFigmaLiveModal(true)}
-                            emphasis={ButtonEmphasis.Default}
+                            onPress={() => toggleFigmaLiveModal(true)}
+                            emphasis="default"
                             aria-label="allow fullscreen"
-                        />
+                            aspect="square"
+                        >
+                            <IconArrowExpand size={16} />
+                        </Button>
                     </div>
                 )}
                 <iframe
@@ -215,18 +218,20 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         const modal = (
             <div
                 data-test-id="figma-full-screen"
-                className="tw-animate-fade-in-forwards tw-fixed tw-flex tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200]"
+                className="tw-animate-fade-in-forwards tw-fixed tw-flex tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-50"
             >
-                <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-[200]">
+                <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-50">
                     <Button
-                        icon={<IconCross />}
-                        onClick={() => {
+                        onPress={() => {
                             toggleFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
                         }}
-                        emphasis={ButtonEmphasis.Default}
+                        emphasis="default"
+                        aspect="square"
                         aria-label="close"
-                    />
+                    >
+                        <IconCross size={16} />
+                    </Button>
                 </div>
 
                 <div className="tw-relative tw-w-full tw-h-full">

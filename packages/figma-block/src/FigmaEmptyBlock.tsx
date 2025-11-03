@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconSize, IconSuitcase } from '@frontify/fondue';
+import { IconSuitcase } from '@frontify/fondue/icons';
 
 import { ReactElement } from 'react';
 
@@ -16,7 +16,7 @@ export const FigmaEmptyBlock = ({ onOpenAssetChooser }: Props): ReactElement => 
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-[color-mix(in_srgb,_var(--f-theme-settings-body-color)_70%,_transparent)] group-hover:tw-text-[var(--f-theme-settings-body-color)]">
-                <IconSuitcase size={IconSize.Size32} />
+                <IconSuitcase size={32} />
             </div>
             <span className="tw-text-[color-mix(in_srgb,_var(--f-theme-settings-body-color)_70%,_transparent)] group-hover:tw-text-[var(--f-theme-settings-body-color)]">
                 Choose Figma asset
