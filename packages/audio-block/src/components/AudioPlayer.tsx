@@ -1,13 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import {
-    FOCUS_VISIBLE_STYLE,
-    IconArrowCircleUp20,
-    IconImageStack20,
-    IconTrashBin16,
-    LoadingCircle,
-} from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
+import { LoadingCircle } from '@frontify/fondue/components';
 import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 
@@ -33,19 +29,19 @@ export const AudioPlayer = ({
             shouldHideWrapper={!isEditing}
             showAttachments
             toolbarItems={[
-                { type: 'button', icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: onRemoveAsset },
+                { type: 'button', icon: <IconTrashBin size={16} />, tooltip: 'Delete item', onClick: onRemoveAsset },
                 {
                     type: 'menu',
                     items: [
                         [
                             {
                                 title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
+                                icon: <IconArrowCircleUp size={20} />,
                                 onClick: openFileDialog,
                             },
                             {
                                 title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
+                                icon: <IconImageStack size={20} />,
                                 onClick: openAssetChooser,
                             },
                         ],
