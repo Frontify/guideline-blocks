@@ -21,7 +21,7 @@ const BLOCK_DOWNLOAD_MESSAGE = '[data-test-id="asset-kit-download-message"]';
 const BLOCK_DOWNLOAD_MESSAGE_PENDING = '[data-test-id="asset-kit-pending-message"]';
 const BLOCK_DOWNLOAD_MESSAGE_ERROR = '[data-test-id="asset-kit-error-message"]';
 const BLOCK_DOWNLOAD_MESSAGE_LOADING_CIRCLE =
-    '[data-test-id="asset-kit-download-message"] [data-test-id="loading-circle"]';
+    '[data-test-id="asset-kit-download-message"] [data-test-id="fondue-loading-circle-content"]';
 const BLOCK_DOWNLOAD_ANNOUNCEMENT = '[data-test-id="asset-kit-block-screen-reader"]';
 const BLOCK_ASSET_COUNT = '[data-test-id="asset-kit-count"]';
 
