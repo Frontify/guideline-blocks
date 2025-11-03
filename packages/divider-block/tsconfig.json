@@ -14,7 +14,7 @@
         "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
         "skipLibCheck": true,
-        "types": ["@testing-library/jest-dom"]
+        "types": ["@testing-library/jest-dom", "cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
     },
     "include": ["src/**/*", "../shared/src/**/*"],
     "exclude": ["node_modules", "dist"]
