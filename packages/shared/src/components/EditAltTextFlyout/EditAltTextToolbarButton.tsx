@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
-import { IconSpeechBubbleQuote16 } from '@frontify/fondue';
+
+import { IconSpeechBubbleQuote } from '@frontify/fondue/icons';
 import { ALT_TEXT_FLYOUT_ID, BaseEditAltTextFlyoutFooter, EditAltTextFlyoutScreen } from './EditAltTextFlyout';
 import { EditAltTextFlyoutFooterProps, EditAltTextFlyoutScreenProps } from './types';
 import { FlyoutToolbarButtonProps, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
@@ -37,6 +38,6 @@ export const getEditAltTextToolbarButton = <T extends { altText?: string }>({
             onSave={() => setBlockSettings({ altText: localAltText || '' })}
         />
     ),
-    icon: <IconSpeechBubbleQuote16 />,
+    icon: <IconSpeechBubbleQuote size={16} />,
     flyoutId: ALT_TEXT_FLYOUT_ID,
 });

@@ -4,7 +4,8 @@ import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { css } from '@codemirror/lang-css';
 
-import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
+import { useCopy } from '@frontify/fondue';
+import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 
 import { CssValueDisplayProps } from './types';
 
@@ -31,11 +32,11 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                     >
                         {isCopied ? (
                             <>
-                                <IconCheckMark16 /> Copied
+                                <IconCheckMark size={16} /> Copied
                             </>
                         ) : (
                             <>
-                                <IconClipboard16 /> Copy
+                                <IconClipboard size={16} /> Copy
                             </>
                         )}
                     </button>
