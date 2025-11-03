@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Settings, ThumbnailItemProps } from '../types';
-import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
+import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16 } from '@frontify/fondue';
+import { LoadingCircle } from '@frontify/fondue/components';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
