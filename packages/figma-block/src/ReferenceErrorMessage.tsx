@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonEmphasis, Heading, IconExclamationMarkTriangle24, Text } from '@frontify/fondue';
+import { Button, Heading, Text } from '@frontify/fondue/components';
+import { IconExclamationMarkTriangle } from '@frontify/fondue/icons';
 
 interface ReferenceErrorMessageProps {
     originalUrl: string;
@@ -12,7 +13,7 @@ const ReferenceErrorMessage = ({ originalUrl }: ReferenceErrorMessageProps) => {
             <div className="tw-flex tw-justify-between" data-test-id="custom-block-error-boundary-header">
                 <div className="tw-flex tw-flex-col tw-gap-4 tw-items-start">
                     <div className="tw-text-text-negative tw-gap-2 tw-flex tw-items-center">
-                        <IconExclamationMarkTriangle24 />
+                        <IconExclamationMarkTriangle size={24} />
                         <Heading size="large" weight="strong" color="negative" as="p">
                             Reference view unavailable
                         </Heading>
@@ -23,7 +24,7 @@ const ReferenceErrorMessage = ({ originalUrl }: ReferenceErrorMessageProps) => {
                     </Text>
 
                     <a href={originalUrl}>
-                        <Button emphasis={ButtonEmphasis.Default}>Go to parent block</Button>
+                        <Button emphasis="default">Go to parent block</Button>
                     </a>
                 </div>
             </div>
