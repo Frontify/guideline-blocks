@@ -27,10 +27,10 @@ import {
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
-    LoadingCircle,
     generateRandomId,
     merge,
 } from '@frontify/fondue';
+import { LoadingCircle } from '@frontify/fondue/components';
 import { useEffect, useState } from 'react';
 
 import { Image } from './components/Image';
