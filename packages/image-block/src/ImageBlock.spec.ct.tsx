@@ -17,7 +17,7 @@ const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
 const ButtonsWrapper = '[data-test-id="buttons-wrapper"]';
 const ToolbarButtonSelector = '[data-test-id="block-item-wrapper-toolbar-btn"]';
-const TextInputSelector = '[data-test-id="text-input"]';
+const TextInputSelector = '[data-test-id="alt-text-input"]';
 const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"]';
 
 const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps) => {
