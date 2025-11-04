@@ -14,7 +14,6 @@ const UiPatternBlockWrapperSelector = '[data-test-id="ui-pattern-block-wrapper"]
 const ToolbarTabButtonSelector = '[data-test-id="toolbar-tab-btn"]';
 const ToolbarSelector = '[data-test-id="ui-pattern-files-toolbar"]';
 const ToolbarIconButtonSelector = '[data-test-id="toolbar-icon-btn"]';
-const ToolbarIconButtonButtonSelector = '[data-test-id="toolbar-icon-btn"] + div button';
 const DiscardChangesButtonSelector = '[data-test-id="ui-pattern-discard-changes"]';
 const CodeEditorSelector = '.sp-code-editor';
 const CodeEditorContentEditableSelector = '.sp-code-editor [contenteditable]';
@@ -334,7 +333,7 @@ describe('UI Pattern Block', () => {
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, showSandboxLink: false, showResetButton: false },
         });
         mount(<UIPatternBlockWithStubs />);
-        cy.get(ToolbarIconButtonButtonSelector).click();
+        cy.get(ToolbarIconButtonSelector).eq(1).click();
         cy.get(ResponsivePreviewSelector).should('exist');
         cy.get(ResponsivePreviewDeviceSelector).should('have.css', 'width', '1440px');
         cy.get(ResponsivePreviewDeviceButtonSelector).eq(1).click();

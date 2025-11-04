@@ -6,15 +6,13 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { getToolbarButtons } from '../helpers';
 import { Preprocessor, SandpackTemplate } from '../types';
 import {
-    Button,
-    ButtonEmphasis,
-    ButtonSize,
     FOCUS_VISIBLE_STYLE,
     IconArrowExpand16,
     IconArrowRoundAntiClockwise16,
     IconClipboard16,
     useCopy,
 } from '@frontify/fondue';
+import { Button } from '@frontify/fondue/components';
 import { ToolbarButton } from './ToolbarButton';
 import { OpenInSandboxButton } from './OpenInSandboxButton';
 
@@ -121,9 +119,9 @@ export const Toolbar = ({
                         <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
                         <Button
                             data-test-id="ui-pattern-discard-changes"
-                            size={ButtonSize.Small}
-                            emphasis={ButtonEmphasis.Weak}
-                            onClick={() => onResetFilesToDefault()}
+                            size="small"
+                            emphasis="weak"
+                            onPress={() => onResetFilesToDefault()}
                         >
                             Discard changes
                         </Button>

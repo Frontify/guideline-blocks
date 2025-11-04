@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react';
 import { ThemeProvider } from '@frontify/fondue/components';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
+import '@frontify/fondue/components/styles';
 import 'tailwindcss/tailwind.css';
 
 export const StyleProvider = ({ children }: { children: ReactNode }) => {
