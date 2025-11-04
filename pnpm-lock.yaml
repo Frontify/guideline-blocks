@@ -1038,6 +1038,12 @@ importers:
       '@react-aria/live-announcer':
         specifier: ^3.4.4
         version: 3.4.4
+      '@types/lodash':
+        specifier: ^4.17.20
+        version: 4.17.20
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
