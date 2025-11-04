@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
+import { useCopy } from '@frontify/fondue';
+import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useRef } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
@@ -96,11 +97,11 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                 <div className={getCopyButtonClasses()}>
                     {isCopied ? (
                         <span data-test-id="square-badge-checkmark">
-                            <IconCheckMark16 />
+                            <IconCheckMark size={16} />
                         </span>
                     ) : (
                         <span data-test-id="square-badge-clipboard">
-                            <IconClipboard16 />
+                            <IconClipboard size={16} />
                         </span>
                     )}
                 </div>
