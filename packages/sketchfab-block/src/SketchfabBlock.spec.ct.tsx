@@ -1,15 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { validationClassMap } from '@frontify/fondue';
 import { mount } from 'cypress/react';
 import { SketchfabBlock } from './SketchfabBlock';
 import { SKETCHFAB_RULE_ERROR } from './helpers';
 import { SketchfabHeight, SketchfabSettings, heights } from './types';
 
 const MAIN_BLOCK_ID = '[data-test-id="sketchfab-block"]';
-const TEXT_INPUT_ID = '[data-test-id="text-input"]';
-const BUTTON_ID = '[data-test-id="button"]';
+const TEXT_INPUT_ID = '[data-test-id="fondue-text-input"] input';
+const BUTTON_ID = '[data-test-id="fondue-button"]';
 const EMPTY_BLOCK_EDIT_ID = '[data-test-id="sketchfab-empty-block-edit"]';
 const EMPTY_BLOCK_VIEW_ID = '[data-test-id="sketchfab-empty-block-view"]';
 const IFRAME_ID = '[data-test-id="sketchfab-iframe"]';
@@ -92,7 +91,6 @@ describe('Sketchfab Block', () => {
         cy.get(TEXT_INPUT_ID).type(INVALID_URL);
         cy.get(BUTTON_ID).click();
         cy.get(IFRAME_ID).should('not.exist');
-        cy.get(TEXT_INPUT_ID).parent().should('have.class', validationClassMap['Error']);
         cy.get(EMPTY_BLOCK_EDIT_ID).contains(SKETCHFAB_RULE_ERROR).should('be.visible');
     });
 
