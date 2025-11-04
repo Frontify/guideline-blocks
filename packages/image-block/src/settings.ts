@@ -236,10 +236,10 @@ export const settings = defineSettings({
                     type: 'segmentedControls',
                     defaultValue: positioning,
                     choices: [
-                        { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
-                        { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
-                        { value: CaptionPosition.Right, icon: IconEnum.MediaObjectTextRight },
-                        { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
+                        { value: CaptionPosition.Below, icon: 'MediaObjectTextBottom' },
+                        { value: CaptionPosition.Above, icon: 'MediaObjectTextTop' },
+                        { value: CaptionPosition.Right, icon: 'MediaObjectTextRight' },
+                        { value: CaptionPosition.Left, icon: 'MediaObjectTextLeft' },
                     ],
                 },
                 {
