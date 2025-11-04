@@ -9,7 +9,7 @@ import { SketchfabHeight, SketchfabSettings, heights } from './types';
 
 const MAIN_BLOCK_ID = '[data-test-id="sketchfab-block"]';
 const TEXT_INPUT_ID = '[data-test-id="fondue-text-input"] input';
-const BUTTON_ID = '[data-test-id="button"]';
+const BUTTON_ID = '[data-test-id="fondue-button"]';
 const EMPTY_BLOCK_EDIT_ID = '[data-test-id="sketchfab-empty-block-edit"]';
 const EMPTY_BLOCK_VIEW_ID = '[data-test-id="sketchfab-empty-block-view"]';
 const IFRAME_ID = '[data-test-id="sketchfab-iframe"]';
