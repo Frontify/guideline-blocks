@@ -195,7 +195,6 @@ it('can copy using the copy button without a header', () => {
     cy.get('[data-test-id=code-snippet-block]').realHover();
     cy.get('[data-test-id=copy-button]').should('be.visible');
     cy.get('[data-test-id=copy-button]').realHover();
-    cy.wait(200);
     cy.get('[data-test-id=fondue-tooltip-content]').should('exist');
     cy.get('[data-test-id=fondue-tooltip-content]').contains('Copy to clipboard');
     cy.get('[data-test-id=copy-button]').click();
@@ -206,6 +205,5 @@ it('can copy using the copy button without a header', () => {
             expect(await text).to.eq(content);
         });
     cy.get('[data-test-id=copy-button]').realHover();
-    cy.wait(200);
     cy.get('[data-test-id=fondue-tooltip-content]').contains('Copied');
 });
