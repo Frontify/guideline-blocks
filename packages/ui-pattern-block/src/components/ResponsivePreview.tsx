@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { SandpackPreview } from '@codesandbox/sandpack-react';
-import { Button, ButtonEmphasis, FOCUS_VISIBLE_STYLE, IconCross20 } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
+import { Button } from '@frontify/fondue/components';
+import { IconCross } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { Fragment, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -97,10 +99,12 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                 aria-label="Close responsive preview view"
                                 ref={buttonRef}
                                 data-test-id="ui-pattern-responsive-preview-close-btn"
-                                onClick={onPreviewClose}
-                                emphasis={ButtonEmphasis.Default}
-                                icon={<IconCross20 />}
-                            />
+                                onPress={onPreviewClose}
+                                emphasis="default"
+                                aspect="square"
+                            >
+                                <IconCross size="20" />
+                            </Button>
                         </div>
                     </div>
                     <div className="tw-max-w-[90vw] tw-relative tw-h-full tw-overflow-auto">
