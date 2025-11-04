@@ -1,11 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
-import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import { FormControl, FormControlStyle, IconSize, IconStorybook } from '@frontify/fondue';
+import { Button, TextInput } from '@frontify/fondue/components';
 import { BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
-import { RemoveButton } from './components/RemoveButton';
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
@@ -46,7 +45,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [input, setInput] = useState(url);
     const [submittedUrl, setSubmittedUrl] = useState(url);
-    const { hoverProps, isHovered } = useHover({});
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
     const activeHeight = isCustomHeight ? heightValue : heights[heightChoice];
@@ -109,16 +107,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div data-test-id="storybook-block" className="tw-relative">
                     {iframe ? (
                         isEditing ? (
-                            <Resizeable saveHeight={saveHeight} initialHeight={activeHeight} {...hoverProps}>
-                                {isHovered && (
-                                    <RemoveButton
-                                        onClick={() => {
-                                            setBlockSettings({
-                                                url: '',
-                                            });
-                                        }}
-                                    />
-                                )}
+                            <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                                 <div>{iframe}</div>
                             </Resizeable>
                         ) : (
@@ -145,13 +134,17 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                     >
                                         <TextInput
                                             value={input}
-                                            onChange={setInput}
-                                            onEnterPressed={saveInputLink}
+                                            onChange={(event) => setInput(event.target.value)}
+                                            onKeyDown={(event) => {
+                                                if (event.key === 'Enter') {
+                                                    saveInputLink();
+                                                }
+                                            }}
                                             placeholder={URL_INPUT_PLACEHOLDER}
                                         />
                                     </FormControl>
                                 </div>
-                                <Button onClick={saveInputLink}>Confirm</Button>
+                                <Button onPress={saveInputLink}>Confirm</Button>
                             </div>
                         </Resizeable>
                     ) : (
