@@ -50,6 +50,7 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
                     index={index}
                     gradientOrientation={gradientOrientation}
                     blockWidth={blockWidth}
+                    isLast={index === colors.length - 1}
                 />
             ))}
         </div>

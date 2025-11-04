@@ -13,7 +13,7 @@
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
-        "types": ["cypress", "cypress-real-events"],
+        "types": ["@testing-library/jest-dom", "cypress", "cypress-real-events"],
         "skipLibCheck": true
     },
     "include": ["src/**/*", "../shared/src/**/*"],

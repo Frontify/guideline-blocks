@@ -23,7 +23,7 @@ export const ColorTooltip = ({
             <div
                 data-test-id="color-points"
                 className={joinClassNames([
-                    'tw-w-2 tw-h-2 tw-rounded-full -tw-mt-[22px]',
+                    'tw-w-2 tw-h-2 tw-rounded-full -tw-mt-[32px]',
                     isHovered ? 'tw-bg-black-100' : 'tw-bg-black-20',
                 ])}
             />
@@ -35,7 +35,7 @@ export const ColorTooltip = ({
                     isHovered ? 'tw-visible' : 'tw-invisible',
                 ])}
             >
-                <div className="tw-absolute tw-w-2 tw-h-2 tw-left-0 tw-pointer-events-none -tw-top-[11px] before:tw-absolute before:tw-bg-white before:tw-w-2 before:tw-h-2 before:tw-rotate-45 before:tw-border before:tw-border-b-0 before:tw-border-r-0 before:tw-border-box-selected-strong" />
+                <div className="tw-absolute tw-w-2 tw-h-2 tw-left-0 tw-pointer-events-none -tw-top-[21px] before:tw-absolute before:tw-bg-white before:tw-w-2 before:tw-h-2 before:tw-rotate-45 before:tw-border before:tw-border-b-0 before:tw-border-r-0 before:tw-border-box-selected-strong" />
 
                 <div className="tw-w-4 tw-h-4 tw-rounded tw-outline tw-outline-1 tw-outline-offset-2 tw-outline-box-selected-inverse">
                     <div
