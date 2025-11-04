@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEditorState } from '@frontify/app-bridge';
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { PreviewHeightType, previewHeightValues } from '../types';
 import {
     BlockInjectButton,
@@ -82,7 +82,7 @@ export const TemplatePreview = ({
                 <div style={{ height: previewHeightValues[PreviewHeightType.Small] }}>
                     <BlockInjectButton
                         label="Choose existing template"
-                        icon={<IconPlus24 />}
+                        icon={<IconPlus />}
                         withMenu={false}
                         fillParentContainer={true}
                         onClick={onOpenTemplateChooser}

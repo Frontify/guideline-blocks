@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCaretLeft16, IconCaretLeft32, IconCaretRight16, IconCaretRight32 } from '@frontify/fondue';
+import { IconCaretLeft, IconCaretRight } from '@frontify/fondue/icons';
 import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
@@ -53,7 +53,7 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                                 'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-rounded-full tw-mr-1',
                             ])}
                         >
-                            <IconCaretLeft16 />
+                            <IconCaretLeft size={16} />
                         </div>
                         <div
                             className={joinClassNames([
@@ -61,7 +61,7 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                                 'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-rounded-full tw-ml-1',
                             ])}
                         >
-                            <IconCaretRight16 />
+                            <IconCaretRight size={16} />
                         </div>
                     </div>
                 );
@@ -79,8 +79,8 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                             paintOrder: 'stroke',
                         }}
                     >
-                        <IconCaretLeft32 />
-                        <IconCaretRight32 />
+                        <IconCaretLeft size={32} />
+                        <IconCaretRight size={32} />
                     </div>
                 );
             }

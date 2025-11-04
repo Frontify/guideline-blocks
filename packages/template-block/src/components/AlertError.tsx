@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconExclamationMarkTriangle } from '@frontify/fondue';
+import { IconExclamationMarkTriangle } from '@frontify/fondue/icons';
 import { AlertErrorProps } from './types';
 
 export const AlertError = ({ errorMessage }: AlertErrorProps) => {
@@ -10,7 +10,7 @@ export const AlertError = ({ errorMessage }: AlertErrorProps) => {
             className="tw-p-5 tw-flex tw-gap-4 tw-mb-4 tw-items-center tw-rounded-sm tw-transition-opacity tw-ease-in-out tw-bg-box-negative tw-text-box-negative-inverse"
         >
             <span>
-                <IconExclamationMarkTriangle />
+                <IconExclamationMarkTriangle size={16} />
             </span>
             {errorMessage}
         </span>

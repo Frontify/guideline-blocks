@@ -26,16 +26,8 @@ import {
 import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
-import {
-    FrontifyPattern,
-    IconCheckMarkCircle20,
-    IconCrossCircle20,
-    IconPlus20,
-    PatternDesign,
-    PatternScale,
-    PatternTheme,
-    generateRandomId,
-} from '@frontify/fondue';
+import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme, generateRandomId } from '@frontify/fondue';
+import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
@@ -440,7 +432,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <BlockInjectButton
                                     label="Add images"
                                     secondaryLabel="Or drop them here"
-                                    icon={<IconPlus20 />}
+                                    icon={<IconPlus size={20} />}
                                     onUploadClick={openFileDialog}
                                     onAssetChooseClick={onOpenAssetChooser}
                                     onDrop={setSelectedFiles}
@@ -456,14 +448,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 verticalLayout={isContainerSmall}
                                 label="Add do"
                                 withMenu={false}
-                                icon={<IconCheckMarkCircle20 />}
+                                icon={<IconCheckMarkCircle size={20} />}
                                 onClick={() => addItem(DoDontType.Do)}
                             />
                             <BlockInjectButton
                                 verticalLayout={isContainerSmall}
                                 label="Add don't"
                                 withMenu={false}
-                                icon={<IconCrossCircle20 />}
+                                icon={<IconCrossCircle size={20} />}
                                 onClick={() => addItem(DoDontType.Dont)}
                             />
                         </div>
@@ -499,10 +491,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                     Cancel
                                 </Button>
                                 <Button onPress={() => setSelectedType(DoDontType.Do)} emphasis="default">
-                                    <IconCheckMarkCircle20 /> Add as Do
+                                    <IconCheckMarkCircle size={20} /> Add as Do
                                 </Button>
                                 <Button onPress={() => setSelectedType(DoDontType.Dont)} emphasis="default">
-                                    <IconCrossCircle20 /> Add as Don&apos;t
+                                    <IconCrossCircle size={20} /> Add as Don&apos;t
                                 </Button>
                             </div>
                         </Dialog.Footer>

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { UploadPlaceholderProps } from '../types';
 
@@ -14,7 +14,7 @@ export const UploadPlaceholder = ({
         <div data-test-id="upload-placeholder">
             <BlockInjectButton
                 label="Add or drop your audio asset here"
-                icon={<IconPlus24 />}
+                icon={<IconPlus size={24} />}
                 onUploadClick={onUploadClick}
                 onAssetChooseClick={onAssetChooseClick}
                 onDrop={onFilesDrop}

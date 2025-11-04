@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Settings, ThumbnailItemProps } from '../types';
-import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16 } from '@frontify/fondue';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
@@ -57,7 +57,7 @@ export const ThumbnailItem = ({
             toolbarItems={[
                 {
                     type: 'button',
-                    icon: <IconTrashBin16 />,
+                    icon: <IconTrashBin size={16} />,
                     tooltip: 'Delete Item',
                     onClick: () => onRemoveAsset(asset.id),
                 },
@@ -67,12 +67,12 @@ export const ThumbnailItem = ({
                         [
                             {
                                 title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
+                                icon: <IconArrowCircleUp size={20} />,
                                 onClick: openFileDialog,
                             },
                             {
                                 title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
+                                icon: <IconImageStack size={20} />,
                                 onClick: onOpenAssetChooser,
                             },
                         ],

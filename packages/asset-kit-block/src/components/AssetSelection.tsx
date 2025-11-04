@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
+
 import { useEffect, useState } from 'react';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
@@ -71,7 +72,7 @@ export const AssetSelection = ({
                 onDrop={setDroppedFiles}
                 isLoading={isUploadingAssets}
                 label="Add or drop your assets here"
-                icon={<IconPlus24 />}
+                icon={<IconPlus size={24} />}
             />
         </div>
     );

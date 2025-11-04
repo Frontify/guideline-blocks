@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconArrowCircleUp20, IconImageStack20, IconSpeechBubbleQuote20, IconTrashBin16 } from '@frontify/fondue';
+import { IconArrowCircleUp, IconImageStack, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { Alignment, EditorOverlayProps, SliderImageSlot } from '../../types';
 import { useState } from 'react';
@@ -39,7 +39,7 @@ export const EditorOverlay = ({
                     toolbarItems={[
                         {
                             type: 'button',
-                            icon: <IconTrashBin16 />,
+                            icon: <IconTrashBin size={16} />,
                             onClick: () => handleAssetDelete('firstAsset', firstAsset[0].id),
                             tooltip: 'Remove asset',
                         },
@@ -49,18 +49,18 @@ export const EditorOverlay = ({
                                 [
                                     {
                                         title: 'Replace with upload',
-                                        icon: <IconArrowCircleUp20 />,
+                                        icon: <IconArrowCircleUp size={20} />,
                                         onClick: () => startFileDialogUpload(SliderImageSlot.First),
                                     },
                                     {
                                         title: 'Replace with asset',
-                                        icon: <IconImageStack20 />,
+                                        icon: <IconImageStack size={20} />,
                                         onClick: () => openAssetChooser(SliderImageSlot.First),
                                     },
                                     {
                                         title: 'Set alt text',
                                         onClick: () => setShowFirstAltTextMenu(true),
-                                        icon: <IconSpeechBubbleQuote20 />,
+                                        icon: <IconSpeechBubbleQuote size={20} />,
                                     },
                                 ],
                             ],
@@ -93,7 +93,7 @@ export const EditorOverlay = ({
                     toolbarItems={[
                         {
                             type: 'button',
-                            icon: <IconTrashBin16 />,
+                            icon: <IconTrashBin size={16} />,
                             onClick: () => handleAssetDelete('secondAsset', secondAsset[0].id),
                             tooltip: 'Remove asset',
                         },
@@ -103,18 +103,18 @@ export const EditorOverlay = ({
                                 [
                                     {
                                         title: 'Replace with upload',
-                                        icon: <IconArrowCircleUp20 />,
+                                        icon: <IconArrowCircleUp size={20} />,
                                         onClick: () => startFileDialogUpload(SliderImageSlot.Second),
                                     },
                                     {
                                         title: 'Replace with asset',
-                                        icon: <IconImageStack20 />,
+                                        icon: <IconImageStack size={20} />,
                                         onClick: () => openAssetChooser(SliderImageSlot.Second),
                                     },
                                     {
                                         title: 'Set alt text',
                                         onClick: () => setShowSecondAltTextMenu(true),
-                                        icon: <IconSpeechBubbleQuote20 />,
+                                        icon: <IconSpeechBubbleQuote size={20} />,
                                     },
                                 ],
                             ],

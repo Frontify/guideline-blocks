@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { Alignment, SliderImageSlot, UploadViewProps } from '../../types';
 
@@ -34,7 +34,7 @@ export const UploadView = ({
                 <BlockInjectButton
                     verticalLayout={alignment === Alignment.Vertical}
                     label="Add or drop image here"
-                    icon={<IconPlus24 />}
+                    icon={<IconPlus size={24} />}
                     fillParentContainer={true}
                     onUploadClick={() => startFileDialogUpload(SliderImageSlot.First)}
                     onAssetChooseClick={() => openAssetChooser(SliderImageSlot.First)}
@@ -54,7 +54,7 @@ export const UploadView = ({
                 <BlockInjectButton
                     verticalLayout={alignment === Alignment.Vertical}
                     label="Add or drop image here"
-                    icon={<IconPlus24 />}
+                    icon={<IconPlus size={24} />}
                     fillParentContainer={true}
                     onUploadClick={() => startFileDialogUpload(SliderImageSlot.Second)}
                     onAssetChooseClick={() => openAssetChooser(SliderImageSlot.Second)}

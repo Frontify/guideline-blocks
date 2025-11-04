@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus32 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, ImageComponentProps, ImageFitChoice } from '../types';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
@@ -83,7 +83,7 @@ const ImageComponent = ({
                         onAssetChooseClick={onAssetChooseClick}
                         onUploadClick={onUploadClick}
                         fillParentContainer
-                        icon={<IconPlus32 />}
+                        icon={<IconPlus size={32} />}
                         label=""
                         isLoading={isUploadLoading}
                     />
