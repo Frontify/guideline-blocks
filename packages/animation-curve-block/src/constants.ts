@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, MenuBlock } from '@frontify/fondue';
+import { Color } from '@frontify/fondue';
 import { AnimationCurveType, AnimationFunction, Size, defaultAnimationCurveTypeValues } from './types';
 
 export const BLANK_SLATE_INITIAL_HEIGHT = '82px';
@@ -21,7 +21,7 @@ export const DEFAULT_GRID_COLOR: Color = { red: 153, green: 153, blue: 153, alph
 export const DEFAULT_BORDER_COLOR: Color = { red: 234, green: 235, blue: 235, alpha: 1 };
 export const DEFAULT_BACKGROUND_COLOR: Color = { red: 241, green: 241, blue: 241, alpha: 1 };
 
-export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
+export const DROPDOWN_MENU_ITEMS = [
     {
         id: 'standard',
         ariaLabel: 'Standard',

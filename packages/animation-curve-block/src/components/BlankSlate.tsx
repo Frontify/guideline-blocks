@@ -48,7 +48,7 @@ export const BlankSlate = ({
     }, [title, description]);
 
     return (
-        <div data-test-id="blank-slate">
+        <div data-test-id="blank-slate" className="tw-relative">
             <AnimationCurveFlyout
                 key={animationCurve.id}
                 animationCurve={animationCurve}
