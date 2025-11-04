@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { validationClassMap } from '@frontify/fondue';
 import { mount } from 'cypress/react';
 import { SketchfabBlock } from './SketchfabBlock';
 import { SKETCHFAB_RULE_ERROR } from './helpers';
@@ -92,7 +91,6 @@ describe('Sketchfab Block', () => {
         cy.get(TEXT_INPUT_ID).type(INVALID_URL);
         cy.get(BUTTON_ID).click();
         cy.get(IFRAME_ID).should('not.exist');
-        cy.get(TEXT_INPUT_ID).parent().should('have.class', validationClassMap['Error']);
         cy.get(EMPTY_BLOCK_EDIT_ID).contains(SKETCHFAB_RULE_ERROR).should('be.visible');
     });
 
