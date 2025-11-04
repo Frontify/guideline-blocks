@@ -45,6 +45,8 @@
         "@frontify/app-bridge": "^4.0.0-alpha.44",
         "@frontify/fondue": "13.0.0-rc.5",
         "@frontify/guideline-blocks-settings": "1.0.8-alpha.3",
-        "@uiw/react-codemirror": "4.24.2"
+        "@uiw/react-codemirror": "4.24.2",
+        "@types/lodash": "^4.17.20",
+        "lodash": "^4.17.21"
     }
 }
