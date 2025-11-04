@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
+import { FormControl, FormControlStyle, IconLinkBox, IconSize, Text } from '@frontify/fondue';
+import { Button, TextInput } from '@frontify/fondue/components';
 
 import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useState } from 'react';
@@ -179,13 +180,17 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                                     >
                                         <TextInput
                                             value={localUrl}
-                                            onChange={setLocalUrl}
-                                            onEnterPressed={saveLink}
+                                            onChange={(event) => setLocalUrl(event.target.value)}
+                                            onKeyDown={(event) => {
+                                                if (event.key === 'Enter') {
+                                                    saveLink();
+                                                }
+                                            }}
                                             placeholder={URL_INPUT_PLACEHOLDER}
                                         />
                                     </FormControl>
                                 </div>
-                                <Button onClick={saveLink}>Confirm</Button>
+                                <Button onPress={saveLink}>Confirm</Button>
                             </div>
                         </div>
                     )}
