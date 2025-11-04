@@ -21,6 +21,33 @@ export const validateXValue = (value: number) => {
     return value < 0 || value > 1 ? 'error' : 'neutral';
 };
 
+type ParameterInputProps = {
+    label: string;
+    value: number;
+    onChange: (value: number) => void;
+    onFocus: () => void;
+    onBlur: () => void;
+    status?: 'error' | 'neutral';
+};
+
+const ParameterInput = ({ label, value, onChange, onFocus, onBlur, status }: ParameterInputProps) => (
+    <div className="tw-relative tw-w-20">
+        <TextInput
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onChange={(event) => onChange(Number(event.target.value) || 0)}
+            type="number"
+            value={value.toString()}
+            required
+            status={status}
+        >
+            <TextInput.Slot name="left">
+                <Text color="weak">{label}</Text>
+            </TextInput.Slot>
+        </TextInput>
+    </div>
+);
+
 export const AnimationCurveFlyout = ({
     animationCurve,
     isFlyoutOpen,
@@ -42,22 +69,23 @@ export const AnimationCurveFlyout = ({
         setX2Validation(validateXValue(x2));
     }, [localAnimationFunction]);
 
+    const handleFocus = () => setIsInputFocused(true);
+    const handleBlur = () => setIsInputFocused(false);
+
+    const hasValidationErrors = x1Validation === 'error' || x2Validation === 'error';
+
     const handleSave = () => {
         onSave(animationCurve.id, { ...animationCurve });
     };
 
     const updateLocalCurve = (animationCurvePatch: AnimationCurve): void => {
         const roundedAnimationCurve = roundAnimationCurveParameters(animationCurvePatch);
+        const mergedCurve = { ...animationCurve, ...roundedAnimationCurve };
 
         setLocalAnimationFunction(animationCurvePatch.animationFunction);
-        if (![x1Validation, x2Validation].includes('error')) {
-            onAnimationCurveUpdate &&
-                onAnimationCurveUpdate(animationCurve.id, {
-                    ...animationCurve,
-                    ...roundedAnimationCurve,
-                });
-
-            onAnimationCurveChange && onAnimationCurveChange({ ...animationCurve, ...animationCurvePatch });
+        if (!hasValidationErrors) {
+            onAnimationCurveUpdate?.(animationCurve.id, mergedCurve);
+            onAnimationCurveChange?.({ ...animationCurve, ...animationCurvePatch });
         }
     };
 
@@ -132,78 +160,48 @@ export const AnimationCurveFlyout = ({
                         </div>
                         <div className="tw-flex tw-items-center tw-justify-between [&_input::-webkit-inner-spin-button]:tw-appearance-none [&_svg]:tw-flex-shrink-0">
                             <div className="tw-flex tw-justify-start tw-items-center tw-gap-1">
-                                <div className="tw-relative tw-w-20 tw-flex-grow-0">
-                                    <TextInput.Root
-                                        onFocus={() => setIsInputFocused(true)}
-                                        onBlur={() => setIsInputFocused(false)}
-                                        onChange={(event) =>
-                                            updateAnimationCurveParameters({ x1: Number(event.target.value) || 0 })
-                                        }
-                                        type="number"
-                                        value={localAnimationFunction.parameters.x1.toString()}
-                                        required
-                                        status={x1Validation}
-                                    >
-                                        <TextInput.Slot name="left">
-                                            <Text color="weak">X</Text>
-                                        </TextInput.Slot>
-                                    </TextInput.Root>
-                                </div>
-                                <div className="tw-relative tw-w-20">
-                                    <TextInput
-                                        onFocus={() => setIsInputFocused(true)}
-                                        onBlur={() => setIsInputFocused(false)}
-                                        onChange={(event) =>
-                                            updateAnimationCurveParameters({ y1: Number(event.target.value) || 0 })
-                                        }
-                                        type="number"
-                                        value={localAnimationFunction.parameters.y1.toString()}
-                                        required
-                                    >
-                                        <TextInput.Slot name="left">
-                                            <Text color="weak">Y</Text>
-                                        </TextInput.Slot>
-                                    </TextInput>
-                                </div>
-                                <IconCaretRight size="16" />
-                                <div className="tw-relative tw-w-20">
-                                    <TextInput
-                                        onFocus={() => setIsInputFocused(true)}
-                                        onBlur={() => setIsInputFocused(false)}
-                                        onChange={(event) =>
-                                            updateAnimationCurveParameters({ x2: Number(event.target.value) || 0 })
-                                        }
-                                        type="number"
-                                        value={localAnimationFunction.parameters.x2.toString()}
-                                        required
-                                        status={x2Validation}
-                                    >
-                                        <TextInput.Slot name="left">
-                                            <Text color="weak">X</Text>
-                                        </TextInput.Slot>
-                                    </TextInput>
-                                </div>
-                                <div className="tw-relative tw-w-20">
-                                    <TextInput
-                                        onFocus={() => setIsInputFocused(true)}
-                                        onBlur={() => setIsInputFocused(false)}
-                                        onChange={(event) =>
-                                            updateAnimationCurveParameters({ y2: Number(event.target.value) || 0 })
-                                        }
-                                        type="number"
-                                        value={localAnimationFunction.parameters.y2.toString()}
-                                        required
-                                    >
-                                        <TextInput.Slot name="left">
-                                            <Text color="weak">Y</Text>
-                                        </TextInput.Slot>
-                                    </TextInput>
-                                </div>
+                                {[
+                                    {
+                                        key: 'x1',
+                                        label: 'X',
+                                        value: localAnimationFunction.parameters.x1,
+                                        status: x1Validation,
+                                    },
+                                    {
+                                        key: 'y1',
+                                        label: 'Y',
+                                        value: localAnimationFunction.parameters.y1,
+                                    },
+                                    {
+                                        key: 'x2',
+                                        label: 'X',
+                                        value: localAnimationFunction.parameters.x2,
+                                        status: x2Validation,
+                                    },
+                                    {
+                                        key: 'y2',
+                                        label: 'Y',
+                                        value: localAnimationFunction.parameters.y2,
+                                    },
+                                ].map((param, index) => (
+                                    <>
+                                        {index === 2 && <IconCaretRight size="16" key="arrow" />}
+                                        <ParameterInput
+                                            key={param.key}
+                                            label={param.label}
+                                            value={param.value}
+                                            onChange={(value) => updateAnimationCurveParameters({ [param.key]: value })}
+                                            onFocus={handleFocus}
+                                            onBlur={handleBlur}
+                                            status={param.status}
+                                        />
+                                    </>
+                                ))}
                             </div>
                             <div className="tw-w-20 tw-relative">
                                 <TextInput
-                                    onFocus={() => setIsInputFocused(true)}
-                                    onBlur={() => setIsInputFocused(false)}
+                                    onFocus={handleFocus}
+                                    onBlur={handleBlur}
                                     onChange={(event) =>
                                         updateAnimationFunction({
                                             ...animationCurve.animationFunction,
@@ -231,11 +229,7 @@ export const AnimationCurveFlyout = ({
                     >
                         Cancel
                     </Button>
-                    <Button
-                        disabled={[x1Validation, x2Validation].includes('error')}
-                        onPress={handleSave}
-                        emphasis="strong"
-                    >
+                    <Button disabled={hasValidationErrors} onPress={handleSave} emphasis="strong">
                         <IconCheckMark size="16" /> Save
                     </Button>
                 </Flyout.Footer>
