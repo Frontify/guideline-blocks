@@ -42,14 +42,14 @@ const currentColor = { red: 255, green: 0, blue: 0, alpha: 1, name: 'Red' };
 describe('ColorInputContent', () => {
     it('renders brand color picker by default', () => {
         render(<ColorInputContent palettes={palettes} currentColor={currentColor} onColorChange={vi.fn()} />);
-        expect(screen.getByLabelText('ColorPickerComponent_Brand')).toBeInTheDocument();
-        expect(screen.getByLabelText('ColorPickerComponent_Custom')).toBeInTheDocument();
+        expect(screen.getByLabelText('Brand')).toBeInTheDocument();
+        expect(screen.getByLabelText('Custom')).toBeInTheDocument();
         expect(screen.getByText('Palette 1')).toBeInTheDocument();
     });
 
     it('switches to custom color picker', () => {
         render(<ColorInputContent palettes={palettes} currentColor={currentColor} onColorChange={vi.fn()} />);
-        fireEvent.click(screen.getByLabelText('ColorPickerComponent_Custom'));
+        fireEvent.click(screen.getByLabelText('Custom'));
         expect(screen.getByText('HEX')).toBeInTheDocument();
     });
 
@@ -62,8 +62,8 @@ describe('ColorInputContent', () => {
                 showPicker="brand"
             />
         );
-        expect(screen.queryByLabelText('ColorPickerComponent_Brand')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('ColorPickerComponent_Custom')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('Brand')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('Custom')).not.toBeInTheDocument();
         expect(screen.getByTestId('brand-color-picker')).toBeInTheDocument();
     });
 
@@ -76,8 +76,8 @@ describe('ColorInputContent', () => {
                 showPicker="custom"
             />
         );
-        expect(screen.queryByLabelText('ColorPickerComponent_Brand')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('ColorPickerComponent_Custom')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('Brand')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('Custom')).not.toBeInTheDocument();
         expect(screen.getByTestId('color-picker-value-input')).toBeInTheDocument();
     });
 });

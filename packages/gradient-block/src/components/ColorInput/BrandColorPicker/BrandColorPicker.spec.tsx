@@ -81,7 +81,7 @@ describe('BrandColorPicker', () => {
             expect(colorList.length).toBe(palette.colors.length);
             for (const [colorIndex] of palette.colors.entries()) {
                 expect(colorList[colorIndex].querySelector('button')?.getAttribute('aria-label')).toBe(
-                    'ColorPickerComponent_ColorValue'
+                    'color value: Red'
                 );
             }
         }
