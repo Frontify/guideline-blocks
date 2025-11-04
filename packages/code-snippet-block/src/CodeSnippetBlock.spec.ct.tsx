@@ -204,6 +204,5 @@ it('can copy using the copy button without a header', () => {
         .then(async (text) => {
             expect(await text).to.eq(content);
         });
-    cy.get('[data-test-id=copy-button]').realHover();
     cy.get('[data-test-id=fondue-tooltip-content]').contains('Copied');
 });
