@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 
 type UploadPlaceholderProps = {
@@ -20,7 +20,7 @@ export const UploadPlaceholder = ({
         <div className="tw-h-64">
             <BlockInjectButton
                 label="Add or drop your image here"
-                icon={<IconPlus24 />}
+                icon={<IconPlus size={24} />}
                 fillParentContainer={true}
                 onUploadClick={onUploadClick}
                 onAssetChooseClick={onAssetChooseClick}

@@ -5,13 +5,8 @@ import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { getToolbarButtons } from '../helpers';
 import { Preprocessor, SandpackTemplate } from '../types';
-import {
-    FOCUS_VISIBLE_STYLE,
-    IconArrowExpand16,
-    IconArrowRoundAntiClockwise16,
-    IconClipboard16,
-    useCopy,
-} from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE, useCopy } from '@frontify/fondue';
+import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
 import { Button } from '@frontify/fondue/components';
 import { ToolbarButton } from './ToolbarButton';
 import { OpenInSandboxButton } from './OpenInSandboxButton';
@@ -92,13 +87,13 @@ export const Toolbar = ({
                     )}
 
                     <ToolbarButton
-                        icon={<IconClipboard16 />}
+                        icon={<IconClipboard size={16} />}
                         tooltip={status === 'idle' ? 'Copy code' : 'Copied!'}
                         onClick={() => copy(code)}
                     />
                     {showResponsivePreview && (
                         <ToolbarButton
-                            icon={<IconArrowExpand16 />}
+                            icon={<IconArrowExpand size={16} />}
                             tooltip="Responsive preview"
                             onClick={onResponsivePreviewOpen}
                         />
@@ -108,7 +103,7 @@ export const Toolbar = ({
                     <>
                         <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
                         <ToolbarButton
-                            icon={<IconArrowRoundAntiClockwise16 />}
+                            icon={<IconArrowRoundAntiClockwise size={16} />}
                             tooltip="Reset pattern"
                             onClick={() => onResetRun()}
                         />

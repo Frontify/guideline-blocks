@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheckMark24, IconCheckMarkCircle24, IconCross24, IconCrossCircle24 } from '@frontify/fondue';
+import { IconCheckMark, IconCheckMarkCircle, IconCross, IconCrossCircle } from '@frontify/fondue/icons';
 import { useEffect, useState } from 'react';
 import { DoDontType, IconComponentProps, ItemIconChoice } from '../types';
 
 const ICON_MAP = {
-    [ItemIconChoice.CHECKMARK]: IconCheckMark24,
-    [ItemIconChoice.CHECKMARK_CIRCLE]: IconCheckMarkCircle24,
-    [ItemIconChoice.CROSS]: IconCross24,
-    [ItemIconChoice.CROSS_CIRCLE]: IconCrossCircle24,
+    [ItemIconChoice.CHECKMARK]: IconCheckMark,
+    [ItemIconChoice.CHECKMARK_CIRCLE]: IconCheckMarkCircle,
+    [ItemIconChoice.CROSS]: IconCross,
+    [ItemIconChoice.CROSS_CIRCLE]: IconCrossCircle,
 };
 
 const IconComponent = ({

@@ -2,14 +2,14 @@
 
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
+import { merge } from '@frontify/fondue';
 import {
-    IconArrowCircleUp20,
-    IconArrowMove16,
-    IconImageStack20,
-    IconSpeechBubbleQuote20,
-    IconTrashBin16,
-    merge,
-} from '@frontify/fondue';
+    IconArrowCircleUp,
+    IconArrowMove,
+    IconImageStack,
+    IconSpeechBubbleQuote,
+    IconTrashBin,
+} from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
@@ -117,7 +117,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                         showGrabHandle
                             ? {
                                   type: 'dragHandle',
-                                  icon: <IconArrowMove16 />,
+                                  icon: <IconArrowMove size={16} />,
                                   draggableProps,
                                   setActivatorNodeRef,
                               }
@@ -125,7 +125,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                         showDeleteButton
                             ? {
                                   type: 'button',
-                                  icon: <IconTrashBin16 />,
+                                  icon: <IconTrashBin size={16} />,
                                   tooltip: 'Delete Item',
                                   onClick: () => onRemoveItem(id),
                               }
@@ -138,19 +138,19 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                                           {
                                               title: 'Set alt text',
                                               onClick: () => setShowAltTextMenu(true),
-                                              icon: <IconSpeechBubbleQuote20 />,
+                                              icon: <IconSpeechBubbleQuote size={20} />,
                                           },
                                       ]
                                     : [],
                                 [
                                     {
                                         title: image ? 'Replace with upload' : 'Upload asset',
-                                        icon: <IconArrowCircleUp20 />,
+                                        icon: <IconArrowCircleUp size={20} />,
                                         onClick: openFileDialog,
                                     },
                                     {
                                         title: image ? 'Replace with asset' : 'Browse asset',
-                                        icon: <IconImageStack20 />,
+                                        icon: <IconImageStack size={20} />,
                                         onClick: onOpenAssetChooser,
                                     },
                                 ],

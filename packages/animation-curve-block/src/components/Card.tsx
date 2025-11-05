@@ -3,7 +3,9 @@
 import { forwardRef, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 
-import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue';
+import { IconArrowMove, IconDotsHorizontal, IconTrashBin } from '@frontify/fondue/icons';
+
 import {
     BlockItemWrapper,
     getBackgroundColorStyles,
@@ -93,16 +95,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
                     toolbarItems={[
-                        { type: 'dragHandle', icon: <IconArrowMove16 />, draggableProps, setActivatorNodeRef },
+                        { type: 'dragHandle', icon: <IconArrowMove size={16} />, draggableProps, setActivatorNodeRef },
                         {
                             type: 'button',
-                            icon: <IconTrashBin16 />,
+                            icon: <IconTrashBin size={16} />,
                             tooltip: 'Delete Item',
                             onClick: () => onDelete(animationCurve.id),
                         },
                         {
                             type: 'button',
-                            icon: <IconDotsHorizontal16 />,
+                            icon: <IconDotsHorizontal size={16} />,
                             tooltip: 'Edit Item',
                             onClick: () => setIsEditFlyoutOpen(true),
                         },

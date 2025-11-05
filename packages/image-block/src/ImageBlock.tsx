@@ -22,14 +22,8 @@ import {
     isDownloadable,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
-import {
-    IconArrowCircleUp20,
-    IconImageStack20,
-    IconTrashBin16,
-    IconTrashBin20,
-    generateRandomId,
-    merge,
-} from '@frontify/fondue';
+import { generateRandomId, merge } from '@frontify/fondue';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { useEffect, useState } from 'react';
 
@@ -203,7 +197,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                                 : undefined,
                                             {
                                                 type: 'button',
-                                                icon: <IconTrashBin16 />,
+                                                icon: <IconTrashBin size={16} />,
                                                 onClick: onRemoveAsset,
                                                 tooltip: 'Delete',
                                             },
@@ -213,19 +207,19 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                                     [
                                                         {
                                                             title: 'Replace with upload',
-                                                            icon: <IconArrowCircleUp20 />,
+                                                            icon: <IconArrowCircleUp size={20} />,
                                                             onClick: openFileDialog,
                                                         },
                                                         {
                                                             title: 'Replace with asset',
-                                                            icon: <IconImageStack20 />,
+                                                            icon: <IconImageStack size={20} />,
                                                             onClick: onOpenAssetChooser,
                                                         },
                                                     ],
                                                     [
                                                         {
                                                             title: 'Delete',
-                                                            icon: <IconTrashBin20 />,
+                                                            icon: <IconTrashBin size={20} />,
                                                             style: 'danger',
                                                             onClick: onRemoveAsset,
                                                         },

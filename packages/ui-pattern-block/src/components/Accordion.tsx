@@ -1,6 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_VISIBLE_STYLE_INSET, IconCaretDown12 } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE_INSET } from '@frontify/fondue';
+import { IconCaretDown } from '@frontify/fondue/icons';
+
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { PropsWithChildren, ReactElement } from 'react';
 
@@ -38,7 +40,7 @@ export const Accordion = ({
             >
                 {label}
                 <div className={joinClassNames([isOpen ? 'tw-rotate-180' : ''])}>
-                    <IconCaretDown12 />
+                    <IconCaretDown size={12} />
                 </div>
             </button>
             {isOpen && (

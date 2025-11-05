@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-import { IconPlus24, generateRandomId } from '@frontify/fondue';
+import { generateRandomId } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 
 import { AnimationCurve, BlankSlateProps } from '../types';
@@ -61,7 +62,7 @@ export const BlankSlate = ({
             <div style={{ height }}>
                 <BlockInjectButton
                     label="Add animation curve"
-                    icon={<IconPlus24 />}
+                    icon={<IconPlus size={24} />}
                     withMenu={false}
                     onClick={() => setIsFlyoutOpen(true)}
                     fillParentContainer

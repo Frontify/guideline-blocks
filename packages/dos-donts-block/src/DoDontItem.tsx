@@ -2,16 +2,15 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { merge } from '@frontify/fondue';
 import {
-    IconArrowCircleUp20,
-    IconArrowMove16,
-    IconArrowSwap20,
-    IconImageStack20,
-    IconSpeechBubbleQuote20,
-    IconTrashBin16,
-    IconTrashBin20,
-    merge,
-} from '@frontify/fondue';
+    IconArrowCircleUp,
+    IconArrowMove,
+    IconArrowSwap,
+    IconImageStack,
+    IconSpeechBubbleQuote,
+    IconTrashBin,
+} from '@frontify/fondue/icons';
 import {
     AssetChooserObjectType,
     BlockItemWrapper,
@@ -224,10 +223,10 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 shouldHideComponent={replaceWithPlaceholder}
                 shouldBeShown={isDragging}
                 toolbarItems={[
-                    { type: 'dragHandle', icon: <IconArrowMove16 />, draggableProps, setActivatorNodeRef },
+                    { type: 'dragHandle', icon: <IconArrowMove size={16} />, draggableProps, setActivatorNodeRef },
                     {
                         type: 'button',
-                        icon: <IconTrashBin16 />,
+                        icon: <IconTrashBin size={16} />,
                         tooltip: 'Delete Item',
                         onClick: () => onRemoveSelf(id),
                     },
@@ -239,19 +238,19 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                     ? [
                                           {
                                               title: 'Replace with upload',
-                                              icon: <IconArrowCircleUp20 />,
+                                              icon: <IconArrowCircleUp size={20} />,
                                               onClick: onUploadClick,
                                           },
                                           {
                                               title: 'Replace with asset',
-                                              icon: <IconImageStack20 />,
+                                              icon: <IconImageStack size={20} />,
                                               onClick: onOpenAssetChooser,
                                           },
                                       ]
                                     : []),
                                 {
                                     title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
-                                    icon: <IconArrowSwap20 />,
+                                    icon: <IconArrowSwap size={20} />,
                                     onClick: () =>
                                         onChangeItem(id, {
                                             type: type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
@@ -260,13 +259,13 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 {
                                     title: 'Set alt text',
                                     onClick: () => setShowAltTextMenu(true),
-                                    icon: <IconSpeechBubbleQuote20 />,
+                                    icon: <IconSpeechBubbleQuote size={20} />,
                                 },
                             ],
                             [
                                 {
                                     title: 'Delete',
-                                    icon: <IconTrashBin20 />,
+                                    icon: <IconTrashBin size={20} />,
                                     onClick: () => onRemoveSelf(id),
                                 },
                             ],

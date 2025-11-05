@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus24 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
 import { ReactElement } from 'react';
 
@@ -21,7 +21,7 @@ export const UploadPlaceholder = ({
 }: UploadPlaceholderProps): ReactElement => (
     <div className="tw-h-full tw-w-full tw-grid tw-aspect-square" data-test-id="thumbnail-image-placeholder">
         <BlockInjectButton
-            icon={<IconPlus24 />}
+            icon={<IconPlus />}
             fillParentContainer={true}
             onUploadClick={openFileDialog}
             onDrop={onFilesDrop}

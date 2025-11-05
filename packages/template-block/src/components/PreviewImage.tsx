@@ -2,7 +2,8 @@
 
 import { useEditorState } from '@frontify/app-bridge';
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
-import { IconArrowSync, IconSpeechBubbleQuote20, IconTrashBin, merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue';
+import { IconArrowSync, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper, MenuToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
@@ -42,12 +43,12 @@ export const PreviewImage = ({
             {
                 title: 'Set alt text',
                 onClick: () => setShowAltTextMenu(true),
-                icon: <IconSpeechBubbleQuote20 />,
+                icon: <IconSpeechBubbleQuote size={20} />,
             },
             {
                 title: 'Replace template',
                 onClick: onOpenTemplateChooser,
-                icon: <IconArrowSync />,
+                icon: <IconArrowSync size={16} />,
             },
         ];
 
@@ -56,7 +57,7 @@ export const PreviewImage = ({
                 title: 'Delete custom preview',
                 onClick: () => handleDeleteCustomPreview(previewCustom.id),
                 style: 'danger',
-                icon: <IconTrashBin />,
+                icon: <IconTrashBin size={16} />,
             });
         }
 
