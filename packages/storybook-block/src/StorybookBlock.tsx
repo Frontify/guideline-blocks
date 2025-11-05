@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle, IconSize, IconStorybook } from '@frontify/fondue';
+import { FormControl, FormControlStyle } from '@frontify/fondue';
+import { IconStorybook } from '@frontify/fondue/icons';
 import { Button, TextInput } from '@frontify/fondue/components';
 import { BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { FC, useCallback, useEffect, useState } from 'react';
@@ -120,7 +121,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                 className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
                                 data-test-id="storybook-empty-wrapper"
                             >
-                                <IconStorybook size={IconSize.Size32} />
+                                <IconStorybook size={32} />
                                 <div
                                     className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}
                                 >
