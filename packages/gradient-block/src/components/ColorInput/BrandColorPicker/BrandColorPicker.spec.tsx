@@ -75,13 +75,15 @@ describe('BrandColorPicker', () => {
     it('Should render correct colors', () => {
         const { getByTestId } = render(<BrandColorPicker palettes={palettes} />);
 
+        const colors = palettes.flatMap((palette) => palette.colors);
+
         const paletteList = getByTestId(PALLETTE_LIST_TEST_ID);
         for (const [index, palette] of palettes.entries()) {
             const colorList = paletteList.children[index].querySelectorAll(`${COLOR_LIST_SELECTOR} li`);
             expect(colorList.length).toBe(palette.colors.length);
             for (const [colorIndex] of palette.colors.entries()) {
                 expect(colorList[colorIndex].querySelector('button')?.getAttribute('aria-label')).toBe(
-                    'color value: Red'
+                    `color value: ${colors[colorIndex].name}`
                 );
             }
         }
