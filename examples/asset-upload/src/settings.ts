@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { defineSettings } from '@frontify/guideline-blocks-settings';
 
 export const IMAGE_SETTING_ID = 'image';
 
@@ -15,7 +15,7 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: 'custom_block',
-                    icon: IconEnum.Code,
+                    icon: 'Code',
                     label: 'Custom Block',
                 },
             ],

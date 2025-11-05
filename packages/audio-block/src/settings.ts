@@ -5,7 +5,6 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import { TextPosition } from './types';
 import {
     AssetChooserObjectType,
-    IconEnum,
     defineSettings,
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
@@ -34,8 +33,8 @@ export const settings = defineSettings({
             type: 'segmentedControls',
             defaultValue: TextPosition.Above,
             choices: [
-                { value: TextPosition.Below, icon: IconEnum.MediaObjectTextBottom },
-                { value: TextPosition.Above, icon: IconEnum.MediaObjectTextTop },
+                { value: TextPosition.Below, icon: 'MediaObjectTextBottom' },
+                { value: TextPosition.Above, icon: 'MediaObjectTextTop' },
             ],
         },
     ],

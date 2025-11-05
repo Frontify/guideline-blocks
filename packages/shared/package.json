@@ -42,9 +42,9 @@
     },
     "dependencies": {
         "@codemirror/lang-css": "^6.3.1",
-        "@frontify/app-bridge": "^4.0.0-alpha.44",
+        "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.3",
-        "@frontify/guideline-blocks-settings": "1.0.6",
+        "@frontify/guideline-blocks-settings": "1.0.10",
         "@uiw/react-codemirror": "4.24.2",
         "@types/lodash": "^4.17.20",
         "lodash": "^4.17.21"

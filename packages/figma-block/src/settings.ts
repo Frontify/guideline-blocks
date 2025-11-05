@@ -5,7 +5,6 @@ import {
     AssetChooserProjectType,
     AssetInputMode,
     Bundle,
-    IconEnum,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
@@ -42,12 +41,12 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: BlockPreview.Image,
-                    icon: IconEnum.Image,
+                    icon: 'Image',
                     label: 'Image',
                 },
                 {
                     value: BlockPreview.Live,
-                    icon: IconEnum.CursorClick,
+                    icon: 'CursorClick',
                     label: 'Live',
                 },
             ],

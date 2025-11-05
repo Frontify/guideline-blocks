@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     Security,
     appendUnit,
     defineSettings,
@@ -80,19 +79,19 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: CaptionPosition.Below,
-                            icon: IconEnum.MediaObjectTextBottom,
+                            icon: 'MediaObjectTextBottom',
                         },
                         {
                             value: CaptionPosition.Above,
-                            icon: IconEnum.MediaObjectTextTop,
+                            icon: 'MediaObjectTextTop',
                         },
                         {
                             value: CaptionPosition.Right,
-                            icon: IconEnum.MediaObjectTextRight,
+                            icon: 'MediaObjectTextRight',
                         },
                         {
                             value: CaptionPosition.Left,
-                            icon: IconEnum.MediaObjectTextLeft,
+                            icon: 'MediaObjectTextLeft',
                         },
                     ],
                 },
@@ -154,15 +153,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: VerticalAlignment.Start,
-                            icon: IconEnum.ArrowAlignUp,
+                            icon: 'ArrowAlignUp',
                         },
                         {
                             value: VerticalAlignment.Center,
-                            icon: IconEnum.ArrowAlignHorizontalCentre,
+                            icon: 'ArrowAlignHorizontalCentre',
                         },
                         {
                             value: VerticalAlignment.End,
-                            icon: IconEnum.ArrowAlignDown,
+                            icon: 'ArrowAlignDown',
                         },
                     ],
                 },
@@ -177,15 +176,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: HorizontalAlignment.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: HorizontalAlignment.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: HorizontalAlignment.Right,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                 },

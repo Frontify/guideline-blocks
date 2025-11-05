@@ -32,9 +32,9 @@
         "typescript": "^5.9.2"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^4.0.0-alpha.44",
+        "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.3",
-        "@frontify/guideline-blocks-settings": "1.0.6",
+        "@frontify/guideline-blocks-settings": "1.0.10",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"

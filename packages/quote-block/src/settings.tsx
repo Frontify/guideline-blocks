@@ -6,7 +6,6 @@ import {
     Bundle,
     Choice,
     FileExtension,
-    IconEnum,
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
@@ -55,22 +54,22 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.SingleDown, icon: <IconSingleQuoteDown style={style} />, label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
-        icon: IconEnum.CaretLeftDouble20,
+        icon: 'CaretLeftDouble20',
         label: 'Double Chevron Left',
     },
     {
         value: QuoteStyle.DoubleChevronRight,
-        icon: IconEnum.CaretRightDouble20,
+        icon: 'CaretRightDouble20',
         label: 'Double Chevron Right',
     },
     {
         value: QuoteStyle.SingleChevronLeft,
-        icon: IconEnum.CaretLeft20,
+        icon: 'CaretLeft20',
         label: 'Single Chevron Left',
     },
     {
         value: QuoteStyle.SingleChevronRight,
-        icon: IconEnum.CaretRight20,
+        icon: 'CaretRight20',
         label: 'Single Chevron Right',
     },
     {
@@ -83,7 +82,7 @@ const QUOTE_STYLE_CHOICES = [
         icon: <IconHookBracketRight style={style} />, // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Right',
     },
-    { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
+    { value: QuoteStyle.None, icon: 'StrikethroughBox20', label: 'None' },
 ] as Choice[];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
@@ -100,12 +99,12 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: IconEnum.SpeechBubbleQuote,
+                    icon: 'SpeechBubbleQuote',
                     label: 'Quotation Marks',
                 },
                 {
                     value: QuoteType.Indentation,
-                    icon: IconEnum.ListIndented,
+                    icon: 'ListIndented',
                     label: 'Indentation',
                 },
             ],
@@ -195,15 +194,15 @@ export const settings = defineSettings({
             defaultValue: TextAlignment.Left,
             choices: [
                 {
-                    icon: IconEnum.TextAlignmentLeft,
+                    icon: 'TextAlignmentLeft',
                     value: TextAlignment.Left,
                 },
                 {
-                    icon: IconEnum.TextAlignmentCentre,
+                    icon: 'TextAlignmentCentre',
                     value: TextAlignment.Center,
                 },
                 {
-                    icon: IconEnum.TextAlignmentRight,
+                    icon: 'TextAlignmentRight',
                     value: TextAlignment.Right,
                 },
             ],

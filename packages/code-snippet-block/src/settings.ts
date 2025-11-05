@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     Radius,
     defineSettings,
     getBorderSettings,
@@ -17,7 +16,7 @@ export const settings = defineSettings({
             type: 'dropdown',
             defaultValue: 'html',
             size: 'large',
-            choices: Object.entries(languageNameMap).map(([value, label]) => ({ value, icon: IconEnum.Code, label })),
+            choices: Object.entries(languageNameMap).map(([value, label]) => ({ value, icon: 'Code', label })),
         },
     ],
     basics: [],

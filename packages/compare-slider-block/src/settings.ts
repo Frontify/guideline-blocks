@@ -3,7 +3,6 @@
 import {
     AssetChooserObjectType,
     BorderStyle,
-    IconEnum,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
@@ -182,15 +181,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: LabelPlacement.Top,
-                            icon: IconEnum.ArrowAlignUp,
+                            icon: 'ArrowAlignUp',
                         },
                         {
                             value: LabelPlacement.Center,
-                            icon: IconEnum.ArrowAlignHorizontalCentre,
+                            icon: 'ArrowAlignHorizontalCentre',
                         },
                         {
                             value: LabelPlacement.Bottom,
-                            icon: IconEnum.ArrowAlignDown,
+                            icon: 'ArrowAlignDown',
                         },
                     ],
                 },
@@ -210,15 +209,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: LabelPlacement.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: LabelPlacement.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: LabelPlacement.Right,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                 },
@@ -239,15 +238,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: LabelPlacement.Top,
-                            icon: IconEnum.ArrowAlignUp,
+                            icon: 'ArrowAlignUp',
                         },
                         {
                             value: LabelPlacement.Center,
-                            icon: IconEnum.ArrowAlignHorizontalCentre,
+                            icon: 'ArrowAlignHorizontalCentre',
                         },
                         {
                             value: LabelPlacement.Bottom,
-                            icon: IconEnum.ArrowAlignDown,
+                            icon: 'ArrowAlignDown',
                         },
                     ],
                 },
@@ -268,15 +267,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: LabelPlacement.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: LabelPlacement.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: LabelPlacement.Right,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                 },
