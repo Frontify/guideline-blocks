@@ -143,10 +143,10 @@ it('switches language from dropdown inside block', () => {
     });
 
     mount(<CodeSnippetWithStubs />);
-    cy.get('[data-test-id=menu-item-title]').first().contains('HTML');
-    cy.get('[data-test-id=dropdown-trigger]').click();
-    cy.get('[data-test-id=menu-item]').eq(9).click({ force: true });
-    cy.get('[data-test-id=menu-item-title]').first().contains('JavaScript');
+    cy.get('[data-test-id=fondue-select]').first().contains('HTML');
+    cy.get('[data-test-id=fondue-select]').click();
+    cy.get('[data-test-id=fondue-select-item]').eq(9).click({ force: true });
+    cy.get('[data-test-id=fondue-select]').first().contains('JavaScript');
 });
 
 it('can copy using the copy button in the header', () => {
@@ -195,8 +195,8 @@ it('can copy using the copy button without a header', () => {
     cy.get('[data-test-id=code-snippet-block]').realHover();
     cy.get('[data-test-id=copy-button]').should('be.visible');
     cy.get('[data-test-id=copy-button]').realHover();
-    cy.get('[data-test-id=tooltip]').should('exist');
-    cy.get('[data-test-id=tooltip]').contains('Copy to clipboard');
+    cy.get('[data-test-id=fondue-tooltip-content]').should('exist');
+    cy.get('[data-test-id=fondue-tooltip-content]').contains('Copy to clipboard');
     cy.get('[data-test-id=copy-button]').click();
     cy.window()
         .its('navigator.clipboard')
@@ -204,5 +204,5 @@ it('can copy using the copy button without a header', () => {
         .then(async (text) => {
             expect(await text).to.eq(content);
         });
-    cy.get('[data-test-id=tooltip]').contains('Copied');
+    cy.get('[data-test-id=fondue-tooltip-content]').contains('Copied');
 });

@@ -1,16 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import debounce from 'lodash/debounce';
 import { Extension } from '@codemirror/state';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import {
-    Dropdown,
-    DropdownSize,
-    LegacyTooltip,
-    TooltipAlignment,
-    TooltipPosition,
-    debounce,
-    merge,
-} from '@frontify/fondue';
+
+import { merge } from '@frontify/fondue';
+import { Select, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { langs } from '@uiw/codemirror-extensions-langs';
@@ -31,6 +26,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
     const extensions = [] as Extension[];
     const [isCopied, setIsCopied] = useState(false);
+    const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
 
     useEffect(() => {
@@ -90,6 +86,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleCopy = async () => {
         await navigator.clipboard.writeText(blockSettings.content || '');
         setIsCopied(true);
+        setIsCopyTooltipOpen(true);
         window.dispatchEvent(new Event('resize')); // trigger resize event to update alignment of the tooltip
         debounce(() => {
             setIsCopied(false);
@@ -136,22 +133,16 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                             } as React.CSSProperties
                                         }
                                     >
-                                        <Dropdown
-                                            size={DropdownSize.Small}
-                                            activeItemId={selectedLanguage}
-                                            menuBlocks={[
-                                                {
-                                                    id: 'languages',
-                                                    menuItems: Object.entries(languageNameMap).map(
-                                                        ([value, label]) => ({
-                                                            id: value,
-                                                            title: label,
-                                                        })
-                                                    ),
-                                                },
-                                            ]}
-                                            onChange={(value) => handleLanguageChange(value as Language)}
-                                        />
+                                        <Select
+                                            value={selectedLanguage}
+                                            onSelect={(value) => handleLanguageChange(value as Language)}
+                                        >
+                                            {Object.entries(languageNameMap).map(([value, label]) => (
+                                                <Select.Item value={value} key={value}>
+                                                    {label}
+                                                </Select.Item>
+                                            ))}
+                                        </Select>
                                     </div>
                                 ) : (
                                     <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
@@ -192,22 +183,23 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         {!withHeading && (
                             <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                                 {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
-                                    <LegacyTooltip
-                                        content={isCopied ? 'Copied' : 'Copy to clipboard'}
-                                        triggerElement={
+                                    <Tooltip.Root
+                                        open={isCopyTooltipOpen}
+                                        onOpenChange={setIsCopyTooltipOpen}
+                                        enterDelay={0}
+                                    >
+                                        <Tooltip.Trigger>
                                             <button
                                                 data-test-id="copy-button"
                                                 className="tw-p-2 tw-rounded-md"
                                                 style={getStyle()}
                                                 onClick={handleCopy}
                                             >
-                                                {isCopied ? <IconCheckMark size={24} /> : <IconClipboard size={24} />}
+                                                {isCopied ? <IconCheckMark /> : <IconClipboard />}
                                             </button>
-                                        }
-                                        withArrow
-                                        position={TooltipPosition.Top}
-                                        alignment={TooltipAlignment.Middle}
-                                    />
+                                        </Tooltip.Trigger>
+                                        <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
+                                    </Tooltip.Root>
                                 ) : (
                                     <button
                                         className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
