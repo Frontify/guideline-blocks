@@ -2,7 +2,6 @@
 
 import {
     FileExtensionSets,
-    IconEnum,
     Security,
     appendUnit,
     defineSettings,
@@ -236,10 +235,10 @@ export const settings = defineSettings({
                     type: 'segmentedControls',
                     defaultValue: positioning,
                     choices: [
-                        { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
-                        { value: CaptionPosition.Above, icon: IconEnum.MediaObjectTextTop },
-                        { value: CaptionPosition.Right, icon: IconEnum.MediaObjectTextRight },
-                        { value: CaptionPosition.Left, icon: IconEnum.MediaObjectTextLeft },
+                        { value: CaptionPosition.Below, icon: 'MediaObjectTextBottom' },
+                        { value: CaptionPosition.Above, icon: 'MediaObjectTextTop' },
+                        { value: CaptionPosition.Right, icon: 'MediaObjectTextRight' },
+                        { value: CaptionPosition.Left, icon: 'MediaObjectTextLeft' },
                     ],
                 },
                 {
@@ -251,9 +250,9 @@ export const settings = defineSettings({
                         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
                         bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Right,
                     choices: [
-                        { value: Ratio.Ratio2To1, icon: IconEnum.MediaObjectRatio2To1 },
-                        { value: Ratio.Ratio1To1, icon: IconEnum.MediaObjectRatio1To1 },
-                        { value: Ratio.Ratio1To2, icon: IconEnum.MediaObjectRatio1To2 },
+                        { value: Ratio.Ratio2To1, icon: 'MediaObjectRatio2To1' },
+                        { value: Ratio.Ratio1To1, icon: 'MediaObjectRatio1To1' },
+                        { value: Ratio.Ratio1To2, icon: 'MediaObjectRatio1To2' },
                     ],
                 },
             ],

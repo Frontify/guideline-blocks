@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
@@ -39,12 +38,12 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: IconEnum.CodeFrame,
+                    icon: 'CodeFrame',
                     label: 'Story only',
                 },
                 {
                     value: StorybookStyle.WithAddons,
-                    icon: IconEnum.CodeFrame,
+                    icon: 'CodeFrame',
                     label: 'Story with add-ons',
                 },
             ],
@@ -111,11 +110,11 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
-                    icon: IconEnum.MediaObjectTextRight,
+                    icon: 'MediaObjectTextRight',
                 },
                 {
                     value: StorybookPosition.Vertical,
-                    icon: IconEnum.MediaObjectTextBottom,
+                    icon: 'MediaObjectTextBottom',
                 },
             ],
         },

@@ -1,5 +1,0 @@
-{
-    "appId": "<Your app ID>",
-    "searchFields": [{ "type": "<Field type: fondueRte | string>", "settingId": "<Your Search Field>" }],
-    "i18nFields": ["<Your translatable text fields>"]
-}

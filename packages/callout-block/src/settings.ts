@@ -3,7 +3,6 @@
 import {
     AssetChooserObjectType,
     FileExtension,
-    IconEnum,
     NotificationStyleType,
     appendUnit,
     createFooter,
@@ -31,22 +30,22 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: Type.Info,
-                    icon: IconEnum.Info,
+                    icon: 'Info',
                     label: 'Information',
                 },
                 {
                     value: Type.Note,
-                    icon: IconEnum.DocumentText,
+                    icon: 'DocumentText',
                     label: 'Note',
                 },
                 {
                     value: Type.Tip,
-                    icon: IconEnum.CheckMark,
+                    icon: 'CheckMark',
                     label: 'Tip',
                 },
                 {
                     value: Type.Warning,
-                    icon: IconEnum.ExclamationMarkTriangle,
+                    icon: 'ExclamationMarkTriangle',
                     label: 'Warning',
                 },
             ],
@@ -98,15 +97,15 @@ export const settings = defineSettings({
                             value: Icon.None,
                         },
                         {
-                            icon: IconEnum.Info,
+                            icon: 'Info',
                             value: Icon.Info,
                         },
                         {
-                            icon: IconEnum.Lightbulb,
+                            icon: 'Lightbulb',
                             value: Icon.Lightbulb,
                         },
                         {
-                            icon: IconEnum.Megaphone,
+                            icon: 'Megaphone',
                             value: Icon.Megaphone,
                         },
                     ],
@@ -148,17 +147,17 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: Alignment.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                             label: 'Left',
                         },
                         {
                             value: Alignment.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                             label: 'Center',
                         },
                         {
                             value: Alignment.Right,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                             label: 'Right',
                         },
                     ],
@@ -185,28 +184,28 @@ export const settings = defineSettings({
                                 {
                                     id: PADDING_TOP_ID,
                                     type: 'input',
-                                    icon: IconEnum.ArrowAlignUp16,
+                                    icon: 'ArrowAlignUp16',
                                     onChange: (bundle) => appendUnit(bundle, PADDING_TOP_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_LEFT_ID,
                                     type: 'input',
-                                    icon: IconEnum.ArrowAlignLeft16,
+                                    icon: 'ArrowAlignLeft16',
                                     onChange: (bundle) => appendUnit(bundle, PADDING_LEFT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_RIGHT_ID,
                                     type: 'input',
-                                    icon: IconEnum.ArrowAlignRight16,
+                                    icon: 'ArrowAlignRight16',
                                     onChange: (bundle) => appendUnit(bundle, PADDING_RIGHT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_BOTTOM_ID,
                                     type: 'input',
-                                    icon: IconEnum.ArrowAlignDown16,
+                                    icon: 'ArrowAlignDown16',
                                     onChange: (bundle) => appendUnit(bundle, PADDING_BOTTOM_ID),
                                     rules: [numericalOrPixelRule],
                                 },

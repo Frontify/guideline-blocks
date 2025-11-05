@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { IconEnum } from '@frontify/fondue';
 import {
     type Bundle,
     NotificationStyleType,
@@ -145,19 +144,19 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: TextPositioningType.Bottom,
-                            icon: 'MediaObjectTextBottom' as IconEnum.MediaObjectTextBottom,
+                            icon: 'MediaObjectTextBottom',
                         },
                         {
                             value: TextPositioningType.Top,
-                            icon: 'MediaObjectTextTop' as IconEnum.MediaObjectTextTop,
+                            icon: 'MediaObjectTextTop',
                         },
                         {
                             value: TextPositioningType.Right,
-                            icon: 'MediaObjectTextRight' as IconEnum.MediaObjectTextRight,
+                            icon: 'MediaObjectTextRight',
                         },
                         {
                             value: TextPositioningType.Left,
-                            icon: 'MediaObjectTextLeft' as IconEnum.MediaObjectTextLeft,
+                            icon: 'MediaObjectTextLeft',
                         },
                     ],
                 },
@@ -177,23 +176,23 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: TextRatioType.OneQuarter,
-                            icon: 'MediaObjectRatio3To1' as IconEnum.MediaObjectRatio3To1,
+                            icon: 'MediaObjectRatio3To1',
                         },
                         {
                             value: TextRatioType.OneThird,
-                            icon: 'MediaObjectRatio2To1' as IconEnum.MediaObjectRatio2To1,
+                            icon: 'MediaObjectRatio2To1',
                         },
                         {
                             value: TextRatioType.OneHalf,
-                            icon: 'MediaObjectRatio1To1' as IconEnum.MediaObjectRatio1To1,
+                            icon: 'MediaObjectRatio1To1',
                         },
                         {
                             value: TextRatioType.TwoThirds,
-                            icon: 'MediaObjectRatio1To2' as IconEnum.MediaObjectRatio1To2,
+                            icon: 'MediaObjectRatio1To2',
                         },
                         {
                             value: TextRatioType.ThreeQuarters,
-                            icon: 'MediaObjectRatio1To3' as IconEnum.MediaObjectRatio1To3,
+                            icon: 'MediaObjectRatio1To3',
                         },
                     ],
                 },
@@ -212,15 +211,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: AnchoringType.Start,
-                            icon: IconEnum.ArrowAlignUp,
+                            icon: 'ArrowAlignUp',
                         },
                         {
                             value: AnchoringType.Center,
-                            icon: IconEnum.ArrowAlignHorizontalCentre,
+                            icon: 'ArrowAlignHorizontalCentre',
                         },
                         {
                             value: AnchoringType.End,
-                            icon: IconEnum.ArrowAlignDown,
+                            icon: 'ArrowAlignDown',
                         },
                     ],
                 },
@@ -239,15 +238,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: AnchoringType.Start,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: AnchoringType.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: AnchoringType.End,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                 },
@@ -335,15 +334,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: AnchoringType.Start,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: AnchoringType.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: AnchoringType.End,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                 },

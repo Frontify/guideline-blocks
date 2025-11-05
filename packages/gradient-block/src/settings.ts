@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
@@ -106,11 +105,11 @@ export const settings = defineSettings({
                             defaultValue: DEFAULT_ORIENTATION_VALUE,
                             choices: [
                                 {
-                                    icon: IconEnum.ArrowBidirectionalHorizontal16,
+                                    icon: 'ArrowBidirectionalHorizontal16',
                                     value: GradientOrientation.Horizontal,
                                 },
                                 {
-                                    icon: IconEnum.ArrowBidirectional16,
+                                    icon: 'ArrowBidirectional16',
                                     value: GradientOrientation.Vertical,
                                 },
                             ],

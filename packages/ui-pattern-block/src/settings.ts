@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     Radius,
     appendUnit,
     defineSettings,
@@ -77,12 +76,15 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: Preprocessor.None,
+                    label: 'None',
                 },
                 {
                     value: Preprocessor.SCSS,
+                    label: 'SCSS',
                 },
                 {
                     value: Preprocessor.LESS,
+                    label: 'LESS',
                 },
             ],
         },
@@ -185,11 +187,11 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: TextAlignment.Bottom,
-                            icon: IconEnum.MediaObjectTextBottom,
+                            icon: 'MediaObjectTextBottom',
                         },
                         {
                             value: TextAlignment.Top,
-                            icon: IconEnum.MediaObjectTextTop,
+                            icon: 'MediaObjectTextTop',
                         },
                     ],
                 },
@@ -209,11 +211,11 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: Alignment.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: Alignment.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                     ],
                 },

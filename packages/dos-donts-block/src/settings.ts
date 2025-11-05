@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
     Radius,
     appendUnit,
     defineSettings,
@@ -35,12 +34,12 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: BlockMode.TEXT,
-                    icon: IconEnum.TextAlignmentLeft20,
+                    icon: 'TextAlignmentLeft20',
                     label: 'Text',
                 },
                 {
                     value: BlockMode.TEXT_AND_IMAGE,
-                    icon: IconEnum.MediaObjectTextBottom20,
+                    icon: 'MediaObjectTextBottom20',
                     label: 'Text and Image',
                 },
             ],
@@ -60,15 +59,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: DoDontStyle.Icons,
-                            icon: IconEnum.DoAndDont20,
+                            icon: 'DoAndDont20',
                         },
                         {
                             value: DoDontStyle.Underline,
-                            icon: IconEnum.TextFormatUnderline20,
+                            icon: 'TextFormatUnderline20',
                         },
                         {
                             value: DoDontStyle.Text,
-                            icon: IconEnum.TextAlignmentLeft20,
+                            icon: 'TextAlignmentLeft20',
                         },
                     ],
                 },
@@ -103,11 +102,11 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: ItemIconChoice.CHECKMARK_CIRCLE,
-                            icon: IconEnum.CheckMarkCircle20,
+                            icon: 'CheckMarkCircle20',
                         },
                         {
                             value: ItemIconChoice.CHECKMARK,
-                            icon: IconEnum.CheckMark20,
+                            icon: 'CheckMark20',
                         },
                     ],
                 },
@@ -119,11 +118,11 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: ItemIconChoice.CROSS_CIRCLE,
-                            icon: IconEnum.CrossCircle20,
+                            icon: 'CrossCircle20',
                         },
                         {
                             value: ItemIconChoice.CROSS,
-                            icon: IconEnum.Cross20,
+                            icon: 'Cross20',
                         },
                     ],
                 },

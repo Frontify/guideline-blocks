@@ -2,7 +2,6 @@
 
 import {
     Bundle,
-    IconEnum,
     appendUnit,
     betweenPercentRule,
     defineSettings,
@@ -48,12 +47,12 @@ export const settings = defineSettings({
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: IconEnum.DividerBlank,
+                    icon: 'DividerBlank',
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: IconEnum.DividerSolid,
+                    icon: 'DividerSolid',
                     label: 'Line',
                 },
             ],
@@ -118,15 +117,15 @@ export const settings = defineSettings({
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: IconEnum.ArrowAlignLeft,
+                            icon: 'ArrowAlignLeft',
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            icon: 'ArrowAlignVerticalCentre',
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: IconEnum.ArrowAlignRight,
+                            icon: 'ArrowAlignRight',
                         },
                     ],
                     show: limitedWidthIsSelected,
