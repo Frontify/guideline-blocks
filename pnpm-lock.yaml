@@ -895,9 +895,6 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -923,6 +920,9 @@ importers:
       '@testing-library/user-event':
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
+      '@types/lodash':
+        specifier: ^4.17.20
+        version: 4.17.20
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.24
