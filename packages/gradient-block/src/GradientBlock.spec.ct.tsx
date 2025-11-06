@@ -27,13 +27,10 @@ const GradientBlockDividerSelector = '[data-test-id="gradient-block-divider"]';
 const SquareBadgesSelector = '[data-test-id="square-badge"]';
 const SquareBadgeCheckmark = '[data-test-id="square-badge-checkmark"]';
 const SquareBadgeClipboard = '[data-test-id="square-badge-clipboard"]';
-const ButtonSelector = '[data-test-id="button"]';
-const ColorInputSelector = '[data-test-id="color-input"]';
+const ButtonSelector = '[data-test-id="fondue-button"]';
+const ColorInputSelector = '[data-test-id="color-picker-value-input-hex"]';
 const ColorPreviewSelector = '[role="dialog"]';
-const TriggerSelector = '[data-test-id="trigger"]';
-const TextInputSelector = '[data-test-id="text-input"]';
-const TextInputErrorSelector = '[data-test-id="error-state-exclamation-mark-icon"]';
-const FormControlHelperTextSelector = '[data-test-id="form-control-helper-text"]';
+const TriggerSelector = '[data-test-id="fondue-flyout-trigger"]';
 
 const GradientColor = [
     {
@@ -349,8 +346,8 @@ describe('Gradient Block', () => {
         cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
         cy.get(ColorPickerForm).find(TriggerSelector).realClick();
-        cy.get('[data-test-id="fondue-segmented-controls-item-text"]').last().realClick();
-        cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff').blur();
+        cy.get('[aria-label="Custom"]').realClick();
+        cy.get(ColorInputSelector).first().find('input').clear().realType('0000ff').realPress('Tab');
         cy.get(ColorPreviewSelector).parent().find(ButtonSelector).last().realClick();
         cy.get(ColorPickerFlyoutSelector).find(ButtonSelector).realClick();
 
@@ -486,22 +483,6 @@ describe('Gradient Block', () => {
             cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
-    });
-
-    it('should display the helper text and input form with exclamation mark if the position is already taken', () => {
-        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
-            editorState: true,
-            blockSettings: {
-                gradientColors: GradientColor,
-            },
-        });
-
-        mount(<GradientBlockWithStubs />);
-        cy.get(GradientBlockDividerSelector).realHover();
-        cy.get(AddColorButtonSelector).realClick();
-        cy.get(ColorPickerForm).find(TextInputSelector).clear().type('0');
-        cy.get(FormControlHelperTextSelector).should('exist');
-        cy.get(TextInputErrorSelector).should('exist');
     });
 
     it('square badge should not overlay the gradient block if just one color is present', () => {

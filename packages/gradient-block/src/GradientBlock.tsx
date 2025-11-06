@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { Divider, Palette } from '@frontify/fondue';
+import { Palette } from '@frontify/fondue';
+import { Divider } from '@frontify/fondue/components';
 
 import { BlockProps, mapAppBridgeColorPalettesToFonduePalettes } from '@frontify/guideline-blocks-settings';
 import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';

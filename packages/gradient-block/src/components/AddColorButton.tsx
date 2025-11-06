@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus12 } from '@frontify/fondue';
+import { IconPlus } from '@frontify/fondue/icons';
 import { AddColorButtonProps } from '../types';
 
 export const AddColorButton = ({
@@ -25,7 +25,7 @@ export const AddColorButton = ({
             }}
         >
             <span className="tw-text-white tw-h-4 tw-w-4 tw-flex tw-justify-center tw-items-center tw-pt-0.5">
-                <IconPlus12 />
+                <IconPlus size={12} />
             </span>
         </div>
     );

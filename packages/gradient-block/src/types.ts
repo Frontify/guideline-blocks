@@ -57,6 +57,7 @@ export type SquareBadgeProps = {
     gradientOrientation: number;
     index: number;
     blockWidth: number;
+    isLast: boolean;
 };
 
 export type ColorFlyoutProps = {
