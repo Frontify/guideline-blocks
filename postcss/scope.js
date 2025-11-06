@@ -57,5 +57,5 @@ const getModalExtensions = (selector) => {
         return "";
     }
 
-    return `, body > [role='toolbar'] ${selector}, body [data-overlay-container] ${selector}`;
+    return `, body > [role='toolbar'] ${selector}, body [data-overlay-container] ${selector}, body [role='dialog'] ${selector}`;
 };
