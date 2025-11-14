@@ -17,7 +17,6 @@ import { generateRandomId } from '@frontify/fondue';
 import {
     AttachmentOperationsProvider,
     type BlockProps,
-    DownloadButton,
     RichTextEditor,
     TextStyles,
     convertToRteValue,
@@ -25,6 +24,7 @@ import {
     isDownloadable,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
+import { DownloadButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
