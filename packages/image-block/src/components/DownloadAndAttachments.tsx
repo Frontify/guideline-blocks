@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Attachments, DownloadButton, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
+import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
+import { DownloadButton } from '@frontify/guideline-blocks-shared';
 import { announce } from '@react-aria/live-announcer';
 import { getTotalImagePadding } from './helpers';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
