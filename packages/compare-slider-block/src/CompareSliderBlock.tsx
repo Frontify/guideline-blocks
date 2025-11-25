@@ -57,7 +57,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [isFirstAssetLoaded, setIsFirstAssetLoaded] = useState(false);
     const [isSecondAssetLoaded, setIsSecondAssetLoaded] = useState(false);
     const [currentSliderPosition, setCurrentSliderPosition] = useState(50);
-    const { containerWidth, setContainerRef } = useImageContainer();
+    const { containerWidth, setContainerRef, exactContainerWidth } = useImageContainer();
 
     const { firstAsset, secondAsset } = blockAssets;
     const {
@@ -214,7 +214,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const calculateAutoImageHeight = (): number => {
-        if (!firstAsset || !secondAsset || !containerWidth) {
+        if (!firstAsset || !secondAsset || !exactContainerWidth) {
             return 0;
         }
 
@@ -223,7 +223,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 ? secondAsset[0]
                 : firstAsset[0];
 
-        return Math.round((assetWithSmallerAspectRatio.height * containerWidth) / assetWithSmallerAspectRatio.width);
+        return Math.round(
+            (assetWithSmallerAspectRatio.height * exactContainerWidth) / assetWithSmallerAspectRatio.width
+        );
     };
 
     const getUploadViewHeight = (): number => {
