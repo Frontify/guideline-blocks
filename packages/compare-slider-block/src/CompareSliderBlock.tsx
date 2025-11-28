@@ -102,12 +102,12 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             return;
         }
 
-        const assetWithBiggerAspectRatio =
+        const assetWithSmallerAspectRatio =
             firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / secondAsset[0].height
-                ? firstAsset[0]
-                : secondAsset[0];
+                ? secondAsset[0]
+                : firstAsset[0];
 
-        return assetWithBiggerAspectRatio.width / assetWithBiggerAspectRatio.height;
+        return assetWithSmallerAspectRatio.width / assetWithSmallerAspectRatio.height;
     }, [firstAsset, secondAsset, height]);
 
     useEffect(() => {
