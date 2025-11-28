@@ -8,7 +8,6 @@ const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;
 export const useImageContainer = () => {
     const containerRef = useRef<HTMLElement | null>(null);
     const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
-    const [exactContainerWidth, setExactContainerWidth] = useState<number | undefined>(undefined);
 
     useEffect(() => {
         if (!containerRef.current) {
@@ -28,7 +27,6 @@ export const useImageContainer = () => {
                 if (containerWidthHasGrown) {
                     setContainerWidth(newContainerWidth);
                 }
-                setExactContainerWidth(newImageWidth);
             }, 100)
         );
 
@@ -49,5 +47,5 @@ export const useImageContainer = () => {
         }
     };
 
-    return { containerWidth, setContainerRef, exactContainerWidth };
+    return { containerWidth, setContainerRef };
 };
