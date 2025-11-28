@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
 import {
@@ -96,6 +96,19 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const firstAssetPreviewUrl = firstAsset ? firstAsset[0].previewUrl : '';
     const secondAssetTitle = secondAsset ? (secondAssetAlt ?? '') : '';
     const secondAssetPreviewUrl = secondAsset ? secondAsset[0].previewUrl : '';
+
+    const aspectRatio = useMemo(() => {
+        if (!firstAsset || !secondAsset || height !== Height.Auto) {
+            return;
+        }
+
+        const assetWithSmallerAspectRatio =
+            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / secondAsset[0].height
+                ? secondAsset[0]
+                : firstAsset[0];
+
+        return assetWithSmallerAspectRatio.width / assetWithSmallerAspectRatio.height;
+    }, [firstAsset, secondAsset, height]);
 
     useEffect(() => {
         if (firstAssetPreviewUrl) {
@@ -213,19 +226,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
-    const calculateAutoImageHeight = (): number => {
-        if (!firstAsset || !secondAsset || !containerWidth) {
-            return 0;
-        }
-
-        const assetWithSmallerAspectRatio =
-            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
-                ? secondAsset[0]
-                : firstAsset[0];
-
-        return Math.round((assetWithSmallerAspectRatio.height * containerWidth) / assetWithSmallerAspectRatio.width);
-    };
-
     const getUploadViewHeight = (): number => {
         if (hasCustomHeight) {
             return parseInt(customHeight);
@@ -238,7 +238,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         return heightMap.m;
     };
 
-    const getImageHeight = (): number => {
+    const getImageHeight = (): number | string => {
         if (hasCustomHeight) {
             return parseInt(customHeight);
         }
@@ -247,7 +247,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             return heightMap[height];
         }
 
-        return calculateAutoImageHeight();
+        return '100%';
     };
 
     const getBorderStyle = () => {
@@ -266,8 +266,9 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     const renderSliderItem = (slot: SliderImageSlot) => {
         return (
-            <div className="tw-grow">
+            <div className="tw-size-full">
                 <div
+                    className="tw-size-full"
                     style={{
                         background: hasBackground
                             ? toRgbaString(backgroundColor || DEFAULT_BACKGROUND_COLOR)
@@ -367,6 +368,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     data-test-id="compare-slider-block"
                     ref={setContainerRef}
                     className="tw-w-full tw-flex tw-relative"
+                    style={{ aspectRatio }}
                 >
                     {isFirstAssetLoaded && isSecondAssetLoaded && (
                         <>
@@ -380,6 +382,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                             >
                                 <ReactCompareSlider
                                     position={currentSliderPosition}
+                                    className="tw-size-full"
                                     onPositionChange={setCurrentSliderPosition}
                                     itemOne={renderSliderItem(SliderImageSlot.First)}
                                     itemTwo={renderSliderItem(SliderImageSlot.Second)}
