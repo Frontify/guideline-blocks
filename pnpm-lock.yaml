@@ -21,7 +21,7 @@ importers:
         version: 11.1.0
       happy-dom:
         specifier: ^20.0.0
-        version: 20.0.10
+        version: 20.0.11
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -85,7 +85,7 @@ importers:
         version: 5.4.21(@types/node@24.10.0)
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.10)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.11)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
 
   examples/asset-upload:
     dependencies:
@@ -1201,7 +1201,7 @@ importers:
         version: 4.5.4(@types/node@24.10.0)(rollup@4.52.5)(typescript@5.9.2)(vite@5.4.21(@types/node@24.10.0))
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.10)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.11)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
 
   packages/sketchfab-block:
     dependencies:
@@ -3877,8 +3877,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@20.19.24':
-    resolution: {integrity: sha512-FE5u0ezmi6y9OZEzlJfg37mqqf6ZDSF2V/NLjUyGrR9uTZ7Sb9F7bLNZ03S4XVUNRWGA7Ck4c1kK+YnuWjl+DA==}
+  '@types/node@20.19.25':
+    resolution: {integrity: sha512-ZsJzA5thDQMSQO788d7IocwwQbI8B5OPzmqNvpf3NY/+MHDAS759Wo0gd2WQeXYt5AAAQjzcrTVC6SKCuYgoCQ==}
 
   '@types/node@24.10.0':
     resolution: {integrity: sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==}
@@ -5989,8 +5989,8 @@ packages:
     resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  happy-dom@20.0.10:
-    resolution: {integrity: sha512-6umCCHcjQrhP5oXhrHQQvLB0bwb1UzHAHdsXy+FjtKoYjUhmNZsQL8NivwM1vDvNEChJabVrUYxUnp/ZdYmy2g==}
+  happy-dom@20.0.11:
+    resolution: {integrity: sha512-QsCdAUHAmiDeKeaNojb1OHOPF7NjcWPBR7obdu3NwH2a/oyQaLg5d0aaCy/9My6CdPChYF07dvz5chaXBGaD4g==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -11391,7 +11391,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@20.19.24':
+  '@types/node@20.19.25':
     dependencies:
       undici-types: 6.21.0
 
@@ -12535,7 +12535,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.14
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.10)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.11)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2))
 
   '@vitest/utils@3.2.4':
     dependencies:
@@ -14248,9 +14248,9 @@ snapshots:
 
   graphql@16.11.0: {}
 
-  happy-dom@20.0.10:
+  happy-dom@20.0.11:
     dependencies:
-      '@types/node': 20.19.24
+      '@types/node': 20.19.25
       '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
 
@@ -16720,7 +16720,7 @@ snapshots:
       '@types/node': 24.10.0
       fsevents: 2.3.3
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.10)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2)):
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.10.0)(@vitest/ui@3.2.4)(happy-dom@20.0.11)(msw@2.11.2(@types/node@24.10.0)(typescript@5.9.2)):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -16749,7 +16749,7 @@ snapshots:
       '@types/debug': 4.1.12
       '@types/node': 24.10.0
       '@vitest/ui': 3.2.4(vitest@3.2.4)
-      happy-dom: 20.0.10
+      happy-dom: 20.0.11
     transitivePeerDependencies:
       - less
       - lightningcss
