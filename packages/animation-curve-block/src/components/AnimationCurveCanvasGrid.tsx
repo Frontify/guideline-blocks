@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type AnimationCurveCanvasGridProps } from '../types';
+
 import { Line } from './';
-import { AnimationCurveCanvasGridProps } from '../types';
 
 export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveCanvasGridProps) => {
     return (
@@ -26,7 +27,7 @@ export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveC
                     strokeColor={lineColor}
                     strokeWidth={1}
                     dashArray={4}
-                    dashed={true}
+                    dashed
                 />
             ))}
         </g>

@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/fondue';
-import { AnimationCurveType, AnimationFunction, Size, defaultAnimationCurveTypeValues } from './types';
+import { type Color } from '@frontify/fondue';
+
+import { AnimationCurveType, type AnimationFunction, type Size, defaultAnimationCurveTypeValues } from './types';
 
 export const BLANK_SLATE_INITIAL_HEIGHT = '82px';
 

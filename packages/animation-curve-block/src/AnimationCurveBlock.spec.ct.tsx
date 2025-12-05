@@ -1,12 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
-
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
-import { AnimationCurve, AnimationCurveType } from './types';
+import { type AnimationCurve, AnimationCurveType } from './types';
 
 const RTE_SELECTOR = '[data-test-id="rich-text-editor"]';
 const BLOCK_SELECTOR = '[data-test-id="animation-curve-block"]';
@@ -528,7 +527,7 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_SELECTOR).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(2).click({ force: true });
         cy.get(FLYOUT_SELECTOR).should('exist');
 
-        //x1
+        // x1
         cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('1.1');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
         cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('0.25');
@@ -539,7 +538,7 @@ describe('AnimationCurve Block', () => {
         cy.get(TEXT_INPUT_SELECTOR).eq(0).clear({ force: true }).realType('0.25');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
 
-        //x2
+        // x2
         cy.get(TEXT_INPUT_SELECTOR).eq(2).clear({ force: true }).realType('1.1');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
         cy.get(TEXT_INPUT_SELECTOR).eq(2).clear({ force: true }).realType('.25');

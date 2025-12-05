@@ -1,17 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useState } from 'react';
-import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
+import { DndContext, type DragEndEvent, DragOverlay, type DragStartEvent, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
-import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
-import { gridClasses } from './constants';
-import { BlankSlate, Card, SortableCard } from './components';
-import { BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { useState } from 'react';
+
+import { BlankSlate, Card, SortableCard } from './components';
+import { gridClasses } from './constants';
+import { type AnimationCurve, type AnimationCurvePatch, type Settings } from './types';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -90,7 +89,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                                         key={activeItem.id}
                                         animationCurve={activeItem}
                                         isEditing={isEditing}
-                                        isDragging={true}
+                                        isDragging
                                         blockSettings={blockSettings}
                                         onDelete={deleteAnimationCurve}
                                         onUpdate={updateAnimationCurve}

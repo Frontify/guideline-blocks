@@ -2,7 +2,7 @@
 
 import { toHexString } from '@frontify/guideline-blocks-settings';
 
-import { CircleProps } from '../types';
+import { type CircleProps } from '../types';
 
 export const Circle = ({
     center,

@@ -1,11 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { toHexString } from '@frontify/guideline-blocks-settings';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { toHexString } from '@frontify/guideline-blocks-settings';
+import {
+    type AnimationCanvasProps,
+    AnimationCurveType,
+    type AnimationFunction,
+    ControlPoint,
+    type Point,
+    type Size,
+} from '../types';
 
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
-import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
+
 import '../styles.css';
 import { DEFAULT_LINE_COLOR } from '../constants';
 export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animationPoint: Point): Point => {
@@ -198,26 +206,26 @@ export const AnimationCanvas = ({
 
             {showHandles && (
                 <>
-                    <Line start={startPoint} end={startHandlePoint} dashed={true} strokeColor={handleColor} />
+                    <Line start={startPoint} end={startHandlePoint} dashed strokeColor={handleColor} />
 
                     <Circle
                         testId="startPoint"
                         center={startHandlePoint}
                         radius={5}
                         scale={scale}
-                        isDraggable={true}
+                        isDraggable
                         fillColor={handleColor}
                         onPointerDown={() => setDraggingPoint(ControlPoint.Start)}
                     />
 
-                    <Line start={endPoint} end={endHandlePoint} dashed={true} strokeColor={handleColor} />
+                    <Line start={endPoint} end={endHandlePoint} dashed strokeColor={handleColor} />
 
                     <Circle
                         testId="endpoint"
                         center={endHandlePoint}
                         radius={5}
                         scale={scale}
-                        isDraggable={true}
+                        isDraggable
                         fillColor={handleColor}
                         onPointerDown={() => setDraggingPoint(ControlPoint.End)}
                     />

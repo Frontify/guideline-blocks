@@ -1,0 +1,48 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+// @ts-check
+
+// @ts-expect-error No types available
+import frontifyConfig from '@frontify/eslint-config-react';
+import { defineConfig } from 'eslint/config';
+// @ts-expect-error No types available
+import noticePlugin from 'eslint-plugin-notice';
+
+export default defineConfig(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    frontifyConfig,
+    {
+        ignores: ['dist/', 'coverage/', 'node_modules/', '**/*.md/**.ts'],
+    },
+    {
+        files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts', '**/*.cjs'],
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
+        plugins: {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            notice: noticePlugin,
+        },
+        rules: {
+            // Copyright header rules
+            'notice/notice': [
+                'error',
+                {
+                    template: '/* (c) Copyright Frontify Ltd., all rights reserved. */\n\n',
+                    messages: {
+                        whenFailedToMatch: 'No Frontify copyright header set.',
+                    },
+                },
+            ],
+
+            // React rules
+            '@eslint-react/dom/no-missing-button-type': 'warn',
+            '@eslint-react/naming-convention/filename-extension': 'warn',
+            '@eslint-react/no-unnecessary-use-prefix': 'warn',
+            '@eslint-react/no-unstable-context-value': 'warn',
+        },
+    }
+);

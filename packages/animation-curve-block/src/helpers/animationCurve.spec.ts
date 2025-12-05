@@ -2,8 +2,9 @@
 
 import { describe, expect, test } from 'vitest';
 
-import { roundAnimationCurveParameters, roundTwoDecimals } from './animationCurve';
 import { AnimationCurveType } from '../types';
+
+import { roundAnimationCurveParameters, roundTwoDecimals } from './animationCurve';
 
 describe('round two decimals', () => {
     const testData = [
