@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.45",
-        "@frontify/fondue": "12.14.3",
+        "@frontify/fondue": "12.14.5",
         "@frontify/guideline-blocks-settings": "1.0.12",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
