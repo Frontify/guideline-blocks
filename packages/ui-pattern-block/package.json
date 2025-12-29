@@ -36,7 +36,7 @@
         "@codesandbox/sandpack-react": "^2.18.2",
         "@codesandbox/sandpack-themes": "^2.0.21",
         "@frontify/app-bridge": "^4.0.0-alpha.45",
-        "@frontify/fondue": "12.14.3",
+        "@frontify/fondue": "12.14.5",
         "@frontify/guideline-blocks-settings": "1.0.12",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@mantine/core": "^7.1.2",
