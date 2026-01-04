@@ -30,7 +30,7 @@
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.3",
-        "@frontify/guideline-blocks-settings": "1.0.12",
+        "@frontify/guideline-blocks-settings": "1.0.13",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-compare-slider": "^3.1.0",
