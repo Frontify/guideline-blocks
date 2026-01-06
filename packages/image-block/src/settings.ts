@@ -282,9 +282,9 @@ export const settings = defineSettings({
             show: (bundle) =>
                 Boolean(
                     bundle.getBlock('hasBackground')?.value ||
-                        bundle.getBlock('autosizing')?.value === Autosizing.Fill ||
-                        (!bundle.getBlock('hasCustomRatio')?.value &&
-                            bundle.getBlock('ratioChoice')?.value === ImageAspectRatio.RatioNone)
+                    bundle.getBlock('autosizing')?.value === Autosizing.Fill ||
+                    (!bundle.getBlock('hasCustomRatio')?.value &&
+                        bundle.getBlock('ratioChoice')?.value === ImageAspectRatio.RatioNone)
                 ),
         },
     ],
