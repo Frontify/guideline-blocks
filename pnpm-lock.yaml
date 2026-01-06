@@ -1424,9 +1424,6 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1443,9 +1440,6 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^5.9.5
         version: 5.9.5(@types/node@24.10.0)
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.27
@@ -1509,9 +1503,6 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1528,9 +1519,6 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^5.9.5
         version: 5.9.5(@types/node@24.10.0)
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.27
@@ -1597,9 +1585,6 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1619,9 +1604,6 @@ importers:
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.21
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
       '@types/react':
         specifier: ^18.3.24
         version: 18.3.27
@@ -3915,9 +3897,6 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
-
-  '@types/lodash-es@4.17.12':
-    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
   '@types/lodash@4.17.21':
     resolution: {integrity: sha512-FOvQ0YPD5NOfPgMzJihoT+Za5pdkDJWcbpuj1DjaKZIr/gxodQjY/uWEFlTNqW2ugXHUiL8lRQgw63dzKHZdeQ==}
@@ -11434,10 +11413,6 @@ snapshots:
   '@types/is-hotkey@0.1.10': {}
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/lodash-es@4.17.12':
-    dependencies:
-      '@types/lodash': 4.17.21
 
   '@types/lodash@4.17.21': {}
 
