@@ -124,7 +124,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -200,7 +200,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -267,7 +267,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -337,7 +337,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -407,7 +407,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -498,7 +498,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -571,7 +571,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -635,7 +635,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       eslint:
         specifier: ^8.57.0
@@ -720,7 +720,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -784,7 +784,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -854,7 +854,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -936,7 +936,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1012,7 +1012,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1079,7 +1079,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1240,7 +1240,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1310,7 +1310,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1377,7 +1377,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1447,7 +1447,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1526,7 +1526,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1
@@ -1611,7 +1611,7 @@ importers:
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.27)
       autoprefixer:
-        specifier: ^10.4.21
+        specifier: ^10.4.23
         version: 10.4.23(postcss@8.5.6)
       cypress:
         specifier: ^15.8.1

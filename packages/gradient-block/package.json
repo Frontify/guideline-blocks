@@ -20,7 +20,7 @@
         "@react-aria/interactions": "^3.25.5",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
-        "autoprefixer": "^10.4.21",
+        "autoprefixer": "^10.4.23",
         "cypress": "^15.8.1",
         "cypress-real-events": "^1.15.0",
         "eslint": "^8.57.0",
