@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.28.5",
-        "@frontify/eslint-config-react": "0.16.1",
+        "@frontify/eslint-config-react": "0.17.7",
         "@frontify/frontify-cli": "^5.9.5",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
