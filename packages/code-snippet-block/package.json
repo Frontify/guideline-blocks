@@ -19,6 +19,7 @@
         "@frontify/frontify-cli": "^5.9.5",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
+        "@types/lodash": "^4.17.21",
         "autoprefixer": "^10.4.23",
         "cypress": "^15.8.1",
         "cypress-real-events": "^1.15.0",
@@ -32,9 +33,9 @@
         "typescript": "^5.9.3"
     },
     "dependencies": {
-        "@codemirror/language": "^6.11.3",
-        "@codemirror/state": "^6.5.2",
-        "@codemirror/view": "^6.38.2",
+        "@codemirror/language": "^6.12.1",
+        "@codemirror/state": "^6.5.3",
+        "@codemirror/view": "^6.39.9",
         "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.5",
         "@frontify/guideline-blocks-settings": "1.0.13",
@@ -44,7 +45,6 @@
         "@uiw/react-codemirror": "4.24.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "@types/lodash": "^4.17.20",
         "lodash": "^4.17.21"
     }
 }

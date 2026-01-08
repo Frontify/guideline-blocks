@@ -17,7 +17,7 @@
         "@babel/core": "^7.28.5",
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.9.5",
-        "@types/lodash": "^4.17.20",
+        "@types/lodash": "^4.17.21",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
         "autoprefixer": "^10.4.23",
@@ -32,7 +32,7 @@
         "typescript": "^5.9.3"
     },
     "dependencies": {
-        "@codesandbox/sandpack-react": "^2.18.2",
+        "@codesandbox/sandpack-react": "^2.20.0",
         "@codesandbox/sandpack-themes": "^2.0.21",
         "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.5",
