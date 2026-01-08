@@ -18,7 +18,7 @@
         "@frontify/eslint-config-react": "0.16.1",
         "@frontify/frontify-cli": "^5.9.5",
         "@types/autosize": "^4.0.3",
-        "@types/lodash": "^4.17.14",
+        "@types/lodash": "^4.17.21",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
         "autoprefixer": "^10.4.23",
