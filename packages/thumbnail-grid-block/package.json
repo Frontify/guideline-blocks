@@ -22,7 +22,7 @@
         "autoprefixer": "^10.4.23",
         "cypress": "^15.8.1",
         "cypress-real-events": "^1.15.0",
-        "eslint": "^8.57.0",
+        "eslint": "^9.0.0",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-notice": "^0.9.10",
         "postcss": "^8.5.6",
