@@ -20,7 +20,8 @@ import {
     hasRichTextValue,
 } from '@frontify/guideline-blocks-settings';
 import { useMemo } from 'react';
-import { InformationSectionProps } from '../types';
+
+import { type InformationSectionProps } from '../types';
 
 export const InformationSection = ({
     description,
@@ -29,6 +30,7 @@ export const InformationSection = ({
     title,
     appBridge,
 }: InformationSectionProps) => {
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-memo
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
             .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])

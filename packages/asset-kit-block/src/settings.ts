@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Color,
+    type Color,
     defineSettings,
     getBackgroundSettings,
     getBorderRadiusSettings,

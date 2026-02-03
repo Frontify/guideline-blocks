@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-settings';
-import { LoadingCircle } from '@frontify/fondue/components';
-import { DownloadMessageProps } from '../types';
 import { AssetBulkDownloadState } from '@frontify/app-bridge';
+import { LoadingCircle } from '@frontify/fondue/components';
+import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-settings';
+
+import { type DownloadMessageProps } from '../types';
 
 export const DownloadMessage = ({ blockStyle, status }: DownloadMessageProps) => {
     return (

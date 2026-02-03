@@ -1,6 +1,5 @@
 {
     "name": "animation-curve-block",
-    "type": "module",
     "version": "1.0.0",
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
