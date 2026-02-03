@@ -2,11 +2,12 @@
 
 import { useBlockSettings } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-settings';
-import { ReactElement } from 'react';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type ReactElement } from 'react';
+
 import { getRadiusValue } from './helpers';
 import { BLACK_COLOR, DEFAULT_CHARS, WHITE_COLOR } from './settings';
-import { BlockProps, Settings } from './types';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type BlockProps, type Settings } from './types';
 
 export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);

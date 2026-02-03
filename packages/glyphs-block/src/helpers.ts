@@ -1,11 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiFontStyle } from './types';
-import { Choice, Radius, radiusStyleMap } from '@frontify/guideline-blocks-settings';
+import { type Choice, type Radius, radiusStyleMap } from '@frontify/guideline-blocks-settings';
+
+import { type ApiFontStyle } from './types';
 
 export const getFonts = async (projectId: number): Promise<Choice[]> => {
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const responseJson = await response.json();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const fonts: Choice[] = responseJson.data.map(({ name, css_family_name }: ApiFontStyle) => ({
         label: name,
         value: css_family_name,
@@ -15,7 +18,9 @@ export const getFonts = async (projectId: number): Promise<Choice[]> => {
 
 export const getFontWeights = async (projectId: number, font: string): Promise<Choice[]> => {
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const responseJson = await response.json();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const fontStyles: ApiFontStyle[] = responseJson.data.filter(
         (fontStyle: ApiFontStyle) => fontStyle.name === font && fontStyle.font_style === 'normal'
     );
