@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BoundingClientRectProperties } from '../types';
+import { type BoundingClientRectProperties } from '../types';
+
 import { MouseProperties } from './MouseProperties';
 
 export class ImageStage {

@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type ImageContainer } from '../ImageContainer';
+import { type ImageElement } from '../ImageElement';
+import { type ImageStage } from '../ImageStage';
+
 import { ContainerOperator } from './ContainerOperator';
-import { ImageContainer } from '../ImageContainer';
-import { ImageStage } from '../ImageStage';
-import { ImageElement } from '../ImageElement';
 
 export class BitmapContainerOperator extends ContainerOperator {
     constructor(

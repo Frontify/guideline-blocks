@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
+
 import { ImageContainer, ImageElement, ImageStage, VectorContainerOperator } from '../components';
 
 export const BlockContainerStub = ({ height, padding = 0 }: { height: string; padding?: number }) => {

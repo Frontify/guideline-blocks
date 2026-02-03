@@ -1,16 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
+
 import {
     BitmapContainerOperator,
-    ContainerOperator,
+    type ContainerOperator,
     ImageContainer,
     ImageElement,
     ImageStage,
     VectorContainerOperator,
 } from './components';
 import { getHeightOfBlock } from './helpers';
-import { UseImageStageProps, Zoom } from './types';
+import { type UseImageStageProps, Zoom } from './types';
 
 export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageStageProps) => {
     const [isFullScreen, setIsFullScreen] = useState<boolean>(false);

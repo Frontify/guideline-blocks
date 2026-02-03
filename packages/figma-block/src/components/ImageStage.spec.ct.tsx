@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
+
 import { ImageStage } from './ImageStage';
 
 const IMAGE_STAGE_SELECTOR = '[id="image-stage"]';
@@ -16,6 +17,7 @@ describe('ImageStage', () => {
 
             expect(imageStage.height).to.equal(100);
             expect(imageStage.width).to.equal(200);
+            return null;
         });
     });
 
@@ -25,6 +27,7 @@ describe('ImageStage', () => {
         cy.get(IMAGE_STAGE_SELECTOR).then((element) => {
             const imageStage = new ImageStage(element.get(0) as HTMLDivElement);
             expect(imageStage.aspectRatio()).to.equal(2);
+            return null;
         });
     });
 
@@ -35,6 +38,7 @@ describe('ImageStage', () => {
             const imageStage = new ImageStage(element.get(0) as HTMLDivElement);
             imageStage.alterHeight('300px');
             expect(imageStage.height).to.equal(300);
+            return null;
         });
     });
 });

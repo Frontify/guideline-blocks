@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, it } from 'vitest';
-import { ImageContainer } from './ImageContainer';
+
 import { Cursor } from '../types';
+
+import { ImageContainer } from './ImageContainer';
 
 describe('ImageContainer', () => {
     it('Changes the mouse cursor', () => {

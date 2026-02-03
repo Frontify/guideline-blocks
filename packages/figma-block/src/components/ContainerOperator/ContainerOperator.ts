@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ImageContainer } from '../ImageContainer';
-import { ImageStage } from '../ImageStage';
-import { ImageElement } from '../ImageElement';
-import { Zoom } from '../../types';
+import { type Zoom } from '../../types';
+import { type ImageContainer } from '../ImageContainer';
+import { type ImageElement } from '../ImageElement';
+import { type ImageStage } from '../ImageStage';
+
 import { IMAGE_PADDING_PERCENTAGE_DEFAULT } from './constants';
 
 export abstract class ContainerOperator {
