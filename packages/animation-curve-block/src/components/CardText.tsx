@@ -1,7 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useMemo } from 'react';
-
 import {
     RichTextEditor,
     TextStyles,
@@ -9,9 +7,10 @@ import {
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
+import { useMemo } from 'react';
 
-import { CardTextProps } from '../types';
 import { getTitlePlugin } from '../helpers';
+import { type CardTextProps } from '../types';
 
 export const CardText = ({
     appBridge,

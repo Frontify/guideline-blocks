@@ -1,11 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { forwardRef, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
-
 import { merge } from '@frontify/fondue';
 import { IconArrowMove, IconDotsHorizontal, IconTrashBin } from '@frontify/fondue/icons';
-
 import {
     BlockItemWrapper,
     getBackgroundColorStyles,
@@ -15,7 +12,8 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
-import { AnimationCurve, CardProps, SortableCardProps } from '../types';
+import { forwardRef, useState } from 'react';
+
 import {
     DEFAULT_ANIMATION_CANVAS_VIEWBOX,
     DEFAULT_BACKGROUND_COLOR,
@@ -23,6 +21,8 @@ import {
     DEFAULT_GRID_COLOR,
     DEFAULT_LINE_COLOR,
 } from '../constants';
+import { type AnimationCurve, type CardProps, type SortableCardProps } from '../types';
+
 import { AnimationCanvas, AnimationCurveFlyout, CardText } from './';
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -80,7 +80,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             onUpdate(animationCurve.id, { description });
         };
 
-        const parametersString = `${parameters['x1']}, ${parameters['y1']}, ${parameters['x2']}, ${parameters['y2']}`;
+        const parametersString = `${parameters.x1}, ${parameters.y1}, ${parameters.x2}, ${parameters.y2}`;
 
         const textShown = hasRichTextValue(title) || hasRichTextValue(description) || isEditing;
 
@@ -171,8 +171,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 shouldAnimate={isHovered && hasMotion}
                                 setCanvasHeight={setCanvasHeight}
                                 title={
+                                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                     title && hasRichTextValue(title)
-                                        ? JSON.parse(title)[0].children[0].text
+                                        ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                          JSON.parse(title)[0].children[0].text
                                         : 'Animation Curve'
                                 }
                             />

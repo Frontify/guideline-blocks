@@ -1,21 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
-
 import { Button, Flyout, Select, Text, TextInput } from '@frontify/fondue/components';
+import { IconCaretRight, IconCheckMark } from '@frontify/fondue/icons';
+import { Fragment, useEffect, useState } from 'react';
 
 import { DEFAULT_ANIMATION_FUNCTION, DROPDOWN_MENU_ITEMS } from '../constants';
 import { roundAnimationCurveParameters } from '../helpers';
 import {
-    AnimationCurve,
-    AnimationCurveFlyoutProps,
-    AnimationCurveParametersPatch,
+    type AnimationCurve,
+    type AnimationCurveFlyoutProps,
+    type AnimationCurveParametersPatch,
     AnimationCurveType,
-    AnimationFunctionPatch,
+    type AnimationFunctionPatch,
     defaultAnimationCurveTypeValues,
 } from '../types';
+
 import { AnimationCanvas } from './';
-import { IconCaretRight, IconCheckMark } from '@frontify/fondue/icons';
 
 export const validateXValue = (value: number) => {
     return value < 0 || value > 1 ? 'error' : 'neutral';
@@ -65,6 +65,7 @@ export const AnimationCurveFlyout = ({
 
     useEffect(() => {
         const { x1, x2 } = localAnimationFunction.parameters;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setX1Validation(validateXValue(x1));
         setX2Validation(validateXValue(x2));
     }, [localAnimationFunction]);
@@ -184,10 +185,9 @@ export const AnimationCurveFlyout = ({
                                         value: localAnimationFunction.parameters.y2,
                                     },
                                 ].map((param, index) => (
-                                    <>
-                                        {index === 2 && <IconCaretRight size="16" key="arrow" />}
+                                    <Fragment key={param.key}>
+                                        {index === 2 && <IconCaretRight size="16" />}
                                         <ParameterInput
-                                            key={param.key}
                                             label={param.label}
                                             value={param.value}
                                             onChange={(value) => updateAnimationCurveParameters({ [param.key]: value })}
@@ -195,7 +195,7 @@ export const AnimationCurveFlyout = ({
                                             onBlur={handleBlur}
                                             status={param.status}
                                         />
-                                    </>
+                                    </Fragment>
                                 ))}
                             </div>
                             <div className="tw-w-20 tw-relative">

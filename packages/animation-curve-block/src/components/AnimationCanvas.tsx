@@ -1,13 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { toHexString } from '@frontify/guideline-blocks-settings';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { toHexString } from '@frontify/guideline-blocks-settings';
+import { DEFAULT_LINE_COLOR } from '../constants';
+import {
+    type AnimationCanvasProps,
+    AnimationCurveType,
+    type AnimationFunction,
+    ControlPoint,
+    type Point,
+    type Size,
+} from '../types';
 
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
-import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
+
 import '../styles.css';
-import { DEFAULT_LINE_COLOR } from '../constants';
 export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animationPoint: Point): Point => {
     return {
         x: viewBox.width * animationPoint.x,
@@ -85,6 +93,7 @@ export const AnimationCanvas = ({
         }
     });
 
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const handleMovePoint = useCallback(
         (event: MouseEvent) => {
             if (!draggingPoint || !svgRef.current) {
@@ -109,7 +118,7 @@ export const AnimationCanvas = ({
                 y: 1 - positionWithinViewBox.y / viewBox.height,
             };
 
-            setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
+            setAnimationFunction?.(updatedAnimationFunction(animationValues, draggingPoint));
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]
@@ -139,11 +148,12 @@ export const AnimationCanvas = ({
         }
     };
 
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const handleDragEnd = useCallback(() => {
         if (!draggingPoint) {
             return;
         }
-        setAnimationFunction && setAnimationFunction(animationFunction);
+        setAnimationFunction?.(animationFunction);
         setDraggingPoint(null);
     }, [draggingPoint, animationFunction, setAnimationFunction]);
 
@@ -198,26 +208,26 @@ export const AnimationCanvas = ({
 
             {showHandles && (
                 <>
-                    <Line start={startPoint} end={startHandlePoint} dashed={true} strokeColor={handleColor} />
+                    <Line start={startPoint} end={startHandlePoint} dashed strokeColor={handleColor} />
 
                     <Circle
                         testId="startPoint"
                         center={startHandlePoint}
                         radius={5}
                         scale={scale}
-                        isDraggable={true}
+                        isDraggable
                         fillColor={handleColor}
                         onPointerDown={() => setDraggingPoint(ControlPoint.Start)}
                     />
 
-                    <Line start={endPoint} end={endHandlePoint} dashed={true} strokeColor={handleColor} />
+                    <Line start={endPoint} end={endHandlePoint} dashed strokeColor={handleColor} />
 
                     <Circle
                         testId="endpoint"
                         center={endHandlePoint}
                         radius={5}
                         scale={scale}
-                        isDraggable={true}
+                        isDraggable
                         fillColor={handleColor}
                         onPointerDown={() => setDraggingPoint(ControlPoint.End)}
                     />
