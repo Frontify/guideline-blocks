@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { merge } from '@frontify/fondue';
-import { Settings } from '../../types';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
+
+import { type Settings } from '../../types';
 
 type GridProps = {
     children: ReactNode;

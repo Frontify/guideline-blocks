@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "composite": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "skipLibCheck": true,
+        "strict": true,
+        "types": ["node"]
+    },
+    "include": ["eslint.config.mjs"]
+}

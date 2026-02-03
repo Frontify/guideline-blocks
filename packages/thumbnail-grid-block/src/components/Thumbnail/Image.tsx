@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
-import { UploadPlaceholder } from './UploadPlaceholder';
-import { ImageWrapper } from './ImageWrapper';
-import { type ThumbnailStylesProps } from '../../types';
+import { type Asset } from '@frontify/app-bridge';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
+
+import { type ThumbnailStylesProps } from '../../types';
+
+import { ImageWrapper } from './ImageWrapper';
+import { UploadPlaceholder } from './UploadPlaceholder';
 
 type ImageProps = {
     thumbnailStyles: ThumbnailStylesProps;
@@ -58,7 +60,6 @@ export const Image = ({
             ImageComponent
         ) : (
             <UploadPlaceholder
-                width={thumbnailStyles.width}
                 isLoading={isLoading}
                 openFileDialog={onOpenFileDialog}
                 onFilesDrop={(files) => onFilesDrop(files, id)}
@@ -71,6 +72,7 @@ export const Image = ({
         if (image) {
             return isAssetViewerEnabled ? (
                 <button
+                    type="button"
                     className="tw-w-full"
                     data-test-id="thumbnail-grid-block-asset-viewer-button"
                     onClick={() => openAssetInAssetViewer?.(image)}

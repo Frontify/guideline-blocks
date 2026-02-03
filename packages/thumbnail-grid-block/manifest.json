@@ -3,12 +3,12 @@
     "i18nFields": ["items"],
     "searchFields": [
         {
-            "type": "fondueRte",
-            "settingId": "items.title"
+            "settingId": "items.title",
+            "type": "fondueRte"
         },
         {
-            "type": "fondueRte",
-            "settingId": "items.description"
+            "settingId": "items.description",
+            "type": "fondueRte"
         }
     ]
 }
