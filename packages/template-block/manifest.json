@@ -2,7 +2,7 @@
     "appId": "clmg9pqj300010our91kww0h2",
     "i18nFields": ["title", "description", "buttonText"],
     "searchFields": [
-        { "type": "fondueRte", "settingId": "title" },
-        { "type": "fondueRte", "settingId": "description" }
+        { "settingId": "title", "type": "fondueRte" },
+        { "settingId": "description", "type": "fondueRte" }
     ]
 }

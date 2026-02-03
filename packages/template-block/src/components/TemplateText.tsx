@@ -1,16 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties, useCallback, useMemo } from 'react';
-import {
-    BlockStyles,
-    RichTextEditor,
-    THEME_PREFIX,
-    TextStylePluginsWithoutImage,
-    TextStyles,
-    convertToRteValue,
-    getDefaultPluginsWithLinkChooser,
-    hasRichTextValue,
-} from '@frontify/guideline-blocks-settings';
 import {
     AutoformatPlugin,
     BoldPlugin,
@@ -22,7 +11,19 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
 } from '@frontify/fondue';
-import { TemplateTextProps } from './types';
+import {
+    BlockStyles,
+    RichTextEditor,
+    THEME_PREFIX,
+    TextStylePluginsWithoutImage,
+    TextStyles,
+    convertToRteValue,
+    getDefaultPluginsWithLinkChooser,
+    hasRichTextValue,
+} from '@frontify/guideline-blocks-settings';
+import { type CSSProperties, useCallback, useMemo } from 'react';
+
+import { type TemplateTextProps } from './types';
 
 export const TemplateText = ({
     appBridge,
@@ -56,6 +57,7 @@ export const TemplateText = ({
         [description, updateBlockSettings]
     );
 
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-memo
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
             .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])

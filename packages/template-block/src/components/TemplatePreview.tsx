@@ -2,16 +2,18 @@
 
 import { useEditorState } from '@frontify/app-bridge';
 import { IconPlus } from '@frontify/fondue/icons';
-import { PreviewHeightType, previewHeightValues } from '../types';
 import {
     BlockInjectButton,
     getBackgroundColorStyles,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { PreviewImage } from './PreviewImage';
-import { TemplatePreviewProps } from './types';
+
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
+import { PreviewHeightType, previewHeightValues } from '../types';
+
+import { PreviewImage } from './PreviewImage';
+import { type TemplatePreviewProps } from './types';
 
 export const TemplatePreview = ({
     appBridge,
@@ -54,6 +56,7 @@ export const TemplatePreview = ({
         <div className={previewClasses} data-test-id="preview">
             {template !== null || previewCustom ? (
                 <button
+                    type="button"
                     className="tw-relative tw-overflow-hidden tw-w-full tw-h-full"
                     data-test-id="preview-wrapper"
                     style={{
@@ -84,7 +87,7 @@ export const TemplatePreview = ({
                         label="Choose existing template"
                         icon={<IconPlus />}
                         withMenu={false}
-                        fillParentContainer={true}
+                        fillParentContainer
                         onClick={onOpenTemplateChooser}
                     />
                 </div>

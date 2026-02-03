@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, Template } from '@frontify/app-bridge';
-import { Settings } from '../types';
+import { type AppBridgeBlock, type Asset, type Template } from '@frontify/app-bridge';
+
+import { type Settings } from '../types';
 
 export type AlertErrorProps = {
     errorMessage: string;

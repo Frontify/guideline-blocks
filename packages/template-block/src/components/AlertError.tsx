@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconExclamationMarkTriangle } from '@frontify/fondue/icons';
-import { AlertErrorProps } from './types';
+
+import { type AlertErrorProps } from './types';
 
 export const AlertError = ({ errorMessage }: AlertErrorProps) => {
     return (

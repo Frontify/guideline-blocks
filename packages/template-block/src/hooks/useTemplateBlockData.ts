@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useState } from 'react';
 import {
     type Template,
     type TemplateLegacy,
@@ -10,26 +9,28 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Color, TextStyles } from '@frontify/fondue';
+import { type Color, TextStyles } from '@frontify/fondue';
 import {
     type BlockProps,
-    BorderStyle,
-    Padding,
-    Radius,
+    type BorderStyle,
+    type Padding,
+    type Radius,
     convertToRteValue,
     getBackgroundColorStyles,
     hasRichTextValue,
     radiusStyleMap,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
+import { useCallback, useEffect, useState } from 'react';
 
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 import {
-    AnchoringType,
+    type AnchoringType,
     PreviewType,
     type Settings,
     TextPositioningType,
-    TextRatioType,
+    type TextRatioType,
     horizontalAlignmentToCtaSelfAlign,
     horizontalAlignmentToTextAlign,
     paddingStyleMap,
@@ -38,7 +39,6 @@ import {
     textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from '../types';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -77,12 +77,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasPreview = preview !== PreviewType.None;
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                     description: convertToRteValue(TextStyles.p, result.template.description),
                 });
                 setTemplateTextKey(templateTextKey + 1);
@@ -107,6 +109,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     );
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
         return () => {
@@ -118,6 +121,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         if (error !== null) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setLastErrorMessage(error);
         }
     }, [error]);
@@ -130,12 +134,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
         const lastTemplate = templates[templates.length - 1];
         if (lastTemplate) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setHasAuthenticatedUser(isAuthenticated);
     }, [appBridge]);
 

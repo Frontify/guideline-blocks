@@ -4,7 +4,7 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     type Bundle,
     NotificationStyleType,
-    Radius,
+    type Radius,
     appendUnit,
     defineSettings,
     getBackgroundSettings,
@@ -16,6 +16,8 @@ import {
     presetCustomValue,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
+
+import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 import {
     AnchoringType,
     PreviewDisplayType,
@@ -27,7 +29,6 @@ import {
     paddingStyleMap,
     previewHeightValues,
 } from './types';
-import { TEMPLATE_BLOCK_SETTING_ID } from './constants';
 
 export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255, alpha: 0 };
 export const DEFAULT_BORDER_COLOR = { red: 234, green: 235, blue: 235, alpha: 1 };
