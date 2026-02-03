@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
-import { Type } from '../types';
+import { type Asset } from '@frontify/app-bridge';
+
+import { type Type } from '../types';
 
 export const CustomCalloutIcon = ({ customIcon, type }: { customIcon: Asset | undefined; type: Type }) => {
     const devicePixelRatio = Math.max(window.devicePixelRatio, 1);

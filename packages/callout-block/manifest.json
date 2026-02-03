@@ -1,5 +1,5 @@
 {
     "appId": "cl5w86f8700010sw8yvfasdhx",
-    "searchFields": [{ "type": "fondueRte", "settingId": "textValue" }],
-    "i18nFields": ["textValue"]
+    "i18nFields": ["textValue"],
+    "searchFields": [{ "settingId": "textValue", "type": "fondueRte" }]
 }

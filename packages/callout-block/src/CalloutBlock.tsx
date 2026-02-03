@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
 import {
-    BlockProps,
+    type BlockProps,
     RichTextEditor,
     THEME_PREFIX,
     getDefaultPluginsWithLinkChooser,
@@ -11,15 +10,14 @@ import {
     joinClassNames,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type CSSProperties, type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
-import { Appearance, BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-
-import { ICON_ASSET_ID } from './settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { isThemeEnabled } from './helpers/theme';
+import { ICON_ASSET_ID } from './settings';
+import { Appearance, type BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [backgroundColor, setBackgroundColor] = useState<string>('');
@@ -43,6 +41,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, []);
 
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const updateStyles = useCallback(() => {
         const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(
             type,
@@ -56,6 +55,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         if (!blockSettings.iconSwitch && customIcon && isEditing) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
         }
     }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
@@ -85,6 +85,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({ appearance: Appearance.Light });
     }
 
