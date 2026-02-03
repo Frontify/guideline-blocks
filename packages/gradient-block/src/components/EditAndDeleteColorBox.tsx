@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { merge } from '@frontify/fondue';
-import { IconPen, IconTrashBin } from '@frontify/fondue/icons';
 import { Button } from '@frontify/fondue/components';
-import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
+import { IconPen, IconTrashBin } from '@frontify/fondue/icons';
+
+import { type EditAndDeleteColorBoxProps, type GradientColor } from '../types';
 
 export const EditAndDeleteColorBox = ({
     color,

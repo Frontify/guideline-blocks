@@ -5,9 +5,9 @@ import { IconCheckMark, IconGridRegular, IconMagnifier, IconStackVertical } from
 import debounce from 'lodash/debounce';
 import { useCallback, useState } from 'react';
 
-import { areColorsEqual, fromGraphQLColorToCssColor, isColorLight, toRgbFunction } from './utils';
-
 import { type Palette, type RgbaColorWithName } from '../types';
+
+import { areColorsEqual, fromGraphQLColorToCssColor, isColorLight, toRgbFunction } from './utils';
 
 type BrandColorView = 'grid' | 'list';
 type BrandColorPickerProps = {
@@ -26,6 +26,7 @@ export const BrandColorPicker = ({
     const [filteredPalettes, setFilteredPalettes] = useState(palettes);
 
     const handleQueryChange = useCallback(
+        // eslint-disable-next-line react-hooks/use-memo
         debounce((event: React.ChangeEvent<HTMLInputElement>) => {
             const query = event.target.value;
             setFilteredPalettes(

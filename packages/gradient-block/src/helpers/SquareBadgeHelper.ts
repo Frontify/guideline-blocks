@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientColor } from '../types';
+import { type GradientColor } from '../types';
 
 export const prepareGradientColors = (gradientColors: GradientColor[], width: number): GradientColor[] => {
     for (const [index, color] of gradientColors.entries()) {

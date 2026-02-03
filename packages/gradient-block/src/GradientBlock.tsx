@@ -1,16 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { Palette } from '@frontify/fondue';
+import { type Palette } from '@frontify/fondue';
 import { Divider } from '@frontify/fondue/components';
+import { type BlockProps, mapAppBridgeColorPalettesToFonduePalettes } from '@frontify/guideline-blocks-settings';
+import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type MouseEvent, type ReactElement, useEffect, useRef, useState } from 'react';
 
-import { BlockProps, mapAppBridgeColorPalettesToFonduePalettes } from '@frontify/guideline-blocks-settings';
-import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss, toHex6or8String } from './helpers';
-import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
-import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type GradientColor, type Settings, gradientHeightValues, gradientOrientationValues } from './types';
 
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -38,12 +38,14 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [colorPalettes, appBridge]);
 
     if (!gradientColors) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({
             gradientColors: DEFAULT_GRADIENT_COLORS,
         });
     }
 
     const setGradientColors = (colors: GradientColor[]) => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({
             gradientColors: colors,
         });
@@ -97,8 +99,10 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 onMouseLeave={() => setShowAddButton(false)}
                             >
                                 <Divider />
+                                {/* eslint-disable-next-line react-hooks/refs */}
                                 {showAddButton && gradientBlockRef.current && (
                                     <AddColorButton
+                                        // eslint-disable-next-line react-hooks/refs
                                         blockWidth={gradientBlockRef.current.clientWidth}
                                         positionLeft={addButtonPositionLeft}
                                         setShowColorModal={setShowColorModal}
@@ -131,9 +135,11 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ))}
                     </div>
                 ) : (
+                    // eslint-disable-next-line react-hooks/refs
                     gradientBlockRef.current &&
                     gradientColors && (
                         <SquareBadgesRow
+                            // eslint-disable-next-line react-hooks/refs
                             blockWidth={gradientBlockRef.current.clientWidth}
                             gradientColors={gradientColors}
                             gradientOrientation={gradientOrientation}

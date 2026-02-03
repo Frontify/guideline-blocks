@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, Palette } from '@frontify/fondue';
+import { type Color, type Palette } from '@frontify/fondue';
 
 export enum GradientHeight {
     Small = 's',

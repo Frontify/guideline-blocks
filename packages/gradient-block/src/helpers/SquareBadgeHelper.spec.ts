@@ -2,7 +2,8 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { GradientColor } from '../types';
+import { type GradientColor } from '../types';
+
 import {
     calculateBadgeWidthInPercent,
     calculateCopyButtonWidthInPercent,

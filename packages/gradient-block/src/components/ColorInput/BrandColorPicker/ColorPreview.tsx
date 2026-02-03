@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toRgbFunction } from './utils';
-
 import { type RgbaColorWithName } from '../types';
+
+import { toRgbFunction } from './utils';
 
 export const ColorPreview = ({ color }: { color?: RgbaColorWithName }) => {
     return (

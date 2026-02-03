@@ -2,8 +2,9 @@
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
-import { HEIGHT_OF_SQUARE_BADGE } from './constants';
+
 import { GradientBlock } from './GradientBlock';
+import { HEIGHT_OF_SQUARE_BADGE } from './constants';
 import {
     HEIGHT_CUSTOM_ID,
     HEIGHT_SIMPLE_ID,
