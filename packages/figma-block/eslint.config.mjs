@@ -11,7 +11,7 @@ export default defineConfig(
     },
     frontifyConfig,
     {
-        files: ['**/*.{js,jsx,mjs,cjs}'],
+        files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
         languageOptions: {
             parserOptions: {
                 project: null,

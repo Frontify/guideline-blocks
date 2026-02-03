@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, it } from 'vitest';
-import { getImageObjectFitValue, getImageObjectPositionValue, getImageRatioValue } from './helpers';
+
 import { type Settings } from '../types';
+
+import { getImageObjectFitValue, getImageObjectPositionValue, getImageRatioValue } from './helpers';
 
 describe('getImageRatioValue()', () => {
     it('should return auto', () => {

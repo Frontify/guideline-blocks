@@ -31,9 +31,10 @@ export default defineConfig(
             'notice/notice': [
                 'error',
                 {
+                    mustMatch: /\/\*\s*\(c\)\s*Copyright\s*Frontify\s*Ltd\.,\s*all\s*rights\s*reserved\.\s*\*\//i,
                     template: '/* (c) Copyright Frontify Ltd., all rights reserved. */\n\n',
                     messages: {
-                        whenFailedToMatch: 'No Frontify copyright header set.',
+                        whenFailedToMatch: 'No Frontify copyright header set (or format mismatch).',
                     },
                 },
             ],

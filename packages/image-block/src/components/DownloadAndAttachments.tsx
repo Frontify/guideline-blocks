@@ -1,13 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type AppBridgeBlock, type Asset } from '@frontify/app-bridge';
 import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
 import { DownloadButton } from '@frontify/guideline-blocks-shared';
 import { announce } from '@react-aria/live-announcer';
-import { getTotalImagePadding } from './helpers';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
-import { Settings } from '../types';
-import { isImageDownloadable } from '../helpers/isImageDownloadable';
 import { useCallback } from 'react';
+
+import { isImageDownloadable } from '../helpers/isImageDownloadable';
+import { type Settings } from '../types';
+
+import { getTotalImagePadding } from './helpers';
 
 type DownloadAndAttachmentsProps = {
     appBridge: AppBridgeBlock;
@@ -37,6 +39,7 @@ export const DownloadAndAttachments = ({
         }
 
         announce('File downloaded successfully');
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         appBridge.dispatch({ name: 'downloadAsset', payload: image });
     }, [appBridge, image]);
 

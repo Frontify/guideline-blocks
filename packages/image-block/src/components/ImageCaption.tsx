@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { RichTextEditor, TextStyles, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
-import { getCaptionPlugins, titlePlugins } from './helpers';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+
 import { CaptionPosition, type Ratio, type Settings, textRatioValues } from '../types';
+
+import { getCaptionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
     blockId: string;

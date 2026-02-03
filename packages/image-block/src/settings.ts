@@ -12,6 +12,9 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
+import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
+import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
 import {
     Autosizing,
     CaptionPosition,
@@ -24,8 +27,6 @@ import {
     paddingValues,
     radiusValues,
 } from './types';
-import { aspectRatioFormatRule, aspectRatioNumberRule } from './helpers/ruleValidations';
-import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -296,6 +297,7 @@ export const settings = defineSettings({
             info: "When disabled, viewers won't be able to open the image in the asset detail view.",
             type: 'switch',
             defaultValue: assetViewerEnabled,
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
             show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
         getSecurityDownloadableSetting(),

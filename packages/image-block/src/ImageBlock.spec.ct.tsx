@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy, getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, type getAppBridgeBlockStubProps, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Security } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react';
+
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, CornerRadius, Ratio, imageRatioValues, mapCaptionPositionClasses } from './types';
-import { Security } from '@frontify/guideline-blocks-settings';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageComponentSelector = '[data-test-id="image-block-image-component"]';

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Rule } from '@frontify/guideline-blocks-settings';
+import { type Rule } from '@frontify/guideline-blocks-settings';
 
 export const aspectRatioFormatRule: Rule<string> = {
     errorMessage: 'Please use the proper format for the image aspect ratio x:y',
