@@ -1,8 +1,8 @@
 {
     "appId": "clepuuziz00010iw1zvjzlvme",
+    "i18nFields": ["title", "description"],
     "searchFields": [
-        { "type": "fondueRte", "settingId": "title" },
-        { "type": "fondueRte", "settingId": "description" }
-    ],
-    "i18nFields": ["title", "description"]
+        { "settingId": "title", "type": "fondueRte" },
+        { "settingId": "description", "type": "fondueRte" }
+    ]
 }

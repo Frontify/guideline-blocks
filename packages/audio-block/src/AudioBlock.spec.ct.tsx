@@ -5,8 +5,8 @@ import { Security } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react';
 
 import { AudioBlock } from './AudioBlock';
-import { TextPosition } from './types';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
+import { TextPosition } from './types';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';

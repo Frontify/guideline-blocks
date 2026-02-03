@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
-import { BlockAttachmentsProps } from '../types';
+
+import { type BlockAttachmentsProps } from '../types';
 
 export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
     const { attachments, onAttachmentsAdd, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =

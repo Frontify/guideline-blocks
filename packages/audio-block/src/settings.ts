@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-
-import { TextPosition } from './types';
 import {
     AssetChooserObjectType,
     defineSettings,
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
 } from '@frontify/guideline-blocks-settings';
+
+import { TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_ASSET_ID = 'attachments';

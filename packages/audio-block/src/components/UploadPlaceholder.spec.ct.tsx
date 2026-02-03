@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
+
 import { UploadPlaceholder } from './UploadPlaceholder';
 
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
@@ -24,7 +25,7 @@ describe('Upload Placeholder', () => {
             <UploadPlaceholder
                 onUploadClick={cy.stub()}
                 onAssetChooseClick={cy.stub()}
-                loading={true}
+                loading
                 onFilesDrop={cy.stub()}
             />
         );
