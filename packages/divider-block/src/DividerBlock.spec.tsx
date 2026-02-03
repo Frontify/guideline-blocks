@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { describe, expect, it } from 'vitest';
-import { render } from '@testing-library/react';
-import { DividerBlock } from './DividerBlock';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
+import { DividerBlock } from './DividerBlock';
 import { DividerAlignment, DividerHeight, DividerStyle } from './types';
 
 const DividerBlockSelector = 'divider-block';
@@ -17,7 +18,7 @@ describe('Divider Block', () => {
         const [DividerBlockStub] = withAppBridgeBlockStubs(DividerBlock);
         const { getByTestId } = render(<DividerBlockStub />);
 
-        expect(getByTestId(DividerBlockSelector)).exist;
+        expect(getByTestId(DividerBlockSelector)).toBeDefined();
     });
 
     it('should render a divider block without line', () => {

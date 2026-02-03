@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Bundle,
+    type Bundle,
     appendUnit,
     betweenPercentRule,
     defineSettings,
@@ -10,6 +10,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
 import { DividerAlignment, DividerHeight, DividerStyle, DividerWidth, dividerHeightValues } from './types';
 
 const IS_LINE_ID = 'isLine';

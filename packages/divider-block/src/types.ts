@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { Color } from '@frontify/fondue';
+import { type Color } from '@frontify/fondue';
 
 export type Settings = {
     alignment?: DividerAlignment;
