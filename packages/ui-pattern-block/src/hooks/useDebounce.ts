@@ -4,11 +4,13 @@ import debounce from 'lodash/debounce';
 import { useRef } from 'react';
 
 export const useDebounce = (duration = 400) => {
-    const debouncedSave = useRef(
+    const debouncedSaveRef = useRef(
         debounce((callback) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             callback();
         }, duration)
     );
 
-    return { debounce: debouncedSave.current };
+    // eslint-disable-next-line react-hooks/refs
+    return { debounce: debouncedSaveRef.current };
 };

@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { UnstyledOpenInCodeSandboxButton } from '@codesandbox/sandpack-react';
-import { IconSandBox } from './icons';
 import { FOCUS_VISIBLE_STYLE, merge } from '@frontify/fondue';
+
+import { IconSandBox } from './icons';
 
 export const OpenInSandboxButton = () => {
     return (

@@ -1,17 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useMemo, useRef, useState } from 'react';
+import {
+    SandpackLayout,
+    SandpackPreview,
+    type SandpackPreviewRef,
+    SandpackProvider,
+} from '@codesandbox/sandpack-react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
-    BlockProps,
+    type BlockProps,
     getBackgroundColorStyles,
     getBorderStyles,
     joinClassNames,
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
-import { SandpackLayout, SandpackPreview, SandpackPreviewRef, SandpackProvider } from '@codesandbox/sandpack-react';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type ReactElement, useMemo, useRef, useState } from 'react';
 
-import { Alignment, Height, SandpackTemplate, type Settings, TextAlignment, sandpackThemeValues } from './types';
+import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
+import { AttachmentsButton } from './components/AttachmentsButton';
 import {
     BACKGROUND_COLOR_DEFAULT_VALUE,
     BORDER_COLOR_DEFAULT_VALUE,
@@ -29,10 +36,8 @@ import {
     initialActiveFile,
 } from './helpers';
 import { useDebounce } from './hooks';
-import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
 import { ATTACHMENTS_ASSET_ID } from './settings';
-import { AttachmentsButton } from './components/AttachmentsButton';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { Alignment, Height, SandpackTemplate, type Settings, TextAlignment, sandpackThemeValues } from './types';
 
 export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -145,6 +150,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     const onDependenciesChanged = (newDependencies: string, source: 'npm' | 'external') => {
         if (isEditing) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({
                 dependencies: {
                     ...blockSettings.dependencies,
@@ -164,11 +170,14 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
         });
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const parsedExternalDependencies = useMemo(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         () => getParsedDependencies(externalDependencies, []),
         [externalDependencies]
     );
     const parsedNpmDependencies = useMemo(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         () => ({ dependencies: getParsedDependencies(npmDependencies, {}) }),
         [npmDependencies]
     );
@@ -218,6 +227,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             options={{
                                 classes: EDITOR_CLASSES,
                                 activeFile: initialActiveFile[sandpackTemplate],
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 externalResources: [cssToInject, ...parsedExternalDependencies],
                             }}
                         >

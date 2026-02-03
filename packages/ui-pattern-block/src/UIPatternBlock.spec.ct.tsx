@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Radius } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react';
+
 import { UIPatternBlock } from './UIPatternBlock';
 import { DEFAULT_BLOCK_SETTINGS, getToolbarButtons } from './helpers';
-import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from './types';
-import { Radius } from '@frontify/guideline-blocks-settings';
 import { ATTACHMENTS_ASSET_ID } from './settings';
+import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from './types';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
 const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div > div';
@@ -57,6 +58,7 @@ describe('UI Pattern Block', () => {
             value: {
                 ...window.crypto,
                 subtle: {
+                    // eslint-disable-next-line @typescript-eslint/require-await
                     digest: async () => {
                         const fake = new Uint8Array(32);
                         return fake.buffer;

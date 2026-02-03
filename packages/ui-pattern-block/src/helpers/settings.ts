@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-settings';
+
 import {
     Alignment,
     Height,
@@ -8,8 +9,8 @@ import {
     Preprocessor,
     SandpackTemplate,
     SandpackTheme,
-    TemplateDependencies,
-    TemplateFiles,
+    type TemplateDependencies,
+    type TemplateFiles,
     TextAlignment,
 } from '../types';
 

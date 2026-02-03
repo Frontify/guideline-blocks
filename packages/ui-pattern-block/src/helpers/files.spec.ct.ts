@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Preprocessor } from '../types';
+
 import { getCssExtension } from './files';
 
 describe('files helpers', () => {

@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Radius, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
-import { Height, Padding, heightValues, paddingValues, radiusValues } from '../types';
 import { type Color } from '@frontify/fondue';
+import { type Radius, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
+
+import { type Height, type Padding, heightValues, paddingValues, radiusValues } from '../types';
 
 /* The internal CodeMirror component covers the box-shadow inset styles applied by fondue.
     To make them visible they are applied to a psuedo element instead. This way they also don't overflow

@@ -5,7 +5,7 @@ import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { IconCross } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import { Fragment, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface Props {
@@ -69,6 +69,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
             <div className="tw-fixed tw-z-[5000] tw-box-border tw-w-full tw-h-full tw-top-0 tw-left-0 tw-p-6 tw-pb-12">
                 <div className="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8 tw-items-center">
                     <button
+                        type="button"
                         onClick={onPreviewClose}
                         className="tw-w-full tw-h-full tw-bg-black tw-opacity-90 tw-absolute tw-top-0 tw-left-0"
                     />
@@ -77,6 +78,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                             {devices.map((device, i) => (
                                 <Fragment key={device.label}>
                                     <button
+                                        type="button"
                                         data-test-id="ui-pattern-responsive-preview-device-button"
                                         onClick={() => setWidth(device.width)}
                                         key={device.label}

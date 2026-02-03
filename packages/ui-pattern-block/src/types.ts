@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, Color, Radius } from '@frontify/guideline-blocks-settings';
+import { type SandpackTheme as ReactSandpackTheme } from '@codesandbox/sandpack-react';
 import {
     amethyst,
     aquaBlue,
@@ -19,7 +19,7 @@ import {
     nightOwl,
     sandpackDark,
 } from '@codesandbox/sandpack-themes';
-import { SandpackTheme as ReactSandpackTheme } from '@codesandbox/sandpack-react';
+import { type BorderStyle, type Color, Radius } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     // layout

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
 import { Button, Tooltip } from '@frontify/fondue/components';
+import { type ReactElement } from 'react';
 
 interface Props {
     icon?: ReactElement;
