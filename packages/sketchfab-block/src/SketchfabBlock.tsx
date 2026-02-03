@@ -2,16 +2,15 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { FormControl, FormControlStyle, Text } from '@frontify/fondue';
-import { IconLinkBox } from '@frontify/fondue/icons';
 import { Button, TextInput } from '@frontify/fondue/components';
-
-import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
-import { FC, useEffect, useState } from 'react';
+import { IconLinkBox } from '@frontify/fondue/icons';
+import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type FC, useEffect, useState } from 'react';
 
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
-import { Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';
 
 export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -23,6 +22,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     const saveLink = () => {
         const embedUrl = generateSketchfabEmbedUrl(localUrl);
         if (embedUrl) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({
                 url: embedUrl,
             });
@@ -131,6 +131,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                       }
                     : {};
 
+            // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, react-hooks/set-state-in-effect
             setIframeUrl(
                 generateIframeUrl(bs.url, {
                     ...basicSettings,
@@ -161,6 +162,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                                 frameBorder="0"
                                 data-test-id="sketchfab-iframe"
                                 title="3D model from Sketchfab"
+                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
                             />
                         </div>
                     )}

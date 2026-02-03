@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, Color } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
+import { BorderStyle, type Color } from '@frontify/guideline-blocks-settings';
+import { type CSSProperties } from 'react';
+
 import { borderStyles } from '../types';
+
 import { getIframeBorderStyles } from './styles';
 
 describe('getIframeBorderStyles', () => {

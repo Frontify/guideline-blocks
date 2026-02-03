@@ -4,7 +4,7 @@
     OLD: https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec
     NEW: https://sketchfab.com/3d-models/name-of-model-442c548d94744641ba279ae94b5f45ec
     EMBED: https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed
-    We support both types of url and transform to the iframe embed url using 'generateSketchfabEmbedUrl'*/
+    We support both types of url and transform to the iframe embed url using 'generateSketchfabEmbedUrl' */
 const SKETCHFAB_NEW_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/3d-models\/(\w|-)+-(?<id>\w+)/;
 const SKETCHFAB_OLD_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/(models|show)\/\w+(\/embed)?/;
 
@@ -29,10 +29,12 @@ export const generateIframeUrl = (href: string, params: Record<string, string | 
 const getUrlStringWithoutSearchParams = (url?: string) => {
     try {
         if (!url) {
+            // eslint-disable-next-line @typescript-eslint/only-throw-error
             throw 'No url supplied';
         }
         const urlObj = new URL(url);
         return urlObj.origin + urlObj.pathname.replace(/\/$/, '');
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         return '';
     }
@@ -54,7 +56,9 @@ export const generateSketchfabEmbedUrl = (url: string) => {
             return `https://sketchfab.com/models/${id}/embed`;
         }
 
+        // eslint-disable-next-line @typescript-eslint/only-throw-error
         throw 'Unsupported Sketchfab URL';
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         return '';
     }

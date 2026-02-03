@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, Color, Radius } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, type Color, Radius } from '@frontify/guideline-blocks-settings';
 
 export enum SketchfabSettings {
     ACCOUNT_TYPE = 'accountType',
