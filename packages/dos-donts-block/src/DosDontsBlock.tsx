@@ -1,7 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { DndContext, type DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import {
-    Asset,
+    type Asset,
     AssetChooserObjectType,
     rgbStringToRgbObject,
     useAssetChooser,
@@ -10,29 +13,34 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import throttle from 'lodash/throttle';
-
-import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
-import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
+import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme, generateRandomId } from '@frontify/fondue';
+import { Button, Dialog } from '@frontify/fondue/components';
+import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
 import {
     BlockInjectButton,
-    BlockProps,
+    type BlockProps,
     FileExtensionSets,
     THEME_PREFIX,
     joinClassNames,
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
-import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme, generateRandomId } from '@frontify/fondue';
-import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
-import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import throttle from 'lodash/throttle';
+import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+
+import { AssetsContext, AssetsProvider } from './AssetsProvider';
+import { DoDontItem, SortableDoDontItem } from './DoDontItem';
+import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
-import { Button, Dialog } from '@frontify/fondue/components';
+import {
+    BlockMode,
+    type ChangeType,
+    DoDontType,
+    GUTTER_VALUES,
+    type Item,
+    type Settings,
+    type ValueType,
+} from './types';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -163,7 +171,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         setSelectedFiles(filesFromInput);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filesFromInput]);
 
     useEffect(() => {
@@ -191,7 +198,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const throttledFn = throttle((entries) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             const lastEntry = entries[entries.length - 1];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
 
             setIsContainerSmall(isSmall);
@@ -229,6 +238,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 alt: image.title || image.fileName || '',
             });
             if (addAssetIdsToKey) {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 addAssetIdsToKey(itemId, [image.id]);
             }
         }
@@ -241,6 +251,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveItems = useCallback(
         (newItems: Item[]) => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({
                 items: newItems,
                 ...(!customDoColor && !customDontColor
@@ -266,11 +277,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         (itemId: string) => {
             setLocalItems((prevItems) => {
                 const updatedItems = prevItems.filter((item) => item.id !== itemId);
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 setBlockSettings({ items: updatedItems });
                 if (blockAssets && deleteAssetIdsFromKey) {
                     const asset = blockAssets[itemId]?.[0];
                     const assetId = asset?.id;
                     if (assetId) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         deleteAssetIdsFromKey(itemId, [assetId]);
                     }
                 }
@@ -292,6 +305,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 const newItems = previousItems.map((item) =>
                     item.id === itemId ? ({ ...item, ...change } as Item) : item
                 );
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 setBlockSettings({
                     items: newItems,
                 });
@@ -314,6 +328,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             const newIndex = localItems.findIndex((i) => i.id === over.id);
             const sortedItems = arrayMove(localItems, oldIndex, newIndex);
             setLocalItems(sortedItems);
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({
                 items: sortedItems,
             });
@@ -421,7 +436,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     </SortableContext>
                     {activeItem ? (
                         <DragOverlay>
-                            <DoDontItem key={activeItem.id} isDragging={true} {...getDoDontItemProps(activeItem)} />
+                            <DoDontItem key={activeItem.id} isDragging {...getDoDontItemProps(activeItem)} />
                         </DragOverlay>
                     ) : null}
                 </DndContext>

@@ -2,7 +2,8 @@
 
 import { IconCheckMark, IconCheckMarkCircle, IconCross, IconCrossCircle } from '@frontify/fondue/icons';
 import { useEffect, useState } from 'react';
-import { DoDontType, IconComponentProps, ItemIconChoice } from '../types';
+
+import { DoDontType, type IconComponentProps, ItemIconChoice } from '../types';
 
 const ICON_MAP = {
     [ItemIconChoice.CHECKMARK]: IconCheckMark,
@@ -28,8 +29,11 @@ const IconComponent = ({
         if (hasCustomIcon && iconAsset && iconAsset.length > 0) {
             const url = iconAsset[0].genericUrl;
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises, promise/catch-or-return
             fetch(url).then((response) => {
+                // eslint-disable-next-line promise/always-return
                 if (response.ok) {
+                    // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
                     response.text().then((svgString) => setSvg(svgString));
                 }
             });

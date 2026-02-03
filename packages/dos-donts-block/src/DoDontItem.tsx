@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 import {
     IconArrowCircleUp,
@@ -22,12 +22,13 @@ import {
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
+import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
-import { CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
-import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -103,13 +104,17 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             async (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                     setIsUploadLoading(false);
                 }
@@ -145,13 +150,17 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     useEffect(() => {
         if (doneAll) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             (async (uploadResults) => {
                 const asset = uploadResults?.[0];
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     setIsUploadLoading(false);
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                 }
             })(uploadResults);
@@ -234,7 +243,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         type: 'menu',
                         items: [
                             [
-                                ...(!!linkedImage
+                                ...(linkedImage
                                     ? [
                                           {
                                               title: 'Replace with upload',
@@ -386,6 +395,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
 
     useEffect(() => {
         if (!isDragging) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setDraggableProps(editing ? { ...attributes, ...listeners } : {});
         }
     }, [isDragging, attributes, listeners, editing]);
