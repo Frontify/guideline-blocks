@@ -1,6 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties, ReactElement } from 'react';
+import { type Asset } from '@frontify/app-bridge';
+import { type CSSProperties, type ReactElement } from 'react';
+
+import { CustomIcon } from './CustomIcon';
 import { IconDoubleChevronLeft } from './foundation/IconDoubleChevronLeft';
 import { IconDoubleChevronRight } from './foundation/IconDoubleChevronRight';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -12,8 +15,6 @@ import { IconSingleChevronRight } from './foundation/IconSingleChevronRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
 import { type QuoteStyle } from './types';
-import { CustomIcon } from './CustomIcon';
-import { Asset } from '@frontify/app-bridge';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
 

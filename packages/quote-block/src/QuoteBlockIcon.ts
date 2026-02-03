@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
+import { type Asset } from '@frontify/app-bridge';
+import { type FC } from 'react';
+
 import { QuoteSize, type QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
-import { Asset } from '@frontify/app-bridge';
 
 export type QuoteBlockIconProps = {
     customIcon: Asset | undefined;
