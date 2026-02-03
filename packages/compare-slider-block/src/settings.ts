@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
     BorderStyle,
@@ -12,7 +13,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { FileExtensionSets } from '@frontify/app-bridge';
+
 import {
     Alignment,
     FIRST_ASSET_ID,
@@ -83,7 +84,7 @@ export const settings = defineSettings({
                     label: '',
                     size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    extensions: FileExtensionSets['Images'],
+                    extensions: FileExtensionSets.Images,
                 },
                 {
                     id: 'firstAssetHasStrikethrough',
@@ -105,7 +106,7 @@ export const settings = defineSettings({
                     type: 'assetInput',
                     size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    extensions: FileExtensionSets['Images'],
+                    extensions: FileExtensionSets.Images,
                 },
                 {
                     id: 'secondAssetHasStrikethrough',

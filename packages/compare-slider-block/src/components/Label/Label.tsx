@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { RichTextEditor, hasRichTextValue } from '@frontify/guideline-blocks-settings';
+
 import { labelPlugins } from '../../helpers';
-import { LabelProps } from '../../types';
+import { type LabelProps } from '../../types';
 
 export const Label = ({ onBlur, value, isEditing, blockId }: LabelProps) => {
     const isEditorEmpty = !hasRichTextValue(value);
