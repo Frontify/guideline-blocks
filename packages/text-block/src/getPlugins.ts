@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import {
     AlignCenterPlugin,
     AlignJustifyPlugin,
@@ -27,7 +27,7 @@ import {
     TextStylePluginsWithoutImage,
     TextStylesWithoutImage,
 } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();

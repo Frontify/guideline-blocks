@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { TextBlock } from './TextBlock';
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { mount } from 'cypress/react';
+
+import { TextBlock } from './TextBlock';
 import { PLACEHOLDER } from './settings';
 
 const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
