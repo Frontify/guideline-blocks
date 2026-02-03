@@ -6,8 +6,9 @@ import {
     getBorderSettings,
     getExtendedBorderRadiusSettings,
 } from '@frontify/guideline-blocks-settings';
-import { languageNameMap, themeNameMap } from './types';
+
 import { DEFAULT_BORDER_COLOR } from './constants';
+import { languageNameMap, themeNameMap } from './types';
 
 export const settings = defineSettings({
     main: [

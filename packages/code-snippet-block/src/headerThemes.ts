@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties } from 'react';
-import { Theme } from './types';
+import { type CSSProperties } from 'react';
+
+import { type Theme } from './types';
 
 type headerStyles = {
     backgroundColor: CSSProperties['backgroundColor'];
