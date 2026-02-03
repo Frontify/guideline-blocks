@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { ERROR_MSG } from './settings';
+import { mount } from 'cypress/react';
+
 import { StorybookBlock } from './StorybookBlock';
+import { ERROR_MSG } from './settings';
 import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';

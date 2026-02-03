@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { StorybookPosition } from '../types';
+
 import { addMissingUrlProtocol } from './addMissingUrlProtocol';
 import { isValidStorybookUrl } from './isValidStorybookUrl';
 

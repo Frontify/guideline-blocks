@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, test } from 'vitest';
+
 import { StorybookPosition } from '../types';
+
 import { buildIframeUrl } from './buildIframeUrl';
 
 describe('buildIframeUrl', () => {
