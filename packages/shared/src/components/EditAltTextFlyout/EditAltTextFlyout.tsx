@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
 import { FormControl, HelperPosition } from '@frontify/fondue';
-import { IconCheckMark } from '@frontify/fondue/icons';
 import { Button, Flyout, TextInput } from '@frontify/fondue/components';
+import { IconCheckMark } from '@frontify/fondue/icons';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+
 import {
     type EditAltTextFlyoutFooterProps,
     type EditAltTextFlyoutProps,

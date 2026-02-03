@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
 
 import { getEditAltTextToolbarButton } from './EditAltTextToolbarButton';
 

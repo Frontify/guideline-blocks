@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
-
 import { IconSpeechBubbleQuote } from '@frontify/fondue/icons';
+import { type FlyoutToolbarButtonProps, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+
 import { ALT_TEXT_FLYOUT_ID, BaseEditAltTextFlyoutFooter, EditAltTextFlyoutScreen } from './EditAltTextFlyout';
-import { EditAltTextFlyoutFooterProps, EditAltTextFlyoutScreenProps } from './types';
-import { FlyoutToolbarButtonProps, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
+import { type EditAltTextFlyoutFooterProps, type EditAltTextFlyoutScreenProps } from './types';
 
 const EditAltTextFlyoutToolbarFooter = ({ onCancel, onSave }: EditAltTextFlyoutFooterProps) => {
     const { onOpenChange } = useMultiFlyoutState(ALT_TEXT_FLYOUT_ID);

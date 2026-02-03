@@ -16,6 +16,7 @@ export const useImageContainer = () => {
 
         const containerObserver = new ResizeObserver(
             debounce((entries) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 const container = entries[0] as ResizeObserverEntry;
                 const borderWidth = container.borderBoxSize[0].inlineSize - container.contentBoxSize[0].inlineSize;
                 const shouldRequestLargerImage = borderWidth > 0;

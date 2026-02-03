@@ -1,12 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { type Asset, AssetDummy } from '@frontify/app-bridge';
 import { fireEvent, render } from '@testing-library/react';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+import { describe, expect, it } from 'vitest';
 
-import { Asset, AssetDummy } from '@frontify/app-bridge';
-import { ResponsiveImage } from './ResponsiveImage';
 import { ImageFormat } from '../../types';
+
+import { ResponsiveImage } from './ResponsiveImage';
 
 const ResponsiveImageSelector = 'responsive-image';
 

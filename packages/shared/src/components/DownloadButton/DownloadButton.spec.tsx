@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { DownloadButton } from './DownloadButton';
 

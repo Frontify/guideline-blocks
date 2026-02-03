@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
-import CodeMirror from '@uiw/react-codemirror';
 import { css } from '@codemirror/lang-css';
-
 import { useCopy } from '@frontify/fondue';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
+import CodeMirror from '@uiw/react-codemirror';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
 
-import { CssValueDisplayProps } from './types';
+import { type CssValueDisplayProps } from './types';
 
 export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
@@ -26,6 +26,7 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                 <div className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center">
                     <span className="tw-text-text-weak">CSS</span>
                     <button
+                        type="button"
                         data-test-id="css-value-display-copy-button"
                         className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                         onClick={() => copy(cssValue)}
@@ -44,7 +45,7 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                 <CodeMirror
                     value={cssValue}
                     extensions={[css()]}
-                    readOnly={true}
+                    readOnly
                     basicSetup={{
                         highlightActiveLineGutter: false,
                         highlightActiveLine: false,
