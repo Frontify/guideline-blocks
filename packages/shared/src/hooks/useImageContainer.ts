@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import debounce from 'lodash/debounce';
+import debounce from 'lodash-es/debounce';
 import { useEffect, useRef, useState } from 'react';
 
 const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;

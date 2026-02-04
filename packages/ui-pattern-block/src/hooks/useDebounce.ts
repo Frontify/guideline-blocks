@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import debounce from 'lodash/debounce';
+import debounce from 'lodash-es/debounce';
 import { useRef } from 'react';
 
 export const useDebounce = (duration = 400) => {

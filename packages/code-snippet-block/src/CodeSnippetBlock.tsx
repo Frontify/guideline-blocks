@@ -10,7 +10,7 @@ import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror, { type Extension } from '@uiw/react-codemirror';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash-es/debounce';
 import { type FC, useEffect, useMemo, useState } from 'react';
 
 import { DEFAULT_BORDER_COLOR } from './constants';
