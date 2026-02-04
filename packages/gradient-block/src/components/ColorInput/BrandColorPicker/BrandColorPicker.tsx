@@ -2,7 +2,7 @@
 
 import { SegmentedControl, TextInput } from '@frontify/fondue/components';
 import { IconCheckMark, IconGridRegular, IconMagnifier, IconStackVertical } from '@frontify/fondue/icons';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash-es/debounce';
 import { useCallback, useState } from 'react';
 
 import { type Palette, type RgbaColorWithName } from '../types';

@@ -25,7 +25,7 @@ import {
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';

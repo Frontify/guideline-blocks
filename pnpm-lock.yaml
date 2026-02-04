@@ -469,7 +469,7 @@ importers:
       '@uiw/react-codemirror':
         specifier: 4.24.2
         version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.11)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash:
+      lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
       react:
@@ -488,9 +488,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^5.9.5
         version: 5.9.5(@types/node@25.0.6)
-      '@types/lodash':
-        specifier: ^4.17.23
-        version: 4.17.23
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -688,7 +688,7 @@ importers:
       autosize:
         specifier: ^6.0.1
         version: 6.0.1
-      lodash:
+      lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
       react:
@@ -710,9 +710,9 @@ importers:
       '@types/autosize':
         specifier: ^4.0.3
         version: 4.0.3
-      '@types/lodash':
-        specifier: ^4.17.23
-        version: 4.17.23
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -901,7 +901,7 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
-      lodash:
+      lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
       react:
@@ -926,9 +926,9 @@ importers:
       '@testing-library/user-event':
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
-      '@types/lodash':
-        specifier: ^4.17.23
-        version: 4.17.23
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -1126,7 +1126,7 @@ importers:
       '@uiw/react-codemirror':
         specifier: 4.24.2
         version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.12)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash:
+      lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
     devDependencies:
@@ -1139,9 +1139,9 @@ importers:
       '@testing-library/react':
         specifier: ^16.3.1
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@types/lodash':
-        specifier: ^4.17.23
-        version: 4.17.23
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -1582,7 +1582,7 @@ importers:
       '@mantine/core':
         specifier: ^7.1.2
         version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash:
+      lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
       react:
@@ -1601,9 +1601,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^5.9.5
         version: 5.9.5(@types/node@25.0.6)
-      '@types/lodash':
-        specifier: ^4.17.23
-        version: 4.17.23
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -4340,6 +4340,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
   '@types/lodash@4.17.23':
     resolution: {integrity: sha512-RDvF6wTulMPjrNdCoYRC8gNR880JNGT8uB+REUpC2Ns4pRqQJhGz90wh7rgdXDPpCczF3VGktDuFGVnz8zP7HA==}
@@ -7102,6 +7105,9 @@ packages:
 
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
+  lodash-es@4.17.23:
+    resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
 
   lodash.mapvalues@4.6.0:
     resolution: {integrity: sha512-JPFqXFeZQ7BfS00H58kClY7SPVeHertPE0lNuCyZ26/XlN8TvakYD7b9bGyNmXbT/D3BbtPAAmq90gPWqLkxlQ==}
@@ -10157,7 +10163,7 @@ snapshots:
       '@visx/text': 3.12.0(react@18.3.1)
       '@visx/tooltip': 3.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@visx/xychart': 3.12.0(@react-spring/web@9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
@@ -12349,6 +12355,10 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
+
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.17.23
 
   '@types/lodash@4.17.23': {}
 
@@ -15869,6 +15879,8 @@ snapshots:
       p-locate: 6.0.0
 
   lodash-es@4.17.21: {}
+
+  lodash-es@4.17.23: {}
 
   lodash.mapvalues@4.6.0: {}
 
