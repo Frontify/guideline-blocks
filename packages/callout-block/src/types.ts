@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RadiusExtendedSettings } from '@frontify/guideline-blocks-settings';
+import { type RadiusExtendedSettings } from '@frontify/guideline-blocks-settings';
 
 export enum Type {
     Warning = 'warning',

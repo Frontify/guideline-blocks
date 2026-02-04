@@ -2,9 +2,8 @@
 
 import { FOCUS_VISIBLE_STYLE_INSET } from '@frontify/fondue';
 import { IconCaretDown } from '@frontify/fondue/icons';
-
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import { PropsWithChildren, ReactElement } from 'react';
+import { type PropsWithChildren, type ReactElement } from 'react';
 
 interface Props {
     label: string;
@@ -26,6 +25,7 @@ export const Accordion = ({
             className="tw-border-b tw-border-b-line group-[.bordered]:last:tw-border-b-0"
         >
             <button
+                type="button"
                 aria-expanded={isOpen}
                 className={joinClassNames([
                     'tw-relative focus:tw-z-20 tw-text-s tw-gap-2 tw-w-[calc(100%-32px)] tw-text-text-weak tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',

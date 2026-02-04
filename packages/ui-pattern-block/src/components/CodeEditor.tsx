@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useState } from 'react';
 import { SandpackCodeEditor, useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
+import { type ReactElement, useEffect, useState } from 'react';
+
+import { type Preprocessor, type SandpackTemplate } from '../types';
+
 import { Toolbar } from './Toolbar';
-import { Preprocessor, SandpackTemplate } from '../types';
 
 interface Props {
     template: SandpackTemplate;

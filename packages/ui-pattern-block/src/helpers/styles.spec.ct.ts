@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/fondue';
+import { type Color } from '@frontify/fondue';
+
 import { getBackgroundCss, getCssToInject, getScriptToInject } from './style';
 
 const clean = (str: string) => {

@@ -1,15 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
-import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import { getToolbarButtons } from '../helpers';
-import { Preprocessor, SandpackTemplate } from '../types';
 import { FOCUS_VISIBLE_STYLE, useCopy } from '@frontify/fondue';
-import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
 import { Button } from '@frontify/fondue/components';
-import { ToolbarButton } from './ToolbarButton';
+import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
+import { type ReactElement } from 'react';
+
+import { getToolbarButtons } from '../helpers';
+import { type Preprocessor, type SandpackTemplate } from '../types';
+
 import { OpenInSandboxButton } from './OpenInSandboxButton';
+import { ToolbarButton } from './ToolbarButton';
 
 interface Props {
     isEditorCollapsed: boolean;
@@ -65,6 +67,7 @@ export const Toolbar = ({
             <div className="tw-flex tw-h-full">
                 {getToolbarButtons(preprocessor)[template].map((button) => (
                     <button
+                        type="button"
                         data-test-id="toolbar-tab-btn"
                         className={joinClassNames([
                             'tw-px-2 tw-h-full tw-text-s tw-text-text-weak hover:tw-text-text-x-weak tw-font-body tw-relative focus-visible:tw-z-20',

@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, FormControl, FormControlStyle, Validation } from '@frontify/fondue';
-import { IconCheckMark } from '@frontify/fondue/icons';
+import { type Color, FormControl, FormControlStyle, Validation } from '@frontify/fondue';
 import { Button, Flyout, TextInput } from '@frontify/fondue/components';
+import { IconCheckMark } from '@frontify/fondue/icons';
 import { useState } from 'react';
-import { ColorFlyoutProps, GradientColor } from '../types';
+
+import { type ColorFlyoutProps, type GradientColor } from '../types';
+
 import { ColorPickerFlyout } from './ColorInput/ColorPickerFlyout';
 
 export const ColorFlyout = ({
@@ -119,7 +121,7 @@ export const ColorFlyout = ({
                                     position: parseInt(colorPosition),
                                 });
                             } else {
-                                color && editColor();
+                                editColor();
                             }
                             setShowColorModal(false);
                         }}

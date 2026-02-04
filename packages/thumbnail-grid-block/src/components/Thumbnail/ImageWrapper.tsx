@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { ReactElement, ReactNode } from 'react';
-import { ThumbnailStylesProps } from '../../types';
 import { merge } from '@frontify/fondue';
+import { type ReactElement, type ReactNode } from 'react';
+
+import { type ThumbnailStylesProps } from '../../types';
 
 type ImageWrapperProps = {
     children: ReactNode;

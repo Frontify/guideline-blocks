@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
-
 import { generateRandomId } from '@frontify/fondue';
 import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+import { useEffect, useState } from 'react';
 
-import { AnimationCurve, BlankSlateProps } from '../types';
 import { BLANK_SLATE_INITIAL_HEIGHT, DEFAULT_ANIMATION_FUNCTION } from '../constants';
+import { type AnimationCurve, type BlankSlateProps } from '../types';
+
 import { AnimationCurveFlyout, CardText } from './';
 
 export const BlankSlate = ({

@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { describe, expect, test } from 'vitest';
-import { isImageDownloadable } from './isImageDownloadable';
 import { AssetDummy } from '@frontify/app-bridge';
+import { describe, expect, test } from 'vitest';
+
+import { isImageDownloadable } from './isImageDownloadable';
 
 describe('isImageDownloadable', () => {
     const assetBase = AssetDummy.with(1);

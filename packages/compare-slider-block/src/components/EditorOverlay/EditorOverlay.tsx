@@ -2,9 +2,10 @@
 
 import { IconArrowCircleUp, IconImageStack, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import { Alignment, EditorOverlayProps, SliderImageSlot } from '../../types';
-import { useState } from 'react';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { useState } from 'react';
+
+import { Alignment, type EditorOverlayProps, SliderImageSlot } from '../../types';
 
 export const EditorOverlay = ({
     alignment,

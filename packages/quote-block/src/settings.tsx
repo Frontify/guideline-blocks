@@ -3,14 +3,15 @@
 import {
     AssetChooserObjectType,
     BorderStyle,
-    Bundle,
-    Choice,
+    type Bundle,
+    type Choice,
     FileExtension,
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';

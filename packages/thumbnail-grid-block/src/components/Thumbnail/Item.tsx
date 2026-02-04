@@ -1,7 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
+import {
+    AssetChooserObjectType,
+    FileExtensionSets,
+    closeAssetChooser,
+    openAssetChooser,
+    useAssetUpload,
+    useFileInput,
+} from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 import {
     IconArrowCircleUp,
@@ -12,17 +19,12 @@ import {
 } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
+
+import { type SortableThumbnailItemProps, type Thumbnail, type ThumbnailItemProps } from '../../types';
+
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
-import { SortableThumbnailItemProps, Thumbnail, ThumbnailItemProps } from '../../types';
-import {
-    AssetChooserObjectType,
-    FileExtensionSets,
-    closeAssetChooser,
-    openAssetChooser,
-    useAssetUpload,
-    useFileInput,
-} from '@frontify/app-bridge';
 
 export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
     (
@@ -57,6 +59,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
 
         const onOpenAssetChooser = () => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             appBridge.dispatch(
                 openAssetChooser({
                     multiSelection: true,
@@ -67,6 +70,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             );
             const unsusbcribe = appBridge.subscribe('assetsChosen', ({ assets }) => {
                 onAssetsSelected(assets, id);
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 appBridge.dispatch(closeAssetChooser());
                 unsusbcribe();
             });
@@ -109,7 +113,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             >
                 <BlockItemWrapper
                     isDragging={isDragging}
-                    shouldFillContainer={true}
+                    shouldFillContainer
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
                     shouldBeShown={showAltTextMenu || isDragging}

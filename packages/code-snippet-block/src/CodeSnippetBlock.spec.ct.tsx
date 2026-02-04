@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
-import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { type Color } from '@frontify/fondue';
 import { Radius } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react';
 
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
@@ -171,6 +171,7 @@ it('can copy using the copy button in the header', () => {
         .invoke('readText')
         .then(async (text) => {
             expect(await text).to.eq(content);
+            return null;
         });
 });
 
@@ -203,6 +204,7 @@ it('can copy using the copy button without a header', () => {
         .invoke('readText')
         .then(async (text) => {
             expect(await text).to.eq(content);
+            return null;
         });
     cy.get('[data-test-id=fondue-tooltip-content]').contains('Copied');
 });

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Asset,
+    type Asset,
     getMimeType,
     useAssetChooser,
     useAssetUpload,
@@ -11,10 +11,13 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
+import { generateRandomId, merge } from '@frontify/fondue';
+import { LoadingCircle } from '@frontify/fondue/components';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import {
     AttachmentOperationsProvider,
     BlockItemWrapper,
-    BlockProps,
+    type BlockProps,
     Security,
     TextStyles,
     convertToRteValue,
@@ -22,25 +25,22 @@ import {
     isDownloadable,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
-import { generateRandomId, merge } from '@frontify/fondue';
-import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
-import { LoadingCircle } from '@frontify/fondue/components';
 import { useEffect, useState } from 'react';
 
+import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
+import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
+import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
 import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
-
-import { DownloadAndAttachments } from './components/DownloadAndAttachments';
-import { getDownloadAriaLabel } from './helpers/getDownloadAriaLabel';
-import { DEFAULT_IMAGE_BLOCK_SETTINGS } from './const';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
+    // eslint-disable-next-line @eslint-react/prefer-use-state-lazy-initialization
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -81,7 +81,9 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             settings.altText = newImage?.alternativeText ?? '';
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             setLocalAltText(newImage?.alternativeText ?? '');
 
             const hasManuallyEditedName = hasRichTextValue(name);
@@ -91,6 +93,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         }
 
         if (newImage.backgroundColor) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             settings.backgroundColor = newImage.backgroundColor;
             settings.hasBackground = true;
         }
@@ -110,8 +113,10 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
             async (result) => {
                 setIsLoading(true);
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 updateImage(result[0]);
                 closeAssetChooser();
             },
@@ -137,14 +142,17 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (doneAll && uploadResults) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             updateImage(uploadResults[0]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({ altText: undefined });
         setLocalAltText(undefined);
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 

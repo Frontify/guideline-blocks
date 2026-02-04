@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
+import { type Asset } from '@frontify/app-bridge';
 import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
-import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { LoadingCircle } from '@frontify/fondue/components';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
 type AudioPlayerProps = {
     audio: Asset;
@@ -54,7 +54,7 @@ export const AudioPlayer = ({
                     <LoadingCircle />
                 </div>
             ) : (
-                // eslint-disable-next-line jsx-a11y/media-has-caption
+                // eslint-disable-next-line jsx-a11y-x/media-has-caption
                 <audio
                     data-test-id="audio-block-audio-tag"
                     key={audio.id}

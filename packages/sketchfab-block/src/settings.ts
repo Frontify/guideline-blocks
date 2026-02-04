@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    BlockSettingsStructureExport,
-    Bundle,
-    NotificationBlock,
+    type BlockSettingsStructureExport,
+    type Bundle,
+    type NotificationBlock,
     NotificationBlockDividerPosition,
     NotificationStyleType,
-    SettingBlock,
+    type SettingBlock,
     getBorderRadiusSettings,
     getBorderSettings,
     maximumNumericalRule,
@@ -14,6 +14,7 @@ import {
     minimumNumericalRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
 import { parseSketchfabSettingsUrl, pitchRule, sketchfabUrlRule, yawRule } from './helpers';
 import {
     SketchfabAccount,

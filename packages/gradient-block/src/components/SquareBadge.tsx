@@ -4,9 +4,10 @@ import { useCopy } from '@frontify/fondue';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useRef } from 'react';
+
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent, toHex6or8String } from '../helpers';
-import { GradientColor, SquareBadgeProps } from '../types';
+import { type GradientColor, type SquareBadgeProps } from '../types';
 
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth, isLast }: SquareBadgeProps) => {
     const badgeRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         }
     };
 
+    // eslint-disable-next-line react-hooks/refs
     const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
     const hexValue = toHex6or8String(gradientColor.color);
 
@@ -74,6 +76,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             }}
         >
             <button
+                type="button"
                 className="tw-flex tw-items-center tw-h-5 tw-px-px tw-gap-1 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
                 onClick={() => copy(hexValue)}
             >

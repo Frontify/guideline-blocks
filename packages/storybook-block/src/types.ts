@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     style?: StorybookStyle;

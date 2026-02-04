@@ -18,20 +18,22 @@ export const templateDataReducer = (state: TemplateDataState, action: Action) =>
     const { type, payload } = action;
 
     switch (type) {
-        case TemplateDataActionType.UPDATE_TITLE:
+        case TemplateDataActionType.UPDATE_TITLE: {
             const newTitleValue = payload.prevValue ? payload.prevValue : payload.newValue;
 
             return {
                 ...state,
                 templateTitle: newTitleValue,
             };
-        case TemplateDataActionType.UPDATE_DESCRIPTION:
+        }
+        case TemplateDataActionType.UPDATE_DESCRIPTION: {
             const newDescriptionValue = payload.prevValue ? payload.prevValue : payload.newValue;
 
             return {
                 ...state,
                 templateDescription: newDescriptionValue,
             };
+        }
         default:
             return state;
     }

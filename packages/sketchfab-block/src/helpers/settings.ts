@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle } from '@frontify/guideline-blocks-settings';
+import { type Bundle } from '@frontify/guideline-blocks-settings';
+
 import { generateSketchfabEmbedUrl } from './url';
 
 export const parseSketchfabSettingsUrl = (bundle: Bundle) => {

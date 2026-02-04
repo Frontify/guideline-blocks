@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Cursor } from '../types';
+import { type Cursor } from '../types';
 
 export class ImageContainer {
     constructor(protected imageContainer: HTMLDivElement) {

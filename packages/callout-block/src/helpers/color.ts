@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { THEME_PREFIX, getReadableColor, isDark, setAlpha } from '@frontify/guideline-blocks-settings';
+
 import { Appearance, Type } from '../types';
 
 const getTextColor = (appearance: Appearance, color: string, backgroundColor: string): string => {

@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useState } from 'react';
 import { JsonInput, MantineProvider } from '@mantine/core';
+import { type ReactElement, useState } from 'react';
+
 import { Accordion } from './Accordion';
 import { JsonErrorMessage } from './JsonErrorMessage';
 

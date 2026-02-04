@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { type Color } from '@frontify/fondue';
 import { BorderStyle } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react';
+
 import { AssetKitBlock } from './AssetKitBlock';
 import { ASSET_SETTINGS_ID } from './settings';
 

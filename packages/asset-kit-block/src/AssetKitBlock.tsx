@@ -8,22 +8,21 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { PluginComposer } from '@frontify/fondue';
-
 import {
-    BlockProps,
+    type BlockProps,
     BlockStyles,
     RichTextEditor,
     convertToRteValue,
     hasRichTextValue,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type ReactElement, useEffect, useRef, useState } from 'react';
 
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
-import { Settings } from './types';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type Settings } from './types';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
@@ -50,9 +49,11 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const hasAssets = currentAssets.length > 0;
     const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         generateBulkDownload(blockAssets);
     };
 
@@ -66,12 +67,13 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
 
     const announceToScreenReader = () => {
         if (screenReaderRef.current) {
-            screenReaderRef.current.innerText = 'Your package has been downloaded.';
+            screenReaderRef.current.textContent = 'Your package has been downloaded.';
         }
     };
 
     useEffect(() => {
         if (status === AssetBulkDownloadState.Ready && downloadUrl) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             downloadAssets(downloadUrl);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -109,6 +111,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
                         />
                         <div className="tw-flex-none">
                             <button
+                                type="button"
                                 data-test-id="asset-kit-block-download-button"
                                 className="[&>div]:!tw-@container-normal"
                                 disabled={isButtonDisabled}

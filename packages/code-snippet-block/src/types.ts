@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, RadiusExtendedSettings } from '@frontify/guideline-blocks-settings';
+import { type Color, type RadiusExtendedSettings } from '@frontify/guideline-blocks-settings';
 
 export type Language =
     | 'coffeescript'

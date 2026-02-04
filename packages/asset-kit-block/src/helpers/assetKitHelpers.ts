@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { getBackgroundColorStyles, getBorderStyles, getRadiusStyles } from '@frontify/guideline-blocks-settings';
+import { type CSSProperties } from 'react';
+
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from '../settings';
-import { CSSProperties } from 'react';
-import { Settings } from '../types';
+import { type Settings } from '../types';
 
 export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     const {

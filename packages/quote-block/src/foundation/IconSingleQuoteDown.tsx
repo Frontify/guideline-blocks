@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
+import { type FC } from 'react';
+
+import { type IconProps } from '../types';
 import { ICON_CLASS_NAME } from '../utilities';
-import { IconProps } from '../types';
 
 export const IconSingleQuoteDown: FC<IconProps> = ({ style }) => (
     <svg

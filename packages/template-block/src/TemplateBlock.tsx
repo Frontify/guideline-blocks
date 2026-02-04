@@ -1,18 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type ReactElement } from 'react';
-import { OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
+import { type OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
 import { Text } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type ReactElement } from 'react';
 
 import { AlertError } from './components/AlertError';
 import { CtaButton } from './components/CtaButton';
 import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateText } from './components/TemplateText';
-import { PreviewType, TemplateEditing } from './types';
 import { useTemplateBlockData } from './hooks/useTemplateBlockData';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { PreviewType, TemplateEditing } from './types';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const {

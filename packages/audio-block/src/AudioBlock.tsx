@@ -24,20 +24,20 @@ import {
     isDownloadable,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
-import { DownloadButton } from '@frontify/guideline-blocks-shared';
+import { DownloadButton, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
 import { type BlockSettings, TextPosition } from './types';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
+    // eslint-disable-next-line @eslint-react/prefer-use-state-lazy-initialization
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -65,8 +65,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
             async (result) => {
                 setIsLoading(true);
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 updateAudioAsset(result[0]);
                 closeAssetChooser();
             },
@@ -107,6 +109,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (doneAll && uploadResults) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             updateAudioAsset(uploadResults[0]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

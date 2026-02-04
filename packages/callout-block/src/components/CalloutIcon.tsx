@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type Asset } from '@frontify/app-bridge';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-import { Icon, Type } from '../types';
-import { Asset } from '@frontify/app-bridge';
+import { type Icon, type Type } from '../types';
+
 import { CustomCalloutIcon } from './CustomCalloutIcon';
 import { IconInfo, IconLightbulb, IconMegaphone } from './icons/';
 

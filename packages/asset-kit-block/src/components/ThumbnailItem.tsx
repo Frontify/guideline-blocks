@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
-import { Settings, ThumbnailItemProps } from '../types';
-import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
-import { LoadingCircle } from '@frontify/fondue/components';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
+import { LoadingCircle } from '@frontify/fondue/components';
+import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
+import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { useEffect, useState } from 'react';
+
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
+import { type Settings, type ThumbnailItemProps } from '../types';
 
 export const ThumbnailItem = ({
     asset,
@@ -26,7 +27,9 @@ export const ThumbnailItem = ({
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
             async (result) => {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 onReplaceAsset(asset.id, result[0].id);
                 closeAssetChooser();
             },
@@ -46,6 +49,7 @@ export const ThumbnailItem = ({
 
     useEffect(() => {
         if (doneAll && uploadResults) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             onReplaceAsset(asset.id, uploadResults[0].id);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,6 +63,7 @@ export const ThumbnailItem = ({
                     type: 'button',
                     icon: <IconTrashBin size={16} />,
                     tooltip: 'Delete Item',
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     onClick: () => onRemoveAsset(asset.id),
                 },
                 {
@@ -93,6 +98,7 @@ export const ThumbnailItem = ({
                         className="tw-object-cover tw-w-full tw-h-full"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         alt={asset.alternativeText ?? asset.title}
                     />
                 )}

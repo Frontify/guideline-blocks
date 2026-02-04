@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { Attachments, useAttachmentsContext } from '@frontify/guideline-blocks-settings';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type ReactElement } from 'react';
 
 type Props = {
     appBridge: AppBridgeBlock;

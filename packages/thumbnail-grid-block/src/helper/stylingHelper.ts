@@ -1,10 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CaptionPosition, HorizontalAlignment, Settings, ThumbnailStylesProps, VerticalAlignment } from '../types';
 import { merge } from '@frontify/fondue';
 import { getBorderStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
+
 import { DEFAULT_BORDER_COLOR } from '../settings';
+import {
+    CaptionPosition,
+    HorizontalAlignment,
+    type Settings,
+    type ThumbnailStylesProps,
+    VerticalAlignment,
+} from '../types';
 
 const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col tw-justify-start',

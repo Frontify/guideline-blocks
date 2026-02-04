@@ -1,8 +1,8 @@
 {
     "appId": "cldju6bkp0001a8w43x1fgzzu",
+    "i18nFields": ["name", "description"],
     "searchFields": [
-        { "type": "fondueRte", "settingId": "name" },
-        { "type": "fondueRte", "settingId": "description" }
-    ],
-    "i18nFields": ["name", "description"]
+        { "settingId": "name", "type": "fondueRte" },
+        { "settingId": "description", "type": "fondueRte" }
+    ]
 }

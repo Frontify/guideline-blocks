@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { ReactNode } from 'react';
-
 import { ThemeProvider } from '@frontify/fondue/components';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+import { type ReactNode } from 'react';
 import '@frontify/guideline-blocks-settings/styles';
 import '@frontify/fondue/style';
 import '@frontify/fondue/components/styles';

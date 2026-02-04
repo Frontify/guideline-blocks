@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { EditAltTextFlyout } from './EditAltTextFlyout';
 import { mount } from 'cypress/react';
-import React from 'react';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+
+import { EditAltTextFlyout } from './EditAltTextFlyout';
 
 const FlyoutMenu = '[data-test-id="flyout-menu"]';
 const SaveButton = '[data-test-id="save-button"]';

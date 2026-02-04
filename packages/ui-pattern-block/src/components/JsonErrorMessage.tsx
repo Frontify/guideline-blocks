@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconExclamationMarkTriangle } from '@frontify/fondue/icons';
-
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
 export const JsonErrorMessage = (): ReactElement => {
     return (

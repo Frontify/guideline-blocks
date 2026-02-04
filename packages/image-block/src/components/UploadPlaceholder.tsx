@@ -21,7 +21,7 @@ export const UploadPlaceholder = ({
             <BlockInjectButton
                 label="Add or drop your image here"
                 icon={<IconPlus size={24} />}
-                fillParentContainer={true}
+                fillParentContainer
                 onUploadClick={onUploadClick}
                 onAssetChooseClick={onAssetChooseClick}
                 onDrop={onFilesDrop}

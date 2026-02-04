@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle } from '@frontify/guideline-blocks-settings';
+import { type Bundle } from '@frontify/guideline-blocks-settings';
+
 import { parseSketchfabSettingsUrl } from './settings';
 
 describe('parseSketchfabSettingsUrl', () => {
@@ -49,7 +50,7 @@ describe('parseSketchfabSettingsUrl', () => {
                 getBlock: () => ({
                     value: args,
                 }),
-                // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 getAppBridge(): any {},
             } as Bundle;
             parseSketchfabSettingsUrl(bundle);

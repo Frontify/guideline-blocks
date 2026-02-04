@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
+
 import { BlockContainerStub } from '../../tests/BlockContainerStub';
 
 const IMAGE_CONTAINER_SELECTOR = '[id="image-container"]';
@@ -21,8 +22,11 @@ describe('BitmapContainerOperator', () => {
                     const isInTheMiddle =
                         (stageClientRect.width - imageClientRect.width) / 2 === imageElement?.offset()?.left;
 
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                     expect(isInTheMiddle).to.be.true;
+                    return null;
                 });
+            return null;
         });
     });
 
@@ -39,8 +43,11 @@ describe('BitmapContainerOperator', () => {
                     const isInTheMiddle =
                         `${(stageClientRect.width - containerClientRect.width) / 2}px` ===
                         containerElement[0].style.left;
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                     expect(isInTheMiddle).to.be.true;
+                    return null;
                 });
+            return null;
         });
     });
 
@@ -57,8 +64,11 @@ describe('BitmapContainerOperator', () => {
                     const isInTheMiddle =
                         `${(stageClientRect.width - containerClientRect.width) / 2}px` ===
                         containerElement[0].style.left;
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                     expect(isInTheMiddle).to.be.true;
+                    return null;
                 });
+            return null;
         });
     });
 });

@@ -2,6 +2,7 @@
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
+
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';
@@ -23,6 +24,7 @@ describe('Callout Block', () => {
             style.innerHTML = EXAMPLE_THEME_SETTINGS;
             style.id = 'test-settings';
             doc.head.appendChild(style);
+            return null;
         });
     });
 
@@ -30,6 +32,7 @@ describe('Callout Block', () => {
         cy.document().then((doc) => {
             const existingStyle = doc.querySelector('#test-settings');
             existingStyle?.remove();
+            return null;
         });
     });
 
@@ -231,6 +234,7 @@ describe('Callout Block', () => {
             if (style) {
                 style.innerHTML = ':root {--f-theme-settings-accent-color-note-color: rgba(50, 40, 145, 1);}';
             }
+            return null;
         });
 
         const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
@@ -253,6 +257,7 @@ describe('Callout Block', () => {
             if (style) {
                 style.innerHTML = ':root {--f-theme-settings-accent-color-note-color: rgba(50, 40, 145, 1);}';
             }
+            return null;
         });
 
         const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {

@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
-import { IconPlus } from '@frontify/fondue/icons';
-
-import { useEffect, useState } from 'react';
-import { ASSET_SETTINGS_ID } from '../settings';
 import { useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
-import { AssetSelectionProps } from '../types';
+import { IconPlus } from '@frontify/fondue/icons';
+import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+import { useEffect, useState } from 'react';
+
+import { ASSET_SETTINGS_ID } from '../settings';
+import { type AssetSelectionProps } from '../types';
 
 export const AssetSelection = ({
     appBridge,
@@ -27,6 +27,7 @@ export const AssetSelection = ({
             (assetsObject) => {
                 setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises, promise/catch-or-return
                 addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
                 closeAssetChooser();
             },
@@ -55,6 +56,7 @@ export const AssetSelection = ({
 
     useEffect(() => {
         if (doneAll && uploadResults) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             (async (assetsObject) => {
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
                 await addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds);

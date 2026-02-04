@@ -1,8 +1,8 @@
 {
     "name": "image-block",
+    "version": "1.0.0",
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
-    "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
         "serve": "frontify-cli serve --entryPath src/index.ts",
@@ -13,24 +13,6 @@
         "prettier:fix": "prettier --write .",
         "typecheck": "tsc --noEmit"
     },
-    "devDependencies": {
-        "@babel/core": "^7.28.5",
-        "@frontify/eslint-config-react": "0.16.1",
-        "@frontify/frontify-cli": "^5.9.5",
-        "@testing-library/react": "^16.3.1",
-        "@types/react": "^18.3.24",
-        "@types/react-dom": "^18.3.7",
-        "autoprefixer": "^10.4.23",
-        "cypress": "^15.8.1",
-        "eslint": "^8.57.0",
-        "eslint-plugin-jsx-a11y": "^6.10.2",
-        "eslint-plugin-notice": "^0.9.10",
-        "postcss": "^8.5.6",
-        "prettier": "^3.7.4",
-        "sinon": "^18.0.0",
-        "tailwindcss": "^3.4.17",
-        "typescript": "^5.9.3"
-    },
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.45",
         "@frontify/fondue": "12.14.5",
@@ -39,5 +21,23 @@
         "@react-aria/live-announcer": "^3.4.4",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.28.5",
+        "@frontify/eslint-config-react": "1.0.10",
+        "@frontify/frontify-cli": "^5.9.5",
+        "@testing-library/react": "^16.3.1",
+        "@types/react": "^18.3.24",
+        "@types/react-dom": "^18.3.7",
+        "autoprefixer": "^10.4.23",
+        "cypress": "^15.8.1",
+        "eslint": "^9.39.2",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-notice": "^1.0.0",
+        "postcss": "^8.5.6",
+        "prettier": "^3.7.4",
+        "sinon": "^18.0.0",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^5.9.3"
     }
 }

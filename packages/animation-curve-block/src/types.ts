@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import { BorderStyle, Color, GutterSpacing, Radius } from '@frontify/guideline-blocks-settings';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
+import { type BorderStyle, type Color, type GutterSpacing, type Radius } from '@frontify/guideline-blocks-settings';
 
 export type Size = {
     width: number;

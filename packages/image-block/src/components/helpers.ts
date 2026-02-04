@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import {
     AlignCenterPlugin,
     AlignJustifyPlugin,
@@ -27,19 +27,20 @@ import {
     LinkPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
+import { type CSSProperties } from 'react';
+
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../const';
 import {
     Autosizing,
     CornerRadius,
     HorizontalAlignment,
     ImageAspectRatio,
-    ImageInformation,
-    Settings,
+    type ImageInformation,
+    type Settings,
     VerticalAlignment,
     paddingValues,
     radiusValues,
 } from '../types';
-import { CSSProperties } from 'react';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../const';
 
 const textStylePlugins = [
     new SoftBreakPlugin(),
@@ -129,6 +130,7 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
         : undefined;
 
     const shouldNotApplyBorderRadius =
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
         !hasBackground && autosizing !== Autosizing.Fill && ratio !== ImageAspectRatio.RatioNone;
 
     return {

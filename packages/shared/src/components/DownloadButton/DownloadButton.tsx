@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
-import { IconArrowCircleDown } from '@frontify/fondue/icons';
 import { Button, Tooltip } from '@frontify/fondue/components';
+import { IconArrowCircleDown } from '@frontify/fondue/icons';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
 
 type DownloadButtonProps = {
     onDownload: () => void;

@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import React from 'react';
+// eslint-disable-next-line no-restricted-syntax
+import * as React from 'react';
+
 import { CssValueDisplay } from './CssValueDisplay';
 
 const CSS_VALUE_SELECTOR = '[data-test-id="css-value-display"]';

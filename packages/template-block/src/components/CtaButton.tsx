@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { PluginComposer } from '@frontify/fondue';
+import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { useState } from 'react';
-import { CtaButtonProps } from './types';
+
 import { PreviewType } from '../types';
+
+import { type CtaButtonProps } from './types';
 
 export const CtaButton = ({
     appBridge,
@@ -35,6 +37,7 @@ export const CtaButton = ({
 
     return (
         <button
+            type="button"
             data-test-id="cta-button"
             disabled={isDisabled}
             onClick={isEditing ? undefined : handleNewPublication}

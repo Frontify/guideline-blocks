@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import {
     RichTextEditor,
     TextStyles,
@@ -8,7 +8,8 @@ import {
     hasRichTextValue,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { type ReactElement } from 'react';
+
 import { getCaptionPlugins } from '../helpers/plugins';
 
 interface Props {

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Radius,
+    type Radius,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
@@ -10,6 +10,7 @@ import {
     presetCustomValue,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
+
 import {
     BlockMode,
     DoDontImageHeight,
@@ -164,6 +165,7 @@ export const settings = defineSettings({
                     id: 'keepSideBySide',
                     label: 'Always show side by side',
                     type: 'switch',
+                    // eslint-disable-next-line @typescript-eslint/no-base-to-string
                     show: (bundle) => bundle.getBlock('columns')?.value?.toString() === '2',
                     defaultValue: true,
                 },

@@ -4,7 +4,7 @@ import {
     AssetChooserObjectType,
     AssetChooserProjectType,
     AssetInputMode,
-    Bundle,
+    type Bundle,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,

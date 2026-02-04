@@ -74,6 +74,7 @@ const ImageWrapper = ({
     if (!isEditing && isAssetViewerEnabled) {
         return (
             <button
+                type="button"
                 data-test-id="image-block-asset-viewer-wrapper"
                 {...sharedProps}
                 onClick={() => open(image, isDownloadable)}
@@ -112,8 +113,11 @@ export const Image = ({
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
     const imageStyle = getImageStyle(blockSettings, {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         height: image.height,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         focalPointX: image.focalPointX,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         focalPointY: image.focalPointY,
     });
 
@@ -135,6 +139,7 @@ export const Image = ({
                     style={imageStyle}
                     containerWidth={containerWidth}
                     image={image}
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     alt={blockSettings.altText ?? image.alternativeText ?? ''}
                 />
             </ImageWrapper>

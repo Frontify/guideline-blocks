@@ -14,6 +14,7 @@ import {
     numericalOrPercentRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
 import { CaptionPosition, HorizontalAlignment, VerticalAlignment } from './types';
 
 const IMAGE_POSITION_CHOICE_ID = 'imagePosition';
@@ -211,6 +212,7 @@ export const settings = defineSettings({
             info: "When disabled, viewers won't be able to open the item image in the asset detail view.",
             type: 'switch',
             defaultValue: true,
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
             show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
     ],

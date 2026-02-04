@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
+
 import {
     Alignment,
-    LabelWrapperProps,
+    type LabelWrapperProps,
     SliderImageSlot,
     horizontalLabelPlacementStyleMap,
     verticalLabelPlacementStyleMap,

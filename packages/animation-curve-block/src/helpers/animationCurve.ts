@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AnimationCurve } from '../types';
+import { type AnimationCurve } from '../types';
 
 export const roundAnimationCurveParameters = (animationCurve: AnimationCurve): AnimationCurve => {
     const {

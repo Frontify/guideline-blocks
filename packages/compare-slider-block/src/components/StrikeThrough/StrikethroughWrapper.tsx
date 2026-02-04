@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Alignment, SliderImageSlot, StrikethroughWrapperProps } from '../../types';
+import { Alignment, SliderImageSlot, type StrikethroughWrapperProps } from '../../types';
 
 export const StrikethroughWrapper = ({
     children,

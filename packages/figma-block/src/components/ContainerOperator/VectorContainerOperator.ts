@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ContainerOperator } from './ContainerOperator';
+import { Cursor, type Point, Zoom } from '../../types';
+import { type ImageContainer } from '../ImageContainer';
+import { type ImageElement } from '../ImageElement';
+import { type ImageStage } from '../ImageStage';
 import { MouseProperties } from '../MouseProperties';
-import { ImageContainer } from '../ImageContainer';
-import { ImageStage } from '../ImageStage';
-import { ImageElement } from '../ImageElement';
-import { Cursor, Point, Zoom } from '../../types';
+
+import { ContainerOperator } from './ContainerOperator';
 import { MAGNIFICATION_PERCENTAGE_DEFAULT } from './constants';
 
 export class VectorContainerOperator extends ContainerOperator {

@@ -10,6 +10,8 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+
+import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './helpers';
 import {
     Alignment,
     Height,
@@ -21,7 +23,6 @@ import {
     heightValues,
     paddingValues,
 } from './types';
-import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './helpers';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
@@ -72,6 +73,7 @@ export const settings = defineSettings({
             type: 'segmentedControls',
             label: 'CSS preprocessor',
             defaultValue: Preprocessor.None,
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
             show: (bundle) => bundle.getBlock('sandpackTemplate')?.value?.toString() === SandpackTemplate.Vanilla,
             choices: [
                 {

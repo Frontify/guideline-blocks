@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Point } from '../types';
+import { type Point } from '../types';
 
 export class MouseProperties {
     public static getCurrentPosition(event: MouseEvent): Point {

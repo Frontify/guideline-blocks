@@ -2,6 +2,7 @@
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
+
 import { SketchfabBlock } from './SketchfabBlock';
 import { SKETCHFAB_RULE_ERROR } from './helpers';
 import { SketchfabHeight, SketchfabSettings, heights } from './types';

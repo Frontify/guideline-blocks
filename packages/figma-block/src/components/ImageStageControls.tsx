@@ -3,7 +3,8 @@
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconCross, IconMinus, IconPlus } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
-import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps } from '../types';
+
+import { type DrawFullScreenActionButtonProps, type DrawZoomInOutButtonsProps } from '../types';
 
 export const DrawFullScreenActionButton = ({ isFullScreen = false, onClick }: DrawFullScreenActionButtonProps) => (
     <div className="tw-invisible group-hover:tw-visible tw-absolute tw-top-4 tw-right-4">
@@ -25,6 +26,7 @@ export const DrawZoomInOutButtons = ({
         ])}
     >
         <button
+            type="button"
             data-test-id="zoom-in"
             onClick={onClickZoomIn}
             className="tw-w-[32px] tw-h-[32px] tw-text-white tw-flex tw-justify-center tw-items-center"
@@ -32,6 +34,7 @@ export const DrawZoomInOutButtons = ({
             <IconMinus size={16} />
         </button>
         <button
+            type="button"
             data-test-id="zoom-out"
             onClick={onClickZoomOut}
             className="tw-w-[32px] tw-h-[32px] tw-text-white tw-flex tw-justify-center tw-items-center"

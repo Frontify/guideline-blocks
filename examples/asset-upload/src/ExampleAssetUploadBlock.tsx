@@ -1,13 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { Asset } from '@frontify/app-bridge';
-import { useAssetChooser, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { useAssetChooser, useAssetUpload, useBlockAssets, useFileInput, type Asset } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
-
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { ReactElement, useEffect, useState } from 'react';
-import { IMAGE_SETTING_ID } from './settings';
+import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type ReactElement, useEffect, useState } from 'react';
+
+import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -22,6 +21,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
 
     useEffect(() => {
         if (selectedFiles) {
+            // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
             setLoading(true);
             uploadFile(selectedFiles);
         }
@@ -30,8 +30,10 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
 
     useEffect(() => {
         if (doneAll) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             (async (uploadResults) => {
                 const assetsId = uploadResults.map((uploadResult) => uploadResult.id);
+
                 await updateAssetIdsFromKey(IMAGE_SETTING_ID, assetsId);
                 setLoading(false);
             })(uploadResults);
@@ -44,6 +46,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         openAssetChooser(
             (result: Asset[]) => {
                 const resultId = result[0].id;
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 closeAssetChooser();
             },
@@ -53,6 +56,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         );
     };
 
+    // eslint-disable-next-line @eslint-react/no-nested-component-definitions
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
             <a className="tw-text-text-interactive" href={link} target="_blank" rel="noopener noreferrer">

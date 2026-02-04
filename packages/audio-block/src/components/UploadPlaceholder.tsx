@@ -2,7 +2,8 @@
 
 import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
-import { UploadPlaceholderProps } from '../types';
+
+import { type UploadPlaceholderProps } from '../types';
 
 export const UploadPlaceholder = ({
     onUploadClick,

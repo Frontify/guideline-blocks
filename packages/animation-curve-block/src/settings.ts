@@ -8,6 +8,7 @@ import {
     getBorderSettings,
     getGutterSettings,
 } from '@frontify/guideline-blocks-settings';
+
 import { DEFAULT_GRID_COLOR, DEFAULT_LINE_COLOR } from './constants';
 
 const COLUMNS_ID = 'columns';

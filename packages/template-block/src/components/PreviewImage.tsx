@@ -1,13 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEditorState } from '@frontify/app-bridge';
-import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
 import { merge } from '@frontify/fondue';
 import { IconArrowSync, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
-import { BlockItemWrapper, MenuToolbarItem } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, type MenuToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
-import { PreviewImageProps } from './types';
+
+import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
+
+import { type PreviewImageProps } from './types';
 
 export const PreviewImage = ({
     appBridge,
@@ -22,10 +24,13 @@ export const PreviewImage = ({
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
     const hasCustomPreview = preview === PreviewType.Custom && previewCustom;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { previewSrc, width, height } = hasCustomPreview
         ? {
               previewSrc: previewCustom.previewUrl,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               width: previewCustom.width,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               height: previewCustom.height,
           }
         : {
@@ -75,7 +80,9 @@ export const PreviewImage = ({
                         ? previewImageAnchoringValues[previewImageAnchoring]
                         : 'center',
                 }}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 width={width}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 height={height}
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}

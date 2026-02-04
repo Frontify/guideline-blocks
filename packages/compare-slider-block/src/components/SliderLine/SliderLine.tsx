@@ -2,9 +2,9 @@
 
 import { IconCaretLeft, IconCaretRight } from '@frontify/fondue/icons';
 import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
-import { Alignment, Handle, HandleProps } from '../../types';
+import { Alignment, Handle, type HandleProps } from '../../types';
 
 export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, sliderWidth }: HandleProps) => {
     const getSliderStyle = () => {

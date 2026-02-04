@@ -1,10 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect, useState } from 'react';
-import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
-import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
+import { DndContext, type DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-
+import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import {
     type Asset,
     useAssetViewer,
@@ -13,14 +11,14 @@ import {
     useEditorState,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-
-import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { generateRandomId } from '@frontify/fondue';
-
-import type { Settings, Thumbnail } from './types';
-import { getThumbnailStyles } from './helper';
-import { Grid, Item, SortableItem } from './components/';
+import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { useCallback, useEffect, useState } from 'react';
+
+import { Grid, Item, SortableItem } from './components/';
+import { getThumbnailStyles } from './helper';
+import { type Settings, type Thumbnail } from './types';
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -90,6 +88,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (blockSettings.items !== itemsState && isEditing) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({ items: itemsState });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

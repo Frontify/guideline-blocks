@@ -2,8 +2,9 @@
 
 import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, ImageComponentProps, ImageFitChoice } from '../types';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
+
+import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, type ImageComponentProps, ImageFitChoice } from '../types';
 
 const ImageComponent = ({
     isEditing,
@@ -49,6 +50,7 @@ const ImageComponent = ({
                     isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
                 ])}
             >
+                {/* eslint-disable-next-line @eslint-react/no-leaked-conditional-rendering */}
                 {containerWidth && (
                     <ResponsiveImage
                         containerWidth={containerWidth}

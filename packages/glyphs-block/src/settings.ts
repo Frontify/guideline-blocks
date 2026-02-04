@@ -2,13 +2,14 @@
 
 import { MultiInputLayout } from '@frontify/fondue';
 import {
-    Choice,
+    type Choice,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
     getBorderSettings,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
+
 import { getFontWeights, getFonts } from './helpers';
 
 export const DEFAULT_CHARS =

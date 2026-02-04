@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ASSET_SETTINGS_ID } from '../settings';
-import { AssetGridProps } from '../types';
+import { type AssetGridProps } from '../types';
+
 import { AssetCount } from './AssetCount';
 import { ThumbnailItem } from './ThumbnailItem';
 

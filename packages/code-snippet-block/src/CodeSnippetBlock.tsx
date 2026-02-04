@@ -1,23 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import debounce from 'lodash/debounce';
-import { Extension } from '@codemirror/state';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
 import { merge } from '@frontify/fondue';
 import { Select, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
-import { BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
+import './styles.css';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
-import CodeMirror from '@uiw/react-codemirror';
-import { FC, useEffect, useMemo, useState } from 'react';
+import CodeMirror, { type Extension } from '@uiw/react-codemirror';
+import debounce from 'lodash/debounce';
+import { type FC, useEffect, useMemo, useState } from 'react';
 
-import './styles.css';
-import { headerThemes } from './headerThemes';
-import { Language, Settings, languageNameMap } from './types';
 import { DEFAULT_BORDER_COLOR } from './constants';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { headerThemes } from './headerThemes';
+import { type Language, type Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -30,6 +28,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
 
     useEffect(() => {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, react-hooks/set-state-in-effect
         setSelectedLanguage(blockSettings.language ?? 'plain');
     }, [blockSettings.language]);
 
@@ -96,6 +95,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const handleLanguageChange = (value: Language) => {
         setSelectedLanguage(value);
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({ language: value });
     };
 
@@ -148,6 +148,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                     <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
                                 )}
                                 <button
+                                    type="button"
                                     data-test-id="header-copy-button"
                                     className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                                     style={{
@@ -190,6 +191,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                     >
                                         <Tooltip.Trigger>
                                             <button
+                                                type="button"
                                                 data-test-id="copy-button"
                                                 className="tw-p-2 tw-rounded-md"
                                                 style={getStyle()}
@@ -202,6 +204,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                     </Tooltip.Root>
                                 ) : (
                                     <button
+                                        type="button"
                                         className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
                                         style={getStyle()}
                                         onClick={handleCopy}

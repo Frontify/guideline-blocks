@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, useBlockAssets } from '@frontify/app-bridge';
-import { ReactNode, createContext } from 'react';
+import { type AppBridgeBlock, type Asset, useBlockAssets } from '@frontify/app-bridge';
+import { type ReactNode, createContext } from 'react';
 
 type AssetsProviderProps = {
     appBridge: AppBridgeBlock;
@@ -16,10 +16,12 @@ type AssetsContext = {
 };
 
 export const AssetsContext = createContext<AssetsContext>({} as AssetsContext);
+AssetsContext.displayName = 'AssetsContext';
 
 export const AssetsProvider = ({ appBridge, children }: AssetsProviderProps) => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     return (
+        // eslint-disable-next-line @eslint-react/no-unstable-context-value
         <AssetsContext.Provider value={{ blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey }}>
             {children}
         </AssetsContext.Provider>

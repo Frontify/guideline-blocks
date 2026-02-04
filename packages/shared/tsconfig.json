@@ -1,18 +1,18 @@
 {
     "compilerOptions": {
         "esModuleInterop": true,
+        "jsx": "react",
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "ESNext",
         "moduleResolution": "bundler",
         "noUnusedLocals": true,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
         "strict": true,
         "target": "ES2020",
-        "jsx": "react",
-        "skipLibCheck": true,
-        "resolveJsonModule": true,
-        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
-        "outDir": "dist"
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*"]
 }

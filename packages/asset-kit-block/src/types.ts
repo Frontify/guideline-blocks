@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, AssetBulkDownloadState } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-settings';
-import { CSSProperties } from 'react';
+import { type AppBridgeBlock, type Asset, type AssetBulkDownloadState } from '@frontify/app-bridge';
+import { type Color } from '@frontify/fondue';
+import { type BorderStyle, type Radius } from '@frontify/guideline-blocks-settings';
+import { type CSSProperties } from 'react';
 
 export type Settings = {
     hasBackgroundBlocks?: boolean;

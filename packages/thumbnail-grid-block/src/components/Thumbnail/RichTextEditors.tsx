@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Thumbnail } from '../../types';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { RichTextEditor, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
-import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
-import { AppBridgeBlock } from '@frontify/app-bridge';
 import { memo, useMemo } from 'react';
+
+import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
+import { type Thumbnail } from '../../types';
 
 type RichTextEditorsProps = {
     isEditing: boolean;

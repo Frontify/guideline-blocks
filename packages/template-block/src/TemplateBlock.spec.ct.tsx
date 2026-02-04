@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { AssetDummy, TemplateDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { TemplateBlock } from './TemplateBlock';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react';
+
+import { TemplateBlock } from './TemplateBlock';
 import {
     AnchoringType,
     PreviewDisplayType,
@@ -304,7 +305,9 @@ describe('Template Block', () => {
                 const previewTop = $preview[0].getBoundingClientRect().top;
                 const textTop = $text[0].getBoundingClientRect().top;
                 expect(textTop).to.be.greaterThan(previewTop);
+                return null;
             });
+            return null;
         });
     });
 

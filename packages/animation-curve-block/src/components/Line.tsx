@@ -2,7 +2,7 @@
 
 import { toHexString } from '@frontify/guideline-blocks-settings';
 
-import { LineProps } from '../types';
+import { type LineProps } from '../types';
 
 export const Line = ({
     start,

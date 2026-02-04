@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type AnimationCurveCanvasGridProps } from '../types';
+
 import { Line } from './';
-import { AnimationCurveCanvasGridProps } from '../types';
 
 export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveCanvasGridProps) => {
     return (
@@ -18,6 +19,7 @@ export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveC
                 strokeColor={lineColor}
                 strokeWidth={1}
             />
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             {[...Array(5)].map((_, i) => (
                 <Line
                     key={`line-${i}`}
@@ -26,7 +28,7 @@ export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveC
                     strokeColor={lineColor}
                     strokeWidth={1}
                     dashArray={4}
-                    dashed={true}
+                    dashed
                 />
             ))}
         </g>

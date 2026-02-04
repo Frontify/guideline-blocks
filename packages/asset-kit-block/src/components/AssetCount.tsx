@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles, TextStyles, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { ReactElement } from 'react';
-import { AssetCountProps } from '../types';
+import { type ReactElement } from 'react';
+
+import { type AssetCountProps } from '../types';
 
 export const AssetCount = ({ count, color }: AssetCountProps): ReactElement => {
     const imageCaptionStyles = BlockStyles[TextStyles.imageCaption];

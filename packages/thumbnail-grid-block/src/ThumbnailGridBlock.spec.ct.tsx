@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { ThumbnailGridBlock } from './ThumbnailGridBlock';
-import { CaptionPosition, HorizontalAlignment, Thumbnail, VerticalAlignment } from './types';
 import { BorderStyle, GutterSpacing, Radius, Security } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react';
+
+import { ThumbnailGridBlock } from './ThumbnailGridBlock';
+import { CaptionPosition, HorizontalAlignment, type Thumbnail, VerticalAlignment } from './types';
 
 const ThumbnailGridBlockSelector = '[data-test-id="thumbnail-grid-block"]';
 const ThumbnailCaption = '[data-test-id="thumbnail-rte"]';
@@ -108,8 +109,8 @@ describe('Thumbnail Grid Block', () => {
                 items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -146,7 +147,7 @@ describe('Thumbnail Grid Block', () => {
                 borderColor: { red: 255, green: 255, blue: 255, alpha: 1, name: 'white' },
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
+                '1': [AssetDummy.with(1)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -165,7 +166,7 @@ describe('Thumbnail Grid Block', () => {
                 items: [ThumbnailDummy.with('1')],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
+                '1': [AssetDummy.with(1)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -187,8 +188,8 @@ describe('Thumbnail Grid Block', () => {
                 ],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -208,7 +209,7 @@ describe('Thumbnail Grid Block', () => {
                 horizontalImageAlignment: HorizontalAlignment.Left,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
+                '1': [AssetDummy.with(1)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -227,7 +228,7 @@ describe('Thumbnail Grid Block', () => {
                 horizontalImageAlignment: HorizontalAlignment.Right,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
+                '1': [AssetDummy.with(1)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -275,8 +276,8 @@ describe('Thumbnail Grid Block', () => {
                 items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(
@@ -305,12 +306,12 @@ describe('Thumbnail Grid Block', () => {
                 ],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
-                ['3']: [AssetDummy.with(3)],
-                ['4']: [AssetDummy.with(4)],
-                ['5']: [AssetDummy.with(5)],
-                ['6']: [AssetDummy.with(6)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
+                '3': [AssetDummy.with(3)],
+                '4': [AssetDummy.with(4)],
+                '5': [AssetDummy.with(5)],
+                '6': [AssetDummy.with(6)],
             },
         });
         mount(
@@ -331,7 +332,9 @@ describe('Thumbnail Grid Block', () => {
                     .eq(4)
                     .then((fifth) => {
                         expect(fifth.get(0).textContent).contains(first.get(0).textContent);
+                        return null;
                     });
+                return null;
             });
     });
 
@@ -350,12 +353,12 @@ describe('Thumbnail Grid Block', () => {
                 ],
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
-                ['3']: [AssetDummy.with(3)],
-                ['4']: [AssetDummy.with(4)],
-                ['5']: [AssetDummy.with(5)],
-                ['6']: [AssetDummy.with(6)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
+                '3': [AssetDummy.with(3)],
+                '4': [AssetDummy.with(4)],
+                '5': [AssetDummy.with(5)],
+                '6': [AssetDummy.with(6)],
             },
         });
         mount(
@@ -376,7 +379,9 @@ describe('Thumbnail Grid Block', () => {
                     .first()
                     .then((first) => {
                         expect(first.get(0).textContent).contains(fifth.get(0).textContent);
+                        return null;
                     });
+                return null;
             });
     });
 
@@ -395,8 +400,8 @@ describe('Thumbnail Grid Block', () => {
                 assetDownloadEnabled: true,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -419,8 +424,8 @@ describe('Thumbnail Grid Block', () => {
                 assetDownloadEnabled: true,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -441,8 +446,8 @@ describe('Thumbnail Grid Block', () => {
                 assetDownloadEnabled: true,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -465,8 +470,8 @@ describe('Thumbnail Grid Block', () => {
                 assetDownloadEnabled: true,
             },
             blockAssets: {
-                ['1']: [AssetDummy.with(1)],
-                ['2']: [AssetDummy.with(2)],
+                '1': [AssetDummy.with(1)],
+                '2': [AssetDummy.with(2)],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);

@@ -2,14 +2,16 @@
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { FormControl, FormControlStyle } from '@frontify/fondue';
-import { IconStorybook } from '@frontify/fondue/icons';
 import { Button, TextInput } from '@frontify/fondue/components';
-import { BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { IconStorybook } from '@frontify/fondue/icons';
+import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type FC, useCallback, useEffect, useState } from 'react';
+
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
-    Settings,
+    type Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
@@ -21,7 +23,6 @@ import { addMissingUrlProtocol } from './utils/addMissingUrlProtocol';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
@@ -56,6 +57,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         setSubmittedUrl(input);
 
         if (isValidStorybookUrl(input)) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({
                 url: addMissingUrlProtocol(input),
             });
@@ -72,6 +74,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [url]);
 
     const saveHeight = (height: number) => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         setBlockSettings({
             heightValue: `${height}px`,
             isCustomHeight: true,
@@ -99,6 +102,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             data-test-id="storybook-iframe"
             title="storybook-iframe"
             allow="clipboard-write"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
         />
     );
 
@@ -114,8 +118,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                         ) : (
                             <div style={{ height: activeHeight }}>{iframe}</div>
                         )
-                    ) : // eslint-disable-next-line unicorn/no-nested-ternary
-                    isEditing ? (
+                    ) : isEditing ? (
                         <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                             <div
                                 className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"

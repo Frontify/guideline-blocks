@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings } from '@frontify/app-bridge';
-
 import { type BlockProps, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
 import {
     ALIGNMENT_DEFAULT_VALUE,
@@ -11,8 +11,13 @@ import {
     STYLE_DEFAULT_VALUE,
 } from './settings';
 import css from './styles.module.css';
-import { DividerStyle, Settings, dividerAlignmentClasses, dividerHeightValues, dividerStyleClasses } from './types';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import {
+    DividerStyle,
+    type Settings,
+    dividerAlignmentClasses,
+    dividerHeightValues,
+    dividerStyleClasses,
+} from './types';
 
 export const DividerBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
