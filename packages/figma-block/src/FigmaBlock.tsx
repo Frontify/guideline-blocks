@@ -27,8 +27,7 @@ import { extractUrlParameterFromUriQueries } from './utilities';
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
-    // eslint-disable-next-line @eslint-react/naming-convention/use-state
-    const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
+    const [showFigmaLiveModal, setShowFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
     const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
@@ -81,8 +80,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         };
         window.addEventListener('resize', resize);
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        () => window.removeEventListener('resize', resize);
+        return () => {
+            window.removeEventListener('resize', resize);
+        };
     }, []);
 
     useEffect(() => {
@@ -190,7 +190,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 {allowFullScreen && (
                     <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                         <Button
-                            onPress={() => toggleFigmaLiveModal(true)}
+                            onPress={() => setShowFigmaLiveModal(true)}
                             emphasis="default"
                             aria-label="allow fullscreen"
                             aspect="square"
@@ -236,7 +236,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-50">
                     <Button
                         onPress={() => {
-                            toggleFigmaLiveModal(false);
+                            setShowFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
                         }}
                         emphasis="default"
