@@ -20,6 +20,8 @@ export class BitmapContainerOperator extends ContainerOperator {
     }
 
     public fitAndCenterTheImageContainerWithinTheImageStage() {
+        this.resizeImageContainerToFitWithinImageStage();
+        this.centerImageContainerWithinTheImageStage();
         return this;
     }
 }

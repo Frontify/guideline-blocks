@@ -12,8 +12,8 @@ import { MAGNIFICATION_PERCENTAGE_DEFAULT } from './constants';
 export class VectorContainerOperator extends ContainerOperator {
     private startImageContainerPosition: Point = { x: 0, y: 0 };
     private startMousePosition: Point = { x: 0, y: 0 };
-    private mouseMoveListener: (this: Document, event: MouseEvent) => void;
-    private mouseUpListener: (this: HTMLDivElement, event: MouseEvent) => void;
+    private readonly mouseMoveListener: (this: Document, event: MouseEvent) => void;
+    private readonly mouseUpListener: (this: HTMLDivElement, event: MouseEvent) => void;
 
     constructor(
         protected imageContainer: ImageContainer,
