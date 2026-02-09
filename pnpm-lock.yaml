@@ -109,8 +109,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.0
       '@frontify/eslint-config-react':
-        specifier: 1.0.10
-        version: 1.0.10(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(react@18.3.1)(typescript@5.9.3)
+        specifier: 1.0.11
+        version: 1.0.11(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(react@18.3.1)(typescript@5.9.3)
       '@frontify/frontify-cli':
         specifier: ^5.9.5
         version: 5.9.5(@types/node@25.0.6)
@@ -2583,26 +2583,12 @@ packages:
       react-dom: ^18
       sinon: ^15 || ^16 || ^17 || ^18 || ^19 || ^20 || ^21
 
-  '@frontify/eslint-config-basic@1.0.10':
-    resolution: {integrity: sha512-DuQ5gZsuyp6p8Gf+rBHHTxYwYuEUkOeRfCGYXNr3oRDRBQzCQmVvTNYKQpRafDMLoXdObCY4KJIc6tOFKLxjzQ==}
-    peerDependencies:
-      eslint: ^9.0.0
-      prettier: ^3.0.0
-      typescript: ^5.0.0
-
   '@frontify/eslint-config-basic@1.0.11':
     resolution: {integrity: sha512-+6P6qQ0dMWB6kKG2ERYB1AGDjEhlYiD3f5z/G+eDJz6Syh9OGftKjwyrnPaiJxlFQXivFov4k4t5lTw5vJewDw==}
     peerDependencies:
       eslint: ^9.0.0
       prettier: ^3.0.0
       typescript: ^5.0.0
-
-  '@frontify/eslint-config-react@1.0.10':
-    resolution: {integrity: sha512-8GY4OlAjRzbdEjn4MyfrOjl77pDJLBDyj738OVC3HDrhZJvDTyMlG9+zWoXBzsCkkf1myTDPFF9moRgd+lkN5A==}
-    peerDependencies:
-      eslint: ^9.0.0
-      prettier: ^3.0.0
-      react: ^18 || ^19
 
   '@frontify/eslint-config-react@1.0.11':
     resolution: {integrity: sha512-ySpLYYbcm1xc9jvxmjzjisr4qA01cRDHooqEuln7FtYO0pPJUlQLOsUz/M8Tu/npaGgI+C0kakcTzHjrsriWcw==}
@@ -10114,36 +10100,6 @@ snapshots:
       sinon: 21.0.1
       type-fest: 4.41.0
 
-  '@frontify/eslint-config-basic@1.0.10(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(typescript@5.9.3)':
-    dependencies:
-      '@eslint-community/eslint-plugin-eslint-comments': 4.6.0(eslint@9.39.2(jiti@1.21.7))
-      '@stylistic/eslint-plugin': 5.7.1(eslint@9.39.2(jiti@1.21.7))
-      '@typescript-eslint/eslint-plugin': 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.54.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
-      eslint: 9.39.2(jiti@1.21.7)
-      eslint-config-prettier: 10.1.8(eslint@9.39.2(jiti@1.21.7))
-      eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-jsonc: 2.21.0(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-lodash: 8.0.0(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-markdown: 5.1.0(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-no-only-tests: 3.3.0
-      eslint-plugin-prettier: 5.5.5(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@1.21.7)))(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)
-      eslint-plugin-promise: 7.2.1(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-unicorn: 62.0.0(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-yml: 3.0.0(eslint@9.39.2(jiti@1.21.7))
-      globals: 17.3.0
-      prettier: 3.7.4
-      typescript: 5.9.3
-      typescript-eslint: 8.54.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
-      yaml-eslint-parser: 2.0.0
-    transitivePeerDependencies:
-      - '@eslint/json'
-      - '@types/eslint'
-      - eslint-import-resolver-webpack
-      - eslint-plugin-import-x
-      - supports-color
-
   '@frontify/eslint-config-basic@1.0.11(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(typescript@5.9.3)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.6.0(eslint@9.39.2(jiti@1.21.7))
@@ -10173,25 +10129,6 @@ snapshots:
       - eslint-import-resolver-webpack
       - eslint-plugin-import-x
       - supports-color
-
-  '@frontify/eslint-config-react@1.0.10(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(react@18.3.1)(typescript@5.9.3)':
-    dependencies:
-      '@eslint-react/eslint-plugin': 2.9.4(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
-      '@frontify/eslint-config-basic': 1.0.10(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(typescript@5.9.3)
-      eslint: 9.39.2(jiti@1.21.7)
-      eslint-plugin-jsx-a11y-x: 0.1.1(eslint@9.39.2(jiti@1.21.7))
-      eslint-plugin-react-hooks: 7.0.1(eslint@9.39.2(jiti@1.21.7))
-      globals: 17.3.0
-      prettier: 3.7.4
-      react: 18.3.1
-      typescript-eslint: 8.54.0(eslint@9.39.2(jiti@1.21.7))(typescript@5.9.3)
-    transitivePeerDependencies:
-      - '@eslint/json'
-      - '@types/eslint'
-      - eslint-import-resolver-webpack
-      - eslint-plugin-import-x
-      - supports-color
-      - typescript
 
   '@frontify/eslint-config-react@1.0.11(eslint@9.39.2(jiti@1.21.7))(prettier@3.7.4)(react@18.3.1)(typescript@5.9.3)':
     dependencies:
