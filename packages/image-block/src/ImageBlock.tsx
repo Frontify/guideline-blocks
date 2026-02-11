@@ -11,9 +11,9 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import {
     AttachmentOperationsProvider,
     BlockItemWrapper,
@@ -40,6 +40,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
+    // eslint-disable-next-line @eslint-react/prefer-use-state-lazy-initialization
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);

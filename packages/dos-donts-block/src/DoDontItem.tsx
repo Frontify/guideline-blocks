@@ -2,7 +2,6 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
 import {
     IconArrowCircleUp,
     IconArrowMove,
@@ -11,6 +10,7 @@ import {
     IconSpeechBubbleQuote,
     IconTrashBin,
 } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import {
     AssetChooserObjectType,
     BlockItemWrapper,

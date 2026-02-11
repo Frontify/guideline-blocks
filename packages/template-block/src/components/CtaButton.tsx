@@ -9,7 +9,6 @@ import { PreviewType } from '../types';
 import { type CtaButtonProps } from './types';
 
 export const CtaButton = ({
-    appBridge,
     blockSettings,
     isEditing,
     isDisabled,
@@ -18,7 +17,6 @@ export const CtaButton = ({
 }: CtaButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview, buttonStyle } = blockSettings;
-    const blockId = appBridge.context('blockId').get();
 
     const marginOverwrites = preview === PreviewType.None ? '!tw-m-0' : '!tw-mb-0';
 

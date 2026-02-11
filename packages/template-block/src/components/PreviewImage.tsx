@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEditorState } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
 import { IconArrowSync, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import { BlockItemWrapper, type MenuToolbarItem } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';

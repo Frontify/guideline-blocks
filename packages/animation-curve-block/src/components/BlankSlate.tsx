@@ -2,13 +2,13 @@
 
 import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+import { generateRandomId } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { BLANK_SLATE_INITIAL_HEIGHT, DEFAULT_ANIMATION_FUNCTION } from '../constants';
 import { type AnimationCurve, type BlankSlateProps } from '../types';
 
 import { AnimationCurveFlyout, CardText } from './';
-import { generateRandomId } from '@frontify/guideline-blocks-shared';
 
 export const BlankSlate = ({
     appBridge,

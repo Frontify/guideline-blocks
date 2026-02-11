@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue/rte';
 import { Button } from '@frontify/fondue/components';
 import { IconPen, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 
 import { type EditAndDeleteColorBoxProps, type GradientColor } from '../types';
 

@@ -9,7 +9,6 @@ export type AlertErrorProps = {
 };
 
 export type CtaButtonProps = {
-    appBridge: AppBridgeBlock;
     blockSettings: Settings;
     isEditing: boolean;
     isDisabled: boolean;

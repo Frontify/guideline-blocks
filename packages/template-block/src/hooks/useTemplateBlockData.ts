@@ -10,7 +10,6 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { type Color } from '@frontify/fondue';
-
 import {
     type BlockProps,
     type BorderStyle,

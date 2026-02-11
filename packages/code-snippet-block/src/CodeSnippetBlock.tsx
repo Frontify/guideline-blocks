@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
 import { Select, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
 import './styles.css';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';

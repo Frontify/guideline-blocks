@@ -34,6 +34,7 @@
         "eslint": "^9.39.2",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-notice": "^1.0.0",
+        "eslint-plugin-tailwindcss": "^3.18.2",
         "mitt": "^3.0.1",
         "msw": "^2.12.7",
         "postcss": "^8.5.6",
