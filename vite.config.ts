@@ -16,4 +16,7 @@ export default defineConfig({
         environment: "happy-dom",
         include: ["packages/**/*.{test,spec}.{ts,tsx}"],
     },
+    optimizeDeps: {
+        exclude: ["@frontify/app-bridge"],
+    },
 });
