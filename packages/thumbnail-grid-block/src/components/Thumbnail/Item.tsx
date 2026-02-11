@@ -9,7 +9,6 @@ import {
     useAssetUpload,
     useFileInput,
 } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
 import {
     IconArrowCircleUp,
     IconArrowMove,
@@ -17,6 +16,7 @@ import {
     IconSpeechBubbleQuote,
     IconTrashBin,
 } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
