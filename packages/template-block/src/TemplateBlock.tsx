@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { Text } from '@frontify/fondue';
-import { Button } from '@frontify/fondue/components';
+import { Text, Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';

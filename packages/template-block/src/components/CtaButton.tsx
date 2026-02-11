@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PluginComposer } from '@frontify/fondue';
+import { PluginComposer } from '@frontify/fondue/rte';
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { useState } from 'react';
 
@@ -50,7 +50,6 @@ export const CtaButton = ({
             }}
         >
             <RichTextEditor
-                id={`cta-button-text-${blockId}`}
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}

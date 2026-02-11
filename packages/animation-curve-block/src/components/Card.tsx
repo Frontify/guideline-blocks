@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue/rte';
 import { IconArrowMove, IconDotsHorizontal, IconTrashBin } from '@frontify/fondue/icons';
 import {
     BlockItemWrapper,

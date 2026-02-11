@@ -9,7 +9,7 @@ import {
     useAssetUpload,
     useFileInput,
 } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue/rte';
 import {
     IconArrowCircleUp,
     IconArrowMove,

@@ -13,7 +13,6 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { generateRandomId } from '@frontify/fondue';
 import {
     AttachmentOperationsProvider,
     type BlockProps,
@@ -24,7 +23,7 @@ import {
     isDownloadable,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
-import { DownloadButton, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { DownloadButton, generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';

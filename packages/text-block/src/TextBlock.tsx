@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useMemo } from 'react';
