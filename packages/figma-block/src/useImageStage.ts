@@ -67,6 +67,7 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
             observer.observe(stageRef.current);
             return () => observer.disconnect();
         }
+        return;
     }, [isFullScreen]);
 
     useEffect(() => {
