@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-settings';
-
+import { createPortal } from 'react-dom';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
 import { getBorderOfBlock } from './helpers';
 import { DEFAULT_HEIGHT } from './settings';
@@ -28,15 +28,18 @@ export const ImageStage = ({
 }: ImageStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
         useImageStage({ height, hasLimitedOptions, isMobile });
-    return (
+
+    const content = (
         <div
             style={{
-                border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
-                borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
+                ...(!isFullScreen && {
+                    border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
+                    borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
+                }),
                 backgroundColor: hasBackground && backgroundColor ? toHex8String(backgroundColor) : 'white',
             }}
             className={joinClassNames([
-                isFullScreen && 'tw-fixed tw-border-do tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200]',
+                isFullScreen && 'tw-fixed figma-block tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200]',
             ])}
         >
             <div className="tw-group tw-w-full tw-relative tw-overflow-hidden">
@@ -73,4 +76,6 @@ export const ImageStage = ({
             </div>
         </div>
     );
+
+    return isFullScreen ? createPortal(content, document.body) : content;
 };
