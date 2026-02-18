@@ -45,7 +45,11 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
 
     useEffect(() => {
         if (stageRef.current) {
-            new ResizeObserver(() => {
+            const observer = new ResizeObserver((entries) => {
+                const entry = entries[0];
+                if (!entry || entry.contentRect.width === 0) {
+                    return;
+                }
                 if (imageRef.current && containerRef.current && imageStage.current) {
                     const imageElement = new ImageElement(imageRef.current);
                     const imageContainer = new ImageContainer(containerRef.current);
@@ -59,9 +63,12 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
                           );
                     containerOperator.current.fitAndCenterTheImageContainerWithinTheImageStage();
                 }
-            }).observe(stageRef.current);
+            });
+            observer.observe(stageRef.current);
+            return () => observer.disconnect();
         }
-    }, []);
+        return;
+    }, [isFullScreen]);
 
     useEffect(() => {
         hasLimitedOptionsRef.current = hasLimitedOptions;
