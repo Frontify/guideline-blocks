@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle, Text } from '@frontify/fondue';
-import { Button, TextInput } from '@frontify/fondue/components';
+import { FormControl, FormControlStyle } from '@frontify/fondue';
+import { Button, TextInput, Text } from '@frontify/fondue/components';
 import { IconLinkBox } from '@frontify/fondue/icons';
 import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';

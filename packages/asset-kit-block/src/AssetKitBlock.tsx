@@ -7,7 +7,7 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { PluginComposer } from '@frontify/fondue';
+import { PluginComposer } from '@frontify/fondue/rte';
 import {
     type BlockProps,
     BlockStyles,

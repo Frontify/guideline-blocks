@@ -13,7 +13,7 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme, generateRandomId } from '@frontify/fondue';
+import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme } from '@frontify/fondue';
 import { Button, Dialog } from '@frontify/fondue/components';
 import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
 import {
@@ -24,7 +24,7 @@ import {
     joinClassNames,
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 

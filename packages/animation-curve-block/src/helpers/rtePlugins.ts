@@ -14,7 +14,7 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-settings';
 
 export const getTitlePlugin = () => {

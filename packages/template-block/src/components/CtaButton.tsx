@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PluginComposer } from '@frontify/fondue';
+import { PluginComposer } from '@frontify/fondue/rte';
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { useState } from 'react';
 
@@ -9,7 +9,6 @@ import { PreviewType } from '../types';
 import { type CtaButtonProps } from './types';
 
 export const CtaButton = ({
-    appBridge,
     blockSettings,
     isEditing,
     isDisabled,
@@ -18,7 +17,6 @@ export const CtaButton = ({
 }: CtaButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview, buttonStyle } = blockSettings;
-    const blockId = appBridge.context('blockId').get();
 
     const marginOverwrites = preview === PreviewType.None ? '!tw-m-0' : '!tw-mb-0';
 
@@ -50,7 +48,6 @@ export const CtaButton = ({
             }}
         >
             <RichTextEditor
-                id={`cta-button-text-${blockId}`}
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
                 plugins={new PluginComposer({ noToolbar: true }).setPlugin()}

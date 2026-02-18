@@ -10,7 +10,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
     merge,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import {
     AllTextStylePlugins,
     type BlockProps,

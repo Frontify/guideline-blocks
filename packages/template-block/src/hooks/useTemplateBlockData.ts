@@ -9,7 +9,7 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { type Color, TextStyles } from '@frontify/fondue';
+import { type Color } from '@frontify/fondue';
 import {
     type BlockProps,
     type BorderStyle,
@@ -20,6 +20,7 @@ import {
     hasRichTextValue,
     radiusStyleMap,
     toRgbaString,
+    TextStyles,
 } from '@frontify/guideline-blocks-settings';
 import { useCallback, useEffect, useState } from 'react';
 

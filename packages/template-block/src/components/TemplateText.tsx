@@ -10,7 +10,7 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import {
     BlockStyles,
     RichTextEditor,
