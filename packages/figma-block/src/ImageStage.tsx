@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-settings';
-
 import { createPortal } from 'react-dom';
 
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
