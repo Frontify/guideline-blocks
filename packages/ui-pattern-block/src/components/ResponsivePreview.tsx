@@ -92,7 +92,9 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                     >
                                         {device.label}
                                     </button>
-                                    {i !== devices.length - 1 && <div className="tw-bg-line-mid tw-w-[1px] tw-h-full" />}
+                                    {i !== devices.length - 1 && (
+                                        <div className="tw-bg-line-mid tw-w-[1px] tw-h-full" />
+                                    )}
                                 </Fragment>
                             ))}
                         </div>
