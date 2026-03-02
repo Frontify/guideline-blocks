@@ -9,10 +9,10 @@ interface ReferenceErrorMessageProps {
 
 const ReferenceErrorMessage = ({ originalUrl }: ReferenceErrorMessageProps) => {
     return (
-        <div className="tw-w-full tw-py-8 tw-px-11 tw-relative tw-rounded tw-border tw-border-line">
+        <div className="tw-w-full tw-py-8 tw-px-11 tw-relative tw-rounded-medium tw-border tw-border-line-mid">
             <div className="tw-flex tw-justify-between" data-test-id="custom-block-error-boundary-header">
                 <div className="tw-flex tw-flex-col tw-gap-4 tw-items-start">
-                    <div className="tw-text-text-negative tw-gap-2 tw-flex tw-items-center">
+                    <div className="tw-text-error tw-gap-2 tw-flex tw-items-center">
                         <IconExclamationMarkTriangle size={24} />
                         <Heading size="large" weight="strong" color="negative" as="p">
                             Reference view unavailable

@@ -87,7 +87,7 @@ export const BrandColorPicker = ({
                     ? filteredPalettes.map(({ id, title, colors }) =>
                           colors.length > 0 ? (
                               <li key={id} className="tw-flex tw-flex-col tw-gap-2">
-                                  <span className="tw-text-sm tw-font-medium tw-text-text">{title}</span>
+                                  <span className="tw-text-sm tw-font-medium tw-text-primary">{title}</span>
                                   <ul
                                       className="tw-grid tw-grid-cols-[repeat(auto-fill,1.5rem)] [[data-layout='list']_&]:tw-grid-cols-1 tw-gap-2"
                                       data-test-id="brand-color-picker_color-list"
@@ -102,7 +102,7 @@ export const BrandColorPicker = ({
                                                       aria-label={`color value: ${color.name}`}
                                                   >
                                                       <span
-                                                          className="tw-flex tw-items-center tw-justify-center tw-w-6 tw-aspect-square tw-rounded tw-ring-1 tw-ring-line tw-ring-offset-1"
+                                                          className="tw-flex tw-items-center tw-justify-center tw-w-6 tw-aspect-square tw-rounded-medium tw-ring-1 tw-ring-line-mid tw-ring-offset-1"
                                                           style={{
                                                               background: toRgbFunction(
                                                                   fromGraphQLColorToCssColor({
@@ -111,8 +111,8 @@ export const BrandColorPicker = ({
                                                                   })
                                                               ),
                                                               color: isColorLight(color)
-                                                                  ? 'var(--text-color)'
-                                                                  : 'var(--base-color)',
+                                                                  ? 'var(--color-primary-default)'
+                                                                  : 'var(--color-surface-default)',
                                                           }}
                                                       >
                                                           {areColorsEqual(color, currentColor) && (
@@ -120,7 +120,7 @@ export const BrandColorPicker = ({
                                                           )}
                                                       </span>
                                                       {view === 'list' && (
-                                                          <span className="tw-font-normal tw-text-text">
+                                                          <span className="tw-font-normal tw-text-primary">
                                                               {color.name}
                                                           </span>
                                                       )}

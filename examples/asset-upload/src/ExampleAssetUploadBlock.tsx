@@ -59,7 +59,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     // eslint-disable-next-line @eslint-react/no-nested-component-definitions
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
-            <a className="tw-text-text-interactive" href={link} target="_blank" rel="noopener noreferrer">
+            <a className="tw-text-highlight" href={link} target="_blank" rel="noopener noreferrer">
                 {text}
             </a>
         );

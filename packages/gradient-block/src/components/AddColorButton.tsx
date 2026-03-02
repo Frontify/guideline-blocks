@@ -19,7 +19,7 @@ export const AddColorButton = ({
         // eslint-disable-next-line jsx-a11y-x/click-events-have-key-events, jsx-a11y-x/no-static-element-interactions
         <div
             data-test-id="add-color-button"
-            className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded tw-cursor-pointer tw-h-4 tw-w-4"
+            className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-bg-highlight tw-flex tw-items-center tw-justify-center tw-rounded-medium tw-cursor-pointer tw-h-4 tw-w-4"
             onClick={() => handleAdd(positionLeft)}
             style={{
                 left: positionLeft,

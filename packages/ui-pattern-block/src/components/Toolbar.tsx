@@ -60,7 +60,7 @@ export const Toolbar = ({
         <div
             data-test-id="ui-pattern-files-toolbar"
             className={joinClassNames([
-                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10  tw-px-2 tw-bg-white tw-border-t tw-border-line',
+                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10  tw-px-2 tw-bg-white tw-border-t tw-border-line-mid',
                 !isEditorCollapsed && 'tw-border-b',
             ])}
         >
@@ -70,7 +70,7 @@ export const Toolbar = ({
                         type="button"
                         data-test-id="toolbar-tab-btn"
                         className={joinClassNames([
-                            'tw-px-2 tw-h-full tw-text-s tw-text-text-weak hover:tw-text-text-x-weak tw-font-body tw-relative focus-visible:tw-z-20',
+                            'tw-px-2 tw-h-full tw-text-small tw-text-secondary hover:tw-text-secondary tw-font-primary tw-relative focus-visible:tw-z-20',
                             FOCUS_VISIBLE_STYLE,
                         ])}
                         key={button.file}
@@ -104,7 +104,7 @@ export const Toolbar = ({
                 </div>
                 {showResetButton && (
                     <>
-                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
+                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-border-line-mid" />
                         <ToolbarButton
                             icon={<IconArrowRoundAntiClockwise size={16} />}
                             tooltip="Reset pattern"
@@ -114,7 +114,7 @@ export const Toolbar = ({
                 )}
                 {isCodeEditable && hasCodeChanges && (
                     <>
-                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-bg-line" />
+                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-border-line-mid" />
                         <Button
                             data-test-id="ui-pattern-discard-changes"
                             size="small"

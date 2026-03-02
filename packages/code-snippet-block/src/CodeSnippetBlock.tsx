@@ -118,7 +118,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         {withHeading && (
                             <div
                                 data-test-id="code-snippet-header"
-                                className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
+                                className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
                                 style={getStyle()}
                             >
                                 {isEditing ? (

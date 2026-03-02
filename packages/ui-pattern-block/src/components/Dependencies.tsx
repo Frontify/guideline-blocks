@@ -40,9 +40,9 @@ export const Dependencies = ({
                     onChange={setInnerValue}
                     placeholder={placeholder}
                     validationError={<JsonErrorMessage />}
-                    className="tw-bg-base-alt tw-font-code tw-text-s"
+                    className="tw-bg-surface-dim tw-font-monospace tw-text-small"
                     classNames={{
-                        input: 'tw-resize-none tw-w-full tw-outline-none tw-bg-base-alt tw-p-6',
+                        input: 'tw-resize-none tw-w-full tw-outline-none tw-bg-surface-dim tw-p-6',
                     }}
                 />
             </MantineProvider>

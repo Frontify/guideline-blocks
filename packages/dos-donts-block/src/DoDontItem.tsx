@@ -212,7 +212,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     value={title}
                     aria-label="Title"
                     placeholder="Add a title"
-                    className="tw-text-s tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                    className="tw-text-small tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
                 />
             );
         }
@@ -225,7 +225,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     }, [editing, onChangeItem, onChangeLocalItem, title, titleRef, headingColor]);
 
     return (
-        <div className={merge(['tw-relative', isDragging && 'tw-bg-base'])}>
+        <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
             <BlockItemWrapper
                 isDragging={isDragging}
                 shouldHideWrapper={replaceWithPlaceholder || !editing}
@@ -360,7 +360,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 {style === DoDontStyle.Underline && (
                     <hr
                         style={dividerStyles[type]}
-                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded tw-bg-black-40"
+                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium tw-bg-black-40"
                     />
                 )}
                 <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
@@ -370,7 +370,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',
-                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-sm tw-bg-box-selected-hover',
+                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-sm tw-bg-container-highlight-hover',
                 ])}
             />
         </div>

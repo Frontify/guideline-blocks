@@ -120,7 +120,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} className="test-class" alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe(
-            'tw-flex tw-w-full tw-bg-box-neutral test-class'
+            'tw-flex tw-w-full tw-bg-container-secondary test-class'
         );
     });
 
@@ -130,7 +130,7 @@ describe('ResponsiveImage', () => {
         );
 
         expect(getByTestId(ResponsiveImageSelector).getAttribute('class')).toBe(
-            'tw-flex tw-w-full tw-bg-box-neutral test-class'
+            'tw-flex tw-w-full tw-bg-container-secondary test-class'
         );
 
         const img = getByTestId(ResponsiveImageSelector);

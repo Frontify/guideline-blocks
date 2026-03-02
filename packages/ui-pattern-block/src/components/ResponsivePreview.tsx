@@ -74,7 +74,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                         className="tw-w-full tw-h-full tw-bg-black tw-opacity-90 tw-absolute tw-top-0 tw-left-0"
                     />
                     <div className="tw-flex tw-justify-center tw-w-full tw-relative">
-                        <div className=" tw-bg-white tw-h-10 tw-p-0.5 tw-rounded tw-flex tw-gap-0.5">
+                        <div className=" tw-bg-white tw-h-10 tw-p-0.5 tw-rounded-medium tw-flex tw-gap-0.5">
                             {devices.map((device, i) => (
                                 <Fragment key={device.label}>
                                     <button
@@ -83,16 +83,16 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                         onClick={() => setWidth(device.width)}
                                         key={device.label}
                                         className={joinClassNames([
-                                            'tw-h-full tw-text-button-text tw-rounded tw-px-2 tw-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed',
+                                            'tw-h-full tw-text-primary tw-rounded-medium tw-px-2 tw-border hover:tw-bg-container-secondary-hover active:tw-bg-container-secondary-active',
                                             FOCUS_VISIBLE_STYLE,
                                             width === device.width
-                                                ? 'tw-border-button-border tw-bg-button-background-pressed hover:tw-bg-button-background-pressed'
+                                                ? 'tw-border-primary tw-bg-container-secondary-active hover:tw-bg-container-secondary-active'
                                                 : 'tw-border-transparent',
                                         ])}
                                     >
                                         {device.label}
                                     </button>
-                                    {i !== devices.length - 1 && <div className="tw-bg-line tw-w-[1px] tw-h-full" />}
+                                    {i !== devices.length - 1 && <div className="tw-bg-line-mid tw-w-[1px] tw-h-full" />}
                                 </Fragment>
                             ))}
                         </div>
@@ -121,7 +121,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                 showOpenInCodeSandbox={false}
                                 showRestartButton={false}
                                 showRefreshButton={false}
-                                className="tw-w-full tw-h-full tw-rounded tw-overflow-hidden tw-bg-white tw-bg-none "
+                                className="tw-w-full tw-h-full tw-rounded-medium tw-overflow-hidden tw-bg-white tw-bg-none "
                             />
                         </div>
                     </div>

@@ -142,7 +142,7 @@ export const AnimationCurveFlyout = ({
 
                         <div className="tw-relative tw-h-[200px] tw-w-[450px] tw-my-3">
                             <div
-                                className="tw-absolute tw-w-full tw-bg-base-alt tw-border tw-border-line"
+                                className="tw-absolute tw-w-full tw-bg-surface-dim tw-border tw-border-line-mid"
                                 style={{ zIndex: isInputFocused ? 0 : 1 }}
                             >
                                 <AnimationCanvas

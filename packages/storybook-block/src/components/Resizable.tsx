@@ -66,7 +66,7 @@ export const Resizeable = ({ children, saveHeight, initialHeight }: Props) => {
                 className="tw-cursor-ns-resize tw-w-full tw-pt-3 tw-h-full tw-bg-white tw-z-50"
                 data-test-id="resize-bar"
             >
-                <div className="tw-w-8 tw-h-2 tw-bg-black-10 tw-border tw-border-line-x-strong tw-rounded-[100px] tw-mx-auto tw-ml-[50%] tw--translate-x-[50%]" />
+                <div className="tw-w-8 tw-h-2 tw-bg-black-10 tw-border tw-border-line-strong tw-rounded-[100px] tw-mx-auto tw-ml-[50%] tw--translate-x-[50%]" />
             </button>
         </div>
     );

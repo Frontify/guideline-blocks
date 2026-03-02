@@ -121,7 +121,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     {isEditing && !hasPreview && (
                         <div
                             data-test-id="cta-editing-no-preview"
-                            className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded tw-flex-col @sm:tw-flex-row"
+                            className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-container-secondary tw-rounded-medium tw-flex-col @sm:tw-flex-row"
                         >
                             <div>
                                 <Text size="large" color="x-weak">
