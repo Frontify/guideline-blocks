@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/fondue';
 import {
     type Choice,
     appendUnit,
@@ -80,7 +79,7 @@ export const settings = defineSettings({
                     defaultValue: BLACK_COLOR,
                 },
             ],
-            layout: MultiInputLayout.Columns,
+            layout: 'columns',
         },
         {
             id: HAS_BACKGROUND_ID,

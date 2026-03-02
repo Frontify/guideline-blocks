@@ -19,7 +19,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
     UnorderedListPlugin,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-settings';
 
 export const titlePlugins = new PluginComposer()

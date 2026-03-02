@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue/rte';
 import { getBorderStyles, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { type CSSProperties } from 'react';
 

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue';
+import { merge } from '@frontify/fondue/rte';
 import { type ReactNode } from 'react';
 
 import { type Settings } from '../../types';

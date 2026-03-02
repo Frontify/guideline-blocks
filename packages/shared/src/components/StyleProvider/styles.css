@@ -1,0 +1,10 @@
+@import '@frontify/guideline-blocks-settings/styles';
+
+@import '../../../../../node_modules/@frontify/fondue/dist/packages/components/style.css';
+@import '../../../../../node_modules/@frontify/fondue/dist/packages/rte/style.css';
+@import '../../../../../node_modules/@frontify/fondue/dist/packages/tokens/css/base.css';
+@import '../../../../../node_modules/@frontify/fondue/dist/packages/tokens/legacy/deprecatedBaseTokens.css';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

@@ -11,9 +11,9 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { generateRandomId, merge } from '@frontify/fondue';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import {
     AttachmentOperationsProvider,
     BlockItemWrapper,
@@ -24,7 +24,7 @@ import {
     hasRichTextValue,
     isDownloadable,
 } from '@frontify/guideline-blocks-settings';
-import { StyleProvider, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
+import { StyleProvider, generateRandomId, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';

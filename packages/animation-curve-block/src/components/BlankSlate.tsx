@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { generateRandomId } from '@frontify/fondue';
 import { IconPlus } from '@frontify/fondue/icons';
 import { BlockInjectButton } from '@frontify/guideline-blocks-settings';
+import { generateRandomId } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
 import { BLANK_SLATE_INITIAL_HEIGHT, DEFAULT_ANIMATION_FUNCTION } from '../constants';
