@@ -19,7 +19,6 @@ const ANIMATION_CURVES_LINE_SELECTOR = '[data-test-id="animation-curves-line"]';
 const ANIMATION_CURVES_ENDPOINTS_SELECTOR = '[data-test-id="animation-canvas-endpoint"]';
 const ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR = '[data-test-id="animation-curves-canvas-wrapper"]';
 const ANIMATION_CURVES_CANVAS_PATH_SELECTOR = '[data-test-id="animation-curves-canvas-path"]';
-const BLOCK_ITEM_WRAPPER = '[data-test-id="block-item-wrapper"]';
 const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const FLYOUT_SELECTOR = '[role="dialog"]';
 const BUTTON_SELECTOR = '[data-test-id="fondue-button"]';
