@@ -448,13 +448,13 @@ importers:
     dependencies:
       '@codemirror/language':
         specifier: ^6.12.1
-        version: 6.12.1
+        version: 6.12.2
       '@codemirror/state':
         specifier: ^6.5.3
         version: 6.5.4
       '@codemirror/view':
         specifier: ^6.39.9
-        version: 6.39.13
+        version: 6.39.16
       '@frontify/app-bridge':
         specifier: ^4.0.0-alpha.46
         version: 4.0.0-alpha.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.1)
@@ -469,13 +469,13 @@ importers:
         version: link:../shared
       '@uiw/codemirror-extensions-langs':
         specifier: 4.24.2
-        version: 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.12.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.7)
+        version: 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.12.2)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.8)
       '@uiw/codemirror-themes-all':
         specifier: 4.24.2
-        version: 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+        version: 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
       '@uiw/react-codemirror':
         specifier: 4.24.2
-        version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.13)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.16)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
@@ -1132,7 +1132,7 @@ importers:
         version: 1.0.13(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.1))(@react-spring/web@9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@25.0.6)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@25.0.6)(typescript@5.9.3)))(zustand@4.5.7(@types/react@18.3.28)(immer@10.1.3)(react@18.3.1))
       '@uiw/react-codemirror':
         specifier: 4.24.2
-        version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.15)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.16)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lodash-es:
         specifier: ^4.17.23
         version: 4.17.23
@@ -1789,6 +1789,9 @@ packages:
   '@codemirror/lang-javascript@6.2.4':
     resolution: {integrity: sha512-0WVmhp1QOqZ4Rt6GlVGwKJN3KW7Xh4H2q8ZZNGZaP6lRdxXJzmjm4FqvmOojVj6khWJHIb9sp7U/72W7xQgqAA==}
 
+  '@codemirror/lang-javascript@6.2.5':
+    resolution: {integrity: sha512-zD4e5mS+50htS7F+TYjBPsiIFGanfVqg4HyUz6WNFikgOPf2BgKlx+TQedI1w6n/IqRBVBbBWmGFdLB/7uxO4A==}
+
   '@codemirror/lang-json@6.0.2':
     resolution: {integrity: sha512-x2OtO+AvwEHrEwR0FyyPtfDUiloG3rnVTSZV1W8UteaLL8/MajQd8DpvUb2YVzC+/T18aSDv0H9mu+xw0EStoQ==}
 
@@ -1843,9 +1846,6 @@ packages:
   '@codemirror/language-data@6.5.1':
     resolution: {integrity: sha512-0sWxeUSNlBr6OmkqybUTImADFUP0M3P0IiSde4nc24bz/6jIYzqYSgkOSLS+CBIoW1vU8Q9KUWXscBXeoMVC9w==}
 
-  '@codemirror/language@6.12.1':
-    resolution: {integrity: sha512-Fa6xkSiuGKc8XC8Cn96T+TQHYj4ZZ7RdFmXA3i9xe/3hLHfwPZdM+dqfX0Cp0zQklBKhVD8Yzc8LS45rkqcwpQ==}
-
   '@codemirror/language@6.12.2':
     resolution: {integrity: sha512-jEPmz2nGGDxhRTg3lTpzmIyGKxz3Gp3SJES4b0nAuE5SWQoKdT5GoQ69cwMmFd+wvFUhYirtDTr0/DRHpQAyWg==}
 
@@ -1864,11 +1864,8 @@ packages:
   '@codemirror/theme-one-dark@6.1.3':
     resolution: {integrity: sha512-NzBdIvEJmx6fjeremiGp3t/okrLPYT0d9orIc7AFun8oZcRk58aejkqhv6spnz4MLAevrKNPMQYXEWMg4s+sKA==}
 
-  '@codemirror/view@6.39.13':
-    resolution: {integrity: sha512-QBO8ZsgJLCbI28KdY0/oDy5NQLqOQVZCozBknxc2/7L98V+TVYFHnfaCsnGh1U+alpd2LOkStVwYY7nW2R1xbw==}
-
-  '@codemirror/view@6.39.15':
-    resolution: {integrity: sha512-aCWjgweIIXLBHh7bY6cACvXuyrZ0xGafjQ2VInjp4RM4gMfscK5uESiNdrH0pE+e1lZr2B4ONGsjchl2KsKZzg==}
+  '@codemirror/view@6.39.16':
+    resolution: {integrity: sha512-m6S22fFpKtOWhq8HuhzsI1WzUP/hB9THbDj0Tl5KX4gbO6Y91hwBl7Yky33NdvB6IffuRFiBxf1R8kJMyXmA4Q==}
 
   '@codesandbox/nodebox@0.1.8':
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
@@ -2466,8 +2463,8 @@ packages:
   '@lezer/common@1.2.3':
     resolution: {integrity: sha512-w7ojc8ejBqr2REPsWxJjrMFsA/ysDCFICn8zEOR9mrqzOu2amhITYuLD8ag6XZf0CFXDrhKqw7+tW8cX66NaDA==}
 
-  '@lezer/common@1.5.0':
-    resolution: {integrity: sha512-PNGcolp9hr4PJdXR4ix7XtixDrClScvtSCYW3rQG106oVMOOI+jFb+0+J3mbeL/53g1Zd6s0kJzaw6Ri68GmAA==}
+  '@lezer/common@1.5.1':
+    resolution: {integrity: sha512-6YRVG9vBkaY7p1IVxL4s44n5nUnaNnGM2/AckNgYOnxTG2kWh1vR8BMxPseWPjRNpb5VtXnMpeYAEAADoRV1Iw==}
 
   '@lezer/cpp@1.1.3':
     resolution: {integrity: sha512-ykYvuFQKGsRi6IcE+/hCSGUhb/I4WPjd3ELhEblm2wS2cOznDFzO+ubK2c+ioysOnlZ3EduV+MVQFCPzAIoY3w==}
@@ -2480,9 +2477,6 @@ packages:
 
   '@lezer/go@1.0.1':
     resolution: {integrity: sha512-xToRsYxwsgJNHTgNdStpcvmbVuKxTapV0dM0wey1geMMRc9aggoVyKgzYp41D2/vVOx+Ii4hmE206kvxIXBVXQ==}
-
-  '@lezer/highlight@1.2.1':
-    resolution: {integrity: sha512-Z5duk4RN/3zuVO7Jq0pGLJ3qynpxUVsh7IbUbGj88+uV2ApSAn6kWg2au3iJb+0Zi7kKtqffIESgNcRXWZWmSA==}
 
   '@lezer/highlight@1.2.3':
     resolution: {integrity: sha512-qXdH7UqTvGfdVBINrgKhDsVTJTxactNNxLk7+UMwZhU13lMHaOBlJe9Vqp907ya56Y3+ed2tlqzys7jDkTmW0g==}
@@ -2505,11 +2499,8 @@ packages:
   '@lezer/lezer@1.1.2':
     resolution: {integrity: sha512-O8yw3CxPhzYHB1hvwbdozjnAslhhR8A5BH7vfEMof0xk3p+/DFDfZkA9Tde6J+88WgtwaHy4Sy6ThZSkaI0Evw==}
 
-  '@lezer/lr@1.4.2':
-    resolution: {integrity: sha512-pu0K1jCIdnQ12aWNaAVU5bzi7Bd1w54J3ECgANPmYLtQKP0HBj2cE/5coBD66MT10xbtIuUr7tg0Shbsvk0mDA==}
-
-  '@lezer/lr@1.4.7':
-    resolution: {integrity: sha512-wNIFWdSUfX9Jc6ePMzxSPVgTVB4EOfDIwLQLWASyiUdHKaMsiilj9bYiGkGQCKVodd0x6bgQCV207PILGFCF9Q==}
+  '@lezer/lr@1.4.8':
+    resolution: {integrity: sha512-bPWa0Pgx69ylNlMlPvBPryqeLYQjyJjqPx+Aupm5zydLIF3NE+6MMLT8Yi23Bd9cif9VS00aUebn+6fDIGBcDA==}
 
   '@lezer/markdown@1.4.3':
     resolution: {integrity: sha512-kfw+2uMrQ/wy/+ONfrH83OkdFNM0ye5Xq96cLlaCy7h5UT9FO54DU4oRoIc0CSBh5NWmWuiIJA7NGLMJbQ+Oxg==}
@@ -8722,50 +8713,50 @@ snapshots:
 
   '@codemirror/autocomplete@6.18.6':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
+      '@codemirror/view': 6.39.16
       '@lezer/common': 1.2.3
 
   '@codemirror/commands@6.10.1':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
 
   '@codemirror/commands@6.10.2':
     dependencies:
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
 
   '@codemirror/commands@6.8.1':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
 
   '@codemirror/lang-angular@0.1.4':
     dependencies:
       '@codemirror/lang-html': 6.4.9
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/language': 6.12.2
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-cpp@6.0.3':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@lezer/cpp': 1.1.3
 
   '@codemirror/lang-css@6.3.1':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
       '@lezer/common': 1.2.3
       '@lezer/css': 1.2.1
@@ -8775,7 +8766,7 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/go': 1.0.1
 
   '@codemirror/lang-html@6.4.11':
@@ -8783,10 +8774,10 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-css': 6.3.1
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/css': 1.3.0
       '@lezer/html': 1.3.13
 
@@ -8795,58 +8786,68 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-css': 6.3.1
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/css': 1.2.1
       '@lezer/html': 1.3.10
 
   '@codemirror/lang-java@6.0.2':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@lezer/java': 1.1.3
 
   '@codemirror/lang-javascript@6.2.4':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/lint': 6.8.5
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
+      '@lezer/javascript': 1.5.1
+
+  '@codemirror/lang-javascript@6.2.5':
+    dependencies:
+      '@codemirror/autocomplete': 6.18.6
+      '@codemirror/language': 6.12.2
+      '@codemirror/lint': 6.8.5
+      '@codemirror/state': 6.5.4
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/javascript': 1.5.1
 
   '@codemirror/lang-json@6.0.2':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@lezer/json': 1.0.3
 
   '@codemirror/lang-less@6.0.2':
     dependencies:
       '@codemirror/lang-css': 6.3.1
-      '@codemirror/language': 6.12.1
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/language': 6.12.2
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-lezer@6.0.2':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.2.3
+      '@lezer/common': 1.5.1
       '@lezer/lezer': 1.1.2
 
   '@codemirror/lang-liquid@6.2.3':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-html': 6.4.9
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-liquid@6.3.2':
     dependencies:
@@ -8854,19 +8855,19 @@ snapshots:
       '@codemirror/lang-html': 6.4.11
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-markdown@6.3.4':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-html': 6.4.9
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/markdown': 1.4.3
 
   '@codemirror/lang-markdown@6.5.0':
@@ -8875,37 +8876,37 @@ snapshots:
       '@codemirror/lang-html': 6.4.11
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/markdown': 1.6.3
 
   '@codemirror/lang-php@6.0.2':
     dependencies:
       '@codemirror/lang-html': 6.4.9
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.2.3
+      '@lezer/common': 1.5.1
       '@lezer/php': 1.0.2
 
   '@codemirror/lang-python@6.2.1':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.2.3
+      '@lezer/common': 1.5.1
       '@lezer/python': 1.1.18
 
   '@codemirror/lang-rust@6.0.2':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@lezer/rust': 1.0.2
 
   '@codemirror/lang-sass@6.0.2':
     dependencies:
       '@codemirror/lang-css': 6.3.1
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.2.3
+      '@lezer/common': 1.5.1
       '@lezer/sass': 1.1.0
 
   '@codemirror/lang-sql@6.10.0':
@@ -8913,42 +8914,42 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-sql@6.9.1':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-vue@0.1.3':
     dependencies:
       '@codemirror/lang-html': 6.4.9
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/language': 6.12.2
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-wast@6.0.2':
     dependencies:
-      '@codemirror/language': 6.12.1
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/language': 6.12.2
+      '@lezer/common': 1.5.1
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   '@codemirror/lang-xml@6.1.0':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.2.3
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/xml': 1.0.6
 
   '@codemirror/lang-yaml@6.1.2':
@@ -8956,9 +8957,9 @@ snapshots:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
       '@lezer/yaml': 1.0.4
 
   '@codemirror/language-data@6.5.1':
@@ -8969,7 +8970,7 @@ snapshots:
       '@codemirror/lang-go': 6.0.1
       '@codemirror/lang-html': 6.4.11
       '@codemirror/lang-java': 6.0.2
-      '@codemirror/lang-javascript': 6.2.4
+      '@codemirror/lang-javascript': 6.2.5
       '@codemirror/lang-json': 6.0.2
       '@codemirror/lang-less': 6.0.2
       '@codemirror/lang-liquid': 6.3.2
@@ -8986,22 +8987,13 @@ snapshots:
       '@codemirror/language': 6.12.2
       '@codemirror/legacy-modes': 6.5.1
 
-  '@codemirror/language@6.12.1':
-    dependencies:
-      '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
-      '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
-      style-mod: 4.1.3
-
   '@codemirror/language@6.12.2':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
       style-mod: 4.1.3
 
   '@codemirror/legacy-modes@6.5.1':
@@ -9011,13 +9003,13 @@ snapshots:
   '@codemirror/lint@6.8.5':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
+      '@codemirror/view': 6.39.16
       crelt: 1.0.6
 
   '@codemirror/search@6.5.11':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
+      '@codemirror/view': 6.39.16
       crelt: 1.0.6
 
   '@codemirror/state@6.5.4':
@@ -9028,17 +9020,10 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
+      '@codemirror/view': 6.39.16
       '@lezer/highlight': 1.2.3
 
-  '@codemirror/view@6.39.13':
-    dependencies:
-      '@codemirror/state': 6.5.4
-      crelt: 1.0.6
-      style-mod: 4.1.3
-      w3c-keyname: 2.2.8
-
-  '@codemirror/view@6.39.15':
+  '@codemirror/view@6.39.16':
     dependencies:
       '@codemirror/state': 6.5.4
       crelt: 1.0.6
@@ -9066,9 +9051,9 @@ snapshots:
       '@codemirror/lang-css': 6.3.1
       '@codemirror/lang-html': 6.4.11
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
+      '@codemirror/view': 6.39.16
       '@codesandbox/sandpack-client': 2.19.8
       '@lezer/highlight': 1.2.3
       '@react-hook/intersection-observer': 3.1.2(react@18.3.1)
@@ -9927,128 +9912,120 @@ snapshots:
 
   '@lezer/common@1.2.3': {}
 
-  '@lezer/common@1.5.0': {}
+  '@lezer/common@1.5.1': {}
 
   '@lezer/cpp@1.1.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/css@1.2.1':
     dependencies:
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/css@1.3.0':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/go@1.0.1':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
-
-  '@lezer/highlight@1.2.1':
-    dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/lr': 1.4.8
 
   '@lezer/highlight@1.2.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
 
   '@lezer/html@1.3.10':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/html@1.3.13':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/java@1.1.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/javascript@1.5.1':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/json@1.0.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/lezer@1.1.2':
     dependencies:
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
-  '@lezer/lr@1.4.2':
+  '@lezer/lr@1.4.8':
     dependencies:
-      '@lezer/common': 1.5.0
-
-  '@lezer/lr@1.4.7':
-    dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
 
   '@lezer/markdown@1.4.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
 
   '@lezer/markdown@1.6.3':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
 
   '@lezer/php@1.0.2':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/python@1.1.18':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/rust@1.0.2':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/sass@1.1.0':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/xml@1.0.6':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@lezer/yaml@1.0.4':
     dependencies:
-      '@lezer/common': 1.5.0
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@mantine/core@7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -10132,12 +10109,12 @@ snapshots:
 
   '@nextjournal/lang-clojure@1.0.0':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@nextjournal/lezer-clojure': 1.0.0
 
   '@nextjournal/lezer-clojure@1.0.0':
     dependencies:
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -11390,44 +11367,44 @@ snapshots:
       '@react-types/shared': 3.32.1(react@18.3.1)
       react: 18.3.1
 
-  '@replit/codemirror-lang-csharp@6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.7)':
+  '@replit/codemirror-lang-csharp@6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.8)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
-  '@replit/codemirror-lang-nix@6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.7)':
+  '@replit/codemirror-lang-nix@6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.8)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
-  '@replit/codemirror-lang-solidity@6.0.2(@codemirror/language@6.12.1)':
+  '@replit/codemirror-lang-solidity@6.0.2(@codemirror/language@6.12.2)':
     dependencies:
-      '@codemirror/language': 6.12.1
-      '@lezer/highlight': 1.2.1
+      '@codemirror/language': 6.12.2
+      '@lezer/highlight': 1.2.3
 
-  '@replit/codemirror-lang-svelte@6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.4)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.7)':
+  '@replit/codemirror-lang-svelte@6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.4)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.8)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/lang-css': 6.3.1
       '@codemirror/lang-html': 6.4.9
       '@codemirror/lang-javascript': 6.2.4
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
-      '@lezer/common': 1.5.0
+      '@codemirror/view': 6.39.16
+      '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
       '@lezer/javascript': 1.5.1
-      '@lezer/lr': 1.4.7
+      '@lezer/lr': 1.4.8
 
   '@rolldown/pluginutils@1.0.0-rc.3': {}
 
@@ -12199,27 +12176,17 @@ snapshots:
       - react-native
       - scheduler
 
-  '@uiw/codemirror-extensions-basic-setup@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-extensions-basic-setup@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
       '@codemirror/autocomplete': 6.18.6
       '@codemirror/commands': 6.8.1
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
+      '@codemirror/view': 6.39.16
 
-  '@uiw/codemirror-extensions-basic-setup@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.15)':
-    dependencies:
-      '@codemirror/autocomplete': 6.18.6
-      '@codemirror/commands': 6.8.1
-      '@codemirror/language': 6.12.1
-      '@codemirror/lint': 6.8.5
-      '@codemirror/search': 6.5.11
-      '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
-
-  '@uiw/codemirror-extensions-langs@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.12.1)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.7)':
+  '@uiw/codemirror-extensions-langs@4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.12.2)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.8)':
     dependencies:
       '@codemirror/lang-angular': 0.1.4
       '@codemirror/lang-cpp': 6.0.3
@@ -12243,10 +12210,10 @@ snapshots:
       '@codemirror/language-data': 6.5.1
       '@codemirror/legacy-modes': 6.5.1
       '@nextjournal/lang-clojure': 1.0.0
-      '@replit/codemirror-lang-csharp': 6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.7)
-      '@replit/codemirror-lang-nix': 6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.7)
-      '@replit/codemirror-lang-solidity': 6.0.2(@codemirror/language@6.12.1)
-      '@replit/codemirror-lang-svelte': 6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.4)(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)(@lezer/common@1.5.0)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.7)
+      '@replit/codemirror-lang-csharp': 6.2.0(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.8)
+      '@replit/codemirror-lang-nix': 6.0.1(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.8)
+      '@replit/codemirror-lang-solidity': 6.0.2(@codemirror/language@6.12.2)
+      '@replit/codemirror-lang-svelte': 6.0.0(@codemirror/autocomplete@6.18.6)(@codemirror/lang-css@6.3.1)(@codemirror/lang-html@6.4.9)(@codemirror/lang-javascript@6.2.4)(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)(@lezer/common@1.5.1)(@lezer/highlight@1.2.3)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.8)
       codemirror-lang-mermaid: 0.5.0
     transitivePeerDependencies:
       - '@codemirror/autocomplete'
@@ -12258,360 +12225,343 @@ snapshots:
       - '@lezer/javascript'
       - '@lezer/lr'
 
-  '@uiw/codemirror-theme-abcdef@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-abcdef@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-abyss@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-abyss@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-androidstudio@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-androidstudio@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-andromeda@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-andromeda@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-atomone@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-atomone@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-aura@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-aura@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-basic@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-basic@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-bbedit@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-bbedit@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-bespin@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-bespin@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-console@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-console@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-copilot@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-copilot@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-darcula@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-darcula@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-dracula@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-dracula@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-duotone@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-duotone@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-eclipse@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-eclipse@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-github@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-github@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-gruvbox-dark@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-gruvbox-dark@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-kimbie@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-kimbie@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-material@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-material@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-monokai-dimmed@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-monokai-dimmed@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-monokai@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-monokai@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-noctis-lilac@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-noctis-lilac@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-nord@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-nord@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-okaidia@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-okaidia@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-quietlight@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-quietlight@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-red@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-red@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-solarized@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-solarized@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-sublime@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-sublime@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night-day@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-tokyo-night-day@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night-storm@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-tokyo-night-storm@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tokyo-night@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-tokyo-night@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-tomorrow-night-blue@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-tomorrow-night-blue@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-vscode@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-vscode@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-white@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-white@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-theme-xcode@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-theme-xcode@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-themes-all@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-themes-all@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@uiw/codemirror-theme-abcdef': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-abyss': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-androidstudio': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-andromeda': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-atomone': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-aura': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-basic': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-bbedit': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-bespin': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-console': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-copilot': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-darcula': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-dracula': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-duotone': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-eclipse': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-github': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-gruvbox-dark': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-kimbie': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-material': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-monokai': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-monokai-dimmed': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-noctis-lilac': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-nord': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-okaidia': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-quietlight': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-red': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-solarized': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-sublime': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-tokyo-night': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-tokyo-night-day': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-tokyo-night-storm': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-tomorrow-night-blue': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-vscode': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-white': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-theme-xcode': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
+      '@uiw/codemirror-theme-abcdef': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-abyss': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-androidstudio': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-andromeda': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-atomone': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-aura': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-basic': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-bbedit': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-bespin': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-console': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-copilot': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-darcula': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-dracula': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-duotone': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-eclipse': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-github': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-gruvbox-dark': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-kimbie': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-material': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-monokai': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-monokai-dimmed': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-noctis-lilac': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-nord': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-okaidia': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-quietlight': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-red': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-solarized': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-sublime': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-tokyo-night': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-tokyo-night-day': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-tokyo-night-storm': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-tomorrow-night-blue': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-vscode': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-white': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-theme-xcode': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
+      '@uiw/codemirror-themes': 4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
     transitivePeerDependencies:
       - '@codemirror/language'
       - '@codemirror/state'
       - '@codemirror/view'
 
-  '@uiw/codemirror-themes@4.24.2(@codemirror/language@6.12.1)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)':
+  '@uiw/codemirror-themes@4.24.2(@codemirror/language@6.12.2)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)':
     dependencies:
-      '@codemirror/language': 6.12.1
+      '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.13
+      '@codemirror/view': 6.39.16
 
-  '@uiw/react-codemirror@4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.13)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@uiw/react-codemirror@4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.16)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@codemirror/commands': 6.8.1
       '@codemirror/state': 6.5.4
       '@codemirror/theme-one-dark': 6.1.3
-      '@codemirror/view': 6.39.13
-      '@uiw/codemirror-extensions-basic-setup': 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.13)
-      codemirror: 6.0.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@codemirror/autocomplete'
-      - '@codemirror/language'
-      - '@codemirror/lint'
-      - '@codemirror/search'
-
-  '@uiw/react-codemirror@4.24.2(@babel/runtime@7.28.6)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.39.15)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.28.6
-      '@codemirror/commands': 6.8.1
-      '@codemirror/state': 6.5.4
-      '@codemirror/theme-one-dark': 6.1.3
-      '@codemirror/view': 6.39.15
-      '@uiw/codemirror-extensions-basic-setup': 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.1)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.15)
+      '@codemirror/view': 6.39.16
+      '@uiw/codemirror-extensions-basic-setup': 4.24.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.12.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.4)(@codemirror/view@6.39.16)
       codemirror: 6.0.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -13442,9 +13392,9 @@ snapshots:
 
   codemirror-lang-mermaid@0.5.0:
     dependencies:
-      '@codemirror/language': 6.12.1
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.2
+      '@codemirror/language': 6.12.2
+      '@lezer/highlight': 1.2.3
+      '@lezer/lr': 1.4.8
 
   codemirror@6.0.2:
     dependencies:
@@ -13454,7 +13404,7 @@ snapshots:
       '@codemirror/lint': 6.8.5
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.15
+      '@codemirror/view': 6.39.16
 
   color-convert@2.0.1:
     dependencies:
