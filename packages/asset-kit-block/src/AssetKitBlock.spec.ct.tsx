@@ -406,10 +406,22 @@ describe('AssetKit Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             editorState: true,
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+        cy.wait('@previewImage');
         cy.get(BLOCK_ITEM_WRAPPER).first().realHover();
         cy.get(BLOCK_ITEM_WRAPPER).first().should('have.css', 'outline-style', 'solid');
     });
