@@ -7,6 +7,7 @@ import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
+import { useImageLazyLoading } from '../helpers/hooks/useImageLazyLoading';
 import { type Settings, type ThumbnailItemProps } from '../types';
 
 export const ThumbnailItem = ({
@@ -25,12 +26,21 @@ export const ThumbnailItem = ({
         onUploadProgress: () => !isUploading && setIsUploading(true),
     });
 
+    const { blobImageSrc } = useImageLazyLoading({ imageUrl: getSmallPreviewUrl(asset.previewUrl) });
+
+    const imageAlt: string =
+        typeof asset.alternativeText === 'string'
+            ? asset.alternativeText
+            : typeof asset.title === 'string'
+              ? asset.title
+              : '';
+
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
-            async (result) => {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                onReplaceAsset(asset.id, result[0].id);
+            (result) => {
+                onReplaceAsset(asset.id, result[0].id).catch((error) =>
+                    console.error('Failed to replace asset', error)
+                );
                 closeAssetChooser();
             },
             {
@@ -49,8 +59,7 @@ export const ThumbnailItem = ({
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            onReplaceAsset(asset.id, uploadResults[0].id);
+            onReplaceAsset(asset.id, uploadResults[0].id).catch((error) => console.error(error));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
@@ -86,7 +95,7 @@ export const ThumbnailItem = ({
             ]}
         >
             <div data-test-id="block-thumbnail" className="tw-aspect-square">
-                {isUploading ? (
+                {isUploading || !blobImageSrc ? (
                     <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle(blockSettings)}>
                         <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
                             <LoadingCircle />
@@ -94,12 +103,13 @@ export const ThumbnailItem = ({
                     </div>
                 ) : (
                     <img
+                        loading="lazy"
+                        decoding="async"
                         data-test-id="block-thumbnail-image"
                         className="tw-object-cover tw-w-full tw-h-full"
-                        src={getSmallPreviewUrl(asset.previewUrl)}
+                        src={blobImageSrc}
                         style={thumbnailStyle(blockSettings)}
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        alt={asset.alternativeText ?? asset.title}
+                        alt={imageAlt}
                     />
                 )}
             </div>
