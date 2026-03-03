@@ -4,7 +4,7 @@ import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from 
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
 import { useImageLazyLoading } from '../helpers/hooks/useImageLazyLoading';
@@ -26,7 +26,9 @@ export const ThumbnailItem = ({
         onUploadProgress: () => !isUploading && setIsUploading(true),
     });
 
-    const { blobImageSrc } = useImageLazyLoading({ imageUrl: getSmallPreviewUrl(asset.previewUrl) });
+    const imageWrapperRef = useRef<HTMLDivElement>(null);
+
+    const { blobImageSrc } = useImageLazyLoading({ imageUrl: getSmallPreviewUrl(asset.previewUrl), imageWrapperRef });
 
     const imageAlt: string =
         typeof asset.alternativeText === 'string'
@@ -94,7 +96,7 @@ export const ThumbnailItem = ({
                 },
             ]}
         >
-            <div data-test-id="block-thumbnail" className="tw-aspect-square">
+            <div data-test-id="block-thumbnail" className="tw-aspect-square" ref={imageWrapperRef}>
                 {isUploading || !blobImageSrc ? (
                     <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle(blockSettings)}>
                         <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
@@ -103,8 +105,6 @@ export const ThumbnailItem = ({
                     </div>
                 ) : (
                     <img
-                        loading="lazy"
-                        decoding="async"
                         data-test-id="block-thumbnail-image"
                         className="tw-object-cover tw-w-full tw-h-full"
                         src={blobImageSrc}
