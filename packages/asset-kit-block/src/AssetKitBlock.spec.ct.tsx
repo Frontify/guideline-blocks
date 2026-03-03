@@ -84,8 +84,21 @@ describe('AssetKit Block', () => {
                 [ASSET_SETTINGS_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width={width}' }],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL_IMAGE).should('have.attr', 'src', 'https://picsum.photos/width=218');
+
+        cy.wait('@previewImage');
+
+        cy.get(BLOCK_THUMBNAIL_IMAGE)
+            .should('have.attr', 'src')
+            .and('match', /^blob:/);
     });
 
     it('shoud not display thumbnails in view mode if showThumbnails is set to false', () => {
@@ -203,10 +216,23 @@ describe('AssetKit Block', () => {
                 backgroundColorBlocks: BLACK,
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
         cy.get(BLOCK_SELECTOR).should('have.css', 'background-color', 'rgb(0, 0, 0)');
     });
 
@@ -221,10 +247,24 @@ describe('AssetKit Block', () => {
                 radiusValue_blocks: '10px',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
+
         cy.get(BLOCK_SELECTOR).should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
         cy.get(BLOCK_SELECTOR).should('have.css', 'border-radius', '10px');
     });
@@ -237,10 +277,24 @@ describe('AssetKit Block', () => {
                 radiusValue_blocks: '10px',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
+
         cy.get(BLOCK_SELECTOR).first().should('have.css', 'border-radius', '10px');
         cy.get(BLOCK_SELECTOR).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
     });
@@ -252,10 +306,24 @@ describe('AssetKit Block', () => {
                 backgroundColorThumbnails: BLACK,
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
+
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'background-color', 'rgb(0, 0, 0)');
     });
 
@@ -270,10 +338,23 @@ describe('AssetKit Block', () => {
                 radiusValue_thumbnails: '10px',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
     });
@@ -286,10 +367,24 @@ describe('AssetKit Block', () => {
                 radiusValue_thumbnails: '10px',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [
+                    { ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width=218' },
+                    { ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/width=218' },
+                ],
             },
         });
+        cy.intercept('GET', 'https://picsum.photos/width=218', {
+            statusCode: 200,
+            headers: {
+                'content-type': 'image/png',
+            },
+            body: 'fake-image-bytes',
+        }).as('previewImage');
+
         mount(<AssetKitBlockWithStubs />);
+
+        cy.wait('@previewImage');
+
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
     });
