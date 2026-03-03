@@ -112,7 +112,7 @@ export const settings = defineSettings({
                             onChange: (bundle) => appendUnit(bundle, 'customImageWidth', '%'),
                             rules: [
                                 numericalOrPercentRule,
-                                minimumNumericalOrPercentRule(10),
+                                minimumNumericalOrPercentRule(1),
                                 maximumNumericalOrPercentOrAutoRule(100),
                             ],
                         },
