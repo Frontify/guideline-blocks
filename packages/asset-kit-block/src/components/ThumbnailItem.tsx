@@ -94,8 +94,10 @@ export const ThumbnailItem = ({
                     </div>
                 ) : (
                     <img
+                        loading="lazy"
+                        decoding="async"
                         data-test-id="block-thumbnail-image"
-                        className="tw-object-cover tw-w-full tw-h-full"
+                        className="tw-object-cover tw-w-full tw-aspect-square"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
