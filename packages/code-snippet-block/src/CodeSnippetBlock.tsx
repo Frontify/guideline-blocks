@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
 import { Select, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
 import './styles.css';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
@@ -118,7 +118,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         {withHeading && (
                             <div
                                 data-test-id="code-snippet-header"
-                                className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
+                                className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
                                 style={getStyle()}
                             >
                                 {isEditing ? (

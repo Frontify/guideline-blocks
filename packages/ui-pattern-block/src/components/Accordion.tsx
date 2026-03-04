@@ -28,7 +28,7 @@ export const Accordion = ({
                 type="button"
                 aria-expanded={isOpen}
                 className={joinClassNames([
-                    'tw-relative focus:tw-z-20 tw-text-s tw-gap-2 tw-w-[calc(100%-32px)] tw-text-text-weak tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
+                    'tw-relative focus:tw-z-20 tw-text-small tw-gap-2 tw-w-[calc(100%-32px)] tw-text-secondary tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
                     isOpen && 'tw-border-b tw-border-b-line',
                     FOCUS_VISIBLE_STYLE_INSET,
                 ])}

@@ -9,3 +9,4 @@ export { DownloadButton } from './components/DownloadButton/DownloadButton';
 export { ImageFormat } from './types';
 
 export { useImageContainer } from './hooks/useImageContainer';
+export { generateRandomId } from './utils/generateRandomId';

@@ -242,7 +242,7 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_SELECTOR).first().should('have.css', 'border-radius', '10px');
-        cy.get(BLOCK_SELECTOR).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
+        cy.get(BLOCK_SELECTOR).first().should('have.css', 'border', '0px solid rgb(229, 231, 235)');
     });
 
     it('should display asset with black background color', () => {
@@ -291,7 +291,7 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
-        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
+        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '0px solid rgb(229, 231, 235)');
     });
 
     it('should remove assets correctly in edit mode', () => {

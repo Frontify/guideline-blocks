@@ -9,7 +9,6 @@ import {
     useAssetUpload,
     useFileInput,
 } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
 import {
     IconArrowCircleUp,
     IconArrowMove,
@@ -17,6 +16,7 @@ import {
     IconSpeechBubbleQuote,
     IconTrashBin,
 } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
@@ -108,7 +108,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 className={merge([
                     !isEditing && !image && 'tw-hidden',
                     'tw-w-full tw-h-full',
-                    isDragging && 'tw-bg-base',
+                    isDragging && 'tw-bg-surface',
                 ])}
             >
                 <BlockItemWrapper
@@ -199,7 +199,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 <div
                     className={merge([
                         !replaceWithPlaceholder && 'tw-hidden',
-                        'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded tw-bg-box-selected-hover tw-h-full tw-w-full',
+                        'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-medium tw-bg-container-highlight-hover tw-h-full tw-w-full',
                     ])}
                 />
             </div>

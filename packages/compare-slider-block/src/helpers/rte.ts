@@ -13,7 +13,7 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import { AllTextStylePlugins, AllTextStyles } from '@frontify/guideline-blocks-settings';
 
 const textStylePlugins = [new TextStylePlugin({ textStyles: AllTextStylePlugins })];

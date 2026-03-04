@@ -10,7 +10,7 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
     merge,
-} from '@frontify/fondue';
+} from '@frontify/fondue/rte';
 import {
     AllTextStylePlugins,
     type BlockProps,
@@ -118,7 +118,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div className="quote-block">
             <StyleProvider>
-                <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
+                <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-primary'}>
                     <div className={getWrapperClasses()}>
                         {isQuotationMarkType && (
                             <QuoteBlockIcon

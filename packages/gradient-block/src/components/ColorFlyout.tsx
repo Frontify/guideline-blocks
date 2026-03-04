@@ -69,7 +69,7 @@ export const ColorFlyout = ({
             </Flyout.Trigger>
             <Flyout.Content padding="comfortable" width="400px">
                 <Flyout.Header showCloseButton>
-                    <div className="tw-font-bold tw-text-s">Configure Color</div>
+                    <div className="tw-font-bold tw-text-small">Configure Color</div>
                 </Flyout.Header>
                 <Flyout.Body>
                     <div className="tw-w-full tw-flex tw-flex-col tw-gap-6" data-test-id="color-picker-form">

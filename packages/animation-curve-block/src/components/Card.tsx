@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { merge } from '@frontify/fondue';
 import { IconArrowMove, IconDotsHorizontal, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 import {
     BlockItemWrapper,
     getBackgroundColorStyles,
@@ -87,7 +87,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         return (
             <div
                 ref={ref}
-                className={isDragging ? 'tw-bg-base' : ''}
+                className={isDragging ? 'tw-bg-surface' : ''}
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
             >
                 <BlockItemWrapper
@@ -190,7 +190,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 isEditing={isEditing}
                             />
                         )}
-                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text'])}>
+                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-small tw-test-primary'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
@@ -208,7 +208,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 <div
                     className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
-                        'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                        'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-[4px] tw-bg-container-highlight-hover',
                     ])}
                 />
             </div>

@@ -37,11 +37,11 @@ export const ColorTooltip = ({
                     isHovered ? 'tw-visible' : 'tw-invisible',
                 ])}
             >
-                <div className="tw-absolute tw-w-2 tw-h-2 tw-left-0 tw-pointer-events-none -tw-top-[21px] before:tw-absolute before:tw-bg-white before:tw-w-2 before:tw-h-2 before:tw-rotate-45 before:tw-border before:tw-border-b-0 before:tw-border-r-0 before:tw-border-box-selected-strong" />
+                <div className="tw-absolute tw-w-2 tw-h-2 tw-left-0 tw-pointer-events-none -tw-top-[21px] before:tw-absolute before:tw-bg-white before:tw-w-2 before:tw-h-2 before:tw-rotate-45 before:tw-border before:tw-border-b-0 before:tw-border-r-0 before:tw-border-highlight" />
 
-                <div className="tw-w-4 tw-h-4 tw-rounded tw-outline tw-outline-1 tw-outline-offset-2 tw-outline-box-selected-inverse">
+                <div className="tw-w-4 tw-h-4 tw-rounded-medium tw-outline tw-outline-1 tw-outline-offset-2 tw-outline-container-highlight-on-highlight-container">
                     <div
-                        className="tw-absolute tw-w-4 tw-h-4 tw-rounded"
+                        className="tw-absolute tw-w-4 tw-h-4 tw-rounded-medium"
                         style={{
                             backgroundColor: toHex6or8String(gradientColor.color),
                         }}

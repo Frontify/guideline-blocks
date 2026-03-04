@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle, Text } from '@frontify/fondue';
-import { Button, TextInput } from '@frontify/fondue/components';
+import { FormControl, FormControlStyle } from '@frontify/fondue';
+import { Button, TextInput, Text } from '@frontify/fondue/components';
 import { IconLinkBox } from '@frontify/fondue/icons';
 import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
@@ -172,7 +172,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                             data-test-id="sketchfab-empty-block-edit"
                         >
                             <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
-                            <div className="tw-text-text-x-weak tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
+                            <div className="tw-text-secondary tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
                                 <div className="tw-flex-none tw-mt-[2px]">
                                     <IconLinkBox size={32} />
                                 </div>

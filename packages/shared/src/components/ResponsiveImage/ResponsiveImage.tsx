@@ -67,7 +67,7 @@ export const ResponsiveImage = ({
     return (
         <img
             data-test-id={testId}
-            className={joinClassNames(['tw-flex tw-w-full', !isLoaded && 'tw-bg-box-neutral', className])}
+            className={joinClassNames(['tw-flex tw-w-full', !isLoaded && 'tw-bg-container-secondary', className])}
             loading="lazy"
             decoding="async"
             onLoad={handleImageLoaded}

@@ -16,15 +16,15 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
     return (
         <div
             data-test-id="css-value-display"
-            className="tw-mt-[30px] tw-overflow-hidden tw-border tw-border-line tw-rounded"
+            className="tw-mt-[30px] tw-overflow-hidden tw-border tw-border-line-mid tw-rounded-medium"
             style={{
                 fontFamily: 'Menlo, Courier, monospace',
                 fontSize: '12px',
             }}
         >
             <div className="tw-relative tw-group/copy CodeMirror-readonly">
-                <div className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center">
-                    <span className="tw-text-text-weak">CSS</span>
+                <div className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center">
+                    <span className="tw-text-secondary">CSS</span>
                     <button
                         type="button"
                         data-test-id="css-value-display-copy-button"

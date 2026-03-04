@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
-import { Text } from '@frontify/fondue';
-import { Button } from '@frontify/fondue/components';
+import { Text, Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
@@ -109,7 +108,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                             </div>
                             <div data-test-id="cta" className={ctaClasses}>
                                 <CtaButton
-                                    appBridge={appBridge}
                                     blockSettings={blockSettings}
                                     isEditing={isEditing}
                                     isDisabled={!selectedTemplate}
@@ -123,7 +121,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     {isEditing && !hasPreview && (
                         <div
                             data-test-id="cta-editing-no-preview"
-                            className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-box-neutral tw-rounded tw-flex-col @sm:tw-flex-row"
+                            className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-container-secondary tw-rounded-medium tw-flex-col @sm:tw-flex-row"
                         >
                             <div>
                                 <Text size="large" color="x-weak">

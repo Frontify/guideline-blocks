@@ -23,21 +23,21 @@ module.exports = {
                 "blank-state-line-hover": "#1A1C1C",
             },
             boxShadow: {
-                "inner-line": "inset 0 0 0 var(--line-width) var(--line-color)",
+                "inner-line": "inset 0 0 0 var(--border-width-default) var(--color-line-mid)",
                 "t-inner-line":
-                    "inset 0 var(--line-width) 0 0 var(--line-color)",
+                    "inset 0 var(--border-width-default) 0 0 var(--color-line-mid)",
                 "inner-line-x-strong":
-                    "inset 0 0 0 var(--line-width) var(--line-color-x-strong)",
+                    "inset 0 0 0 var(--border-width-default) var(--color-line-strong)",
                 "y-inner-line-x-strong":
-                    "inset 0 var(--line-width) 0 0 var(--line-color-x-strong), inset 0 calc(var(--line-width) * -1) 0 0 var(--line-color-x-strong)",
+                    "inset 0 var(--border-width-default) 0 0 var(--color-line-strong), inset 0 calc(var(--border-width-default) * -1) 0 0 var(--color-line-strong)",
                 "inner-line-first":
-                    "inset var(--line-width) 0 0 0 var(--line-color), inset 0 var(--line-width) 0 0 var(--line-color), inset 0 calc(var(--line-width) * -1) 0 0 var(--line-color)",
+                    "inset var(--border-width-default) 0 0 0 var(--color-line-mid), inset 0 var(--border-width-default) 0 0 var(--color-line-mid), inset 0 calc(var(--border-width-default) * -1) 0 0 var(--color-line-mid)",
                 "inner-line-last":
-                    "inset calc(var(--line-width) * -1) 0 0 0 var(--line-color), inset 0 var(--line-width) 0 0 var(--line-color), inset 0 calc(var(--line-width) * -1) 0 0 var(--line-color)",
+                    "inset calc(var(--border-width-default) * -1) 0 0 0 var(--color-line-mid), inset 0 var(--border-width-default) 0 0 var(--color-line-mid), inset 0 calc(var(--border-width-default) * -1) 0 0 var(--color-line-mid)",
                 "inner-line-y":
-                    "inset 0 var(--line-width) 0 0 var(--line-color), inset 0 calc(var(--line-width) * -1) 0 0 var(--line-color)",
+                    "inset 0 var(--border-width-default) 0 0 var(--color-line-mid), inset 0 calc(var(--border-width-default) * -1) 0 0 var(--color-line-mid)",
                 "inner-line-strong":
-                    "inset 0 0 0 var(--line-width) var(--line-color-strong)",
+                    "inset 0 0 0 var(--border-width-default) var(--color-line-strong)",
             },
             keyframes: {
                 "fade-in-forwards": {

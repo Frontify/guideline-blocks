@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { IconPen, IconTrashBin } from '@frontify/fondue/icons';
+import { merge } from '@frontify/fondue/rte';
 
 import { type EditAndDeleteColorBoxProps, type GradientColor } from '../types';
 
@@ -22,7 +22,7 @@ export const EditAndDeleteColorBox = ({
         <div
             data-test-id="edit-and-delete-color-box"
             className={merge([
-                'tw-flex tw-mt-2.5 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white',
+                'tw-flex tw-mt-2.5 tw-border tw-border-highlight tw-rounded-medium tw-bg-white',
                 isAlmostOverflowing ? '-tw-ml-8' : '-tw-ml-4',
             ])}
         >

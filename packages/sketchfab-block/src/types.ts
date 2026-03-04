@@ -171,8 +171,8 @@ export const heights: Record<SketchfabHeight, string> = {
 export const radiusClassMap: Record<Radius, string> = {
     [Radius.None]: '',
     [Radius.Small]: 'tw-rounded-sm',
-    [Radius.Medium]: 'tw-rounded',
-    [Radius.Large]: 'tw-rounded-xl',
+    [Radius.Medium]: 'tw-rounded-medium',
+    [Radius.Large]: 'tw-rounded-x-large',
 };
 
 export enum SketchfabAccount {

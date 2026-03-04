@@ -77,25 +77,25 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         >
             <button
                 type="button"
-                className="tw-flex tw-items-center tw-h-5 tw-px-px tw-gap-1 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
+                className="tw-flex tw-items-center tw-h-5 tw-px-px tw-gap-1 tw-bg-surface tw-border-line-mid hover:tw-line-highlight tw-border tw-rounded-medium tw-group tw-cursor-pointer"
                 onClick={() => copy(hexValue)}
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
                     <div
                         className={joinClassNames([
-                            'tw-inline-flex tw-w-4 tw-h-4 tw-rounded',
-                            hexValue === '#ffffff' && 'tw-border tw-border-line',
+                            'tw-inline-flex tw-w-4 tw-h-4 tw-rounded-medium',
+                            hexValue === '#ffffff' && 'tw-border tw-border-line-mid',
                         ])}
                         style={{
                             backgroundColor: hexValue,
                         }}
                     />
                     {gradientColor.color?.name && (
-                        <span className="tw-px-1 tw-text-xs tw-whitespace-nowrap">
+                        <span className="tw-px-1 tw-text-x-small tw-whitespace-nowrap">
                             <strong>{gradientColor.color.name}</strong>
                         </span>
                     )}
-                    <span className="tw-text-x-weak tw-text-xs tw-px-px">{hexValue}</span>
+                    <span className="tw-text-x-weak tw-text-x-small tw-px-px">{hexValue}</span>
                 </div>
                 <div className={getCopyButtonClasses()}>
                     {isCopied ? (

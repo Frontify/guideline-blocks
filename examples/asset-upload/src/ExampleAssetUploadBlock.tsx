@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useAssetChooser, useAssetUpload, useBlockAssets, useFileInput, type Asset } from '@frontify/app-bridge';
-import { Button } from '@frontify/fondue';
+import { Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     // eslint-disable-next-line @eslint-react/no-nested-component-definitions
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
-            <a className="tw-text-text-interactive" href={link} target="_blank" rel="noopener noreferrer">
+            <a className="tw-text-highlight" href={link} target="_blank" rel="noopener noreferrer">
                 {text}
             </a>
         );
@@ -70,8 +70,8 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
             <StyleProvider>
                 <div className="tw-flex tw-flex-col tw-gap-4">
                     <div className="tw-flex tw-gap-4">
-                        <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
-                        <Button onClick={openFileDialog} disabled={loading}>
+                        <Button onPress={onOpenAssetChooser}>Open asset chooser</Button>
+                        <Button onPress={openFileDialog} disabled={loading}>
                             {loading ? 'Uploading...' : 'Upload'}
                         </Button>
                     </div>

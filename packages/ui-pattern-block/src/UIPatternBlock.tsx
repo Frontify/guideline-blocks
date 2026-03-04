@@ -213,7 +213,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             borderRadius,
                         }}
                         className={joinClassNames([
-                            'tw-rounded tw-bg-white tw-overflow-hidden tw-group',
+                            'tw-rounded-medium tw-bg-white tw-overflow-hidden tw-group',
                             // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
                             hasBorder && 'bordered',
                         ])}
