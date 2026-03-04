@@ -58,9 +58,10 @@
         "overrides": {
             "esbuild": "^0.25.0",
             "immer": "^10.1.3",
+            "diff@^4": "npm:diff@^4.0.4",
+            "diff@^5": "npm:diff@^5.2.2",
             "minimatch@^3": "npm:minimatch@^3.1.4",
-            "rollup@^4": "npm:rollup@^4.59.0",
-            "jsdiff@^5": "npm:jsdiff@^5.2.2"
+            "rollup@^4": "npm:rollup@^4.59.0"
         }
     },
     "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
