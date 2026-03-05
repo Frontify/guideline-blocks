@@ -26,6 +26,7 @@ export const UploadPlaceholder = ({
                 onAssetChooseClick={onAssetChooseClick}
                 onDrop={onFilesDrop}
                 isLoading={loading}
+                validFileType="Images"
             />
         </div>
     );
