@@ -17,7 +17,7 @@ export const UploadPlaceholder = ({
     onFilesDrop,
     openFileDialog,
 }: UploadPlaceholderProps): ReactElement => (
-    <div className="tw-h-full tw-w-full tw-grid tw-aspect-square" data-test-id="thumbnail-image-placeholder">
+    <div className="tw-h-full tw-w-full tw-min-w-7 tw-grid tw-aspect-square" data-test-id="thumbnail-image-placeholder">
         <BlockInjectButton
             icon={<IconPlus />}
             fillParentContainer
