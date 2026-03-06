@@ -61,6 +61,7 @@ export const UploadView = ({
                     onAssetChooseClick={() => openAssetChooser(SliderImageSlot.Second)}
                     onDrop={(files) => startDragAndDropUpload(files, SliderImageSlot.Second)}
                     isLoading={isSecondAssetLoading}
+                    validFileType="Images"
                 />
             )}
         </div>

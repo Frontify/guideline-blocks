@@ -88,6 +88,7 @@ const ImageComponent = ({
                         icon={<IconPlus size={32} />}
                         label=""
                         isLoading={isUploadLoading}
+                        validFileType="Images"
                     />
                 </div>
             ) : (
