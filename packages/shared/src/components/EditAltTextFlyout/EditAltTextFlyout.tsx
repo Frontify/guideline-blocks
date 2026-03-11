@@ -57,11 +57,17 @@ export const EditAltTextFlyout = ({
     onSave,
     localAltText,
 }: EditAltTextFlyoutProps) => (
-    <Flyout.Root open={showAltTextMenu}>
+    <Flyout.Root open={showAltTextMenu} onOpenChange={setShowAltTextMenu}>
         <Flyout.Trigger>
             <div className="tw-absolute tw-top-0 tw-right-6" />
         </Flyout.Trigger>
-        <Flyout.Content side="bottom" align="start" padding="comfortable" maxWidth="320px">
+        <Flyout.Content
+            side="bottom"
+            align="start"
+            padding="comfortable"
+            maxWidth="320px"
+            {...{ onFocusOutside: (event: Event) => event.preventDefault() }}
+        >
             <Flyout.Body>
                 <EditAltTextFlyoutScreen setLocalAltText={setLocalAltText} localAltText={localAltText} />
             </Flyout.Body>
