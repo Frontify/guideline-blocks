@@ -19,14 +19,17 @@ export const ImageWrapper = ({
     setContainerRef,
 }: ImageWrapperProps): ReactElement => {
     const { width, alignmentClassNames, imageIsAboveOrBelow } = thumbnailStyles;
-
     return (
         <div
             className={merge([placeholderWrapper && 'tw-min-w-fit', alignmentClassNames])} // placeholderWrapper && 'tw-min-w-fit' can be removed if placeholder width keeps same behaviour as image, as it does now
             style={{ width: imageIsAboveOrBelow ? 'auto' : width }}
             data-test-id="thumbnail-image-wrapper"
         >
-            <div className="tw-flex" style={{ width: imageIsAboveOrBelow ? width : 'auto' }} ref={setContainerRef}>
+            <div
+                className={merge(['tw-flex', placeholderWrapper && 'tw-min-w-fit'])}
+                style={{ width: imageIsAboveOrBelow ? width : 'auto' }}
+                ref={setContainerRef}
+            >
                 {children}
             </div>
         </div>
