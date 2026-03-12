@@ -11,20 +11,20 @@ import {
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
-    OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-    UnorderedListPlugin,
 } from '@frontify/fondue/rte';
 import {
     ButtonPlugin,
     LinkPlugin,
+    OrderedListPlugin,
     TextStylePluginsWithoutImage,
     TextStylesWithoutImage,
+    UnorderedListPlugin,
 } from '@frontify/guideline-blocks-settings';
 
 const textStylePlugins = [new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })];

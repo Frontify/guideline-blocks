@@ -15,8 +15,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.46",
-        "@frontify/fondue": "13.1.5",
-        "@frontify/guideline-blocks-settings": "2.0.4",
+        "@frontify/fondue": "13.2.0",
+        "@frontify/guideline-blocks-settings": "2.1.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "^4.17.23",
         "react": "^18.3.1",
