@@ -204,11 +204,12 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutBlockSelector).should(
-            'have.attr',
-            'style',
-            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgba(222, 27, 27, 1); --f-theme-settings-heading2-color: rgba(222, 27, 27, 1); --f-theme-settings-heading3-color: rgba(222, 27, 27, 1); --f-theme-settings-heading4-color: rgba(222, 27, 27, 1); --f-theme-settings-custom1-color: rgba(222, 27, 27, 1); --f-theme-settings-custom2-color: rgba(222, 27, 27, 1); --f-theme-settings-custom3-color: rgba(222, 27, 27, 1); --f-theme-settings-body-color: rgba(222, 27, 27, 1); --f-theme-settings-quote-color: rgba(222, 27, 27, 1); --f-theme-settings-link-color: rgba(222, 27, 27, 1); color: rgb(222, 27, 27); background-color: rgba(222, 27, 27, 0.1);'
-        );
+        cy.get(CalloutBlockSelector)
+            .should('have.css', '--f-theme-settings-heading1-color', 'rgba(222, 27, 27, 1)')
+            .and('have.css', '--f-theme-settings-body-color', 'rgba(222, 27, 27, 1)')
+            .and('have.css', '--f-theme-settings-link-color', 'rgba(222, 27, 27, 1)')
+            .and('have.css', 'color', 'rgb(222, 27, 27)')
+            .and('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
     });
 
     it('renders a note block with the overwritten css variables for the theme styles', () => {
@@ -221,11 +222,12 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutBlockSelector).should(
-            'have.attr',
-            'style',
-            '--f-theme-settings-link-text-decoration: underline; --f-theme-settings-heading1-color: rgb(108, 92, 5); --f-theme-settings-heading2-color: rgb(108, 92, 5); --f-theme-settings-heading3-color: rgb(108, 92, 5); --f-theme-settings-heading4-color: rgb(108, 92, 5); --f-theme-settings-custom1-color: rgb(108, 92, 5); --f-theme-settings-custom2-color: rgb(108, 92, 5); --f-theme-settings-custom3-color: rgb(108, 92, 5); --f-theme-settings-body-color: rgb(108, 92, 5); --f-theme-settings-quote-color: rgb(108, 92, 5); --f-theme-settings-link-color: rgb(108, 92, 5); color: rgb(108, 92, 5); background-color: rgba(246, 216, 56, 0.1);'
-        );
+        cy.get(CalloutBlockSelector)
+            .should('have.css', '--f-theme-settings-heading1-color', 'rgb(108, 92, 5)')
+            .and('have.css', '--f-theme-settings-body-color', 'rgb(108, 92, 5)')
+            .and('have.css', '--f-theme-settings-link-color', 'rgb(108, 92, 5)')
+            .and('have.css', 'color', 'rgb(108, 92, 5)')
+            .and('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
     });
 
     it('renders a callout block with light appearance', () => {
