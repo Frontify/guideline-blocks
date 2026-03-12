@@ -317,18 +317,18 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 )}
                 <div
                     data-test-id="dos-donts-heading"
-                    className="tw-flex tw-items-center tw-font-semibold tw-text-l"
+                    className="tw-flex tw-items-start tw-font-semibold tw-text-l"
                     style={{ color: headingColor }}
                 >
                     {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
                         <div
                             data-test-id="dos-donts-icon"
                             style={{
-                                height: 'var(--f-theme-settings-heading3-line-height)',
+                                lineHeight: 'var(--f-theme-settings-heading3-line-height)',
                                 fontSize: 'var(--f-theme-settings-heading3-font-size)',
                             }}
                             className={joinClassNames([
-                                'tw-mr-2 tw-w-auto tw-flex tw-items-center',
+                                'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-min-h-[1lh] tw-flex-shrink-0',
                                 !title ? 'tw-opacity-70' : '',
                             ])}
                         >
@@ -343,19 +343,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             />
                         </div>
                     )}
-                    <div className="tw-w-full tw-flex tw-items-center">
-                        <span
-                            style={{
-                                marginBottom: 0,
-                                marginTop: 0,
-                                width: '100%',
-                                lineHeight: 1,
-                                display: 'inline-flex',
-                            }}
-                        >
-                            {renderTitle()}
-                        </span>
-                    </div>
+
+                    <div className="tw-min-w-0 tw-flex-1">{renderTitle()}</div>
                 </div>
                 {style === DoDontStyle.Underline && (
                     <hr
