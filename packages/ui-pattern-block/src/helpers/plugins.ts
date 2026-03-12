@@ -11,16 +11,21 @@ import {
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
-    OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-    UnorderedListPlugin,
 } from '@frontify/fondue/rte';
-import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-settings';
+import {
+    AllTextStylePlugins,
+    AllTextStyles,
+    ButtonPlugin,
+    LinkPlugin,
+    OrderedListPlugin,
+    UnorderedListPlugin,
+} from '@frontify/guideline-blocks-settings';
 
 const textStylePlugins = [
     new SoftBreakPlugin(),

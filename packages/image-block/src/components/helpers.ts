@@ -11,20 +11,20 @@ import {
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
-    OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-    UnorderedListPlugin,
 } from '@frontify/fondue/rte';
 import {
     AllTextStylePlugins,
     AllTextStyles,
     ButtonPlugin,
     LinkPlugin,
+    OrderedListPlugin,
+    UnorderedListPlugin,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { type CSSProperties } from 'react';

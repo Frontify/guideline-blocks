@@ -11,16 +11,16 @@ import {
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
-    OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-    UnorderedListPlugin,
 } from '@frontify/fondue/rte';
 import {
+    UnorderedListPlugin,
+    OrderedListPlugin,
     BreakAfterPlugin,
     ButtonPlugin,
     LinkPlugin,
