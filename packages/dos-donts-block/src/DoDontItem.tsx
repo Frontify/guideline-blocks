@@ -317,7 +317,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 )}
                 <div
                     data-test-id="dos-donts-heading"
-                    className="tw-flex tw-items-start tw-font-semibold tw-text-l"
+                    className="tw-flex tw-items-center tw-font-semibold tw-text-l"
                     style={{ color: headingColor }}
                 >
                     {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
