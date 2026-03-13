@@ -48,18 +48,22 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                         }}
                     >
                         <div
-                            className={joinClassNames([
-                                `${isDark(sliderColor) ? 'tw-bg-white/[.8]' : 'tw-bg-black/[.7]'}`,
-                                'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-rounded-full tw-mr-1',
-                            ])}
+                            style={{
+                                backgroundColor: isDark(sliderColor)
+                                    ? 'rgba(255, 255, 255, 0.8)'
+                                    : 'rgba(0, 0, 0, 0.7)',
+                            }}
+                            className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-rounded-full tw-mr-1"
                         >
                             <IconCaretLeft size={16} />
                         </div>
                         <div
-                            className={joinClassNames([
-                                `${isDark(sliderColor) ? 'tw-bg-white/[.8]' : 'tw-bg-black/[.7]'}`,
-                                'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-rounded-full tw-ml-1',
-                            ])}
+                            style={{
+                                backgroundColor: isDark(sliderColor)
+                                    ? 'rgba(255, 255, 255, 0.8)'
+                                    : 'rgba(0, 0, 0, 0.7)',
+                            }}
+                            className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-rounded-full tw-ml-1"
                         >
                             <IconCaretRight size={16} />
                         </div>
@@ -70,7 +74,9 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                 return (
                     <div
                         className={joinClassNames([
-                            isDark(sliderColor) ? '[&_path]:tw-stroke-white' : '[&_path]:tw-stroke-black/[.7]',
+                            isDark(sliderColor)
+                                ? '[&_path]:tw-stroke-[#FFFFFF]'
+                                : '[&_path]:tw-stroke-[rgba(0,0,0,0.7)]',
                             'tw-flex [&_path]:tw-stroke-[3px]',
                         ])}
                         style={{

@@ -13,7 +13,8 @@ export const Label = ({ onBlur, value, isEditing, blockId }: LabelProps) => {
     ) : (
         <div
             data-test-id="compare-slider-block-label-wrapper"
-            className="tw-max-w-full tw-p-2 tw-bg-white/80 tw-rounded-sm tw-text-black tw-text-sm tw-select-primary [&>div]:!tw-@container-normal"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+            className="tw-max-w-full tw-p-2 tw-rounded-sm tw-text-black tw-text-sm tw-select-primary [&>div]:!tw-@container-normal"
         >
             <RichTextEditor
                 id={`${blockId}-title`}
