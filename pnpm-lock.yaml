@@ -100,7 +100,7 @@ importers:
   examples/asset-upload:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -179,7 +179,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -249,7 +249,7 @@ importers:
   packages/asset-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -322,7 +322,7 @@ importers:
   packages/audio-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -395,7 +395,7 @@ importers:
   packages/callout-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -474,7 +474,7 @@ importers:
         specifier: ^6.39.9
         version: 6.39.16
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -562,7 +562,7 @@ importers:
   packages/compare-slider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -632,7 +632,7 @@ importers:
   packages/divider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -708,7 +708,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -787,7 +787,7 @@ importers:
   packages/figma-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -857,7 +857,7 @@ importers:
   packages/glyphs-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -933,7 +933,7 @@ importers:
   packages/gradient-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1018,7 +1018,7 @@ importers:
   packages/image-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1094,7 +1094,7 @@ importers:
   packages/quote-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1167,7 +1167,7 @@ importers:
         specifier: ^6.3.1
         version: 6.3.1
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1261,7 +1261,7 @@ importers:
   packages/sketchfab-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1331,7 +1331,7 @@ importers:
   packages/storybook-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1404,7 +1404,7 @@ importers:
   packages/template-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1477,7 +1477,7 @@ importers:
   packages/text-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1559,7 +1559,7 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(react@18.3.1)
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0
@@ -1638,7 +1638,7 @@ importers:
         specifier: ^2.0.21
         version: 2.0.21
       '@frontify/app-bridge':
-        specifier: ^4.0.0-alpha.53
+        specifier: ^4.0.0-alpha.54
         version: 4.0.0-alpha.54(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
         specifier: 13.2.0

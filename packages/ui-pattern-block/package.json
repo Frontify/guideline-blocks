@@ -16,7 +16,7 @@
     "dependencies": {
         "@codesandbox/sandpack-react": "^2.20.0",
         "@codesandbox/sandpack-themes": "^2.0.21",
-        "@frontify/app-bridge": "^4.0.0-alpha.53",
+        "@frontify/app-bridge": "^4.0.0-alpha.54",
         "@frontify/fondue": "13.2.0",
         "@frontify/guideline-blocks-settings": "2.1.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
