@@ -17,8 +17,8 @@
     "dependencies": {
         "@codemirror/lang-css": "^6.3.1",
         "@frontify/app-bridge": "^4.0.0-alpha.54",
-        "@frontify/fondue": "13.2.0",
-        "@frontify/guideline-blocks-settings": "2.1.0",
+        "@frontify/fondue": "13.3.0",
+        "@frontify/guideline-blocks-settings": "2.1.1",
         "@uiw/react-codemirror": "4.24.2",
         "lodash-es": "^4.17.23"
     },
@@ -36,7 +36,7 @@
         "eslint-plugin-notice": "^1.0.0",
         "eslint-plugin-tailwindcss": "^3.18.2",
         "mitt": "^3.0.1",
-        "msw": "^2.12.11",
+        "msw": "^2.12.12",
         "postcss": "^8.5.8",
         "prettier": "^3.7.4",
         "react": "^18.3.1",

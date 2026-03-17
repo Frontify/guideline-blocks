@@ -171,7 +171,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                             className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
                             data-test-id="sketchfab-empty-block-edit"
                         >
-                            <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
+                            <Text color="weak">Enter a URL to your 3D model from Sketchfab.</Text>
                             <div className="tw-text-secondary tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
                                 <div className="tw-flex-none tw-mt-[2px]">
                                     <IconLinkBox size={32} />
@@ -202,7 +202,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                             className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20"
                             data-test-id="sketchfab-empty-block-view"
                         >
-                            <Text color="x-weak">
+                            <Text color="weak">
                                 <IconLinkBox size={32} />
                             </Text>
                         </div>
