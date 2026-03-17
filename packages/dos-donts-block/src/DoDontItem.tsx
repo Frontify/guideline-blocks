@@ -317,7 +317,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 )}
                 <div
                     data-test-id="dos-donts-heading"
-                    className="tw-flex tw-items-start tw-font-semibold tw-text-l"
+                    className="tw-flex tw-items-start tw-font-semibold"
                     style={{ color: headingColor }}
                 >
                     {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
@@ -328,7 +328,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 fontSize: 'var(--f-theme-settings-heading3-font-size)',
                             }}
                             className={joinClassNames([
-                                'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-min-h-[1lh] tw-flex-shrink-0',
+                                'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0',
                                 !title ? 'tw-opacity-70' : '',
                             ])}
                         >
@@ -344,7 +344,14 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         </div>
                     )}
 
-                    <div className="tw-min-w-0 tw-flex-1">{renderTitle()}</div>
+                    <span
+                        style={{
+                            lineHeight: 'var(--f-theme-settings-heading3-line-height)',
+                            fontSize: 'var(--f-theme-settings-heading3-font-size)',
+                        }}
+                    >
+                        {renderTitle()}
+                    </span>
                 </div>
                 {style === DoDontStyle.Underline && (
                     <hr
