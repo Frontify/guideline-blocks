@@ -2,132 +2,132 @@ name: Continuous Integration
 
 # Ensures that only one workflow per branch will run at a time.
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
-    pull_request:
-    push:
-        branches:
-            - main
+  pull_request:
+  push:
+    branches:
+      - main
 
 env:
-    NUMBER_OF_RUNNERS: 7
+  NUMBER_OF_RUNNERS: 7
 
 jobs:
-    linting:
-        runs-on: ubuntu-latest
-        timeout-minutes: 10
+  linting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-        steps:
-            - name: Checkout current commit
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
 
-            - name: Use pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-            - name: Use Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: ".nvmrc"
-                  cache: "pnpm"
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-            - name: Lint files (JS/TS & CSS)
-              run: pnpm lint
+      - name: Lint files (JS/TS & CSS)
+        run: pnpm lint
 
-    typecheck:
-        runs-on: ubuntu-latest
-        timeout-minutes: 10
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-        steps:
-            - name: Checkout current commit
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
 
-            - name: Use pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-            - name: Use Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: ".nvmrc"
-                  cache: "pnpm"
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-            - name: Typecheck files
-              run: pnpm typecheck
+      - name: Typecheck files
+        run: pnpm typecheck
 
-    unit-tests:
-        runs-on: ubuntu-latest
-        timeout-minutes: 10
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-        steps:
-            - name: Checkout current commit
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
 
-            - name: Use pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-            - name: Use Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: ".nvmrc"
-                  cache: "pnpm"
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-            - name: Unit Tests
-              run: pnpm test:unit
+      - name: Unit Tests
+        run: pnpm test:unit
 
-    component-tests:
-        runs-on: ubuntu-latest
-        timeout-minutes: 10
+  component-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-        strategy:
-            fail-fast: false
-            matrix:
-                containers: [0, 1, 2, 3, 4, 5, 6]
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [0, 1, 2, 3, 4, 5, 6]
 
-        steps:
-            - name: Checkout current commit
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v4
 
-            - name: Use Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: ".nvmrc"
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
 
-            - name: Use pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-            - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-            - name: Setup pnpm cache
-              uses: actions/cache@v4
-              with:
-                  path: |
-                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-                      ~/.cache/Cypress
-                  key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+            ~/.cache/Cypress
+          key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-with-cypress-${{ runner.os }}-
 
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-            - name: Component Tests
-              run: pnpm test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})
+      - name: Component Tests
+        run: pnpm test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})
