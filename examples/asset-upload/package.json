@@ -14,15 +14,15 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.54",
-        "@frontify/fondue": "13.2.0",
-        "@frontify/guideline-blocks-settings": "2.1.0",
+        "@frontify/fondue": "13.3.0",
+        "@frontify/guideline-blocks-settings": "2.1.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@frontify/eslint-config-react": "1.0.13",
-        "@frontify/frontify-cli": "^5.10.1",
+        "@frontify/frontify-cli": "^5.10.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
