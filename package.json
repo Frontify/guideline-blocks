@@ -53,7 +53,10 @@
             "@udecode/plate-emoji@31.4.0": "patches/@udecode__plate-emoji@31.4.0.patch"
         },
         "onlyBuiltDependencies": [
-            "cypress"
+            "cypress",
+            "esbuild",
+            "msw",
+            "unrs-resolver"
         ],
         "overrides": {
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",

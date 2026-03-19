@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "module": "ES2022",
+        "moduleResolution": "bundler",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2020",
+        "jsx": "react-jsx",
+        "lib": ["ES2021", "DOM"],
+        "resolveJsonModule": true,
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*", "../../packages/shared/src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
