@@ -42,7 +42,7 @@
         "vitest": "^4.1.0"
     },
     "dependencies": {
-        "@frontify/fondue": "13.3.0",
+        "@frontify/fondue": "13.3.2",
         "glob": "^13.0.6",
         "happy-dom": "^20.8.4",
         "react": "^18.3.1",
