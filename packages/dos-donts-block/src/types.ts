@@ -9,10 +9,10 @@ export type Settings = {
 
     style: DoDontStyle;
 
-    hasCustomDoIcon: boolean;
+    hasCustomDoIcon?: boolean;
     doIconChoice: ItemIconChoice;
 
-    hasCustomDontIcon: boolean;
+    hasCustomDontIcon?: boolean;
     dontIconChoice: ItemIconChoice;
 
     hasStrikethrough: boolean;
@@ -44,7 +44,7 @@ export type Settings = {
     borderColor: Color | null;
 
     hasRadius: boolean;
-    radiusValue: string;
+    radiusValue?: string;
     radiusChoice: Radius;
 
     hasBackground: boolean;
@@ -82,9 +82,9 @@ export type SortableDoDontItemProps = {
     body?: string;
     editing: boolean;
     onRemoveSelf: (itemId: string) => void;
-    hasCustomDoIcon: boolean;
+    hasCustomDoIcon?: boolean;
     doIconChoice: ItemIconChoice;
-    hasCustomDontIcon: boolean;
+    hasCustomDontIcon?: boolean;
     dontIconChoice: ItemIconChoice;
     doIconAsset: Asset[] | undefined;
     dontIconAsset: Asset[] | undefined;
@@ -101,7 +101,7 @@ export type SortableDoDontItemProps = {
     borderStyle: BorderStyle;
     borderColor: Color;
     hasRadius: boolean;
-    radiusValue: string;
+    radiusValue?: string;
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
@@ -117,24 +117,11 @@ export type DoDontItemProps = SortableDoDontItemProps & {
     setActivatorNodeRef?: (node: HTMLElement | null) => void;
 };
 
-export type ItemToolbarProps = {
-    id: string;
-    onRemoveSelf: () => void;
-    draggableProps: Record<string, unknown>;
-    isFlyoutOpen: boolean;
-    setIsFlyoutOpen: (x: boolean) => void;
-    type: DoDontType;
-    isDragging: boolean;
-    onChangeItem: (id: string, value: ValueType, type: ChangeType) => void;
-    onAssetChooseClick: (() => void) | undefined;
-    onUploadClick: (() => void) | undefined;
-};
-
 export type IconComponentProps = {
-    hasCustomDoIcon: boolean;
+    hasCustomDoIcon?: boolean;
     doIconChoice: ItemIconChoice;
     doIconAsset: Asset[] | undefined;
-    hasCustomDontIcon: boolean;
+    hasCustomDontIcon?: boolean;
     dontIconChoice: ItemIconChoice;
     dontIconAsset: Asset[] | undefined;
     type: DoDontType;
@@ -156,7 +143,7 @@ export type ImageComponentProps = {
     isDragging: boolean;
     border: string;
     hasRadius: boolean;
-    radiusValue: string;
+    radiusValue?: string;
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
@@ -170,14 +157,6 @@ export type Item = {
     body: string;
     type: DoDontType;
     alt?: string;
-};
-
-export type EditorElement = {
-    children: EditorChild[];
-};
-
-export type EditorChild = {
-    text: string;
 };
 
 export enum DoDontType {
@@ -217,13 +196,6 @@ export const IMAGE_HEIGHT_VALUES: Record<DoDontImageHeight, string> = {
     [DoDontImageHeight.Small]: '120px',
     [DoDontImageHeight.Medium]: '200px',
     [DoDontImageHeight.Large]: '300px',
-};
-
-export const columnsClasses: Record<number, string> = {
-    1: 'tw-grid-cols-1',
-    2: 'tw-grid-cols-2',
-    3: 'tw-grid-cols-3',
-    4: 'tw-grid-cols-4',
 };
 
 export type ChangeType = 'title' | 'body' | 'type' | 'alt';
