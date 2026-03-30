@@ -58,6 +58,10 @@
         "overrides": {
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",
             "immer": "^10.2.0",
+            "brace-expansion@^1": "npm:brace-expansion@^1.1.13",
+            "brace-expansion@^2": "npm:brace-expansion@^2.0.3",
+            "brace-expansion@^5": "npm:brace-expansion@^5.0.5",
+            "fastify@^5": "npm:fastify@^5.8.3",
             "minimatch@^3": "npm:minimatch@^3.1.4",
             "picomatch@^2": "npm:picomatch@^2.3.2",
             "picomatch@^4": "npm:picomatch@^4.0.4",
