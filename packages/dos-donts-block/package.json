@@ -19,7 +19,7 @@
         "@dnd-kit/sortable": "^10.0.0",
         "@frontify/app-bridge": "^4.0.0-alpha.54",
         "@frontify/fondue": "13.3.2",
-        "@frontify/guideline-blocks-settings": "2.1.4",
+        "@frontify/guideline-blocks-settings": "2.1.6",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "autosize": "^6.0.1",
         "lodash-es": "^4.17.23",
