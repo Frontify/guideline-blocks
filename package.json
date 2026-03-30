@@ -23,28 +23,28 @@
     "devDependencies": {
         "@4tw/cypress-drag-drop": "^2.3.1",
         "@babel/core": "^7.29.0",
-        "@cypress/vite-dev-server": "^7.2.0",
+        "@cypress/vite-dev-server": "^7.2.1",
         "@testing-library/jest-dom": "^6.9.1",
         "@testing-library/react": "^16.3.2",
         "@testing-library/user-event": "^14.6.1",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
         "@vitejs/plugin-react": "^5.2.0",
-        "@vitest/ui": "^4.1.0",
-        "cypress": "^15.12.0",
+        "@vitest/ui": "^4.1.2",
+        "cypress": "^15.13.0",
         "cypress-real-events": "^1.15.0",
-        "msw": "^2.12.12",
+        "msw": "^2.12.14",
         "postcss": "^8.5.8",
         "tailwindcss": "^3.4.17",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
-        "vite": "^7.3.0",
-        "vitest": "^4.1.0"
+        "vite": "^7.3.1",
+        "vitest": "^4.1.2"
     },
     "dependencies": {
         "@frontify/fondue": "13.3.2",
         "glob": "^13.0.6",
-        "happy-dom": "^20.8.4",
+        "happy-dom": "^20.8.9",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
@@ -58,8 +58,15 @@
         "overrides": {
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",
             "immer": "^10.2.0",
-            "minimatch@^3": "npm:minimatch@^3.1.4"
+            "brace-expansion@^1": "npm:brace-expansion@^1.1.13",
+            "brace-expansion@^2": "npm:brace-expansion@^2.0.3",
+            "brace-expansion@^5": "npm:brace-expansion@^5.0.5",
+            "fastify@^5": "npm:fastify@^5.8.3",
+            "minimatch@^3": "npm:minimatch@^3.1.4",
+            "picomatch@^2": "npm:picomatch@^2.3.2",
+            "picomatch@^4": "npm:picomatch@^4.0.4",
+            "yaml@^2": "npm:yaml@^2.8.3"
         }
     },
-    "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
+    "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }
