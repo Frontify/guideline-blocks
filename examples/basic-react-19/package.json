@@ -22,7 +22,7 @@
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@frontify/eslint-config-react": "1.0.13",
-        "@frontify/frontify-cli": "link:../../../brand-sdk/packages/cli",
+        "@frontify/frontify-cli": "6.0.0-alpha.0",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "autoprefixer": "^10.4.27",
