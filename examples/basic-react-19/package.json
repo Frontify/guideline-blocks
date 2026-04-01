@@ -14,8 +14,8 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@frontify/fondue": "13.3.1",
-        "@frontify/guideline-blocks-settings": "^2.1.2",
+        "@frontify/fondue": "13.4.0",
+        "@frontify/guideline-blocks-settings": "^2.1.7",
         "react": "^19.2.4",
         "react-dom": "^19.2.4"
     },
