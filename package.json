@@ -42,7 +42,7 @@
         "vitest": "^4.1.2"
     },
     "dependencies": {
-        "@frontify/fondue": "13.3.2",
+        "@frontify/fondue": "13.4.0",
         "glob": "^13.0.6",
         "happy-dom": "^20.8.9",
         "react": "^18.3.1",
@@ -61,14 +61,7 @@
         "overrides": {
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",
             "immer": "^10.2.0",
-            "brace-expansion@^1": "npm:brace-expansion@^1.1.13",
-            "brace-expansion@^2": "npm:brace-expansion@^2.0.3",
-            "brace-expansion@^5": "npm:brace-expansion@^5.0.5",
-            "fastify@^5": "npm:fastify@^5.8.3",
-            "minimatch@^3": "npm:minimatch@^3.1.4",
-            "picomatch@^2": "npm:picomatch@^2.3.2",
-            "picomatch@^4": "npm:picomatch@^4.0.4",
-            "yaml@^2": "npm:yaml@^2.8.3"
+            "minimatch@^3": "npm:minimatch@^3.1.4"
         }
     },
     "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
