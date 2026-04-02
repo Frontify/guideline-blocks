@@ -399,13 +399,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const gridClassName =
         keepSideBySide && columns.toString() === '2'
-            ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][columns - 1]
+            ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][parseInt(columns) - 1]
             : [
                   'tw-grid-cols-1',
                   '@sm:tw-grid-cols-2',
                   '@md:tw-grid-cols-3 @sm:tw-grid-cols-2',
                   '@md:tw-grid-cols-4 @sm:tw-grid-cols-3 @xs:tw-grid-cols-2',
-              ][columns - 1];
+              ][parseInt(columns) - 1];
 
     const activeItem = localItems.find((x) => x.id === activeId);
 

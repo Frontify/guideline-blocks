@@ -17,7 +17,7 @@ export type Settings = {
 
     hasStrikethrough: boolean;
 
-    columns: number;
+    columns: string;
     keepSideBySide: boolean;
 
     isCustomColumnGutter: boolean;
