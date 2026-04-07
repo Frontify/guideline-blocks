@@ -1,5 +1,80 @@
 {
     "appId": "cl5w86f8700010sw8yvfasdhx",
-    "i18nFields": ["textValue"],
-    "searchFields": [{ "settingId": "textValue", "type": "fondueRte" }]
+    "settingsSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+            "alignment": {
+                "type": "string",
+                "enum": ["left", "center", "right"],
+                "frontify-api-read": true
+            },
+            "appearance": {
+                "type": "string",
+                "enum": ["light", "strong"],
+                "frontify-api-read": true
+            },
+            "extendedRadiusBottomLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "extendedRadiusBottomRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "extendedRadiusChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true
+            },
+            "extendedRadiusTopLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "extendedRadiusTopRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "hasCustomPadding": { "type": "boolean", "frontify-api-read": true },
+            "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true },
+            "iconSwitch": {
+                "type": "boolean",
+                "frontify-translatable": true,
+                "frontify-api-read": true
+            },
+            "iconType": {
+                "type": "string",
+                "enum": ["info", "none", "lightbulb", "megaphone"],
+                "frontify-translatable": true,
+                "frontify-api-read": true
+            },
+            "paddingBottom": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "paddingChoice": {
+                "type": "string",
+                "enum": ["s", "m", "l"],
+                "frontify-api-read": true
+            },
+            "paddingLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "paddingRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "paddingTop": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "textValue": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-translatable": true,
+                "frontify-api-read": true
+            },
+            "type": {
+                "type": "string",
+                "enum": ["tip", "info", "warning", "note"],
+                "frontify-api-read": true
+            },
+            "width": {
+                "type": "string",
+                "enum": ["fullWidth", "hugContents"],
+                "frontify-api-read": true
+            }
+        },
+        "required": [
+            "type",
+            "appearance",
+            "iconSwitch",
+            "iconType",
+            "width",
+            "alignment",
+            "hasCustomPadding",
+            "paddingChoice",
+            "hasExtendedCustomRadius",
+            "extendedRadiusChoice"
+        ],
+        "additionalProperties": false
+    }
 }
