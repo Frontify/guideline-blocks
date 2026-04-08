@@ -44,7 +44,7 @@ export const ThumbnailItem = ({
         if (selectedFiles) {
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export const ThumbnailItem = ({
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             onReplaceAsset(asset.id, uploadResults[0].id);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     return (

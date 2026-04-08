@@ -76,7 +76,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             downloadAssets(downloadUrl);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [downloadUrl]);
 
     const isButtonDisabled =

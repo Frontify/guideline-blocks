@@ -39,6 +39,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                 ? (hostElement.current?.closest('[data-section]')?.firstChild as HTMLElement)
                 : document.getElementById('design-settings');
         }
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
@@ -77,6 +78,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         return () => {
             styleChangeObserver.disconnect();
         };
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [updateStyles]);
 
     const handleTextChange = useCallback((textValue: string) => setBlockSettings({ textValue }), [setBlockSettings]);

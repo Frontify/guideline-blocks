@@ -40,7 +40,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
-    // eslint-disable-next-line @eslint-react/prefer-use-state-lazy-initialization
+    // eslint-disable-next-line @eslint-react/use-state
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -137,7 +137,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             setIsLoading(true);
             uploadFile(selectedFiles[0]);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -145,7 +145,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             updateImage(uploadResults[0]);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {

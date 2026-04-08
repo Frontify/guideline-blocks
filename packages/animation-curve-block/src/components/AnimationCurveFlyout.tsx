@@ -65,7 +65,7 @@ export const AnimationCurveFlyout = ({
 
     useEffect(() => {
         const { x1, x2 } = localAnimationFunction.parameters;
-        // eslint-disable-next-line react-hooks/set-state-in-effect
+        // eslint-disable-next-line @eslint-react/set-state-in-effect
         setX1Validation(validateXValue(x1));
         setX2Validation(validateXValue(x2));
     }, [localAnimationFunction]);

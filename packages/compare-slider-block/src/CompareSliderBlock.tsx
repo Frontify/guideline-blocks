@@ -153,7 +153,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             setBlockSettings({ secondAssetAlt: initialAlt });
         }
         uploadFile(droppedFiles);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [droppedFiles]);
 
     useEffect(() => {
@@ -171,7 +171,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
             }
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -182,7 +182,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 await updateAssetIdsFromKey(slotAssetSettingMap[slotWithUploadInProgress], [resultId]);
             })(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const startFileDialogUpload = (slot: SliderImageSlot) => {

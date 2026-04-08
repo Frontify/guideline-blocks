@@ -122,7 +122,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         if (error !== null) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
+            // eslint-disable-next-line @eslint-react/set-state-in-effect
             setLastErrorMessage(error);
         }
     }, [error]);
@@ -135,14 +135,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
         const lastTemplate = templates[templates.length - 1];
         if (lastTemplate) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
+            // eslint-disable-next-line @eslint-react/set-state-in-effect
             setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
-        // eslint-disable-next-line react-hooks/set-state-in-effect
+        // eslint-disable-next-line @eslint-react/set-state-in-effect
         setHasAuthenticatedUser(isAuthenticated);
     }, [appBridge]);
 

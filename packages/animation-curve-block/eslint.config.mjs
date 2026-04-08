@@ -2,12 +2,13 @@
 
 import frontifyConfig from '@frontify/eslint-config-react';
 import { defineConfig } from 'eslint/config';
-import noticePlugin from 'eslint-plugin-notice';
+
+import headerPlugin from '@tony.ganchev/eslint-plugin-header';
 import tailwindcssPlugin from 'eslint-plugin-tailwindcss';
 
 export default defineConfig(
     {
-        ignores: ['eslint.config.mjs', 'tailwind.config.*', '**/*.config.{js,mjs,cjs}'],
+        ignores: ['eslint.config.mjs', 'tailwind.config.*', '**/*.config.{js,mjs,cjs}', '**/*.md'],
     },
     frontifyConfig,
     {
@@ -18,7 +19,7 @@ export default defineConfig(
             },
         },
         plugins: {
-            notice: noticePlugin,
+            '@tony.ganchev': headerPlugin,
             tailwindcss: tailwindcssPlugin,
         },
         settings: {
@@ -28,12 +29,15 @@ export default defineConfig(
             },
         },
         rules: {
-            'notice/notice': [
+            '@tony.ganchev/header': [
                 'error',
                 {
-                    template: '/* (c) Copyright Frontify Ltd., all rights reserved. */\n\n',
-                    messages: {
-                        whenFailedToMatch: 'No Frontify copyright header set.',
+                    header: {
+                        commentType: 'block',
+                        lines: [' (c) Copyright Frontify Ltd., all rights reserved. '],
+                    },
+                    trailingEmptyLines: {
+                        minimum: 2,
                     },
                 },
             ],

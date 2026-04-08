@@ -166,7 +166,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             ];
             setAndSaveItems(placeholderItems);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -180,14 +180,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         } else if (selectedAssets && selectedType) {
             batchAddItems(selectedAssets);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles, selectedType, selectedAssets]);
 
     useEffect(() => {
         if (doneAll) {
             batchAddItems(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     useEffect(() => {

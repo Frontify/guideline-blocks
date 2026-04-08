@@ -36,7 +36,7 @@ const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
-    // eslint-disable-next-line @eslint-react/prefer-use-state-lazy-initialization
+    // eslint-disable-next-line @eslint-react/use-state
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -103,7 +103,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             setIsLoading(true);
             uploadFile(selectedFiles[0]);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -111,7 +111,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             updateAudioAsset(uploadResults[0]);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const titleValue = blockSettings.title ?? DEFAULT_CONTENT_TITLE;

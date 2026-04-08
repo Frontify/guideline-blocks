@@ -28,7 +28,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
 
     useEffect(() => {
-        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, react-hooks/set-state-in-effect
+        // eslint-disable-next-line @eslint-react/set-state-in-effect
         setSelectedLanguage(blockSettings.language ?? 'plain');
     }, [blockSettings.language]);
 

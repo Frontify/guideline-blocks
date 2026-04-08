@@ -115,7 +115,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     const templateFiles = useMemo(
         () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate, preprocessor), ...files?.[sandpackTemplate] }),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
         sandpackRestartInitiators
     );
 
