@@ -168,7 +168,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                     )}
                     {isEditing && !iframeUrl && (
                         <div
-                            className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
+                            className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8 tw-body-medium"
                             data-test-id="sketchfab-empty-block-edit"
                         >
                             <Text color="weak">Enter a URL to your 3D model from Sketchfab.</Text>
