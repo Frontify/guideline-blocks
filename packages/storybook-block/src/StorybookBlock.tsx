@@ -122,7 +122,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     ) : isEditing ? (
                         <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                             <div
-                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
+                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y tw-body-medium"
                                 data-test-id="storybook-empty-wrapper"
                             >
                                 <IconStorybook size={32} />
