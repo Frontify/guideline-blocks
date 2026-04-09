@@ -59,7 +59,6 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         }
     };
 
-    // eslint-disable-next-line react-hooks/refs
     const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
     const hexValue = toHex6or8String(gradientColor.color);
 

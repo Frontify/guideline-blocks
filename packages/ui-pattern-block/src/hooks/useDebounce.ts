@@ -11,6 +11,5 @@ export const useDebounce = (duration = 400) => {
         }, duration)
     );
 
-    // eslint-disable-next-line react-hooks/refs
     return { debounce: debouncedSaveRef.current };
 };

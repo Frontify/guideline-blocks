@@ -43,7 +43,7 @@ export const AssetSelection = ({
             setIsUploadingAssets(true);
             uploadFile(droppedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [droppedFiles]);
 
     useEffect(() => {
@@ -51,7 +51,7 @@ export const AssetSelection = ({
             setIsUploadingAssets(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -63,7 +63,7 @@ export const AssetSelection = ({
                 setIsUploadingAssets(false);
             })(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     return (

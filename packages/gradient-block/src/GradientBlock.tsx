@@ -99,10 +99,9 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 onMouseLeave={() => setShowAddButton(false)}
                             >
                                 <Divider />
-                                {/* eslint-disable-next-line react-hooks/refs */}
+                                {}
                                 {showAddButton && gradientBlockRef.current && (
                                     <AddColorButton
-                                        // eslint-disable-next-line react-hooks/refs
                                         blockWidth={gradientBlockRef.current.clientWidth}
                                         positionLeft={addButtonPositionLeft}
                                         setShowColorModal={setShowColorModal}
@@ -135,11 +134,9 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ))}
                     </div>
                 ) : (
-                    // eslint-disable-next-line react-hooks/refs
                     gradientBlockRef.current &&
                     gradientColors && (
                         <SquareBadgesRow
-                            // eslint-disable-next-line react-hooks/refs
                             blockWidth={gradientBlockRef.current.clientWidth}
                             gradientColors={gradientColors}
                             gradientOrientation={gradientOrientation}

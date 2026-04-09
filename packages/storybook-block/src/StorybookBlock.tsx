@@ -62,6 +62,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                 url: addMissingUrlProtocol(input),
             });
         }
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {

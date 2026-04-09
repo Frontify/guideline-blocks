@@ -138,7 +138,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             setIsUploadLoading(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useLayoutEffect(() => {
@@ -165,14 +165,14 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 }
             })(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
         []
     );
 
@@ -187,7 +187,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
         [body, shouldRerenderDependency, editing, appBridge, id]
     );
 
@@ -222,6 +222,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 {title}
             </h3>
         );
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [editing, onChangeItem, onChangeLocalItem, title, titleRef, headingColor]);
 
     return (
@@ -391,7 +392,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
 
     useEffect(() => {
         if (!isDragging) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
+            // eslint-disable-next-line @eslint-react/set-state-in-effect
             setDraggableProps(editing ? { ...attributes, ...listeners } : {});
         }
     }, [isDragging, attributes, listeners, editing]);

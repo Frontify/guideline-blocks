@@ -90,7 +90,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             setBlockSettings({ items: itemsState });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [itemsState]);
 
     const addItems = useCallback(

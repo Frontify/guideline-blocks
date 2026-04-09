@@ -27,7 +27,7 @@ import { extractUrlParameterFromUriQueries } from './utilities';
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
-    // eslint-disable-next-line @eslint-react/naming-convention/use-state
+    // eslint-disable-next-line @eslint-react/use-state
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -62,7 +62,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     useEffect(() => {
-        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, react-hooks/set-state-in-effect
+        // eslint-disable-next-line @eslint-react/set-state-in-effect
         setReferenceUrl(
             (
                 document.querySelector(`[data-block="${String(appBridge.context('blockId').get())}"].referenced`) as
@@ -70,6 +70,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     | undefined
             )?.dataset.referenceUrl || ''
         );
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -86,9 +87,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, []);
 
     useEffect(() => {
-        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, react-hooks/set-state-in-effect, @typescript-eslint/no-unsafe-argument
+        // eslint-disable-next-line @eslint-react/set-state-in-effect, @typescript-eslint/no-unsafe-argument
         setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
-        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect, @typescript-eslint/no-unsafe-enum-comparison
+        // eslint-disable-next-line @eslint-react/set-state-in-effect, @typescript-eslint/no-unsafe-enum-comparison
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
     }, [asset, figmaPreviewId]);
 
@@ -111,7 +112,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const ShowFigmaLink = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions
+        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
         ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
             <div className="tw-p-2 tw-text-sm">
                 <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
@@ -123,7 +124,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     );
 
     const ShowImagePreview = useCallback(
-        // eslint-disable-next-line react-hooks/preserve-manual-memoization, @eslint-react/no-nested-component-definitions
+        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
         ({
             hasBorder,
             height,
@@ -177,7 +178,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     );
 
     const ShowFigmaLive = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions
+        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
         () => (
             <div
                 data-test-id="figma-live-preview"
@@ -223,7 +224,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         ]
     );
 
-    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
         modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
@@ -248,7 +248,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </div>
 
                 <div className="tw-relative tw-w-full tw-h-full">
-                    {/* eslint-disable-next-line @eslint-react/dom/no-missing-iframe-sandbox */}
+                    {/* eslint-disable-next-line @eslint-react/dom-no-missing-iframe-sandbox */}
                     <iframe
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         src={asset?.externalUrl ?? undefined}
@@ -261,6 +261,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
 
         return createPortal(modal, modalRoot);
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [asset?.externalUrl]);
 
     return (
@@ -274,7 +275,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
                         )}
                         {isAssetAvailable && !isLivePreview && (
-                            // eslint-disable-next-line react-hooks/static-components
                             <ShowImagePreview
                                 hasBorder={hasBorder}
                                 hasBackground={hasBackground}
@@ -282,9 +282,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 showFigmaLink={showFigmaLink}
                             />
                         )}
-                        {/* eslint-disable-next-line react-hooks/static-components */}
+                        {}
                         {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
-                        {/* eslint-disable-next-line react-hooks/static-components */}
+                        {}
                         {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
                 )}

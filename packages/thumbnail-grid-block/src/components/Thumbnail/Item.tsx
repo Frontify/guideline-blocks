@@ -81,7 +81,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 onFilesSelected(selectedFiles, id);
                 uploadFile(selectedFiles);
             }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
+            // eslint-disable-next-line @eslint-react/exhaustive-deps
         }, [selectedFiles]);
 
         useEffect(() => {
@@ -92,7 +92,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             if (doneAll) {
                 onFilesUploaded(uploadResults, id);
             }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
+            // eslint-disable-next-line @eslint-react/exhaustive-deps
         }, [doneAll, uploadResults]);
 
         const updateRTEItem = useCallback(

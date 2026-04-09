@@ -21,11 +21,11 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
 
     useEffect(() => {
         if (selectedFiles) {
-            // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
+            // eslint-disable-next-line @eslint-react/set-state-in-effect
             setLoading(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                 setLoading(false);
             })(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     // Asset chooser demo
@@ -56,7 +56,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         );
     };
 
-    // eslint-disable-next-line @eslint-react/no-nested-component-definitions
+    // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
             <a className="tw-text-highlight" href={link} target="_blank" rel="noopener noreferrer">
