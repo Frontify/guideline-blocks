@@ -40,7 +40,7 @@ export const Dependencies = ({
                     onChange={setInnerValue}
                     placeholder={placeholder}
                     validationError={<JsonErrorMessage />}
-                    className="tw-bg-surface-dim tw-font-monospace tw-text-small"
+                    className="tw-bg-surface-dim tw-body-small !tw-font-monospace"
                     classNames={{
                         input: 'tw-resize-none tw-w-full tw-outline-none tw-bg-surface-dim tw-p-6',
                     }}
