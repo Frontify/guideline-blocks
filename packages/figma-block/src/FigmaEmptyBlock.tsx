@@ -12,7 +12,7 @@ export const FigmaEmptyBlock = ({ onOpenAssetChooser }: Props): ReactElement => 
         <button
             type="button"
             data-test-id="figma-empty-block"
-            className="tw-group tw-w-full tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-[color-mix(in_srgb,_var(--f-theme-settings-body-color)_70%,_transparent)] hover:tw-border-[var(--f-theme-settings-body-color)]"
+            className="tw-group tw-w-full tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-[color-mix(in_srgb,_var(--f-theme-settings-body-color)_70%,_transparent)] hover:tw-border-[var(--f-theme-settings-body-color)] tw-body-medium"
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-x-large tw-mb-4 tw-flex tw-justify-center tw-text-[color-mix(in_srgb,_var(--f-theme-settings-body-color)_70%,_transparent)] group-hover:tw-text-[var(--f-theme-settings-body-color)]">
