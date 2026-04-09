@@ -7,14 +7,14 @@ import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
 import './styles.css';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
-import CodeMirror, { type Extension } from '@uiw/react-codemirror';
+import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
 import { type FC, useEffect, useMemo, useState } from 'react';
 
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { headerThemes } from './headerThemes';
+import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
 import { type Language, type Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -22,7 +22,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
     const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
-    const extensions = [] as Extension[];
+    const extensions = useCodeMirrorExtensions(selectedLanguage);
     const [isCopied, setIsCopied] = useState(false);
     const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
@@ -61,18 +61,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                 <IconClipboard size={16} /> Copy
             </>
         );
-
-    const getCurrentLanguageFromLangs = () => {
-        if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
-            return langs[selectedLanguage];
-        }
-        return null;
-    };
-
-    const activeLanguage = getCurrentLanguageFromLangs();
-    if (activeLanguage) {
-        extensions.push(activeLanguage());
-    }
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -119,7 +107,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                             <div
                                 data-test-id="code-snippet-header"
                                 className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
-                                style={getStyle()}
+                                style={{ ...getStyle(), letterSpacing: 'normal' }}
                             >
                                 {isEditing ? (
                                     <div
