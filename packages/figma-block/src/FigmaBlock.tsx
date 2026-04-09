@@ -82,8 +82,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         };
         window.addEventListener('resize', resize);
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        () => window.removeEventListener('resize', resize);
+
+        return () => {
+            window.removeEventListener('resize', resize);
+        };
     }, []);
 
     useEffect(() => {
