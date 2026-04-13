@@ -30,7 +30,7 @@
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
         "@vitejs/plugin-react": "^5.2.0",
-        "@vitest/ui": "^4.1.2",
+        "@vitest/ui": "^4.1.4",
         "cypress": "^15.13.0",
         "cypress-real-events": "^1.15.0",
         "msw": "^2.12.14",
@@ -38,8 +38,8 @@
         "tailwindcss": "^3.4.17",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
-        "vite": "^7.3.1",
-        "vitest": "^4.1.2"
+        "vite": "^7.3.2",
+        "vitest": "^4.1.4"
     },
     "dependencies": {
         "@frontify/fondue": "13.4.0",
@@ -59,9 +59,7 @@
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",
             "immer": "^10.2.0",
             "minimatch@^3": "npm:minimatch@^3.1.4",
-            "lodash-es@^4": "^4.18.1",
-            "lodash@^4": "^4.18.1",
-            "vite@^7": "^7.3.2"
+            "lodash@^4": "^4.18.1"
         }
     },
     "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
