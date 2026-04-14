@@ -37,7 +37,7 @@
         "postcss": "^8.5.8",
         "tailwindcss": "^3.4.17",
         "ts-node": "^10.9.2",
-        "typescript": "^5.9.3",
+        "typescript": "^6.0.2",
         "vite": "^7.3.2",
         "vitest": "^4.1.4"
     },
@@ -53,7 +53,8 @@
             "@udecode/plate-emoji@31.4.0": "patches/@udecode__plate-emoji@31.4.0.patch"
         },
         "onlyBuiltDependencies": [
-            "cypress"
+            "cypress",
+            "msw"
         ],
         "overrides": {
             "ajv@>=7.0.0-alpha.0 <8.18.0": "^8.18.0",

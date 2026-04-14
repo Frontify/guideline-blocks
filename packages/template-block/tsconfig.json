@@ -10,6 +10,7 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "resolveJsonModule": true,
+        "noUncheckedSideEffectImports": false,
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
