@@ -8,22 +8,17 @@
             "style": { "type": "string", "enum": ["Dashed", "Solid", "Dotted"], "frontify-api-read": true },
             "isLine": { "type": "string", "enum": ["NoLine", "Solid"], "frontify-api-read": true },
             "color": {
-                "frontify-api-read": true,
-                "oneOf": [
-                    { "type": "null" },
-                    {
-                        "type": "object",
-                        "required": ["red", "green", "blue"],
-                        "additionalProperties": false,
-                        "properties": {
-                            "red": { "type": "integer", "minimum": 0, "maximum": 255 },
-                            "green": { "type": "integer", "minimum": 0, "maximum": 255 },
-                            "blue": { "type": "integer", "minimum": 0, "maximum": 255 },
-                            "alpha": { "type": "number", "minimum": 0, "maximum": 1 },
-                            "name": { "type": "string" }
-                        }
-                    }
-                ]
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": { "type": "integer", "minimum": 0, "maximum": 255 },
+                    "green": { "type": "integer", "minimum": 0, "maximum": 255 },
+                    "blue": { "type": "integer", "minimum": 0, "maximum": 255 },
+                    "alpha": { "type": "number", "minimum": 0, "maximum": 1 },
+                    "name": { "type": "string" }
+                },
+                "frontify-api-read": true
             },
             "isWidthCustom": { "type": "boolean", "frontify-api-read": true },
             "widthCustom": { "type": "string", "pattern": "^([1-9]?[0-9]|100)%$", "frontify-api-read": true },
