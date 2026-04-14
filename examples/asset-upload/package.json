@@ -22,7 +22,7 @@
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@frontify/eslint-config-react": "1.0.15",
-        "@frontify/frontify-cli": "^5.10.3",
+        "@frontify/frontify-cli": "^6.0.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@tony.ganchev/eslint-plugin-header": "^3.4.3",
         "@types/react": "^18.3.27",
