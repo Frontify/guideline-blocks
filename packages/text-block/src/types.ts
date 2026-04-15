@@ -5,7 +5,7 @@ import { GutterSpacing } from '@frontify/guideline-blocks-settings';
 export type Settings = {
     columnGutterCustom: string;
     columnGutterSimple: GutterSpacing;
-    columnNumber: number;
+    columnNumber: string;
     isColumnGutterCustom: boolean;
     content?: string;
 };
