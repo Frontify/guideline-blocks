@@ -16,7 +16,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
-    const plugins = useMemo(() => getPlugins(appBridge, columnNumber, gap), [appBridge, columnNumber, gap]);
+    const plugins = useMemo(() => getPlugins(appBridge, parseInt(columnNumber), gap), [appBridge, columnNumber, gap]);
 
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
@@ -27,7 +27,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                     id={String(appBridge.context('blockId').get())}
                     isEditing={isEditing}
                     value={content}
-                    columns={columnNumber}
+                    columns={parseInt(columnNumber)}
                     gap={gap}
                     plugins={plugins}
                     placeholder={PLACEHOLDER}
