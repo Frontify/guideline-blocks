@@ -8,7 +8,6 @@ export type Link = { link: { link: string }; openInNewTab: boolean };
 export type Settings = {
     hasLink?: boolean;
     linkObject?: Link;
-    image?: string;
     name?: string;
     altText?: string;
     description?: string;
@@ -22,20 +21,20 @@ export type Settings = {
     hasBorder: boolean;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
-    paddingCustom: string;
+    paddingCustom?: string;
     hasRadius_cornerRadius: boolean;
     radiusChoice_cornerRadius: CornerRadius;
-    radiusValue_cornerRadius: string;
+    radiusValue_cornerRadius?: string;
     positioning: CaptionPosition;
     ratio: Ratio;
     security: Security;
     hasCustomRatio: boolean;
     ratioChoice: ImageAspectRatio;
-    ratioCustom: string;
+    ratioCustom?: string;
     autosizing: Autosizing;
     alignment: VerticalAlignment;
     horizontalAlignment: HorizontalAlignment;
-    useFocalPoint: boolean;
+    useFocalPoint?: boolean;
 };
 
 export enum CaptionPosition {
@@ -123,13 +122,6 @@ export enum Autosizing {
     Fit = 'fit',
     Fill = 'fill',
 }
-
-export const autosizingValues: Record<Autosizing, string> = {
-    [Autosizing.None]: 'none',
-    [Autosizing.Fit]: 'fit',
-    [Autosizing.Fill]: 'fill',
-};
-
 export enum VerticalAlignment {
     Left = 'Left',
     Center = 'Center',
