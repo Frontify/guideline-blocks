@@ -40,6 +40,7 @@ import {
     VerticalAlignment,
     paddingValues,
     radiusValues,
+    Padding,
 } from '../types';
 
 const textStylePlugins = [
@@ -99,8 +100,13 @@ export const getTotalImagePadding = (blockSettings: Settings): CSSProperties => 
     };
 };
 
-const getPadding = (blockSettings: Settings): string =>
-    blockSettings.hasCustomPadding ? blockSettings.paddingCustom : paddingValues[blockSettings.paddingChoice];
+const getPadding = (blockSettings: Settings): string => {
+    const padding = blockSettings.hasCustomPadding
+        ? blockSettings.paddingCustom
+        : paddingValues[blockSettings.paddingChoice];
+
+    return padding ?? paddingValues[Padding.None];
+};
 
 const getBorderRadius = (blockSettings: Settings) => {
     const borderRadius = blockSettings.hasRadius_cornerRadius
