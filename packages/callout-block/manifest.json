@@ -27,13 +27,11 @@
             "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true },
             "iconSwitch": {
                 "type": "boolean",
-                "frontify-translatable": false,
                 "frontify-api-read": true
             },
             "iconType": {
                 "type": "string",
                 "enum": ["info", "none", "lightbulb", "megaphone"],
-                "frontify-translatable": true,
                 "frontify-api-read": true
             },
             "paddingBottom": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
