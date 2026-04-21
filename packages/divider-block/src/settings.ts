@@ -224,6 +224,7 @@ export const settings = defineSettings({
                     placeholder: 'e.g. 3px',
                     clearable: false,
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                    onChange: (bundle) => appendUnit(bundle, THICKNESS_ID),
                 },
                 {
                     id: 'color',
