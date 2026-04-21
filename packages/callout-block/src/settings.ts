@@ -112,7 +112,6 @@ export const settings = defineSettings({
                     ],
                 },
             ],
-            showForTranslations: true,
         },
     ],
     layout: [
