@@ -27,7 +27,7 @@
             "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true },
             "iconSwitch": {
                 "type": "boolean",
-                "frontify-translatable": true,
+                "frontify-translatable": false,
                 "frontify-api-read": true
             },
             "iconType": {
