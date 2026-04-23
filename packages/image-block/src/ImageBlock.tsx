@@ -23,6 +23,7 @@ import {
     convertToRteValue,
     hasRichTextValue,
     isDownloadable,
+    toColorObject,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider, generateRandomId, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
@@ -93,8 +94,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         }
 
         if (newImage.backgroundColor) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            settings.backgroundColor = newImage.backgroundColor;
+            settings.backgroundColor = toColorObject(String(newImage.backgroundColor));
             settings.hasBackground = true;
         }
 
