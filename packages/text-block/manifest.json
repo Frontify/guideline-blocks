@@ -1,5 +1,37 @@
 {
     "appId": "cl5wda7mi00010tw8zxxf6g0c",
-    "i18nFields": ["content"],
-    "searchFields": [{ "settingId": "content", "type": "fondueRte" }]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "required": ["columnNumber", "isColumnGutterCustom", "columnGutterSimple"],
+        "additionalProperties": false,
+        "properties": {
+            "content": {
+                "type": "string",
+                "frontify-serializable": true,
+                "frontify-type": "fondueRte",
+                "frontify-api-read": true,
+                "frontify-translatable": true
+            },
+            "columnNumber": {
+                "type": "string",
+                "enum": ["1", "2", "3", "4"],
+                "frontify-api-read": true
+            },
+            "isColumnGutterCustom": {
+                "type": "boolean",
+                "frontify-api-read": true
+            },
+            "columnGutterSimple": {
+                "type": "string",
+                "enum": ["Auto", "S", "M", "L"],
+                "frontify-api-read": true
+            },
+            "columnGutterCustom": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true
+            }
+        }
+    }
 }
