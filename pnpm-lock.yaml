@@ -128,7 +128,7 @@ importers:
         version: link:../../packages/shared
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -207,7 +207,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -277,7 +277,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -350,7 +350,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -423,7 +423,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -514,7 +514,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -593,7 +593,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -660,7 +660,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -742,7 +742,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/autosize':
         specifier: ^4.0.3
         version: 4.0.3
@@ -815,7 +815,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -888,7 +888,7 @@ importers:
         version: 3.27.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -970,7 +970,7 @@ importers:
         version: 14.6.1(@testing-library/dom@10.4.1)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -1052,7 +1052,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1122,7 +1122,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1192,7 +1192,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -1289,7 +1289,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1362,7 +1362,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1432,7 +1432,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1505,7 +1505,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1587,7 +1587,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.28
@@ -1672,7 +1672,7 @@ importers:
         version: 6.0.3(@types/node@25.6.0)(jiti@1.21.7)(terser@5.46.1)(yaml@2.8.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.3
-        version: 3.4.3(eslint@10.2.1(jiti@1.21.7))
+        version: 3.4.4(eslint@10.2.1(jiti@1.21.7))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -4693,8 +4693,8 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@tony.ganchev/eslint-plugin-header@3.4.3':
-    resolution: {integrity: sha512-C8oGfJNGGcYl3y55JRS6Sfr9pAtjXyVN4qJllr5g3g6wrDkxcPMQ0654FsZtnQJTXA4swcwtR1cUhCBvW0WDKA==}
+  '@tony.ganchev/eslint-plugin-header@3.4.4':
+    resolution: {integrity: sha512-O3PDvjikVWECu078bLdRb2HwjVgR+wa7D0GX8gN1A8axlgEc7tordHOoEYcKRVxGcAw7bxXjwiKGXaY17qXD+Q==}
     peerDependencies:
       eslint: '>=7.7.0'
 
@@ -13771,7 +13771,7 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.1
 
-  '@tony.ganchev/eslint-plugin-header@3.4.3(eslint@10.2.1(jiti@1.21.7))':
+  '@tony.ganchev/eslint-plugin-header@3.4.4(eslint@10.2.1(jiti@1.21.7))':
     dependencies:
       eslint: 10.2.1(jiti@1.21.7)
 
