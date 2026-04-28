@@ -40,8 +40,7 @@
                 "frontify-serializable": true,
                 "frontify-serialization-index": 2,
                 "frontify-translatable": true,
-                "frontify-api-read": true,
-                "frontify-api-write": true
+                "frontify-api-read": true
             },
             "altText": {
                 "type": "string",
