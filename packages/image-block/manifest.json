@@ -1,8 +1,288 @@
 {
     "appId": "cldju6bkp0001a8w43x1fgzzu",
-    "i18nFields": ["name", "description"],
-    "searchFields": [
-        { "settingId": "name", "type": "fondueRte" },
-        { "settingId": "description", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "required": [
+            "hasLink",
+            "hasCustomRatio",
+            "ratioChoice",
+            "autosizing",
+            "alignment",
+            "horizontalAlignment",
+            "hasCustomPadding",
+            "paddingChoice",
+            "positioning",
+            "ratio",
+            "hasBackground",
+            "hasBorder",
+            "borderStyle",
+            "borderWidth",
+            "hasRadius_cornerRadius",
+            "radiusChoice_cornerRadius",
+            "security",
+            "assetViewerEnabled",
+            "downloadable"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true
+            },
+            "description": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true
+            },
+            "altText": {
+                "type": "string",
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasLink": {
+                "type": "boolean",
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "linkObject": {
+                "type": "object",
+                "required": ["link"],
+                "additionalProperties": false,
+                "properties": {
+                    "link": {
+                        "type": ["object", "null"],
+                        "required": ["link"],
+                        "properties": {
+                            "link": {
+                                "type": "string",
+                                "frontify-translatable": true,
+                                "frontify-api-read": true,
+                                "frontify-api-write": true
+                            }
+                        }
+                    },
+                    "openInNewTab": {
+                        "type": "boolean",
+                        "frontify-translatable": true,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            },
+            "hasCustomRatio": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "ratioChoice": {
+                "type": "string",
+                "enum": ["none", "1:1", "4:3", "3:2", "16:9"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "ratioCustom": {
+                "type": "string",
+                "pattern": "^([0-9]+(\\.[0-9]*)?:[0-9]+(\\.[0-9]*)?|none)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "autosizing": {
+                "type": "string",
+                "enum": ["none", "fit", "fill"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "useFocalPoint": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "alignment": {
+                "type": "string",
+                "enum": ["Left", "Center", "Right"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "horizontalAlignment": {
+                "type": "string",
+                "enum": ["top", "center", "bottom"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasCustomPadding": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "paddingChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "paddingCustom": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "positioning": {
+                "type": "string",
+                "enum": ["Above", "Below", "Left", "Right"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "ratio": {
+                "type": "string",
+                "enum": ["1:1", "2:1", "1:2"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasBackground": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "backgroundColor": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            },
+            "hasBorder": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dotted", "Dashed"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderWidth": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderColor": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            },
+            "hasRadius_cornerRadius": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "radiusChoice_cornerRadius": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "radiusValue_cornerRadius": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "security": {
+                "type": "string",
+                "enum": ["Global", "Custom"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "assetViewerEnabled": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "downloadable": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        }
+    }
 }

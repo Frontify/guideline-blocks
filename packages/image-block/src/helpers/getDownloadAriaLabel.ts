@@ -2,7 +2,7 @@
 
 export const getDownloadAriaLabel = (
     hasAssetViewer: boolean,
-    hasLink?: boolean,
+    hasLink: boolean,
     altText?: string,
     title?: string
 ): string => {

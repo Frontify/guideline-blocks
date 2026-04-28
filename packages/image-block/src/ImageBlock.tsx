@@ -156,8 +156,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
-    const isAssetViewerEnabled =
-        security === Security.Custom ? (blockAssetViewerEnabled ?? true) : globalAssetViewerEnabled;
+    const isAssetViewerEnabled = security === Security.Custom ? blockAssetViewerEnabled : globalAssetViewerEnabled;
     const ariaLabel = getDownloadAriaLabel(isAssetViewerEnabled, hasLink, altText, image?.title);
 
     return (
