@@ -6,7 +6,7 @@ import { type Security } from '@frontify/guideline-blocks-settings';
 export type Link = { link: { link: string }; openInNewTab: boolean };
 
 export type Settings = {
-    hasLink?: boolean;
+    hasLink: boolean;
     linkObject?: Link;
     name?: string;
     altText?: string;
@@ -16,8 +16,8 @@ export type Settings = {
     borderStyle: BorderStyle;
     borderWidth: string;
     downloadable: boolean;
-    assetViewerEnabled?: boolean;
-    hasBackground?: boolean;
+    assetViewerEnabled: boolean;
+    hasBackground: boolean;
     hasBorder: boolean;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
