@@ -284,6 +284,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
+      '@types/sinon':
+        specifier: ^21.0.0
+        version: 21.0.1
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.10)
@@ -308,9 +311,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -381,9 +381,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -451,9 +448,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -548,9 +542,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -685,9 +676,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -773,9 +761,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -822,6 +807,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
+      '@types/sinon':
+        specifier: ^21.0.0
+        version: 21.0.1
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.10)
@@ -843,9 +831,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -919,9 +904,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1004,9 +986,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1059,6 +1038,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
+      '@types/sinon':
+        specifier: ^21.0.0
+        version: 21.0.1
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.10)
@@ -1080,9 +1062,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1150,9 +1129,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1202,9 +1178,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
-      '@types/sinon':
-        specifier: ^21.0.0
-        version: 21.0.0
       cypress:
         specifier: ^15.13.0
         version: 15.13.1
@@ -1235,9 +1208,6 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1317,9 +1287,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1390,9 +1357,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1439,6 +1403,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
+      '@types/sinon':
+        specifier: ^21.0.0
+        version: 21.0.1
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.10)
@@ -1463,9 +1430,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1533,9 +1497,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1618,9 +1579,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1703,9 +1661,6 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      sinon:
-        specifier: ^21.0.3
-        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -4832,14 +4787,11 @@ packages:
   '@types/react@18.3.28':
     resolution: {integrity: sha512-z9VXpC7MWrhfWipitjNdgCauoMLRdIILQsAEV+ZesIzBq/oUlxk0m3ApZuMFCXdnS4U7KrI+l3WRUEGQ8K1QKw==}
 
-  '@types/sinon@21.0.0':
-    resolution: {integrity: sha512-+oHKZ0lTI+WVLxx1IbJDNmReQaIsQJjN2e7UUrJHEeByG7bFeKJYsv1E75JxTQ9QKJDp21bAa/0W2Xo4srsDnw==}
+  '@types/sinon@21.0.1':
+    resolution: {integrity: sha512-5yoJSqLbjH8T9V2bksgRayuhpZy+723/z6wBOR+Soe4ZlXC0eW8Na71TeaZPUWDQvM7LYKa9UGFc6LRqxiR5fQ==}
 
   '@types/sinonjs__fake-timers@8.1.1':
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
-
-  '@types/sinonjs__fake-timers@8.1.5':
-    resolution: {integrity: sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ==}
 
   '@types/sizzle@2.3.10':
     resolution: {integrity: sha512-TC0dmN0K8YcWEAEfiPi5gJP14eJe30TTGjkvek3iM/1NdHHsdCA/Td6GvNndMOo/iSnIsZ4HuuhrYPDAmbxzww==}
@@ -13892,13 +13844,11 @@ snapshots:
       '@types/prop-types': 15.7.15
       csstype: 3.2.3
 
-  '@types/sinon@21.0.0':
+  '@types/sinon@21.0.1':
     dependencies:
-      '@types/sinonjs__fake-timers': 8.1.5
+      '@types/sinonjs__fake-timers': 8.1.1
 
   '@types/sinonjs__fake-timers@8.1.1': {}
-
-  '@types/sinonjs__fake-timers@8.1.5': {}
 
   '@types/sizzle@2.3.10': {}
 
