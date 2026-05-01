@@ -308,6 +308,9 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+      sinon:
+        specifier: ^21.0.3
+        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -825,6 +828,9 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+      sinon:
+        specifier: ^21.0.3
+        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1053,6 +1059,9 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+      sinon:
+        specifier: ^21.0.3
+        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
@@ -1418,6 +1427,9 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
+      sinon:
+        specifier: ^21.0.3
+        version: 21.0.3
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.19(yaml@2.8.3)
