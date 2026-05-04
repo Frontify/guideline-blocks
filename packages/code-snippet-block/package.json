@@ -17,7 +17,7 @@
         "@codemirror/language": "^6.12.1",
         "@codemirror/state": "^6.5.3",
         "@codemirror/view": "^6.39.9",
-        "@frontify/app-bridge": "^4.0.0-alpha.61",
+        "@frontify/app-bridge": "^4.0.0-alpha.64",
         "@frontify/fondue": "13.4.0",
         "@frontify/guideline-blocks-settings": "2.1.8",
         "@frontify/guideline-blocks-shared": "workspace:*",
@@ -31,7 +31,7 @@
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@frontify/eslint-config-react": "1.0.15",
-        "@frontify/frontify-cli": "^6.0.1",
+        "@frontify/frontify-cli": "^6.1.0",
         "@tony.ganchev/eslint-plugin-header": "^3.4.3",
         "@types/lodash-es": "^4.17.12",
         "@types/react": "^18.3.27",
