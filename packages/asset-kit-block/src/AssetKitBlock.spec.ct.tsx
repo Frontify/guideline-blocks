@@ -131,7 +131,7 @@ describe('AssetKit Block', () => {
     it('should not display asset count if disabled', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                showAssetCount: true,
+                showAssetCount: false,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
