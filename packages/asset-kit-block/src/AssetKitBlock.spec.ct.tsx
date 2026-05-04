@@ -118,7 +118,7 @@ describe('AssetKit Block', () => {
     it('should display asset count if enabled', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                showAssetCount: true,
+                showCount: true,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -131,7 +131,7 @@ describe('AssetKit Block', () => {
     it('should not display asset count if disabled', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                showAssetCount: false,
+                showCount: false,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -144,7 +144,7 @@ describe('AssetKit Block', () => {
     it('should display asset count in custom color if enabled', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                showAssetCount: true,
+                showCount: true,
                 assetCountColor: 'override',
                 countCustomColor: PINK,
             },
