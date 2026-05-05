@@ -91,7 +91,14 @@ jobs:
         env:
           FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
           FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
-        run: pnpm --stream --filter "{packages/**}" --filter "!@frontify/guideline-blocks-shared" exec frontify-cli verify-manifest --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE"
+        run: |
+          for pkg in packages/*/; do
+            if [ -f "$pkg/manifest.json" ]; then
+              echo "::group::Verifying $(basename "$pkg")"
+              (cd "$pkg" && pnpm exec frontify-cli verify-manifest --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE")
+              echo "::endgroup::"
+            fi
+          done
 
   unit-tests:
     runs-on: ubuntu-latest
