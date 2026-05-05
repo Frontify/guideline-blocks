@@ -6,6 +6,7 @@
     "scripts": {
         "serve": "frontify-cli serve --entryPath src/index.ts",
         "deploy": "frontify-cli deploy --entryPath src/index.ts",
+        "verify-manifest": "frontify-cli verify-manifest",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "prettier": "prettier --check .",

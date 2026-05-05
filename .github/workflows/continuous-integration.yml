@@ -65,6 +65,41 @@ jobs:
       - name: Typecheck files
         run: pnpm typecheck
 
+  verify-manifest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify block manifests
+        env:
+          FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
+          FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
+        run: |
+          for pkg in packages/*/; do
+            if [ -f "$pkg/manifest.json" ]; then
+              echo "::group::Verifying $(basename "$pkg")"
+              (cd "$pkg" && pnpm exec frontify-cli verify-manifest --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE")
+              echo "::endgroup::"
+            fi
+          done
+
   unit-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 10
