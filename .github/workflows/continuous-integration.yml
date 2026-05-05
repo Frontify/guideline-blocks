@@ -90,8 +90,8 @@ jobs:
       - name: Verify block manifests
         env:
           FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
-          FRONTIFY_INSTANCE: ${{ vars.FRONTIFY_INSTANCE_URL }}
-        run: pnpm --stream --filter "{packages/**}" exec frontify-cli verify-manifest --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE"
+          FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
+        run: pnpm --stream --filter "{packages/**}" run --if-present verify-manifest -- --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE"
 
   unit-tests:
     runs-on: ubuntu-latest
