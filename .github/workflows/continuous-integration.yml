@@ -91,7 +91,7 @@ jobs:
         env:
           FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
           FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
-        run: pnpm --stream --filter "{packages/**}" run --if-present verify-manifest -- --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE"
+        run: pnpm --stream --filter "{packages/**}" --filter "!@frontify/guideline-blocks-shared" exec frontify-cli verify-manifest --token="$FRONTIFY_TOKEN" --instance="$FRONTIFY_INSTANCE"
 
   unit-tests:
     runs-on: ubuntu-latest
