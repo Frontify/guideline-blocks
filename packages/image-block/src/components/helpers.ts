@@ -136,7 +136,6 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
         : undefined;
 
     const shouldNotApplyBorderRadius =
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
         !hasBackground && autosizing !== Autosizing.Fill && ratio !== ImageAspectRatio.RatioNone;
 
     return {

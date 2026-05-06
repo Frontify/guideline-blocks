@@ -11,6 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconCross } from '@frontify/fondue/icons';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type BlockProps, type Color, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
@@ -50,10 +51,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         showFigmaLink = true,
         hasBackground = false,
         hasLimitedOptions = true,
-        borderColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        borderColor = { red: 0, green: 0, blue: 0, name: 'black' },
         borderStyle = 'solid',
         borderWidth = '1px',
-        backgroundColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        backgroundColor = { red: 0, green: 0, blue: 0, name: 'black' },
         hasRadius,
         radiusValue,
         radiusChoice,
@@ -113,7 +114,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const ShowFigmaLive = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
         () => (
             <div
                 data-test-id="figma-live-preview"
@@ -159,6 +159,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         ]
     );
 
+    // eslint-disable-next-line @eslint-react/static-components
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
         modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
@@ -232,8 +233,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
+                        {/* eslint-disable-next-line @eslint-react/static-components */}
                         {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
                         {}
+                        {/* eslint-disable-next-line @eslint-react/static-components */}
                         {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
                 )}

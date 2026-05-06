@@ -30,7 +30,6 @@ export const InformationSection = ({
     title,
     appBridge,
 }: InformationSectionProps) => {
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-memo
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
             .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])

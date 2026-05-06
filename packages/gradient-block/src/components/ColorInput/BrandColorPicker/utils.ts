@@ -1,15 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-type CssColorRed = number;
-type CssColorGreen = number;
-type CssColorBlue = number;
-type CssColorAlpha = number;
-
 export type CssColor = {
-    red: CssColorRed;
-    green: CssColorGreen;
-    blue: CssColorBlue;
-    alpha?: CssColorAlpha;
+    red: number;
+    green: number;
+    blue: number;
+    alpha?: number;
 };
 
 type Color = {
@@ -30,6 +25,7 @@ type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] exte
     ? Acc[number]
     : Enumerate<N, [...Acc, Acc['length']]>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>> | T;
 
 export const areColorsEqual = (color1?: CssColor, color2?: CssColor): boolean => {
@@ -58,9 +54,9 @@ export const isColorLight = (color: CssColor): boolean => {
 
 const fromKnownColorToCssColor = (color: Color | RgbaColorGraphQL | ParsedColor): CssColor => {
     return {
-        red: color.red <= 255 && color.red >= 0 ? (color.red as IntRange<0, 255>) : CssColorDefaultRed,
-        green: color.green <= 255 && color.green >= 0 ? (color.green as IntRange<0, 255>) : CssColorDefaultBlue,
-        blue: color.blue <= 255 && color.blue >= 0 ? (color.blue as IntRange<0, 255>) : CssColorDefaultGreen,
+        red: color.red <= 255 && color.red >= 0 ? color.red : CssColorDefaultRed,
+        green: color.green <= 255 && color.green >= 0 ? color.green : CssColorDefaultBlue,
+        blue: color.blue <= 255 && color.blue >= 0 ? color.blue : CssColorDefaultGreen,
         alpha:
             typeof color.alpha === 'number' && color.alpha <= 1 && color.alpha >= 0
                 ? color.alpha

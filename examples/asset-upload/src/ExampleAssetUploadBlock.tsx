@@ -56,7 +56,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         );
     };
 
-    // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
+    // eslint-disable-next-line @eslint-react/static-components, @eslint-react/no-nested-component-definitions
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
             <a className="tw-text-highlight" href={link} target="_blank" rel="noopener noreferrer">
@@ -88,8 +88,11 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                                     <div className="tw-flex tw-flex-col tw-gap-4">
                                         <strong>{asset.title}</strong>
                                         <div className="tw-flex tw-gap-4">
+                                            {/* eslint-disable-next-line @eslint-react/static-components */}
                                             <Link link={asset.previewUrl} text="Preview URL" />
+                                            {/* eslint-disable-next-line @eslint-react/static-components */}
                                             <Link link={asset.genericUrl} text="Generic URL" />
+                                            {/* eslint-disable-next-line @eslint-react/static-components */}
                                             {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
                                         </div>
                                     </div>

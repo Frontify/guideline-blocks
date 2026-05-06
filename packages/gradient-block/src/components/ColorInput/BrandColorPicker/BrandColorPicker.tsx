@@ -66,7 +66,7 @@ export const BrandColorPicker = ({
 
                 <SegmentedControl.Root
                     onValueChange={(value) => {
-                        setView(value as BrandColorView);
+                        setView(value);
                     }}
                     defaultValue="grid"
                 >
