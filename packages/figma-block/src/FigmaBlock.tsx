@@ -212,7 +212,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {isAssetAvailable && !isLivePreview && (
                             <FigmaImagePreview
                                 title={asset.title}
-                                previewUrl={asset.previewUrl}
+                                url={asset.previewUrl}
                                 assetExternalUrl={assetExternalUrl}
                                 hasLimitedOptions={hasLimitedOptions}
                                 height={isCustomHeight ? heightValue : heights[heightChoice]}
