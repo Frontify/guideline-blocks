@@ -78,7 +78,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasPreview = preview !== PreviewType.None;
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
             try {

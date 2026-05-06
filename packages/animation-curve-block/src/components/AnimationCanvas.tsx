@@ -93,7 +93,6 @@ export const AnimationCanvas = ({
         }
     });
 
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const handleMovePoint = useCallback(
         (event: MouseEvent) => {
             if (!draggingPoint || !svgRef.current) {
@@ -148,7 +147,6 @@ export const AnimationCanvas = ({
         }
     };
 
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const handleDragEnd = useCallback(() => {
         if (!draggingPoint) {
             return;

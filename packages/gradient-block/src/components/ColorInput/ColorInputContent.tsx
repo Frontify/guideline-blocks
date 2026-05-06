@@ -34,7 +34,7 @@ export const ColorInputContent = ({
                         defaultValue="brand"
                         hugWidth={false}
                         value={activePicker}
-                        onValueChange={(value) => setActivePicker(value as PickerType)}
+                        onValueChange={(value) => setActivePicker(value)}
                     >
                         <SegmentedControl.Item value="brand" aria-label="Brand">
                             Brand

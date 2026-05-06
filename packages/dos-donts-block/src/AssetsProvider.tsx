@@ -15,7 +15,7 @@ type AssetsContext = {
     updateAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
 };
 
-export const AssetsContext = createContext<AssetsContext>({} as AssetsContext);
+export const AssetsContext = createContext<AssetsContext>({});
 AssetsContext.displayName = 'AssetsContext';
 
 export const AssetsProvider = ({ appBridge, children }: AssetsProviderProps) => {
