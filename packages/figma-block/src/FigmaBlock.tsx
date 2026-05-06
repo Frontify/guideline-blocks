@@ -17,8 +17,8 @@ import { type ReactElement, useCallback, useEffect, useRef, useState } from 'rea
 import { createPortal } from 'react-dom';
 
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
-import { FigmaImagePreview } from './components/FigmaImagePreview';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
+import { FigmaImagePreview } from './components/FigmaImagePreview';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
@@ -141,7 +141,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     src={asset?.externalUrl ?? undefined}
                     className="tw-h-full tw-w-full tw-border-none"
                     title="figma-iframe"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                    sandbox="allow-same-origin allow-popups allow-forms"
                 />
             </div>
         ),

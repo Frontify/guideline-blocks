@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { type Color, type Radius } from '@frontify/guideline-blocks-settings';
 
 import { ImageStage } from '../ImageStage';
