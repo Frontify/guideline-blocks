@@ -23,9 +23,11 @@ const ToolbarFlyoutSelector = '[data-test-id="block-item-wrapper-toolbar-flyout"
 
 const getImageBlockWithContainer = (appBridgeProps: getAppBridgeBlockStubProps) => {
     const Component = () => {
+        // eslint-disable-next-line @eslint-react/static-components
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, appBridgeProps);
         return (
             <div className="[&_[data-test-id='image-block-img-wrapper']]:tw-w-screen">
+                {/* eslint-disable-next-line @eslint-react/static-components */}
                 <ImageBlockWithStubs />
             </div>
         );

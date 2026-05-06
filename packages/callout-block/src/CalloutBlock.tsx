@@ -42,7 +42,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
     const updateStyles = useCallback(() => {
         const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(
             type,
