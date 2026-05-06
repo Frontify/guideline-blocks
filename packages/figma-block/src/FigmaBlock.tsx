@@ -112,9 +112,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
     };
 
-    const ShowFigmaLive = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
-        () => (
+    const renderFigmaLive = () => {
+        return (
             <div
                 data-test-id="figma-live-preview"
                 style={{
@@ -135,7 +134,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </Button>
                     </div>
                 )}
-                {}
                 <iframe
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     src={asset?.externalUrl ?? undefined}
@@ -144,20 +142,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     sandbox="allow-same-origin allow-popups allow-forms"
                 />
             </div>
-        ),
-        [
-            asset,
-            hasBorder,
-            isMobile,
-            isCustomHeight,
-            heightValue,
-            heightChoice,
-            borderWidth,
-            borderColor,
-            borderStyle,
-            allowFullScreen,
-        ]
-    );
+        );
+    };
 
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
@@ -232,9 +218,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
+                        {isAssetAvailable && isLivePreview && renderFigmaLive()}
                         {}
-                        {showFigmaLiveModal && <FigmaLivePortal />}
+                        {showFigmaLiveModal && FigmaLivePortal()}
                     </>
                 )}
             </StyleProvider>
