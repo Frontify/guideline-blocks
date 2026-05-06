@@ -17,7 +17,7 @@ import { type ReactElement, useCallback, useEffect, useRef, useState } from 'rea
 import { createPortal } from 'react-dom';
 
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
-import { ImageStage } from './ImageStage';
+import { FigmaImagePreview } from './components/FigmaImagePreview';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ASSET_ID, heights } from './settings';
@@ -111,73 +111,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             }
         );
     };
-
-    // eslint-disable-next-line @eslint-react/no-unnecessary-use-callback
-    const ShowFigmaLink = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
-        ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
-            <div className="tw-p-2 tw-text-sm">
-                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
-                    {title}
-                </a>
-            </div>
-        ),
-        []
-    );
-
-    const ShowImagePreview = useCallback(
-        // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
-        ({
-            hasBorder,
-            height,
-            showFigmaLink,
-            hasBackground,
-        }: {
-            hasBorder: boolean;
-            height: string;
-            showFigmaLink: boolean;
-            hasBackground: boolean;
-        }) => (
-            <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <ImageStage
-                    title={asset.title}
-                    url={asset.previewUrl}
-                    hasLimitedOptions={hasLimitedOptions}
-                    height={height}
-                    hasBorder={hasBorder}
-                    borderStyle={borderStyle}
-                    borderColor={borderColor}
-                    borderWidth={borderWidth}
-                    isMobile={isMobile}
-                    hasBackground={hasBackground}
-                    backgroundColor={backgroundColor}
-                    hasRadius={hasRadius}
-                    radiusValue={radiusValue}
-                    radiusChoice={radiusChoice}
-                    allowFullScreen={allowFullScreen}
-                    allowZooming={allowZooming}
-                />
-                {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
-            </div>
-        ),
-        [
-            ShowFigmaLink,
-            asset?.previewUrl,
-            asset?.title,
-            assetExternalUrl,
-            hasLimitedOptions,
-            isMobile,
-            borderColor,
-            borderStyle,
-            borderWidth,
-            allowFullScreen,
-            allowZooming,
-            backgroundColor,
-            hasRadius,
-            radiusChoice,
-            radiusValue,
-        ]
-    );
 
     const ShowFigmaLive = useCallback(
         // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
@@ -277,10 +210,24 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
                         )}
                         {isAssetAvailable && !isLivePreview && (
-                            <ShowImagePreview
-                                hasBorder={hasBorder}
-                                hasBackground={hasBackground}
+                            <FigmaImagePreview
+                                title={asset.title}
+                                previewUrl={asset.previewUrl}
+                                assetExternalUrl={assetExternalUrl}
+                                hasLimitedOptions={hasLimitedOptions}
                                 height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                hasBorder={hasBorder}
+                                borderStyle={borderStyle}
+                                borderColor={borderColor}
+                                borderWidth={borderWidth}
+                                isMobile={isMobile}
+                                hasBackground={hasBackground}
+                                backgroundColor={backgroundColor}
+                                hasRadius={hasRadius}
+                                radiusValue={radiusValue}
+                                radiusChoice={radiusChoice}
+                                allowFullScreen={allowFullScreen}
+                                allowZooming={allowZooming}
                                 showFigmaLink={showFigmaLink}
                             />
                         )}
