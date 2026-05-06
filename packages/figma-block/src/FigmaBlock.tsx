@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconCross } from '@frontify/fondue/icons';
-import { type BlockProps, type Color, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -50,10 +50,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         showFigmaLink = true,
         hasBackground = false,
         hasLimitedOptions = true,
-        borderColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        borderColor = { red: 0, green: 0, blue: 0, name: 'black' },
         borderStyle = 'solid',
         borderWidth = '1px',
-        backgroundColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        backgroundColor = { red: 0, green: 0, blue: 0, name: 'black' },
         hasRadius,
         radiusValue,
         radiusChoice,
