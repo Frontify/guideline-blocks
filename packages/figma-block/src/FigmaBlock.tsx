@@ -10,8 +10,8 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue/components';
-import { IconArrowExpand, IconCross } from '@frontify/fondue/icons';
-import { type BlockProps, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { IconCross } from '@frontify/fondue/icons';
+import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -19,7 +19,7 @@ import { createPortal } from 'react-dom';
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { FigmaImagePreview } from './components/FigmaImagePreview';
-import { getBorderOfBlock, getHeightOfBlock } from './helpers';
+import { FigmaLivePreview } from './components/FigmaLivePreview';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
@@ -112,39 +112,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
     };
 
-    const renderFigmaLive = () => {
-        return (
-            <div
-                data-test-id="figma-live-preview"
-                style={{
-                    border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
-                    height: getHeightOfBlock(isCustomHeight ? heightValue : heights[heightChoice], isMobile),
-                }}
-                className={joinClassNames(['tw-relative tw-flex tw-justify-center tw-group'])}
-            >
-                {allowFullScreen && (
-                    <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
-                        <Button
-                            onPress={() => toggleFigmaLiveModal(true)}
-                            emphasis="default"
-                            aria-label="allow fullscreen"
-                            aspect="square"
-                        >
-                            <IconArrowExpand size={16} />
-                        </Button>
-                    </div>
-                )}
-                <iframe
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    src={asset?.externalUrl ?? undefined}
-                    className="tw-h-full tw-w-full tw-border-none"
-                    title="figma-iframe"
-                    sandbox="allow-same-origin allow-popups allow-forms"
-                />
-            </div>
-        );
-    };
-
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
         modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
@@ -218,7 +185,19 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && renderFigmaLive()}
+                        {isAssetAvailable && isLivePreview && (
+                            <FigmaLivePreview
+                                assetExternalUrl={assetExternalUrl}
+                                allowFullScreen={allowFullScreen}
+                                isMobile={isMobile}
+                                onOpenFullScreen={() => toggleFigmaLiveModal(true)}
+                                hasBorder={hasBorder}
+                                borderStyle={borderStyle}
+                                borderWidth={borderWidth}
+                                borderColor={borderColor}
+                                height={isCustomHeight ? heightValue : heights[heightChoice]}
+                            />
+                        )}
                         {}
                         {showFigmaLiveModal && FigmaLivePortal()}
                     </>
