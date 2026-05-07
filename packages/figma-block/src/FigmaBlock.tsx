@@ -139,12 +139,14 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     src={asset?.externalUrl ?? undefined}
                     className="tw-h-full tw-w-full tw-border-none"
                     title="figma-iframe"
-                    sandbox="allow-same-origin allow-popups allow-forms"
+                    // eslint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
             </div>
         );
     };
 
+    // eslint-disable-next-line @eslint-react/static-components
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
         modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
@@ -220,7 +222,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {}
                         {isAssetAvailable && isLivePreview && renderFigmaLive()}
                         {}
-                        {showFigmaLiveModal && FigmaLivePortal()}
+                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                        {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
                 )}
             </StyleProvider>
