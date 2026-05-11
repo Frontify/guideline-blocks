@@ -42,5 +42,11 @@ export default defineConfig(
                 },
             ],
         },
+    },
+    {
+        files: ['**/manifest.json'],
+        rules: {
+            'jsonc/sort-keys': 'off',
+        },
     }
 );
