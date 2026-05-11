@@ -17,6 +17,6 @@
         "target": "ES2020",
         "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
     },
-    "exclude": ["dist", "node_modules"],
+    "exclude": ["dist", "node_modules", "../shared/src/**/*.spec.ts", "../shared/src/**/*.spec.tsx"],
     "include": ["src/**/*", "../shared/src/**/*"]
 }
