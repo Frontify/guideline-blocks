@@ -11,15 +11,14 @@ import {
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconCross } from '@frontify/fondue/icons';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type BlockProps, type Color, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
-import { ImageStage } from './ImageStage';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
+import { FigmaImagePreview } from './components/FigmaImagePreview';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
@@ -114,73 +113,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     // eslint-disable-next-line @eslint-react/static-components
-    const ShowFigmaLink = useCallback(
-        ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
-            <div className="tw-p-2 tw-text-sm">
-                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
-                    {title}
-                </a>
-            </div>
-        ),
-        []
-    );
-
-    // eslint-disable-next-line @eslint-react/static-components
-    const ShowImagePreview = useCallback(
-        ({
-            hasBorder,
-            height,
-            showFigmaLink,
-            hasBackground,
-        }: {
-            hasBorder: boolean;
-            height: string;
-            showFigmaLink: boolean;
-            hasBackground: boolean;
-        }) => (
-            <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <ImageStage
-                    title={asset.title}
-                    url={asset.previewUrl}
-                    hasLimitedOptions={hasLimitedOptions}
-                    height={height}
-                    hasBorder={hasBorder}
-                    borderStyle={borderStyle}
-                    borderColor={borderColor}
-                    borderWidth={borderWidth}
-                    isMobile={isMobile}
-                    hasBackground={hasBackground}
-                    backgroundColor={backgroundColor}
-                    hasRadius={hasRadius}
-                    radiusValue={radiusValue}
-                    radiusChoice={radiusChoice}
-                    allowFullScreen={allowFullScreen}
-                    allowZooming={allowZooming}
-                />
-                {/* eslint-disable-next-line @eslint-react/static-components */}
-                {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
-            </div>
-        ),
-        [
-            ShowFigmaLink,
-            asset?.previewUrl,
-            asset?.title,
-            assetExternalUrl,
-            hasLimitedOptions,
-            isMobile,
-            borderColor,
-            borderStyle,
-            borderWidth,
-            allowFullScreen,
-            allowZooming,
-            backgroundColor,
-            hasRadius,
-            radiusChoice,
-            radiusValue,
-        ]
-    );
-
-    // eslint-disable-next-line @eslint-react/static-components
     const ShowFigmaLive = useCallback(
         () => (
             <div
@@ -203,12 +135,12 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </Button>
                     </div>
                 )}
-                {}
                 <iframe
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     src={asset?.externalUrl ?? undefined}
                     className="tw-h-full tw-w-full tw-border-none"
                     title="figma-iframe"
+                    // eslint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
             </div>
@@ -279,11 +211,24 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
                         )}
                         {isAssetAvailable && !isLivePreview && (
-                            // eslint-disable-next-line @eslint-react/static-components
-                            <ShowImagePreview
-                                hasBorder={hasBorder}
-                                hasBackground={hasBackground}
+                            <FigmaImagePreview
+                                title={asset.title}
+                                url={asset.previewUrl}
+                                assetExternalUrl={assetExternalUrl}
+                                hasLimitedOptions={hasLimitedOptions}
                                 height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                hasBorder={hasBorder}
+                                borderStyle={borderStyle}
+                                borderColor={borderColor}
+                                borderWidth={borderWidth}
+                                isMobile={isMobile}
+                                hasBackground={hasBackground}
+                                backgroundColor={backgroundColor}
+                                hasRadius={hasRadius}
+                                radiusValue={radiusValue}
+                                radiusChoice={radiusChoice}
+                                allowFullScreen={allowFullScreen}
+                                allowZooming={allowZooming}
                                 showFigmaLink={showFigmaLink}
                             />
                         )}
