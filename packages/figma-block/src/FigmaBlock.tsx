@@ -112,8 +112,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
     };
 
-    const renderFigmaLive = () => {
-        return (
+    // eslint-disable-next-line @eslint-react/static-components
+    const ShowFigmaLive = useCallback(
+        () => (
             <div
                 data-test-id="figma-live-preview"
                 style={{
@@ -143,8 +144,20 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
             </div>
-        );
-    };
+        ),
+        [
+            asset,
+            hasBorder,
+            isMobile,
+            isCustomHeight,
+            heightValue,
+            heightChoice,
+            borderWidth,
+            borderColor,
+            borderStyle,
+            allowFullScreen,
+        ]
+    );
 
     // eslint-disable-next-line @eslint-react/static-components
     const FigmaLivePortal = useCallback(() => {
@@ -220,7 +233,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && renderFigmaLive()}
+                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                        {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
                         {}
                         {/* eslint-disable-next-line @eslint-react/static-components */}
                         {showFigmaLiveModal && <FigmaLivePortal />}
