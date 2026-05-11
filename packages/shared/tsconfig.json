@@ -12,7 +12,7 @@
         "skipLibCheck": true,
         "strict": true,
         "target": "ES2020",
-        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
+        "types": ["@testing-library/jest-dom"]
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src/**/*"]
