@@ -60,7 +60,7 @@ describe('Image Block', () => {
         });
     });
 
-    it('renders an image block', () => {
+    it('should render an image block', () => {
         renderImageBlock();
         expect(screen.getByTestId(IMAGE_BLOCK_TEST_ID)).toBeInTheDocument();
     });

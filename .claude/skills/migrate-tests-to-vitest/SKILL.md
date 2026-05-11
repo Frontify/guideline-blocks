@@ -15,6 +15,7 @@ The worked precedent: `packages/image-block/src/ImageBlock.spec.tsx` and `packag
 - **Tests that don't translate cleanly:** rewrite where reasonable; otherwise drop with `// TODO(vitest-migration): <reason>`. Don't fake coverage by asserting on something the test wasn't actually checking. If the lost coverage is on real logic (e.g. a hook), suggest a follow-up unit test for that logic rather than reaching for happy-dom workarounds.
 - **Cypress root install stays** until the last package migrates — `pnpm test:components` at the repo root must keep working for unmigrated packages.
 - **Test-id style:** flat top-level `const FOO_TEST_ID = 'foo';` declarations, one per id, used directly. No object wrappers, no enums.
+- **Test naming:** every `it` description must start with `should` or `should not` (per the org testing guide). Rename any migrated description that doesn't comply — including pre-existing ones in the file you're touching.
 
 ## Ask the user only when
 
@@ -56,7 +57,7 @@ If any step fails, the migration is not done. `pnpm lint:fix` autofixes mechanic
 
 2. **Pre-flight infra check** (skip if you've done it this session): `vite.config.ts` has `test: { environment: 'happy-dom', setupFiles: ['vitest.setup.ts'], include: ['packages/**/*.{test,spec}.{ts,tsx}'] }`, and `vitest.setup.ts` imports `@testing-library/jest-dom/vitest` with `testIdAttribute: 'data-test-id'`. If either is missing, stop and surface to the user.
 
-3. **Convert the tests** using the mapping table. Write into the existing `.spec.tsx` (don't create a parallel file). If there's no `.spec.tsx`, create one. Extract test-ids into flat consts at the top.
+3. **Convert the tests** using the mapping table. Write into the existing `.spec.tsx` (don't create a parallel file). If there's no `.spec.tsx`, create one. Extract test-ids into flat consts at the top. Rename every `it` to start with `should` / `should not` — see "Test naming convention."
 
 4. **Iterate until the verification gate passes.** Run vitest, fix failures, run typecheck, fix, run lint, fix. If lint flags import order or type-import style, `pnpm lint:fix` clears most.
 
@@ -134,6 +135,16 @@ await waitFor(() => {
 ```
 
 Same pattern for any other component that hydrates on a tick.
+
+## Test naming convention
+
+Org rule (from the testing guide): every `it` description starts with `should` or `should not`, followed by a concise statement of the expected behavior. Cypress specs in this repo were inconsistent — assume they violate the rule and fix as you migrate.
+
+- `it('renders an image block')` → `it('should render an image block')`
+- `it('renders the title if provided')` → `it('should render the title if it is provided')`
+- Negation: prefer `should not` over `should ... not` — `it('should not render the placeholder in view mode')`.
+
+Apply this to **every** description in the file you touch, including any pre-existing `.spec.tsx` tests that predate the migration. The renames are cheap and keep the file uniform.
 
 ## Test-id constants
 
