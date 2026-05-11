@@ -112,6 +112,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
     };
 
+    // eslint-disable-next-line @eslint-react/static-components
     const FigmaLivePortal = useCallback(() => {
         const modalRoot = document.body;
         modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
@@ -187,8 +188,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {}
                         {isAssetAvailable && isLivePreview && (
                             <FigmaLivePreview
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                assetExternalUrl={asset?.externalUrl ?? undefined}
+                                assetExternalUrl={
+                                    typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined
+                                }
                                 allowFullScreen={allowFullScreen}
                                 isMobile={isMobile}
                                 onOpenFullScreen={() => toggleFigmaLiveModal(true)}
@@ -200,7 +202,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {showFigmaLiveModal && FigmaLivePortal()}
+                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                        {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
                 )}
             </StyleProvider>
