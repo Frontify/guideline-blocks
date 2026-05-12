@@ -40,7 +40,7 @@ export type Settings = {
     isCustomHeight?: boolean;
     heightValue?: string;
     heightChoice?: HeightChoices;
-    showFigmaLink: boolean | undefined;
+    showFigmaLink?: boolean;
     hasBackground?: boolean;
     hasLimitedOptions?: boolean;
     borderStyle?: string;
@@ -72,7 +72,7 @@ export type UseImageStageProps = {
 };
 
 export type ImageStageProps = {
-    title?: string | undefined;
+    title: string;
     url: string;
     hasLimitedOptions?: boolean;
     height: string;
