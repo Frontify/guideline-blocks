@@ -186,10 +186,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && (
+                        {isAssetAvailable && isLivePreview && asset?.externalUrl && (
                             <FigmaLivePreview
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                assetExternalUrl={asset?.externalUrl}
+                                assetExternalUrl={asset.externalUrl as string}
                                 allowFullScreen={allowFullScreen}
                                 isMobile={isMobile}
                                 onOpenFullScreen={() => toggleFigmaLiveModal(true)}
