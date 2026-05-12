@@ -3,6 +3,8 @@
 import { ImageStage } from '../ImageStage';
 import { type ImageStageProps } from '../types';
 
+import { FigmaLink } from './FigmaLink';
+
 type FigmaImagePreviewProps = ImageStageProps & {
     assetExternalUrl: string;
     showFigmaLink: boolean;
@@ -11,13 +13,6 @@ type FigmaImagePreviewProps = ImageStageProps & {
 export const FigmaImagePreview = ({ assetExternalUrl, showFigmaLink, ...imageStageProps }: FigmaImagePreviewProps) => (
     <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
         <ImageStage {...imageStageProps} />
-
-        {showFigmaLink && (
-            <div className="tw-p-2 tw-text-sm">
-                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
-                    {imageStageProps.title}
-                </a>
-            </div>
-        )}
+        {showFigmaLink && <FigmaLink assetExternalUrl={assetExternalUrl} title={imageStageProps.title} />}
     </div>
 );
