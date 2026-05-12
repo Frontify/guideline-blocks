@@ -40,7 +40,7 @@ export type Settings = {
     isCustomHeight?: boolean;
     heightValue?: string;
     heightChoice?: HeightChoices;
-    showFigmaLink?: boolean;
+    showFigmaLink: boolean | undefined;
     hasBackground?: boolean;
     hasLimitedOptions?: boolean;
     borderStyle?: string;
