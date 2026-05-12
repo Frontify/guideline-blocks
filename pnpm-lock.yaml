@@ -1175,9 +1175,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
-      cypress:
-        specifier: ^15.13.0
-        version: 15.13.1
       eslint:
         specifier: ^10.3.0
         version: 10.3.0(jiti@2.7.0)

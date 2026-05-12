@@ -30,7 +30,6 @@
         "@types/lodash-es": "^4.17.12",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
-        "cypress": "^15.13.0",
         "eslint": "^10.3.0",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-tailwindcss": "^3.18.3",
