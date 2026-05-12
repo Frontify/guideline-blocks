@@ -186,7 +186,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && asset?.externalUrl && (
+                        {isAssetAvailable && isLivePreview && (
                             <FigmaLivePreview
                                 assetExternalUrl={asset.externalUrl as string}
                                 allowFullScreen={allowFullScreen}
