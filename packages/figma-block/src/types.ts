@@ -72,7 +72,7 @@ export type UseImageStageProps = {
 };
 
 export type ImageStageProps = {
-    title?: string;
+    title: string | undefined;
     url: string;
     hasLimitedOptions?: boolean;
     height?: string;
@@ -91,7 +91,7 @@ export type ImageStageProps = {
 };
 
 export type FigmaLivePreviewProps = {
-    assetExternalUrl: string | undefined;
+    assetExternalUrl: string;
     allowFullScreen?: boolean;
     isMobile: boolean;
     onOpenFullScreen: () => void;
