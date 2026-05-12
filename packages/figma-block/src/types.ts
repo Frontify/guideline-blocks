@@ -91,7 +91,7 @@ export type ImageStageProps = {
 };
 
 export type FigmaLivePreviewProps = {
-    assetExternalUrl: string;
+    assetExternalUrl: string | undefined;
     allowFullScreen?: boolean;
     isMobile: boolean;
     onOpenFullScreen: () => void;
