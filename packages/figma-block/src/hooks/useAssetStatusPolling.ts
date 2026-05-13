@@ -13,7 +13,7 @@ type UseAssetStatusPollingReturn = {
     isReady: boolean;
 };
 
-const isFinished = (status: string | undefined) => status && status === ASSET_STATUS_FINISHED;
+const isFinished = (status: string | undefined): boolean => status === ASSET_STATUS_FINISHED;
 
 export const useAssetStatusPolling = (
     appBridge: AppBridgeBlock,
