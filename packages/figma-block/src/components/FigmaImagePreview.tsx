@@ -2,6 +2,7 @@
 
 import { ImageStage } from '../ImageStage';
 import { type ImageStageProps } from '../types';
+import { extractUrlParameterFromUriQueries } from '../utilities';
 
 type FigmaImagePreviewProps = ImageStageProps & {
     assetExternalUrl: string;
@@ -14,7 +15,12 @@ export const FigmaImagePreview = ({ assetExternalUrl, showFigmaLink, ...imageSta
 
         {showFigmaLink && (
             <div className="tw-p-2 tw-text-sm">
-                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
+                <a
+                    href={extractUrlParameterFromUriQueries(assetExternalUrl)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tw-text-[#4a90e2]"
+                >
                     {imageStageProps.title}
                 </a>
             </div>
