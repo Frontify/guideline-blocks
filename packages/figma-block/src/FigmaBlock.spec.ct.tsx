@@ -45,7 +45,7 @@ describe('Figma Block', () => {
     it('renders a Figma image preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://picsum.photos/200/200' }],
             },
             editorState: true,
         });
@@ -56,7 +56,7 @@ describe('Figma Block', () => {
     it('renders a Figma Live iframe preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://picsum.photos/200/200' }],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
@@ -68,7 +68,7 @@ describe('Figma Block', () => {
     it('toggles Figma Live preview Full screen', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://picsum.photos/200/200' }],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live, allowFullScreen: true },
             editorState: true,
