@@ -31,7 +31,7 @@ export const FigmaImagePreview = ({
             {isReady ? (
                 <ImageStage {...imageStageProps} />
             ) : (
-                <div 
+                <div
                     className="tw-flex tw-items-center tw-justify-center tw-w-full"
                     style={{ height: imageStageProps.height }}
                 >
