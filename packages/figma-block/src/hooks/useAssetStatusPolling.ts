@@ -53,8 +53,8 @@ export const useAssetStatusPolling = (
             }
         };
 
-        intervalId = setInterval(() => {
-            poll().catch(console.error);
+        intervalId = setInterval(async () => {
+            await poll();
         }, POLLING_INTERVAL_MS);
 
         return () => clearInterval(intervalId);
