@@ -30,7 +30,7 @@ export type Point = {
 };
 
 export type Settings = {
-    figmaPreviewId: string;
+    figmaPreviewId: BlockPreview;
     isHeightCustom: boolean;
     heightCustom: string;
     heightSimple: string;

@@ -27,7 +27,6 @@ const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     // eslint-disable-next-line @eslint-react/use-state
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
-    const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -36,7 +35,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const ref = useRef<HTMLDivElement>(null);
     const [referenceUrl, setReferenceUrl] = useState('');
-    const isAssetAvailable = !!asset;
+    // hack because typing is shit
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
@@ -85,11 +84,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             window.removeEventListener('resize', resize);
         };
     }, []);
-
-    useEffect(() => {
-        // eslint-disable-next-line @eslint-react/set-state-in-effect, @typescript-eslint/no-unsafe-enum-comparison
-        setIsLivePreview(figmaPreviewId === BlockPreview.Live);
-    }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
@@ -156,44 +150,45 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <ReferenceErrorMessage originalUrl={referenceUrl} />
                 ) : (
                     <>
-                        {isInEditMode && !isAssetAvailable && (
-                            <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
+                        {safeExternalUrl ? (
+                            figmaPreviewId === BlockPreview.Live ? (
+                                <FigmaLivePreview
+                                    assetExternalUrl={safeExternalUrl}
+                                    allowFullScreen={allowFullScreen}
+                                    isMobile={isMobile}
+                                    onOpenFullScreen={() => toggleFigmaLiveModal(true)}
+                                    hasBorder={hasBorder}
+                                    borderStyle={borderStyle}
+                                    borderWidth={borderWidth}
+                                    borderColor={borderColor}
+                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                />
+                            ) : (
+                                <FigmaImagePreview
+                                    title={asset.title}
+                                    url={asset.previewUrl}
+                                    assetExternalUrl={safeExternalUrl}
+                                    hasLimitedOptions={hasLimitedOptions}
+                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                    hasBorder={hasBorder}
+                                    borderStyle={borderStyle}
+                                    borderColor={borderColor}
+                                    borderWidth={borderWidth}
+                                    isMobile={isMobile}
+                                    hasBackground={hasBackground}
+                                    backgroundColor={backgroundColor}
+                                    hasRadius={hasRadius}
+                                    radiusValue={radiusValue}
+                                    radiusChoice={radiusChoice}
+                                    allowFullScreen={allowFullScreen}
+                                    allowZooming={allowZooming}
+                                    showFigmaLink={showFigmaLink}
+                                />
+                            )
+                        ) : (
+                            isInEditMode && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
                         )}
-                        {isAssetAvailable && !isLivePreview && safeExternalUrl && (
-                            <FigmaImagePreview
-                                title={asset.title}
-                                url={asset.previewUrl}
-                                assetExternalUrl={safeExternalUrl}
-                                hasLimitedOptions={hasLimitedOptions}
-                                height={isCustomHeight ? heightValue : heights[heightChoice]}
-                                hasBorder={hasBorder}
-                                borderStyle={borderStyle}
-                                borderColor={borderColor}
-                                borderWidth={borderWidth}
-                                isMobile={isMobile}
-                                hasBackground={hasBackground}
-                                backgroundColor={backgroundColor}
-                                hasRadius={hasRadius}
-                                radiusValue={radiusValue}
-                                radiusChoice={radiusChoice}
-                                allowFullScreen={allowFullScreen}
-                                allowZooming={allowZooming}
-                                showFigmaLink={showFigmaLink}
-                            />
-                        )}
-                        {isAssetAvailable && isLivePreview && safeExternalUrl && (
-                            <FigmaLivePreview
-                                assetExternalUrl={safeExternalUrl}
-                                allowFullScreen={allowFullScreen}
-                                isMobile={isMobile}
-                                onOpenFullScreen={() => toggleFigmaLiveModal(true)}
-                                hasBorder={hasBorder}
-                                borderStyle={borderStyle}
-                                borderWidth={borderWidth}
-                                borderColor={borderColor}
-                                height={isCustomHeight ? heightValue : heights[heightChoice]}
-                            />
-                        )}
+
                         {/* eslint-disable-next-line @eslint-react/static-components */}
                         {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
