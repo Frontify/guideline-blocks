@@ -13,16 +13,18 @@ type UseAssetStatusPollingReturn = {
     isReady: boolean;
 };
 
+const isFinished = (status: string | undefined) => status && status === ASSET_STATUS_FINISHED;
+
 export const useAssetStatusPolling = (
     appBridge: AppBridgeBlock,
     assetId: number,
     initialStatus: string
 ): UseAssetStatusPollingReturn => {
     const [pollingDetectedFinished, setPollingDetectedFinished] = useState(false);
-    const isReady = initialStatus === ASSET_STATUS_FINISHED || pollingDetectedFinished;
+    const isReady = isFinished(initialStatus) || pollingDetectedFinished;
 
     useEffect(() => {
-        if (initialStatus === ASSET_STATUS_FINISHED) {
+        if (isFinished(initialStatus)) {
             return;
         }
 
@@ -36,7 +38,7 @@ export const useAssetStatusPolling = (
                 const assets = blockAssets[ASSET_ID] ?? [];
                 const asset = assets.find((a) => a.id === assetId);
 
-                if (asset?.status === ASSET_STATUS_FINISHED) {
+                if (isFinished(asset?.status)) {
                     setPollingDetectedFinished(true);
                     clearInterval(intervalId);
                     return;
