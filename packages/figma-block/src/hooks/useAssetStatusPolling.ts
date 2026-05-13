@@ -49,7 +49,5 @@ export const useAssetStatusPolling = (
         return () => clearInterval(intervalId);
     }, [appBridge, assetId, isInitiallyFinished]);
 
-    return {
-        isReady,
-    };
+    return { isReady };
 };
