@@ -35,7 +35,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const ref = useRef<HTMLDivElement>(null);
     const [referenceUrl, setReferenceUrl] = useState('');
-    // hack because typing is shit
+    // externalURL is types as Nullable<string>, but in the case of figma files it always exists
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
@@ -129,8 +129,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div className="tw-relative tw-w-full tw-h-full">
                     {/* eslint-disable-next-line @eslint-react/dom-no-missing-iframe-sandbox */}
                     <iframe
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        src={asset?.externalUrl ?? undefined}
+                        src={safeExternalUrl}
                         className="tw-h-full tw-w-full tw-border-none"
                         loading="lazy"
                         title={asset.title}
