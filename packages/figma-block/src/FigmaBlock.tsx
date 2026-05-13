@@ -167,6 +167,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     title={asset.title}
                                     url={asset.previewUrl}
                                     assetExternalUrl={safeExternalUrl}
+                                    assetId={asset.id}
+                                    assetStatus={asset.status}
+                                    appBridge={appBridge}
                                     hasLimitedOptions={hasLimitedOptions}
                                     height={isCustomHeight ? heightValue : heights[heightChoice]}
                                     hasBorder={hasBorder}
