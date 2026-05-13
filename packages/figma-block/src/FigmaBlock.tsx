@@ -22,7 +22,6 @@ import { FigmaImagePreview } from './components/FigmaImagePreview';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
-import { extractUrlParameterFromUriQueries } from './utilities';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -30,7 +29,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
-    const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -89,8 +87,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, []);
 
     useEffect(() => {
-        // eslint-disable-next-line @eslint-react/set-state-in-effect, @typescript-eslint/no-unsafe-argument
-        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
         // eslint-disable-next-line @eslint-react/set-state-in-effect, @typescript-eslint/no-unsafe-enum-comparison
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
     }, [asset, figmaPreviewId]);
@@ -152,6 +148,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         return createPortal(modal, modalRoot);
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [asset?.externalUrl]);
+
     return (
         <div ref={ref} data-test-id="figma-block" className="figma-block">
             <StyleProvider>
@@ -162,11 +159,11 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         {isInEditMode && !isAssetAvailable && (
                             <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
                         )}
-                        {isAssetAvailable && !isLivePreview && (
+                        {isAssetAvailable && !isLivePreview && safeExternalUrl && (
                             <FigmaImagePreview
                                 title={asset.title}
                                 url={asset.previewUrl}
-                                assetExternalUrl={assetExternalUrl}
+                                assetExternalUrl={safeExternalUrl}
                                 hasLimitedOptions={hasLimitedOptions}
                                 height={isCustomHeight ? heightValue : heights[heightChoice]}
                                 hasBorder={hasBorder}
@@ -184,8 +181,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 showFigmaLink={showFigmaLink}
                             />
                         )}
-                        {}
-
                         {isAssetAvailable && isLivePreview && safeExternalUrl && (
                             <FigmaLivePreview
                                 assetExternalUrl={safeExternalUrl}
@@ -199,7 +194,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 height={isCustomHeight ? heightValue : heights[heightChoice]}
                             />
                         )}
-                        {}
                         {/* eslint-disable-next-line @eslint-react/static-components */}
                         {showFigmaLiveModal && <FigmaLivePortal />}
                     </>
