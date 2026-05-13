@@ -4,9 +4,9 @@ import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guidelin
 
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
 import { getBorderOfBlock } from './helpers';
+import { useImageStage } from './hooks/useImageStage';
 import { DEFAULT_HEIGHT } from './settings';
 import { type ImageStageProps } from './types';
-import { useImageStage } from './useImageStage';
 
 export const ImageStage = ({
     title,

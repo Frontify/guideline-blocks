@@ -9,9 +9,9 @@ import {
     ImageElement,
     ImageStage,
     VectorContainerOperator,
-} from './components';
-import { getHeightOfBlock } from './helpers';
-import { type UseImageStageProps, Zoom } from './types';
+} from '../components';
+import { getHeightOfBlock } from '../helpers';
+import { type UseImageStageProps, Zoom } from '../types';
 
 export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageStageProps) => {
     const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
