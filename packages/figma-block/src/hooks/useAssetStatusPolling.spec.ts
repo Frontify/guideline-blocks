@@ -11,6 +11,7 @@ import { useAssetStatusPolling } from './useAssetStatusPolling';
 const ASSET_STATUS_FINISHED = 'FINISHED';
 const ASSET_STATUS_PROCESSING = 'PROCESSING';
 const POLLING_INTERVAL_MS = 3000;
+const MAX_POLL_ATTEMPTS = 20;
 const ASSET_ID_FIXTURE = 42;
 
 const createAppBridgeMock = (status: string) =>
@@ -182,6 +183,44 @@ describe('useAssetStatusPolling', () => {
 
             await advancePollingInterval();
             expect(result.current.isReady).toBe(true);
+        });
+
+        it('should set isReady: true when initialStatus prop updates to FINISHED from the parent', () => {
+            const appBridge = createAppBridgeMock(ASSET_STATUS_PROCESSING);
+            let currentStatus = ASSET_STATUS_PROCESSING;
+
+            const { result, rerender } = renderHook(() =>
+                useAssetStatusPolling(appBridge, ASSET_ID_FIXTURE, currentStatus)
+            );
+
+            expect(result.current.isReady).toBe(false);
+
+            currentStatus = ASSET_STATUS_FINISHED;
+            rerender();
+
+            expect(result.current.isReady).toBe(true);
+            expect(appBridge.getBlockAssets).not.toHaveBeenCalled();
+        });
+
+        it('should stop polling and log an error after reaching the max attempt limit', async () => {
+            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const appBridge = createAppBridgeMock(ASSET_STATUS_PROCESSING);
+
+            const { result } = renderHook(() =>
+                useAssetStatusPolling(appBridge, ASSET_ID_FIXTURE, ASSET_STATUS_PROCESSING)
+            );
+
+            await advancePollingInterval(MAX_POLL_ATTEMPTS);
+
+            expect(appBridge.getBlockAssets).toHaveBeenCalledTimes(MAX_POLL_ATTEMPTS);
+            expect(result.current.isReady).toBe(false);
+            expect(consoleErrorSpy).toHaveBeenCalledWith(
+                '[useAssetStatusPolling] Max poll attempts reached for asset',
+                ASSET_ID_FIXTURE
+            );
+
+            await advancePollingInterval(5);
+            expect(appBridge.getBlockAssets).toHaveBeenCalledTimes(MAX_POLL_ATTEMPTS);
         });
     });
 });

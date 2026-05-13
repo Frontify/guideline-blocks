@@ -7,6 +7,7 @@ import { ASSET_ID } from '../settings';
 
 const ASSET_STATUS_FINISHED = 'FINISHED';
 const POLLING_INTERVAL_MS = 3000;
+const MAX_POLL_ATTEMPTS = 20;
 
 type UseAssetStatusPollingReturn = {
     isReady: boolean;
@@ -17,28 +18,36 @@ export const useAssetStatusPolling = (
     assetId: number,
     initialStatus: string
 ): UseAssetStatusPollingReturn => {
-    const isInitiallyFinished = initialStatus === ASSET_STATUS_FINISHED;
-    const [isReady, setIsReady] = useState(isInitiallyFinished);
+    const [pollingDetectedFinished, setPollingDetectedFinished] = useState(false);
+    const isReady = initialStatus === ASSET_STATUS_FINISHED || pollingDetectedFinished;
 
     useEffect(() => {
-        if (isInitiallyFinished) {
+        if (initialStatus === ASSET_STATUS_FINISHED) {
             return;
         }
 
         let intervalId: number;
+        let attempts = 0;
 
         const poll = async () => {
+            attempts++;
             try {
                 const blockAssets = await appBridge.getBlockAssets();
                 const assets = blockAssets[ASSET_ID] ?? [];
                 const asset = assets.find((a) => a.id === assetId);
 
                 if (asset?.status === ASSET_STATUS_FINISHED) {
-                    setIsReady(true);
+                    setPollingDetectedFinished(true);
                     clearInterval(intervalId);
+                    return;
                 }
             } catch (error) {
                 console.error('[useAssetStatusPolling] Failed to fetch block assets:', error);
+            }
+
+            if (attempts >= MAX_POLL_ATTEMPTS) {
+                console.error('[useAssetStatusPolling] Max poll attempts reached for asset', assetId);
+                clearInterval(intervalId);
             }
         };
 
@@ -47,7 +56,7 @@ export const useAssetStatusPolling = (
         }, POLLING_INTERVAL_MS);
 
         return () => clearInterval(intervalId);
-    }, [appBridge, assetId, isInitiallyFinished]);
+    }, [appBridge, assetId, initialStatus]);
 
     return { isReady };
 };
