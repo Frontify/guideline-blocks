@@ -29,7 +29,7 @@ export const FigmaImagePreview = ({
     return (
         <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
             {isReady ? (
-                <ImageStage {...imageStageProps} url={imageStageProps.url} />
+                <ImageStage {...imageStageProps} />
             ) : (
                 <div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-py-8">
                     <LoadingCircle />
