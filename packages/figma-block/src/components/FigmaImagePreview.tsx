@@ -31,7 +31,10 @@ export const FigmaImagePreview = ({
             {isReady ? (
                 <ImageStage {...imageStageProps} />
             ) : (
-                <div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-py-8">
+                <div 
+                    className="tw-flex tw-items-center tw-justify-center tw-w-full"
+                    style={{ height: imageStageProps.height }}
+                >
                     <LoadingCircle />
                 </div>
             )}
