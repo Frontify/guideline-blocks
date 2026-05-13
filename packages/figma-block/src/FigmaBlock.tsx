@@ -25,7 +25,6 @@ import { BlockPreview, HeightChoices, type Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
-
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     // eslint-disable-next-line @eslint-react/use-state
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
@@ -40,6 +39,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const ref = useRef<HTMLDivElement>(null);
     const [referenceUrl, setReferenceUrl] = useState('');
     const isAssetAvailable = !!asset;
+    const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
         figmaPreviewId = BlockPreview.Image,
@@ -152,7 +152,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         return createPortal(modal, modalRoot);
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [asset?.externalUrl]);
-
     return (
         <div ref={ref} data-test-id="figma-block" className="figma-block">
             <StyleProvider>
@@ -186,9 +185,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             />
                         )}
                         {}
-                        {isAssetAvailable && isLivePreview && (
+
+                        {isAssetAvailable && isLivePreview && safeExternalUrl && (
                             <FigmaLivePreview
-                                assetExternalUrl={asset.externalUrl as string}
+                                assetExternalUrl={safeExternalUrl}
                                 allowFullScreen={allowFullScreen}
                                 isMobile={isMobile}
                                 onOpenFullScreen={() => toggleFigmaLiveModal(true)}
