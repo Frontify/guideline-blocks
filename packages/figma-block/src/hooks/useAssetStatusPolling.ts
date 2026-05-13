@@ -28,7 +28,7 @@ export const useAssetStatusPolling = (
             return;
         }
 
-        let intervalId: number;
+        let intervalId: ReturnType<typeof setInterval>;
         let attempts = 0;
 
         const poll = async () => {
