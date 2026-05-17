@@ -2,43 +2,31 @@
 
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand } from '@frontify/fondue/icons';
-import { type Color } from '@frontify/guideline-blocks-settings';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { type ReactElement } from 'react';
 
 import { getBorderOfBlock, getHeightOfBlock } from '../helpers';
-
-type FigmaLivePreviewProps = {
-    assetExternalUrl: string;
-    allowFullScreen?: boolean;
-    isMobile: boolean;
-    onOpenFullScreen: () => void;
-    hasBorder: boolean;
-    borderStyle: string;
-    borderWidth: string;
-    borderColor: Color;
-    height: string;
-};
+import { type FigmaLivePreviewProps } from '../types';
 
 export const FigmaLivePreview = ({
     assetExternalUrl,
     onOpenFullScreen,
-    hasBorder,
-    borderStyle,
-    borderWidth,
-    borderColor,
-    height,
-    isMobile,
-    allowFullScreen,
+    ...FigmaLivePreviewProps
 }: FigmaLivePreviewProps): ReactElement => (
     <div
         data-test-id="figma-live-preview"
         style={{
-            border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
-            height: getHeightOfBlock(height, isMobile),
+            border: getBorderOfBlock(
+                FigmaLivePreviewProps.hasBorder,
+                FigmaLivePreviewProps.borderStyle,
+                FigmaLivePreviewProps.borderWidth,
+                FigmaLivePreviewProps.borderColor
+            ),
+            height: getHeightOfBlock(FigmaLivePreviewProps.height, FigmaLivePreviewProps.isMobile),
         }}
-        className="tw-relative tw-flex tw-justify-center tw-group"
+        className={joinClassNames(['tw-relative tw-flex tw-justify-center tw-group'])}
     >
-        {allowFullScreen && (
+        {FigmaLivePreviewProps.allowFullScreen && (
             <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                 <Button onPress={onOpenFullScreen} emphasis="default" aria-label="allow fullscreen" aspect="square">
                     <IconArrowExpand size={16} />

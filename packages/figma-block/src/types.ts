@@ -72,11 +72,11 @@ export type UseImageStageProps = {
 };
 
 export type ImageStageProps = {
-    title: string | undefined;
+    title: string;
     url: string;
     hasLimitedOptions?: boolean;
-    height?: string;
-    hasBorder?: boolean;
+    height: string;
+    hasBorder: boolean;
     hasBackground?: boolean;
     isMobile: boolean;
     borderStyle: string;
@@ -89,10 +89,16 @@ export type ImageStageProps = {
     allowFullScreen: boolean;
     allowZooming: boolean;
 };
-
-export type DrawFullScreenActionButtonProps = {
-    isFullScreen?: boolean;
-    onClick: () => void;
+export type FigmaLivePreviewProps = {
+    assetExternalUrl?: string;
+    allowFullScreen?: boolean;
+    isMobile: boolean;
+    onOpenFullScreen: () => void;
+    hasBorder: boolean;
+    borderStyle: string;
+    borderWidth: string;
+    borderColor: Color;
+    height: string;
 };
 
 export type DrawZoomInOutButtonsProps = {
