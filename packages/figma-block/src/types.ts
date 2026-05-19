@@ -72,11 +72,11 @@ export type UseImageStageProps = {
 };
 
 export type ImageStageProps = {
-    title: string;
+    title: string | undefined;
     url: string;
     hasLimitedOptions?: boolean;
-    height: string;
-    hasBorder: boolean;
+    height?: string;
+    hasBorder?: boolean;
     hasBackground?: boolean;
     isMobile: boolean;
     borderStyle: string;
