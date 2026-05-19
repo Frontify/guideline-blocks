@@ -128,7 +128,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 <FigmaImagePreview
                                     title={asset.title}
                                     url={asset.previewUrl}
-                                    assetExternalUrl={extractUrlParameterFromUriQueries(safeExternalUrl)}
+                                    assetExternalUrl={safeExternalUrl}
                                     assetId={asset.id}
                                     assetStatus={asset.status}
                                     appBridge={appBridge}
