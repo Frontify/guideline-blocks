@@ -6,6 +6,7 @@ import { LoadingCircle } from '@frontify/fondue/components';
 import { ImageStage } from '../ImageStage';
 import { useAssetStatusPolling } from '../hooks/useAssetStatusPolling';
 import { type ImageStageProps } from '../types';
+import { extractUrlParameterFromUriQueries } from '../utilities/index';
 
 import { FigmaLink } from './FigmaLink';
 
@@ -40,7 +41,12 @@ export const FigmaImagePreview = ({
                 </div>
             )}
 
-            {showFigmaLink && <FigmaLink assetExternalUrl={assetExternalUrl} title={imageStageProps.title} />}
+            {showFigmaLink && (
+                <FigmaLink
+                    assetExternalUrl={extractUrlParameterFromUriQueries(assetExternalUrl)}
+                    title={imageStageProps.title}
+                />
+            )}
         </div>
     );
 };
