@@ -20,24 +20,20 @@ import { FigmaLiveModal } from './components/FigmaLiveModal';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
-import { extractUrlParameterFromUriQueries } from './utilities';
+import { extractUrlParameterFromUriQueries } from './utilities/index';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     // eslint-disable-next-line @eslint-react/use-state
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
-
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-
     const isInEditMode = useEditorState(appBridge);
     const asset = blockAssets?.[ASSET_ID]?.[0];
-
     const ref = useRef<HTMLDivElement>(null);
     const [referenceUrl, setReferenceUrl] = useState('');
     // externalURL is types as Nullable<string>, but in the case of figma files it always exists
-
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
@@ -115,43 +111,44 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <>
                         {isInEditMode && !asset && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />}
 
-                        {asset && isLivePreview ? (
-                            <FigmaLivePreview
-                                assetExternalUrl={safeExternalUrl}
-                                allowFullScreen={allowFullScreen}
-                                isMobile={isMobile}
-                                onOpenFullScreen={() => toggleFigmaLiveModal(true)}
-                                hasBorder={hasBorder}
-                                borderStyle={borderStyle}
-                                borderWidth={borderWidth}
-                                borderColor={borderColor}
-                                height={isCustomHeight ? heightValue : heights[heightChoice]}
-                            />
-                        ) : (
-                            <FigmaImagePreview
-                                title={asset.title}
-                                url={asset.previewUrl}
-                                assetExternalUrl={extractUrlParameterFromUriQueries(safeExternalUrl)}
-                                assetId={asset.id}
-                                assetStatus={asset.status}
-                                appBridge={appBridge}
-                                hasLimitedOptions={hasLimitedOptions}
-                                height={isCustomHeight ? heightValue : heights[heightChoice]}
-                                hasBorder={hasBorder}
-                                borderStyle={borderStyle}
-                                borderColor={borderColor}
-                                borderWidth={borderWidth}
-                                isMobile={isMobile}
-                                hasBackground={hasBackground}
-                                backgroundColor={backgroundColor}
-                                hasRadius={hasRadius}
-                                radiusValue={radiusValue}
-                                radiusChoice={radiusChoice}
-                                allowFullScreen={allowFullScreen}
-                                allowZooming={allowZooming}
-                                showFigmaLink={showFigmaLink}
-                            />
-                        )}
+                        {asset &&
+                            (isLivePreview ? (
+                                <FigmaLivePreview
+                                    assetExternalUrl={safeExternalUrl}
+                                    allowFullScreen={allowFullScreen}
+                                    isMobile={isMobile}
+                                    onOpenFullScreen={() => toggleFigmaLiveModal(true)}
+                                    hasBorder={hasBorder}
+                                    borderStyle={borderStyle}
+                                    borderWidth={borderWidth}
+                                    borderColor={borderColor}
+                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                />
+                            ) : (
+                                <FigmaImagePreview
+                                    title={asset.title}
+                                    url={asset.previewUrl}
+                                    assetExternalUrl={extractUrlParameterFromUriQueries(safeExternalUrl)}
+                                    assetId={asset.id}
+                                    assetStatus={asset.status}
+                                    appBridge={appBridge}
+                                    hasLimitedOptions={hasLimitedOptions}
+                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                    hasBorder={hasBorder}
+                                    borderStyle={borderStyle}
+                                    borderColor={borderColor}
+                                    borderWidth={borderWidth}
+                                    isMobile={isMobile}
+                                    hasBackground={hasBackground}
+                                    backgroundColor={backgroundColor}
+                                    hasRadius={hasRadius}
+                                    radiusValue={radiusValue}
+                                    radiusChoice={radiusChoice}
+                                    allowFullScreen={allowFullScreen}
+                                    allowZooming={allowZooming}
+                                    showFigmaLink={showFigmaLink}
+                                />
+                            ))}
 
                         {showFigmaLiveModal && asset && (
                             <FigmaLiveModal
