@@ -40,7 +40,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
-    const saveAssetExternalUrl = extractUrlParameterFromUriQueries(safeExternalUrl);
+    const safeAssetExternalUrl = extractUrlParameterFromUriQueries(safeExternalUrl);
 
     const {
         figmaPreviewId = BlockPreview.Image,
@@ -73,23 +73,17 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     | undefined
             )?.dataset.referenceUrl || ''
         );
-
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     useEffect(() => {
         const resize = () => {
             if (window.innerWidth < 768) {
-                // eslint-disable-next-line @eslint-react/set-state-in-effect
                 setIsMobile(true);
             } else {
-                // eslint-disable-next-line @eslint-react/set-state-in-effect
                 setIsMobile(false);
             }
         };
-
-        resize();
-
         window.addEventListener('resize', resize);
 
         return () => {
@@ -101,10 +95,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         openAssetChooser(
             (result: Asset[]) => {
                 const resultId = result[0].id;
-
                 // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 updateAssetIdsFromKey(ASSET_ID, [resultId]);
-
                 closeAssetChooser();
             },
             {
@@ -125,44 +117,43 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <>
                         {isInEditMode && !asset && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />}
 
-                        {asset &&
-                            (isLivePreview ? (
-                                <FigmaLivePreview
-                                    assetExternalUrl={safeExternalUrl}
-                                    allowFullScreen={allowFullScreen}
-                                    isMobile={isMobile}
-                                    onOpenFullScreen={() => toggleFigmaLiveModal(true)}
-                                    hasBorder={hasBorder}
-                                    borderStyle={borderStyle}
-                                    borderWidth={borderWidth}
-                                    borderColor={borderColor}
-                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
-                                />
-                            ) : (
-                                <FigmaImagePreview
-                                    title={asset.title}
-                                    url={asset.previewUrl}
-                                    assetExternalUrl={saveAssetExternalUrl}
-                                    assetId={asset.id}
-                                    assetStatus={asset.status}
-                                    appBridge={appBridge}
-                                    hasLimitedOptions={hasLimitedOptions}
-                                    height={isCustomHeight ? heightValue : heights[heightChoice]}
-                                    hasBorder={hasBorder}
-                                    borderStyle={borderStyle}
-                                    borderColor={borderColor}
-                                    borderWidth={borderWidth}
-                                    isMobile={isMobile}
-                                    hasBackground={hasBackground}
-                                    backgroundColor={backgroundColor}
-                                    hasRadius={hasRadius}
-                                    radiusValue={radiusValue}
-                                    radiusChoice={radiusChoice}
-                                    allowFullScreen={allowFullScreen}
-                                    allowZooming={allowZooming}
-                                    showFigmaLink={showFigmaLink}
-                                />
-                            ))}
+                        {asset && isLivePreview ? (
+                            <FigmaLivePreview
+                                assetExternalUrl={safeExternalUrl}
+                                allowFullScreen={allowFullScreen}
+                                isMobile={isMobile}
+                                onOpenFullScreen={() => toggleFigmaLiveModal(true)}
+                                hasBorder={hasBorder}
+                                borderStyle={borderStyle}
+                                borderWidth={borderWidth}
+                                borderColor={borderColor}
+                                height={isCustomHeight ? heightValue : heights[heightChoice]}
+                            />
+                        ) : (
+                            <FigmaImagePreview
+                                title={asset.title}
+                                url={asset.previewUrl}
+                                assetExternalUrl={safeAssetExternalUrl}
+                                assetId={asset.id}
+                                assetStatus={asset.status}
+                                appBridge={appBridge}
+                                hasLimitedOptions={hasLimitedOptions}
+                                height={isCustomHeight ? heightValue : heights[heightChoice]}
+                                hasBorder={hasBorder}
+                                borderStyle={borderStyle}
+                                borderColor={borderColor}
+                                borderWidth={borderWidth}
+                                isMobile={isMobile}
+                                hasBackground={hasBackground}
+                                backgroundColor={backgroundColor}
+                                hasRadius={hasRadius}
+                                radiusValue={radiusValue}
+                                radiusChoice={radiusChoice}
+                                allowFullScreen={allowFullScreen}
+                                allowZooming={allowZooming}
+                                showFigmaLink={showFigmaLink}
+                            />
+                        )}
 
                         {showFigmaLiveModal && asset && (
                             <FigmaLiveModal
