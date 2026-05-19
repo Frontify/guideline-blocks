@@ -40,6 +40,7 @@ export const FigmaLiveModal = ({ assetExternalUrl, title, onClose }: FigmaLiveMo
                     className="tw-h-full tw-w-full tw-border-none"
                     loading="lazy"
                     title={title}
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
             </div>
         </div>,
