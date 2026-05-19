@@ -40,8 +40,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
-    const safeAssetExternalUrl = extractUrlParameterFromUriQueries(safeExternalUrl);
-
     const {
         figmaPreviewId = BlockPreview.Image,
         hasBorder = true,
@@ -133,7 +131,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <FigmaImagePreview
                                 title={asset.title}
                                 url={asset.previewUrl}
-                                assetExternalUrl={safeAssetExternalUrl}
+                                assetExternalUrl={extractUrlParameterFromUriQueries(safeExternalUrl)}
                                 assetId={asset.id}
                                 assetStatus={asset.status}
                                 appBridge={appBridge}
