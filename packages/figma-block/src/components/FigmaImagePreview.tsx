@@ -6,7 +6,7 @@ import { LoadingCircle } from '@frontify/fondue/components';
 import { ImageStage } from '../ImageStage';
 import { useAssetStatusPolling } from '../hooks/useAssetStatusPolling';
 import { type ImageStageProps } from '../types';
-import { extractUrlParameterFromUriQueries } from '../utilities/index';
+import { extractUrlParameterFromUriQueries } from '../utilities';
 
 import { FigmaLink } from './FigmaLink';
 
