@@ -20,7 +20,6 @@ import { FigmaLiveModal } from './components/FigmaLiveModal';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
-import { extractUrlParameterFromUriQueries } from './utilities/index';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     // eslint-disable-next-line @eslint-react/use-state
@@ -128,7 +127,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 <FigmaImagePreview
                                     title={asset.title}
                                     url={asset.previewUrl}
-                                    assetExternalUrl={safeExternalUrl}
+                                    assetExternalUrl={safeExternalUrl ?? ''}
                                     assetId={asset.id}
                                     assetStatus={asset.status}
                                     appBridge={appBridge}
