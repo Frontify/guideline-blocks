@@ -9,21 +9,18 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button } from '@frontify/fondue/components';
-import { IconCross } from '@frontify/fondue/icons';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { type ReactElement, useEffect, useRef, useState } from 'react';
 
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { FigmaImagePreview } from './components/FigmaImagePreview';
+import { FigmaLiveModal } from './components/FigmaLiveModal';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
 
-const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     // eslint-disable-next-line @eslint-react/use-state
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
@@ -57,6 +54,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         allowFullScreen,
         allowZooming,
     } = blockSettings;
+
+    const isLivePreview = figmaPreviewId === BlockPreview.Live;
 
     useEffect(() => {
         // eslint-disable-next-line @eslint-react/set-state-in-effect
@@ -102,46 +101,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         );
     };
 
-    // eslint-disable-next-line @eslint-react/static-components
-    const FigmaLivePortal = useCallback(() => {
-        const modalRoot = document.body;
-        modalRoot.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
-
-        const modal = (
-            <div
-                data-test-id="figma-full-screen"
-                className="tw-animate-fade-in-forwards tw-fixed tw-flex tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-50"
-            >
-                <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-50">
-                    <Button
-                        onPress={() => {
-                            toggleFigmaLiveModal(false);
-                            modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
-                        }}
-                        emphasis="default"
-                        aspect="square"
-                        aria-label="close"
-                    >
-                        <IconCross size={16} />
-                    </Button>
-                </div>
-
-                <div className="tw-relative tw-w-full tw-h-full">
-                    {/* eslint-disable-next-line @eslint-react/dom-no-missing-iframe-sandbox */}
-                    <iframe
-                        src={safeExternalUrl}
-                        className="tw-h-full tw-w-full tw-border-none"
-                        loading="lazy"
-                        title={asset.title}
-                    />
-                </div>
-            </div>
-        );
-
-        return createPortal(modal, modalRoot);
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, [asset?.externalUrl]);
-
     return (
         <div ref={ref} data-test-id="figma-block" className="figma-block">
             <StyleProvider>
@@ -149,8 +108,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <ReferenceErrorMessage originalUrl={referenceUrl} />
                 ) : (
                     <>
-                        {safeExternalUrl ? (
-                            figmaPreviewId === BlockPreview.Live ? (
+                        {isInEditMode && !asset && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />}
+
+                        {asset &&
+                            (isLivePreview ? (
                                 <FigmaLivePreview
                                     assetExternalUrl={safeExternalUrl}
                                     allowFullScreen={allowFullScreen}
@@ -166,7 +127,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 <FigmaImagePreview
                                     title={asset.title}
                                     url={asset.previewUrl}
-                                    assetExternalUrl={safeExternalUrl}
+                                    assetExternalUrl={safeExternalUrl ?? ''}
                                     assetId={asset.id}
                                     assetStatus={asset.status}
                                     appBridge={appBridge}
@@ -186,13 +147,15 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     allowZooming={allowZooming}
                                     showFigmaLink={showFigmaLink}
                                 />
-                            )
-                        ) : (
-                            isInEditMode && <FigmaEmptyBlock onOpenAssetChooser={onOpenAssetChooser} />
-                        )}
+                            ))}
 
-                        {/* eslint-disable-next-line @eslint-react/static-components */}
-                        {showFigmaLiveModal && <FigmaLivePortal />}
+                        {showFigmaLiveModal && asset && (
+                            <FigmaLiveModal
+                                assetExternalUrl={safeExternalUrl}
+                                title={asset.title}
+                                onClose={() => toggleFigmaLiveModal(false)}
+                            />
+                        )}
                     </>
                 )}
             </StyleProvider>

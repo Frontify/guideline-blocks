@@ -2,22 +2,10 @@
 
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand } from '@frontify/fondue/icons';
-import { type Color } from '@frontify/guideline-blocks-settings';
 import { type ReactElement } from 'react';
 
 import { getBorderOfBlock, getHeightOfBlock } from '../helpers';
-
-type FigmaLivePreviewProps = {
-    assetExternalUrl: string;
-    allowFullScreen?: boolean;
-    isMobile: boolean;
-    onOpenFullScreen: () => void;
-    hasBorder: boolean;
-    borderStyle: string;
-    borderWidth: string;
-    borderColor: Color;
-    height: string;
-};
+import { type FigmaLivePreviewProps } from '../types';
 
 export const FigmaLivePreview = ({
     assetExternalUrl,

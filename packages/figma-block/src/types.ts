@@ -89,6 +89,17 @@ export type ImageStageProps = {
     allowFullScreen: boolean;
     allowZooming: boolean;
 };
+export type FigmaLivePreviewProps = {
+    assetExternalUrl?: string;
+    allowFullScreen?: boolean;
+    isMobile: boolean;
+    onOpenFullScreen: () => void;
+    hasBorder: boolean;
+    borderStyle: string;
+    borderWidth: string;
+    borderColor: Color;
+    height: string;
+};
 
 export type DrawFullScreenActionButtonProps = {
     isFullScreen?: boolean;
