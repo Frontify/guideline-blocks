@@ -34,12 +34,12 @@ export const FigmaLiveModal = ({ assetExternalUrl, title, onClose }: FigmaLiveMo
             </div>
 
             <div className="tw-relative tw-w-full tw-h-full">
-                {/* eslint-disable-next-line @eslint-react/dom-no-missing-iframe-sandbox */}
                 <iframe
                     src={assetExternalUrl}
                     className="tw-h-full tw-w-full tw-border-none"
                     loading="lazy"
                     title={title}
+                    // eslint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
             </div>
