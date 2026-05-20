@@ -9,11 +9,11 @@ import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview } from './types';
 
-const MAIN_BLOCK_SELECTOR = 'figma-block';
-const EMPTY_BLOCK_SELECTOR = 'figma-empty-block';
-const IMAGE_PREVIEW_SELECTOR = 'figma-image-preview';
-const LIVE_PREVIEW_SELECTOR = 'figma-live-preview';
-const FULL_SCREEN_SELECTOR = 'figma-full-screen';
+const MAIN_BLOCK_TEST_ID = 'figma-block';
+const EMPTY_BLOCK_TEST_ID = 'figma-empty-block';
+const IMAGE_PREVIEW_TEST_ID = 'figma-image-preview';
+const LIVE_PREVIEW_TEST_ID = 'figma-live-preview';
+const FULL_SCREEN_TEST_ID = 'figma-full-screen';
 
 describe('Figma Block', () => {
     it('renders a Figma block', () => {
