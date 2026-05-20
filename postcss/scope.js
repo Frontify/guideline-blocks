@@ -35,21 +35,22 @@ module.exports = (opts = {}) => {
 
 module.exports.postcss = true;
 
-const tagSelectorRegex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
-
 const getScopedSelector = (selector, scope) => {
+    const trimmed = selector.trim();
+
     // Replace :root with .selector, so variables are only applied to the block
-    if (selector === ":root") {
+    if (trimmed === ":root") {
         return scope;
     }
 
-    // Prefix all rules with .selector that match the condition
-    if (selector.includes("tw-") || tagSelectorRegex.test(selector)) {
-        return `${scope} ${selector}${getModalExtensions(selector)}`;
+    // Skip selectors that are already scoped (idempotency)
+    if (trimmed === scope || trimmed.startsWith(`${scope} `)) {
+        return selector;
     }
 
-    // Return the original rule
-    return selector;
+    // Prefix every other selector with the scope. Class selectors also get the
+    // modal extensions so portaled content (dialogs, overlays, toolbars) keeps working.
+    return `${scope} ${trimmed}${getModalExtensions(trimmed)}`;
 };
 
 const getModalExtensions = (selector) => {
