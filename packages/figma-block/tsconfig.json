@@ -15,7 +15,7 @@
         "sourceMap": true,
         "strict": true,
         "target": "ES2020",
-        "types": ["cypress", "cypress-real-events"]
+        "types": ["cypress", "cypress-real-events", "@testing-library/jest-dom"]
     },
     "exclude": ["node_modules", "dist", "../shared/src/**/*.spec.ts", "../shared/src/**/*.spec.tsx"],
     "include": ["src/**/*", "../shared/src/**/*"]

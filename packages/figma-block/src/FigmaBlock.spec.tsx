@@ -21,7 +21,7 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        expect(screen.getByTestId(MAIN_BLOCK_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(MAIN_BLOCK_TEST_ID)).toBeInTheDocument();
     });
 
     it('renders a Figma empty block on edit', () => {
@@ -29,7 +29,7 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        expect(screen.getByTestId(EMPTY_BLOCK_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(EMPTY_BLOCK_TEST_ID)).toBeInTheDocument();
     });
 
     it('triggers openAssetChooser mock', async () => {
@@ -39,7 +39,7 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        await user.click(screen.getByTestId(EMPTY_BLOCK_SELECTOR));
+        await user.click(screen.getByTestId(EMPTY_BLOCK_TEST_ID));
 
         expect(dispatchSpy).toHaveBeenCalledWith({
             name: 'openAssetChooser',
@@ -62,7 +62,7 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        expect(screen.getByTestId(IMAGE_PREVIEW_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(IMAGE_PREVIEW_TEST_ID)).toBeInTheDocument();
     });
 
     it('renders a Figma Live iframe preview', () => {
@@ -76,7 +76,7 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        expect(screen.getByTestId(LIVE_PREVIEW_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).toBeInTheDocument();
     });
 
     it('toggles Figma Live preview Full screen', async () => {
@@ -91,15 +91,15 @@ describe('Figma Block', () => {
 
         render(<FigmaBlockWithStubs />);
 
-        expect(screen.getByTestId(LIVE_PREVIEW_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).toBeInTheDocument();
 
-        await user.click(within(screen.getByTestId(LIVE_PREVIEW_SELECTOR)).getByRole('button'));
+        await user.click(within(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).getByRole('button'));
 
-        expect(screen.getByTestId(FULL_SCREEN_SELECTOR)).toBeInTheDocument();
+        expect(screen.getByTestId(FULL_SCREEN_TEST_ID)).toBeInTheDocument();
 
-        await user.click(within(screen.getByTestId(FULL_SCREEN_SELECTOR)).getByRole('button'));
+        await user.click(within(screen.getByTestId(FULL_SCREEN_TEST_ID)).getByRole('button'));
 
-        expect(screen.queryByTestId(FULL_SCREEN_SELECTOR)).not.toBeInTheDocument();
-        expect(screen.getByTestId(LIVE_PREVIEW_SELECTOR)).toBeInTheDocument();
+        expect(screen.queryByTestId(FULL_SCREEN_TEST_ID)).not.toBeInTheDocument();
+        expect(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).toBeInTheDocument();
     });
 });
