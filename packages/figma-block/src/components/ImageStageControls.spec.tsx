@@ -1,16 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './ImageStageControls';
 
-const ICON_ZOOM_IN_SELECTOR = 'fondue-icons-plus';
-const ICON_ZOOM_OUT_SELECTOR = 'fondue-icons-minus';
-const ICON_REJECT_SELECTOR = 'fondue-icons-cross';
-const ICON_EXPAND_SELECTOR = 'fondue-icons-arrow-expand';
+const ICON_ZOOM_IN_TEST_ID = 'fondue-icons-plus';
+const ICON_ZOOM_OUT_TEST_ID = 'fondue-icons-minus';
+const ICON_REJECT_TEST_ID = 'fondue-icons-cross';
+const ICON_EXPAND_TEST_ID = 'fondue-icons-arrow-expand';
 
 describe('Image Control Buttons', () => {
     describe('DrawFullScreenActionButton', () => {
@@ -19,13 +18,13 @@ describe('Image Control Buttons', () => {
         it('renders button with icon expand', () => {
             render(<DrawFullScreenActionButton onClick={onClick} />);
 
-            expect(screen.getByTestId(ICON_EXPAND_SELECTOR)).toBeInTheDocument();
+            expect(screen.getByTestId(ICON_EXPAND_TEST_ID)).toBeInTheDocument();
         });
 
         it('renders button with icon reject', () => {
             render(<DrawFullScreenActionButton isFullScreen onClick={onClick} />);
 
-            expect(screen.getByTestId(ICON_REJECT_SELECTOR)).toBeInTheDocument();
+            expect(screen.getByTestId(ICON_REJECT_TEST_ID)).toBeInTheDocument();
         });
     });
 
@@ -33,8 +32,8 @@ describe('Image Control Buttons', () => {
         it('renders Zoom In and Out buttons', () => {
             render(<DrawZoomInOutButtons onClickZoomIn={vi.fn()} onClickZoomOut={vi.fn()} />);
 
-            expect(screen.getByTestId(ICON_ZOOM_IN_SELECTOR)).toBeInTheDocument();
-            expect(screen.getByTestId(ICON_ZOOM_OUT_SELECTOR)).toBeInTheDocument();
+            expect(screen.getByTestId(ICON_ZOOM_IN_TEST_ID)).toBeInTheDocument();
+            expect(screen.getByTestId(ICON_ZOOM_OUT_TEST_ID)).toBeInTheDocument();
         });
 
         it('tests the onClick action', async () => {
