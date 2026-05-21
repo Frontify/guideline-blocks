@@ -82,7 +82,7 @@ describe('Figma Block', () => {
     it('toggles Figma Live preview Full screen', async () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://picsum.photos/200/200' }],
+                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://example.invalid' }],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live, allowFullScreen: true },
             editorState: true,

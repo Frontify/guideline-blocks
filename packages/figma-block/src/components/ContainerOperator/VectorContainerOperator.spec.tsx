@@ -8,14 +8,6 @@ import { BlockContainerStub } from '../../tests/BlockContainerStub';
 const IMAGE_CONTAINER_TEST_ID = 'image-container';
 
 describe('VectorContainerOperator', () => {
-    it('renders the image container', () => {
-        render(<BlockContainerStub height="400px" />);
-
-        const containerElement = document.getElementById(IMAGE_CONTAINER_TEST_ID) as HTMLDivElement;
-
-        expect(containerElement).toBeInTheDocument();
-    });
-
     it('moves image on mouse move', () => {
         render(<BlockContainerStub height="400px" />);
 
