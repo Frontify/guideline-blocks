@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toHex6or8String } from '../helpers';
+import { toHex6or8String } from './HexStringHelper';
 import { type GradientColor } from '../types';
 
 export const parseGradientColorsToCss = (gradientColors: GradientColor[] | undefined, gradientOrientation: number) => {

@@ -9,7 +9,8 @@ import { type MouseEvent, type ReactElement, useEffect, useRef, useState } from 
 
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
-import { parseGradientColorsToCss, toHex6or8String } from './helpers';
+import { parseGradientColorsToCss } from './helpers/CssValueHelper';
+import { toHex6or8String } from './helpers/HexStringHelper';
 import { type GradientColor, type Settings, gradientHeightValues, gradientOrientationValues } from './types';
 
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
