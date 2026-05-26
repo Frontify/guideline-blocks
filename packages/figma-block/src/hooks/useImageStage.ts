@@ -5,8 +5,8 @@ import { type ContainerOperator } from '../components/ContainerOperator/Containe
 import { BitmapContainerOperator } from '../components/ContainerOperator/BitmapContainerOperator';
 import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
 import { ImageContainer } from '../components/ImageContainer';
-import { ImageStage } from '../components/ImageStage';
 import { ImageElement } from '../components/ImageElement';
+import { ImageStage } from '../components/ImageStage';
 import { getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type UseImageStageProps, Zoom } from '../types';
 

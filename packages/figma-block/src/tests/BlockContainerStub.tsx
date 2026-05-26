@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
-import { ImageContainer } from '../components/ImageContainer';
-import { ImageStage } from '../components/ImageStage';
-import { ImageElement } from '../components/ImageElement';
 import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
+import { ImageContainer } from '../components/ImageContainer';
+import { ImageElement } from '../components/ImageElement';
+import { ImageStage } from '../components/ImageStage';
 
 export const BlockContainerStub = ({ height, padding = 0 }: { height: string; padding?: number }) => {
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
