@@ -3,7 +3,7 @@
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useHover } from '@react-aria/interactions';
 
-import { toHex6or8String } from '../helpers';
+import { toHex6or8String } from '../helpers/HexStringHelper';
 import { type ColorTooltipProps } from '../types';
 
 import { EditAndDeleteColorBox } from './';

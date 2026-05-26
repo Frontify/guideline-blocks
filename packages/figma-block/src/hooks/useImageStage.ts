@@ -2,15 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import {
-    BitmapContainerOperator,
-    type ContainerOperator,
-    ImageContainer,
-    ImageElement,
-    ImageStage,
-    VectorContainerOperator,
-} from '../components';
-import { getHeightOfBlock } from '../helpers';
+import { BitmapContainerOperator } from '../components/ContainerOperator/BitmapContainerOperator';
+import { type ContainerOperator } from '../components/ContainerOperator/ContainerOperator';
+import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
+import { ImageContainer } from '../components/ImageContainer';
+import { ImageElement } from '../components/ImageElement';
+import { ImageStage } from '../components/ImageStage';
+import { getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type UseImageStageProps, Zoom } from '../types';
 
 export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageStageProps) => {

@@ -2,8 +2,8 @@
 
 import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-settings';
 
-import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
-import { getBorderOfBlock } from './helpers';
+import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components/ImageStageControls';
+import { getBorderOfBlock } from './helpers/mapCommonStyle';
 import { useImageStage } from './hooks/useImageStage';
 import { DEFAULT_HEIGHT } from './settings';
 import { type ImageStageProps } from './types';
