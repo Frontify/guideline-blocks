@@ -22,8 +22,7 @@ import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
-    // eslint-disable-next-line @eslint-react/use-state
-    const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
+    const [showFigmaLiveModal, setShowFigmaLiveModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -32,7 +31,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const ref = useRef<HTMLDivElement>(null);
     const [referenceUrl, setReferenceUrl] = useState('');
-    // externalURL is types as Nullable<string>, but in the case of figma files it always exists
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
@@ -116,7 +114,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     assetExternalUrl={safeExternalUrl}
                                     allowFullScreen={allowFullScreen}
                                     isMobile={isMobile}
-                                    onOpenFullScreen={() => toggleFigmaLiveModal(true)}
+                                    onOpenFullScreen={() => setShowFigmaLiveModal(true)}
                                     hasBorder={hasBorder}
                                     borderStyle={borderStyle}
                                     borderWidth={borderWidth}
@@ -153,7 +151,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             <FigmaLiveModal
                                 assetExternalUrl={safeExternalUrl}
                                 title={asset.title}
-                                onClose={() => toggleFigmaLiveModal(false)}
+                                onClose={() => setShowFigmaLiveModal(false)}
                             />
                         )}
                     </>
