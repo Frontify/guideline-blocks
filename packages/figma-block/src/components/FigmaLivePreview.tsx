@@ -4,7 +4,7 @@ import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand } from '@frontify/fondue/icons';
 import { type ReactElement } from 'react';
 
-import { getBorderOfBlock, getHeightOfBlock } from '../helpers';
+import { getBorderOfBlock, getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type FigmaLivePreviewProps } from '../types';
 
 export const FigmaLivePreview = ({

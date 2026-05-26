@@ -10,7 +10,7 @@ import {
     ImageStage,
     VectorContainerOperator,
 } from '../components';
-import { getHeightOfBlock } from '../helpers';
+import { getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type UseImageStageProps, Zoom } from '../types';
 
 export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageStageProps) => {
