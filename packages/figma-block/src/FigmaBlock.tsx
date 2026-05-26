@@ -84,9 +84,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         openAssetChooser(
             (result: Asset[]) => {
                 const resultId = result[0].id;
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                updateAssetIdsFromKey(ASSET_ID, [resultId]);
-                closeAssetChooser();
+                updateAssetIdsFromKey(ASSET_ID, [resultId])
+                    .then(() => closeAssetChooser())
+                    .catch(console.error);
             },
             {
                 selectedValueId: asset?.id,
