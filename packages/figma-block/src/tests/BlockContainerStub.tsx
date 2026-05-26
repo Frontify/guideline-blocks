@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
+
 import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
 import { ImageContainer } from '../components/ImageContainer';
 import { ImageElement } from '../components/ImageElement';

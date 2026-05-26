@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
-import { type ContainerOperator } from '../components/ContainerOperator/ContainerOperator';
+
 import { BitmapContainerOperator } from '../components/ContainerOperator/BitmapContainerOperator';
 import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
+import { type ContainerOperator } from '../components/ContainerOperator/ContainerOperator';
 import { ImageContainer } from '../components/ImageContainer';
 import { ImageElement } from '../components/ImageElement';
 import { ImageStage } from '../components/ImageStage';
