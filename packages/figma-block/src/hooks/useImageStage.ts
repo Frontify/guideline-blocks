@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { BitmapContainerOperator } from '../components/ContainerOperator/BitmapContainerOperator';
-import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
 import { type ContainerOperator } from '../components/ContainerOperator/ContainerOperator';
+import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
 import { ImageContainer } from '../components/ImageContainer';
 import { ImageElement } from '../components/ImageElement';
 import { ImageStage } from '../components/ImageStage';
