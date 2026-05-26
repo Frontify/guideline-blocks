@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type ReactElement, useEffect, useRef, useState } from 'react';
+import { type ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 
 import { FigmaEmptyBlock } from './FigmaEmptyBlock';
 import ReferenceErrorMessage from './ReferenceErrorMessage';
@@ -30,7 +30,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isInEditMode = useEditorState(appBridge);
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const ref = useRef<HTMLDivElement>(null);
-    const [referenceUrl, setReferenceUrl] = useState('');
+    // externalURL is types as Nullable<string>, but in the case of figma files it always exists
     const safeExternalUrl = typeof asset?.externalUrl === 'string' ? asset.externalUrl : undefined;
 
     const {
@@ -55,17 +55,15 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const isLivePreview = figmaPreviewId === BlockPreview.Live;
 
-    useEffect(() => {
-        // eslint-disable-next-line @eslint-react/set-state-in-effect
-        setReferenceUrl(
+    const referenceUrl = useMemo(() => {
+        return (
             (
                 document.querySelector(`[data-block="${String(appBridge.context('blockId').get())}"].referenced`) as
                     | HTMLDivElement
                     | undefined
             )?.dataset.referenceUrl || ''
         );
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, []);
+    }, [appBridge]);
 
     useEffect(() => {
         const resize = () => {
