@@ -1,15 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
-
-import {
-    BitmapContainerOperator,
-    type ContainerOperator,
-    ImageContainer,
-    ImageElement,
-    ImageStage,
-    VectorContainerOperator,
-} from '../components';
+import { type ContainerOperator } from '../components/ContainerOperator/ContainerOperator';
+import { BitmapContainerOperator } from '../components/ContainerOperator/BitmapContainerOperator';
+import { VectorContainerOperator } from '../components/ContainerOperator/VectorContainerOperator';
+import { ImageContainer, ImageElement, ImageStage } from '../components';
 import { getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type UseImageStageProps, Zoom } from '../types';
 
