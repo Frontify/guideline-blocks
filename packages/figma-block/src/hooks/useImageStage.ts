@@ -22,8 +22,9 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
     const stageRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const onZoomIn = () => containerOperatorRef?.current?.resize(Zoom.IN);
-    const onZoomOut = () => containerOperatorRef?.current?.resize(Zoom.OUT);
+    const onZoomIn = () => containerOperatorRef.current?.resize(Zoom.IN);
+    const onZoomOut = () => containerOperatorRef.current?.resize(Zoom.OUT);
+
     useEffect(() => {
         if (isImageLoaded && stageRef.current) {
             const calculatedHeight = getHeightOfBlock(height, isMobile);
