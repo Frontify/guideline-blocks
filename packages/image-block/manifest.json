@@ -63,8 +63,6 @@
                     "link": {
                         "type": ["object", "null"],
                         "required": ["link"],
-                        "frontify-translatable": true,
-                        "frontify-machine-translatable": false,
                         "frontify-api-read": true,
                         "frontify-api-write": true,
                         "properties": {
