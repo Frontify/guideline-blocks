@@ -4,9 +4,24 @@
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
-            "alignment": { "type": "string", "enum": ["Left", "Right", "Center"], "frontify-api-read": true },
-            "style": { "type": "string", "enum": ["Dashed", "Solid", "Dotted"], "frontify-api-read": true },
-            "isLine": { "type": "string", "enum": ["NoLine", "Solid"], "frontify-api-read": true },
+            "alignment": {
+                "type": "string",
+                "enum": ["Left", "Right", "Center"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "style": {
+                "type": "string",
+                "enum": ["Dashed", "Solid", "Dotted"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isLine": {
+                "type": "string",
+                "enum": ["NoLine", "Solid"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
             "color": {
                 "type": ["null", "object"],
                 "required": ["red", "green", "blue"],
@@ -20,13 +35,38 @@
                 },
                 "frontify-api-read": true
             },
-            "isWidthCustom": { "type": "boolean", "frontify-api-read": true },
-            "widthCustom": { "type": "string", "pattern": "^([1-9]?[0-9]|100)%$", "frontify-api-read": true },
-            "widthSimple": { "type": "string", "enum": ["10%", "25%", "50%", "100%"], "frontify-api-read": true },
-            "isHeightCustom": { "type": "boolean", "frontify-api-read": true },
-            "heightCustom": { "type": "string", "pattern": "^[0-9]+px$", "frontify-api-read": true },
-            "heightSimple": { "type": "string", "enum": ["Small", "Medium", "Large"], "frontify-api-read": true },
-            "thickness": { "type": "string", "pattern": "^[0-9]+px$", "frontify-api-read": true }
+            "isWidthCustom": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "widthCustom": {
+                "type": "string",
+                "pattern": "^([1-9]?[0-9]|100)%$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "widthSimple": {
+                "type": "string",
+                "enum": ["10%", "25%", "50%", "100%"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isHeightCustom": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "heightCustom": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightSimple": {
+                "type": "string",
+                "enum": ["Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "thickness": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
         },
         "required": [
             "alignment",

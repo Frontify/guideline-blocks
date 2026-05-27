@@ -7,58 +7,107 @@
             "alignment": {
                 "type": "string",
                 "enum": ["left", "center", "right"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "appearance": {
                 "type": "string",
                 "enum": ["light", "strong"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
-            "extendedRadiusBottomLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
-            "extendedRadiusBottomRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "extendedRadiusBottomLeft": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusBottomRight": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
             "extendedRadiusChoice": {
                 "type": "string",
                 "enum": ["None", "Small", "Medium", "Large"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
-            "extendedRadiusTopLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
-            "extendedRadiusTopRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
-            "hasCustomPadding": { "type": "boolean", "frontify-api-read": true },
-            "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true },
+            "extendedRadiusTopLeft": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusTopRight": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasCustomPadding": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
             "iconSwitch": {
                 "type": "boolean",
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "iconType": {
                 "type": "string",
                 "enum": ["info", "none", "lightbulb", "megaphone"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
-            "paddingBottom": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "paddingBottom": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
             "paddingChoice": {
                 "type": "string",
                 "enum": ["s", "m", "l"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
-            "paddingLeft": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
-            "paddingRight": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
-            "paddingTop": { "type": "string", "pattern": "^([0-9]+px)?$", "frontify-api-read": true },
+            "paddingLeft": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "paddingRight": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "paddingTop": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
             "textValue": {
                 "type": "string",
                 "frontify-type": "fondueRte",
                 "frontify-serializable": true,
                 "frontify-translatable": true,
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "type": {
                 "type": "string",
                 "enum": ["tip", "info", "warning", "note"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "width": {
                 "type": "string",
                 "enum": ["fullWidth", "hugContents"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             }
         },
         "required": [
