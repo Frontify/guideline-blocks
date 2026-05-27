@@ -126,13 +126,15 @@
                             "type": ["string", "integer"],
                             "pattern": "^(id-[0-9]+|c[0-9a-z]{24}|[0-9]+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$",
                             "frontify-api-read": true,
-                            "frontify-translatable": true
+                            "frontify-translatable": true,
+                            "frontify-machine-translatable": false
                         },
                         "type": {
                             "type": "string",
                             "enum": ["Do", "Dont"],
                             "frontify-api-read": true,
-                            "frontify-translatable": true
+                            "frontify-translatable": true,
+                            "frontify-machine-translatable": false
                         },
                         "title": {
                             "type": "string",
