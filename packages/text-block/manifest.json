@@ -11,26 +11,31 @@
                 "frontify-serializable": true,
                 "frontify-type": "fondueRte",
                 "frontify-api-read": true,
+                "frontify-api-write": true,
                 "frontify-translatable": true
             },
             "columnNumber": {
                 "type": "string",
                 "enum": ["1", "2", "3", "4"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "isColumnGutterCustom": {
                 "type": "boolean",
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "columnGutterSimple": {
                 "type": "string",
                 "enum": ["Auto", "S", "M", "L"],
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             },
             "columnGutterCustom": {
                 "type": "string",
                 "pattern": "^[0-9]+px$",
-                "frontify-api-read": true
+                "frontify-api-read": true,
+                "frontify-api-write": true
             }
         }
     }
