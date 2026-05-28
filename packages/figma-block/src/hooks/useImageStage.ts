@@ -14,51 +14,57 @@ import { type UseImageStageProps, Zoom } from '../types';
 export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageStageProps) => {
     const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-    const imageStage = useRef<ImageStage>();
-    const containerOperator = useRef<ContainerOperator>();
+    const imageStageRef = useRef<ImageStage>();
+    const containerOperatorRef = useRef<ContainerOperator>();
     const hasLimitedOptionsRef = useRef<boolean>(hasLimitedOptions);
     const isFullScreenRef = useRef<boolean>(isFullScreen);
     const imageRef = useRef<HTMLImageElement | null>(null);
     const stageRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const onZoomIn = () => containerOperator?.current?.resize(Zoom.IN);
-    const onZoomOut = () => containerOperator?.current?.resize(Zoom.OUT);
+    const onZoomIn = () => containerOperatorRef.current?.resize(Zoom.IN);
+    const onZoomOut = () => containerOperatorRef.current?.resize(Zoom.OUT);
+
     useEffect(() => {
         if (isImageLoaded && stageRef.current) {
             const calculatedHeight = getHeightOfBlock(height, isMobile);
-            imageStage.current = new ImageStage(stageRef.current, calculatedHeight);
+            imageStageRef.current = new ImageStage(stageRef.current, calculatedHeight);
             if (!hasLimitedOptions) {
-                imageStage.current.alterHeight(calculatedHeight);
+                imageStageRef.current.alterHeight(calculatedHeight);
             }
         }
     }, [height, isImageLoaded, isMobile, hasLimitedOptions, isFullScreen]);
 
     useEffect(() => {
-        if (imageStage.current) {
-            imageStage.current.alterHeight(isFullScreen ? '100vh' : 'auto');
-            containerOperator.current?.centerTheImageContainerWithinTheImageStage();
+        if (imageStageRef.current) {
+            imageStageRef.current.alterHeight(isFullScreen ? '100vh' : 'auto');
+            containerOperatorRef.current?.centerTheImageContainerWithinTheImageStage();
         }
     }, [isFullScreen, hasLimitedOptions, isMobile]);
 
     useEffect(() => {
-        if (stageRef.current) {
-            new ResizeObserver(() => {
-                if (imageRef.current && containerRef.current && imageStage.current) {
-                    const imageElement = new ImageElement(imageRef.current);
-                    const imageContainer = new ImageContainer(containerRef.current);
-                    containerOperator.current = hasLimitedOptionsRef.current
-                        ? new BitmapContainerOperator(imageContainer, imageStage.current, imageElement)
-                        : new VectorContainerOperator(
-                              imageContainer,
-                              imageStage.current,
-                              imageElement,
-                              isFullScreenRef.current
-                          );
-                    containerOperator.current.fitAndCenterTheImageContainerWithinTheImageStage();
-                }
-            }).observe(stageRef.current);
+        if (!stageRef.current) {
+            return;
         }
+
+        const resizeObserver = new ResizeObserver(() => {
+            if (imageRef.current && containerRef.current && imageStageRef.current) {
+                const imageElement = new ImageElement(imageRef.current);
+                const imageContainer = new ImageContainer(containerRef.current);
+                containerOperatorRef.current = hasLimitedOptionsRef.current
+                    ? new BitmapContainerOperator(imageContainer, imageStageRef.current, imageElement)
+                    : new VectorContainerOperator(
+                          imageContainer,
+                          imageStageRef.current,
+                          imageElement,
+                          isFullScreenRef.current
+                      );
+                containerOperatorRef.current.fitAndCenterTheImageContainerWithinTheImageStage();
+            }
+        });
+        resizeObserver.observe(stageRef.current);
+
+        return () => resizeObserver.disconnect();
     }, []);
 
     useEffect(() => {
