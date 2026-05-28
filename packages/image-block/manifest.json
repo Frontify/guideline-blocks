@@ -53,6 +53,7 @@
             "hasLink": {
                 "type": "boolean",
                 "frontify-translatable": true,
+                "frontify-machine-translatable": false,
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
@@ -64,13 +65,11 @@
                     "link": {
                         "type": ["object", "null"],
                         "required": ["link"],
-                        "frontify-translatable": true,
-                        "frontify-api-read": true,
-                        "frontify-api-write": true,
                         "properties": {
                             "link": {
                                 "type": "string",
                                 "frontify-translatable": true,
+                                "frontify-machine-translatable": false,
                                 "frontify-api-read": true,
                                 "frontify-api-write": true
                             }
@@ -79,6 +78,7 @@
                     "openInNewTab": {
                         "type": "boolean",
                         "frontify-translatable": true,
+                        "frontify-machine-translatable": false,
                         "frontify-api-read": true,
                         "frontify-api-write": true
                     }
