@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { renderHook } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useImageStage } from './useImageStage';
 
@@ -10,8 +10,12 @@ describe('useImageStage', () => {
     let mockObserve: ReturnType<typeof vi.fn>;
 
     beforeEach(() => {
+        vi.unstubAllGlobals();
+        vi.restoreAllMocks();
+
         mockDisconnect = vi.fn();
         mockObserve = vi.fn();
+
         const MockResizeObserver = vi.fn(function () {
             return {
                 observe: mockObserve,
@@ -20,11 +24,6 @@ describe('useImageStage', () => {
         });
 
         vi.stubGlobal('ResizeObserver', MockResizeObserver);
-    });
-
-    afterEach(() => {
-        vi.unstubAllGlobals();
-        vi.restoreAllMocks();
     });
 
     it('should disconnect the ResizeObserver on unmount', () => {
