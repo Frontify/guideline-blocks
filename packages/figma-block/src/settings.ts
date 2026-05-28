@@ -197,7 +197,7 @@ export const settings = defineSettings({
                         {
                             id: 'borderColor',
                             type: 'colorInput',
-                            defaultValue: { red: 0, green: 0, blue: 200 },
+                            defaultValue: { red: 0, green: 0, blue: 0 },
                         },
                     ],
                     layout: 'columns',
