@@ -2,7 +2,7 @@
 
 import { toHex8String, radiusStyleMap } from '@frontify/guideline-blocks-settings';
 
-import { FullscreenOverlay } from './FullscreenOverlay';
+import { FullscreenOverlay } from './components/FullscreenOverlay';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components/ImageStageControls';
 import { getBorderOfBlock } from './helpers/mapCommonStyle';
 import { useImageStage } from './hooks/useImageStage';
