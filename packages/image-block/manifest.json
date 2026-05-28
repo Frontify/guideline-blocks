@@ -65,8 +65,6 @@
                     "link": {
                         "type": ["object", "null"],
                         "required": ["link"],
-                        "frontify-api-read": true,
-                        "frontify-api-write": true,
                         "properties": {
                             "link": {
                                 "type": "string",
