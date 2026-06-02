@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 const FOCUSABLE_SELECTORS =
@@ -9,7 +9,7 @@ const FOCUSABLE_SELECTORS =
 type FullscreenOverlayProps = {
     isFullScreen: boolean;
     onClose: () => void;
-    children: React.ReactNode;
+    children: ReactNode;
 };
 
 export const FullscreenOverlay = ({ isFullScreen, onClose, children }: FullscreenOverlayProps) => {
@@ -31,15 +31,25 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
 
             if (e.key === 'Tab' && overlayRef.current) {
                 const focusable = Array.from(overlayRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS));
+
+                if (focusable.length === 0) {
+                    e.preventDefault();
+                    overlayRef.current.focus();
+                    return;
+                }
+
                 const first = focusable[0];
                 const last = focusable[focusable.length - 1];
+                const active = document.activeElement as HTMLElement | null;
 
-                if (e.shiftKey && document.activeElement === first) {
+                const isInsideOverlay = active && overlayRef.current.contains(active);
+
+                if (e.shiftKey && (!isInsideOverlay || active === first)) {
                     e.preventDefault();
-                    last?.focus();
-                } else if (!e.shiftKey && document.activeElement === last) {
+                    last.focus();
+                } else if (!e.shiftKey && (!isInsideOverlay || active === last)) {
                     e.preventDefault();
-                    first?.focus();
+                    first.focus();
                 }
             }
         };
@@ -48,19 +58,21 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
-            previouslyFocused?.focus();
+            if (previouslyFocused && document.contains(previouslyFocused)) {
+                previouslyFocused.focus();
+            }
         };
     }, [isFullScreen, onClose]);
 
     const content = (
         <div
             ref={overlayRef}
-            {...(isFullScreen && {
-                role: 'dialog',
-                'aria-modal': true,
-                tabIndex: -1,
-                className: 'tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200] tw-outline-none',
-            })}
+            role={isFullScreen ? 'dialog' : undefined}
+            aria-modal={isFullScreen || undefined}
+            tabIndex={isFullScreen ? -1 : undefined}
+            className={
+                isFullScreen ? 'tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200] tw-outline-none' : undefined
+            }
         >
             {children}
         </div>
