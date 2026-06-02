@@ -21,6 +21,9 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
         }
 
         const previouslyFocused = document.activeElement as HTMLElement | null;
+        const previousBodyOverflow = document.body.style.overflow;
+
+        document.body.style.overflow = 'hidden';
         overlayRef.current?.focus();
 
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,12 +45,13 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
                 const last = focusable[focusable.length - 1];
                 const active = document.activeElement as HTMLElement | null;
 
+                const isOverlayFocused = active === overlayRef.current;
                 const isInsideOverlay = active && overlayRef.current.contains(active);
 
-                if (e.shiftKey && (!isInsideOverlay || active === first)) {
+                if (e.shiftKey && (!isInsideOverlay || isOverlayFocused || active === first)) {
                     e.preventDefault();
                     last.focus();
-                } else if (!e.shiftKey && (!isInsideOverlay || active === last)) {
+                } else if (!e.shiftKey && (!isInsideOverlay || isOverlayFocused || active === last)) {
                     e.preventDefault();
                     first.focus();
                 }
@@ -58,6 +62,8 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = previousBodyOverflow;
+
             if (previouslyFocused && document.contains(previouslyFocused)) {
                 previouslyFocused.focus();
             }
