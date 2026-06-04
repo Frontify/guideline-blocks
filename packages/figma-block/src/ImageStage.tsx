@@ -30,17 +30,28 @@ export const ImageStage = ({
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
         useImageStage({ height, hasLimitedOptions, isMobile });
 
+    const resolvedBorderRadius = hasRadius ? radiusValue : radiusStyleMap[radiusChoice];
+    const resolvedBackgroundColor = hasBackground && backgroundColor ? toHex8String(backgroundColor) : 'white';
+    const resolvedBorder = getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor);
+
     return (
         <FullscreenOverlay isFullScreen={isFullScreen} onClose={() => setIsFullScreen(false)}>
             <div
+                className="tw-relative tw-overflow-visible"
                 style={{
-                    border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
-                    borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
-                    backgroundColor: hasBackground && backgroundColor ? toHex8String(backgroundColor) : 'white',
+                    backgroundColor: resolvedBackgroundColor,
+                    borderRadius: resolvedBorderRadius,
                 }}
             >
-                <div className="tw-group tw-w-full tw-relative tw-overflow-hidden">
-                    <div ref={stageRef} className="tw-relative tw-overflow-hidden">
+                <div className="tw-group tw-relative tw-w-full tw-overflow-visible">
+                    <div
+                        ref={stageRef}
+                        className="tw-relative tw-z-0 tw-overflow-hidden"
+                        style={{
+                            borderRadius: resolvedBorderRadius,
+                            backgroundColor: resolvedBackgroundColor,
+                        }}
+                    >
                         <div ref={containerRef}>
                             <img
                                 ref={imageRef}
@@ -52,6 +63,14 @@ export const ImageStage = ({
                                 onLoad={() => setIsImageLoaded(true)}
                             />
                         </div>
+
+                        <div
+                            className="tw-pointer-events-none tw-absolute tw-inset-0 tw-z-10"
+                            style={{
+                                border: resolvedBorder,
+                                borderRadius: resolvedBorderRadius,
+                            }}
+                        />
                     </div>
                     {!hasLimitedOptions && (
                         <>
