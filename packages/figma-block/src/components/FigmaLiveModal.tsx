@@ -2,9 +2,7 @@
 
 import { Button, Dialog } from '@frontify/fondue/components';
 import { IconCross } from '@frontify/fondue/icons';
-import { type ReactElement, useEffect } from 'react';
-
-const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
+import { type ReactElement } from 'react';
 
 type FigmaLiveModalProps = {
     assetExternalUrl?: string;
@@ -13,14 +11,6 @@ type FigmaLiveModalProps = {
 };
 
 export const FigmaLiveModal = ({ assetExternalUrl, title, onClose }: FigmaLiveModalProps): ReactElement => {
-    useEffect(() => {
-        document.body.classList.add(FIGMA_BLOCK_MODAL_CLASSES);
-
-        return () => {
-            document.body.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
-        };
-    }, []);
-
     return (
         <Dialog.Root
             open
