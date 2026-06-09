@@ -9,15 +9,15 @@ export const getBorderOfBlock = (hasBorder: boolean, borderStyle: string, border
 export const getHeightOfBlock = (heightInSettings: string, isMobile: boolean) => {
     const MOBILE_HEIGHT_MODIFIER = 0.5;
 
-    if (!Number.isNaN(Number.parseFloat(heightInSettings)) && !heightInSettings.match(/[a-z%]+$/i)) {
-        return `${Number.parseFloat(heightInSettings)}px`;
+    const heightWithoutUnit = Number.parseFloat(heightInSettings);
+
+    if (!Number.isNaN(heightWithoutUnit) && !heightInSettings.match(/[a-z%]+$/i)) {
+        return `${heightWithoutUnit * (isMobile ? MOBILE_HEIGHT_MODIFIER : 1)}px`;
     }
 
     if (!heightInSettings.endsWith('px')) {
         return heightInSettings;
     }
-
-    const heightWithoutUnit = Number.parseFloat(heightInSettings);
 
     return `${heightWithoutUnit * (isMobile ? MOBILE_HEIGHT_MODIFIER : 1)}px`;
 };

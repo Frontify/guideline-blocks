@@ -14,7 +14,7 @@ describe('getHeightOfBlock', () => {
     });
 
     it('should return a unitless height as px unchanged on mobile', () => {
-        expect(getHeightOfBlock('400', true)).toBe('400px');
+        expect(getHeightOfBlock('400', true)).toBe('200px');
     });
 
     it('should return auto unchanged', () => {
