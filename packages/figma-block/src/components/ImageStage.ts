@@ -12,18 +12,23 @@ export class ImageStage {
         protected imageStage: HTMLDivElement,
         public customHeight = '0px'
     ) {
-        this.boundaries = this.imageStage.getBoundingClientRect();
-        document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
+        this.boundaries = this.getBoundaries();
+        document.addEventListener('mousemove', this.checkIfMouseIsInside);
     }
 
-    private checkIfMouseIsInside(event: MouseEvent) {
+    private readonly checkIfMouseIsInside = (event: MouseEvent) => {
         const currentMousePosition = MouseProperties.getCurrentPosition(event);
+        this.boundaries = this.getBoundaries();
 
         this.isMouseInsideImageStage =
             currentMousePosition.x > this.boundaries.left &&
             currentMousePosition.x < this.boundaries.right &&
             currentMousePosition.y > this.boundaries.top &&
             currentMousePosition.y < this.boundaries.bottom;
+    };
+
+    private getBoundaries(): BoundingClientRectProperties {
+        return this.imageStage.getBoundingClientRect();
     }
 
     get height(): number {
@@ -36,7 +41,11 @@ export class ImageStage {
 
     public alterHeight(height: string) {
         this.imageStage.style.height = height;
-        this.boundaries = this.imageStage.getBoundingClientRect();
+        this.boundaries = this.getBoundaries();
+    }
+
+    public destroy(): void {
+        document.removeEventListener('mousemove', this.checkIfMouseIsInside);
     }
 
     public aspectRatio(): number {

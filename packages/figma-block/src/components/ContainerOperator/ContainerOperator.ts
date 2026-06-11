@@ -16,6 +16,8 @@ export abstract class ContainerOperator {
         protected imageElement: ImageElement
     ) {}
 
+    public destroy(): void {}
+
     public setPadding(paddingInPercentage: number): this {
         this.padding = paddingInPercentage;
         return this;
