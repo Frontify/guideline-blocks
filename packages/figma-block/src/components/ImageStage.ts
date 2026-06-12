@@ -7,18 +7,30 @@ import { MouseProperties } from './MouseProperties';
 export class ImageStage {
     public isMouseInsideImageStage = false;
     private boundaries: BoundingClientRectProperties;
+    private boundariesDirty = false;
 
     constructor(
         protected imageStage: HTMLDivElement,
         public customHeight = '0px'
     ) {
         this.boundaries = this.getBoundaries();
+
         document.addEventListener('mousemove', this.checkIfMouseIsInside);
+        window.addEventListener('scroll', this.invalidateBoundaries, true);
+        window.addEventListener('resize', this.invalidateBoundaries);
     }
+
+    private readonly invalidateBoundaries = () => {
+        this.boundariesDirty = true;
+    };
 
     private readonly checkIfMouseIsInside = (event: MouseEvent) => {
         const currentMousePosition = MouseProperties.getCurrentPosition(event);
-        this.boundaries = this.getBoundaries();
+
+        if (this.boundariesDirty) {
+            this.boundaries = this.getBoundaries();
+            this.boundariesDirty = false;
+        }
 
         this.isMouseInsideImageStage =
             currentMousePosition.x > this.boundaries.left &&
@@ -42,10 +54,13 @@ export class ImageStage {
     public alterHeight(height: string) {
         this.imageStage.style.height = height;
         this.boundaries = this.getBoundaries();
+        this.boundariesDirty = false;
     }
 
     public destroy(): void {
         document.removeEventListener('mousemove', this.checkIfMouseIsInside);
+        window.removeEventListener('scroll', this.invalidateBoundaries, true);
+        window.removeEventListener('resize', this.invalidateBoundaries);
     }
 
     public aspectRatio(): number {
