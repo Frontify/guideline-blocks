@@ -12,8 +12,11 @@ import { MAGNIFICATION_PERCENTAGE_DEFAULT } from './constants';
 export class VectorContainerOperator extends ContainerOperator {
     private startImageContainerPosition: Point = { x: 0, y: 0 };
     private startMousePosition: Point = { x: 0, y: 0 };
-    private mouseMoveListener: (this: Document, event: MouseEvent) => void;
-    private mouseUpListener: (this: HTMLDivElement, event: MouseEvent) => void;
+
+    private readonly mouseOverListener = () => this.onMouseOver();
+    private readonly mouseDownListener = (event: MouseEvent) => this.onMouseDown(event);
+    private readonly mouseMoveListener = (event: MouseEvent) => this.onMouseMove(event);
+    private readonly mouseUpListener = () => this.onMouseUp();
 
     constructor(
         protected imageContainer: ImageContainer,
@@ -22,14 +25,14 @@ export class VectorContainerOperator extends ContainerOperator {
         protected isFullScreen: boolean
     ) {
         super(imageContainer, imageStage, imageElement);
-        imageContainer.node.addEventListener('mouseover', this.onMouseOver.bind(this));
-        imageContainer.node.addEventListener('mousedown', this.onMouseDown.bind(this));
 
-        this.mouseMoveListener = this.onMouseMove.bind(this);
-        this.mouseUpListener = this.onMouseUp.bind(this);
+        this.imageContainer.node.addEventListener('mouseover', this.mouseOverListener);
+        this.imageContainer.node.addEventListener('mousedown', this.mouseDownListener);
+
         if (!isFullScreen) {
             this.imageStage.alterHeight(this.imageStage.customHeight);
         }
+
         this.imageContainer.setContainerToAbsolute();
     }
 
@@ -89,5 +92,12 @@ export class VectorContainerOperator extends ContainerOperator {
         this.centerImageContainerWithinTheImageStage();
         this.imageElement.show();
         return this;
+    }
+
+    public override destroy(): void {
+        this.imageContainer.node.removeEventListener('mouseover', this.mouseOverListener);
+        this.imageContainer.node.removeEventListener('mousedown', this.mouseDownListener);
+        this.imageContainer.node.removeEventListener('mouseup', this.mouseUpListener);
+        document.removeEventListener('mousemove', this.mouseMoveListener);
     }
 }

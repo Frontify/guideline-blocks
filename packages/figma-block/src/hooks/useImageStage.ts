@@ -62,10 +62,11 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
 
         const resizeObserver = new ResizeObserver(() => {
             if (imageRef.current && containerRef.current && imageStageRef.current) {
-                containerOperatorRef.current?.destroy?.();
+                containerOperatorRef.current?.destroy();
 
                 const imageElement = new ImageElement(imageRef.current);
                 const imageContainer = new ImageContainer(containerRef.current);
+
                 containerOperatorRef.current = hasLimitedOptionsRef.current
                     ? new BitmapContainerOperator(imageContainer, imageStageRef.current, imageElement)
                     : new VectorContainerOperator(
@@ -74,14 +75,16 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
                           imageElement,
                           isFullScreenRef.current
                       );
+
                 containerOperatorRef.current.fitAndCenterTheImageContainerWithinTheImageStage();
             }
         });
+
         resizeObserver.observe(stageRef.current);
 
         return () => {
             resizeObserver.disconnect();
-            containerOperatorRef.current?.destroy?.();
+            containerOperatorRef.current?.destroy();
             containerOperatorRef.current = undefined;
         };
     }, []);
