@@ -51,7 +51,7 @@ export class VectorContainerOperator extends ContainerOperator {
     }
 
     private onMouseMove(event: MouseEvent) {
-        if (this.imageStage.isMouseInsideImageStage) {
+        if (this.imageStage.isPointInside({ x: event.clientX, y: event.clientY })) {
             this.imageContainer.changeMouseCursor(Cursor.GRABBING);
         }
 
