@@ -33,7 +33,7 @@ import {
     DONT_COLOR_DEFAULT_VALUE,
     getDefaultDoColor,
     getDefaultDontColor,
-} from './components/DoAndDontColor';
+} from './components/ColorComponent';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
