@@ -6,7 +6,6 @@ import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortab
 import {
     type Asset,
     AssetChooserObjectType,
-    rgbStringToRgbObject,
     useAssetChooser,
     useAssetUpload,
     useBlockSettings,
@@ -20,7 +19,6 @@ import {
     BlockInjectButton,
     type BlockProps,
     FileExtensionSets,
-    THEME_PREFIX,
     joinClassNames,
     useDndSensors,
 } from '@frontify/guideline-blocks-settings';
@@ -30,6 +28,12 @@ import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState 
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
+import {
+    DO_COLOR_DEFAULT_VALUE,
+    DONT_COLOR_DEFAULT_VALUE,
+    getDefaultDoColor,
+    getDefaultDontColor,
+} from './components/DoAndDontColor';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
@@ -41,9 +45,6 @@ import {
     type Settings,
     type ValueType,
 } from './types';
-
-export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
-export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -123,18 +124,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
     const themeStyle = useMemo(() => getComputedStyle(document.body), []);
-    const defaultDoColor = useMemo(
-        () =>
-            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
-            DO_COLOR_DEFAULT_VALUE,
-        [themeStyle]
-    );
-    const defaultDontColor = useMemo(
-        () =>
-            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
-            DONT_COLOR_DEFAULT_VALUE,
-        [themeStyle]
-    );
+    const defaultDoColor = useMemo(() => getDefaultDoColor(themeStyle), [themeStyle]);
+    const defaultDontColor = useMemo(() => getDefaultDontColor(themeStyle), [themeStyle]);
 
     const doColor = useMemo(
         () => (hasCustomDoColor ? customDoColor : defaultDoColor),
@@ -293,6 +284,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         },
         [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
     );
+
     const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
             previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
