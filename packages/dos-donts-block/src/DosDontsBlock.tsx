@@ -34,6 +34,7 @@ import {
     getDefaultDoColor,
     getDefaultDontColor,
 } from './components/DoAndDontColor';
+import { getGridClassName } from './components/gridComponent';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
@@ -389,15 +390,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setSelectedType(undefined);
     };
 
-    const gridClassName =
-        keepSideBySide && columns.toString() === '2'
-            ? ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][parseInt(columns) - 1]
-            : [
-                  'tw-grid-cols-1',
-                  '@sm:tw-grid-cols-2',
-                  '@md:tw-grid-cols-3 @sm:tw-grid-cols-2',
-                  '@md:tw-grid-cols-4 @sm:tw-grid-cols-3 @xs:tw-grid-cols-2',
-              ][parseInt(columns) - 1];
+    const gridClassName = getGridClassName(keepSideBySide, columns);
 
     const activeItem = localItems.find((x) => x.id === activeId);
 
