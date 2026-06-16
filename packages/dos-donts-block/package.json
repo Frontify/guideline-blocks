@@ -30,7 +30,7 @@
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@frontify/eslint-config-react": "1.0.16",
-        "@frontify/frontify-cli": "^6.1.0",
+        "@frontify/frontify-cli": "^6.2.3",
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/autosize": "^4.0.3",
         "@types/lodash-es": "^4.17.12",
