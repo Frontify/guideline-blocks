@@ -3,7 +3,6 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 
 import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
@@ -31,7 +30,7 @@ describe("Dos & Don'ts Block", () => {
 
         render(<DosDontsBlockWithStubs />);
 
-        expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeInTheDocument();
+        expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeTruthy();
     });
 
     it('renders a dos donts block in view mode', () => {
@@ -41,8 +40,8 @@ describe("Dos & Don'ts Block", () => {
 
         render(<DosDontsBlockWithStubs />);
 
-        expect(screen.queryByTestId(RTE_CONTENT_HTML)).not.toBeInTheDocument();
-        expect(screen.queryByTestId(RICH_TEXT_EDITOR)).not.toBeInTheDocument();
+        expect(screen.queryByTestId(RTE_CONTENT_HTML)).toBeNull();
+        expect(screen.queryByTestId(RICH_TEXT_EDITOR)).toBeNull();
     });
 
     it('renders an empty dos donts block in edit mode', () => {
@@ -58,8 +57,8 @@ describe("Dos & Don'ts Block", () => {
 
         render(<DosDontsBlockWithStubs />);
 
-        expect(screen.getAllByPlaceholderText('Add a title')[0]).toBeInTheDocument();
-        expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeInTheDocument();
+        expect(screen.getAllByPlaceholderText('Add a title')[0]).toBeTruthy();
+        expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeTruthy();
     });
 
     it('renders a dos donts block with the underline style', () => {
@@ -72,7 +71,7 @@ describe("Dos & Don'ts Block", () => {
 
         render(<DosDontsBlockWithStubs />);
 
-        expect(screen.queryByTestId(DOS_DONTS_ICON)).not.toBeInTheDocument();
+        expect(screen.queryByTestId(DOS_DONTS_ICON)).toBeNull();
         const next = screen.getAllByTestId(DOS_DONTS_HEADING)[0].nextElementSibling;
         expect(next).not.toBeNull();
         expect(next?.tagName).toBe('HR');
@@ -138,9 +137,9 @@ describe("Dos & Don'ts Block", () => {
 
         const image = screen.queryByTestId(DO_DONT_IMAGE);
         if (image) {
-            expect(image).toHaveAttribute('alt', 'Alt text');
+            expect(image.getAttribute('alt')).toBe('Alt text');
         } else {
-            expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeInTheDocument();
+            expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeTruthy();
         }
     });
 
@@ -161,14 +160,14 @@ describe("Dos & Don'ts Block", () => {
         const headings = screen.getAllByTestId(DOS_DONTS_HEADING);
 
         const firstTextarea = headings[0].querySelector('textarea');
-        expect(firstTextarea).toBeInTheDocument();
+        expect(firstTextarea).toBeTruthy();
         await user.type(firstTextarea!, 'Do this');
-        expect(firstTextarea).toHaveValue('Do this');
+        expect((firstTextarea as HTMLTextAreaElement).value).toBe('Do this');
 
         const secondTextarea = headings[1].querySelector('textarea');
-        expect(secondTextarea).toBeInTheDocument();
+        expect(secondTextarea).toBeTruthy();
         await user.type(secondTextarea!, 'Dont do this');
-        expect(secondTextarea).toHaveValue('Dont do this');
+        expect((secondTextarea as HTMLTextAreaElement).value).toBe('Dont do this');
     });
 
     it('has an internal link chooser in the RTE', async () => {
@@ -203,7 +202,7 @@ describe("Dos & Don'ts Block", () => {
         await user.click(linkButton);
 
         await waitFor(() => {
-            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeInTheDocument();
+            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeTruthy();
         });
     });
 
@@ -239,7 +238,7 @@ describe("Dos & Don'ts Block", () => {
         await user.click(buttonPlugin);
 
         await waitFor(() => {
-            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeInTheDocument();
+            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeTruthy();
         });
     });
 
@@ -257,7 +256,7 @@ describe("Dos & Don'ts Block", () => {
 
             render(<DosDontsBlockWithStubs />);
 
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeInTheDocument();
+            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeTruthy();
         });
 
         it('should be rendered side by side on containers larger than @sm(440px) breakpoint', () => {
@@ -273,7 +272,7 @@ describe("Dos & Don'ts Block", () => {
 
             render(<DosDontsBlockWithStubs />);
 
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeInTheDocument();
+            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeTruthy();
         });
     });
 });
