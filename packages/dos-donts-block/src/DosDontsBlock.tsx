@@ -34,7 +34,7 @@ import {
     getDefaultDoColor,
     getDefaultDontColor,
 } from './components/DoAndDontColor';
-import { getGridClassName } from './components/gridComponent';
+import { getGridClassName } from './components/GridComponent';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
