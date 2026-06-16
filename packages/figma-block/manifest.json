@@ -3,6 +3,48 @@
     "settingsSchema": {
         "type": "object",
         "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            }
+        },
         "required": [],
         "additionalProperties": false,
         "properties": {
@@ -55,9 +97,7 @@
                 "frontify-api-write": true
             },
             "backgroundColor": {
-                "type": "object",
-                "frontify-api-read": true,
-                "frontify-api-write": true
+                "$ref": "#/$defs/color"
             },
             "hasBorder": {
                 "type": "boolean",
@@ -77,9 +117,7 @@
                 "frontify-api-write": true
             },
             "borderColor": {
-                "type": "object",
-                "frontify-api-read": true,
-                "frontify-api-write": true
+                "$ref": "#/$defs/color"
             },
             "hasRadius": {
                 "type": "boolean",
@@ -94,6 +132,7 @@
             },
             "radiusChoice": {
                 "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
                 "frontify-api-read": true,
                 "frontify-api-write": true
             }
