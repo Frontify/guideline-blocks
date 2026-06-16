@@ -40,8 +40,6 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
         }
 
         return () => {
-            imageStage.destroy();
-
             if (imageStageRef.current === imageStage) {
                 imageStageRef.current = undefined;
             }

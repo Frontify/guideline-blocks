@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type BoundingClientRectProperties } from '../types';
-
+import { type BoundingClientRectProperties, type Point } from '../types';
 export class ImageStage {
     private boundaries: BoundingClientRectProperties;
 
@@ -29,13 +28,11 @@ export class ImageStage {
         this.boundaries = this.getBoundaries();
     }
 
-    public isPointInside({ x, y }: { x: number; y: number }): boolean {
+    public isPointInside({ x, y }: Point): boolean {
         const boundaries = this.getBoundaries();
 
         return x > boundaries.left && x < boundaries.right && y > boundaries.top && y < boundaries.bottom;
     }
-
-    public destroy(): void {}
 
     public aspectRatio(): number {
         return this.height === 0 ? 0 : this.width / this.height;
