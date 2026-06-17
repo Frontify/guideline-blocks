@@ -47,6 +47,9 @@ import {
     type ValueType,
 } from './types';
 
+export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
+export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
+
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
@@ -125,8 +128,18 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
     const themeStyle = useMemo(() => getComputedStyle(document.body), []);
-    const defaultDoColor = useMemo(() => getDefaultDoColor(themeStyle), [themeStyle]);
-    const defaultDontColor = useMemo(() => getDefaultDontColor(themeStyle), [themeStyle]);
+    const defaultDoColor = useMemo(
+        () =>
+            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
+            DO_COLOR_DEFAULT_VALUE,
+        [themeStyle]
+    );
+    const defaultDontColor = useMemo(
+        () =>
+            rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
+            DONT_COLOR_DEFAULT_VALUE,
+        [themeStyle]
+    );
 
     const doColor = useMemo(
         () => (hasCustomDoColor ? customDoColor : defaultDoColor),
