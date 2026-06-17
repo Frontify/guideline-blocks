@@ -30,8 +30,8 @@ import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState 
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { getGridClassName } from './DosDontsGrid';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
+import { getGridClassName } from './helper/DosDontsGrid';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
     BlockMode,
