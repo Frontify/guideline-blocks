@@ -1,9 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const getGridClassName = (keepSideBySide: boolean, columns: number | string) => {
-    const columnIndex = parseInt(columns.toString()) - 1;
+const DEFAULT_COLUMNS = 2;
 
-    if (keepSideBySide && columns.toString() === '2') {
+export const getGridClassName = (keepSideBySide?: boolean, columns?: number | string) => {
+    const columnValue = columns ?? DEFAULT_COLUMNS;
+    const columnIndex = parseInt(columnValue.toString(), 10) - 1;
+
+    if (keepSideBySide && columnValue.toString() === '2') {
         return ['tw-grid-cols-1', 'tw-grid-cols-2', 'tw-grid-cols-3', 'tw-grid-cols-4'][columnIndex];
     }
 
