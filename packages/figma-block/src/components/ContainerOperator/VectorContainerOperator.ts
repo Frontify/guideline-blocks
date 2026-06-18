@@ -47,7 +47,7 @@ export class VectorContainerOperator extends ContainerOperator {
         this.startImageContainerPosition = { x: this.imageContainer.offsetLeft, y: this.imageContainer.offsetTop };
 
         document.addEventListener('mousemove', this.mouseMoveListener);
-        this.imageContainer.node.addEventListener('mouseup', this.mouseUpListener);
+        document.addEventListener('mouseup', this.mouseUpListener);
     }
 
     private onMouseMove(event: MouseEvent) {
@@ -73,8 +73,8 @@ export class VectorContainerOperator extends ContainerOperator {
 
     private onMouseUp() {
         this.imageContainer.changeMouseCursor(Cursor.GRAB);
-        this.imageContainer.node.removeEventListener('mouseup', this.mouseUpListener);
         document.removeEventListener('mousemove', this.mouseMoveListener);
+        document.removeEventListener('mouseup', this.mouseUpListener);
     }
 
     public resize(zoom = Zoom.OUT): this {
@@ -97,7 +97,7 @@ export class VectorContainerOperator extends ContainerOperator {
     public override destroy(): void {
         this.imageContainer.node.removeEventListener('mouseover', this.mouseOverListener);
         this.imageContainer.node.removeEventListener('mousedown', this.mouseDownListener);
-        this.imageContainer.node.removeEventListener('mouseup', this.mouseUpListener);
         document.removeEventListener('mousemove', this.mouseMoveListener);
+        document.removeEventListener('mouseup', this.mouseUpListener);
     }
 }
