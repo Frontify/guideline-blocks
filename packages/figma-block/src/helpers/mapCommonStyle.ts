@@ -9,6 +9,9 @@ export const getBorderOfBlock = (hasBorder: boolean, borderStyle: string, border
 export const getHeightOfBlock = (heightInSettings: string, isMobile: boolean) => {
     const MOBILE_HEIGHT_MODIFIER = 0.5;
 
-    const heightWithoutUnit = +heightInSettings.split('px')[0];
+    if (!heightInSettings.endsWith('px') && Number.isNaN(Number(heightInSettings))) {
+        return heightInSettings;
+    }
+    const heightWithoutUnit = Number.parseFloat(heightInSettings);
     return `${heightWithoutUnit * (isMobile ? MOBILE_HEIGHT_MODIFIER : 1)}px`;
 };
