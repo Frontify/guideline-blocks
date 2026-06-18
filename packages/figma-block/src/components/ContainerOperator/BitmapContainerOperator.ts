@@ -7,9 +7,7 @@ import { type ImageStage } from '../ImageStage';
 import { ContainerOperator } from './ContainerOperator';
 
 export class BitmapContainerOperator extends ContainerOperator {
-    public destroy(): void {
-        throw new Error('Method not implemented.');
-    }
+    public destroy(): void {}
     constructor(
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
