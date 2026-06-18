@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ImageStage } from './ImageStage';
 
@@ -24,6 +24,10 @@ const mockBoundingClientRect = (element: HTMLElement, width: number, height: num
 };
 
 describe('ImageStage', () => {
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
     it('returns the correct width and height', () => {
         render(<ImageStageDivBlock />);
 
@@ -57,5 +61,18 @@ describe('ImageStage', () => {
         imageStage.alterHeight('300px');
 
         expect(element.style.height).toBe('300px');
+    });
+
+    it('checks if a point is inside the image stage', () => {
+        render(<ImageStageDivBlock />);
+
+        const element = document.getElementById(IMAGE_STAGE_ID) as HTMLDivElement;
+        mockBoundingClientRect(element, 200, 100);
+
+        const imageStage = new ImageStage(element);
+
+        expect(imageStage.isPointInside({ x: 50, y: 50 })).toBe(true);
+        expect(imageStage.isPointInside({ x: 250, y: 50 })).toBe(false);
+        expect(imageStage.isPointInside({ x: 50, y: 150 })).toBe(false);
     });
 });

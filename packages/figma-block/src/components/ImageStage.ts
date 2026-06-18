@@ -1,29 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type BoundingClientRectProperties } from '../types';
-
-import { MouseProperties } from './MouseProperties';
-
+import { type BoundingClientRectProperties, type Point } from '../types';
 export class ImageStage {
-    public isMouseInsideImageStage = false;
     private boundaries: BoundingClientRectProperties;
 
     constructor(
         protected imageStage: HTMLDivElement,
         public customHeight = '0px'
     ) {
-        this.boundaries = this.imageStage.getBoundingClientRect();
-        document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
+        this.boundaries = this.getBoundaries();
     }
 
-    private checkIfMouseIsInside(event: MouseEvent) {
-        const currentMousePosition = MouseProperties.getCurrentPosition(event);
-
-        this.isMouseInsideImageStage =
-            currentMousePosition.x > this.boundaries.left &&
-            currentMousePosition.x < this.boundaries.right &&
-            currentMousePosition.y > this.boundaries.top &&
-            currentMousePosition.y < this.boundaries.bottom;
+    private getBoundaries(): BoundingClientRectProperties {
+        return this.imageStage.getBoundingClientRect();
     }
 
     get height(): number {
@@ -36,7 +25,13 @@ export class ImageStage {
 
     public alterHeight(height: string) {
         this.imageStage.style.height = height;
-        this.boundaries = this.imageStage.getBoundingClientRect();
+        this.boundaries = this.getBoundaries();
+    }
+
+    public isPointInside({ x, y }: Point): boolean {
+        const boundaries = this.getBoundaries();
+
+        return x > boundaries.left && x < boundaries.right && y > boundaries.top && y < boundaries.bottom;
     }
 
     public aspectRatio(): number {
