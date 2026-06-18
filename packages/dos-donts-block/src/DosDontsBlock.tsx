@@ -35,6 +35,7 @@ import {
     getDefaultDoColor,
     getDefaultDontColor,
 } from './helpers/Color';
+import { getGridClassName } from './helpers/Grid';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
     BlockMode,
