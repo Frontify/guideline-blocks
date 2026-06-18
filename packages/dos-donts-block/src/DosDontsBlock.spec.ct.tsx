@@ -4,7 +4,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 
 import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
-import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './components/ColorComponent';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './helpers/Color';
 import { BlockMode, DoDontSpacing, DoDontStyle, DoDontType, ItemIconChoice } from './types';
 import './__tests__/themes.css';
 

@@ -28,13 +28,13 @@ import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState 
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
+import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import {
     DO_COLOR_DEFAULT_VALUE,
     DONT_COLOR_DEFAULT_VALUE,
     getDefaultDoColor,
     getDefaultDontColor,
-} from './components/ColorComponent';
-import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
+} from './helpers/Color';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
 import {
     BlockMode,
