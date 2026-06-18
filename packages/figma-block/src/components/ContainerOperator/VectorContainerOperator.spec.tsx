@@ -35,7 +35,7 @@ describe('VectorContainerOperator', () => {
         Object.defineProperty(mouseMoveEvent, 'pageY', { value: 100 });
         document.dispatchEvent(mouseMoveEvent);
 
-        fireEvent.mouseUp(containerElement);
+        fireEvent.mouseUp(document);
 
         expect(containerElement.style.left).toBe(`${initialLeft + 300}px`);
         expect(containerElement.style.top).toBe(`${initialTop + 100}px`);
@@ -76,7 +76,7 @@ describe('VectorContainerOperator', () => {
 
         expect(removeContainerEventListenerSpy).toHaveBeenCalledWith('mouseover', expect.any(Function));
         expect(removeContainerEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-        expect(removeContainerEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
         expect(removeDocumentEventListenerSpy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+        expect(removeDocumentEventListenerSpy).toHaveBeenCalledWith('mouseup', expect.any(Function));
     });
 });
