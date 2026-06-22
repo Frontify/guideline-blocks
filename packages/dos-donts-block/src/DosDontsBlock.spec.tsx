@@ -5,7 +5,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { DosDontsBlock, DosDontsBlockWrapper, DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './DosDontsBlock';
+import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './helpers/Color';
 import { BlockMode, DoDontSpacing, DoDontStyle, DoDontType, ItemIconChoice } from './types';
 import './__tests__/themes.css';
 
