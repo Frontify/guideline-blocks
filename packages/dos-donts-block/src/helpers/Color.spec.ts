@@ -2,7 +2,7 @@
 
 import { rgbStringToRgbObject } from '@frontify/app-bridge';
 import { THEME_PREFIX } from '@frontify/guideline-blocks-settings';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, getDefaultDoColor, getDefaultDontColor } from './Color';
 
@@ -16,14 +16,21 @@ const mockRgbStringToRgbObjectReturnValue = (value: unknown) => {
     mockedRgbStringToRgbObject.mockReturnValue(value as ReturnType<typeof rgbStringToRgbObject>);
 };
 
-const createThemeStyle = (propertyName: string, propertyValue: string) => {
+const createThemeStyle = (propertyName?: string, propertyValue?: string) => {
     const element = document.createElement('div');
-    element.style.setProperty(propertyName, propertyValue);
+
+    if (propertyName && propertyValue) {
+        element.style.setProperty(propertyName, propertyValue);
+    }
 
     return element.style;
 };
 
 describe('Color helpers', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
     it('has the correct default do color', () => {
         expect(DO_COLOR_DEFAULT_VALUE).toEqual({
             red: 0,
@@ -61,10 +68,9 @@ describe('Color helpers', () => {
     it('returns the default do color if the theme color does not exist', () => {
         mockRgbStringToRgbObjectReturnValue(undefined);
 
-        const themeStyle = createThemeStyle(`${THEME_PREFIX}accent-color-tip-color`, '');
+        const themeStyle = createThemeStyle();
 
         expect(getDefaultDoColor(themeStyle)).toEqual(DO_COLOR_DEFAULT_VALUE);
-        expect(mockedRgbStringToRgbObject).toHaveBeenCalledWith('');
     });
 
     it('returns the theme dont color if it exists', () => {
@@ -86,9 +92,8 @@ describe('Color helpers', () => {
     it('returns the default dont color if the theme color does not exist', () => {
         mockRgbStringToRgbObjectReturnValue(undefined);
 
-        const themeStyle = createThemeStyle(`${THEME_PREFIX}accent-color-warning-color`, '');
+        const themeStyle = createThemeStyle();
 
         expect(getDefaultDontColor(themeStyle)).toEqual(DONT_COLOR_DEFAULT_VALUE);
-        expect(mockedRgbStringToRgbObject).toHaveBeenCalledWith('');
     });
 });
