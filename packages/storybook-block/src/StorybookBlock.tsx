@@ -8,6 +8,8 @@ import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideli
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type FC, useCallback, useEffect, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
@@ -108,60 +110,56 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     return (
-        <div className="storybook-block">
-            <StyleProvider>
-                <div data-test-id="storybook-block" className="tw-relative">
-                    {iframe ? (
-                        isEditing ? (
-                            <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
-                                <div>{iframe}</div>
-                            </Resizeable>
-                        ) : (
-                            <div style={{ height: activeHeight }}>{iframe}</div>
-                        )
-                    ) : isEditing ? (
+        <StyleProvider appId={manifest.appId}>
+            <div data-test-id="storybook-block" className="tw-relative">
+                {iframe ? (
+                    isEditing ? (
                         <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
-                            <div
-                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y tw-body-medium"
-                                data-test-id="storybook-empty-wrapper"
-                            >
-                                <IconStorybook size={32} />
-                                <div
-                                    className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}
-                                >
-                                    <FormControl
-                                        helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
-                                        style={
-                                            !isValidStorybookUrl(submittedUrl)
-                                                ? FormControlStyle.Danger
-                                                : FormControlStyle.Primary
-                                        }
-                                    >
-                                        <TextInput
-                                            value={input}
-                                            onChange={(event) => setInput(event.target.value)}
-                                            onKeyDown={(event) => {
-                                                if (event.key === 'Enter') {
-                                                    saveInputLink();
-                                                }
-                                            }}
-                                            placeholder={URL_INPUT_PLACEHOLDER}
-                                        />
-                                    </FormControl>
-                                </div>
-                                <Button onPress={saveInputLink}>Confirm</Button>
-                            </div>
+                            <div>{iframe}</div>
                         </Resizeable>
                     ) : (
+                        <div style={{ height: activeHeight }}>{iframe}</div>
+                    )
+                ) : isEditing ? (
+                    <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                         <div
-                            className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
-                            style={{ height: activeHeight }}
+                            className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y tw-body-medium"
+                            data-test-id="storybook-empty-wrapper"
                         >
-                            No Storybook-URL defined.
+                            <IconStorybook size={32} />
+                            <div className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}>
+                                <FormControl
+                                    helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                                    style={
+                                        !isValidStorybookUrl(submittedUrl)
+                                            ? FormControlStyle.Danger
+                                            : FormControlStyle.Primary
+                                    }
+                                >
+                                    <TextInput
+                                        value={input}
+                                        onChange={(event) => setInput(event.target.value)}
+                                        onKeyDown={(event) => {
+                                            if (event.key === 'Enter') {
+                                                saveInputLink();
+                                            }
+                                        }}
+                                        placeholder={URL_INPUT_PLACEHOLDER}
+                                    />
+                                </FormControl>
+                            </div>
+                            <Button onPress={saveInputLink}>Confirm</Button>
                         </div>
-                    )}
-                </div>
-            </StyleProvider>
-        </div>
+                    </Resizeable>
+                ) : (
+                    <div
+                        className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
+                        style={{ height: activeHeight }}
+                    >
+                        No Storybook-URL defined.
+                    </div>
+                )}
+            </div>
+        </StyleProvider>
     );
 };

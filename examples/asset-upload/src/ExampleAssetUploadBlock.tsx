@@ -6,6 +6,8 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -66,44 +68,42 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     };
 
     return (
-        <div className="example-asset-upload">
-            <StyleProvider>
-                <div className="tw-flex tw-flex-col tw-gap-4">
-                    <div className="tw-flex tw-gap-4">
-                        <Button onPress={onOpenAssetChooser}>Open asset chooser</Button>
-                        <Button onPress={openFileDialog} disabled={loading}>
-                            {loading ? 'Uploading...' : 'Upload'}
-                        </Button>
-                    </div>
+        <StyleProvider appId={manifest.appId}>
+            <div className="tw-flex tw-flex-col tw-gap-4">
+                <div className="tw-flex tw-gap-4">
+                    <Button onPress={onOpenAssetChooser}>Open asset chooser</Button>
+                    <Button onPress={openFileDialog} disabled={loading}>
+                        {loading ? 'Uploading...' : 'Upload'}
+                    </Button>
+                </div>
 
-                    <div data-test-id="example-asset-upload-block">
-                        {blockAssets[IMAGE_SETTING_ID] ? (
-                            blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
-                                <div key={asset.id}>
-                                    <img
-                                        src={asset.previewUrl}
-                                        alt={asset.title}
-                                        data-test-id="example-asset-upload-image"
-                                    />
-                                    <div className="tw-flex tw-flex-col tw-gap-4">
-                                        <strong>{asset.title}</strong>
-                                        <div className="tw-flex tw-gap-4">
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
-                                            <Link link={asset.previewUrl} text="Preview URL" />
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
-                                            <Link link={asset.genericUrl} text="Generic URL" />
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
-                                            {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
-                                        </div>
+                <div data-test-id="example-asset-upload-block">
+                    {blockAssets[IMAGE_SETTING_ID] ? (
+                        blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
+                            <div key={asset.id}>
+                                <img
+                                    src={asset.previewUrl}
+                                    alt={asset.title}
+                                    data-test-id="example-asset-upload-image"
+                                />
+                                <div className="tw-flex tw-flex-col tw-gap-4">
+                                    <strong>{asset.title}</strong>
+                                    <div className="tw-flex tw-gap-4">
+                                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                                        <Link link={asset.previewUrl} text="Preview URL" />
+                                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                                        <Link link={asset.genericUrl} text="Generic URL" />
+                                        {/* eslint-disable-next-line @eslint-react/static-components */}
+                                        {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
                                     </div>
                                 </div>
-                            ))
-                        ) : (
-                            <p>No image set</p>
-                        )}
-                    </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No image set</p>
+                    )}
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

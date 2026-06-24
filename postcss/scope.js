@@ -43,19 +43,13 @@ const getScopedSelector = (selector, scope) => {
         return scope;
     }
 
-    // Prefix all rules with .selector that match the condition
+    // Prefix all rules with .selector that match the condition. Portaled content
+    // (Dropdown, Tooltip, Dialog, …) carries the scope class via Fondue's ThemeProvider
+    // className propagation, so a plain `${scope} ${selector}` prefix reaches it too.
     if (selector.includes("tw-") || tagSelectorRegex.test(selector)) {
-        return `${scope} ${selector}${getModalExtensions(selector)}`;
+        return `${scope} ${selector}`;
     }
 
     // Return the original rule
     return selector;
-};
-
-const getModalExtensions = (selector) => {
-    if (!selector.includes(".")) {
-        return "";
-    }
-
-    return `, body > [role='toolbar'] ${selector}, body [data-overlay-container] ${selector}, body [role='dialog'] ${selector}, body [data-is-underlay="true"] ${selector}`;
 };
