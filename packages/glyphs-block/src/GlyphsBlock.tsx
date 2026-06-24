@@ -5,6 +5,8 @@ import { toRgbaString } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
+import manifest from '../manifest.json';
+
 import { getRadiusValue } from './helpers';
 import { BLACK_COLOR, DEFAULT_CHARS, WHITE_COLOR } from './settings';
 import { type BlockProps, type Settings } from './types';
@@ -69,25 +71,23 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     });
 
     return (
-        <div className="glyps-block">
-            <StyleProvider>
-                <ul
-                    data-test-id="glyphs-block"
-                    className="tw-grid tw-grid-cols-6"
-                    style={{
-                        fontWeight: blockSettings.fontWeight,
-                        fontSize: blockSettings.fontSize,
-                        fontFamily: fontFamily || 'inherit',
-                        color: toRgbaString(fontColor || BLACK_COLOR),
-                        ...(hasBorder && {
-                            gap: borderWidth,
-                            padding: borderWidth,
-                        }),
-                    }}
-                >
-                    {items}
-                </ul>
-            </StyleProvider>
-        </div>
+        <StyleProvider appId={manifest.appId}>
+            <ul
+                data-test-id="glyphs-block"
+                className="tw-grid tw-grid-cols-6"
+                style={{
+                    fontWeight: blockSettings.fontWeight,
+                    fontSize: blockSettings.fontSize,
+                    fontFamily: fontFamily || 'inherit',
+                    color: toRgbaString(fontColor || BLACK_COLOR),
+                    ...(hasBorder && {
+                        gap: borderWidth,
+                        padding: borderWidth,
+                    }),
+                }}
+            >
+                {items}
+            </ul>
+        </StyleProvider>
     );
 };

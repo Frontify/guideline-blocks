@@ -15,6 +15,8 @@ import { ResponsiveImage, StyleProvider, useImageContainer } from '@frontify/gui
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
+import manifest from '../manifest.json';
+
 import {
     EditorOverlay,
     Label,
@@ -372,62 +374,60 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     }
     return (
-        <div className="compare-slider-block">
-            <StyleProvider>
-                <div
-                    data-test-id="compare-slider-block"
-                    ref={setContainerRef}
-                    className="tw-w-full tw-flex tw-relative"
-                    style={{ aspectRatio }}
-                >
-                    {isFirstAssetLoaded && isSecondAssetLoaded && (
-                        <>
-                            <div
-                                data-test-id="compare-slider-block-slider"
-                                className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
-                                style={{
-                                    ...getBorderStyle(),
-                                    borderRadius: getBorderRadius(),
-                                }}
-                            >
-                                <ReactCompareSlider
-                                    position={currentSliderPosition}
-                                    className="tw-size-full"
-                                    onPositionChange={setCurrentSliderPosition}
-                                    itemOne={renderSliderItem(SliderImageSlot.First)}
-                                    itemTwo={renderSliderItem(SliderImageSlot.Second)}
-                                    handle={
-                                        <SliderLine
-                                            alignment={alignment}
-                                            handle={handle}
-                                            sliderColor={sliderColor || DEFAULT_LINE_COLOR}
-                                            sliderStyle={sliderStyle}
-                                            sliderWidth={sliderWidth}
-                                        />
-                                    }
-                                    portrait={alignment === Alignment.Vertical}
-                                    onlyHandleDraggable
-                                />
-                            </div>
-                            {isEditing && (
-                                <EditorOverlay
-                                    alignment={alignment}
-                                    openAssetChooser={onOpenAssetChooser}
-                                    startFileDialogUpload={startFileDialogUpload}
-                                    firstAsset={firstAsset}
-                                    secondAsset={secondAsset}
-                                    borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
-                                    renderLabel={renderLabel}
-                                    handleAssetDelete={handleAssetDelete}
-                                    firstAlt={firstAssetAlt}
-                                    secondAlt={secondAssetAlt}
-                                    updateImageAlt={updateImageAlt}
-                                />
-                            )}
-                        </>
-                    )}
-                </div>
-            </StyleProvider>
-        </div>
+        <StyleProvider appId={manifest.appId}>
+            <div
+                data-test-id="compare-slider-block"
+                ref={setContainerRef}
+                className="tw-w-full tw-flex tw-relative"
+                style={{ aspectRatio }}
+            >
+                {isFirstAssetLoaded && isSecondAssetLoaded && (
+                    <>
+                        <div
+                            data-test-id="compare-slider-block-slider"
+                            className="tw-w-full tw-overflow-hidden tw-relative [&_.handle]:focus-within:tw-ring-4 [&_.handle]:focus-within:tw-ring-offset-2"
+                            style={{
+                                ...getBorderStyle(),
+                                borderRadius: getBorderRadius(),
+                            }}
+                        >
+                            <ReactCompareSlider
+                                position={currentSliderPosition}
+                                className="tw-size-full"
+                                onPositionChange={setCurrentSliderPosition}
+                                itemOne={renderSliderItem(SliderImageSlot.First)}
+                                itemTwo={renderSliderItem(SliderImageSlot.Second)}
+                                handle={
+                                    <SliderLine
+                                        alignment={alignment}
+                                        handle={handle}
+                                        sliderColor={sliderColor || DEFAULT_LINE_COLOR}
+                                        sliderStyle={sliderStyle}
+                                        sliderWidth={sliderWidth}
+                                    />
+                                }
+                                portrait={alignment === Alignment.Vertical}
+                                onlyHandleDraggable
+                            />
+                        </div>
+                        {isEditing && (
+                            <EditorOverlay
+                                alignment={alignment}
+                                openAssetChooser={onOpenAssetChooser}
+                                startFileDialogUpload={startFileDialogUpload}
+                                firstAsset={firstAsset}
+                                secondAsset={secondAsset}
+                                borderStyle={{ ...getBorderStyle(), borderColor: 'transparent' }}
+                                renderLabel={renderLabel}
+                                handleAssetDelete={handleAssetDelete}
+                                firstAlt={firstAssetAlt}
+                                secondAlt={secondAssetAlt}
+                                updateImageAlt={updateImageAlt}
+                            />
+                        )}
+                    </>
+                )}
+            </div>
+        </StyleProvider>
     );
 };

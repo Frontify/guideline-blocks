@@ -6,6 +6,8 @@ import { type BlockProps, RichTextEditor } from '@frontify/guideline-blocks-sett
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useMemo } from 'react';
 
+import manifest from '../manifest.json';
+
 import { getPlugins } from './getPlugins';
 import { PLACEHOLDER } from './settings';
 import { type Settings, spacingValues } from './types';
@@ -21,19 +23,21 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <div data-test-id="text-block-wrapper" className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
-            <StyleProvider>
-                <RichTextEditor
-                    id={String(appBridge.context('blockId').get())}
-                    isEditing={isEditing}
-                    value={content}
-                    columns={parseInt(columnNumber)}
-                    gap={gap}
-                    plugins={plugins}
-                    placeholder={PLACEHOLDER}
-                    onTextChange={handleTextChange}
-                />
-            </StyleProvider>
-        </div>
+        <StyleProvider
+            data-test-id="text-block-wrapper"
+            appId={manifest.appId}
+            className={merge([isEditing && 'tw-min-h-9'])}
+        >
+            <RichTextEditor
+                id={String(appBridge.context('blockId').get())}
+                isEditing={isEditing}
+                value={content}
+                columns={parseInt(columnNumber)}
+                gap={gap}
+                plugins={plugins}
+                placeholder={PLACEHOLDER}
+                onTextChange={handleTextChange}
+            />
+        </StyleProvider>
     );
 };

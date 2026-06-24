@@ -13,6 +13,8 @@ import {
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { isThemeEnabled } from './helpers/theme';
@@ -157,39 +159,37 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
 
     return (
-        <div ref={hostElement} className="callout-block">
-            <StyleProvider>
-                <div
-                    data-test-id="callout-block"
-                    style={{
-                        ...overwrittenThemeSettings,
-                        backgroundColor,
-                        ...customPaddingStyle,
-                        ...customCornerRadiusStyle,
-                    }}
-                    className={containerDivClassNames}
-                >
-                    <div data-test-id="callout-content" className={textDivClassNames}>
-                        {iconType !== Icon.None && (
-                            <CalloutIcon
-                                isActive={hasRichTextValue(blockSettings.textValue)}
-                                iconType={iconType}
-                                customIcon={customIcon}
-                                color={textColor}
-                                type={type}
-                            />
-                        )}
-                        <RichTextEditor
-                            id={String(appBridge.context('blockId').get())}
-                            isEditing={isEditing}
-                            onTextChange={handleTextChange}
-                            placeholder="Type your text here"
-                            value={blockSettings.textValue}
-                            plugins={plugins}
+        <StyleProvider ref={hostElement} appId={manifest.appId}>
+            <div
+                data-test-id="callout-block"
+                style={{
+                    ...overwrittenThemeSettings,
+                    backgroundColor,
+                    ...customPaddingStyle,
+                    ...customCornerRadiusStyle,
+                }}
+                className={containerDivClassNames}
+            >
+                <div data-test-id="callout-content" className={textDivClassNames}>
+                    {iconType !== Icon.None && (
+                        <CalloutIcon
+                            isActive={hasRichTextValue(blockSettings.textValue)}
+                            iconType={iconType}
+                            customIcon={customIcon}
+                            color={textColor}
+                            type={type}
                         />
-                    </div>
+                    )}
+                    <RichTextEditor
+                        id={String(appBridge.context('blockId').get())}
+                        isEditing={isEditing}
+                        onTextChange={handleTextChange}
+                        placeholder="Type your text here"
+                        value={blockSettings.textValue}
+                        plugins={plugins}
+                    />
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

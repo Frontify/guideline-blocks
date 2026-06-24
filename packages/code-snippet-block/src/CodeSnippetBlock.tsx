@@ -12,6 +12,8 @@ import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
 import { type FC, useEffect, useMemo, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { headerThemes } from './headerThemes';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
@@ -88,124 +90,122 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <div className="code-snippet-block">
-            <StyleProvider>
-                <div
-                    data-test-id="code-snippet-block"
-                    className="tw-overflow-hidden"
-                    style={{
-                        fontFamily: 'Menlo, Courier, monospace',
-                        fontSize: '12px',
-                        border: hasBorder
-                            ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor || DEFAULT_BORDER_COLOR)}`
-                            : 'none',
-                        borderRadius: customCornerRadiusStyle.borderRadius,
-                    }}
-                >
-                    <div className={merge(['tw-relative tw-group/copy', !isEditing && 'CodeMirror-readonly'])}>
-                        {withHeading && (
-                            <div
-                                data-test-id="code-snippet-header"
-                                className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
-                                style={{ ...getStyle(), letterSpacing: 'normal' }}
-                            >
-                                {isEditing ? (
-                                    <div
-                                        id={labelId}
-                                        className="tw-max-w-[150px]"
-                                        style={
-                                            {
-                                                '--base-color': getStyle().backgroundColor,
-                                                '--text-color': getStyle().color,
-                                                '--line-color-xx-strong': setAlpha(0.8, getStyle().color),
-                                            } as React.CSSProperties
-                                        }
+        <StyleProvider appId={manifest.appId}>
+            <div
+                data-test-id="code-snippet-block"
+                className="tw-overflow-hidden"
+                style={{
+                    fontFamily: 'Menlo, Courier, monospace',
+                    fontSize: '12px',
+                    border: hasBorder
+                        ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor || DEFAULT_BORDER_COLOR)}`
+                        : 'none',
+                    borderRadius: customCornerRadiusStyle.borderRadius,
+                }}
+            >
+                <div className={merge(['tw-relative tw-group/copy', !isEditing && 'CodeMirror-readonly'])}>
+                    {withHeading && (
+                        <div
+                            data-test-id="code-snippet-header"
+                            className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
+                            style={{ ...getStyle(), letterSpacing: 'normal' }}
+                        >
+                            {isEditing ? (
+                                <div
+                                    id={labelId}
+                                    className="tw-max-w-[150px]"
+                                    style={
+                                        {
+                                            '--base-color': getStyle().backgroundColor,
+                                            '--text-color': getStyle().color,
+                                            '--line-color-xx-strong': setAlpha(0.8, getStyle().color),
+                                        } as React.CSSProperties
+                                    }
+                                >
+                                    <Select
+                                        value={selectedLanguage}
+                                        onSelect={(value) => handleLanguageChange(value as Language)}
                                     >
-                                        <Select
-                                            value={selectedLanguage}
-                                            onSelect={(value) => handleLanguageChange(value as Language)}
+                                        {Object.entries(languageNameMap).map(([value, label]) => (
+                                            <Select.Item value={value} key={value}>
+                                                {label}
+                                            </Select.Item>
+                                        ))}
+                                    </Select>
+                                </div>
+                            ) : (
+                                <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
+                            )}
+                            <button
+                                type="button"
+                                data-test-id="header-copy-button"
+                                className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
+                                style={{
+                                    ...getStyle(),
+                                    color: blockSettings.theme === 'default' ? '#000000' : getStyle().color,
+                                }}
+                                onClick={handleCopy}
+                            >
+                                {getCopyButtonText()}
+                            </button>
+                        </div>
+                    )}
+                    <CodeMirror
+                        theme={getTheme()}
+                        value={contentValue}
+                        extensions={extensions}
+                        onChange={handleChange}
+                        readOnly={!isEditing}
+                        basicSetup={{
+                            lineNumbers: withRowNumbers,
+                            searchKeymap: false,
+                            highlightActiveLineGutter: false,
+                            highlightActiveLine: false,
+                            lintKeymap: false,
+                            autocompletion: false,
+                            syntaxHighlighting: true,
+                        }}
+                        onCreateEditor={(view) =>
+                            view.dom.querySelector('.cm-content')?.setAttribute('aria-labelledby', labelId)
+                        }
+                        placeholder={isEditing ? '< please add snippet here >' : ''}
+                    />
+                    {!withHeading && (
+                        <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
+                            {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
+                                <Tooltip.Root
+                                    open={isCopyTooltipOpen}
+                                    onOpenChange={setIsCopyTooltipOpen}
+                                    enterDelay={0}
+                                >
+                                    <Tooltip.Trigger>
+                                        <button
+                                            type="button"
+                                            data-test-id="copy-button"
+                                            className="tw-p-2 tw-rounded-md"
+                                            style={getStyle()}
+                                            onClick={handleCopy}
                                         >
-                                            {Object.entries(languageNameMap).map(([value, label]) => (
-                                                <Select.Item value={value} key={value}>
-                                                    {label}
-                                                </Select.Item>
-                                            ))}
-                                        </Select>
-                                    </div>
-                                ) : (
-                                    <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
-                                )}
+                                            {isCopied ? <IconCheckMark /> : <IconClipboard />}
+                                        </button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
+                                </Tooltip.Root>
+                            ) : (
                                 <button
                                     type="button"
-                                    data-test-id="header-copy-button"
-                                    className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                                    style={{
-                                        ...getStyle(),
-                                        color: blockSettings.theme === 'default' ? '#000000' : getStyle().color,
-                                    }}
+                                    className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
+                                    style={getStyle()}
                                     onClick={handleCopy}
+                                    aria-live="assertive"
                                 >
                                     {getCopyButtonText()}
                                 </button>
-                            </div>
-                        )}
-                        <CodeMirror
-                            theme={getTheme()}
-                            value={contentValue}
-                            extensions={extensions}
-                            onChange={handleChange}
-                            readOnly={!isEditing}
-                            basicSetup={{
-                                lineNumbers: withRowNumbers,
-                                searchKeymap: false,
-                                highlightActiveLineGutter: false,
-                                highlightActiveLine: false,
-                                lintKeymap: false,
-                                autocompletion: false,
-                                syntaxHighlighting: true,
-                            }}
-                            onCreateEditor={(view) =>
-                                view.dom.querySelector('.cm-content')?.setAttribute('aria-labelledby', labelId)
-                            }
-                            placeholder={isEditing ? '< please add snippet here >' : ''}
-                        />
-                        {!withHeading && (
-                            <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
-                                {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
-                                    <Tooltip.Root
-                                        open={isCopyTooltipOpen}
-                                        onOpenChange={setIsCopyTooltipOpen}
-                                        enterDelay={0}
-                                    >
-                                        <Tooltip.Trigger>
-                                            <button
-                                                type="button"
-                                                data-test-id="copy-button"
-                                                className="tw-p-2 tw-rounded-md"
-                                                style={getStyle()}
-                                                onClick={handleCopy}
-                                            >
-                                                {isCopied ? <IconCheckMark /> : <IconClipboard />}
-                                            </button>
-                                        </Tooltip.Trigger>
-                                        <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
-                                    </Tooltip.Root>
-                                ) : (
-                                    <button
-                                        type="button"
-                                        className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
-                                        style={getStyle()}
-                                        onClick={handleCopy}
-                                        aria-live="assertive"
-                                    >
-                                        {getCopyButtonText()}
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
+                    )}
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };
