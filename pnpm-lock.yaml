@@ -43,7 +43,7 @@ importers:
         version: 7.29.7
       '@cypress/vite-dev-server':
         specifier: ^7.2.1
-        version: 7.2.1(cypress@15.13.1)
+        version: 7.3.3(cypress@15.13.1)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -2405,8 +2405,8 @@ packages:
     resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/vite-dev-server@7.2.1':
-    resolution: {integrity: sha512-fgivZnA696oq70WwcKnSj8mOyb14alZZQhD3yDyaytzOrBdbGAsL+vjHcXP3OyRbi/k38qJXOQkUkxS1L3m/bA==}
+  '@cypress/vite-dev-server@7.3.3':
+    resolution: {integrity: sha512-F8D3Iw9M+LZIzS/JHV4bMnSCq4weaFxbMRhbrzq+dThy+rpimCiQctW2EfY5W2P2TBB60Suo+MuzveiqbD17Ag==}
     peerDependencies:
       cypress: '>=15.0.0'
 
@@ -9223,13 +9223,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.7.4:
-    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
-  semver@7.8.1:
-    resolution: {integrity: sha512-rkVq3IXh+4FDGch+KwzX3aV9W3kO54GyEgpvBzSyctDA6Xtd7RJQV1xmXbeQp5v7+VzLOfVqiutSE6GICgPFvg==}
+  semver@7.8.5:
+    resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -10187,8 +10182,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  yocto-queue@1.2.1:
-    resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
 
   yoctocolors-cjs@2.1.3:
@@ -11388,13 +11383,13 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/vite-dev-server@7.2.1(cypress@15.13.1)':
+  '@cypress/vite-dev-server@7.3.3(cypress@15.13.1)':
     dependencies:
       cypress: 15.13.1
       debug: 4.4.3(supports-color@8.1.1)
       find-up: 6.3.0
       node-html-parser: 5.3.3
-      semver: 7.7.4
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
@@ -14669,7 +14664,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.2
       debug: 4.4.3(supports-color@8.1.1)
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.5
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -16374,7 +16369,7 @@ snapshots:
       dot-prop: 10.1.0
       env-paths: 3.0.0
       json-schema-typed: 8.0.2
-      semver: 7.8.1
+      semver: 7.8.5
       uint8array-extras: 1.5.0
 
   confbox@0.1.8: {}
@@ -17102,7 +17097,7 @@ snapshots:
       eslint-import-context: 0.1.9(unrs-resolver@1.11.1)
       is-glob: 4.0.3
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.5
       stable-hash-x: 0.2.0
       unrs-resolver: 1.11.1
     optionalDependencies:
@@ -17121,7 +17116,7 @@ snapshots:
       eslint-import-context: 0.1.9(unrs-resolver@1.11.1)
       is-glob: 4.0.3
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.5
       stable-hash-x: 0.2.0
       unrs-resolver: 1.11.1
     optionalDependencies:
@@ -17535,7 +17530,7 @@ snapshots:
       pluralize: 8.0.0
       regexp-tree: 0.1.27
       regjsparser: 0.13.1
-      semver: 7.8.1
+      semver: 7.8.5
       strip-indent: 4.1.1
 
   eslint-plugin-unicorn@64.0.0(eslint@10.3.0(jiti@2.7.0)):
@@ -17555,7 +17550,7 @@ snapshots:
       pluralize: 8.0.0
       regexp-tree: 0.1.27
       regjsparser: 0.13.1
-      semver: 7.8.1
+      semver: 7.8.5
       strip-indent: 4.1.1
 
   eslint-plugin-yml@3.3.2(eslint@10.3.0(jiti@1.21.7)):
@@ -17828,7 +17823,7 @@ snapshots:
       process-warning: 5.0.0
       rfdc: 1.4.1
       secure-json-parse: 4.1.0
-      semver: 7.8.1
+      semver: 7.8.5
       toad-cache: 3.7.0
 
   fastq@1.20.1:
@@ -18225,7 +18220,7 @@ snapshots:
 
   is-bun-module@2.0.0:
     dependencies:
-      semver: 7.8.1
+      semver: 7.8.5
 
   is-callable@1.2.7: {}
 
@@ -18462,7 +18457,7 @@ snapshots:
     dependencies:
       acorn: 8.16.0
       eslint-visitor-keys: 5.0.1
-      semver: 7.8.1
+      semver: 7.8.5
 
   jsonfile@6.2.0:
     dependencies:
@@ -19539,7 +19534,7 @@ snapshots:
 
   p-limit@4.0.0:
     dependencies:
-      yocto-queue: 1.2.1
+      yocto-queue: 1.2.2
 
   p-locate@3.0.0:
     dependencies:
@@ -20216,9 +20211,7 @@ snapshots:
     dependencies:
       lru-cache: 6.0.0
 
-  semver@7.7.4: {}
-
-  semver@7.8.1: {}
+  semver@7.8.5: {}
 
   set-cookie-parser@2.7.2: {}
 
@@ -21289,7 +21282,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  yocto-queue@1.2.1: {}
+  yocto-queue@1.2.2: {}
 
   yoctocolors-cjs@2.1.3: {}
 
