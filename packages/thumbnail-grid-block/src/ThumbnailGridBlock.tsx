@@ -15,6 +15,8 @@ import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from 
 import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { Grid, Item, SortableItem } from './components/';
 import { getThumbnailStyles } from './helper';
 import { type Settings, type Thumbnail } from './types';
@@ -180,48 +182,46 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div className="thumbnail-grid-block">
-            <StyleProvider>
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragEnd={handleDragEnd}
-                    onDragStart={handleDragStart}
-                    modifiers={[restrictToParentElement]}
-                >
-                    <SortableContext items={itemsState} strategy={rectSortingStrategy}>
-                        <div className="tw-@container tw-translate-x-0 tw-isolate">
-                            <Grid columnCount={blockSettings.columnCount} gap={gap}>
-                                {itemsState.map((item, i) => (
-                                    <SortableItem
-                                        key={item.id}
-                                        item={item}
-                                        isAssetViewerEnabled={isAssetViewerEnabled}
-                                        image={blockAssets?.[item.id]?.[0]}
-                                        isLoading={getIsItemUploading(item.id)}
-                                        showDeleteButton={i !== itemsState.length - 1}
-                                        openAssetInAssetViewer={openAssetInAssetViewer}
-                                        {...thumbnailProps}
-                                    />
-                                ))}
-                            </Grid>
-                        </div>
-                        <DragOverlay>
-                            {draggedItem && (
-                                <Item
-                                    key={draggedItem.id}
-                                    item={draggedItem}
-                                    image={blockAssets?.[draggedItem.id]?.[0]}
-                                    isLoading={getIsItemUploading(draggedItem.id)}
-                                    isDragging
-                                    showDeleteButton={itemsState[itemsState.length - 1]?.id !== draggedItem.id}
+        <StyleProvider appId={manifest.appId}>
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                modifiers={[restrictToParentElement]}
+            >
+                <SortableContext items={itemsState} strategy={rectSortingStrategy}>
+                    <div className="tw-@container tw-translate-x-0 tw-isolate">
+                        <Grid columnCount={blockSettings.columnCount} gap={gap}>
+                            {itemsState.map((item, i) => (
+                                <SortableItem
+                                    key={item.id}
+                                    item={item}
+                                    isAssetViewerEnabled={isAssetViewerEnabled}
+                                    image={blockAssets?.[item.id]?.[0]}
+                                    isLoading={getIsItemUploading(item.id)}
+                                    showDeleteButton={i !== itemsState.length - 1}
+                                    openAssetInAssetViewer={openAssetInAssetViewer}
                                     {...thumbnailProps}
                                 />
-                            )}
-                        </DragOverlay>
-                    </SortableContext>
-                </DndContext>
-            </StyleProvider>
-        </div>
+                            ))}
+                        </Grid>
+                    </div>
+                    <DragOverlay>
+                        {draggedItem && (
+                            <Item
+                                key={draggedItem.id}
+                                item={draggedItem}
+                                image={blockAssets?.[draggedItem.id]?.[0]}
+                                isLoading={getIsItemUploading(draggedItem.id)}
+                                isDragging
+                                showDeleteButton={itemsState[itemsState.length - 1]?.id !== draggedItem.id}
+                                {...thumbnailProps}
+                            />
+                        )}
+                    </DragOverlay>
+                </SortableContext>
+            </DndContext>
+        </StyleProvider>
     );
 };
