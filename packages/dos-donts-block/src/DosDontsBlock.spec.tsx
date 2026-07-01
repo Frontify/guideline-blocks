@@ -3,7 +3,7 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './helpers/Color';
@@ -21,6 +21,14 @@ const DO_DONT_IMAGE = 'do-dont-image';
 const INTERNAL_LINK_SELECTOR = 'internal-link-selector';
 const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
 const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
+
+vi.mock('./helpers/Color', async (importOriginal) => {
+    return {
+        ...(await importOriginal()),
+        getDefaultDoColor: vi.fn().mockReturnValue({ r: 0, g: 200, b: 165, a: 1 }),
+        getDefaultDontColor: vi.fn().mockReturnValue({ r: 255, g: 55, b: 90, a: 1 }),
+    };
+});
 
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
