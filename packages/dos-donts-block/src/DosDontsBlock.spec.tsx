@@ -41,6 +41,23 @@ describe("Dos & Don'ts Block", () => {
         expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeTruthy();
     });
 
+    it('renders default theme colors from mocked helper', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            blockSettings: {
+                columns: 2,
+                hasCustomDoColor: false,
+                hasCustomDontColor: false,
+            },
+        }) as [React.ComponentType, unknown];
+
+        render(<DosDontsBlockWithStubs />);
+
+        const headings = screen.getAllByTestId(DOS_DONTS_HEADING);
+
+        expect(getComputedStyle(headings[0]).color).toBe('rgb(0, 200, 165)');
+        expect(getComputedStyle(headings[1]).color).toBe('rgb(255, 55, 90)');
+    });
+
     it('renders a dos donts block in view mode', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: { columns: 2 },
