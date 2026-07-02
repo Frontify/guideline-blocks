@@ -291,19 +291,16 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         {renderTitle()}
                     </span>
                 </div>
-
                 {style === DoDontStyle.Underline && (
                     <hr
                         style={dividerStyles[type]}
                         className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium tw-bg-black-40"
                     />
                 )}
-
                 <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                     {memoizedRichTextEditor}
                 </div>
             </BlockItemWrapper>
-
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',
@@ -321,11 +318,9 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
-
     const [draggableProps, setDraggableProps] = useState<Record<string, unknown>>(
         editing ? { ...attributes, ...listeners } : {}
     );
-
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
         transition,
