@@ -176,22 +176,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                           {
                                               title: 'Replace with upload',
                                               icon: <IconArrowCircleUp size={20} />,
-                                              onClick: () => {
-                                                  const assets = assetsRef.current as {
-                                                      openUpload?: () => void;
-                                                  } | null;
-                                                  assets?.openUpload?.();
-                                              },
+                                              onClick: () => assetsRef.current?.openUpload(),
                                           },
                                           {
                                               title: 'Replace with asset',
                                               icon: <IconImageStack size={20} />,
-                                              onClick: () => {
-                                                  const assets = assetsRef.current as {
-                                                      openAssetChooser?: () => void;
-                                                  } | null;
-                                                  assets?.openAssetChooser?.();
-                                              },
+                                              onClick: () => assetsRef.current?.openAssetChooser(),
                                           },
                                       ]
                                     : []),
@@ -205,10 +195,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 },
                                 {
                                     title: 'Set alt text',
-                                    onClick: () => {
-                                        const assets = assetsRef.current as { openAltTextMenu?: () => void } | null;
-                                        assets?.openAltTextMenu?.();
-                                    },
+                                    onClick: () => assetsRef.current?.openAltTextMenu(),
                                     icon: <IconSpeechBubbleQuote size={20} />,
                                 },
                             ],
@@ -322,7 +309,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
         editing ? { ...attributes, ...listeners } : {}
     );
     const transformStyle = {
-        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
+        transform: transform ? `translate(${transform.x}px)` : '',
         transition,
         zIndex: isDragging ? 2 : 1,
     };
