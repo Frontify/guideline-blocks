@@ -17,7 +17,7 @@
     "dependencies": {
         "@codemirror/lang-css": "^6.3.1",
         "@frontify/app-bridge": "^4.0.0-alpha.64",
-        "@frontify/fondue": "13.6.2",
+        "@frontify/fondue": "13.7.0",
         "@frontify/guideline-blocks-settings": "2.1.14",
         "@uiw/react-codemirror": "4.24.2",
         "lodash-es": "^4.18.1"
