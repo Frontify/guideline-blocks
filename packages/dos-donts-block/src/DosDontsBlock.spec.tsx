@@ -56,7 +56,7 @@ describe("Dos & Don'ts Block", () => {
                 hasCustomDoColor: false,
                 hasCustomDontColor: false,
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -69,7 +69,7 @@ describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block in view mode', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: { columns: 2 },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -86,7 +86,7 @@ describe("Dos & Don'ts Block", () => {
                 dontIconChoice: ItemIconChoice.CHECKMARK,
                 doIconChoice: ItemIconChoice.CHECKMARK,
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -100,7 +100,7 @@ describe("Dos & Don'ts Block", () => {
                 columns: 2,
                 style: DoDontStyle.Underline,
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -117,7 +117,7 @@ describe("Dos & Don'ts Block", () => {
                 isCustomColumnGutter: true,
                 customColumnGutterValue: '20px',
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -135,7 +135,7 @@ describe("Dos & Don'ts Block", () => {
                 doColor: DO_COLOR_DEFAULT_VALUE,
                 dontColor: DONT_COLOR_DEFAULT_VALUE,
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -164,7 +164,7 @@ describe("Dos & Don'ts Block", () => {
                 ],
             },
             blockAssets: { 1: [AssetDummy.with(1)] },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
         const image = screen.getByTestId(DO_DONT_IMAGE);
@@ -181,7 +181,7 @@ describe("Dos & Don'ts Block", () => {
                 columnGutterChoice: DoDontSpacing.Large,
                 rowGutterChoice: DoDontSpacing.Large,
             },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -208,7 +208,7 @@ describe("Dos & Don'ts Block", () => {
                     dontIconChoice: ItemIconChoice.CHECKMARK,
                     doIconChoice: ItemIconChoice.CHECKMARK,
                 },
-            }) as [React.ComponentType, unknown];
+            });
 
             render(<DosDontsBlockWithStubs />);
 
@@ -224,7 +224,7 @@ describe("Dos & Don'ts Block", () => {
                     dontIconChoice: ItemIconChoice.CHECKMARK,
                     doIconChoice: ItemIconChoice.CHECKMARK,
                 },
-            }) as [React.ComponentType, unknown];
+            });
 
             render(<DosDontsBlockWithStubs />);
 
