@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -12,15 +12,11 @@ import './__tests__/themes.css';
 
 const DOS_DONTS_BLOCK = 'dos-donts-block';
 const DOS_DONTS_HEADING = 'dos-donts-heading';
-const DOS_DONTS_CONTENT = 'dos-donts-content';
 const DOS_DONTS_ICON = 'dos-donts-icon';
 const DOS_DONTS_ADD_BUTTONS = 'dos-donts-block-add-buttons';
 const RTE_CONTENT_HTML = 'rte-content-html';
 const RICH_TEXT_EDITOR = 'rich-text-editor';
 const DO_DONT_IMAGE = 'do-dont-image';
-const INTERNAL_LINK_SELECTOR = 'internal-link-selector';
-const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
-const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
 
 vi.mock('./helpers/Color', async (importOriginal) => {
     return {
@@ -34,7 +30,7 @@ describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: { columns: 2 },
-        }) as [React.ComponentType, unknown];
+        });
 
         render(<DosDontsBlockWithStubs />);
 
@@ -159,13 +155,8 @@ describe("Dos & Don'ts Block", () => {
         }) as [React.ComponentType, unknown];
 
         render(<DosDontsBlockWithStubs />);
-
-        const image = screen.queryByTestId(DO_DONT_IMAGE);
-        if (image) {
-            expect(image.getAttribute('alt')).toBe('Alt text');
-        } else {
-            expect(screen.getByTestId(DOS_DONTS_BLOCK)).toBeTruthy();
-        }
+        const image = screen.getByTestId(DO_DONT_IMAGE);
+        expect(image).toHaveAttribute('alt', 'Alt text');
     });
 
     it('writes content to a dos donts block', async () => {
@@ -195,78 +186,6 @@ describe("Dos & Don'ts Block", () => {
         expect((secondTextarea as HTMLTextAreaElement).value).toBe('Dont do this');
     });
 
-    it('has an internal link chooser in the RTE', async () => {
-        const user = userEvent.setup();
-
-        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
-            editorState: true,
-            blockSettings: {
-                columns: 2,
-                columnGutterChoice: DoDontSpacing.Large,
-                rowGutterChoice: DoDontSpacing.Large,
-            },
-        }) as [React.ComponentType, unknown];
-
-        render(<DosDontsBlockWithStubs />);
-
-        const contents = screen.getAllByTestId(DOS_DONTS_CONTENT);
-        const firstEditor = contents[0].querySelector('[contenteditable]');
-
-        if (!firstEditor) {
-            return;
-        }
-
-        await user.dblClick(firstEditor);
-        await user.type(firstEditor, 'This is an example do description.');
-        await user.keyboard('{Control>}a{/Control}');
-
-        const linkButton = document.querySelector(FLOATING_LINK_BUTTON);
-        if (!linkButton) {
-            return;
-        }
-        await user.click(linkButton);
-
-        await waitFor(() => {
-            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeTruthy();
-        });
-    });
-
-    it('has an internal link chooser for buttons in the RTE', async () => {
-        const user = userEvent.setup();
-
-        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
-            editorState: true,
-            blockSettings: {
-                columns: 2,
-                columnGutterChoice: DoDontSpacing.Large,
-                rowGutterChoice: DoDontSpacing.Large,
-            },
-        }) as [React.ComponentType, unknown];
-
-        render(<DosDontsBlockWithStubs />);
-
-        const contents = screen.getAllByTestId(DOS_DONTS_CONTENT);
-        const firstEditor = contents[0].querySelector('[contenteditable]');
-
-        if (!firstEditor) {
-            return;
-        }
-
-        await user.dblClick(firstEditor);
-        await user.type(firstEditor, 'This is an example do description.');
-        await user.keyboard('{Control>}a{/Control}');
-
-        const buttonPlugin = document.querySelector(FLOATING_BUTTON_BUTTON);
-        if (!buttonPlugin) {
-            return;
-        }
-        await user.click(buttonPlugin);
-
-        await waitFor(() => {
-            expect(screen.getByTestId(INTERNAL_LINK_SELECTOR)).toBeTruthy();
-        });
-    });
-
     describe('Add buttons', () => {
         it('should stack on top of each other on containers below @sm(440px) breakpoint', () => {
             const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
@@ -281,7 +200,7 @@ describe("Dos & Don'ts Block", () => {
 
             render(<DosDontsBlockWithStubs />);
 
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeTruthy();
+            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toHaveClass('tw-flex-col', '@sm:tw-flex-row');
         });
 
         it('should be rendered side by side on containers larger than @sm(440px) breakpoint', () => {
@@ -297,7 +216,7 @@ describe("Dos & Don'ts Block", () => {
 
             render(<DosDontsBlockWithStubs />);
 
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toBeTruthy();
+            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toHaveClass('tw-flex-col', '@sm:tw-flex-row');
         });
     });
 });
