@@ -309,7 +309,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
         editing ? { ...attributes, ...listeners } : {}
     );
     const transformStyle = {
-        transform: transform ? `translate(${transform.x}px)` : '',
+        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
         transition,
         zIndex: isDragging ? 2 : 1,
     };
