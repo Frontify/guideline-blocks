@@ -8,8 +8,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './helpers/Color';
 import { BlockMode, DoDontSpacing, DoDontStyle, DoDontType, ItemIconChoice } from './types';
-import './__tests__/themes.css';
 
+import './__tests__/themes.css';
+import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 const DOS_DONTS_BLOCK = 'dos-donts-block';
 const DOS_DONTS_HEADING = 'dos-donts-heading';
 const DOS_DONTS_ICON = 'dos-donts-icon';
@@ -27,7 +28,7 @@ vi.mock('./helpers/Color', async (importOriginal) => {
 });
 
 vi.mock('@frontify/guideline-blocks-shared', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('@frontify/guideline-blocks-shared')>();
+    const actual = await importOriginal<typeof GuidelineBlocksShared>();
     return {
         ...actual,
         useImageContainer: () => ({
