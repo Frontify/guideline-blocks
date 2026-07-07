@@ -218,7 +218,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         }
 
         return (
-            <h3 style={styles} className="tw-w-full tw-break-words tw-whitespace-pre-wrap">
+            <h3
+                data-test-id="do-dont-heading"
+                style={styles}
+                className="tw-w-full tw-break-words tw-whitespace-pre-wrap"
+            >
                 {title}
             </h3>
         );
