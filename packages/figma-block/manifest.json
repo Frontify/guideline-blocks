@@ -72,7 +72,7 @@
             },
             "heightChoice": {
                 "type": "string",
-                "enum": ["small", "medium", "large"],
+                "enum": ["Small", "Medium", "Large"],
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
