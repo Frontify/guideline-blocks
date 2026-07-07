@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { type ComponentProps, type Ref, createRef } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -236,6 +236,24 @@ describe('DosDontsAssets', () => {
         });
 
         expect(screen.getByTestId('alt-text-flyout').getAttribute('data-open')).toBe('true');
+    });
+
+    it('saves the local alt text from the alt text flyout', () => {
+        const onChangeItem = vi.fn();
+        const ref = createRef<DosDontsAssetsRef>();
+
+        renderDosDontsAssets({ onChangeItem }, ref);
+
+        act(() => {
+            ref.current?.openAltTextMenu();
+        });
+
+        fireEvent.click(screen.getByRole('button', { name: 'Save alt text' }));
+
+        expect(onChangeItem).toHaveBeenCalledTimes(1);
+        expect(onChangeItem).toHaveBeenCalledWith('item-1', {
+            alt: 'Existing alt text',
+        });
     });
 
     it('updates the asset id and alt text when choosing an asset', async () => {

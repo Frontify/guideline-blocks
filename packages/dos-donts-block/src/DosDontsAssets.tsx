@@ -3,7 +3,7 @@
 import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { AssetChooserObjectType, FileExtensionSets, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontType, type DoDontItemProps } from './types';
@@ -43,6 +43,10 @@ type DosDontsAssetsProps = Pick<
     | 'radiusValue'
     | 'dontColor'
 >;
+
+const getImageAltText = (alt: string | undefined, asset: Asset): string => {
+    return alt ?? (typeof asset.alternativeText === 'string' ? asset.alternativeText : '');
+};
 
 export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>(
     (
@@ -88,32 +92,44 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
         });
 
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-            onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
+            onUploadProgress: () => {
+                setIsUploadLoading(true);
+            },
         });
 
-        const onOpenAssetChooser = () => {
+        const saveAsset = useCallback(
+            async (asset: Asset) => {
+                const imageAlt = getImageAltText(alt, asset);
+
+                setLocalAltText(imageAlt);
+
+                if (updateAssetIdsFromKey) {
+                    await updateAssetIdsFromKey(id, [asset.id]);
+                    onChangeItem(id, { alt: imageAlt });
+                }
+
+                setIsUploadLoading(false);
+            },
+            [alt, id, onChangeItem, updateAssetIdsFromKey]
+        );
+
+        const onOpenAssetChooser = useCallback(() => {
             openAssetChooser(
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                async (result: Asset[]) => {
-                    setIsUploadLoading(true);
-
+                (result: Asset[]) => {
                     const asset = result[0];
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const imageAlt = alt ?? asset.alternativeText ?? '';
 
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    setLocalAltText(imageAlt);
-
-                    if (updateAssetIdsFromKey) {
-                        await updateAssetIdsFromKey(id, [asset.id]);
-
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        onChangeItem(id, { alt: imageAlt });
-
-                        setIsUploadLoading(false);
+                    if (!asset) {
+                        closeAssetChooser();
+                        return;
                     }
 
-                    closeAssetChooser();
+                    setIsUploadLoading(true);
+
+                    saveAsset(asset)
+                        .finally(() => {
+                            closeAssetChooser();
+                        })
+                        .catch(() => undefined);
                 },
                 {
                     multiSelection: false,
@@ -121,49 +137,41 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
                     extensions: FileExtensionSets.Images,
                 }
             );
-        };
+        }, [closeAssetChooser, openAssetChooser, saveAsset]);
 
-        const onUploadClick = () => {
+        const onUploadClick = useCallback(() => {
             openFileDialog();
-        };
+        }, [openFileDialog]);
 
-        useImperativeHandle(ref, () => ({
-            openUpload: onUploadClick,
-            openAssetChooser: onOpenAssetChooser,
-            openAltTextMenu: () => setShowAltTextMenu(true),
-        }));
+        useImperativeHandle(
+            ref,
+            () => ({
+                openUpload: onUploadClick,
+                openAssetChooser: onOpenAssetChooser,
+                openAltTextMenu: () => setShowAltTextMenu(true),
+            }),
+            [onOpenAssetChooser, onUploadClick]
+        );
 
         useEffect(() => {
             if (selectedFiles) {
                 setIsUploadLoading(true);
                 uploadFile(selectedFiles);
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
-        }, [selectedFiles]);
+        }, [selectedFiles, uploadFile]);
 
         useEffect(() => {
-            if (doneAll) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                (async (uploadResults) => {
-                    const asset = uploadResults?.[0];
-
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const imageAlt = alt ?? asset.alternativeText ?? '';
-
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    setLocalAltText(imageAlt);
-
-                    if (updateAssetIdsFromKey) {
-                        await updateAssetIdsFromKey(id, [asset.id]);
-                        setIsUploadLoading(false);
-
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        onChangeItem(id, { alt: imageAlt });
-                    }
-                })(uploadResults);
+            if (!doneAll) {
+                return;
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
-        }, [doneAll, uploadResults]);
+            const asset = uploadResults?.[0];
+
+            if (!asset) {
+                return;
+            }
+
+            saveAsset(asset).catch(() => undefined);
+        }, [doneAll, saveAsset, uploadResults]);
 
         return (
             <>
