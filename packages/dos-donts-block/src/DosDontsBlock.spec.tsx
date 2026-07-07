@@ -26,6 +26,17 @@ vi.mock('./helpers/Color', async (importOriginal) => {
     };
 });
 
+vi.mock('@frontify/guideline-blocks-shared', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('@frontify/guideline-blocks-shared')>();
+    return {
+        ...actual,
+        useImageContainer: () => ({
+            containerWidth: 300,
+            setContainerRef: vi.fn(),
+        }),
+    };
+});
+
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
