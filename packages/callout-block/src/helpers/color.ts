@@ -4,7 +4,7 @@ import { type Color, THEME_PREFIX, isDark, setAlpha, toColorObject } from '@fron
 
 import { Appearance, Type } from '../types';
 
-const MIN_READABLE_CONTRAST = 1.5;
+const MIN_READABLE_CONTRAST = 1.9;
 
 const getAccentColor = (type: Type, hostElement: HTMLDivElement | null): string => {
     const style = getComputedStyle(hostElement ?? document.body);
