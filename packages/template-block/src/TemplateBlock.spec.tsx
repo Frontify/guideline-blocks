@@ -282,11 +282,6 @@ describe('Template Block', () => {
         );
     });
 
-    // TODO(vitest-migration): the original test compared getBoundingClientRect() of preview vs text at
-    // an iphone-x viewport to assert vertical stacking. happy-dom has no layout engine, so positions cannot
-    // be measured. The block's responsibility here is applying the `tw-flex-col` class (mobile default),
-    // which is already covered by "should render block content in columns when text is positioned right".
-
     it('should respect 3/4 text ratio setting when block is in right mode', () => {
         renderTemplateBlock({
             editorState: true,
