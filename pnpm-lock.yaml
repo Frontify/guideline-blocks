@@ -1400,12 +1400,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.16)
-      cypress:
-        specifier: ^15.13.0
-        version: 15.13.1
-      cypress-real-events:
-        specifier: ^1.15.0
-        version: 1.15.0(cypress@15.13.1)
       eslint:
         specifier: ^10.3.0
         version: 10.3.0(jiti@2.7.0)
