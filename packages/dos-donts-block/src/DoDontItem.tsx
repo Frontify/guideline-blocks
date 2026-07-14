@@ -2,18 +2,9 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
-import {
-    IconArrowCircleUp,
-    IconArrowMove,
-    IconArrowSwap,
-    IconImageStack,
-    IconSpeechBubbleQuote,
-    IconTrashBin,
-} from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import {
     AssetChooserObjectType,
-    BlockItemWrapper,
     BlockStyles,
     FileExtensionSets,
     RichTextEditor,
@@ -22,10 +13,10 @@ import {
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
 import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
+import { DosDontsToolbar } from './DoDontToolbar';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
@@ -73,7 +64,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
-    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
     const doColorString = toRgbaString(doColor);
@@ -231,70 +221,23 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
-            <BlockItemWrapper
+            <DosDontsToolbar
+                id={id}
+                type={type}
+                editing={editing}
                 isDragging={isDragging}
-                shouldHideWrapper={replaceWithPlaceholder || !editing}
-                shouldHideComponent={replaceWithPlaceholder}
-                shouldBeShown={isDragging}
-                toolbarItems={[
-                    { type: 'dragHandle', icon: <IconArrowMove size={16} />, draggableProps, setActivatorNodeRef },
-                    {
-                        type: 'button',
-                        icon: <IconTrashBin size={16} />,
-                        tooltip: 'Delete Item',
-                        onClick: () => onRemoveSelf(id),
-                    },
-                    {
-                        type: 'menu',
-                        items: [
-                            [
-                                ...(linkedImage
-                                    ? [
-                                          {
-                                              title: 'Replace with upload',
-                                              icon: <IconArrowCircleUp size={20} />,
-                                              onClick: onUploadClick,
-                                          },
-                                          {
-                                              title: 'Replace with asset',
-                                              icon: <IconImageStack size={20} />,
-                                              onClick: onOpenAssetChooser,
-                                          },
-                                      ]
-                                    : []),
-                                {
-                                    title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
-                                    icon: <IconArrowSwap size={20} />,
-                                    onClick: () =>
-                                        onChangeItem(id, {
-                                            type: type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
-                                        }),
-                                },
-                                {
-                                    title: 'Set alt text',
-                                    onClick: () => setShowAltTextMenu(true),
-                                    icon: <IconSpeechBubbleQuote size={20} />,
-                                },
-                            ],
-                            [
-                                {
-                                    title: 'Delete',
-                                    icon: <IconTrashBin size={20} />,
-                                    onClick: () => onRemoveSelf(id),
-                                },
-                            ],
-                        ],
-                    },
-                ]}
+                replaceWithPlaceholder={replaceWithPlaceholder}
+                draggableProps={draggableProps}
+                setActivatorNodeRef={setActivatorNodeRef}
+                linkedImage={linkedImage}
+                alt={alt}
+                localAltText={localAltText}
+                setLocalAltText={setLocalAltText}
+                onChangeItem={onChangeItem}
+                onRemoveSelf={onRemoveSelf}
+                onUploadClick={onUploadClick}
+                onOpenAssetChooser={onOpenAssetChooser}
             >
-                <EditAltTextFlyout
-                    setShowAltTextMenu={setShowAltTextMenu}
-                    showAltTextMenu={showAltTextMenu}
-                    setLocalAltText={setLocalAltText}
-                    defaultAltText={alt}
-                    onSave={() => onChangeItem(id, { alt: localAltText })}
-                    localAltText={localAltText}
-                />
                 {mode === BlockMode.TEXT_AND_IMAGE && (
                     <ImageComponent
                         isEditing={editing}
@@ -367,7 +310,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                     {memoizedRichTextEditor}
                 </div>
-            </BlockItemWrapper>
+            </DosDontsToolbar>
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',
