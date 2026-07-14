@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getGridClassName } from './Grid';
 import { GUTTER_VALUES, type Settings } from '../types';
+
+import { getGridClassName } from './Grid';
 
 export const getDoDontGridStyle = (blockSettings: Settings) => {
     const {
