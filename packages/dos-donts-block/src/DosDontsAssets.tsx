@@ -158,20 +158,20 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
                 setIsUploadLoading(true);
                 uploadFile(selectedFiles);
             }
-        }, [selectedFiles, uploadFile]);
+            // eslint-disable-next-line @eslint-react/exhaustive-deps
+        }, [selectedFiles]);
 
         useEffect(() => {
             if (!doneAll) {
                 return;
             }
             const asset = uploadResults?.[0];
-
             if (!asset) {
                 return;
             }
-
             saveAsset(asset).catch(() => undefined);
-        }, [doneAll, saveAsset, uploadResults]);
+            // eslint-disable-next-line @eslint-react/exhaustive-deps
+        }, [doneAll, uploadResults]);
 
         return (
             <>
