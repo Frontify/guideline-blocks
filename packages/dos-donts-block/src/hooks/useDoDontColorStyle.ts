@@ -7,8 +7,8 @@ import {
     DONT_COLOR_DEFAULT_VALUE,
     getDefaultDoColor,
     getDefaultDontColor,
-} from './helpers/Color';
-import { type Settings } from './types';
+} from '../helpers/Color';
+import { type Settings } from '../types';
 
 export const useDoDontColorStyle = (blockSettings: Settings) => {
     const { doColor: customDoColor, dontColor: customDontColor, hasCustomDoColor, hasCustomDontColor } = blockSettings;
