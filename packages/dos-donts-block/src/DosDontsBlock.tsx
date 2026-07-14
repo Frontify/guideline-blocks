@@ -28,9 +28,11 @@ import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'r
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { useDoDontStyle } from './DoDontStyle';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
+import { getDoDontContainerStyle } from './getDoDontContainerStyle';
+import { getDoDontGridStyle } from './getDoDontGridStyle';
 import { BlockMode, type ChangeType, DoDontType, type Item, type Settings, type ValueType } from './types';
+import { useDoDontColorStyle } from './useDoDontColorStyle';
 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -64,8 +66,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
     const [activeId, setActiveId] = useState<string | undefined>(undefined);
-    const { items = [], doColor: customDoColor, dontColor: customDontColor } = blockSettings;
     const {
+        items = [],
+        doColor: customDoColor,
+        dontColor: customDontColor,
         style,
         hasCustomDoIcon,
         doIconChoice,
@@ -78,6 +82,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         imageDisplay,
         imageHeightChoice,
         mode,
+    } = blockSettings;
+    const { doColor, dontColor, resolvedDoColor, resolvedDontColor } = useDoDontColorStyle(blockSettings);
+    const { columnGap, rowGap, gridClassName } = getDoDontGridStyle(blockSettings);
+    const {
         borderWidth,
         borderStyle,
         hasBackground,
@@ -85,16 +93,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         hasRadius,
         radiusChoice,
         radiusValue,
-        columnGap,
-        rowGap,
-        gridClassName,
-        doColor,
-        dontColor,
-        resolvedDoColor,
-        resolvedDontColor,
         resolvedBackgroundColor,
         resolvedBorderColor,
-    } = useDoDontStyle(blockSettings);
+    } = getDoDontContainerStyle(blockSettings);
 
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
