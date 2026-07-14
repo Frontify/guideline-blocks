@@ -1135,6 +1135,9 @@ importers:
       '@codemirror/lang-css':
         specifier: ^6.3.1
         version: 6.3.1
+      '@dnd-kit/core':
+        specifier: ^6.3.1
+        version: 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge':
         specifier: ^4.0.0-alpha.64
         version: 4.0.0-alpha.65(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)

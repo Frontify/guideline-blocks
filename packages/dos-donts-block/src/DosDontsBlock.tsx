@@ -20,9 +20,8 @@ import {
     type BlockProps,
     FileExtensionSets,
     joinClassNames,
-    useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 

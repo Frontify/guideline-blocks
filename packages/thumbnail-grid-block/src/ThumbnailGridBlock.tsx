@@ -11,8 +11,8 @@ import {
     useEditorState,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type BlockProps, Security, gutterSpacingStyleMap } from '@frontify/guideline-blocks-settings';
+import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useState } from 'react';
 
 import { Grid, Item, SortableItem } from './components/';
