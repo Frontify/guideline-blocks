@@ -16,7 +16,7 @@ import {
 import autosize from 'autosize';
 import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-import { DosDontsToolbar } from './DoDontToolbar';
+import { DoDontToolbar } from './DoDontToolbar';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
@@ -221,7 +221,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
-            <DosDontsToolbar
+            <DoDontToolbar
                 id={id}
                 type={type}
                 editing={editing}
@@ -310,7 +310,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                     {memoizedRichTextEditor}
                 </div>
-            </DosDontsToolbar>
+            </DoDontToolbar>
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',

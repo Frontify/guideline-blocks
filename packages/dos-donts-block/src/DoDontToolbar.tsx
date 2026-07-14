@@ -14,21 +14,28 @@ import { type Dispatch, type ReactNode, type SetStateAction, useState } from 're
 
 import { type DoDontItemProps, DoDontType } from './types';
 
-type DosDontsToolbarProps = Pick<
+type DoDontToolbarProps = Pick<
     DoDontItemProps,
-    'id' | 'type' | 'editing' | 'linkedImage' | 'alt' | 'onChangeItem' | 'onRemoveSelf' | 'setActivatorNodeRef'
+    | 'id'
+    | 'type'
+    | 'editing'
+    | 'linkedImage'
+    | 'alt'
+    | 'onChangeItem'
+    | 'onRemoveSelf'
+    | 'setActivatorNodeRef'
+    | 'draggableProps'
 > & {
     children: ReactNode;
     isDragging: boolean;
     replaceWithPlaceholder: boolean;
-    draggableProps: Record<string, unknown>;
     localAltText: string | undefined;
     setLocalAltText: Dispatch<SetStateAction<string | undefined>>;
     onUploadClick: () => void;
     onOpenAssetChooser: () => void;
 };
 
-export const DosDontsToolbar = ({
+export const DoDontToolbar = ({
     id,
     type,
     editing,
@@ -45,7 +52,7 @@ export const DosDontsToolbar = ({
     setLocalAltText,
     onUploadClick,
     onOpenAssetChooser,
-}: DosDontsToolbarProps) => {
+}: DoDontToolbarProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
 
     return (
@@ -58,7 +65,7 @@ export const DosDontsToolbar = ({
                 {
                     type: 'dragHandle',
                     icon: <IconArrowMove size={16} />,
-                    draggableProps,
+                    draggableProps: draggableProps ?? {},
                     setActivatorNodeRef,
                 },
                 {
