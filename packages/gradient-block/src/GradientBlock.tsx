@@ -3,13 +3,14 @@
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { type Palette } from '@frontify/fondue';
 import { Divider } from '@frontify/fondue/components';
-import { type BlockProps, mapAppBridgeColorPalettesToFonduePalettes } from '@frontify/guideline-blocks-settings';
+import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type MouseEvent, type ReactElement, useEffect, useRef, useState } from 'react';
 
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss, toHex6or8String } from './helpers';
+import { mapAppBridgeColorPalettesToFonduePalettes } from './helpers/mapColorPalettes';
 import { type GradientColor, type Settings, gradientHeightValues, gradientOrientationValues } from './types';
 
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
