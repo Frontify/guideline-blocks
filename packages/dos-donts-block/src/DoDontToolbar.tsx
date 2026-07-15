@@ -10,7 +10,7 @@ import {
 } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { type Dispatch, type ReactNode, type SetStateAction, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 import { type DoDontItemProps, DoDontType } from './types';
 
@@ -29,8 +29,7 @@ type DoDontToolbarProps = Pick<
     children: ReactNode;
     isDragging: boolean;
     replaceWithPlaceholder: boolean;
-    localAltText: string | undefined;
-    setLocalAltText: Dispatch<SetStateAction<string | undefined>>;
+    pendingAltText: string | undefined;
     onUploadClick: () => void;
     onOpenAssetChooser: () => void;
 };
@@ -48,12 +47,18 @@ export const DoDontToolbar = ({
     isDragging,
     replaceWithPlaceholder,
     draggableProps,
-    localAltText,
-    setLocalAltText,
+    pendingAltText,
     onUploadClick,
     onOpenAssetChooser,
 }: DoDontToolbarProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
+
+    useEffect(() => {
+        if (pendingAltText !== undefined) {
+            setLocalAltText(pendingAltText);
+        }
+    }, [pendingAltText]);
 
     return (
         <BlockItemWrapper
@@ -65,7 +70,7 @@ export const DoDontToolbar = ({
                 {
                     type: 'dragHandle',
                     icon: <IconArrowMove size={16} />,
-                    draggableProps: draggableProps ?? {},
+                    draggableProps,
                     setActivatorNodeRef,
                 },
                 {

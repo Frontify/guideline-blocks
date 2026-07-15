@@ -64,7 +64,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
+    const [pendingAltText, setPendingAltText] = useState<string | undefined>();
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -101,7 +101,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setLocalAltText(imageAlt);
+                setPendingAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -146,7 +146,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setLocalAltText(imageAlt);
+                setPendingAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     setIsUploadLoading(false);
@@ -231,8 +231,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 setActivatorNodeRef={setActivatorNodeRef}
                 linkedImage={linkedImage}
                 alt={alt}
-                localAltText={localAltText}
-                setLocalAltText={setLocalAltText}
+                pendingAltText={pendingAltText}
                 onChangeItem={onChangeItem}
                 onRemoveSelf={onRemoveSelf}
                 onUploadClick={onUploadClick}
