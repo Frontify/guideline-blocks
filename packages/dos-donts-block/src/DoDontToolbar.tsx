@@ -16,16 +16,9 @@ import { type DoDontItemProps, DoDontType } from './types';
 
 type DoDontToolbarProps = Pick<
     DoDontItemProps,
-    | 'id'
-    | 'type'
-    | 'editing'
-    | 'linkedImage'
-    | 'alt'
-    | 'onChangeItem'
-    | 'onRemoveSelf'
-    | 'setActivatorNodeRef'
-    | 'draggableProps'
+    'id' | 'type' | 'editing' | 'linkedImage' | 'alt' | 'onChangeItem' | 'onRemoveSelf' | 'setActivatorNodeRef'
 > & {
+    draggableProps: Record<string, unknown>;
     children: ReactNode;
     isDragging: boolean;
     replaceWithPlaceholder: boolean;
