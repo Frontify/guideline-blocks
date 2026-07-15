@@ -8,6 +8,8 @@ import { type BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { BlankSlate, Card, SortableCard } from './components';
 import { gridClasses } from './constants';
 import { type AnimationCurve, type AnimationCurvePatch, type Settings } from './types';
@@ -56,65 +58,63 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div className="animation-curve-block tw-@container">
-            <StyleProvider>
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragEnd={handleDragEnd}
-                    onDragStart={handleDragStart}
-                    modifiers={[restrictToParentElement]}
+        <StyleProvider appId={manifest.appId} className="tw-@container">
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                modifiers={[restrictToParentElement]}
+            >
+                <div
+                    data-test-id="animation-curve-block"
+                    className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
+                    style={{
+                        gap,
+                    }}
                 >
-                    <div
-                        data-test-id="animation-curve-block"
-                        className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
-                        style={{
-                            gap,
-                        }}
-                    >
-                        <SortableContext items={localItems} strategy={rectSortingStrategy}>
-                            {localItems?.map((animationCurve) => (
-                                <SortableCard
+                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                        {localItems?.map((animationCurve) => (
+                            <SortableCard
+                                appBridge={appBridge}
+                                key={animationCurve.id}
+                                animationCurve={animationCurve}
+                                isEditing={isEditing}
+                                blockSettings={blockSettings}
+                                onDelete={deleteAnimationCurve}
+                                onUpdate={updateAnimationCurve}
+                                setCanvasHeight={setCanvasHeight}
+                            />
+                        ))}
+                        <DragOverlay>
+                            {activeItem && (
+                                <Card
                                     appBridge={appBridge}
-                                    key={animationCurve.id}
-                                    animationCurve={animationCurve}
+                                    key={activeItem.id}
+                                    animationCurve={activeItem}
                                     isEditing={isEditing}
+                                    isDragging
                                     blockSettings={blockSettings}
                                     onDelete={deleteAnimationCurve}
                                     onUpdate={updateAnimationCurve}
                                     setCanvasHeight={setCanvasHeight}
                                 />
-                            ))}
-                            <DragOverlay>
-                                {activeItem && (
-                                    <Card
-                                        appBridge={appBridge}
-                                        key={activeItem.id}
-                                        animationCurve={activeItem}
-                                        isEditing={isEditing}
-                                        isDragging
-                                        blockSettings={blockSettings}
-                                        onDelete={deleteAnimationCurve}
-                                        onUpdate={updateAnimationCurve}
-                                        setCanvasHeight={setCanvasHeight}
-                                    />
-                                )}
-                            </DragOverlay>
-                        </SortableContext>
-                        {isEditing && (
-                            <BlankSlate
-                                key={localItems.length}
-                                appBridge={appBridge}
-                                content={localItems}
-                                hasBorder={hasBorder}
-                                setLocalItems={setLocalItems}
-                                setBlockSettings={setBlockSettings}
-                                canvasHeight={canvasHeight}
-                            />
-                        )}
-                    </div>
-                </DndContext>
-            </StyleProvider>
-        </div>
+                            )}
+                        </DragOverlay>
+                    </SortableContext>
+                    {isEditing && (
+                        <BlankSlate
+                            key={localItems.length}
+                            appBridge={appBridge}
+                            content={localItems}
+                            hasBorder={hasBorder}
+                            setLocalItems={setLocalItems}
+                            setBlockSettings={setBlockSettings}
+                            canvasHeight={canvasHeight}
+                        />
+                    )}
+                </div>
+            </DndContext>
+        </StyleProvider>
     );
 };

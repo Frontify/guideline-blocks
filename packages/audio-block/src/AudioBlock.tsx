@@ -26,6 +26,8 @@ import {
 import { DownloadButton, generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
@@ -123,81 +125,77 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             assetId={ATTACHMENTS_ASSET_ID}
             appBridge={appBridge}
         >
-            <div className="audio-block">
-                <StyleProvider>
-                    <div
-                        data-test-id="audio-block"
-                        className={joinClassNames([
-                            'tw-flex tw-gap-3',
-                            blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
-                        ])}
-                    >
-                        {audio ? (
-                            <AudioPlayer
-                                audio={audio}
-                                isEditing={isEditing}
-                                isLoading={isLoading}
-                                openFileDialog={openFileDialog}
-                                openAssetChooser={onOpenAssetChooser}
-                                onRemoveAsset={onRemoveAsset}
+            <StyleProvider appId={manifest.appId}>
+                <div
+                    data-test-id="audio-block"
+                    className={joinClassNames([
+                        'tw-flex tw-gap-3',
+                        blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
+                    ])}
+                >
+                    {audio ? (
+                        <AudioPlayer
+                            audio={audio}
+                            isEditing={isEditing}
+                            isLoading={isLoading}
+                            openFileDialog={openFileDialog}
+                            openAssetChooser={onOpenAssetChooser}
+                            onRemoveAsset={onRemoveAsset}
+                        />
+                    ) : (
+                        isEditing && (
+                            <UploadPlaceholder
+                                onUploadClick={openFileDialog}
+                                onAssetChooseClick={onOpenAssetChooser}
+                                onFilesDrop={onFilesDrop}
+                                loading={isLoading}
                             />
-                        ) : (
-                            isEditing && (
-                                <UploadPlaceholder
-                                    onUploadClick={openFileDialog}
-                                    onAssetChooseClick={onOpenAssetChooser}
-                                    onFilesDrop={onFilesDrop}
-                                    loading={isLoading}
+                        )
+                    )}
+                    <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
+                        <div className="tw-flex-1">
+                            <div data-test-id="block-title">
+                                <RichTextEditor
+                                    key={titleKey}
+                                    id={`${blockId}-title`}
+                                    plugins={titlePlugins}
+                                    isEditing={isEditing}
+                                    onTextChange={onTitleChange}
+                                    value={titleValue}
+                                    placeholder="Asset name"
+                                    showSerializedText={hasRichTextValue(titleValue)}
                                 />
-                            )
-                        )}
-                        <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
-                            <div className="tw-flex-1">
-                                <div data-test-id="block-title">
-                                    <RichTextEditor
-                                        key={titleKey}
-                                        id={`${blockId}-title`}
-                                        plugins={titlePlugins}
-                                        isEditing={isEditing}
-                                        onTextChange={onTitleChange}
-                                        value={titleValue}
-                                        placeholder="Asset name"
-                                        showSerializedText={hasRichTextValue(titleValue)}
-                                    />
-                                </div>
-
-                                <div data-test-id="block-description">
-                                    <RichTextEditor
-                                        id={`${blockId}-description`}
-                                        plugins={getDescriptionPlugins(appBridge)}
-                                        isEditing={isEditing}
-                                        onTextChange={onDescriptionChange}
-                                        value={descriptionValue}
-                                        placeholder="Add a description here"
-                                        showSerializedText={hasRichTextValue(descriptionValue)}
-                                    />
-                                </div>
                             </div>
-                            {audio && !isEditing && (
-                                <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
-                                    {isDownloadable(
-                                        blockSettings.security,
-                                        blockSettings.downloadable,
-                                        assetDownloadEnabled
-                                    ) && (
-                                        <DownloadButton
-                                            onDownload={() =>
-                                                appBridge.dispatch({ name: 'downloadAsset', payload: audio })
-                                            }
-                                        />
-                                    )}
-                                    <BlockAttachments appBridge={appBridge} />
-                                </div>
-                            )}
+
+                            <div data-test-id="block-description">
+                                <RichTextEditor
+                                    id={`${blockId}-description`}
+                                    plugins={getDescriptionPlugins(appBridge)}
+                                    isEditing={isEditing}
+                                    onTextChange={onDescriptionChange}
+                                    value={descriptionValue}
+                                    placeholder="Add a description here"
+                                    showSerializedText={hasRichTextValue(descriptionValue)}
+                                />
+                            </div>
                         </div>
+                        {audio && !isEditing && (
+                            <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
+                                {isDownloadable(
+                                    blockSettings.security,
+                                    blockSettings.downloadable,
+                                    assetDownloadEnabled
+                                ) && (
+                                    <DownloadButton
+                                        onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: audio })}
+                                    />
+                                )}
+                                <BlockAttachments appBridge={appBridge} />
+                            </div>
+                        )}
                     </div>
-                </StyleProvider>
-            </div>
+                </div>
+            </StyleProvider>
         </AttachmentOperationsProvider>
     );
 };

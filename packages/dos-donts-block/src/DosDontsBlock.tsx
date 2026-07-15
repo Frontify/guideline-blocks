@@ -26,6 +26,8 @@ import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shar
 import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
@@ -373,112 +375,110 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <div ref={containerRef} className="dos-donts-block tw-@container">
-            <StyleProvider>
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragStart={handleDragStart}
-                    onDragEnd={handleDragEnd}
-                    modifiers={[restrictToParentElement]}
-                >
-                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
-                        <div
-                            data-test-id="dos-donts-block"
-                            ref={wrapperRef}
-                            className={joinClassNames(['tw-grid', gridClassName])}
-                            style={{
-                                columnGap,
-                                rowGap,
-                            }}
-                        >
-                            {localItems.map((item) => (
-                                <SortableDoDontItem key={item.id} {...getDoDontItemProps(item)} />
-                            ))}
-                        </div>
-                    </SortableContext>
-                    {activeItem ? (
-                        <DragOverlay>
-                            <DoDontItem key={activeItem.id} isDragging {...getDoDontItemProps(activeItem)} />
-                        </DragOverlay>
-                    ) : null}
-                </DndContext>
-                {isEditing && (
-                    <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9 tw-flex-wrap">
-                        {mode === BlockMode.TEXT_AND_IMAGE && (
-                            <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
-                                <BlockInjectButton
-                                    label="Add images"
-                                    secondaryLabel="Or drop them here"
-                                    icon={<IconPlus size={20} />}
-                                    onUploadClick={openFileDialog}
-                                    onAssetChooseClick={onOpenAssetChooser}
-                                    onDrop={setSelectedFiles}
-                                    isLoading={isUploadLoading}
-                                />
-                            </div>
-                        )}
-                        <div
-                            data-test-id="dos-donts-block-add-buttons"
-                            className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
-                        >
-                            <BlockInjectButton
-                                verticalLayout={isContainerSmall}
-                                label="Add do"
-                                withMenu={false}
-                                icon={<IconCheckMarkCircle size={20} />}
-                                onClick={() => addItem(DoDontType.Do)}
-                            />
-                            <BlockInjectButton
-                                verticalLayout={isContainerSmall}
-                                label="Add don't"
-                                withMenu={false}
-                                icon={<IconCrossCircle size={20} />}
-                                onClick={() => addItem(DoDontType.Dont)}
-                            />
-                        </div>
+        <StyleProvider ref={containerRef} appId={manifest.appId} className="tw-@container">
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
+                modifiers={[restrictToParentElement]}
+            >
+                <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                    <div
+                        data-test-id="dos-donts-block"
+                        ref={wrapperRef}
+                        className={joinClassNames(['tw-grid', gridClassName])}
+                        style={{
+                            columnGap,
+                            rowGap,
+                        }}
+                    >
+                        {localItems.map((item) => (
+                            <SortableDoDontItem key={item.id} {...getDoDontItemProps(item)} />
+                        ))}
                     </div>
-                )}
-                <Dialog.Root
-                    open={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
-                    onOpenChange={(isOpen) => {
-                        if (!isOpen) {
-                            closeDialog();
-                        }
-                    }}
-                >
-                    <Dialog.Content padding="comfortable" showUnderlay>
-                        <Dialog.SideContent>
-                            <div className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden">
-                                <FrontifyPattern
-                                    scale={PatternScale.XXL}
-                                    pattern={PatternDesign.Typography}
-                                    foregroundColor={PatternTheme.Green}
-                                />
-                            </div>
-                        </Dialog.SideContent>
-                        <Dialog.Header>
-                            <span className="tw-font-bold">What should be the type of those images?</span>
-                        </Dialog.Header>
-                        <Dialog.Body>
-                            <div>You can always change the type later on each item.</div>
-                        </Dialog.Body>
-                        <Dialog.Footer>
-                            <div className="tw-flex tw-gap-3 tw-flex-wrap">
-                                <Button onPress={closeDialog} emphasis="weak">
-                                    Cancel
-                                </Button>
-                                <Button onPress={() => setSelectedType(DoDontType.Do)} emphasis="default">
-                                    <IconCheckMarkCircle size={20} /> Add as Do
-                                </Button>
-                                <Button onPress={() => setSelectedType(DoDontType.Dont)} emphasis="default">
-                                    <IconCrossCircle size={20} /> Add as Don&apos;t
-                                </Button>
-                            </div>
-                        </Dialog.Footer>
-                    </Dialog.Content>
-                </Dialog.Root>
-            </StyleProvider>
-        </div>
+                </SortableContext>
+                {activeItem ? (
+                    <DragOverlay>
+                        <DoDontItem key={activeItem.id} isDragging {...getDoDontItemProps(activeItem)} />
+                    </DragOverlay>
+                ) : null}
+            </DndContext>
+            {isEditing && (
+                <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9 tw-flex-wrap">
+                    {mode === BlockMode.TEXT_AND_IMAGE && (
+                        <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
+                            <BlockInjectButton
+                                label="Add images"
+                                secondaryLabel="Or drop them here"
+                                icon={<IconPlus size={20} />}
+                                onUploadClick={openFileDialog}
+                                onAssetChooseClick={onOpenAssetChooser}
+                                onDrop={setSelectedFiles}
+                                isLoading={isUploadLoading}
+                            />
+                        </div>
+                    )}
+                    <div
+                        data-test-id="dos-donts-block-add-buttons"
+                        className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
+                    >
+                        <BlockInjectButton
+                            verticalLayout={isContainerSmall}
+                            label="Add do"
+                            withMenu={false}
+                            icon={<IconCheckMarkCircle size={20} />}
+                            onClick={() => addItem(DoDontType.Do)}
+                        />
+                        <BlockInjectButton
+                            verticalLayout={isContainerSmall}
+                            label="Add don't"
+                            withMenu={false}
+                            icon={<IconCrossCircle size={20} />}
+                            onClick={() => addItem(DoDontType.Dont)}
+                        />
+                    </div>
+                </div>
+            )}
+            <Dialog.Root
+                open={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
+                onOpenChange={(isOpen) => {
+                    if (!isOpen) {
+                        closeDialog();
+                    }
+                }}
+            >
+                <Dialog.Content padding="comfortable" showUnderlay>
+                    <Dialog.SideContent>
+                        <div className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden">
+                            <FrontifyPattern
+                                scale={PatternScale.XXL}
+                                pattern={PatternDesign.Typography}
+                                foregroundColor={PatternTheme.Green}
+                            />
+                        </div>
+                    </Dialog.SideContent>
+                    <Dialog.Header>
+                        <span className="tw-font-bold">What should be the type of those images?</span>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                        <div>You can always change the type later on each item.</div>
+                    </Dialog.Body>
+                    <Dialog.Footer>
+                        <div className="tw-flex tw-gap-3 tw-flex-wrap">
+                            <Button onPress={closeDialog} emphasis="weak">
+                                Cancel
+                            </Button>
+                            <Button onPress={() => setSelectedType(DoDontType.Do)} emphasis="default">
+                                <IconCheckMarkCircle size={20} /> Add as Do
+                            </Button>
+                            <Button onPress={() => setSelectedType(DoDontType.Dont)} emphasis="default">
+                                <IconCrossCircle size={20} /> Add as Don&apos;t
+                            </Button>
+                        </div>
+                    </Dialog.Footer>
+                </Dialog.Content>
+            </Dialog.Root>
+        </StyleProvider>
     );
 };

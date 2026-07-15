@@ -6,6 +6,8 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
+import manifest from '../manifest.json';
+
 import { AlertError } from './components/AlertError';
 import { CtaButton } from './components/CtaButton';
 import { TemplatePreview } from './components/TemplatePreview';
@@ -69,78 +71,76 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }
 
     return (
-        <div data-test-id="container" className="template-block tw-@container">
-            <StyleProvider>
-                <div data-test-id="card" style={cardStyles}>
-                    {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
+        <StyleProvider data-test-id="container" appId={manifest.appId} className="tw-@container">
+            <div data-test-id="card" style={cardStyles}>
+                {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
-                    <div data-test-id="content" className={contentClasses}>
-                        {hasPreview && (
-                            <TemplatePreview
+                <div data-test-id="content" className={contentClasses}>
+                    {hasPreview && (
+                        <TemplatePreview
+                            appBridge={appBridge}
+                            blockSettings={blockSettings}
+                            template={selectedTemplate}
+                            previewCustom={previewCustom}
+                            previewClasses={previewClasses}
+                            updateBlockSettings={updateBlockSettings}
+                            onOpenTemplateChooser={handleOpenTemplateChooser}
+                            handleNewPublication={handleNewPublication}
+                            handleDeleteCustomPreview={handleDeleteCustomPreview}
+                        />
+                    )}
+
+                    <div data-test-id="text-cta-wrapper" className={textCtaWrapperClasses}>
+                        <div data-test-id="text" className={textClasses}>
+                            <TemplateText
                                 appBridge={appBridge}
-                                blockSettings={blockSettings}
-                                template={selectedTemplate}
-                                previewCustom={previewCustom}
-                                previewClasses={previewClasses}
                                 updateBlockSettings={updateBlockSettings}
-                                onOpenTemplateChooser={handleOpenTemplateChooser}
-                                handleNewPublication={handleNewPublication}
-                                handleDeleteCustomPreview={handleDeleteCustomPreview}
+                                title={title}
+                                description={description}
+                                pageCount={
+                                    blockSettings.hasPageCount !== false
+                                        ? (selectedTemplate?.pages.length ?? 0)
+                                        : undefined
+                                }
+                                isEditing={isEditing}
+                                hasTitleOnly={hasTitleOnly}
+                                templateTextKey={templateTextKey}
                             />
-                        )}
-
-                        <div data-test-id="text-cta-wrapper" className={textCtaWrapperClasses}>
-                            <div data-test-id="text" className={textClasses}>
-                                <TemplateText
-                                    appBridge={appBridge}
-                                    updateBlockSettings={updateBlockSettings}
-                                    title={title}
-                                    description={description}
-                                    pageCount={
-                                        blockSettings.hasPageCount !== false
-                                            ? (selectedTemplate?.pages.length ?? 0)
-                                            : undefined
-                                    }
-                                    isEditing={isEditing}
-                                    hasTitleOnly={hasTitleOnly}
-                                    templateTextKey={templateTextKey}
-                                />
-                            </div>
-                            <div data-test-id="cta" className={ctaClasses}>
-                                <CtaButton
-                                    blockSettings={blockSettings}
-                                    isEditing={isEditing}
-                                    isDisabled={!selectedTemplate}
-                                    updateBlockSettings={updateBlockSettings}
-                                    handleNewPublication={handleNewPublication}
-                                />
-                            </div>
+                        </div>
+                        <div data-test-id="cta" className={ctaClasses}>
+                            <CtaButton
+                                blockSettings={blockSettings}
+                                isEditing={isEditing}
+                                isDisabled={!selectedTemplate}
+                                updateBlockSettings={updateBlockSettings}
+                                handleNewPublication={handleNewPublication}
+                            />
                         </div>
                     </div>
-
-                    {isEditing && !hasPreview && (
-                        <div
-                            data-test-id="cta-editing-no-preview"
-                            className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-container-secondary tw-rounded-medium tw-flex-col @sm:tw-flex-row"
-                        >
-                            <div>
-                                <Text size="large" color="weak">
-                                    {'Connected template: '}
-                                </Text>
-                                <Text size="large">{selectedTemplate?.name ?? 'None'}</Text>
-                            </div>
-
-                            <Button
-                                className="tw-line-clamp-2"
-                                emphasis={selectedTemplate ? 'default' : 'strong'}
-                                onPress={handleOpenTemplateChooser}
-                            >
-                                {selectedTemplate ? 'Replace template' : 'Choose existing template'}
-                            </Button>
-                        </div>
-                    )}
                 </div>
-            </StyleProvider>
-        </div>
+
+                {isEditing && !hasPreview && (
+                    <div
+                        data-test-id="cta-editing-no-preview"
+                        className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-p-3 tw-pl-4 tw-bg-black-0 tw-border tw-border-container-secondary tw-rounded-medium tw-flex-col @sm:tw-flex-row"
+                    >
+                        <div>
+                            <Text size="large" color="weak">
+                                {'Connected template: '}
+                            </Text>
+                            <Text size="large">{selectedTemplate?.name ?? 'None'}</Text>
+                        </div>
+
+                        <Button
+                            className="tw-line-clamp-2"
+                            emphasis={selectedTemplate ? 'default' : 'strong'}
+                            onPress={handleOpenTemplateChooser}
+                        >
+                            {selectedTemplate ? 'Replace template' : 'Choose existing template'}
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </StyleProvider>
     );
 };

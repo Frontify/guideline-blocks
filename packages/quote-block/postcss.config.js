@@ -4,6 +4,6 @@ module.exports = {
     plugins: [
         require('tailwindcss'),
         require('autoprefixer'),
-        require('../../postcss/scope')({ scope: '.quote-block' }),
+        require('../../postcss/scope')({ scope: `.${require('./manifest.json').appId}` }),
     ],
 };

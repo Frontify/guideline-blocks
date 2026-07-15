@@ -7,6 +7,8 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type MouseEvent, type ReactElement, useEffect, useRef, useState } from 'react';
 
+import manifest from '../manifest.json';
+
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss, toHex6or8String } from './helpers';
@@ -79,73 +81,71 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);
 
     return (
-        <div data-test-id="gradient-block" className="gradient-block" ref={gradientBlockRef}>
-            <StyleProvider>
-                <div className="tw-border tw-border-line-strong tw-rounded-medium tw-p-0.5">
-                    <div
-                        data-test-id="gradient-block-display"
-                        className="tw-w-full tw-h-4 tw-rounded-medium"
-                        style={{
-                            height: gradientBlockHeight,
-                            background: cssValue,
-                        }}
-                    />
-                </div>
-                {isEditing ? (
-                    <div>
-                        <div className="tw-relative">
-                            <div
-                                data-test-id="gradient-block-divider"
-                                onMouseMove={handleMouseMove}
-                                onMouseLeave={() => setShowAddButton(false)}
-                            >
-                                <Divider />
-                                {}
-                                {showAddButton && gradientBlockRef.current && (
-                                    <AddColorButton
-                                        blockWidth={gradientBlockRef.current.clientWidth}
-                                        positionLeft={addButtonPositionLeft}
-                                        setShowColorModal={setShowColorModal}
-                                        setCurrentlyEditingPosition={setCurrentlyEditingPosition}
-                                    />
-                                )}
-                            </div>
+        <StyleProvider data-test-id="gradient-block" ref={gradientBlockRef} appId={manifest.appId}>
+            <div className="tw-border tw-border-line-strong tw-rounded-medium tw-p-0.5">
+                <div
+                    data-test-id="gradient-block-display"
+                    className="tw-w-full tw-h-4 tw-rounded-medium"
+                    style={{
+                        height: gradientBlockHeight,
+                        background: cssValue,
+                    }}
+                />
+            </div>
+            {isEditing ? (
+                <div>
+                    <div className="tw-relative">
+                        <div
+                            data-test-id="gradient-block-divider"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={() => setShowAddButton(false)}
+                        >
+                            <Divider />
+                            {}
+                            {showAddButton && gradientBlockRef.current && (
+                                <AddColorButton
+                                    blockWidth={gradientBlockRef.current.clientWidth}
+                                    positionLeft={addButtonPositionLeft}
+                                    setShowColorModal={setShowColorModal}
+                                    setCurrentlyEditingPosition={setCurrentlyEditingPosition}
+                                />
+                            )}
                         </div>
-                        {showColorModal && gradientColors !== undefined && (
-                            <ColorFlyout
-                                colorPalettes={colorPickerPalettes}
-                                currentlyEditingPosition={currentlyEditingPosition}
-                                gradientColors={gradientColors}
-                                showColorModal={showColorModal}
-                                setColors={setGradientColors}
-                                setShowColorModal={setShowColorModal}
-                            />
-                        )}
-
-                        {gradientColors?.map((gradientColor) => (
-                            <ColorTooltip
-                                key={toHex6or8String(gradientColor.color) + gradientColor.position}
-                                gradientColor={gradientColor}
-                                gradientColors={gradientColors}
-                                showColorModal={showColorModal}
-                                setColors={setGradientColors}
-                                setShowColorModal={setShowColorModal}
-                                setCurrentlyEditingPosition={setCurrentlyEditingPosition}
-                            />
-                        ))}
                     </div>
-                ) : (
-                    gradientBlockRef.current &&
-                    gradientColors && (
-                        <SquareBadgesRow
-                            blockWidth={gradientBlockRef.current.clientWidth}
+                    {showColorModal && gradientColors !== undefined && (
+                        <ColorFlyout
+                            colorPalettes={colorPickerPalettes}
+                            currentlyEditingPosition={currentlyEditingPosition}
                             gradientColors={gradientColors}
-                            gradientOrientation={gradientOrientation}
+                            showColorModal={showColorModal}
+                            setColors={setGradientColors}
+                            setShowColorModal={setShowColorModal}
                         />
-                    )
-                )}
-                {displayCss && <CssValueDisplay cssValue={cssValue} placeholder="<add colors to generate CSS code>" />}
-            </StyleProvider>
-        </div>
+                    )}
+
+                    {gradientColors?.map((gradientColor) => (
+                        <ColorTooltip
+                            key={toHex6or8String(gradientColor.color) + gradientColor.position}
+                            gradientColor={gradientColor}
+                            gradientColors={gradientColors}
+                            showColorModal={showColorModal}
+                            setColors={setGradientColors}
+                            setShowColorModal={setShowColorModal}
+                            setCurrentlyEditingPosition={setCurrentlyEditingPosition}
+                        />
+                    ))}
+                </div>
+            ) : (
+                gradientBlockRef.current &&
+                gradientColors && (
+                    <SquareBadgesRow
+                        blockWidth={gradientBlockRef.current.clientWidth}
+                        gradientColors={gradientColors}
+                        gradientOrientation={gradientOrientation}
+                    />
+                )
+            )}
+            {displayCss && <CssValueDisplay cssValue={cssValue} placeholder="<add colors to generate CSS code>" />}
+        </StyleProvider>
     );
 };
