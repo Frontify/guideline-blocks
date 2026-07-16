@@ -14,7 +14,6 @@ import { merge } from '@frontify/fondue/rte';
 import {
     AssetChooserObjectType,
     BlockItemWrapper,
-    BlockStyles,
     FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
@@ -23,9 +22,9 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import autosize from 'autosize';
-import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
+import DosDontsTitle from './components/DosDontsTitle';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
@@ -79,7 +78,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-    const titleRef = useRef<HTMLTextAreaElement>(null);
 
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({
@@ -141,13 +139,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
-    useLayoutEffect(() => {
-        if (titleRef.current) {
-            autosize(titleRef.current);
-            autosize.update(titleRef.current);
-        }
-    });
-
     useEffect(() => {
         if (doneAll) {
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -190,44 +181,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         // eslint-disable-next-line @eslint-react/exhaustive-deps
         [body, shouldRerenderDependency, editing, appBridge, id]
     );
-
-    const renderTitle = useCallback(() => {
-        const styles = {
-            ...BlockStyles.heading3,
-            marginBottom: 0,
-            marginTop: 0,
-            color: headingColor,
-            WebkitTextFillColor: headingColor,
-            '--placeholder-color': headingColor,
-        };
-
-        if (editing) {
-            return (
-                <textarea
-                    rows={1}
-                    ref={titleRef}
-                    onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                    onBlur={() => onChangeItem(id, { title })}
-                    style={styles}
-                    value={title}
-                    aria-label="Title"
-                    placeholder="Add a title"
-                    className="tw-text-small tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
-                />
-            );
-        }
-
-        return (
-            <h3
-                data-test-id="do-dont-heading"
-                style={styles}
-                className="tw-w-full tw-break-words tw-whitespace-pre-wrap"
-            >
-                {title}
-            </h3>
-        );
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, [editing, onChangeItem, onChangeLocalItem, title, titleRef, headingColor]);
 
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
@@ -355,7 +308,14 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             fontSize: 'var(--f-theme-settings-heading3-font-size)',
                         }}
                     >
-                        {renderTitle()}
+                        <DosDontsTitle
+                            id={id}
+                            title={title}
+                            editing={editing}
+                            headingColor={headingColor}
+                            onChangeItem={onChangeItem}
+                            onChangeLocalItem={onChangeLocalItem}
+                        />
                     </span>
                 </div>
                 {style === DoDontStyle.Underline && (

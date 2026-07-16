@@ -151,6 +151,15 @@ export type ImageComponentProps = {
     alt?: string;
 };
 
+export type DosDontsTitleProps = {
+    id: string;
+    title: string;
+    editing: boolean;
+    headingColor: string;
+    onChangeItem: (id: string, change: Partial<Record<ChangeType, ValueType>>) => void;
+    onChangeLocalItem: (id: string, value: ValueType, type: ChangeType) => void;
+};
+
 export type Item = {
     id: string;
     title: string;
