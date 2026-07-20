@@ -58,9 +58,20 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
         alt,
         onChangeItem,
         updateAssetIdsFromKey,
+        isCustomImageHeight,
+        customImageHeightValue,
+        imageDisplay,
+        draggableProps,
+        imageHeightChoice,
         isDragging,
         type,
         hasStrikethrough,
+        backgroundColor,
+        hasBackground,
+        hasRadius,
+        radiusChoice,
+        radiusValue,
+        dontColor,
         borderColor,
         borderStyle,
         borderWidth,
@@ -173,7 +184,6 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
 
             {mode === BlockMode.TEXT_AND_IMAGE && (
                 <ImageComponent
-                    {...props}
                     isEditing={editing}
                     id={id}
                     alt={alt}
@@ -184,6 +194,17 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
                     isDragging={Boolean(isDragging)}
                     hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
                     border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
+                    isCustomImageHeight={isCustomImageHeight}
+                    customImageHeightValue={customImageHeightValue}
+                    imageDisplay={imageDisplay}
+                    draggableProps={draggableProps}
+                    imageHeightChoice={imageHeightChoice}
+                    backgroundColor={backgroundColor}
+                    hasBackground={hasBackground}
+                    hasRadius={hasRadius}
+                    radiusChoice={radiusChoice}
+                    radiusValue={radiusValue}
+                    dontColor={dontColor}
                 />
             )}
         </>
