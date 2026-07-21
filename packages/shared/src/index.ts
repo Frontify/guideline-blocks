@@ -10,3 +10,4 @@ export { ImageFormat } from './types';
 
 export { useImageContainer } from './hooks/useImageContainer';
 export { generateRandomId } from './utils/generateRandomId';
+export { useDndSensors } from './hooks/useDndSensors';

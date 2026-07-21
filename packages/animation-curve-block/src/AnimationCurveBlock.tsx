@@ -4,8 +4,8 @@ import { DndContext, type DragEndEvent, DragOverlay, type DragStartEvent, closes
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { type BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type BlockProps, gutterSpacingStyleMap } from '@frontify/guideline-blocks-settings';
+import { StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 
 import { BlankSlate, Card, SortableCard } from './components';

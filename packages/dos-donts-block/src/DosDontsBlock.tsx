@@ -20,32 +20,18 @@ import {
     type BlockProps,
     FileExtensionSets,
     joinClassNames,
-    useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import throttle from 'lodash-es/throttle';
-import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
-import {
-    DO_COLOR_DEFAULT_VALUE,
-    DONT_COLOR_DEFAULT_VALUE,
-    getDefaultDoColor,
-    getDefaultDontColor,
-} from './helpers/Color';
-import { getGridClassName } from './helpers/Grid';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
-import {
-    BlockMode,
-    type ChangeType,
-    DoDontType,
-    GUTTER_VALUES,
-    type Item,
-    type Settings,
-    type ValueType,
-} from './types';
+import { getDoDontContainerStyle } from './helpers/getDoDontContainerStyle';
+import { getDoDontGridStyle } from './helpers/getDoDontGridStyle';
+import { useDoDontColorStyle } from './hooks/useDoDontColorStyle';
+import { BlockMode, type ChangeType, DoDontType, type Item, type Settings, type ValueType } from './types';
 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -80,6 +66,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     });
     const [activeId, setActiveId] = useState<string | undefined>(undefined);
     const {
+        items = [],
+        doColor: customDoColor,
+        dontColor: customDontColor,
         style,
         hasCustomDoIcon,
         doIconChoice,
@@ -87,55 +76,32 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         dontIconChoice,
         hasStrikethrough,
         columns,
-        keepSideBySide,
-        isCustomColumnGutter,
-        customColumnGutterValue,
-        columnGutterChoice,
-        isCustomRowGutter,
-        customRowGutterValue,
-        rowGutterChoice,
         isCustomImageHeight,
         customImageHeightValue,
         imageDisplay,
         imageHeightChoice,
-        doColor: customDoColor,
-        dontColor: customDontColor,
-        hasCustomDoColor,
-        hasCustomDontColor,
-        items = [],
         mode,
+    } = blockSettings;
+    const { doColor, dontColor, resolvedDoColor, resolvedDontColor } = useDoDontColorStyle(blockSettings);
+    const { columnGap, rowGap, gridClassName } = getDoDontGridStyle(blockSettings);
+    const {
         borderWidth,
-        backgroundColor,
-        borderColor,
         borderStyle,
         hasBackground,
         hasBorder,
         hasRadius,
         radiusChoice,
         radiusValue,
-    } = blockSettings;
+        resolvedBackgroundColor,
+        resolvedBorderColor,
+    } = getDoDontContainerStyle(blockSettings);
 
-    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
-    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
     const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
-
-    const themeStyle = useMemo(() => getComputedStyle(document.body), []);
-    const defaultDoColor = useMemo(() => getDefaultDoColor(themeStyle), [themeStyle]);
-    const defaultDontColor = useMemo(() => getDefaultDontColor(themeStyle), [themeStyle]);
-
-    const doColor = useMemo(
-        () => (hasCustomDoColor ? customDoColor : defaultDoColor),
-        [customDoColor, hasCustomDoColor, defaultDoColor]
-    );
-    const dontColor = useMemo(
-        () => (hasCustomDontColor ? customDontColor : defaultDontColor),
-        [customDontColor, hasCustomDontColor, defaultDontColor]
-    );
 
     /**
      * Create placeholders on mount if empty
@@ -351,9 +317,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         body: item.body,
         type: item.type,
         style,
-        doColor: doColor || DO_COLOR_DEFAULT_VALUE,
+        doColor: resolvedDoColor,
         linkedImage: blockAssets?.[item.id]?.[0],
-        dontColor: dontColor || DONT_COLOR_DEFAULT_VALUE,
+        dontColor: resolvedDontColor,
         editing: isEditing,
         hasCustomDoIcon,
         doIconChoice,
@@ -370,8 +336,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         imageDisplay,
         imageHeightChoice,
         hasStrikethrough,
-        backgroundColor: backgroundColor || DEFAULT_BACKGROUND_COLOR,
-        borderColor: borderColor || DEFAULT_BORDER_COLOR,
+        backgroundColor: resolvedBackgroundColor,
+        borderColor: resolvedBorderColor,
         borderStyle,
         hasBackground,
         hasBorder,
@@ -403,7 +369,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setSelectedType(undefined);
     };
 
-    const gridClassName = getGridClassName(keepSideBySide, columns);
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
