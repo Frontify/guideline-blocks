@@ -104,7 +104,7 @@ export const Toolbar = ({
                 </div>
                 {showResetButton && (
                     <>
-                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-border-line-mid" />
+                        <div className="tw-h-[calc(100%-8px)] tw-w-px tw-border-line-mid" />
                         <ToolbarButton
                             icon={<IconArrowRoundAntiClockwise size={16} />}
                             tooltip="Reset pattern"
@@ -114,7 +114,7 @@ export const Toolbar = ({
                 )}
                 {isCodeEditable && hasCodeChanges && (
                     <>
-                        <div className="tw-h-[calc(100%-8px)] tw-w-[1px] tw-border-line-mid" />
+                        <div className="tw-h-[calc(100%-8px)] tw-w-px tw-border-line-mid" />
                         <Button
                             data-test-id="ui-pattern-discard-changes"
                             size="small"

@@ -140,7 +140,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             className={
                                 isFullWidth && isQuotationMarkType
                                     ? 'tw-flex-1 tw-w-full tw-overflow-hidden'
-                                    : 'tw-min-w-[1rem]'
+                                    : 'tw-min-w-4'
                             }
                         >
                             <blockquote

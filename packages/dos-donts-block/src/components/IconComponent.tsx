@@ -29,9 +29,8 @@ const IconComponent = ({
         if (hasCustomIcon && iconAsset && iconAsset.length > 0) {
             const url = iconAsset[0].genericUrl;
 
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises, promise/catch-or-return
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises, promise/catch-or-return, promise/always-return
             fetch(url).then((response) => {
-                // eslint-disable-next-line promise/always-return
                 if (response.ok) {
                     // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
                     response.text().then((svgString) => setSvg(svgString));

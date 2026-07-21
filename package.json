@@ -8,8 +8,8 @@
     "scripts": {
         "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} lint",
         "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} lint:fix",
-        "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier",
-        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier:fix",
+        "format": "pnpm --stream --filter {packages/**} --filter {examples/**} format",
+        "format:check": "pnpm --stream --filter {packages/**} --filter {examples/**} format:check",
         "test": "pnpm test:unit && pnpm test:components",
         "test:components": "cypress run --component",
         "test:components:browser": "cypress open --component",

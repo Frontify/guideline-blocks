@@ -40,7 +40,7 @@ const getUrlStringWithoutSearchParams = (url?: string) => {
     }
 };
 
-const appendEmbedToUrl = (url: string) => (/\/embed$/.test(url) ? url : `${url}/embed`);
+const appendEmbedToUrl = (url: string) => (url.endsWith('/embed') ? url : `${url}/embed`);
 
 export const generateSketchfabEmbedUrl = (url: string) => {
     try {

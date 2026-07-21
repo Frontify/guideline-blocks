@@ -26,8 +26,8 @@ import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
+import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { getDoDontContainerStyle } from './helpers/getDoDontContainerStyle';
 import { getDoDontGridStyle } from './helpers/getDoDontGridStyle';
 import { useDoDontColorStyle } from './hooks/useDoDontColorStyle';

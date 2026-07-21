@@ -4,10 +4,10 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Radius } from '@frontify/guideline-blocks-settings';
 import { mount } from 'cypress/react';
 
-import { UIPatternBlock } from './UIPatternBlock';
 import { DEFAULT_BLOCK_SETTINGS, getToolbarButtons } from './helpers';
 import { ATTACHMENTS_ASSET_ID } from './settings';
 import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from './types';
+import { UIPatternBlock } from './UIPatternBlock';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
 const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div > div';
