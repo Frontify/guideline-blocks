@@ -14,7 +14,7 @@ import { type ReactNode, useEffect, useState } from 'react';
 
 import { type DoDontItemProps, DoDontType } from './types';
 
-type DoDontToolbarProps = Pick<
+type DoDontItemWrapperProps = Pick<
     DoDontItemProps,
     'id' | 'type' | 'editing' | 'linkedImage' | 'alt' | 'onChangeItem' | 'onRemoveSelf' | 'setActivatorNodeRef'
 > & {
@@ -27,7 +27,7 @@ type DoDontToolbarProps = Pick<
     onOpenAssetChooser: () => void;
 };
 
-export const DoDontToolbar = ({
+export const DoDontItemWrapper = ({
     id,
     type,
     editing,
@@ -43,7 +43,7 @@ export const DoDontToolbar = ({
     pendingAltText,
     onUploadClick,
     onOpenAssetChooser,
-}: DoDontToolbarProps) => {
+}: DoDontItemWrapperProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
