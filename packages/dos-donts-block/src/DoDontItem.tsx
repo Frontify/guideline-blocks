@@ -5,7 +5,6 @@ import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@fron
 import { merge } from '@frontify/fondue/rte';
 import {
     AssetChooserObjectType,
-    BlockStyles,
     FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
@@ -13,10 +12,10 @@ import {
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import autosize from 'autosize';
-import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { DoDontItemWrapper } from './DoDontItemWrapper';
+import DoDontTitle from './components/DosDontsTitle';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
@@ -252,7 +251,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             fontSize: 'var(--f-theme-settings-heading3-font-size)',
                         }}
                     >
-                        <DosDontsTitle
+                        <DoDontTitle
                             id={id}
                             title={title}
                             editing={editing}
