@@ -151,7 +151,7 @@ export type ImageComponentProps = {
     alt?: string;
 };
 
-export type DosDontsTitleProps = {
+export type DoDontTitleProps = {
     id: string;
     title: string;
     editing: boolean;

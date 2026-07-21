@@ -4,9 +4,9 @@ import { BlockStyles } from '@frontify/guideline-blocks-settings';
 import autosize from 'autosize';
 import { useLayoutEffect, useRef } from 'react';
 
-import { type DosDontsTitleProps } from '../types';
+import { type DoDontTitleProps } from '../types';
 
-const DosDontsTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DosDontsTitleProps) => {
+const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
     const titleRef = useRef<HTMLTextAreaElement>(null);
 
     useLayoutEffect(() => {
@@ -48,4 +48,4 @@ const DosDontsTitle = ({ id, title, editing, headingColor, onChangeItem, onChang
     );
 };
 
-export default DosDontsTitle;
+export default DoDontTitle;
