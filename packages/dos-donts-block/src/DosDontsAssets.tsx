@@ -47,7 +47,6 @@ type DosDontsAssetsProps = Pick<
 const getImageAltText = (alt: string | undefined, asset: Asset): string => {
     return alt ?? (typeof asset.alternativeText === 'string' ? asset.alternativeText : '');
 };
-
 export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>((props, ref) => {
     const {
         id,
