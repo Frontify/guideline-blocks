@@ -16,7 +16,7 @@ import {
 import autosize from 'autosize';
 import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-import { DoDontItemWrapper } from './DoDontToolbar';
+import { DoDontItemWrapper } from './DoDontItemWrapper';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
@@ -64,7 +64,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
-    const [pendingAltText, setPendingAltText] = useState<string | undefined>();
+    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -101,7 +101,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setPendingAltText(imageAlt);
+                setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -146,7 +146,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setPendingAltText(imageAlt);
+                setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     setIsUploadLoading(false);
@@ -231,7 +231,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 setActivatorNodeRef={setActivatorNodeRef}
                 linkedImage={linkedImage}
                 alt={alt}
-                pendingAltText={pendingAltText}
+                localAltText={localAltText}
+                setLocalAltText={setLocalAltText}
                 onChangeItem={onChangeItem}
                 onRemoveSelf={onRemoveSelf}
                 onUploadClick={onUploadClick}

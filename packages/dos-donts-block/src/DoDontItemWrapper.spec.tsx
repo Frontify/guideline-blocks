@@ -3,9 +3,10 @@
 import { AssetDummy } from '@frontify/app-bridge';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { DoDontItemWrapper } from './DoDontToolbar';
+import { DoDontItemWrapper } from './DoDontItemWrapper';
 import { DoDontType } from './types';
 
 const TOOLBAR_FLYOUT_TEST_ID = 'block-item-wrapper-toolbar-flyout';
@@ -20,7 +21,8 @@ const defaultProps = {
     draggableProps: {},
     isDragging: false,
     replaceWithPlaceholder: false,
-    pendingAltText: undefined,
+    localAltText: undefined,
+    setLocalAltText: vi.fn(),
     onUploadClick: vi.fn(),
     onOpenAssetChooser: vi.fn(),
 };
@@ -71,11 +73,21 @@ describe('DoDontItemWrapper', () => {
 
     it('calls onChangeItem with the edited alt text when the flyout is saved', async () => {
         const onChangeItem = vi.fn();
-        render(
-            <DoDontItemWrapper {...defaultProps} onChangeItem={onChangeItem} alt="">
-                <div>content</div>
-            </DoDontItemWrapper>
-        );
+        const StatefulWrapper = () => {
+            const [localAltText, setLocalAltText] = useState<string | undefined>(undefined);
+            return (
+                <DoDontItemWrapper
+                    {...defaultProps}
+                    onChangeItem={onChangeItem}
+                    alt=""
+                    localAltText={localAltText}
+                    setLocalAltText={setLocalAltText}
+                >
+                    <div>content</div>
+                </DoDontItemWrapper>
+            );
+        };
+        render(<StatefulWrapper />);
 
         await openMenu();
         await userEvent.click(await screen.findByText('Set alt text'));

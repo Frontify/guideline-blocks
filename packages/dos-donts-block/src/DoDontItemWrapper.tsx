@@ -10,7 +10,7 @@ import {
 } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import { type DoDontItemProps, DoDontType } from './types';
 
@@ -22,7 +22,8 @@ type DoDontItemWrapperProps = Pick<
     children: ReactNode;
     isDragging: boolean;
     replaceWithPlaceholder: boolean;
-    pendingAltText: string | undefined;
+    localAltText: string | undefined;
+    setLocalAltText: (localAltText?: string) => void;
     onUploadClick: () => void;
     onOpenAssetChooser: () => void;
 };
@@ -40,18 +41,12 @@ export const DoDontItemWrapper = ({
     isDragging,
     replaceWithPlaceholder,
     draggableProps,
-    pendingAltText,
+    localAltText,
+    setLocalAltText,
     onUploadClick,
     onOpenAssetChooser,
 }: DoDontItemWrapperProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
-
-    useEffect(() => {
-        if (pendingAltText !== undefined) {
-            setLocalAltText(pendingAltText);
-        }
-    }, [pendingAltText]);
 
     return (
         <BlockItemWrapper
