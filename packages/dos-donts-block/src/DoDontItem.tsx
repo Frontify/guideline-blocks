@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import {
     IconArrowCircleUp,
     IconArrowMove,
@@ -12,23 +11,20 @@ import {
 } from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import {
-    AssetChooserObjectType,
     BlockItemWrapper,
     BlockStyles,
-    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
 import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
+import { DosDontsAssets, type DosDontsAssetsRef } from './DosDontsAssets';
 import IconComponent from './components/IconComponent';
-import ImageComponent from './components/ImageComponent';
-import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
+import { type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -73,22 +69,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
-    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
+
+    const titleRef = useRef<HTMLTextAreaElement>(null);
+    const assetsRef = useRef<DosDontsAssetsRef>(null);
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-    const titleRef = useRef<HTMLTextAreaElement>(null);
-
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({
-        multiple: false,
-        accept: 'image/*',
-    });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
-    });
 
     const onBodyTextChange = useCallback(
         (value: string) => value !== body && onChangeItem(id, { body: value }),
@@ -102,71 +88,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    const onOpenAssetChooser = () => {
-        openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            async (result: Asset[]) => {
-                setIsUploadLoading(true);
-                const asset = result[0];
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                    setIsUploadLoading(false);
-                }
-
-                closeAssetChooser();
-            },
-            {
-                multiSelection: false,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
-            }
-        );
-    };
-
-    const onUploadClick = () => {
-        openFileDialog();
-    };
-
-    useEffect(() => {
-        if (selectedFiles) {
-            setIsUploadLoading(true);
-            uploadFile(selectedFiles);
-        }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, [selectedFiles]);
-
     useLayoutEffect(() => {
         if (titleRef.current) {
             autosize(titleRef.current);
             autosize.update(titleRef.current);
         }
     });
-
-    useEffect(() => {
-        if (doneAll) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            (async (uploadResults) => {
-                const asset = uploadResults?.[0];
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    setIsUploadLoading(false);
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                }
-            })(uploadResults);
-        }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, [doneAll, uploadResults]);
 
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
@@ -253,12 +180,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                           {
                                               title: 'Replace with upload',
                                               icon: <IconArrowCircleUp size={20} />,
-                                              onClick: onUploadClick,
+                                              onClick: () => assetsRef.current?.openUpload(),
                                           },
                                           {
                                               title: 'Replace with asset',
                                               icon: <IconImageStack size={20} />,
-                                              onClick: onOpenAssetChooser,
+                                              onClick: () => assetsRef.current?.openAssetChooser(),
                                           },
                                       ]
                                     : []),
@@ -272,7 +199,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                                 },
                                 {
                                     title: 'Set alt text',
-                                    onClick: () => setShowAltTextMenu(true),
+                                    onClick: () => assetsRef.current?.openAltTextMenu(),
                                     icon: <IconSpeechBubbleQuote size={20} />,
                                 },
                             ],
@@ -287,39 +214,36 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     },
                 ]}
             >
-                <EditAltTextFlyout
-                    setShowAltTextMenu={setShowAltTextMenu}
-                    showAltTextMenu={showAltTextMenu}
-                    setLocalAltText={setLocalAltText}
-                    defaultAltText={alt}
-                    onSave={() => onChangeItem(id, { alt: localAltText })}
-                    localAltText={localAltText}
+                <DosDontsAssets
+                    ref={assetsRef}
+                    id={id}
+                    appBridge={appBridge}
+                    mode={mode}
+                    editing={editing}
+                    linkedImage={linkedImage}
+                    alt={alt}
+                    onChangeItem={onChangeItem}
+                    updateAssetIdsFromKey={updateAssetIdsFromKey}
+                    isCustomImageHeight={isCustomImageHeight}
+                    customImageHeightValue={customImageHeightValue}
+                    imageDisplay={imageDisplay}
+                    draggableProps={draggableProps}
+                    imageHeightChoice={imageHeightChoice}
+                    isDragging={isDragging}
+                    type={type}
+                    hasStrikethrough={hasStrikethrough}
+                    backgroundColor={backgroundColor}
+                    hasBackground={hasBackground}
+                    hasRadius={hasRadius}
+                    radiusChoice={radiusChoice}
+                    borderColor={borderColor}
+                    borderStyle={borderStyle}
+                    borderWidth={borderWidth}
+                    hasBorder={hasBorder}
+                    radiusValue={radiusValue}
+                    dontColor={dontColor}
                 />
-                {mode === BlockMode.TEXT_AND_IMAGE && (
-                    <ImageComponent
-                        isEditing={editing}
-                        id={id}
-                        alt={alt}
-                        image={linkedImage}
-                        onAssetChooseClick={onOpenAssetChooser}
-                        onUploadClick={onUploadClick}
-                        isUploadLoading={isUploadLoading}
-                        isCustomImageHeight={isCustomImageHeight}
-                        customImageHeightValue={customImageHeightValue}
-                        imageDisplay={imageDisplay}
-                        draggableProps={draggableProps}
-                        imageHeightChoice={imageHeightChoice}
-                        isDragging={isDragging}
-                        hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
-                        backgroundColor={backgroundColor}
-                        hasBackground={hasBackground}
-                        hasRadius={hasRadius}
-                        radiusChoice={radiusChoice}
-                        border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
-                        radiusValue={radiusValue}
-                        dontColor={dontColor}
-                    />
-                )}
+
                 <div
                     data-test-id="dos-donts-heading"
                     className="tw-flex tw-items-start tw-font-semibold"
