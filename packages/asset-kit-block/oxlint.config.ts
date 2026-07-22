@@ -28,7 +28,7 @@ export default defineConfig({
                     'warn',
                     {
                         whitelist: ['^(?!tw-).*$'],
-                        callees: ['className', 'sv', 'class', 'merge'],
+                        callees: ['className', 'sv', 'class', 'merge', 'joinClassNames'],
                         cssFiles: ['**/*.css', '!**/node_modules', '!**/.*', '!**/dist', '!**/build', '!**/public'],
                     },
                 ],
