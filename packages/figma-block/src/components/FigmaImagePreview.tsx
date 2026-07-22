@@ -3,8 +3,8 @@
 import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue/components';
 
-import { ImageStage } from '../ImageStage';
 import { useAssetStatusPolling } from '../hooks/useAssetStatusPolling';
+import { ImageStage } from '../ImageStage';
 import { type ImageStageProps } from '../types';
 import { extractUrlParameterFromUriQueries } from '../utilities/extractUrlParameterFromUriQueries';
 

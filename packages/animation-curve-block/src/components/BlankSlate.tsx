@@ -45,7 +45,7 @@ export const BlankSlate = ({
 
     useEffect(() => {
         setAnimationCurve({ ...animationCurve, title, description });
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [title, description]);
 
     return (

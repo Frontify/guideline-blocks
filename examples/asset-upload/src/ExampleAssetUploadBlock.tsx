@@ -21,16 +21,16 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
 
     useEffect(() => {
         if (selectedFiles) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setLoading(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             (async (uploadResults) => {
                 const assetsId = uploadResults.map((uploadResult) => uploadResult.id);
 
@@ -38,7 +38,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                 setLoading(false);
             })(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     // Asset chooser demo
@@ -46,7 +46,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         openAssetChooser(
             (result: Asset[]) => {
                 const resultId = result[0].id;
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 closeAssetChooser();
             },
@@ -56,7 +56,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
         );
     };
 
-    // eslint-disable-next-line @eslint-react/static-components, @eslint-react/no-nested-component-definitions
+    // oxlint-disable-next-line @eslint-react/static-components, @eslint-react/no-nested-component-definitions
     const Link = ({ link, text }: { link: string; text: string }) => {
         return (
             <a className="tw-text-highlight" href={link} target="_blank" rel="noopener noreferrer">
@@ -88,11 +88,11 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
                                     <div className="tw-flex tw-flex-col tw-gap-4">
                                         <strong>{asset.title}</strong>
                                         <div className="tw-flex tw-gap-4">
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
+                                            {/* oxlint-disable-next-line @eslint-react/static-components */}
                                             <Link link={asset.previewUrl} text="Preview URL" />
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
+                                            {/* oxlint-disable-next-line @eslint-react/static-components */}
                                             <Link link={asset.genericUrl} text="Generic URL" />
-                                            {/* eslint-disable-next-line @eslint-react/static-components */}
+                                            {/* oxlint-disable-next-line @eslint-react/static-components */}
                                             {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
                                         </div>
                                     </div>

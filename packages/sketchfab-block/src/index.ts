@@ -2,8 +2,8 @@
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';
 
-import { SketchfabBlock } from './SketchfabBlock';
 import { settings } from './settings';
+import { SketchfabBlock } from './SketchfabBlock';
 
 export default defineBlock({
     block: SketchfabBlock,

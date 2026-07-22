@@ -6,8 +6,8 @@ import { type ImageElement } from '../ImageElement';
 import { type ImageStage } from '../ImageStage';
 import { MouseProperties } from '../MouseProperties';
 
-import { ContainerOperator } from './ContainerOperator';
 import { MAGNIFICATION_PERCENTAGE_DEFAULT } from './constants';
+import { ContainerOperator } from './ContainerOperator';
 
 export class VectorContainerOperator extends ContainerOperator {
     private startImageContainerPosition: Point = { x: 0, y: 0 };

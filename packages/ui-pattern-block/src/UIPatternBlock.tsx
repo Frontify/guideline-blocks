@@ -115,7 +115,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     const templateFiles = useMemo(
         () => ({ ...getDefaultFilesOfTemplate(sandpackTemplate, preprocessor), ...files?.[sandpackTemplate] }),
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         sandpackRestartInitiators
     );
 
@@ -150,7 +150,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
     const onDependenciesChanged = (newDependencies: string, source: 'npm' | 'external') => {
         if (isEditing) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 dependencies: {
                     ...blockSettings.dependencies,
@@ -170,14 +170,14 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
         });
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const parsedExternalDependencies = useMemo(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        // oxlint-disable-next-line typescript/no-unsafe-return
         () => getParsedDependencies(externalDependencies, []),
         [externalDependencies]
     );
     const parsedNpmDependencies = useMemo(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        // oxlint-disable-next-line typescript/no-unsafe-assignment
         () => ({ dependencies: getParsedDependencies(npmDependencies, {}) }),
         [npmDependencies]
     );
@@ -227,7 +227,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             options={{
                                 classes: EDITOR_CLASSES,
                                 activeFile: initialActiveFile[sandpackTemplate],
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                                // oxlint-disable-next-line typescript/no-unsafe-assignment
                                 externalResources: [cssToInject, ...parsedExternalDependencies],
                             }}
                         >

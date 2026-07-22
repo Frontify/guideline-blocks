@@ -38,7 +38,7 @@ export const FigmaLivePreview = ({
             src={assetExternalUrl}
             className="tw-h-full tw-w-full tw-border-none"
             title="figma-iframe"
-            // eslint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
+            // oxlint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
         />
     </div>

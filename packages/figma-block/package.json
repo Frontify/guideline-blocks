@@ -6,12 +6,12 @@
     "main": "dist/index.js",
     "scripts": {
         "serve": "frontify-cli serve --entryPath src/index.ts",
-        "deploy": "frontify-cli deploy --entryPath src/index.ts",
+        "deploy": "pnpm lint && frontify-cli deploy --entryPath src/index.ts",
         "verify-manifest": "frontify-cli verify-manifest",
-        "lint": "eslint .",
-        "lint:fix": "eslint --fix .",
-        "prettier": "prettier --check .",
-        "prettier:fix": "prettier --write .",
+        "lint": "oxlint --type-aware",
+        "lint:fix": "oxlint --type-aware --fix",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
@@ -24,17 +24,18 @@
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
-        "@frontify/eslint-config-react": "1.0.16",
-        "@frontify/frontify-cli": "^6.2.3",
+        "@frontify/frontify-cli": "^6.2.6",
+        "@frontify/oxfmt-config": "^0.0.2",
+        "@frontify/oxlint-config-react": "^0.0.2",
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
         "autoprefixer": "^10.4.27",
-        "eslint": "^10.3.0",
-        "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-tailwindcss": "^3.18.3",
+        "oxfmt": "^0.52.0",
+        "oxlint": "^1.74.0",
+        "oxlint-tsgolint": "^0.24.0",
         "postcss": "^8.5.8",
-        "prettier": "^3.7.4",
         "tailwindcss": "^3.4.17",
         "typescript": "^6.0.2"
     }

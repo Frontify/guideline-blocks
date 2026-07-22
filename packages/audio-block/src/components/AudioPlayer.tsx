@@ -54,7 +54,7 @@ export const AudioPlayer = ({
                     <LoadingCircle />
                 </div>
             ) : (
-                // eslint-disable-next-line jsx-a11y-x/media-has-caption
+                // oxlint-disable-next-line jsx-a11y-x/media-has-caption
                 <audio
                     data-test-id="audio-block-audio-tag"
                     key={audio.id}

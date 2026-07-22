@@ -39,7 +39,7 @@ export const DownloadAndAttachments = ({
         }
 
         announce('File downloaded successfully');
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         appBridge.dispatch({ name: 'downloadAsset', payload: image });
     }, [appBridge, image]);
 

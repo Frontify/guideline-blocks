@@ -27,7 +27,7 @@ export const AssetSelection = ({
             (assetsObject) => {
                 setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises, promise/catch-or-return
+                // oxlint-disable-next-line typescript/no-floating-promises, promise/catch-or-return
                 addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
                 closeAssetChooser();
             },
@@ -43,7 +43,7 @@ export const AssetSelection = ({
             setIsUploadingAssets(true);
             uploadFile(droppedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [droppedFiles]);
 
     useEffect(() => {
@@ -51,19 +51,19 @@ export const AssetSelection = ({
             setIsUploadingAssets(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             (async (assetsObject) => {
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
                 await addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds);
                 setIsUploadingAssets(false);
             })(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     return (

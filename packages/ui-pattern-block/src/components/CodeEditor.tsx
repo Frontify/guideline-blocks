@@ -43,7 +43,7 @@ export const CodeEditor = ({
 
     useEffect(() => {
         onCodeChange(activeFile, code);
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [code]);
 
     return (
