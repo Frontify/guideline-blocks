@@ -1513,8 +1513,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7
       '@frontify/frontify-cli':
-        specifier: link:/Users/razvan-petru.tudosa/dev/brand-sdk/packages/cli
-        version: link:../../../brand-sdk/packages/cli
+        specifier: ^6.2.3
+        version: 6.2.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.46.1)(yaml@2.8.3)
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
