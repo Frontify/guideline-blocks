@@ -7,8 +7,8 @@
         "serve": "frontify-cli serve --entryPath src/index.ts",
         "deploy": "frontify-cli deploy --entryPath src/index.ts",
         "verify-manifest": "frontify-cli verify-manifest",
-        "lint": "oxlint",
-        "lint:fix": "oxlint --fix",
+        "lint": "oxlint --type-aware",
+        "lint:fix": "oxlint --type-aware --fix",
         "format": "oxfmt",
         "format:check": "oxfmt --check",
         "typecheck": "tsc --noEmit"

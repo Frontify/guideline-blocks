@@ -6,9 +6,6 @@ import { defineConfig } from 'oxlint';
 
 export default defineConfig({
     extends: [reactConfig],
-    options: {
-        typeAware: true,
-    },
     ignorePatterns: ['tailwind.config.*', '**/*.config.{js,mjs,cjs,ts}', '**/*.md'],
     overrides: [
         {

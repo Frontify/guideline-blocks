@@ -7,8 +7,8 @@
     "main": "src/index.ts",
     "types": "src/index.ts",
     "scripts": {
-        "lint": "oxlint",
-        "lint:fix": "oxlint --fix",
+        "lint": "oxlint --type-aware",
+        "lint:fix": "oxlint --type-aware --fix",
         "format": "oxfmt",
         "format:check": "oxfmt --check",
         "typecheck": "tsc --noEmit",
