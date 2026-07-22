@@ -50,7 +50,7 @@ describe('parseSketchfabSettingsUrl', () => {
                 getBlock: () => ({
                     value: args,
                 }),
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // oxlint-disable-next-line typescript/no-explicit-any
                 getAppBridge(): any {},
             } as Bundle;
             parseSketchfabSettingsUrl(bundle);

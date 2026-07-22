@@ -50,7 +50,7 @@ const ImageComponent = ({
                     isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
                 ])}
             >
-                {/* eslint-disable-next-line @eslint-react/no-leaked-conditional-rendering */}
+                {/* oxlint-disable-next-line @eslint-react/no-leaked-conditional-rendering */}
                 {containerWidth && (
                     <ResponsiveImage
                         containerWidth={containerWidth}

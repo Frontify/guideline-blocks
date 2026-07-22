@@ -58,7 +58,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
 
         const onOpenAssetChooser = () => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             appBridge.dispatch(
                 openAssetChooser({
                     multiSelection: true,
@@ -69,7 +69,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             );
             const unsusbcribe = appBridge.subscribe('assetsChosen', ({ assets }) => {
                 onAssetsSelected(assets, id);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 appBridge.dispatch(closeAssetChooser());
                 unsusbcribe();
             });
@@ -80,7 +80,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 onFilesSelected(selectedFiles, id);
                 uploadFile(selectedFiles);
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
         }, [selectedFiles]);
 
         useEffect(() => {
@@ -91,7 +91,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             if (doneAll) {
                 onFilesUploaded(uploadResults, id);
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
         }, [doneAll, uploadResults]);
 
         const updateRTEItem = useCallback(

@@ -61,11 +61,11 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
             return;
         }
         if (!blockSettings.isCustomQuoteStyleRight && customRightIcon) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             deleteAssetIdsFromKey(CUSTOM_QUOTE_STYLE_RIGHT_ID, [customRightIcon.id]);
         }
         if (!blockSettings.isCustomQuoteStyleLeft && customLeftIcon) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             deleteAssetIdsFromKey(CUSTOM_QUOTE_STYLE_LEFT_ID, [customLeftIcon.id]);
         }
     }, [

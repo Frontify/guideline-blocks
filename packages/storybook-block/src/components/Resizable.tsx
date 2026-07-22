@@ -19,7 +19,7 @@ export const Resizeable = ({ children, saveHeight, initialHeight }: Props) => {
         if (!active && height !== activeHeight) {
             saveHeight(height);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [active]);
 
     useEffect(() => {

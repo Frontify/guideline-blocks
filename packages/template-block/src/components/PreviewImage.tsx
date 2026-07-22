@@ -24,13 +24,13 @@ export const PreviewImage = ({
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
     const hasCustomPreview = preview === PreviewType.Custom && previewCustom;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const { previewSrc, width, height } = hasCustomPreview
         ? {
               previewSrc: previewCustom.previewUrl,
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              // oxlint-disable-next-line typescript/no-unsafe-assignment
               width: previewCustom.width,
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              // oxlint-disable-next-line typescript/no-unsafe-assignment
               height: previewCustom.height,
           }
         : {
@@ -80,9 +80,9 @@ export const PreviewImage = ({
                         ? previewImageAnchoringValues[previewImageAnchoring]
                         : 'center',
                 }}
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 width={width}
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 height={height}
                 alt={blockSettings.altText ?? 'Template preview'}
                 onMouseEnter={() => setIsHovered(true)}

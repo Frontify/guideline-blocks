@@ -47,7 +47,7 @@ export const FigmaLiveModal = ({ assetExternalUrl, title, onClose }: FigmaLiveMo
                         className="tw-h-full tw-w-full tw-border-none"
                         loading="lazy"
                         title={title ?? 'Figma live preview'}
-                        // eslint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
+                        // oxlint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox
                         sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                     />
                 </div>

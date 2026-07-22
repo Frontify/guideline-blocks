@@ -58,7 +58,7 @@ describe('UI Pattern Block', () => {
             value: {
                 ...window.crypto,
                 subtle: {
-                    // eslint-disable-next-line @typescript-eslint/require-await
+                    // oxlint-disable-next-line typescript/require-await
                     digest: async () => {
                         const fake = new Uint8Array(32);
                         return fake.buffer;

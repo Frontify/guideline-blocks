@@ -39,14 +39,14 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [colorPalettes, appBridge]);
 
     if (!gradientColors) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({
             gradientColors: DEFAULT_GRADIENT_COLORS,
         });
     }
 
     const setGradientColors = (colors: GradientColor[]) => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({
             gradientColors: colors,
         });

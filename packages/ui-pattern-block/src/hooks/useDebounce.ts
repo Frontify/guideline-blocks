@@ -6,7 +6,7 @@ import { useRef } from 'react';
 export const useDebounce = (duration = 400) => {
     const debouncedSaveRef = useRef(
         debounce((callback) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            // oxlint-disable-next-line typescript/no-unsafe-call
             callback();
         }, duration)
     );

@@ -87,10 +87,10 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (blockSettings.items !== itemsState && isEditing) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ items: itemsState });
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [itemsState]);
 
     const addItems = useCallback(

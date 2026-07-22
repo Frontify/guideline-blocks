@@ -102,17 +102,17 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            // oxlint-disable-next-line typescript/no-misused-promises
             async (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                     setIsUploadLoading(false);
                 }
@@ -136,34 +136,34 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             setIsUploadLoading(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             (async (uploadResults) => {
                 const asset = uploadResults?.[0];
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     setIsUploadLoading(false);
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                 }
             })(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         []
     );
 
@@ -178,7 +178,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         [body, shouldRerenderDependency, editing, appBridge, id]
     );
 
@@ -356,7 +356,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
 
     useEffect(() => {
         if (!isDragging) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setDraggableProps(editing ? { ...attributes, ...listeners } : {});
         }
     }, [isDragging, attributes, listeners, editing]);

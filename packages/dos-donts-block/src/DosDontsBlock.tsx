@@ -124,7 +124,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             ];
             setAndSaveItems(placeholderItems);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -138,14 +138,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         } else if (selectedAssets && selectedType) {
             batchAddItems(selectedAssets);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles, selectedType, selectedAssets]);
 
     useEffect(() => {
         if (doneAll) {
             batchAddItems(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     useEffect(() => {
@@ -156,9 +156,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const throttledFn = throttle((entries) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-assignment, typescript/no-unsafe-member-access
             const lastEntry = entries[entries.length - 1];
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-member-access
             const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
 
             setIsContainerSmall(isSmall);
@@ -198,7 +198,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             });
 
             if (addAssetIdsToKey) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 addAssetIdsToKey(itemId, [image.id]);
             }
         }
@@ -212,7 +212,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveItems = useCallback(
         (newItems: Item[]) => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 items: newItems,
                 ...(!customDoColor && !customDontColor
@@ -239,7 +239,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             setLocalItems((prevItems) => {
                 const updatedItems = prevItems.filter((item) => item.id !== itemId);
 
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({ items: updatedItems });
 
                 if (blockAssets && deleteAssetIdsFromKey) {
@@ -247,7 +247,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     const assetId = asset?.id;
 
                     if (assetId) {
-                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                        // oxlint-disable-next-line typescript/no-floating-promises
                         deleteAssetIdsFromKey(itemId, [assetId]);
                     }
                 }
@@ -271,7 +271,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     item.id === itemId ? ({ ...item, ...change } as Item) : item
                 );
 
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({
                     items: newItems,
                 });
@@ -299,7 +299,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
             setLocalItems(sortedItems);
 
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 items: sortedItems,
             });
