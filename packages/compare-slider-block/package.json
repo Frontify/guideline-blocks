@@ -23,7 +23,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
-        "@frontify/frontify-cli": "^6.2.3",
+        "@frontify/frontify-cli": "^6.2.6",
         "@frontify/oxfmt-config": "^0.0.2",
         "@frontify/oxlint-config-react": "^0.0.2",
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
