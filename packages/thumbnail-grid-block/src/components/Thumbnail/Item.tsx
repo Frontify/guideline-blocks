@@ -16,8 +16,7 @@ import {
     IconSpeechBubbleQuote,
     IconTrashBin,
 } from '@frontify/fondue/icons';
-import { merge } from '@frontify/fondue/rte';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 
@@ -105,7 +104,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 key={id}
                 ref={ref}
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
-                className={merge([
+                className={joinClassNames([
                     !isEditing && !image && 'tw-hidden',
                     'tw-w-full tw-h-full',
                     isDragging && 'tw-bg-surface',
@@ -197,7 +196,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                     </div>
                 </BlockItemWrapper>
                 <div
-                    className={merge([
+                    className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
                         'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-medium tw-bg-container-highlight-hover tw-h-full tw-w-full',
                     ])}

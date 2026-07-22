@@ -190,7 +190,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 isEditing={isEditing}
                             />
                         )}
-                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-small tw-test-primary'])}>
+                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-small'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
