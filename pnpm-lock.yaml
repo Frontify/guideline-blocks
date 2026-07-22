@@ -128,7 +128,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@1.21.7))
@@ -152,7 +152,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -207,7 +210,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -234,7 +237,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -277,7 +283,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -307,7 +313,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -350,7 +359,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -377,7 +386,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -420,7 +432,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -444,7 +456,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -508,7 +523,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -538,7 +553,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -584,7 +602,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -608,7 +626,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -651,7 +672,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -672,7 +693,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -730,7 +754,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@testing-library/react':
         specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -760,7 +784,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -806,7 +833,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -827,7 +854,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -870,7 +900,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@react-aria/interactions':
         specifier: ^3.27.1
         version: 3.27.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -900,7 +930,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -946,7 +979,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@react-aria/interactions':
         specifier: ^3.27.1
         version: 3.27.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -982,7 +1015,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1028,7 +1064,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@testing-library/react':
         specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1055,7 +1091,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1098,7 +1137,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1122,7 +1161,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1165,7 +1207,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@testing-library/react':
         specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1195,7 +1237,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1256,7 +1301,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1280,7 +1325,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1326,7 +1374,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1350,7 +1398,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1393,7 +1444,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1417,7 +1468,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1460,7 +1514,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1484,7 +1538,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1539,7 +1596,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1566,7 +1623,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -1621,7 +1681,7 @@ importers:
         version: 0.0.2(oxfmt@0.52.0)
       '@frontify/oxlint-config-react':
         specifier: ^0.0.2
-        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)
       '@tony.ganchev/eslint-plugin-header':
         specifier: ^3.4.4
         version: 3.4.4(eslint@10.3.0(jiti@2.7.0))
@@ -1648,7 +1708,10 @@ importers:
         version: 0.52.0
       oxlint:
         specifier: ^1.74.0
-        version: 1.74.0
+        version: 1.74.0(oxlint-tsgolint@0.24.0)
+      oxlint-tsgolint:
+        specifier: ^0.24.0
+        version: 0.24.0
       postcss:
         specifier: ^8.5.8
         version: 8.5.16
@@ -3437,6 +3500,36 @@ packages:
   '@oxfmt/binding-win32-x64-msvc@0.52.0':
     resolution: {integrity: sha512-q5xL7oeXkZdEtNZWBdvehJcmt+GRu9l2bK40yJs1jJXlqq+r0Hygb1rTjq+FM2o/2xyt4cufH6KRplHp3Jjsvw==}
     engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@oxlint-tsgolint/darwin-arm64@0.24.0':
+    resolution: {integrity: sha512-C2uMmwK5Bc4ri4ysZ6sA8Rcu+A5zBQTp6ml2u0CLLbRZp4kMFPV3yWk8B5DK9Aw7y9bbjogIm75tUwGLFzlsYQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/darwin-x64@0.24.0':
+    resolution: {integrity: sha512-Wgvt/1lRbDxmoNqWQKKcL+UIiqLmdJ+EWLpQa1qzoNVAfNB0PJpa82/8dH1twT/3rSs4zrP5TXPWl4juB71WuQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/linux-arm64@0.24.0':
+    resolution: {integrity: sha512-PB1rxII7KV83+ASY4sSkXtqvpij6ME66+QCRL49uksi/ofs2Rf/UVboYr095n0Rkbl2wgvlsHGl6DHC361jQUQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint-tsgolint/linux-x64@0.24.0':
+    resolution: {integrity: sha512-xcz3CxKmjTQLREtE/UShh+ruWmm9nAb7UM9zKcD65BStiuYgOakAKkPHl4YS5DztpVcDrE0+HqbOolTlRKYWmw==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint-tsgolint/win32-arm64@0.24.0':
+    resolution: {integrity: sha512-A2i6ZGBec3i20S7RaxkgHc6r3HYtD5Mn7j/mb22NkTz14u0JuudvTu6JggAnbGMcv8+dBKQI//EasxSPJLD8pw==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint-tsgolint/win32-x64@0.24.0':
+    resolution: {integrity: sha512-0ZbGd9qRB6zs82moekaKdEvncRANq49EAwfNX62JpTS46feXUhKAuoyVDvZMj6Rywejylrmmu79Wo6faYCo4Ew==}
     cpu: [x64]
     os: [win32]
 
@@ -7894,6 +7987,10 @@ packages:
       vite-plus:
         optional: true
 
+  oxlint-tsgolint@0.24.0:
+    resolution: {integrity: sha512-giCk5sEvG02d5tzPmFMX3hem8ndzEEu1xvGYS5OwNfO2WGl6ZVxt5LjE0yiMDoz94INI7XkXwgFAQiydPvVHDw==}
+    hasBin: true
+
   oxlint@1.74.0:
     resolution: {integrity: sha512-odGl2s2x5IOJoj3A0v1k0PGBXVFBZeZ2+AK/+K2MJur7Ghi3bkyX5NuLUWHKqa4js1wjep3hJeuTQJOlr+4+dA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -11536,48 +11633,48 @@ snapshots:
     dependencies:
       oxfmt: 0.52.0
 
-  '@frontify/oxlint-config-basic@0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0)':
+  '@frontify/oxlint-config-basic@0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.7.2(eslint@10.3.0(jiti@1.21.7))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.3.0(jiti@1.21.7))
       eslint-plugin-jsonc: 3.3.0(eslint@10.3.0(jiti@1.21.7))
       eslint-plugin-no-only-tests: 3.4.0
       eslint-plugin-yml: 3.6.0(eslint@10.3.0(jiti@1.21.7))
-      oxlint: 1.74.0
+      oxlint: 1.74.0(oxlint-tsgolint@0.24.0)
     transitivePeerDependencies:
       - '@eslint/json'
       - eslint
 
-  '@frontify/oxlint-config-basic@0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)':
+  '@frontify/oxlint-config-basic@0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.7.2(eslint@10.3.0(jiti@2.7.0))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.3.0(jiti@2.7.0))
       eslint-plugin-jsonc: 3.3.0(eslint@10.3.0(jiti@2.7.0))
       eslint-plugin-no-only-tests: 3.4.0
       eslint-plugin-yml: 3.6.0(eslint@10.3.0(jiti@2.7.0))
-      oxlint: 1.74.0
+      oxlint: 1.74.0(oxlint-tsgolint@0.24.0)
     transitivePeerDependencies:
       - '@eslint/json'
       - eslint
 
-  '@frontify/oxlint-config-react@0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0)(typescript@6.0.3)':
+  '@frontify/oxlint-config-react@0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)':
     dependencies:
       '@eslint-react/eslint-plugin': 5.17.3(eslint@10.3.0(jiti@1.21.7))(typescript@6.0.3)
       '@eslint-react/kit': 5.17.3(eslint@10.3.0(jiti@1.21.7))(typescript@6.0.3)
-      '@frontify/oxlint-config-basic': 0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0)
-      oxlint: 1.74.0
+      '@frontify/oxlint-config-basic': 0.0.2(eslint@10.3.0(jiti@1.21.7))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))
+      oxlint: 1.74.0(oxlint-tsgolint@0.24.0)
     transitivePeerDependencies:
       - '@eslint/json'
       - eslint
       - supports-color
       - typescript
 
-  '@frontify/oxlint-config-react@0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)(typescript@6.0.3)':
+  '@frontify/oxlint-config-react@0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))(typescript@6.0.3)':
     dependencies:
       '@eslint-react/eslint-plugin': 5.17.3(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)
       '@eslint-react/kit': 5.17.3(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)
-      '@frontify/oxlint-config-basic': 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0)
-      oxlint: 1.74.0
+      '@frontify/oxlint-config-basic': 0.0.2(eslint@10.3.0(jiti@2.7.0))(oxlint@1.74.0(oxlint-tsgolint@0.24.0))
+      oxlint: 1.74.0(oxlint-tsgolint@0.24.0)
     transitivePeerDependencies:
       - '@eslint/json'
       - eslint
@@ -11975,6 +12072,24 @@ snapshots:
     optional: true
 
   '@oxfmt/binding-win32-x64-msvc@0.52.0':
+    optional: true
+
+  '@oxlint-tsgolint/darwin-arm64@0.24.0':
+    optional: true
+
+  '@oxlint-tsgolint/darwin-x64@0.24.0':
+    optional: true
+
+  '@oxlint-tsgolint/linux-arm64@0.24.0':
+    optional: true
+
+  '@oxlint-tsgolint/linux-x64@0.24.0':
+    optional: true
+
+  '@oxlint-tsgolint/win32-arm64@0.24.0':
+    optional: true
+
+  '@oxlint-tsgolint/win32-x64@0.24.0':
     optional: true
 
   '@oxlint/binding-android-arm-eabi@1.74.0':
@@ -17236,7 +17351,16 @@ snapshots:
       '@oxfmt/binding-win32-ia32-msvc': 0.52.0
       '@oxfmt/binding-win32-x64-msvc': 0.52.0
 
-  oxlint@1.74.0:
+  oxlint-tsgolint@0.24.0:
+    optionalDependencies:
+      '@oxlint-tsgolint/darwin-arm64': 0.24.0
+      '@oxlint-tsgolint/darwin-x64': 0.24.0
+      '@oxlint-tsgolint/linux-arm64': 0.24.0
+      '@oxlint-tsgolint/linux-x64': 0.24.0
+      '@oxlint-tsgolint/win32-arm64': 0.24.0
+      '@oxlint-tsgolint/win32-x64': 0.24.0
+
+  oxlint@1.74.0(oxlint-tsgolint@0.24.0):
     optionalDependencies:
       '@oxlint/binding-android-arm-eabi': 1.74.0
       '@oxlint/binding-android-arm64': 1.74.0
@@ -17257,6 +17381,7 @@ snapshots:
       '@oxlint/binding-win32-arm64-msvc': 1.74.0
       '@oxlint/binding-win32-ia32-msvc': 1.74.0
       '@oxlint/binding-win32-x64-msvc': 1.74.0
+      oxlint-tsgolint: 0.24.0
 
   p-limit@2.3.0:
     dependencies:
