@@ -6,8 +6,9 @@ import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { DoDontType } from '../types';
+
 import { DoDontItemWrapper } from './DoDontItemWrapper';
-import { DoDontType } from './types';
 
 const TOOLBAR_FLYOUT_TEST_ID = 'block-item-wrapper-toolbar-flyout';
 const FLYOUT_MENU_TEST_ID = 'flyout-menu';
@@ -25,6 +26,7 @@ const defaultProps = {
     setLocalAltText: vi.fn(),
     onUploadClick: vi.fn(),
     onOpenAssetChooser: vi.fn(),
+    onChangeItem: vi.fn(),
 };
 
 const openMenu = async () => {
@@ -34,7 +36,7 @@ const openMenu = async () => {
 describe('DoDontItemWrapper', () => {
     it('does not render "Replace with upload"/"Replace with asset" when no image is linked', async () => {
         render(
-            <DoDontItemWrapper {...defaultProps} onChangeItem={vi.fn()}>
+            <DoDontItemWrapper {...defaultProps}>
                 <div>content</div>
             </DoDontItemWrapper>
         );
@@ -98,5 +100,33 @@ describe('DoDontItemWrapper', () => {
         await userEvent.click(screen.getByTestId(SAVE_BUTTON_TEST_ID));
 
         expect(onChangeItem).toHaveBeenCalledWith('1', { alt: 'new alt text' });
+    });
+
+    it('calls onChangeItem with the toggled type when "Change to don\'t" is clicked', async () => {
+        const onChangeItem = vi.fn();
+        render(
+            <DoDontItemWrapper {...defaultProps} type={DoDontType.Do} onChangeItem={onChangeItem}>
+                <div>content</div>
+            </DoDontItemWrapper>
+        );
+
+        await openMenu();
+        await userEvent.click(await screen.findByText('Change to "don\'t"'));
+
+        expect(onChangeItem).toHaveBeenCalledWith('1', { type: DoDontType.Dont });
+    });
+
+    it('calls onChangeItem with the toggled type when "Change to do" is clicked', async () => {
+        const onChangeItem = vi.fn();
+        render(
+            <DoDontItemWrapper {...defaultProps} type={DoDontType.Dont} onChangeItem={onChangeItem}>
+                <div>content</div>
+            </DoDontItemWrapper>
+        );
+
+        await openMenu();
+        await userEvent.click(await screen.findByText('Change to "do"'));
+
+        expect(onChangeItem).toHaveBeenCalledWith('1', { type: DoDontType.Do });
     });
 });

@@ -14,7 +14,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { DoDontItemWrapper } from './DoDontItemWrapper';
+import { DoDontItemWrapper } from './components/DoDontItemWrapper';
 import DoDontTitle from './components/DosDontsTitle';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';

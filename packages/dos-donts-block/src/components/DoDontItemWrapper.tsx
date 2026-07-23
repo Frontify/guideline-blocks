@@ -12,7 +12,7 @@ import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { type ReactNode, useState } from 'react';
 
-import { type DoDontItemProps, DoDontType } from './types';
+import { type DoDontItemProps, DoDontType } from '../types';
 
 type DoDontItemWrapperProps = Pick<
     DoDontItemProps,
