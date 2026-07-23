@@ -15,7 +15,7 @@ import {
 import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { DoDontItemWrapper } from './components/DoDontItemWrapper';
-import DoDontTitle from './components/DosDontsTitle';
+import DoDontTitle from './components/DoDontTitle';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
