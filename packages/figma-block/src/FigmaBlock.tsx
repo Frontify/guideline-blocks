@@ -13,11 +13,11 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 
-import { FigmaEmptyBlock } from './FigmaEmptyBlock';
-import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { FigmaImagePreview } from './components/FigmaImagePreview';
 import { FigmaLiveModal } from './components/FigmaLiveModal';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
+import { FigmaEmptyBlock } from './FigmaEmptyBlock';
+import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, HeightChoices, type Settings } from './types';
 

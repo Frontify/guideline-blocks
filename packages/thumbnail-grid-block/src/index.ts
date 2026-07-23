@@ -2,8 +2,8 @@
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';
 
-import { ThumbnailGridBlock } from './ThumbnailGridBlock';
 import { settings } from './settings';
+import { ThumbnailGridBlock } from './ThumbnailGridBlock';
 
 export default defineBlock({
     block: ThumbnailGridBlock,

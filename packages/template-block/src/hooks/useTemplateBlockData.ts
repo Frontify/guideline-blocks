@@ -89,7 +89,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                    // oxlint-disable-next-line typescript/no-unsafe-argument
                     description: convertToRteValue(TextStyles.p, result.template.description),
                 });
                 setTemplateTextKey(templateTextKey + 1);
@@ -115,7 +115,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     );
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        // oxlint-disable-next-line typescript/no-misused-promises
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
         return () => {
@@ -127,7 +127,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         if (error !== null) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setLastErrorMessage(error);
         }
     }, [error]);
@@ -140,14 +140,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
         const lastTemplate = templates[templates.length - 1];
         if (lastTemplate) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
-        // eslint-disable-next-line @eslint-react/set-state-in-effect
+        // oxlint-disable-next-line @eslint-react/set-state-in-effect
         setHasAuthenticatedUser(isAuthenticated);
     }, [appBridge]);
 

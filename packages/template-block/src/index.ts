@@ -2,8 +2,8 @@
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';
 
-import { TemplateBlock } from './TemplateBlock';
 import { settings } from './settings';
+import { TemplateBlock } from './TemplateBlock';
 
 export default defineBlock({
     block: TemplateBlock,

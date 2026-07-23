@@ -165,7 +165,7 @@ export const settings = defineSettings({
                     id: 'keepSideBySide',
                     label: 'Always show side by side',
                     type: 'switch',
-                    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+                    // oxlint-disable-next-line typescript/no-base-to-string
                     show: (bundle) => bundle.getBlock('columns')?.value?.toString() === '2',
                     defaultValue: true,
                 },

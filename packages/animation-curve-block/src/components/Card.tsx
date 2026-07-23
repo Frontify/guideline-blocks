@@ -171,9 +171,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 shouldAnimate={isHovered && hasMotion}
                                 setCanvasHeight={setCanvasHeight}
                                 title={
-                                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                                     title && hasRichTextValue(title)
-                                        ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                        ? // oxlint-disable-next-line typescript/no-unsafe-member-access
                                           JSON.parse(title)[0].children[0].text
                                         : 'Animation Curve'
                                 }
@@ -190,7 +190,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 isEditing={isEditing}
                             />
                         )}
-                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-small tw-test-primary'])}>
+                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-small tw-text-primary'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"

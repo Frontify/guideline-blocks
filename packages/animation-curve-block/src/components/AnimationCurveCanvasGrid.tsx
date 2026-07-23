@@ -19,7 +19,7 @@ export const AnimationCurveCanvasGrid = ({ viewBox, lineColor }: AnimationCurveC
                 strokeColor={lineColor}
                 strokeWidth={1}
             />
-            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
+            {/* oxlint-disable-next-line typescript/no-unsafe-assignment */}
             {[...Array(5)].map((_, i) => (
                 <Line
                     key={`line-${i}`}

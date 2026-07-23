@@ -2,8 +2,8 @@
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';
 
-import { StorybookBlock } from './StorybookBlock';
 import { settings } from './settings';
+import { StorybookBlock } from './StorybookBlock';
 
 export default defineBlock({
     block: StorybookBlock,

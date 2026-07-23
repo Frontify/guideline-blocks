@@ -29,18 +29,18 @@ export const generateIframeUrl = (href: string, params: Record<string, string | 
 const getUrlStringWithoutSearchParams = (url?: string) => {
     try {
         if (!url) {
-            // eslint-disable-next-line @typescript-eslint/only-throw-error
+            // oxlint-disable-next-line typescript/only-throw-error
             throw 'No url supplied';
         }
         const urlObj = new URL(url);
         return urlObj.origin + urlObj.pathname.replace(/\/$/, '');
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // oxlint-disable-next-line typescript/no-unused-vars
     } catch (error) {
         return '';
     }
 };
 
-const appendEmbedToUrl = (url: string) => (/\/embed$/.test(url) ? url : `${url}/embed`);
+const appendEmbedToUrl = (url: string) => (url.endsWith('/embed') ? url : `${url}/embed`);
 
 export const generateSketchfabEmbedUrl = (url: string) => {
     try {
@@ -56,9 +56,9 @@ export const generateSketchfabEmbedUrl = (url: string) => {
             return `https://sketchfab.com/models/${id}/embed`;
         }
 
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
+        // oxlint-disable-next-line typescript/only-throw-error
         throw 'Unsupported Sketchfab URL';
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // oxlint-disable-next-line typescript/no-unused-vars
     } catch (error) {
         return '';
     }

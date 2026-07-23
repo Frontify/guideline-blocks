@@ -25,7 +25,7 @@ type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] exte
     ? Acc[number]
     : Enumerate<N, [...Acc, Acc['length']]>;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// oxlint-disable-next-line typescript/no-unused-vars
 type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>> | T;
 
 export const areColorsEqual = (color1?: CssColor, color2?: CssColor): boolean => {

@@ -2,7 +2,7 @@
 
 import { type Asset, AssetDummy } from '@frontify/app-bridge';
 import { fireEvent, render } from '@testing-library/react';
-// eslint-disable-next-line no-restricted-syntax
+// oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 

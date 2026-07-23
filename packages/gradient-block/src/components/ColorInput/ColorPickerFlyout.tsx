@@ -48,9 +48,9 @@ export const ColorPickerFlyout = ({
     );
 
     useEffect(() => {
-        // eslint-disable-next-line @eslint-react/set-state-in-effect
+        // oxlint-disable-next-line @eslint-react/set-state-in-effect
         setActiveColor(getColorWithName(currentColor, defaultColorFormat));
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [currentColor, isOpen]);
 
     const handleClear = () => {

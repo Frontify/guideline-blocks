@@ -3,7 +3,7 @@
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-// eslint-disable-next-line no-restricted-syntax
+// oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 

@@ -25,7 +25,7 @@ export const BrandColorPicker = ({
     const [view, setView] = useState<BrandColorView>('grid');
     const [filteredPalettes, setFilteredPalettes] = useState(palettes);
 
-    // eslint-disable-next-line @eslint-react/exhaustive-deps
+    // oxlint-disable-next-line @eslint-react/exhaustive-deps
     const handleQueryChange = useCallback(
         debounce((event: React.ChangeEvent<HTMLInputElement>) => {
             const query = event.target.value;

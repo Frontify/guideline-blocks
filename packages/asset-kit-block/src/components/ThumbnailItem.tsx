@@ -27,9 +27,9 @@ export const ThumbnailItem = ({
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
+            // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
             async (result) => {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 onReplaceAsset(asset.id, result[0].id);
                 closeAssetChooser();
             },
@@ -44,15 +44,15 @@ export const ThumbnailItem = ({
         if (selectedFiles) {
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             onReplaceAsset(asset.id, uploadResults[0].id);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     return (
@@ -63,7 +63,7 @@ export const ThumbnailItem = ({
                     type: 'button',
                     icon: <IconTrashBin size={16} />,
                     tooltip: 'Delete Item',
-                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                    // oxlint-disable-next-line typescript/no-misused-promises
                     onClick: () => onRemoveAsset(asset.id),
                 },
                 {
@@ -100,7 +100,7 @@ export const ThumbnailItem = ({
                         className="tw-object-cover tw-w-full tw-aspect-square"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        // oxlint-disable-next-line typescript/no-unsafe-assignment
                         alt={asset.alternativeText ?? asset.title}
                     />
                 )}
