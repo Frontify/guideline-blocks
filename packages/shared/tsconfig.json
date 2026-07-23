@@ -6,7 +6,6 @@
         "module": "ESNext",
         "moduleResolution": "bundler",
         "noUnusedLocals": true,
-        "outDir": "dist",
         "resolveJsonModule": true,
         "noUncheckedSideEffectImports": false,
         "skipLibCheck": true,

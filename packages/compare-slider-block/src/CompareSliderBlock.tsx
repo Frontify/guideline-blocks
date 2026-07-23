@@ -145,15 +145,15 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
         if (slotWithUploadInProgress === SliderImageSlot.First) {
             setIsFirstAssetLoading(true);
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ firstAssetAlt: initialAlt });
         } else {
             setIsSecondAssetLoading(true);
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ secondAssetAlt: initialAlt });
         }
         uploadFile(droppedFiles);
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [droppedFiles]);
 
     useEffect(() => {
@@ -162,27 +162,27 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
             if (slotWithUploadInProgress === SliderImageSlot.First) {
                 setIsFirstAssetLoading(true);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({ firstAssetAlt: initialAlt });
             } else {
                 setIsSecondAssetLoading(true);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({ secondAssetAlt: initialAlt });
             }
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults && slotWithUploadInProgress) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             (async (uploadResults) => {
                 const resultId = uploadResults[0].id;
                 await updateAssetIdsFromKey(slotAssetSettingMap[slotWithUploadInProgress], [resultId]);
             })(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const startFileDialogUpload = (slot: SliderImageSlot) => {
@@ -198,34 +198,34 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     const updateImageAlt = useCallback(
         (key: 'firstAssetAlt' | 'secondAssetAlt', newAlt: string) => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ [key]: newAlt });
         },
         [setBlockSettings]
     );
 
     const handleAssetDelete = (key: string, id: number) => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         deleteAssetIdsFromKey(key, [id]);
     };
 
     const onOpenAssetChooser = (slot: SliderImageSlot) => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
+            // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
             async (result) => {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const { alternativeText, title, fileName, id } = result[0];
 
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const initialAlt = alternativeText ?? title ?? fileName ?? '';
                 const isFirstSlot = slot === SliderImageSlot.First;
                 const setAssetLoading = isFirstSlot ? setIsFirstAssetLoading : setIsSecondAssetLoading;
                 const prefix = isFirstSlot ? 'first' : 'second';
 
                 setAssetLoading(true);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/no-unsafe-assignment
+                // oxlint-disable-next-line typescript/no-floating-promises, typescript/no-unsafe-assignment
                 setBlockSettings({ [`${prefix}AssetAlt`]: initialAlt });
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 updateAssetIdsFromKey(`${prefix}Asset`, [id]);
                 closeAssetChooser();
             },

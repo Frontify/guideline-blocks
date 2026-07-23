@@ -4,8 +4,8 @@ import { DndContext, type DragEndEvent, DragOverlay, type DragStartEvent, closes
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { type BlockProps, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type BlockProps, gutterSpacingStyleMap } from '@frontify/guideline-blocks-settings';
+import { StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 
 import { BlankSlate, Card, SortableCard } from './components';
@@ -26,14 +26,14 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const deleteAnimationCurve = (id: string) => {
         const newContent = content.filter((animationCurve) => animationCurve.id !== id);
         setLocalItems(newContent);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({ content: newContent });
     };
 
     const updateAnimationCurve = (id: string, animationCurvePatch: AnimationCurvePatch): void => {
         const updatedContent = content.map((item) => (item.id === id ? { ...item, ...animationCurvePatch } : item));
         setLocalItems(updatedContent);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({ content: updatedContent });
     };
 
@@ -50,7 +50,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
             const content = arrayMove(localItems, oldIndex, newIndex);
             setLocalItems(content);
             setActiveItem(null);
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ content });
         }
     };

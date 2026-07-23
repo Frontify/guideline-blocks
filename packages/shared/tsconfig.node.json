@@ -8,5 +8,5 @@
         "strict": true,
         "types": ["node"]
     },
-    "include": ["eslint.config.mjs"]
+    "include": ["oxlint.config.ts", "oxfmt.config.ts"]
 }

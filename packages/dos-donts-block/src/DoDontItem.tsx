@@ -99,7 +99,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         []
     );
 
@@ -114,47 +114,16 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         [body, shouldRerenderDependency, editing, appBridge, id]
     );
 
-    const renderTitle = useCallback(() => {
-        const styles = {
-            ...BlockStyles.heading3,
-            marginBottom: 0,
-            marginTop: 0,
-            color: headingColor,
-            WebkitTextFillColor: headingColor,
-            '--placeholder-color': headingColor,
-        };
-
-        if (editing) {
-            return (
-                <textarea
-                    rows={1}
-                    ref={titleRef}
-                    onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                    onBlur={() => onChangeItem(id, { title })}
-                    style={styles}
-                    value={title}
-                    aria-label="Title"
-                    placeholder="Add a title"
-                    className="tw-text-small tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
-                />
-            );
-        }
-
-        return (
-            <h3 style={styles} className="tw-w-full tw-break-words tw-whitespace-pre-wrap">
-                {title}
-            </h3>
-        );
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
-    }, [editing, onChangeItem, onChangeLocalItem, title, titleRef, headingColor]);
-
     return (
         <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
-            <BlockItemWrapper
+            <DoDontItemWrapper
+                id={id}
+                type={type}
+                editing={editing}
                 isDragging={isDragging}
                 shouldHideWrapper={replaceWithPlaceholder || !editing}
                 shouldHideComponent={replaceWithPlaceholder}
@@ -275,7 +244,14 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             fontSize: 'var(--f-theme-settings-heading3-font-size)',
                         }}
                     >
-                        {renderTitle()}
+                        <DoDontTitle
+                            id={id}
+                            title={title}
+                            editing={editing}
+                            headingColor={headingColor}
+                            onChangeItem={onChangeItem}
+                            onChangeLocalItem={onChangeLocalItem}
+                        />
                     </span>
                 </div>
                 {style === DoDontStyle.Underline && (
@@ -287,7 +263,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                     {memoizedRichTextEditor}
                 </div>
-            </BlockItemWrapper>
+            </DoDontItemWrapper>
             <div
                 className={joinClassNames([
                     !replaceWithPlaceholder && 'tw-hidden',
@@ -316,7 +292,7 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
 
     useEffect(() => {
         if (!isDragging) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setDraggableProps(editing ? { ...attributes, ...listeners } : {});
         }
     }, [isDragging, attributes, listeners, editing]);

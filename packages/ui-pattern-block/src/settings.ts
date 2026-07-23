@@ -73,7 +73,7 @@ export const settings = defineSettings({
             type: 'segmentedControls',
             label: 'CSS preprocessor',
             defaultValue: Preprocessor.None,
-            // eslint-disable-next-line @typescript-eslint/no-base-to-string
+            // oxlint-disable-next-line typescript/no-base-to-string
             show: (bundle) => bundle.getBlock('sandpackTemplate')?.value?.toString() === SandpackTemplate.Vanilla,
             choices: [
                 {

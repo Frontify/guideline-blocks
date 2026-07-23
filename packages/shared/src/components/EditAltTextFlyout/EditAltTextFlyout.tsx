@@ -3,7 +3,7 @@
 import { FormControl, HelperPosition } from '@frontify/fondue';
 import { Button, Flyout, TextInput } from '@frontify/fondue/components';
 import { IconCheckMark } from '@frontify/fondue/icons';
-// eslint-disable-next-line no-restricted-syntax
+// oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
 
 import {

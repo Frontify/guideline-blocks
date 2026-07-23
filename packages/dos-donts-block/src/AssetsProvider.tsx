@@ -21,7 +21,7 @@ AssetsContext.displayName = 'AssetsContext';
 export const AssetsProvider = ({ appBridge, children }: AssetsProviderProps) => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     return (
-        // eslint-disable-next-line @eslint-react/no-unstable-context-value
+        // oxlint-disable-next-line @eslint-react/no-unstable-context-value
         <AssetsContext.Provider value={{ blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey }}>
             {children}
         </AssetsContext.Provider>

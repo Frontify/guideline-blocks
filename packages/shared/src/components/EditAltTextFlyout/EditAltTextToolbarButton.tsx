@@ -2,7 +2,7 @@
 
 import { IconSpeechBubbleQuote } from '@frontify/fondue/icons';
 import { type FlyoutToolbarButtonProps, useMultiFlyoutState } from '@frontify/guideline-blocks-settings';
-// eslint-disable-next-line no-restricted-syntax
+// oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
 
 import { ALT_TEXT_FLYOUT_ID, BaseEditAltTextFlyoutFooter, EditAltTextFlyoutScreen } from './EditAltTextFlyout';

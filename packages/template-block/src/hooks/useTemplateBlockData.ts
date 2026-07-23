@@ -9,10 +9,10 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-import { type Color } from '@frontify/fondue';
 import {
     type BlockProps,
     type BorderStyle,
+    type Color,
     type Padding,
     type Radius,
     convertToRteValue,
@@ -22,7 +22,7 @@ import {
     toRgbaString,
     TextStyles,
 } from '@frontify/guideline-blocks-settings';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { TEMPLATE_BLOCK_SETTING_ID } from '../constants';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from '../settings';
@@ -47,6 +47,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const [templateTextKey, setTemplateTextKey] = useState(0);
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState(false);
+    const isSelectingTemplateRef = useRef(false);
     const isEditing = useEditorState(appBridge);
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -80,19 +81,24 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     const onTemplateSelected = useCallback(
         async (result: { template: TemplateLegacy }) => {
+            if (isSelectingTemplateRef.current) {
+                return;
+            }
+            isSelectingTemplateRef.current = true;
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                    // oxlint-disable-next-line typescript/no-unsafe-argument
                     description: convertToRteValue(TextStyles.p, result.template.description),
                 });
                 setTemplateTextKey(templateTextKey + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
+            } finally {
+                isSelectingTemplateRef.current = false;
+                await appBridge.dispatch(closeTemplateChooser());
             }
-
-            await appBridge.dispatch(closeTemplateChooser());
         },
         [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
     );
@@ -109,7 +115,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     );
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        // oxlint-disable-next-line typescript/no-misused-promises
         const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
 
         return () => {
@@ -121,7 +127,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         if (error !== null) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setLastErrorMessage(error);
         }
     }, [error]);
@@ -134,14 +140,14 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
         const lastTemplate = templates[templates.length - 1];
         if (lastTemplate) {
-            // eslint-disable-next-line @eslint-react/set-state-in-effect
+            // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setSelectedTemplate(lastTemplate);
         }
     }, [blockTemplates]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
-        // eslint-disable-next-line @eslint-react/set-state-in-effect
+        // oxlint-disable-next-line @eslint-react/set-state-in-effect
         setHasAuthenticatedUser(isAuthenticated);
     }, [appBridge]);
 

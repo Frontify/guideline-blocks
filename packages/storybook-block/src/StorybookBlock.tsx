@@ -57,12 +57,12 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         setSubmittedUrl(input);
 
         if (isValidStorybookUrl(input)) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 url: addMissingUrlProtocol(input),
             });
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {
@@ -75,7 +75,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [url]);
 
     const saveHeight = (height: number) => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({
             heightValue: `${height}px`,
             isCustomHeight: true,

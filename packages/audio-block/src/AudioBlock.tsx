@@ -36,7 +36,7 @@ const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
-    // eslint-disable-next-line @eslint-react/use-state
+    // oxlint-disable-next-line @eslint-react/use-state
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -64,10 +64,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
+            // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
             async (result) => {
                 setIsLoading(true);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 updateAudioAsset(result[0]);
                 closeAssetChooser();
             },
@@ -103,15 +103,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             setIsLoading(true);
             uploadFile(selectedFiles[0]);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             updateAudioAsset(uploadResults[0]);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const titleValue = blockSettings.title ?? DEFAULT_CONTENT_TITLE;

@@ -3,8 +3,8 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 
-import { TextBlock } from './TextBlock';
 import { PLACEHOLDER } from './settings';
+import { TextBlock } from './TextBlock';
 
 const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';

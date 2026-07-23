@@ -163,7 +163,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(108, 92, 5)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(0, 0, 0)');
     });
 
     it('renders a callout block with the correct colors for type tip', () => {
@@ -223,10 +223,10 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector)
-            .should('have.css', '--f-theme-settings-heading1-color', 'rgb(108, 92, 5)')
-            .and('have.css', '--f-theme-settings-body-color', 'rgb(108, 92, 5)')
-            .and('have.css', '--f-theme-settings-link-color', 'rgb(108, 92, 5)')
-            .and('have.css', 'color', 'rgb(108, 92, 5)')
+            .should('have.css', '--f-theme-settings-heading1-color', 'black')
+            .and('have.css', '--f-theme-settings-body-color', 'black')
+            .and('have.css', '--f-theme-settings-link-color', 'black')
+            .and('have.css', 'color', 'rgb(0, 0, 0)')
             .and('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
     });
 
@@ -251,6 +251,30 @@ describe('Callout Block', () => {
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(50, 40, 145, 0.1)');
         cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(50, 40, 145)');
+    });
+
+    it('should turn text to white when a black accent sits on a black section background', () => {
+        cy.document().then((doc) => {
+            const style = doc.querySelector('#test-settings');
+            if (style) {
+                style.innerHTML =
+                    ':root {--f-theme-settings-accent-color-note-color: rgba(0, 0, 0, 1); --f-theme-settings-background-color: rgb(0, 0, 0);}';
+            }
+            return null;
+        });
+
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a note',
+                type: Type.Note,
+                appearance: Appearance.Light,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(0, 0, 0, 0.1)');
+        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(255, 255, 255)');
     });
 
     it('renders a callout block with strong appearance', () => {

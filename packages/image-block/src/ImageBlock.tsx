@@ -41,7 +41,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
     const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
-    // eslint-disable-next-line @eslint-react/use-state
+    // oxlint-disable-next-line @eslint-react/use-state
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -82,9 +82,9 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            // oxlint-disable-next-line typescript/no-unsafe-assignment
             settings.altText = newImage?.alternativeText ?? '';
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            // oxlint-disable-next-line typescript/no-unsafe-argument
             setLocalAltText(newImage?.alternativeText ?? '');
 
             const hasManuallyEditedName = hasRichTextValue(name);
@@ -113,10 +113,10 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/require-await
+            // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
             async (result) => {
                 setIsLoading(true);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 updateImage(result[0]);
                 closeAssetChooser();
             },
@@ -137,22 +137,22 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             setIsLoading(true);
             uploadFile(selectedFiles[0]);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             updateImage(uploadResults[0]);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({ altText: undefined });
         setLocalAltText(undefined);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 

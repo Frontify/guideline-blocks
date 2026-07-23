@@ -351,7 +351,7 @@ describe('AnimationCurve Block', () => {
         cy.get(RTE_SELECTOR).should('have.length', 12);
         cy.get(CARD_SELECTOR)
             .first()
-            // eslint-disable-next-line promise/always-return
+            // oxlint-disable-next-line promise/always-return
             .then((first) => {
                 cy.wrap(first).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(0).focus();
                 cy.realPress('Enter');
@@ -360,7 +360,7 @@ describe('AnimationCurve Block', () => {
                 cy.realPress('Enter');
                 cy.get(CARD_SELECTOR)
                     .eq(3)
-                    // eslint-disable-next-line promise/always-return
+                    // oxlint-disable-next-line promise/always-return
                     .then((fourth) => {
                         expect(fourth.get(0).textContent).to.eq(first.get(0).textContent);
                     });
@@ -385,7 +385,7 @@ describe('AnimationCurve Block', () => {
         cy.get(RTE_SELECTOR).should('have.length', 12);
         cy.get(CARD_SELECTOR)
             .eq(3)
-            // eslint-disable-next-line promise/always-return
+            // oxlint-disable-next-line promise/always-return
             .then((fourth) => {
                 cy.wrap(fourth).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(0).focus();
                 cy.realPress('Enter');
@@ -394,7 +394,7 @@ describe('AnimationCurve Block', () => {
                 cy.realPress('Enter');
                 cy.get(CARD_SELECTOR)
                     .first()
-                    // eslint-disable-next-line promise/always-return
+                    // oxlint-disable-next-line promise/always-return
                     .then((first) => {
                         expect(first.get(0).textContent).to.eq(fourth.get(0).textContent);
                     });

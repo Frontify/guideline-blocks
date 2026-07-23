@@ -49,11 +49,11 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const hasAssets = currentAssets.length > 0;
     const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         generateBulkDownload(blockAssets);
     };
 
@@ -73,10 +73,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
 
     useEffect(() => {
         if (status === AssetBulkDownloadState.Ready && downloadUrl) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            // oxlint-disable-next-line typescript/no-unsafe-argument
             downloadAssets(downloadUrl);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [downloadUrl]);
 
     const isButtonDisabled =

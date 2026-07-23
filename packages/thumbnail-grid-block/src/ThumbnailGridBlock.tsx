@@ -11,8 +11,8 @@ import {
     useEditorState,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { type BlockProps, Security, gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { type BlockProps, Security, gutterSpacingStyleMap } from '@frontify/guideline-blocks-settings';
+import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useState } from 'react';
 
 import { Grid, Item, SortableItem } from './components/';
@@ -87,10 +87,10 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (blockSettings.items !== itemsState && isEditing) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({ items: itemsState });
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [itemsState]);
 
     const addItems = useCallback(

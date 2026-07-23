@@ -16,8 +16,7 @@ import {
     IconSpeechBubbleQuote,
     IconTrashBin,
 } from '@frontify/fondue/icons';
-import { merge } from '@frontify/fondue/rte';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 
@@ -59,7 +58,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
 
         const onOpenAssetChooser = () => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             appBridge.dispatch(
                 openAssetChooser({
                     multiSelection: true,
@@ -70,7 +69,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             );
             const unsusbcribe = appBridge.subscribe('assetsChosen', ({ assets }) => {
                 onAssetsSelected(assets, id);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 appBridge.dispatch(closeAssetChooser());
                 unsusbcribe();
             });
@@ -81,7 +80,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 onFilesSelected(selectedFiles, id);
                 uploadFile(selectedFiles);
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
         }, [selectedFiles]);
 
         useEffect(() => {
@@ -92,7 +91,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             if (doneAll) {
                 onFilesUploaded(uploadResults, id);
             }
-            // eslint-disable-next-line @eslint-react/exhaustive-deps
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
         }, [doneAll, uploadResults]);
 
         const updateRTEItem = useCallback(
@@ -105,7 +104,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 key={id}
                 ref={ref}
                 style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
-                className={merge([
+                className={joinClassNames([
                     !isEditing && !image && 'tw-hidden',
                     'tw-w-full tw-h-full',
                     isDragging && 'tw-bg-surface',
@@ -197,7 +196,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                     </div>
                 </BlockItemWrapper>
                 <div
-                    className={merge([
+                    className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
                         'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-medium tw-bg-container-highlight-hover tw-h-full tw-w-full',
                     ])}

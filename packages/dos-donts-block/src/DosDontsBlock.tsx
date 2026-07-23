@@ -20,32 +20,18 @@ import {
     type BlockProps,
     FileExtensionSets,
     joinClassNames,
-    useDndSensors,
 } from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
+import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import throttle from 'lodash-es/throttle';
-import { type FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
-import {
-    DO_COLOR_DEFAULT_VALUE,
-    DONT_COLOR_DEFAULT_VALUE,
-    getDefaultDoColor,
-    getDefaultDontColor,
-} from './helpers/Color';
-import { getGridClassName } from './helpers/Grid';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_BORDER_COLOR } from './settings';
-import {
-    BlockMode,
-    type ChangeType,
-    DoDontType,
-    GUTTER_VALUES,
-    type Item,
-    type Settings,
-    type ValueType,
-} from './types';
+import { DoDontItem, SortableDoDontItem } from './DoDontItem';
+import { getDoDontContainerStyle } from './helpers/getDoDontContainerStyle';
+import { getDoDontGridStyle } from './helpers/getDoDontGridStyle';
+import { useDoDontColorStyle } from './hooks/useDoDontColorStyle';
+import { BlockMode, type ChangeType, DoDontType, type Item, type Settings, type ValueType } from './types';
 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -80,6 +66,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     });
     const [activeId, setActiveId] = useState<string | undefined>(undefined);
     const {
+        items = [],
+        doColor: customDoColor,
+        dontColor: customDontColor,
         style,
         hasCustomDoIcon,
         doIconChoice,
@@ -87,55 +76,32 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         dontIconChoice,
         hasStrikethrough,
         columns,
-        keepSideBySide,
-        isCustomColumnGutter,
-        customColumnGutterValue,
-        columnGutterChoice,
-        isCustomRowGutter,
-        customRowGutterValue,
-        rowGutterChoice,
         isCustomImageHeight,
         customImageHeightValue,
         imageDisplay,
         imageHeightChoice,
-        doColor: customDoColor,
-        dontColor: customDontColor,
-        hasCustomDoColor,
-        hasCustomDontColor,
-        items = [],
         mode,
+    } = blockSettings;
+    const { doColor, dontColor, resolvedDoColor, resolvedDontColor } = useDoDontColorStyle(blockSettings);
+    const { columnGap, rowGap, gridClassName } = getDoDontGridStyle(blockSettings);
+    const {
         borderWidth,
-        backgroundColor,
-        borderColor,
         borderStyle,
         hasBackground,
         hasBorder,
         hasRadius,
         radiusChoice,
         radiusValue,
-    } = blockSettings;
+        resolvedBackgroundColor,
+        resolvedBorderColor,
+    } = getDoDontContainerStyle(blockSettings);
 
-    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
-    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
     const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
     const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
     const [localItems, setLocalItems] = useState<Item[]>(items);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
-
-    const themeStyle = useMemo(() => getComputedStyle(document.body), []);
-    const defaultDoColor = useMemo(() => getDefaultDoColor(themeStyle), [themeStyle]);
-    const defaultDontColor = useMemo(() => getDefaultDontColor(themeStyle), [themeStyle]);
-
-    const doColor = useMemo(
-        () => (hasCustomDoColor ? customDoColor : defaultDoColor),
-        [customDoColor, hasCustomDoColor, defaultDoColor]
-    );
-    const dontColor = useMemo(
-        () => (hasCustomDontColor ? customDontColor : defaultDontColor),
-        [customDontColor, hasCustomDontColor, defaultDontColor]
-    );
 
     /**
      * Create placeholders on mount if empty
@@ -158,7 +124,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             ];
             setAndSaveItems(placeholderItems);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -172,14 +138,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         } else if (selectedAssets && selectedType) {
             batchAddItems(selectedAssets);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [selectedFiles, selectedType, selectedAssets]);
 
     useEffect(() => {
         if (doneAll) {
             batchAddItems(uploadResults);
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     useEffect(() => {
@@ -190,9 +156,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const throttledFn = throttle((entries) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-assignment, typescript/no-unsafe-member-access
             const lastEntry = entries[entries.length - 1];
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-member-access
             const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
 
             setIsContainerSmall(isSmall);
@@ -203,9 +169,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         observer.observe(container);
 
         return () => {
-            if (container) {
-                observer.unobserve(container);
-            }
+            observer.unobserve(container);
         };
     }, [containerRef, isEditing]);
 
@@ -218,10 +182,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         if (!selectedType) {
             return;
         }
+
         const newItems: Item[] = [];
         setIsUploadLoading(true);
+
         for (const image of assets) {
             const itemId = generateRandomId();
+
             newItems.push({
                 id: itemId,
                 body: '',
@@ -229,11 +196,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 type: selectedType,
                 alt: image.title || image.fileName || '',
             });
+
             if (addAssetIdsToKey) {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                // oxlint-disable-next-line typescript/no-floating-promises
                 addAssetIdsToKey(itemId, [image.id]);
             }
         }
+
         setAndSaveItems([...localItems, ...newItems]);
         setIsUploadLoading(false);
         setSelectedType(undefined);
@@ -243,7 +212,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveItems = useCallback(
         (newItems: Item[]) => {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 items: newItems,
                 ...(!customDoColor && !customDontColor
@@ -269,13 +238,16 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         (itemId: string) => {
             setLocalItems((prevItems) => {
                 const updatedItems = prevItems.filter((item) => item.id !== itemId);
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({ items: updatedItems });
+
                 if (blockAssets && deleteAssetIdsFromKey) {
                     const asset = blockAssets[itemId]?.[0];
                     const assetId = asset?.id;
+
                     if (assetId) {
-                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                        // oxlint-disable-next-line typescript/no-floating-promises
                         deleteAssetIdsFromKey(itemId, [assetId]);
                     }
                 }
@@ -298,10 +270,12 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 const newItems = previousItems.map((item) =>
                     item.id === itemId ? ({ ...item, ...change } as Item) : item
                 );
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
+                // oxlint-disable-next-line typescript/no-floating-promises
                 setBlockSettings({
                     items: newItems,
                 });
+
                 return newItems;
             });
         },
@@ -310,23 +284,28 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
+
         saveItems(localItems);
         setActiveId(active.id as string);
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
+
         if (over && active.id !== over.id) {
             const oldIndex = localItems.findIndex((i) => i.id === active.id);
             const newIndex = localItems.findIndex((i) => i.id === over.id);
             const sortedItems = arrayMove(localItems, oldIndex, newIndex);
+
             setLocalItems(sortedItems);
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
+            // oxlint-disable-next-line typescript/no-floating-promises
             setBlockSettings({
                 items: sortedItems,
             });
-            setActiveId(undefined);
         }
+
+        setActiveId(undefined);
     };
 
     const getDoDontItemProps = (item: Item) => ({
@@ -338,9 +317,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         body: item.body,
         type: item.type,
         style,
-        doColor: doColor || DO_COLOR_DEFAULT_VALUE,
+        doColor: resolvedDoColor,
         linkedImage: blockAssets?.[item.id]?.[0],
-        dontColor: dontColor || DONT_COLOR_DEFAULT_VALUE,
+        dontColor: resolvedDontColor,
         editing: isEditing,
         hasCustomDoIcon,
         doIconChoice,
@@ -357,8 +336,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         imageDisplay,
         imageHeightChoice,
         hasStrikethrough,
-        backgroundColor: backgroundColor || DEFAULT_BACKGROUND_COLOR,
-        borderColor: borderColor || DEFAULT_BORDER_COLOR,
+        backgroundColor: resolvedBackgroundColor,
+        borderColor: resolvedBorderColor,
         borderStyle,
         hasBackground,
         hasBorder,
@@ -389,7 +368,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setSelectedFiles(null);
         setSelectedType(undefined);
     };
-    const gridClassName = getGridClassName(keepSideBySide, columns);
 
     const activeItem = localItems.find((x) => x.id === activeId);
 

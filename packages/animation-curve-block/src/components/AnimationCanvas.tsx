@@ -119,7 +119,7 @@ export const AnimationCanvas = ({
 
             setAnimationFunction?.(updatedAnimationFunction(animationValues, draggingPoint));
         },
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]
     );
 

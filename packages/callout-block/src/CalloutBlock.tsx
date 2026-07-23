@@ -39,7 +39,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                 ? (hostElement.current?.closest('[data-section]')?.firstChild as HTMLElement)
                 : document.getElementById('design-settings');
         }
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
 
     const updateStyles = useCallback(() => {
@@ -55,7 +55,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         if (!blockSettings.iconSwitch && customIcon && isEditing) {
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            // oxlint-disable-next-line typescript/no-floating-promises
             deleteAssetIdsFromKey(ICON_ASSET_ID, [customIcon.id]);
         }
     }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
@@ -77,7 +77,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         return () => {
             styleChangeObserver.disconnect();
         };
-        // eslint-disable-next-line @eslint-react/exhaustive-deps
+        // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [updateStyles]);
 
     const handleTextChange = useCallback((textValue: string) => setBlockSettings({ textValue }), [setBlockSettings]);
@@ -86,7 +86,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     if (appearance !== Appearance.Strong && appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        // oxlint-disable-next-line typescript/no-floating-promises
         setBlockSettings({ appearance: Appearance.Light });
     }
 
