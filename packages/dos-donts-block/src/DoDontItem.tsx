@@ -1,18 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import {
-    IconArrowCircleUp,
-    IconArrowMove,
-    IconArrowSwap,
-    IconImageStack,
-    IconSpeechBubbleQuote,
-    IconTrashBin,
-} from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import {
-    BlockItemWrapper,
-    BlockStyles,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
@@ -23,6 +13,8 @@ import autosize from 'autosize';
 import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { DosDontsAssets, type DosDontsAssetsRef } from './DosDontsAssets';
+import { DoDontItemWrapper } from './components/DoDontItemWrapper';
+import DoDontTitle from './components/DoDontTitle';
 import IconComponent from './components/IconComponent';
 import { type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
 
@@ -72,6 +64,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const titleRef = useRef<HTMLTextAreaElement>(null);
     const assetsRef = useRef<DosDontsAssetsRef>(null);
+    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -125,59 +118,17 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 type={type}
                 editing={editing}
                 isDragging={isDragging}
-                shouldHideWrapper={replaceWithPlaceholder || !editing}
-                shouldHideComponent={replaceWithPlaceholder}
-                shouldBeShown={isDragging}
-                toolbarItems={[
-                    { type: 'dragHandle', icon: <IconArrowMove size={16} />, draggableProps, setActivatorNodeRef },
-                    {
-                        type: 'button',
-                        icon: <IconTrashBin size={16} />,
-                        tooltip: 'Delete Item',
-                        onClick: () => onRemoveSelf(id),
-                    },
-                    {
-                        type: 'menu',
-                        items: [
-                            [
-                                ...(linkedImage
-                                    ? [
-                                          {
-                                              title: 'Replace with upload',
-                                              icon: <IconArrowCircleUp size={20} />,
-                                              onClick: () => assetsRef.current?.openUpload(),
-                                          },
-                                          {
-                                              title: 'Replace with asset',
-                                              icon: <IconImageStack size={20} />,
-                                              onClick: () => assetsRef.current?.openAssetChooser(),
-                                          },
-                                      ]
-                                    : []),
-                                {
-                                    title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
-                                    icon: <IconArrowSwap size={20} />,
-                                    onClick: () =>
-                                        onChangeItem(id, {
-                                            type: type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do,
-                                        }),
-                                },
-                                {
-                                    title: 'Set alt text',
-                                    onClick: () => assetsRef.current?.openAltTextMenu(),
-                                    icon: <IconSpeechBubbleQuote size={20} />,
-                                },
-                            ],
-                            [
-                                {
-                                    title: 'Delete',
-                                    icon: <IconTrashBin size={20} />,
-                                    onClick: () => onRemoveSelf(id),
-                                },
-                            ],
-                        ],
-                    },
-                ]}
+                replaceWithPlaceholder={replaceWithPlaceholder}
+                draggableProps={draggableProps}
+                setActivatorNodeRef={setActivatorNodeRef}
+                linkedImage={linkedImage}
+                alt={alt}
+                localAltText={localAltText}
+                setLocalAltText={setLocalAltText}
+                onChangeItem={onChangeItem}
+                onRemoveSelf={onRemoveSelf}
+                onUploadClick={() => assetsRef.current?.openUpload()}
+                onOpenAssetChooser={() => assetsRef.current?.openAssetChooser()}
             >
                 <DosDontsAssets
                     ref={assetsRef}
