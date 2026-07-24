@@ -15,6 +15,14 @@ export class ImageContainer {
         this.imageContainer.style.position = 'absolute';
     }
 
+    public resetPosition() {
+        this.imageContainer.style.position = '';
+        this.imageContainer.style.width = '';
+        this.imageContainer.style.height = '';
+        this.imageContainer.style.left = '';
+        this.imageContainer.style.top = '';
+    }
+
     public setImageContainerPosition(left: number, top: number) {
         this.imageContainer.style.left = `${left}px`;
         this.imageContainer.style.top = `${top}px`;

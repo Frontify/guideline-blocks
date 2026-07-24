@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { type UseImageStageProps } from '../types';
 
 import { useImageStage } from './useImageStage';
 
@@ -45,5 +47,35 @@ describe('useImageStage', () => {
         unmount();
 
         expect(mockDisconnect).toHaveBeenCalledOnce();
+    });
+
+    it('keeps the stage height in sync with the fixed-height toggle and the selected custom height', () => {
+        const div = document.createElement('div');
+
+        const { result, rerender } = renderHook(
+            (props: UseImageStageProps) => {
+                const hookResult = useImageStage(props);
+
+                if (!hookResult.stageRef.current) {
+                    (hookResult.stageRef as React.MutableRefObject<HTMLDivElement>).current = div;
+                }
+
+                return hookResult;
+            },
+            { initialProps: { height: '400px', hasLimitedOptions: true, isMobile: false } }
+        );
+
+        act(() => {
+            result.current.setIsImageLoaded(true);
+        });
+
+        rerender({ height: '400px', hasLimitedOptions: false, isMobile: false });
+        expect(div.style.height).toBe('400px');
+
+        rerender({ height: '800px', hasLimitedOptions: false, isMobile: false });
+        expect(div.style.height).toBe('800px');
+
+        rerender({ height: '800px', hasLimitedOptions: true, isMobile: false });
+        expect(div.style.height).toBe('auto');
     });
 });
