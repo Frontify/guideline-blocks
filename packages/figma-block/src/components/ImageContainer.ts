@@ -16,11 +16,13 @@ export class ImageContainer {
     }
 
     public resetPosition() {
-        this.imageContainer.style.position = '';
-        this.imageContainer.style.width = '';
-        this.imageContainer.style.height = '';
-        this.imageContainer.style.left = '';
-        this.imageContainer.style.top = '';
+        Object.assign(this.imageContainer.style, {
+            position: '',
+            width: '',
+            height: '',
+            left: '',
+            top: '',
+        });
     }
 
     public setImageContainerPosition(left: number, top: number) {
