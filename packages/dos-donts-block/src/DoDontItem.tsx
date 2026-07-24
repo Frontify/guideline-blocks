@@ -1,24 +1,22 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue/rte';
 import {
-    AssetChooserObjectType,
-    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import autosize from 'autosize';
+import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
+import { DosDontsAssets, type DosDontsAssetsRef } from './DosDontsAssets';
 import { DoDontItemWrapper } from './components/DoDontItemWrapper';
 import DoDontTitle from './components/DoDontTitle';
 import IconComponent from './components/IconComponent';
-import ImageComponent from './components/ImageComponent';
-import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
+import { type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -63,20 +61,13 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
+
+    const titleRef = useRef<HTMLTextAreaElement>(null);
+    const assetsRef = useRef<DosDontsAssetsRef>(null);
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({
-        multiple: false,
-        accept: 'image/*',
-    });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
-    });
 
     const onBodyTextChange = useCallback(
         (value: string) => value !== body && onChangeItem(id, { body: value }),
@@ -90,64 +81,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    const onOpenAssetChooser = () => {
-        openAssetChooser(
-            // oxlint-disable-next-line typescript/no-misused-promises
-            async (result: Asset[]) => {
-                setIsUploadLoading(true);
-                const asset = result[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                    setIsUploadLoading(false);
-                }
-
-                closeAssetChooser();
-            },
-            {
-                multiSelection: false,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
-            }
-        );
-    };
-
-    const onUploadClick = () => {
-        openFileDialog();
-    };
-
-    useEffect(() => {
-        if (selectedFiles) {
-            setIsUploadLoading(true);
-            uploadFile(selectedFiles);
+    useLayoutEffect(() => {
+        if (titleRef.current) {
+            autosize(titleRef.current);
+            autosize.update(titleRef.current);
         }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [selectedFiles]);
-
-    useEffect(() => {
-        if (doneAll) {
-            // oxlint-disable-next-line typescript/no-floating-promises
-            (async (uploadResults) => {
-                const asset = uploadResults?.[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    setIsUploadLoading(false);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                }
-            })(uploadResults);
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [doneAll, uploadResults]);
+    });
 
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
@@ -188,34 +127,39 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 setLocalAltText={setLocalAltText}
                 onChangeItem={onChangeItem}
                 onRemoveSelf={onRemoveSelf}
-                onUploadClick={onUploadClick}
-                onOpenAssetChooser={onOpenAssetChooser}
+                onUploadClick={() => assetsRef.current?.openUpload()}
+                onOpenAssetChooser={() => assetsRef.current?.openAssetChooser()}
             >
-                {mode === BlockMode.TEXT_AND_IMAGE && (
-                    <ImageComponent
-                        isEditing={editing}
-                        id={id}
-                        alt={alt}
-                        image={linkedImage}
-                        onAssetChooseClick={onOpenAssetChooser}
-                        onUploadClick={onUploadClick}
-                        isUploadLoading={isUploadLoading}
-                        isCustomImageHeight={isCustomImageHeight}
-                        customImageHeightValue={customImageHeightValue}
-                        imageDisplay={imageDisplay}
-                        draggableProps={draggableProps}
-                        imageHeightChoice={imageHeightChoice}
-                        isDragging={isDragging}
-                        hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
-                        backgroundColor={backgroundColor}
-                        hasBackground={hasBackground}
-                        hasRadius={hasRadius}
-                        radiusChoice={radiusChoice}
-                        border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
-                        radiusValue={radiusValue}
-                        dontColor={dontColor}
-                    />
-                )}
+                <DosDontsAssets
+                    ref={assetsRef}
+                    id={id}
+                    appBridge={appBridge}
+                    mode={mode}
+                    editing={editing}
+                    linkedImage={linkedImage}
+                    alt={alt}
+                    onChangeItem={onChangeItem}
+                    updateAssetIdsFromKey={updateAssetIdsFromKey}
+                    isCustomImageHeight={isCustomImageHeight}
+                    customImageHeightValue={customImageHeightValue}
+                    imageDisplay={imageDisplay}
+                    draggableProps={draggableProps}
+                    imageHeightChoice={imageHeightChoice}
+                    isDragging={isDragging}
+                    type={type}
+                    hasStrikethrough={hasStrikethrough}
+                    backgroundColor={backgroundColor}
+                    hasBackground={hasBackground}
+                    hasRadius={hasRadius}
+                    radiusChoice={radiusChoice}
+                    borderColor={borderColor}
+                    borderStyle={borderStyle}
+                    borderWidth={borderWidth}
+                    hasBorder={hasBorder}
+                    radiusValue={radiusValue}
+                    dontColor={dontColor}
+                />
+
                 <div
                     data-test-id="dos-donts-heading"
                     className="tw-flex tw-items-start tw-font-semibold"
