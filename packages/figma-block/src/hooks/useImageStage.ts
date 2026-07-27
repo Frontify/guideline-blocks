@@ -47,11 +47,20 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
     }, [height, isImageLoaded, isMobile, hasLimitedOptions, isFullScreen]);
 
     useEffect(() => {
-        if (imageStageRef.current) {
-            imageStageRef.current.alterHeight(isFullScreen ? '100vh' : 'auto');
-            containerOperatorRef.current?.centerTheImageContainerWithinTheImageStage();
+        if (!imageStageRef.current) {
+            return;
         }
-    }, [isFullScreen, hasLimitedOptions, isMobile]);
+
+        if (isFullScreen) {
+            imageStageRef.current.alterHeight('100vh');
+        } else if (hasLimitedOptions) {
+            imageStageRef.current.alterHeight('auto');
+        } else {
+            imageStageRef.current.alterHeight(getHeightOfBlock(height, isMobile));
+        }
+
+        containerOperatorRef.current?.centerTheImageContainerWithinTheImageStage();
+    }, [isFullScreen, hasLimitedOptions, isMobile, height]);
 
     useEffect(() => {
         if (!stageRef.current) {

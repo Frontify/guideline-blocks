@@ -2,8 +2,10 @@
 
 import { type Color, toHex8String } from '@frontify/guideline-blocks-settings';
 
+const DEFAULT_BORDER_COLOR: Color = { red: 0, green: 0, blue: 0 };
+
 export const getBorderOfBlock = (hasBorder: boolean, borderStyle: string, borderWidth: string, borderColor: Color) => {
-    return hasBorder ? `${borderWidth} ${borderStyle} ${toHex8String(borderColor)}` : '';
+    return hasBorder ? `${borderWidth} ${borderStyle} ${toHex8String(borderColor || DEFAULT_BORDER_COLOR)}` : '';
 };
 
 export const getHeightOfBlock = (heightInSettings: string, isMobile: boolean) => {

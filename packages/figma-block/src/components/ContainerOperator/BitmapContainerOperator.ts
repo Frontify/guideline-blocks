@@ -14,6 +14,8 @@ export class BitmapContainerOperator extends ContainerOperator {
         protected imageElement: ImageElement
     ) {
         super(imageContainer, imageStage, imageElement);
+
+        this.imageContainer.resetPosition();
     }
 
     public resize() {
