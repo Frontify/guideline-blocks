@@ -21,6 +21,12 @@ const uploadState = vi.hoisted(() => ({
 }));
 
 vi.mock('@frontify/app-bridge', () => ({
+    AssetChooserObjectType: {
+        ImageVideo: 'IMAGE_VIDEO',
+    },
+    FileExtensionSets: {
+        Images: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'],
+    },
     useAssetChooser: () => ({
         openAssetChooser: mocks.openAssetChooser,
         closeAssetChooser: mocks.closeAssetChooser,
@@ -44,16 +50,6 @@ vi.mock('@frontify/app-bridge', () => ({
             },
         ];
     },
-}));
-
-vi.mock('@frontify/guideline-blocks-settings', () => ({
-    AssetChooserObjectType: {
-        ImageVideo: 'IMAGE_VIDEO',
-    },
-    FileExtensionSets: {
-        Images: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'],
-    },
-    toRgbaString: vi.fn(() => 'rgba(255, 0, 0, 1)'),
 }));
 
 vi.mock('@frontify/guideline-blocks-shared', () => ({
