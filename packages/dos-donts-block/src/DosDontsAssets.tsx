@@ -1,12 +1,29 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
-import { AssetChooserObjectType, FileExtensionSets, toRgbaString } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import {
+    type Asset,
+    AssetChooserObjectType,
+    FileExtensionSets,
+    useAssetChooser,
+    useAssetUpload,
+    useFileInput,
+} from "@frontify/app-bridge";
+import { EditAltTextFlyout } from "@frontify/guideline-blocks-shared";
+import {
+    forwardRef,
+    useCallback,
+    useEffect,
+    useImperativeHandle,
+    useState,
+} from "react";
 
-import ImageComponent from './components/ImageComponent';
-import { BlockMode, DoDontType, type DoDontItemProps } from './types';
+import ImageComponent from "./components/ImageComponent";
+import {
+    BlockMode,
+    DoDontType,
+    type DoDontItemProps,
+    type ImageComponentProps,
+} from "./types";
 
 export type DosDontsAssetsRef = {
     openUpload: () => void;
@@ -16,39 +33,72 @@ export type DosDontsAssetsRef = {
 
 type DosDontsAssetsProps = Pick<
     DoDontItemProps,
-    | 'id'
-    | 'appBridge'
-    | 'mode'
-    | 'editing'
-    | 'linkedImage'
-    | 'alt'
-    | 'onChangeItem'
-    | 'updateAssetIdsFromKey'
-    | 'isCustomImageHeight'
-    | 'customImageHeightValue'
-    | 'imageDisplay'
-    | 'draggableProps'
-    | 'imageHeightChoice'
-    | 'isDragging'
-    | 'type'
-    | 'hasStrikethrough'
-    | 'backgroundColor'
-    | 'hasBackground'
-    | 'hasRadius'
-    | 'radiusChoice'
-    | 'borderColor'
-    | 'borderStyle'
-    | 'borderWidth'
-    | 'hasBorder'
-    | 'radiusValue'
-    | 'dontColor'
+    | "id"
+    | "appBridge"
+    | "mode"
+    | "editing"
+    | "linkedImage"
+    | "alt"
+    | "onChangeItem"
+    | "updateAssetIdsFromKey"
+    | "isCustomImageHeight"
+    | "customImageHeightValue"
+    | "imageDisplay"
+    | "draggableProps"
+    | "imageHeightChoice"
+    | "isDragging"
+    | "type"
+    | "hasStrikethrough"
+    | "backgroundColor"
+    | "hasBackground"
+    | "hasRadius"
+    | "radiusChoice"
+    | "borderColor"
+    | "borderStyle"
+    | "borderWidth"
+    | "hasBorder"
+    | "radiusValue"
+    | "dontColor"
 >;
 
 const getImageAltText = (alt: string | undefined, asset: Asset): string => {
-    return alt ?? (typeof asset.alternativeText === 'string' ? asset.alternativeText : '');
+    return (
+        alt ??
+        (typeof asset.alternativeText === "string" ? asset.alternativeText : "")
+    );
 };
 
-export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>((props, ref) => {
+const toRgbaString = (
+    color:
+        | string
+        | {
+              red?: number;
+              green?: number;
+              blue?: number;
+              alpha?: number;
+          }
+        | undefined,
+): string => {
+    if (!color) {
+        return "transparent";
+    }
+
+    if (typeof color === "string") {
+        return color;
+    }
+
+    const red = color.red ?? 0;
+    const green = color.green ?? 0;
+    const blue = color.blue ?? 0;
+    const alpha = color.alpha ?? 1;
+
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+};
+
+export const DosDontsAssets = forwardRef<
+    DosDontsAssetsRef,
+    DosDontsAssetsProps
+>((props, ref) => {
     const {
         id,
         appBridge,
@@ -65,6 +115,17 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
         borderStyle,
         borderWidth,
         hasBorder,
+        isCustomImageHeight,
+        customImageHeightValue,
+        imageDisplay,
+        imageHeightChoice,
+        draggableProps,
+        hasRadius,
+        radiusChoice,
+        radiusValue,
+        hasBackground,
+        backgroundColor,
+        dontColor,
     } = props;
 
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
@@ -75,7 +136,7 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
 
     const [openFileDialog, { selectedFiles }] = useFileInput({
         multiple: false,
-        accept: 'image/*',
+        accept: "image/*",
     });
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -97,7 +158,7 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
                 setIsUploadLoading(false);
             }
         },
-        [alt, id, onChangeItem, updateAssetIdsFromKey]
+        [alt, id, onChangeItem, updateAssetIdsFromKey],
     );
 
     const onOpenAssetChooser = useCallback(() => {
@@ -122,7 +183,7 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
                 multiSelection: false,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     }, [closeAssetChooser, openAssetChooser, saveAsset]);
 
@@ -137,7 +198,7 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
             openAssetChooser: onOpenAssetChooser,
             openAltTextMenu: () => setShowAltTextMenu(true),
         }),
-        [onOpenAssetChooser, onUploadClick]
+        [onOpenAssetChooser, onUploadClick],
     );
 
     useEffect(() => {
@@ -160,6 +221,32 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
         // eslint-disable-next-line @eslint-react/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    const imageProps: ImageComponentProps = {
+        isEditing: editing,
+        id,
+        alt,
+        image: linkedImage,
+        onAssetChooseClick: onOpenAssetChooser,
+        onUploadClick,
+        isUploadLoading,
+        isDragging: Boolean(isDragging),
+        hasStrikethrough: type === DoDontType.Dont && hasStrikethrough,
+        border: hasBorder
+            ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
+            : "",
+        isCustomImageHeight,
+        customImageHeightValue,
+        imageDisplay,
+        imageHeightChoice,
+        draggableProps,
+        hasRadius,
+        radiusChoice,
+        radiusValue,
+        hasBackground,
+        backgroundColor,
+        dontColor,
+    };
+
     return (
         <>
             <EditAltTextFlyout
@@ -172,22 +259,10 @@ export const DosDontsAssets = forwardRef<DosDontsAssetsRef, DosDontsAssetsProps>
             />
 
             {mode === BlockMode.TEXT_AND_IMAGE && (
-                <ImageComponent
-                    {...props}
-                    isEditing={editing}
-                    id={id}
-                    alt={alt}
-                    image={linkedImage}
-                    onAssetChooseClick={onOpenAssetChooser}
-                    onUploadClick={onUploadClick}
-                    isUploadLoading={isUploadLoading}
-                    isDragging={Boolean(isDragging)}
-                    hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
-                    border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
-                />
+                <ImageComponent {...imageProps} />
             )}
         </>
     );
 });
 
-DosDontsAssets.displayName = 'DosDontsAssets';
+DosDontsAssets.displayName = "DosDontsAssets";

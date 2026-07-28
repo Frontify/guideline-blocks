@@ -1,22 +1,34 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useSortable } from '@dnd-kit/sortable';
-import { merge } from '@frontify/fondue/rte';
+import { useSortable } from "@dnd-kit/sortable";
+import { merge } from "@frontify/fondue/rte";
 import {
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     joinClassNames,
     toRgbaString,
-} from '@frontify/guideline-blocks-settings';
-import autosize from 'autosize';
-import { type CSSProperties, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+} from "@frontify/guideline-blocks-settings";
+import {
+    type CSSProperties,
+    memo,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 
-import { DosDontsAssets, type DosDontsAssetsRef } from './DosDontsAssets';
-import { DoDontItemWrapper } from './components/DoDontItemWrapper';
-import DoDontTitle from './components/DoDontTitle';
-import IconComponent from './components/IconComponent';
-import { type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
+import { DosDontsAssets, type DosDontsAssetsRef } from "./DosDontsAssets";
+import { DoDontItemWrapper } from "./components/DoDontItemWrapper";
+import DoDontTitle from "./components/DoDontTitle";
+import IconComponent from "./components/IconComponent";
+import {
+    type DoDontItemProps,
+    DoDontStyle,
+    DoDontType,
+    type SortableDoDontItemProps,
+} from "./types";
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -27,8 +39,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         dontColor,
         onChangeItem,
         onChangeLocalItem,
-        title = '',
-        body = '',
+        title = "",
+        body = "",
         editing = false,
         onRemoveSelf,
         hasCustomDoIcon,
@@ -62,7 +74,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         alt,
     } = props;
 
-    const titleRef = useRef<HTMLTextAreaElement>(null);
     const assetsRef = useRef<DosDontsAssetsRef>(null);
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
 
@@ -71,35 +82,29 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onBodyTextChange = useCallback(
         (value: string) => value !== body && onChangeItem(id, { body: value }),
-        [onChangeItem, body, id]
+        [onChangeItem, body, id],
     );
 
-    const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
+    const headingColor =
+        type === DoDontType.Do ? doColorString : dontColorString;
 
     const dividerStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { backgroundColor: doColorString },
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    useLayoutEffect(() => {
-        if (titleRef.current) {
-            autosize(titleRef.current);
-            autosize.update(titleRef.current);
-        }
-    });
-
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        []
+        [],
     );
 
     const memoizedRichTextEditor = useMemo(
         () => (
             <RichTextEditor
-                id={`${appBridge.context('blockId').get()}-${id}-editor`}
+                id={`${appBridge.context("blockId").get()}-${id}-editor`}
                 isEditing={editing}
                 value={body}
                 onTextChange={onBodyTextChange}
@@ -108,11 +113,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             />
         ),
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        [body, shouldRerenderDependency, editing, appBridge, id]
+        [body, shouldRerenderDependency, editing, appBridge, id],
     );
 
     return (
-        <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
+        <div className={merge(["tw-relative", isDragging && "tw-bg-surface"])}>
             <DoDontItemWrapper
                 id={id}
                 type={type}
@@ -165,34 +170,39 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     className="tw-flex tw-items-start tw-font-semibold"
                     style={{ color: headingColor }}
                 >
-                    {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
-                        <div
-                            data-test-id="dos-donts-icon"
-                            style={{
-                                lineHeight: 'var(--f-theme-settings-heading3-line-height)',
-                                fontSize: 'var(--f-theme-settings-heading3-font-size)',
-                            }}
-                            className={joinClassNames([
-                                'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0',
-                                !title ? 'tw-opacity-70' : '',
-                            ])}
-                        >
-                            <IconComponent
-                                type={type}
-                                hasCustomDoIcon={hasCustomDoIcon}
-                                doIconChoice={doIconChoice}
-                                doIconAsset={doIconAsset}
-                                hasCustomDontIcon={hasCustomDontIcon}
-                                dontIconChoice={dontIconChoice}
-                                dontIconAsset={dontIconAsset}
-                            />
-                        </div>
-                    )}
+                    {style === DoDontStyle.Icons &&
+                        (title || hasRichTextValue(body) || editing) && (
+                            <div
+                                data-test-id="dos-donts-icon"
+                                style={{
+                                    lineHeight:
+                                        "var(--f-theme-settings-heading3-line-height)",
+                                    fontSize:
+                                        "var(--f-theme-settings-heading3-font-size)",
+                                }}
+                                className={joinClassNames([
+                                    "tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0",
+                                    !title ? "tw-opacity-70" : "",
+                                ])}
+                            >
+                                <IconComponent
+                                    type={type}
+                                    hasCustomDoIcon={hasCustomDoIcon}
+                                    doIconChoice={doIconChoice}
+                                    doIconAsset={doIconAsset}
+                                    hasCustomDontIcon={hasCustomDontIcon}
+                                    dontIconChoice={dontIconChoice}
+                                    dontIconAsset={dontIconAsset}
+                                />
+                            </div>
+                        )}
 
                     <span
                         style={{
-                            lineHeight: 'var(--f-theme-settings-heading3-line-height)',
-                            fontSize: 'var(--f-theme-settings-heading3-font-size)',
+                            lineHeight:
+                                "var(--f-theme-settings-heading3-line-height)",
+                            fontSize:
+                                "var(--f-theme-settings-heading3-font-size)",
                         }}
                     >
                         <DoDontTitle
@@ -211,32 +221,47 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium tw-bg-black-40"
                     />
                 )}
-                <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
+                <div
+                    data-test-id="dos-donts-content"
+                    className={
+                        style === DoDontStyle.Icons ? "tw-mt-3" : "tw-mt-2"
+                    }
+                >
                     {memoizedRichTextEditor}
                 </div>
             </DoDontItemWrapper>
             <div
                 className={joinClassNames([
-                    !replaceWithPlaceholder && 'tw-hidden',
-                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-sm tw-bg-container-highlight-hover',
+                    !replaceWithPlaceholder && "tw-hidden",
+                    "tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-sm tw-bg-container-highlight-hover",
                 ])}
             />
         </div>
     );
 });
 
-DoDontItem.displayName = 'DoDontItem';
+DoDontItem.displayName = "DoDontItem";
 
 export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     const { id, editing } = props;
-    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        setActivatorNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({
         id,
     });
-    const [draggableProps, setDraggableProps] = useState<Record<string, unknown>>(
-        editing ? { ...attributes, ...listeners } : {}
-    );
+    const [draggableProps, setDraggableProps] = useState<
+        Record<string, unknown>
+    >(editing ? { ...attributes, ...listeners } : {});
     const transformStyle = {
-        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
+        transform: transform
+            ? `translate(${transform.x}px, ${transform.y}px)`
+            : "",
         transition,
         zIndex: isDragging ? 2 : 1,
     };
@@ -262,4 +287,4 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     );
 });
 
-SortableDoDontItem.displayName = 'SortableDoDontItem';
+SortableDoDontItem.displayName = "SortableDoDontItem";
