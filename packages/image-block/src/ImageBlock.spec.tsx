@@ -21,7 +21,6 @@ const PLACEHOLDER_TEST_ID = 'block-inject-button';
 const DOWNLOAD_BUTTON_TEST_ID = 'download-button';
 const ATTACHMENTS_FLYOUT_BUTTON_TEST_ID = 'attachments-flyout-button';
 const BUTTONS_WRAPPER_TEST_ID = 'buttons-wrapper';
-const TOOLBAR_BUTTON_TEST_ID = 'block-item-wrapper-toolbar-btn';
 const TOOLBAR_FLYOUT_TEST_ID = 'block-item-wrapper-toolbar-flyout';
 const ALT_TEXT_INPUT_TEST_ID = 'alt-text-input';
 
@@ -415,13 +414,14 @@ describe('Image Block', () => {
         expect(await screen.findByTestId(ALT_TEXT_INPUT_TEST_ID)).toBeInTheDocument();
     });
 
-    it('should render the delete button in the block toolbar', async () => {
+    it('should delete the image from the block toolbar menu', async () => {
         const { appBridge } = renderImageBlock({
             blockAssets: { [IMAGE_ID]: [AssetDummy.with(1)] },
             editorState: true,
         });
-        const deleteButton = screen.getByTestId(TOOLBAR_BUTTON_TEST_ID);
-        await userEvent.click(deleteButton);
+        const menuButton = screen.getAllByTestId(TOOLBAR_FLYOUT_TEST_ID)[1];
+        await userEvent.click(menuButton);
+        await userEvent.click(await screen.findByText('Delete'));
         await waitFor(() => {
             expect(appBridge.deleteAssetIdsFromBlockAssetKey.called).toBe(true);
         });
