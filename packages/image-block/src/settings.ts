@@ -68,6 +68,7 @@ export const settings = defineSettings({
             size: 'small',
             extensions: ALLOWED_EXTENSIONS,
             showForTranslations: true,
+            allowDelete: true,
         },
         {
             id: 'hasLink',

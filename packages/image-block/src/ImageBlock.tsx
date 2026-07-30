@@ -203,12 +203,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                                   })
                                                 : undefined,
                                             {
-                                                type: 'button',
-                                                icon: <IconTrashBin size={16} />,
-                                                onClick: onRemoveAsset,
-                                                tooltip: 'Delete',
-                                            },
-                                            {
                                                 type: 'menu',
                                                 items: [
                                                     [
