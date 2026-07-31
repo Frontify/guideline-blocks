@@ -1,11 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue/rte';
 import {
-    AssetChooserObjectType,
-    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
@@ -18,6 +15,7 @@ import { DoDontItemWrapper } from './components/DoDontItemWrapper';
 import DoDontTitle from './components/DoDontTitle';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
+import { useDosDontsAssets } from './hooks/useDosDontsAssets';
 import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
@@ -63,19 +61,15 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
     } = props;
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
-
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
 
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({
-        multiple: false,
-        accept: 'image/*',
-    });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
+    const { onOpenAssetChooser, onUploadClick, isUploadLoading, localAltText, setLocalAltText } = useDosDontsAssets({
+        id,
+        appBridge,
+        alt,
+        onChangeItem,
+        updateAssetIdsFromKey,
     });
 
     const onBodyTextChange = useCallback(
@@ -89,65 +83,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [DoDontType.Do]: { backgroundColor: doColorString },
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
-
-    const onOpenAssetChooser = () => {
-        openAssetChooser(
-            // oxlint-disable-next-line typescript/no-misused-promises
-            async (result: Asset[]) => {
-                setIsUploadLoading(true);
-                const asset = result[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                    setIsUploadLoading(false);
-                }
-
-                closeAssetChooser();
-            },
-            {
-                multiSelection: false,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
-            }
-        );
-    };
-
-    const onUploadClick = () => {
-        openFileDialog();
-    };
-
-    useEffect(() => {
-        if (selectedFiles) {
-            setIsUploadLoading(true);
-            uploadFile(selectedFiles);
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [selectedFiles]);
-
-    useEffect(() => {
-        if (doneAll) {
-            // oxlint-disable-next-line typescript/no-floating-promises
-            (async (uploadResults) => {
-                const asset = uploadResults?.[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    setIsUploadLoading(false);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                }
-            })(uploadResults);
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [doneAll, uploadResults]);
 
     const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
