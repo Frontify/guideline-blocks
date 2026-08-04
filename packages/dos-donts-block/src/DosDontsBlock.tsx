@@ -372,8 +372,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <div ref={containerRef} className="dos-donts-block tw-@container">
-            <StyleProvider>
+        <StyleProvider className="dos-donts-block">
+            <div ref={containerRef} className="tw-@container">
                 <DndContext
                     sensors={sensors}
                     collisionDetection={closestCenter}
@@ -477,7 +477,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                         </Dialog.Footer>
                     </Dialog.Content>
                 </Dialog.Root>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

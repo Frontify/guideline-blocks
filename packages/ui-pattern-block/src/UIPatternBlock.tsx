@@ -185,8 +185,8 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
     const borderRadius = hasBorder ? getRadiusValue(hasRadius, radiusValue, radiusChoice) : 0;
 
     return (
-        <div key={sandpackTemplate} data-test-id="ui-pattern-block" className="ui-pattern-block">
-            <StyleProvider>
+        <StyleProvider className="ui-pattern-block">
+            <div key={sandpackTemplate} data-test-id="ui-pattern-block">
                 <div
                     className={joinClassNames([
                         'tw-flex tw-gap-3',
@@ -297,7 +297,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                         )}
                     </div>
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 }, ATTACHMENTS_ASSET_ID);

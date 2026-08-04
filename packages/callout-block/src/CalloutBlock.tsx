@@ -157,8 +157,8 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
 
     return (
-        <div ref={hostElement} className="callout-block">
-            <StyleProvider>
+        <StyleProvider className="callout-block">
+            <div ref={hostElement}>
                 <div
                     data-test-id="callout-block"
                     style={{
@@ -189,7 +189,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                         />
                     </div>
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

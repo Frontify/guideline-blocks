@@ -98,8 +98,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     return (
-        <div ref={ref} data-test-id="figma-block" className="figma-block">
-            <StyleProvider>
+        <StyleProvider className="figma-block">
+            <div ref={ref} data-test-id="figma-block">
                 {referenceUrl ? (
                     <ReferenceErrorMessage originalUrl={referenceUrl} />
                 ) : (
@@ -154,7 +154,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         )}
                     </>
                 )}
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

@@ -116,79 +116,75 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <div className="quote-block">
-            <StyleProvider>
-                <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-primary'}>
-                    <div className={getWrapperClasses()}>
-                        {isQuotationMarkType && (
-                            <QuoteBlockIcon
-                                color={iconColor}
-                                isCustomSize={blockSettings.isCustomSize}
-                                sizeValue={sizeValue}
-                                sizeChoice={blockSettings.sizeChoice}
-                                customIcon={customLeftIcon}
-                                quoteStyle={
-                                    blockSettings.isCustomQuoteStyleLeft
-                                        ? QuoteStyle.Custom
-                                        : (blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp)
-                                }
-                            />
-                        )}
-
-                        <figure
-                            data-test-id="quote-block-author"
-                            className={
-                                isFullWidth && isQuotationMarkType
-                                    ? 'tw-flex-1 tw-w-full tw-overflow-hidden'
-                                    : 'tw-min-w-4'
+        <StyleProvider className="quote-block">
+            <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-primary'}>
+                <div className={getWrapperClasses()}>
+                    {isQuotationMarkType && (
+                        <QuoteBlockIcon
+                            color={iconColor}
+                            isCustomSize={blockSettings.isCustomSize}
+                            sizeValue={sizeValue}
+                            sizeChoice={blockSettings.sizeChoice}
+                            customIcon={customLeftIcon}
+                            quoteStyle={
+                                blockSettings.isCustomQuoteStyleLeft
+                                    ? QuoteStyle.Custom
+                                    : (blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp)
                             }
+                        />
+                    )}
+
+                    <figure
+                        data-test-id="quote-block-author"
+                        className={
+                            isFullWidth && isQuotationMarkType ? 'tw-flex-1 tw-w-full tw-overflow-hidden' : 'tw-min-w-4'
+                        }
+                    >
+                        <blockquote
+                            style={isQuotationMarkType ? {} : borderStyles}
+                            className={merge([
+                                isQuotationMarkType ? '' : accentLineClassName,
+                                textAlignmentClassNames[textAlignment],
+                                '[&>div]:!tw-@container-normal',
+                            ])}
                         >
-                            <blockquote
-                                style={isQuotationMarkType ? {} : borderStyles}
-                                className={merge([
-                                    isQuotationMarkType ? '' : accentLineClassName,
-                                    textAlignmentClassNames[textAlignment],
-                                    '[&>div]:!tw-@container-normal',
-                                ])}
-                            >
-                                <RichTextEditor
-                                    id={String(appBridge.context('blockId').get())}
-                                    placeholder={isEditing ? 'Add your quote text here' : undefined}
-                                    value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
-                                    onTextChange={onChangeContent}
-                                    plugins={customPlugins}
-                                    isEditing={isEditing}
-                                />
-                            </blockquote>
-                            {showAuthor && (
-                                <figcaption
-                                    className="tw-text-right tw-break-all"
-                                    style={{
-                                        color: BlockStyles[TextStyles.p].color,
-                                    }}
-                                >
-                                    {`- ${blockSettings.authorName}`}
-                                </figcaption>
-                            )}
-                        </figure>
-                        {isQuotationMarkType && (
-                            <QuoteBlockIcon
-                                color={iconColor}
-                                isCustomSize={blockSettings.isCustomSize}
-                                sizeValue={sizeValue}
-                                sizeChoice={blockSettings.sizeChoice}
-                                customIcon={customRightIcon}
-                                quoteStyle={
-                                    blockSettings.isCustomQuoteStyleRight
-                                        ? QuoteStyle.Custom
-                                        : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
-                                }
-                                position="bottom"
+                            <RichTextEditor
+                                id={String(appBridge.context('blockId').get())}
+                                placeholder={isEditing ? 'Add your quote text here' : undefined}
+                                value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
+                                onTextChange={onChangeContent}
+                                plugins={customPlugins}
+                                isEditing={isEditing}
                             />
+                        </blockquote>
+                        {showAuthor && (
+                            <figcaption
+                                className="tw-text-right tw-break-all"
+                                style={{
+                                    color: BlockStyles[TextStyles.p].color,
+                                }}
+                            >
+                                {`- ${blockSettings.authorName}`}
+                            </figcaption>
                         )}
-                    </div>
+                    </figure>
+                    {isQuotationMarkType && (
+                        <QuoteBlockIcon
+                            color={iconColor}
+                            isCustomSize={blockSettings.isCustomSize}
+                            sizeValue={sizeValue}
+                            sizeChoice={blockSettings.sizeChoice}
+                            customIcon={customRightIcon}
+                            quoteStyle={
+                                blockSettings.isCustomQuoteStyleRight
+                                    ? QuoteStyle.Custom
+                                    : (blockSettings.quoteStyleRight ?? QuoteStyle.None)
+                            }
+                            position="bottom"
+                        />
+                    )}
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

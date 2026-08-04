@@ -69,8 +69,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     }
 
     return (
-        <div data-test-id="container" className="template-block tw-@container">
-            <StyleProvider>
+        <StyleProvider className="template-block">
+            <div data-test-id="container" className="tw-@container">
                 <div data-test-id="card" style={cardStyles}>
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
@@ -140,7 +140,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     )}
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

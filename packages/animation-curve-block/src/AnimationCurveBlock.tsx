@@ -56,8 +56,8 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div className="animation-curve-block tw-@container">
-            <StyleProvider>
+        <StyleProvider className="animation-curve-block">
+            <div className="tw-@container">
                 <DndContext
                     sensors={sensors}
                     collisionDetection={closestCenter}
@@ -114,7 +114,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                         )}
                     </div>
                 </DndContext>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

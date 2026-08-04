@@ -79,8 +79,8 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);
 
     return (
-        <div data-test-id="gradient-block" className="gradient-block" ref={gradientBlockRef}>
-            <StyleProvider>
+        <StyleProvider className="gradient-block">
+            <div data-test-id="gradient-block" ref={gradientBlockRef}>
                 <div className="tw-border tw-border-line-strong tw-rounded-medium tw-p-0.5">
                     <div
                         data-test-id="gradient-block-display"
@@ -145,7 +145,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                     )
                 )}
                 {displayCss && <CssValueDisplay cssValue={cssValue} placeholder="<add colors to generate CSS code>" />}
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

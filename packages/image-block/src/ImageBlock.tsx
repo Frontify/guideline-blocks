@@ -165,118 +165,116 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             assetId={ATTACHMENTS_ASSET_ID}
             appBridge={appBridge}
         >
-            <div className="image-block">
-                <StyleProvider>
-                    <div className="tw-@container">
+            <StyleProvider className="image-block">
+                <div className="tw-@container">
+                    <div
+                        data-test-id="image-block"
+                        className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}
+                    >
                         <div
-                            data-test-id="image-block"
-                            className={`tw-flex tw-h-auto ${mapCaptionPositionClasses[positioning]}`}
+                            className={merge([
+                                'tw-relative',
+                                attachmentCount > 0 && 'tw-min-h-11',
+                                [CaptionPosition.Above, CaptionPosition.Below].includes(positioning)
+                                    ? 'tw-w-full'
+                                    : imageRatioValues[ratio],
+                            ])}
                         >
-                            <div
-                                className={merge([
-                                    'tw-relative',
-                                    attachmentCount > 0 && 'tw-min-h-11',
-                                    [CaptionPosition.Above, CaptionPosition.Below].includes(positioning)
-                                        ? 'tw-w-full'
-                                        : imageRatioValues[ratio],
-                                ])}
-                            >
-                                <DownloadAndAttachments
-                                    appBridge={appBridge}
-                                    blockSettings={blockSettings}
-                                    image={image}
-                                    ariaLabel={ariaLabel}
-                                    isAssetDownloadable={isAssetDownloadable}
-                                    isEditing={isEditing}
-                                />
-                                {image ? (
-                                    <BlockItemWrapper
-                                        shouldHideWrapper={!isEditing}
-                                        showAttachments
-                                        toolbarItems={[
-                                            image
-                                                ? getEditAltTextToolbarButton({
-                                                      localAltText,
-                                                      setLocalAltText,
-                                                      blockSettings,
-                                                      setBlockSettings,
-                                                  })
-                                                : undefined,
-                                            {
-                                                type: 'menu',
-                                                items: [
-                                                    [
-                                                        {
-                                                            title: 'Replace with upload',
-                                                            icon: <IconArrowCircleUp size={20} />,
-                                                            onClick: openFileDialog,
-                                                        },
-                                                        {
-                                                            title: 'Replace with asset',
-                                                            icon: <IconImageStack size={20} />,
-                                                            onClick: onOpenAssetChooser,
-                                                        },
-                                                    ],
-                                                    [
-                                                        {
-                                                            title: 'Delete',
-                                                            icon: <IconTrashBin size={20} />,
-                                                            style: 'danger',
-                                                            onClick: onRemoveAsset,
-                                                        },
-                                                    ],
-                                                ],
-                                            },
-                                        ]}
-                                    >
-                                        {isLoading ? (
-                                            <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
-                                                <LoadingCircle />
-                                            </div>
-                                        ) : (
-                                            <Image
-                                                appBridge={appBridge}
-                                                blockSettings={blockSettings}
-                                                isEditing={isEditing}
-                                                image={image}
-                                                isDownloadable={isAssetDownloadable}
-                                                isAssetViewerEnabled={isAssetViewerEnabled}
-                                            />
-                                        )}
-                                    </BlockItemWrapper>
-                                ) : (
-                                    isEditing && (
-                                        <BlockItemWrapper
-                                            shouldHideWrapper={attachmentCount === 0}
-                                            showAttachments
-                                            toolbarItems={[]}
-                                        >
-                                            <UploadPlaceholder
-                                                loading={isLoading}
-                                                onUploadClick={openFileDialog}
-                                                onFilesDrop={onFilesDrop}
-                                                onAssetChooseClick={onOpenAssetChooser}
-                                            />
-                                        </BlockItemWrapper>
-                                    )
-                                )}
-                            </div>
-
-                            <ImageCaption
-                                titleKey={titleKey}
-                                blockId={blockId}
-                                isEditing={isEditing}
-                                description={description}
-                                name={name}
-                                positioning={positioning}
+                            <DownloadAndAttachments
                                 appBridge={appBridge}
-                                ratio={ratio}
-                                setBlockSettings={setBlockSettings}
+                                blockSettings={blockSettings}
+                                image={image}
+                                ariaLabel={ariaLabel}
+                                isAssetDownloadable={isAssetDownloadable}
+                                isEditing={isEditing}
                             />
+                            {image ? (
+                                <BlockItemWrapper
+                                    shouldHideWrapper={!isEditing}
+                                    showAttachments
+                                    toolbarItems={[
+                                        image
+                                            ? getEditAltTextToolbarButton({
+                                                  localAltText,
+                                                  setLocalAltText,
+                                                  blockSettings,
+                                                  setBlockSettings,
+                                              })
+                                            : undefined,
+                                        {
+                                            type: 'menu',
+                                            items: [
+                                                [
+                                                    {
+                                                        title: 'Replace with upload',
+                                                        icon: <IconArrowCircleUp size={20} />,
+                                                        onClick: openFileDialog,
+                                                    },
+                                                    {
+                                                        title: 'Replace with asset',
+                                                        icon: <IconImageStack size={20} />,
+                                                        onClick: onOpenAssetChooser,
+                                                    },
+                                                ],
+                                                [
+                                                    {
+                                                        title: 'Delete',
+                                                        icon: <IconTrashBin size={20} />,
+                                                        style: 'danger',
+                                                        onClick: onRemoveAsset,
+                                                    },
+                                                ],
+                                            ],
+                                        },
+                                    ]}
+                                >
+                                    {isLoading ? (
+                                        <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
+                                            <LoadingCircle />
+                                        </div>
+                                    ) : (
+                                        <Image
+                                            appBridge={appBridge}
+                                            blockSettings={blockSettings}
+                                            isEditing={isEditing}
+                                            image={image}
+                                            isDownloadable={isAssetDownloadable}
+                                            isAssetViewerEnabled={isAssetViewerEnabled}
+                                        />
+                                    )}
+                                </BlockItemWrapper>
+                            ) : (
+                                isEditing && (
+                                    <BlockItemWrapper
+                                        shouldHideWrapper={attachmentCount === 0}
+                                        showAttachments
+                                        toolbarItems={[]}
+                                    >
+                                        <UploadPlaceholder
+                                            loading={isLoading}
+                                            onUploadClick={openFileDialog}
+                                            onFilesDrop={onFilesDrop}
+                                            onAssetChooseClick={onOpenAssetChooser}
+                                        />
+                                    </BlockItemWrapper>
+                                )
+                            )}
                         </div>
+
+                        <ImageCaption
+                            titleKey={titleKey}
+                            blockId={blockId}
+                            isEditing={isEditing}
+                            description={description}
+                            name={name}
+                            positioning={positioning}
+                            appBridge={appBridge}
+                            ratio={ratio}
+                            setBlockSettings={setBlockSettings}
+                        />
                     </div>
-                </StyleProvider>
-            </div>
+                </div>
+            </StyleProvider>
         </AttachmentOperationsProvider>
     );
 };

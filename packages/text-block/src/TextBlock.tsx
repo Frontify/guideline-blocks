@@ -21,8 +21,8 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <div data-test-id="text-block-wrapper" className={merge(['text-block', isEditing && 'tw-min-h-9'])}>
-            <StyleProvider>
+        <StyleProvider className="text-block">
+            <div data-test-id="text-block-wrapper" className={merge([isEditing && 'tw-min-h-9'])}>
                 <RichTextEditor
                     id={String(appBridge.context('blockId').get())}
                     isEditing={isEditing}
@@ -33,7 +33,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                     placeholder={PLACEHOLDER}
                     onTextChange={handleTextChange}
                 />
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };

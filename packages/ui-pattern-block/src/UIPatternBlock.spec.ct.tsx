@@ -10,7 +10,7 @@ import { Height, Padding, Preprocessor, SandpackTemplate, TextAlignment } from '
 import { UIPatternBlock } from './UIPatternBlock';
 
 const UiPatternBlockSelector = '[data-test-id="ui-pattern-block"]';
-const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div > div';
+const UiPatternBlockFlexboxSelector = '[data-test-id="ui-pattern-block"] > div';
 const UiPatternBlockWrapperSelector = '[data-test-id="ui-pattern-block-wrapper"]';
 const ToolbarTabButtonSelector = '[data-test-id="toolbar-tab-btn"]';
 const ToolbarSelector = '[data-test-id="ui-pattern-files-toolbar"]';
