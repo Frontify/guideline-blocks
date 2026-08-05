@@ -26,6 +26,8 @@ import {
 import { DownloadButton, generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
 import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { ATTACHMENTS_ASSET_ID, AUDIO_ID } from './settings';
@@ -123,7 +125,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             assetId={ATTACHMENTS_ASSET_ID}
             appBridge={appBridge}
         >
-            <StyleProvider className="audio-block">
+            <StyleProvider scope={blockScope.scope}>
                 <div
                     data-test-id="audio-block"
                     className={joinClassNames([

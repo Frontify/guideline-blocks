@@ -28,6 +28,8 @@ import {
 import { StyleProvider, generateRandomId, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { DownloadAndAttachments } from './components/DownloadAndAttachments';
 import { Image } from './components/Image';
 import { ImageCaption } from './components/ImageCaption';
@@ -165,7 +167,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             assetId={ATTACHMENTS_ASSET_ID}
             appBridge={appBridge}
         >
-            <StyleProvider className="image-block">
+            <StyleProvider scope={blockScope.scope}>
                 <div className="tw-@container">
                     <div
                         data-test-id="image-block"

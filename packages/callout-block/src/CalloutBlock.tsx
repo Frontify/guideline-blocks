@@ -13,6 +13,8 @@ import {
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { isThemeEnabled } from './helpers/theme';
@@ -157,7 +159,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
 
     return (
-        <StyleProvider className="callout-block">
+        <StyleProvider scope={blockScope.scope}>
             <div ref={hostElement}>
                 <div
                     data-test-id="callout-block"

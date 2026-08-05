@@ -8,6 +8,8 @@ import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideli
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type FC, useEffect, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import { type Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';
@@ -146,7 +148,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [blockSettings]);
 
     return (
-        <StyleProvider className="sketchfab-block">
+        <StyleProvider scope={blockScope.scope}>
             <div data-test-id="sketchfab-block" className="tw-relative">
                 {iframeUrl && (
                     <div>

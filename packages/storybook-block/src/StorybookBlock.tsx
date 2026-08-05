@@ -8,6 +8,8 @@ import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideli
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type FC, useCallback, useEffect, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
@@ -108,7 +110,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     return (
-        <StyleProvider className="storybook-block">
+        <StyleProvider scope={blockScope.scope}>
             <div data-test-id="storybook-block" className="tw-relative">
                 {iframe ? (
                     isEditing ? (

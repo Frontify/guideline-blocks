@@ -4,6 +4,8 @@ import { useBlockSettings } from '@frontify/app-bridge';
 import { type BlockProps, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 
+import blockScope from '../block-scope.json';
+
 import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,
@@ -23,7 +25,7 @@ export const DividerBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     return (
-        <StyleProvider className="divider-block">
+        <StyleProvider scope={blockScope.scope}>
             <div
                 data-test-id="divider-block"
                 className={joinClassNames([

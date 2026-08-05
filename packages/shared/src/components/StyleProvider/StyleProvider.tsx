@@ -7,9 +7,9 @@ import { type ReactNode } from 'react';
 
 import './styles.css';
 
-export const StyleProvider = ({ children, className }: { children: ReactNode; className?: string }) => {
+export const StyleProvider = ({ children, scope }: { children: ReactNode; scope: string }) => {
     return (
-        <ThemeProvider className={className} theme="light">
+        <ThemeProvider className={scope} theme="light">
             {children}
         </ThemeProvider>
     );

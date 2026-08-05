@@ -17,6 +17,8 @@ import {
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useMemo, useRef, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { Captions, CodeEditor, ExternalDependencies, NPMDependencies, ResponsivePreview } from './components';
 import { AttachmentsButton } from './components/AttachmentsButton';
 import {
@@ -185,7 +187,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
     const borderRadius = hasBorder ? getRadiusValue(hasRadius, radiusValue, radiusChoice) : 0;
 
     return (
-        <StyleProvider className="ui-pattern-block">
+        <StyleProvider scope={blockScope.scope}>
             <div key={sandpackTemplate} data-test-id="ui-pattern-block">
                 <div
                     className={joinClassNames([

@@ -3,12 +3,23 @@
 /**
  * This custom plugin prepends every css rule in the generated style.css
  * with an extra selector, essentially scoping the whole css file to the specific block
+ *
+ * The `scope` option is the block scope class name (e.g. `text-block`) and has to come from the
+ * block's `block-scope.json`, which is the single source of truth shared with the block itself.
  */
 
 /**
  * @type {import('postcss').PluginCreator}
  */
 module.exports = (opts = {}) => {
+    if (!opts.scope) {
+        throw new Error(
+            "The scope plugin requires a `scope` option, read it from the block's `block-scope.json`",
+        );
+    }
+
+    const scopeSelector = `.${opts.scope}`;
+
     return {
         postcssPlugin: "scope",
         Root(root) {
@@ -24,7 +35,7 @@ module.exports = (opts = {}) => {
                     originalSelector
                         .split(/(?<!\\),\s*/g)
                         .map((individualSelector) =>
-                            getScopedSelector(individualSelector, opts.scope)
+                            getScopedSelector(individualSelector, scopeSelector)
                         )
                         .join(", ")
                 );

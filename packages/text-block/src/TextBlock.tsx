@@ -6,6 +6,8 @@ import { type BlockProps, RichTextEditor } from '@frontify/guideline-blocks-sett
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useMemo } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { getPlugins } from './getPlugins';
 import { PLACEHOLDER } from './settings';
 import { type Settings, spacingValues } from './types';
@@ -21,7 +23,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
     return (
-        <StyleProvider className="text-block">
+        <StyleProvider scope={blockScope.scope}>
             <div data-test-id="text-block-wrapper" className={merge([isEditing && 'tw-min-h-9'])}>
                 <RichTextEditor
                     id={String(appBridge.context('blockId').get())}

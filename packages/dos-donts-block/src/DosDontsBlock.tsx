@@ -25,6 +25,8 @@ import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guidel
 import throttle from 'lodash-es/throttle';
 import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -372,7 +374,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const activeItem = localItems.find((x) => x.id === activeId);
 
     return (
-        <StyleProvider className="dos-donts-block">
+        <StyleProvider scope={blockScope.scope}>
             <div ref={containerRef} className="tw-@container">
                 <DndContext
                     sensors={sensors}

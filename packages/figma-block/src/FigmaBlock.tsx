@@ -13,6 +13,8 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { FigmaImagePreview } from './components/FigmaImagePreview';
 import { FigmaLiveModal } from './components/FigmaLiveModal';
 import { FigmaLivePreview } from './components/FigmaLivePreview';
@@ -98,7 +100,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     return (
-        <StyleProvider className="figma-block">
+        <StyleProvider scope={blockScope.scope}>
             <div ref={ref} data-test-id="figma-block">
                 {referenceUrl ? (
                     <ReferenceErrorMessage originalUrl={referenceUrl} />

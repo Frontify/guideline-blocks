@@ -24,6 +24,8 @@ import {
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type FC, useEffect } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
 import {
@@ -116,7 +118,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <StyleProvider className="quote-block">
+        <StyleProvider scope={blockScope.scope}>
             <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-primary'}>
                 <div className={getWrapperClasses()}>
                     {isQuotationMarkType && (
