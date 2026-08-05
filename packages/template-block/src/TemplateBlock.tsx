@@ -6,6 +6,8 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
+import blockScope from '../block-scope.json';
+
 import { AlertError } from './components/AlertError';
 import { CtaButton } from './components/CtaButton';
 import { TemplatePreview } from './components/TemplatePreview';
@@ -65,12 +67,12 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
     if (!isEditing && (!selectedTemplate || !hasAuthenticatedUser)) {
-        return <div data-test-id="container" className="template-block"></div>;
+        return <div data-test-id="container" className={blockScope.scope}></div>;
     }
 
     return (
-        <div data-test-id="container" className="template-block tw-@container">
-            <StyleProvider>
+        <StyleProvider scope={blockScope.scope}>
+            <div data-test-id="container" className="tw-@container">
                 <div data-test-id="card" style={cardStyles}>
                     {isEditing && lastErrorMessage !== '' && <AlertError errorMessage={lastErrorMessage} />}
 
@@ -140,7 +142,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     )}
                 </div>
-            </StyleProvider>
-        </div>
+            </div>
+        </StyleProvider>
     );
 };
