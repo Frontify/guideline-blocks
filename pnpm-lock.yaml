@@ -53,7 +53,7 @@ importers:
         version: 7.29.7
       '@cypress/vite-dev-server':
         specifier: ^7.2.1
-        version: 7.3.3(cypress@15.13.1)
+        version: 7.3.4(cypress@15.13.1)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -2510,8 +2510,8 @@ packages:
     resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/vite-dev-server@7.3.3':
-    resolution: {integrity: sha512-F8D3Iw9M+LZIzS/JHV4bMnSCq4weaFxbMRhbrzq+dThy+rpimCiQctW2EfY5W2P2TBB60Suo+MuzveiqbD17Ag==}
+  '@cypress/vite-dev-server@7.3.4':
+    resolution: {integrity: sha512-a2W3H85OpNo1/20LGsCwdehRf37hNdGl5a9+ZAYomxubFDgL8raRCoAArsJDAW0LhTeSf3xQ38RMAMLHN8ObTQ==}
     peerDependencies:
       cypress: '>=15.0.0'
 
@@ -10791,7 +10791,7 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 11.1.1
 
-  '@cypress/vite-dev-server@7.3.3(cypress@15.13.1)':
+  '@cypress/vite-dev-server@7.3.4(cypress@15.13.1)':
     dependencies:
       cypress: 15.13.1
       debug: 4.4.3(supports-color@8.1.1)
