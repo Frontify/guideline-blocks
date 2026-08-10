@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { type ComponentProps, type Ref, createRef } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { DosDontsAssets, type DosDontsAssetsRef } from './DosDontsAssets';
-import { BlockMode, DoDontType } from './types';
+import { DoDontType } from './types';
 
 const mocks = vi.hoisted(() => ({
     openAssetChooser: vi.fn(),
@@ -50,25 +50,6 @@ vi.mock('@frontify/app-bridge', () => ({
             },
         ];
     },
-}));
-
-vi.mock('@frontify/guideline-blocks-shared', () => ({
-    EditAltTextFlyout: ({
-        showAltTextMenu,
-        onSave,
-        localAltText,
-    }: {
-        showAltTextMenu: boolean;
-        onSave: () => void;
-        localAltText?: string;
-    }) => (
-        <div data-test-id="alt-text-flyout" data-open={String(showAltTextMenu)}>
-            <span>{localAltText}</span>
-            <button type="button" onClick={onSave}>
-                Save alt text
-            </button>
-        </div>
-    ),
 }));
 
 vi.mock('./components/ImageComponent', () => ({
@@ -121,7 +102,6 @@ type DosDontsAssetsProps = ComponentProps<typeof DosDontsAssets>;
 const defaultProps = {
     id: 'item-1',
     appBridge: {},
-    mode: BlockMode.TEXT_AND_IMAGE,
     editing: true,
     linkedImage: {
         id: 1,
@@ -172,7 +152,7 @@ describe('DosDontsAssets', () => {
         uploadState.doneAll = false;
     });
 
-    it('renders the image component in text and image mode', () => {
+    it('renders the image component', () => {
         renderDosDontsAssets();
 
         const imageComponent = screen.getByTestId('image-component');
@@ -181,14 +161,6 @@ describe('DosDontsAssets', () => {
         expect(imageComponent.getAttribute('data-alt')).toBe('Existing alt text');
         expect(imageComponent.getAttribute('data-image')).toBe('yes');
         expect(imageComponent.getAttribute('data-editing')).toBe('true');
-    });
-
-    it('does not render the image component if the mode is not text and image', () => {
-        renderDosDontsAssets({
-            mode: 'text-only' as BlockMode,
-        });
-
-        expect(screen.queryByTestId('image-component')).toBeNull();
     });
 
     it('opens the file dialog through the imperative ref', () => {
@@ -217,38 +189,6 @@ describe('DosDontsAssets', () => {
             multiSelection: false,
             objectTypes: ['IMAGE_VIDEO'],
             extensions: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'],
-        });
-    });
-
-    it('opens the alt text flyout through the imperative ref', () => {
-        const ref = createRef<DosDontsAssetsRef>();
-
-        renderDosDontsAssets({}, ref);
-
-        expect(screen.getByTestId('alt-text-flyout').getAttribute('data-open')).toBe('false');
-
-        act(() => {
-            ref.current?.openAltTextMenu();
-        });
-
-        expect(screen.getByTestId('alt-text-flyout').getAttribute('data-open')).toBe('true');
-    });
-
-    it('saves the local alt text from the alt text flyout', () => {
-        const onChangeItem = vi.fn();
-        const ref = createRef<DosDontsAssetsRef>();
-
-        renderDosDontsAssets({ onChangeItem }, ref);
-
-        act(() => {
-            ref.current?.openAltTextMenu();
-        });
-
-        fireEvent.click(screen.getByRole('button', { name: 'Save alt text' }));
-
-        expect(onChangeItem).toHaveBeenCalledTimes(1);
-        expect(onChangeItem).toHaveBeenCalledWith('item-1', {
-            alt: 'Existing alt text',
         });
     });
 
@@ -390,7 +330,7 @@ describe('DosDontsAssets', () => {
             borderWidth: '2px',
         });
 
-        expect(screen.getByTestId('image-component').getAttribute('data-border')).toBe('2px solid rgba(255, 0, 0, 1)');
+        expect(screen.getByTestId('image-component').getAttribute('data-border')).toBe('2px solid rgb(255, 0, 0)');
     });
 
     it('passes an empty border string when border is disabled', () => {

@@ -24,6 +24,7 @@ import { DoDontItemWrapper } from "./components/DoDontItemWrapper";
 import DoDontTitle from "./components/DoDontTitle";
 import IconComponent from "./components/IconComponent";
 import {
+    BlockMode,
     type DoDontItemProps,
     DoDontStyle,
     DoDontType,
@@ -49,27 +50,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         doIconAsset,
         dontIconChoice,
         doIconChoice,
-        hasStrikethrough,
         isDragging = false,
         replaceWithPlaceholder = false,
         draggableProps = {},
         appBridge,
         linkedImage,
         mode,
-        customImageHeightValue,
-        imageDisplay,
-        imageHeightChoice,
-        isCustomImageHeight,
-        backgroundColor,
-        borderColor,
-        borderStyle,
-        borderWidth,
-        hasBackground,
-        hasBorder,
-        hasRadius,
-        radiusChoice,
-        radiusValue,
-        updateAssetIdsFromKey,
         setActivatorNodeRef,
         alt,
     } = props;
@@ -135,35 +121,9 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 onUploadClick={() => assetsRef.current?.openUpload()}
                 onOpenAssetChooser={() => assetsRef.current?.openAssetChooser()}
             >
-                <DosDontsAssets
-                    ref={assetsRef}
-                    id={id}
-                    appBridge={appBridge}
-                    mode={mode}
-                    editing={editing}
-                    linkedImage={linkedImage}
-                    alt={alt}
-                    onChangeItem={onChangeItem}
-                    updateAssetIdsFromKey={updateAssetIdsFromKey}
-                    isCustomImageHeight={isCustomImageHeight}
-                    customImageHeightValue={customImageHeightValue}
-                    imageDisplay={imageDisplay}
-                    draggableProps={draggableProps}
-                    imageHeightChoice={imageHeightChoice}
-                    isDragging={isDragging}
-                    type={type}
-                    hasStrikethrough={hasStrikethrough}
-                    backgroundColor={backgroundColor}
-                    hasBackground={hasBackground}
-                    hasRadius={hasRadius}
-                    radiusChoice={radiusChoice}
-                    borderColor={borderColor}
-                    borderStyle={borderStyle}
-                    borderWidth={borderWidth}
-                    hasBorder={hasBorder}
-                    radiusValue={radiusValue}
-                    dontColor={dontColor}
-                />
+                {mode === BlockMode.TEXT_AND_IMAGE && (
+                    <DosDontsAssets ref={assetsRef} {...props} />
+                )}
 
                 <div
                     data-test-id="dos-donts-heading"
