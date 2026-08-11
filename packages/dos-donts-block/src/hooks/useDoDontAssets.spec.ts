@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { act, renderHook, waitFor } from '@testing-library/react';
+import { type BorderStyle } from '@frontify/guideline-blocks-settings';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useDoDontAssets } from './useDoDontAssets';
+import { DoDontType } from '../types';
 
 const mocks = vi.hoisted(() => ({
     openAssetChooser: vi.fn(),
@@ -33,6 +35,7 @@ vi.mock('@frontify/app-bridge', () => ({
 vi.mock('@frontify/guideline-blocks-settings', () => ({
     AssetChooserObjectType: { ImageVideo: 'IMAGE_VIDEO' },
     FileExtensionSets: { Images: ['jpg', 'png'] },
+    toRgbaString: () => 'rgb(255, 0, 0)',
 }));
 
 const defaultProps = {
@@ -40,6 +43,12 @@ const defaultProps = {
     appBridge: {} as never,
     onChangeItem: vi.fn(),
     updateAssetIdsFromKey: vi.fn().mockResolvedValue(undefined),
+    type: DoDontType.Do,
+    hasStrikethrough: false,
+    hasBorder: false,
+    borderWidth: '1px',
+    borderStyle: 'solid' as BorderStyle,
+    borderColor: { red: 255, green: 0, blue: 0, alpha: 1 },
 };
 
 describe('useDoDontAssets', () => {
@@ -56,6 +65,25 @@ describe('useDoDontAssets', () => {
         act(() => result.current.onUploadClick());
 
         expect(mocks.openFileDialog).toHaveBeenCalledOnce();
+    });
+
+    it('should return a border when borders are enabled', () => {
+        const { result } = renderHook(() => useDoDontAssets({ ...defaultProps, hasBorder: true }));
+
+        expect(result.current.border).toBe('1px solid rgb(255, 0, 0)');
+    });
+
+    it('should return strikethrough only for dont items when enabled', () => {
+        const { result, rerender } = renderHook(
+            ({ type }) => useDoDontAssets({ ...defaultProps, type, hasStrikethrough: true }),
+            { initialProps: { type: DoDontType.Do } }
+        );
+
+        expect(result.current.hasStrikethrough).toBe(false);
+
+        rerender({ type: DoDontType.Dont });
+
+        expect(result.current.hasStrikethrough).toBe(true);
     });
 
     it('should open the image asset chooser with single selection', () => {

@@ -22,6 +22,8 @@ vi.mock('./hooks/useDoDontAssets', () => ({
         isUploadLoading: false,
         localAltText: undefined,
         setLocalAltText: vi.fn(),
+        border: '',
+        hasStrikethrough: false,
     }),
 }));
 

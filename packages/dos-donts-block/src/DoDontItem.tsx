@@ -59,11 +59,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
         updateAssetIdsFromKey,
-        hasStrikethrough,
-        hasBorder,
-        borderWidth,
-        borderStyle,
-        borderColor,
     } = props;
 
     const {
@@ -72,12 +67,20 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         isUploadLoading,
         localAltText,
         setLocalAltText,
+        border,
+        hasStrikethrough,
     } = useDoDontAssets({
         id,
         appBridge,
         alt,
         onChangeItem,
         updateAssetIdsFromKey,
+        type,
+        hasStrikethrough: props.hasStrikethrough,
+        hasBorder: props.hasBorder,
+        borderWidth: props.borderWidth,
+        borderStyle: props.borderStyle,
+        borderColor: props.borderColor,
     });
 
     const doColorString = toRgbaString(doColor);
@@ -147,14 +150,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         isUploadLoading={isUploadLoading}
                         isEditing={editing}
                         isDragging={isDragging}
-                        hasStrikethrough={
-                            type === DoDontType.Dont && hasStrikethrough
-                        }
-                        border={
-                            hasBorder
-                                ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
-                                : ""
-                        }
+                        hasStrikethrough={hasStrikethrough}
+                        border={border}
                     />
                 )}
 

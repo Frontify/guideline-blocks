@@ -2,7 +2,6 @@
 
 import {
     type Asset,
-    type AppBridgeBlock,
     useAssetChooser,
     useAssetUpload,
     useFileInput,
@@ -10,21 +9,26 @@ import {
 import {
     AssetChooserObjectType,
     FileExtensionSets,
+    toRgbaString,
 } from "@frontify/guideline-blocks-settings";
 import { useEffect, useState } from "react";
 
-import { type ChangeType, type ValueType } from "../types";
+import { type DoDontItemProps, DoDontType } from "../types";
 
-type UseDoDontAssetsProps = {
-    id: string;
-    appBridge: AppBridgeBlock;
-    alt?: string;
-    onChangeItem: (
-        id: string,
-        change: Partial<Record<ChangeType, ValueType>>,
-    ) => void;
-    updateAssetIdsFromKey?: (key: string, assetIds: number[]) => Promise<void>;
-};
+type UseDoDontAssetsProps = Pick<
+    DoDontItemProps,
+    | "id"
+    | "appBridge"
+    | "alt"
+    | "onChangeItem"
+    | "updateAssetIdsFromKey"
+    | "type"
+    | "hasStrikethrough"
+    | "hasBorder"
+    | "borderWidth"
+    | "borderStyle"
+    | "borderColor"
+>;
 
 export const useDoDontAssets = ({
     id,
@@ -32,9 +36,20 @@ export const useDoDontAssets = ({
     alt,
     onChangeItem,
     updateAssetIdsFromKey,
+    type,
+    hasStrikethrough: shouldHaveStrikethrough,
+    hasBorder,
+    borderWidth,
+    borderStyle,
+    borderColor,
 }: UseDoDontAssetsProps) => {
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
+    const border = hasBorder
+        ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
+        : "";
+    const hasStrikethrough =
+        type === DoDontType.Dont && shouldHaveStrikethrough;
 
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({
@@ -110,5 +125,7 @@ export const useDoDontAssets = ({
         isUploadLoading,
         localAltText,
         setLocalAltText,
+        border,
+        hasStrikethrough,
     };
 };
