@@ -59,13 +59,13 @@ const defaultProps = {
 const renderDoDontItem = (props: Partial<DoDontItemProps> = {}) => render(<DoDontItem {...defaultProps} {...props} />);
 
 describe('DoDontItem', () => {
-    it('renders the assets in text and image mode', () => {
+    it('should render the assets in text and image mode', () => {
         renderDoDontItem({ mode: BlockMode.TEXT_AND_IMAGE });
 
         expect(screen.getByTestId(DOS_DONTS_ASSETS)).toBeInTheDocument();
     });
 
-    it('does not render the assets in text mode', () => {
+    it('should not render the assets in text mode', () => {
         renderDoDontItem({ mode: BlockMode.TEXT });
 
         expect(screen.queryByTestId(DOS_DONTS_ASSETS)).toBeNull();
