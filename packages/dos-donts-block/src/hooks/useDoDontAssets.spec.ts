@@ -50,7 +50,7 @@ describe('useDoDontAssets', () => {
         uploadState.doneAll = false;
     });
 
-    it('opens the file dialog', () => {
+    it('should open the file dialog', () => {
         const { result } = renderHook(() => useDoDontAssets(defaultProps));
 
         act(() => result.current.onUploadClick());
@@ -58,7 +58,7 @@ describe('useDoDontAssets', () => {
         expect(mocks.openFileDialog).toHaveBeenCalledOnce();
     });
 
-    it('opens the image asset chooser with single selection', () => {
+    it('should open the image asset chooser with single selection', () => {
         const { result } = renderHook(() => useDoDontAssets(defaultProps));
 
         act(() => result.current.onOpenAssetChooser());
@@ -70,7 +70,7 @@ describe('useDoDontAssets', () => {
         });
     });
 
-    it('stores a chosen asset and uses its alt text', async () => {
+    it('should store a chosen asset and use its alt text', async () => {
         const onChangeItem = vi.fn();
         const updateAssetIdsFromKey = vi.fn().mockResolvedValue(undefined);
         const { result } = renderHook(() =>
@@ -91,7 +91,7 @@ describe('useDoDontAssets', () => {
         expect(mocks.closeAssetChooser).toHaveBeenCalledOnce();
     });
 
-    it('keeps an existing alt text when choosing an asset', async () => {
+    it('should keep an existing alt text when choosing an asset', async () => {
         const onChangeItem = vi.fn();
         const { result } = renderHook(() =>
             useDoDontAssets({ ...defaultProps, alt: 'Existing alt', onChangeItem })
@@ -107,7 +107,7 @@ describe('useDoDontAssets', () => {
         expect(result.current.localAltText).toBe('Existing alt');
     });
 
-    it('uploads selected files and stores the uploaded asset', async () => {
+    it('should upload selected files and store the uploaded asset', async () => {
         const file = new File(['image'], 'image.png', { type: 'image/png' });
         const onChangeItem = vi.fn();
         const updateAssetIdsFromKey = vi.fn().mockResolvedValue(undefined);
