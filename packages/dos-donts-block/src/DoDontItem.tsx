@@ -15,14 +15,14 @@ import {
     useCallback,
     useEffect,
     useMemo,
-    useRef,
     useState,
 } from "react";
 
-import { DosDontsAssets, type DosDontsAssetsRef } from "./DosDontsAssets";
 import { DoDontItemWrapper } from "./components/DoDontItemWrapper";
 import DoDontTitle from "./components/DoDontTitle";
 import IconComponent from "./components/IconComponent";
+import ImageComponent from "./components/ImageComponent";
+import { useDoDontAssets } from "./hooks/useDoDontAssets";
 import {
     BlockMode,
     type DoDontItemProps,
@@ -58,10 +58,27 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         mode,
         setActivatorNodeRef,
         alt,
+        updateAssetIdsFromKey,
+        hasStrikethrough,
+        hasBorder,
+        borderWidth,
+        borderStyle,
+        borderColor,
     } = props;
 
-    const assetsRef = useRef<DosDontsAssetsRef>(null);
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
+    const {
+        onOpenAssetChooser,
+        onUploadClick,
+        isUploadLoading,
+        localAltText,
+        setLocalAltText,
+    } = useDoDontAssets({
+        id,
+        appBridge,
+        alt,
+        onChangeItem,
+        updateAssetIdsFromKey,
+    });
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -118,11 +135,27 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 setLocalAltText={setLocalAltText}
                 onChangeItem={onChangeItem}
                 onRemoveSelf={onRemoveSelf}
-                onUploadClick={() => assetsRef.current?.openUpload()}
-                onOpenAssetChooser={() => assetsRef.current?.openAssetChooser()}
+                onUploadClick={onUploadClick}
+                onOpenAssetChooser={onOpenAssetChooser}
             >
                 {mode === BlockMode.TEXT_AND_IMAGE && (
-                    <DosDontsAssets ref={assetsRef} {...props} />
+                    <ImageComponent
+                        {...props}
+                        image={linkedImage}
+                        onAssetChooseClick={onOpenAssetChooser}
+                        onUploadClick={onUploadClick}
+                        isUploadLoading={isUploadLoading}
+                        isEditing={editing}
+                        isDragging={isDragging}
+                        hasStrikethrough={
+                            type === DoDontType.Dont && hasStrikethrough
+                        }
+                        border={
+                            hasBorder
+                                ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
+                                : ""
+                        }
+                    />
                 )}
 
                 <div

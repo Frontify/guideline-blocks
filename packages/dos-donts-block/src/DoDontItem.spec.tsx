@@ -11,8 +11,18 @@ import type * as GuidelineBlocksSettings from '@frontify/guideline-blocks-settin
 
 const DOS_DONTS_ASSETS = 'dos-donts-assets';
 
-vi.mock('./DosDontsAssets', () => ({
-    DosDontsAssets: () => <div data-test-id="dos-donts-assets" />,
+vi.mock('./components/ImageComponent', () => ({
+    default: () => <div data-test-id="dos-donts-assets" />,
+}));
+
+vi.mock('./hooks/useDoDontAssets', () => ({
+    useDoDontAssets: () => ({
+        onOpenAssetChooser: vi.fn(),
+        onUploadClick: vi.fn(),
+        isUploadLoading: false,
+        localAltText: undefined,
+        setLocalAltText: vi.fn(),
+    }),
 }));
 
 vi.mock('@frontify/guideline-blocks-settings', async (importOriginal) => ({
