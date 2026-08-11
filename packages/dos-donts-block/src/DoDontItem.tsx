@@ -1,8 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useSortable } from '@dnd-kit/sortable';
-import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue/rte';
+import { useSortable } from "@dnd-kit/sortable";
+import {
+    type Asset,
+    useAssetChooser,
+    useAssetUpload,
+    useFileInput,
+} from "@frontify/app-bridge";
+import { merge } from "@frontify/fondue/rte";
 import {
     AssetChooserObjectType,
     FileExtensionSets,
@@ -11,14 +16,46 @@ import {
     hasRichTextValue,
     joinClassNames,
     toRgbaString,
-} from '@frontify/guideline-blocks-settings';
-import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
+} from "@frontify/guideline-blocks-settings";
+import {
+    type CSSProperties,
+    memo,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
 
-import { DoDontItemWrapper } from './components/DoDontItemWrapper';
-import DoDontTitle from './components/DoDontTitle';
-import IconComponent from './components/IconComponent';
-import ImageComponent from './components/ImageComponent';
-import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, type SortableDoDontItemProps } from './types';
+import { DoDontItemWrapper } from "./components/DoDontItemWrapper";
+import DoDontTitle from "./components/DoDontTitle";
+import IconComponent from "./components/IconComponent";
+import ImageComponent from "./components/ImageComponent";
+import {
+    BlockMode,
+    type DoDontItemProps,
+    DoDontStyle,
+    DoDontType,
+    type SortableDoDontItemProps,
+} from "./types";
+
+const rethrowAsync = (error: unknown) => {
+    queueMicrotask(() => {
+        throw error;
+    });
+};
+
+const getImageAlt = (
+    asset: Asset | undefined,
+    fallback: string | undefined,
+): string => {
+    if (fallback !== undefined) {
+        return fallback;
+    }
+
+    return typeof asset?.alternativeText === "string"
+        ? asset.alternativeText
+        : "";
+};
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -29,8 +66,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         dontColor,
         onChangeItem,
         onChangeLocalItem,
-        title = '',
-        body = '',
+        title = "",
+        body = "",
         editing = false,
         onRemoveSelf,
         hasCustomDoIcon,
@@ -72,7 +109,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({
         multiple: false,
-        accept: 'image/*',
+        accept: "image/*",
     });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
@@ -80,10 +117,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onBodyTextChange = useCallback(
         (value: string) => value !== body && onChangeItem(id, { body: value }),
-        [onChangeItem, body, id]
+        [onChangeItem, body, id],
     );
 
-    const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
+    const headingColor =
+        type === DoDontType.Do ? doColorString : dontColorString;
 
     const dividerStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { backgroundColor: doColorString },
@@ -92,28 +130,29 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            // oxlint-disable-next-line typescript/no-misused-promises
-            async (result: Asset[]) => {
+            (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
+                const imageAlt = getImageAlt(asset, alt);
                 setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
-                    setIsUploadLoading(false);
+                if (updateAssetIdsFromKey && asset) {
+                    updateAssetIdsFromKey(id, [asset.id])
+                        .then(() => {
+                            onChangeItem(id, { alt: imageAlt });
+                            setIsUploadLoading(false);
+                            closeAssetChooser();
+                            return undefined;
+                        })
+                        .catch(rethrowAsync);
+                } else {
+                    closeAssetChooser();
                 }
-
-                closeAssetChooser();
             },
             {
                 multiSelection: false,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     };
 
@@ -123,44 +162,41 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     useEffect(() => {
         if (selectedFiles) {
-            setIsUploadLoading(true);
-            uploadFile(selectedFiles);
+            queueMicrotask(() => {
+                setIsUploadLoading(true);
+                uploadFile(selectedFiles);
+            });
         }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [selectedFiles]);
+    }, [selectedFiles, uploadFile]);
 
     useEffect(() => {
         if (doneAll) {
-            // oxlint-disable-next-line typescript/no-floating-promises
-            (async (uploadResults) => {
+            queueMicrotask(() => {
                 const asset = uploadResults?.[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
+                const imageAlt = getImageAlt(asset, alt);
                 setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey) {
-                    await updateAssetIdsFromKey(id, [asset.id]);
-                    setIsUploadLoading(false);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
-                    onChangeItem(id, { alt: imageAlt });
+                if (updateAssetIdsFromKey && asset) {
+                    updateAssetIdsFromKey(id, [asset.id])
+                        .then(() => {
+                            setIsUploadLoading(false);
+                            onChangeItem(id, { alt: imageAlt });
+                            return undefined;
+                        })
+                        .catch(rethrowAsync);
                 }
-            })(uploadResults);
+            });
         }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [doneAll, uploadResults]);
-
-    const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
+    }, [alt, doneAll, id, onChangeItem, updateAssetIdsFromKey, uploadResults]);
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        []
+        [appBridge],
     );
 
     const memoizedRichTextEditor = useMemo(
         () => (
             <RichTextEditor
-                id={`${appBridge.context('blockId').get()}-${id}-editor`}
+                id={`${appBridge.context("blockId").get()}-${id}-editor`}
                 isEditing={editing}
                 value={body}
                 onTextChange={onBodyTextChange}
@@ -168,12 +204,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        [body, shouldRerenderDependency, editing, appBridge, id]
+        [appBridge, body, editing, id, onBodyTextChange, plugins],
     );
 
     return (
-        <div className={merge(['tw-relative', isDragging && 'tw-bg-surface'])}>
+        <div className={merge(["tw-relative", isDragging && "tw-bg-surface"])}>
             <DoDontItemWrapper
                 id={id}
                 type={type}
@@ -206,12 +241,18 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         draggableProps={draggableProps}
                         imageHeightChoice={imageHeightChoice}
                         isDragging={isDragging}
-                        hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
+                        hasStrikethrough={
+                            type === DoDontType.Dont && hasStrikethrough
+                        }
                         backgroundColor={backgroundColor}
                         hasBackground={hasBackground}
                         hasRadius={hasRadius}
                         radiusChoice={radiusChoice}
-                        border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
+                        border={
+                            hasBorder
+                                ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
+                                : ""
+                        }
                         radiusValue={radiusValue}
                         dontColor={dontColor}
                     />
@@ -221,34 +262,39 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     className="tw-flex tw-items-start tw-font-semibold"
                     style={{ color: headingColor }}
                 >
-                    {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
-                        <div
-                            data-test-id="dos-donts-icon"
-                            style={{
-                                lineHeight: 'var(--f-theme-settings-heading3-line-height)',
-                                fontSize: 'var(--f-theme-settings-heading3-font-size)',
-                            }}
-                            className={joinClassNames([
-                                'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0',
-                                !title ? 'tw-opacity-70' : '',
-                            ])}
-                        >
-                            <IconComponent
-                                type={type}
-                                hasCustomDoIcon={hasCustomDoIcon}
-                                doIconChoice={doIconChoice}
-                                doIconAsset={doIconAsset}
-                                hasCustomDontIcon={hasCustomDontIcon}
-                                dontIconChoice={dontIconChoice}
-                                dontIconAsset={dontIconAsset}
-                            />
-                        </div>
-                    )}
+                    {style === DoDontStyle.Icons &&
+                        (title || hasRichTextValue(body) || editing) && (
+                            <div
+                                data-test-id="dos-donts-icon"
+                                style={{
+                                    lineHeight:
+                                        "var(--f-theme-settings-heading3-line-height)",
+                                    fontSize:
+                                        "var(--f-theme-settings-heading3-font-size)",
+                                }}
+                                className={joinClassNames([
+                                    "tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0",
+                                    !title ? "tw-opacity-70" : "",
+                                ])}
+                            >
+                                <IconComponent
+                                    type={type}
+                                    hasCustomDoIcon={hasCustomDoIcon}
+                                    doIconChoice={doIconChoice}
+                                    doIconAsset={doIconAsset}
+                                    hasCustomDontIcon={hasCustomDontIcon}
+                                    dontIconChoice={dontIconChoice}
+                                    dontIconAsset={dontIconAsset}
+                                />
+                            </div>
+                        )}
 
                     <span
                         style={{
-                            lineHeight: 'var(--f-theme-settings-heading3-line-height)',
-                            fontSize: 'var(--f-theme-settings-heading3-font-size)',
+                            lineHeight:
+                                "var(--f-theme-settings-heading3-line-height)",
+                            fontSize:
+                                "var(--f-theme-settings-heading3-font-size)",
                         }}
                     >
                         <DoDontTitle
@@ -264,43 +310,61 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 {style === DoDontStyle.Underline && (
                     <hr
                         style={dividerStyles[type]}
-                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium tw-bg-black-40"
+                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium"
                     />
                 )}
-                <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
+                <div
+                    data-test-id="dos-donts-content"
+                    className={
+                        style === DoDontStyle.Icons ? "tw-mt-3" : "tw-mt-2"
+                    }
+                >
                     {memoizedRichTextEditor}
                 </div>
             </DoDontItemWrapper>
             <div
                 className={joinClassNames([
-                    !replaceWithPlaceholder && 'tw-hidden',
-                    'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-sm tw-bg-container-highlight-hover',
+                    !replaceWithPlaceholder && "tw-hidden",
+                    "tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-highlight tw-border-dashed tw-rounded-sm tw-bg-container-highlight-hover",
                 ])}
             />
         </div>
     );
 });
 
-DoDontItem.displayName = 'DoDontItem';
+DoDontItem.displayName = "DoDontItem";
 
 export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     const { id, editing } = props;
-    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        setActivatorNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({
         id,
     });
-    const [draggableProps, setDraggableProps] = useState<Record<string, unknown>>(
-        editing ? { ...attributes, ...listeners } : {}
-    );
+    const [draggableProps, setDraggableProps] = useState<
+        Record<string, unknown>
+    >(editing ? { ...attributes, ...listeners } : {});
     const transformStyle = {
-        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
+        transform: transform
+            ? `translate(${transform.x}px, ${transform.y}px)`
+            : "",
         transition,
         zIndex: isDragging ? 2 : 1,
     };
 
     useEffect(() => {
         if (!isDragging) {
-            // oxlint-disable-next-line @eslint-react/set-state-in-effect
-            setDraggableProps(editing ? { ...attributes, ...listeners } : {});
+            queueMicrotask(() =>
+                setDraggableProps(
+                    editing ? { ...attributes, ...listeners } : {},
+                ),
+            );
         }
     }, [isDragging, attributes, listeners, editing]);
 
@@ -318,4 +382,4 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     );
 });
 
-SortableDoDontItem.displayName = 'SortableDoDontItem';
+SortableDoDontItem.displayName = "SortableDoDontItem";
