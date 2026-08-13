@@ -4,20 +4,20 @@ import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-
 import {
     type BlockProps,
     RichTextEditor,
-    THEME_PREFIX,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     joinClassNames,
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type CSSProperties, type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
 import { isThemeEnabled } from './helpers/theme';
+import { getOverwrittenThemeSettings } from './helpers/theme-settings';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, type BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
@@ -123,40 +123,9 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
-    const overwrittenThemeSettings = {
-        [`${THEME_PREFIX}heading1-color`]: textColor,
-        [`${THEME_PREFIX}heading2-color`]: textColor,
-        [`${THEME_PREFIX}heading3-color`]: textColor,
-        [`${THEME_PREFIX}heading4-color`]: textColor,
-        [`${THEME_PREFIX}custom1-color`]: textColor,
-        [`${THEME_PREFIX}custom2-color`]: textColor,
-        [`${THEME_PREFIX}custom3-color`]: textColor,
-        [`${THEME_PREFIX}body-color`]: textColor,
-        [`${THEME_PREFIX}quote-color`]: textColor,
-        [`${THEME_PREFIX}link-color`]: textColor,
-        [`${THEME_PREFIX}link-text-decoration`]: 'underline',
-        [`${THEME_PREFIX}body-margin-top`]: '0px',
-        [`${THEME_PREFIX}body-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}heading1-margin-top`]: '0px',
-        [`${THEME_PREFIX}heading1-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}heading2-margin-top`]: '0px',
-        [`${THEME_PREFIX}heading2-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}heading3-margin-top`]: '0px',
-        [`${THEME_PREFIX}heading3-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}heading4-margin-top`]: '0px',
-        [`${THEME_PREFIX}heading4-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}custom1-margin-top`]: '0px',
-        [`${THEME_PREFIX}custom1-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}custom2-margin-top`]: '0px',
-        [`${THEME_PREFIX}custom2-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}custom3-margin-top`]: '0px',
-        [`${THEME_PREFIX}custom3-margin-bottom`]: '0px',
-        [`${THEME_PREFIX}quote-margin-top`]: '0px',
-        [`${THEME_PREFIX}quote-margin-bottom`]: '0px',
-        color: textColor,
-    } as CSSProperties;
-
     const iconType = blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType;
+
+    const overwrittenThemeSettings = getOverwrittenThemeSettings(textColor, iconType);
 
     return (
         <StyleProvider scope={blockScope.scope}>
