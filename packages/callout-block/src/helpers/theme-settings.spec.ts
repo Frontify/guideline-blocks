@@ -7,6 +7,9 @@ import { Icon } from '../types';
 
 import { getOverwrittenThemeSettings } from './theme-settings';
 
+const asRecord = (styles: ReturnType<typeof getOverwrittenThemeSettings>): Record<string, string> =>
+    styles as Record<string, string>;
+
 describe('getOverwrittenThemeSettings', () => {
     it('should set the text color for all supported theme tokens', () => {
         const result = getOverwrittenThemeSettings('#FF0000', Icon.None);
@@ -27,13 +30,13 @@ describe('getOverwrittenThemeSettings', () => {
     });
 
     it('should always underline links', () => {
-        const result = getOverwrittenThemeSettings('#000000', Icon.None);
+        const result = asRecord(getOverwrittenThemeSettings('#000000', Icon.None));
 
         expect(result[`${THEME_PREFIX}link-text-decoration`]).toBe('underline');
     });
 
     it('should not reset margins when there is no icon', () => {
-        const result = getOverwrittenThemeSettings('#000000', Icon.None);
+        const result = asRecord(getOverwrittenThemeSettings('#000000', Icon.None));
 
         expect(result[`${THEME_PREFIX}body-margin-top`]).toBeUndefined();
         expect(result[`${THEME_PREFIX}body-margin-bottom`]).toBeUndefined();
@@ -44,7 +47,7 @@ describe('getOverwrittenThemeSettings', () => {
     it.each([Icon.Info, Icon.Lightbulb, Icon.Megaphone, Icon.Custom])(
         'should reset margins to 0px for all headings, body, custom and quote tokens when icon is %s',
         (iconType) => {
-            const result = getOverwrittenThemeSettings('#000000', iconType);
+            const result = asRecord(getOverwrittenThemeSettings('#000000', iconType));
 
             const marginTokens = [
                 'body-margin-top',
@@ -74,7 +77,7 @@ describe('getOverwrittenThemeSettings', () => {
     );
 
     it('should keep the text color untouched when resetting margins', () => {
-        const result = getOverwrittenThemeSettings('#123456', Icon.Info);
+        const result = asRecord(getOverwrittenThemeSettings('#123456', Icon.Info));
 
         expect(result.color).toBe('#123456');
         expect(result[`${THEME_PREFIX}body-color`]).toBe('#123456');
