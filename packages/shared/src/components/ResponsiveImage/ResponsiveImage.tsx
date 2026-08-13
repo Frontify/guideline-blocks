@@ -40,12 +40,12 @@ export const ResponsiveImage = ({
 
     const allowConversions = !['gif', 'svg'].includes(image.extension);
 
+    const source = image.previewUrl || image.genericUrl;
+
     // Gif images can have a loop count property
     // Which is lost during our image processing
     const sourceWithWidth =
-        image.extension === 'gif'
-            ? image.originUrl
-            : image.genericUrl.replace('{width}', imageWidthToRequest.toString());
+        image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
 
     const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
     const sourceOptimised = `${sourceWithWidth}${conversionParams}`;
