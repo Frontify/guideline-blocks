@@ -440,6 +440,9 @@ importers:
       '@babel/core':
         specifier: ^7.29.0
         version: 7.29.7
+      '@ctrl/tinycolor':
+        specifier: ^4.2.0
+        version: 4.2.0
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.46.1)(yaml@2.8.3)

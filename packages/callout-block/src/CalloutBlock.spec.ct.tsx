@@ -1,11 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { readability } from '@ctrl/tinycolor';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 
 import { CalloutBlock } from './CalloutBlock';
+import { getEffectiveBackgroundColor } from './helpers/color';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';
+
+/** WCAG AA contrast for normal text — asserted via TinyColor, independent of production's own contrast math. */
+const MIN_WCAG_AA_CONTRAST = 4.5;
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const RichTextEditorSelector = '[data-test-id="rich-text-editor"]';
@@ -16,6 +21,35 @@ const CalloutIconInfoSelector = '[data-test-id="callout-icon-info"]';
 
 const EXAMPLE_THEME_SETTINGS =
     ':root {--f-theme-settings-accent-color-info-color: rgba(26, 199, 211, 1); --f-theme-settings-accent-color-note-color: rgba(246, 216, 56, 1); --f-theme-settings-accent-color-tip-color: rgba(42, 191, 24, 1); --f-theme-settings-accent-color-warning-color: rgba(222, 27, 27, 1);}';
+
+const WHITE_SCHEME = 'rgb(255, 255, 255)';
+
+const expectReadableAdjustedTextColor = (accentRgb: string) => {
+    cy.get(HtmlContentSelector).should(($el) => {
+        const textColor = $el.css('color');
+        expect(textColor).not.to.eq(accentRgb);
+        expect(readability(textColor, getEffectiveBackgroundColor(accentRgb, WHITE_SCHEME))).to.be.at.least(
+            MIN_WCAG_AA_CONTRAST
+        );
+    });
+};
+
+const expectThemeTextColorsMatchBlockColor = (accentRgb: string) => {
+    cy.get(CalloutBlockSelector).should(($el) => {
+        const block = $el[0];
+        const textColor = getComputedStyle(block).color;
+        const heading = block.style.getPropertyValue('--f-theme-settings-heading1-color').trim();
+        const body = block.style.getPropertyValue('--f-theme-settings-body-color').trim();
+        const link = block.style.getPropertyValue('--f-theme-settings-link-color').trim();
+
+        expect(heading).to.eq(body);
+        expect(body).to.eq(link);
+        expect(heading.length).to.be.greaterThan(0);
+        expect(readability(textColor, getEffectiveBackgroundColor(accentRgb, WHITE_SCHEME))).to.be.at.least(
+            MIN_WCAG_AA_CONTRAST
+        );
+    });
+};
 
 describe('Callout Block', () => {
     beforeEach(() => {
@@ -149,7 +183,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(26, 199, 211)');
+        expectReadableAdjustedTextColor('rgb(26, 199, 211)');
     });
 
     it('renders a callout block with the correct colors for type note', () => {
@@ -163,7 +197,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(0, 0, 0)');
+        expectReadableAdjustedTextColor('rgb(246, 216, 56)');
     });
 
     it('renders a callout block with the correct colors for type tip', () => {
@@ -177,7 +211,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(42, 191, 24, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(42, 191, 24)');
+        expectReadableAdjustedTextColor('rgb(42, 191, 24)');
     });
 
     it('renders a callout block with the correct colors for type warning', () => {
@@ -191,7 +225,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(222, 27, 27)');
+        expectReadableAdjustedTextColor('rgb(222, 27, 27)');
     });
 
     it('renders a warning block with the overwritten css variables for the theme styles', () => {
@@ -204,12 +238,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutBlockSelector)
-            .should('have.css', '--f-theme-settings-heading1-color', 'rgba(222, 27, 27, 1)')
-            .and('have.css', '--f-theme-settings-body-color', 'rgba(222, 27, 27, 1)')
-            .and('have.css', '--f-theme-settings-link-color', 'rgba(222, 27, 27, 1)')
-            .and('have.css', 'color', 'rgb(222, 27, 27)')
-            .and('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
+        expectThemeTextColorsMatchBlockColor('rgb(222, 27, 27)');
     });
 
     it('renders a note block with the overwritten css variables for the theme styles', () => {
@@ -222,12 +252,8 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
 
-        cy.get(CalloutBlockSelector)
-            .should('have.css', '--f-theme-settings-heading1-color', 'black')
-            .and('have.css', '--f-theme-settings-body-color', 'black')
-            .and('have.css', '--f-theme-settings-link-color', 'black')
-            .and('have.css', 'color', 'rgb(0, 0, 0)')
-            .and('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
+        cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
+        expectThemeTextColorsMatchBlockColor('rgb(246, 216, 56)');
     });
 
     it('renders a callout block with light appearance', () => {
@@ -253,7 +279,7 @@ describe('Callout Block', () => {
         cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(50, 40, 145)');
     });
 
-    it('should turn text to white when a black accent sits on a black section background', () => {
+    it('should use a lighter readable text color when a black accent sits on a black section background', () => {
         cy.document().then((doc) => {
             const style = doc.querySelector('#test-settings');
             if (style) {
@@ -274,7 +300,13 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
 
         cy.get(CalloutBlockSelector).should('have.css', 'background-color', 'rgba(0, 0, 0, 0.1)');
-        cy.get(HtmlContentSelector).should('have.css', 'color', 'rgb(255, 255, 255)');
+        cy.get(HtmlContentSelector).should(($el) => {
+            const textColor = $el.css('color');
+            expect(textColor).not.to.eq('rgb(0, 0, 0)');
+            expect(readability(textColor, getEffectiveBackgroundColor('rgb(0, 0, 0)', 'rgb(0, 0, 0)'))).to.be.at.least(
+                MIN_WCAG_AA_CONTRAST
+            );
+        });
     });
 
     it('renders a callout block with strong appearance', () => {
