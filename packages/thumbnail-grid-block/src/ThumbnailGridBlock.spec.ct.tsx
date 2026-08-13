@@ -122,7 +122,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ThumbnailImage)
             .should('have.length', 2)
             .first()
-            .should('have.attr', 'src', 'https://generic.url&format=webp&quality=100');
+            .should('have.attr', 'src', 'https://preview.url&format=webp&quality=100');
         cy.get(ThumbnailImagePlaceholder).should('not.exist');
     });
 
@@ -173,7 +173,7 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ThumbnailImage)
             .first()
             .should('have.attr', 'alt', 'A custom alt text 1')
-            .should('have.attr', 'src', 'https://generic.url&format=webp&quality=100');
+            .should('have.attr', 'src', 'https://preview.url&format=webp&quality=100');
         cy.get(ThumbnailImage).first().click();
     });
 
