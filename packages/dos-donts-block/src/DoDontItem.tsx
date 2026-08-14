@@ -1,12 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from "@dnd-kit/sortable";
-import {
-    type Asset,
-    useAssetChooser,
-    useAssetUpload,
-    useFileInput,
-} from "@frontify/app-bridge";
 import { merge } from "@frontify/fondue/rte";
 import {
     RichTextEditor,
@@ -28,6 +22,7 @@ import { DoDontItemWrapper } from "./components/DoDontItemWrapper";
 import DoDontTitle from "./components/DoDontTitle";
 import IconComponent from "./components/IconComponent";
 import ImageComponent from "./components/ImageComponent";
+import { useDoDontAssets } from "./hooks/useDoDontAssets";
 import {
     BlockMode,
     type DoDontItemProps,
@@ -35,25 +30,6 @@ import {
     DoDontType,
     type SortableDoDontItemProps,
 } from "./types";
-
-const rethrowAsync = (error: unknown) => {
-    queueMicrotask(() => {
-        throw error;
-    });
-};
-
-const getImageAlt = (
-    asset: Asset | undefined,
-    fallback: string | undefined,
-): string => {
-    if (fallback !== undefined) {
-        return fallback;
-    }
-
-    return typeof asset?.alternativeText === "string"
-        ? asset.alternativeText
-        : "";
-};
 
 export const DoDontItem = memo((props: DoDontItemProps) => {
     const {
@@ -83,6 +59,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
         updateAssetIdsFromKey,
+        hasRadius,
+        radiusValue,
+        radiusChoice,
+        hasBackground,
+        backgroundColor,
     } = props;
 
     const {
@@ -109,16 +90,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [openFileDialog, { selectedFiles }] = useFileInput({
-        multiple: false,
-        accept: "image/*",
-    });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
-    });
 
     const onBodyTextChange = useCallback(
         (value: string) => value !== body && onChangeItem(id, { body: value }),
@@ -132,66 +103,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [DoDontType.Do]: { backgroundColor: doColorString },
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
-
-    const onOpenAssetChooser = () => {
-        openAssetChooser(
-            (result: Asset[]) => {
-                setIsUploadLoading(true);
-                const asset = result[0];
-                const imageAlt = getImageAlt(asset, alt);
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey && asset) {
-                    updateAssetIdsFromKey(id, [asset.id])
-                        .then(() => {
-                            onChangeItem(id, { alt: imageAlt });
-                            setIsUploadLoading(false);
-                            closeAssetChooser();
-                            return undefined;
-                        })
-                        .catch(rethrowAsync);
-                } else {
-                    closeAssetChooser();
-                }
-            },
-            {
-                multiSelection: false,
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets.Images,
-            },
-        );
-    };
-
-    const onUploadClick = () => {
-        openFileDialog();
-    };
-
-    useEffect(() => {
-        if (selectedFiles) {
-            queueMicrotask(() => {
-                setIsUploadLoading(true);
-                uploadFile(selectedFiles);
-            });
-        }
-    }, [selectedFiles, uploadFile]);
-
-    useEffect(() => {
-        if (doneAll) {
-            queueMicrotask(() => {
-                const asset = uploadResults?.[0];
-                const imageAlt = getImageAlt(asset, alt);
-                setLocalAltText(imageAlt);
-                if (updateAssetIdsFromKey && asset) {
-                    updateAssetIdsFromKey(id, [asset.id])
-                        .then(() => {
-                            setIsUploadLoading(false);
-                            onChangeItem(id, { alt: imageAlt });
-                            return undefined;
-                        })
-                        .catch(rethrowAsync);
-                }
-            });
-        }
-    }, [alt, doneAll, id, onChangeItem, updateAssetIdsFromKey, uploadResults]);
 
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
@@ -247,11 +158,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         hasBackground={hasBackground}
                         hasRadius={hasRadius}
                         radiusChoice={radiusChoice}
-                        border={
-                            hasBorder
-                                ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
-                                : ""
-                        }
+                        border={border}
                         radiusValue={radiusValue}
                         dontColor={dontColor}
                     />
