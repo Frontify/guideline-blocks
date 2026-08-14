@@ -9,8 +9,6 @@ import {
 } from "@frontify/app-bridge";
 import { merge } from "@frontify/fondue/rte";
 import {
-    AssetChooserObjectType,
-    FileExtensionSets,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
@@ -76,31 +74,38 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         doIconAsset,
         dontIconChoice,
         doIconChoice,
-        hasStrikethrough,
         isDragging = false,
         replaceWithPlaceholder = false,
         draggableProps = {},
         appBridge,
         linkedImage,
         mode,
-        customImageHeightValue,
-        imageDisplay,
-        imageHeightChoice,
-        isCustomImageHeight,
-        backgroundColor,
-        borderColor,
-        borderStyle,
-        borderWidth,
-        hasBackground,
-        hasBorder,
-        hasRadius,
-        radiusChoice,
-        radiusValue,
-        updateAssetIdsFromKey,
         setActivatorNodeRef,
         alt,
+        updateAssetIdsFromKey,
     } = props;
-    const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
+
+    const {
+        onOpenAssetChooser,
+        onUploadClick,
+        isUploadLoading,
+        localAltText,
+        setLocalAltText,
+        border,
+        hasStrikethrough,
+    } = useDoDontAssets({
+        id,
+        appBridge,
+        alt,
+        onChangeItem,
+        updateAssetIdsFromKey,
+        type,
+        hasStrikethrough: props.hasStrikethrough,
+        hasBorder: props.hasBorder,
+        borderWidth: props.borderWidth,
+        borderStyle: props.borderStyle,
+        borderColor: props.borderColor,
+    });
 
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
@@ -228,18 +233,12 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
             >
                 {mode === BlockMode.TEXT_AND_IMAGE && (
                     <ImageComponent
-                        isEditing={editing}
-                        id={id}
-                        alt={alt}
+                        {...props}
                         image={linkedImage}
                         onAssetChooseClick={onOpenAssetChooser}
                         onUploadClick={onUploadClick}
                         isUploadLoading={isUploadLoading}
-                        isCustomImageHeight={isCustomImageHeight}
-                        customImageHeightValue={customImageHeightValue}
-                        imageDisplay={imageDisplay}
-                        draggableProps={draggableProps}
-                        imageHeightChoice={imageHeightChoice}
+                        isEditing={editing}
                         isDragging={isDragging}
                         hasStrikethrough={
                             type === DoDontType.Dont && hasStrikethrough
@@ -257,6 +256,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         dontColor={dontColor}
                     />
                 )}
+
                 <div
                     data-test-id="dos-donts-heading"
                     className="tw-flex tw-items-start tw-font-semibold"
