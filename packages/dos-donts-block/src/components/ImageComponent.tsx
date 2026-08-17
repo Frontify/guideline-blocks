@@ -39,43 +39,41 @@ const ImageComponent = ({
             ? toRgbaString(backgroundColor)
             : '';
 
-    const getImage = () =>
-        image ? (
-            <div
-                {...draggableProps}
-                ref={setContainerRef}
-                style={{ height: imageHeight, borderRadius, border, background }}
-                className={joinClassNames([
-                    'tw-overflow-hidden tw-relative tw-w-full',
-                    isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
-                ])}
-            >
-                {/* oxlint-disable-next-line @eslint-react/no-leaked-conditional-rendering */}
-                {containerWidth && (
-                    <ResponsiveImage
-                        containerWidth={containerWidth}
-                        image={image}
-                        className={joinClassNames([
-                            'tw-h-full',
-                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                imageDisplay === ImageFitChoice.FILL &&
-                                'tw-object-cover',
-                            (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                                imageDisplay === ImageFitChoice.FIT &&
-                                'tw-object-contain',
-                        ])}
-                        alt={alt || ''}
-                        testId="do-dont-image"
-                    />
-                )}
-                {hasStrikethrough && (
-                    <div
-                        style={{ backgroundColor: toRgbaString(dontColor) }}
-                        className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
-                    />
-                )}
-            </div>
-        ) : null;
+    const imageElement = image ? (
+        <div
+            {...draggableProps}
+            ref={setContainerRef}
+            style={{ height: imageHeight, borderRadius, border, background }}
+            className={joinClassNames([
+                'tw-overflow-hidden tw-relative tw-w-full',
+                isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
+            ])}
+        >
+            {containerWidth !== undefined && containerWidth > 0 && (
+                <ResponsiveImage
+                    containerWidth={containerWidth}
+                    image={image}
+                    className={joinClassNames([
+                        'tw-h-full',
+                        (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                            imageDisplay === ImageFitChoice.FILL &&
+                            'tw-object-cover',
+                        (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                            imageDisplay === ImageFitChoice.FIT &&
+                            'tw-object-contain',
+                    ])}
+                    alt={alt || ''}
+                    testId="do-dont-image"
+                />
+            )}
+            {hasStrikethrough && (
+                <div
+                    style={{ backgroundColor: toRgbaString(dontColor) }}
+                    className="tw-w-[3px] tw-h-[calc(100%+20px)] tw-absolute -tw-top-[10px] tw-left-1/2 -tw-skew-x-[20deg]"
+                />
+            )}
+        </div>
+    ) : null;
 
     return (
         <div className="tw-mb-3">
@@ -92,7 +90,7 @@ const ImageComponent = ({
                     />
                 </div>
             ) : (
-                getImage()
+                imageElement
             )}
         </div>
     );
