@@ -29,13 +29,15 @@ const IconComponent = ({
         if (hasCustomIcon && iconAsset && iconAsset.length > 0) {
             const url = iconAsset[0].genericUrl;
 
-            // oxlint-disable-next-line typescript/no-floating-promises, promise/catch-or-return, promise/always-return
-            fetch(url).then((response) => {
+            const loadSvg = async () => {
+                const response = await fetch(url);
+
                 if (response.ok) {
-                    // oxlint-disable-next-line promise/catch-or-return, typescript/no-floating-promises
-                    response.text().then((svgString) => setSvg(svgString));
+                    setSvg(await response.text());
                 }
-            });
+            };
+
+            loadSvg().catch(() => setSvg(''));
         }
     }, [hasCustomIcon, iconAsset]);
 
