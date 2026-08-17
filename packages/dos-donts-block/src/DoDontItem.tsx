@@ -59,6 +59,11 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         setActivatorNodeRef,
         alt,
         updateAssetIdsFromKey,
+        hasRadius,
+        radiusValue,
+        radiusChoice,
+        hasBackground,
+        backgroundColor,
     } = props;
 
     const {
@@ -99,12 +104,9 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
-
     const plugins = useMemo(
         () => getDefaultPluginsWithLinkChooser(appBridge),
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        [],
+        [appBridge],
     );
 
     const memoizedRichTextEditor = useMemo(
@@ -118,8 +120,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-        [body, shouldRerenderDependency, editing, appBridge, id],
+        [appBridge, body, editing, id, onBodyTextChange, plugins],
     );
 
     return (
@@ -150,8 +151,16 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                         isUploadLoading={isUploadLoading}
                         isEditing={editing}
                         isDragging={isDragging}
-                        hasStrikethrough={hasStrikethrough}
+                        hasStrikethrough={
+                            type === DoDontType.Dont && hasStrikethrough
+                        }
+                        backgroundColor={backgroundColor}
+                        hasBackground={hasBackground}
+                        hasRadius={hasRadius}
+                        radiusChoice={radiusChoice}
                         border={border}
+                        radiusValue={radiusValue}
+                        dontColor={dontColor}
                     />
                 )}
 
@@ -208,7 +217,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 {style === DoDontStyle.Underline && (
                     <hr
                         style={dividerStyles[type]}
-                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium tw-bg-black-40"
+                        className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded-medium"
                     />
                 )}
                 <div
@@ -258,8 +267,11 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
 
     useEffect(() => {
         if (!isDragging) {
-            // oxlint-disable-next-line @eslint-react/set-state-in-effect
-            setDraggableProps(editing ? { ...attributes, ...listeners } : {});
+            queueMicrotask(() =>
+                setDraggableProps(
+                    editing ? { ...attributes, ...listeners } : {},
+                ),
+            );
         }
     }, [isDragging, attributes, listeners, editing]);
 
