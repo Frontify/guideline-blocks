@@ -9,6 +9,8 @@ onlyBuiltDependencies:
     - msw
     - esbuild
 overrides:
+    "@udecode/plate-common": 36.5.9
+    zustand: 4.5.7
     "ajv@>=7.0.0-alpha.0 <8.18.0": ^8.18.0
     immer: ^10.2.0
     "minimatch@^3": npm:minimatch@^3.1.4
