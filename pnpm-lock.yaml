@@ -5,6 +5,8 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@udecode/plate-common': 36.5.9
+  zustand: 4.5.7
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   immer: ^10.2.0
   minimatch@^3: npm:minimatch@^3.1.4
@@ -5287,7 +5289,7 @@ packages:
   '@udecode/plate-alignment@31.0.0':
     resolution: {integrity: sha512-RWLWO8FdSACZxAFYaOybffxvY9Orv1Z/zmPJoEBj/+BXXMe1I6D3f9XVOmOmA5RrxHRaVPvm2rNJNbX7XHrL9g==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5298,7 +5300,7 @@ packages:
   '@udecode/plate-autoformat@31.0.0':
     resolution: {integrity: sha512-CoEebTLLCL7V0Vv75iy7sawT6VAZC5k0i7UYrvQDzNHgD67jxLZkD8AFIX07RkwckQ76qElgQmH3Ruiwtcxx6g==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5309,7 +5311,7 @@ packages:
   '@udecode/plate-basic-marks@31.0.0':
     resolution: {integrity: sha512-yV05ohuWk7ZcVxshLQIoqRbJTCbn8hANaMR98PuOMHFajr68/Qvdn9B5MuOzLqPHyOOQ4yVBdzPNcsG6l1DuAg==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5320,7 +5322,7 @@ packages:
   '@udecode/plate-break@31.0.0':
     resolution: {integrity: sha512-dt5btIRIAWVioh9/O/JX8X2UYThGw4/Aks3aRjWjRitwONmTwca9UzxKMj7W0li758Yvd2WPeBJNPIWGJ9cpYw==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5331,7 +5333,7 @@ packages:
   '@udecode/plate-code-block@31.3.4':
     resolution: {integrity: sha512-1hWXL/pVHTUKTMch9ckeS806S8+Ie1nKc8m+nuDKUQ/kVHzrU1Z1mjH5Q+1At6NLHd8RfNMmRYtO6knEH1ux0A==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.3.2'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5342,7 +5344,7 @@ packages:
   '@udecode/plate-combobox@31.0.0':
     resolution: {integrity: sha512-K5XXTWGPeu+D/LsTuOLvPiXYTxev+mHyvfTbuabwqhWMs9tTpKJZpDZXQadOZ1x9/D2LUMDltnBbhREaQ4wCSA==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5373,7 +5375,7 @@ packages:
   '@udecode/plate-emoji@31.4.0':
     resolution: {integrity: sha512-Vl2kt/IePtIDbEjD7nZacHv21TYuRDB4cRaW5aF9QT+67vI5fJpBooJSod/Zg5Ck5BOHZ/qCiauxJXBfVaPYpw==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.3.2'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5384,7 +5386,7 @@ packages:
   '@udecode/plate-floating@31.0.0':
     resolution: {integrity: sha512-k1KZjpGCH+x/rDCSUZ1Kd4ttPc/35Xp/T+pmI2jYQ48dlorYQPJSuJxpFE/cpBp1g8G2lLh4xbH5BTYR1bypAQ==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5395,7 +5397,7 @@ packages:
   '@udecode/plate-font@31.0.0':
     resolution: {integrity: sha512-2X805gqX8ZgoLZWyKJvrnwYo8x6uusvpKuB9ZhcNVWtmnmtSHTSDlwVBsGaxESOfhvzepy79j+ZTKTPlXDvT1A==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5406,7 +5408,7 @@ packages:
   '@udecode/plate-indent@31.1.0':
     resolution: {integrity: sha512-tdHAUMB5TMYHmS1USMEqc2F2rCChDyndyxhtLwvJFf0jUdxz5z3um5lW78U1JDjG4pl7jdQAAR+W/mznjWL0lA==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5417,7 +5419,7 @@ packages:
   '@udecode/plate-link@31.0.0':
     resolution: {integrity: sha512-607injR8Bf5Tek4LIjjcuPoDDFMq0i+3cuX1AlIsqbwqZH3gffQZ700OKhisy17bu8SD9aqAgiCfKKlHXM4cdA==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5428,7 +5430,7 @@ packages:
   '@udecode/plate-list@31.1.3':
     resolution: {integrity: sha512-TjD5JeKsuzsdSkepgjFMDcJsB6BHdowO/ppHLxUCge74RwPVF7U97HPc7oEtx+OLsrC13gkbpZvwLHfdCy9dDQ==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5439,7 +5441,7 @@ packages:
   '@udecode/plate-mention@31.3.5':
     resolution: {integrity: sha512-RTeT4IVZWhlRpv3amlOKrTt0Kk3umv1iynPfaG7LW7sHDdaD0k2QXOvDavFdUo/bBhda/5MTKAzi7/ta7XdnuA==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.3.2'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5450,7 +5452,7 @@ packages:
   '@udecode/plate-normalizers@31.0.0':
     resolution: {integrity: sha512-4HD39jOgv5Hf8sQqXtZdQLcWYHToXGjBPFU33pYHbEBmxEN9cd5ndxRTCnoOspI9HJMkpu0OzrhUfhLvoPDP4w==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5461,7 +5463,7 @@ packages:
   '@udecode/plate-paragraph@31.0.0':
     resolution: {integrity: sha512-uuaksPfDhK5ShVhjZ0pbXlUgy5nKKDkXzrAfDEZJzwF1R2N0HTy2WcmNJFm+aN8ZUFbZ4MHBuUUldZc/aLuCqw==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5472,7 +5474,7 @@ packages:
   '@udecode/plate-reset-node@31.0.0':
     resolution: {integrity: sha512-pIdexCNsJx21UHeHrDxeOTS2w0NfthCD5klZGiiKBkU+sd65btmyY1fEQmlVaaeqWKzYCXai2ctSlRAycBV7wA==}
     peerDependencies:
-      '@udecode/plate-common': '>=31.0.0'
+      '@udecode/plate-common': 36.5.9
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       slate: '>=0.94.0'
@@ -5550,7 +5552,7 @@ packages:
   '@udecode/zustood@2.0.0':
     resolution: {integrity: sha512-zMmEhP55PHVxIsMWuBf7LbNUTkGDPAGeCtcbJUD+k47ubkLR/yg0hjQh0hD0DARl2X86U+SJNe628qxVtMARVw==}
     peerDependencies:
-      zustand: '>=4.3.9'
+      zustand: 4.5.7
 
   '@uiw/codemirror-extensions-basic-setup@4.24.2':
     resolution: {integrity: sha512-wW/gjLRvVUeYyhdh2TApn25cvdcR+Rhg6R/j3eTOvXQzU1HNzNYCVH4YKVIfgtfdM/Xs+N8fkk+rbr1YvBppCg==}
@@ -9553,7 +9555,7 @@ packages:
   zustand-x@3.0.4:
     resolution: {integrity: sha512-dVD8WUEpR/0mMdLah9j8i+r6PMAq9Ii2u+BX/9Bn4MHRt8sSnRQ90YMUlTVonZYAHGb2UHZwPpE2gMb8GtYDDw==}
     peerDependencies:
-      zustand: '>=4.3.9'
+      zustand: 4.5.7
 
   zustand@4.5.7:
     resolution: {integrity: sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==}
