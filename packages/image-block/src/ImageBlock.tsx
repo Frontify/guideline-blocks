@@ -161,6 +161,11 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const isAssetViewerEnabled = security === Security.Custom ? blockAssetViewerEnabled : globalAssetViewerEnabled;
     const ariaLabel = getDownloadAriaLabel(isAssetViewerEnabled, hasLink, altText, image?.title);
 
+    const shouldHideBlock = !isEditing && !image && attachmentCount === 0;
+
+    if (shouldHideBlock) {
+        return null;
+    }
     return (
         <AttachmentOperationsProvider
             blockAssetBundle={blockAssetsBundle}
@@ -262,7 +267,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                 )
                             )}
                         </div>
-
                         <ImageCaption
                             titleKey={titleKey}
                             blockId={blockId}

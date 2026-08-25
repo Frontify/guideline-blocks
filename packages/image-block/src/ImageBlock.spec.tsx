@@ -60,8 +60,40 @@ describe('Image Block', () => {
     });
 
     it('should render an image block', () => {
-        renderImageBlock();
+        renderImageBlock({
+            blockAssets: { [IMAGE_ID]: [AssetDummy.with(1)] },
+        });
         expect(screen.getByTestId(IMAGE_BLOCK_TEST_ID)).toBeInTheDocument();
+    });
+
+    it('should not render anything in view mode if there is no image', () => {
+        renderImageBlock({
+            editorState: false,
+            blockSettings: {
+                name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
+                description: JSON.stringify([{ type: 'imageCaption', children: [{ text: 'Test Description' }] }]),
+            },
+            blockAssets: { [IMAGE_ID]: [] },
+        });
+        expect(screen.queryByTestId(IMAGE_BLOCK_TEST_ID)).not.toBeInTheDocument();
+        expect(screen.queryByTestId(CAPTION_TEST_ID)).not.toBeInTheDocument();
+    });
+
+    it('should render the title and description in view mode if there is no image but there are attachments', async () => {
+        renderImageBlock({
+            editorState: false,
+            blockSettings: {
+                name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
+            },
+            blockAssets: {
+                [IMAGE_ID]: [],
+                [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(1)],
+            },
+        });
+        expect(screen.getByTestId(IMAGE_BLOCK_TEST_ID)).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByTestId(CAPTION_TEST_ID)).toHaveTextContent('Test Name');
+        });
     });
 
     it('should render a placeholder if in edit mode and there is no image uploaded yet', () => {
@@ -216,6 +248,7 @@ describe('Image Block', () => {
             blockSettings: {
                 name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
             },
+            blockAssets: { [IMAGE_ID]: [AssetDummy.with(1)] },
         });
         await waitFor(() => {
             expect(screen.getByTestId(CAPTION_TEST_ID)).toHaveTextContent('Test Name');
@@ -227,6 +260,7 @@ describe('Image Block', () => {
             blockSettings: {
                 description: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Description' }] }]),
             },
+            blockAssets: { [IMAGE_ID]: [AssetDummy.with(1)] },
         });
         await waitFor(() => {
             expect(screen.getByTestId(CAPTION_TEST_ID)).toHaveTextContent('Test Description');
