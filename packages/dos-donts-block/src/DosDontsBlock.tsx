@@ -1,8 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DndContext, type DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
-import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
+import {
+    DndContext,
+    type DragEndEvent,
+    DragOverlay,
+    closestCenter,
+} from "@dnd-kit/core";
+import { restrictToParentElement } from "@dnd-kit/modifiers";
+import {
+    SortableContext,
+    arrayMove,
+    rectSortingStrategy,
+} from "@dnd-kit/sortable";
 import {
     type Asset,
     AssetChooserObjectType,
@@ -11,30 +20,61 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
-} from '@frontify/app-bridge';
-import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme } from '@frontify/fondue';
-import { Button, Dialog } from '@frontify/fondue/components';
-import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
+} from "@frontify/app-bridge";
+import {
+    FrontifyPattern,
+    PatternDesign,
+    PatternScale,
+    PatternTheme,
+} from "@frontify/fondue";
+import { Button, Dialog } from "@frontify/fondue/components";
+import {
+    IconCheckMarkCircle,
+    IconCrossCircle,
+    IconPlus,
+} from "@frontify/fondue/icons";
 import {
     BlockInjectButton,
     type BlockProps,
     FileExtensionSets,
     joinClassNames,
-} from '@frontify/guideline-blocks-settings';
-import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
-import throttle from 'lodash-es/throttle';
-import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+} from "@frontify/guideline-blocks-settings";
+import {
+    generateRandomId,
+    StyleProvider,
+    useDndSensors,
+} from "@frontify/guideline-blocks-shared";
+import throttle from "lodash-es/throttle";
+import {
+    type FC,
+    useCallback,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 
-import blockScope from '../block-scope.json';
+import blockScope from "../block-scope.json";
 
-import { AssetsContext, AssetsProvider } from './AssetsProvider';
-import { AddDoDontButtons } from './components/AddDoDontButtons';
-import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
-import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { getDoDontContainerStyle } from './helpers/getDoDontContainerStyle';
-import { getDoDontGridStyle } from './helpers/getDoDontGridStyle';
-import { useDoDontColorStyle } from './hooks/useDoDontColorStyle';
-import { BlockMode, type ChangeType, DoDontType, type Item, type Settings, type ValueType } from './types';
+import { AssetsContext, AssetsProvider } from "./AssetsProvider";
+import { AddDoDontButtons } from "./components/AddDoDontButtons";
+import {
+    CONTAINER_SMALL_LIMIT,
+    DONT_ICON_ASSET_KEY,
+    DO_ICON_ASSET_KEY,
+} from "./const";
+import { DoDontItem, SortableDoDontItem } from "./DoDontItem";
+import { getDoDontContainerStyle } from "./helpers/getDoDontContainerStyle";
+import { getDoDontGridStyle } from "./helpers/getDoDontGridStyle";
+import { useDoDontColorStyle } from "./hooks/useDoDontColorStyle";
+import {
+    BlockMode,
+    type ChangeType,
+    DoDontType,
+    type Item,
+    type Settings,
+    type ValueType,
+} from "./types";
 
 export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -56,29 +96,40 @@ export const DosDontsBlockWrapper = ({ appBridge }: BlockProps) => {
 const placeholderItems = [
     {
         id: generateRandomId(),
-        body: '',
-        title: '',
+        body: "",
+        title: "",
         type: DoDontType.Do,
     },
     {
         id: generateRandomId(),
-        body: '',
-        title: '',
+        body: "",
+        title: "",
         type: DoDontType.Dont,
     },
 ];
 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useContext(AssetsContext);
+    const [blockSettings, setBlockSettings] =
+        useBlockSettings<Settings>(appBridge);
+    const {
+        blockAssets,
+        addAssetIdsToKey,
+        deleteAssetIdsFromKey,
+        updateAssetIdsFromKey,
+    } = useContext(AssetsContext);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [selectedType, setSelectedType] = useState<DoDontType | undefined>();
     const [selectedAssets, setSelectedAssets] = useState<Asset[] | undefined>();
-    const [openFileDialog, { selectedFiles: filesFromInput }] = useFileInput({ multiple: true, accept: 'image/*' });
-    const [selectedFiles, setSelectedFiles] = useState<FileList | null>(filesFromInput);
+    const [openFileDialog, { selectedFiles: filesFromInput }] = useFileInput({
+        multiple: true,
+        accept: "image/*",
+    });
+    const [selectedFiles, setSelectedFiles] = useState<FileList | null>(
+        filesFromInput,
+    );
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
@@ -100,8 +151,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         imageHeightChoice,
         mode,
     } = blockSettings;
-    const { doColor, dontColor, resolvedDoColor, resolvedDontColor } = useDoDontColorStyle(blockSettings);
-    const { columnGap, rowGap, gridClassName } = getDoDontGridStyle(blockSettings);
+    const { doColor, dontColor, resolvedDoColor, resolvedDontColor } =
+        useDoDontColorStyle(blockSettings);
+    const { columnGap, rowGap, gridClassName } =
+        getDoDontGridStyle(blockSettings);
     const {
         borderWidth,
         borderStyle,
@@ -114,10 +167,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         resolvedBorderColor,
     } = getDoDontContainerStyle(blockSettings);
 
-    const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
+    const sensors = useDndSensors(
+        parseInt(columnGap ?? "0"),
+        parseInt(rowGap ?? "0"),
+    );
     const doIconAsset = blockAssets?.[DO_ICON_ASSET_KEY];
     const dontIconAsset = blockAssets?.[DONT_ICON_ASSET_KEY];
-    const [localItems, setLocalItems] = useState<Item[]>(items.length === 0 ? placeholderItems : items);
+    const [localItems, setLocalItems] = useState<Item[]>(
+        items.length === 0 ? placeholderItems : items,
+    );
     const containerRef = useRef<HTMLDivElement>(null);
     const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
@@ -133,7 +191,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     : {}),
             }).catch(console.error);
         },
-        [setBlockSettings, customDoColor, customDontColor, doColor, dontColor]
+        [setBlockSettings, customDoColor, customDontColor, doColor, dontColor],
     );
 
     const setAndSaveItems = useCallback(
@@ -141,7 +199,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             setLocalItems(newItems);
             saveItems(newItems);
         },
-        [saveItems]
+        [saveItems],
     );
 
     const batchAddItems = useCallback(
@@ -158,10 +216,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
                 newItems.push({
                     id: itemId,
-                    body: '',
-                    title: '',
+                    body: "",
+                    title: "",
                     type: selectedType,
-                    alt: image.title || image.fileName || '',
+                    alt: image.title || image.fileName || "",
                 });
 
                 if (addAssetIdsToKey) {
@@ -175,7 +233,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             setSelectedAssets(undefined);
             setSelectedFiles(null);
         },
-        [addAssetIdsToKey, localItems, selectedType, setAndSaveItems]
+        [addAssetIdsToKey, localItems, selectedType, setAndSaveItems],
     );
 
     useEffect(() => {
@@ -189,7 +247,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         } else if (selectedAssets && selectedType) {
             batchAddItems(selectedAssets);
         }
-    }, [selectedFiles, selectedType, selectedAssets, batchAddItems, uploadFile]);
+    }, [
+        selectedFiles,
+        selectedType,
+        selectedAssets,
+        batchAddItems,
+        uploadFile,
+    ]);
 
     useEffect(() => {
         if (doneAll) {
@@ -206,7 +270,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
         const throttledFn = throttle((entries: ResizeObserverEntry[]) => {
             const lastEntry = entries[entries.length - 1];
-            const isSmall = lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
+            const isSmall =
+                lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
 
             setIsContainerSmall(isSmall);
         }, 200);
@@ -221,14 +286,19 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [containerRef, isEditing]);
 
     const addItem = (type: DoDontType) => {
-        const newItems: Item[] = [...localItems, { id: generateRandomId(), body: '', title: '', type }];
+        const newItems: Item[] = [
+            ...localItems,
+            { id: generateRandomId(), body: "", title: "", type },
+        ];
         setAndSaveItems(newItems);
     };
 
     const removeItemById = useCallback(
         (itemId: string) => {
             setLocalItems((prevItems) => {
-                const updatedItems = prevItems.filter((item) => item.id !== itemId);
+                const updatedItems = prevItems.filter(
+                    (item) => item.id !== itemId,
+                );
 
                 setBlockSettings({ items: updatedItems }).catch(console.error);
 
@@ -237,27 +307,36 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     const assetId = asset?.id;
 
                     if (assetId) {
-                        deleteAssetIdsFromKey(itemId, [assetId]).catch(console.error);
+                        deleteAssetIdsFromKey(itemId, [assetId]).catch(
+                            console.error,
+                        );
                     }
                 }
 
                 return updatedItems;
             });
         },
-        [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
+        [blockAssets, deleteAssetIdsFromKey, setBlockSettings],
     );
 
-    const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
-        setLocalItems((previousItems) =>
-            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
-        );
-    }, []);
+    const onChangeLocalItem = useCallback(
+        (itemId: string, value: ValueType, type: ChangeType) => {
+            setLocalItems((previousItems) =>
+                previousItems.map((item) =>
+                    item.id === itemId ? { ...item, [type]: value } : item,
+                ),
+            );
+        },
+        [],
+    );
 
     const onChangeItem = useCallback(
         (itemId: string, change: Partial<Record<ChangeType, ValueType>>) => {
             setLocalItems((previousItems) => {
                 const newItems = previousItems.map((item) =>
-                    item.id === itemId ? ({ ...item, ...change } as Item) : item
+                    item.id === itemId
+                        ? ({ ...item, ...change } as Item)
+                        : item,
                 );
 
                 setBlockSettings({
@@ -267,7 +346,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 return newItems;
             });
         },
-        [setBlockSettings]
+        [setBlockSettings],
     );
 
     const handleDragStart = (event: DragEndEvent) => {
@@ -346,7 +425,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 multiSelection: true,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            }
+            },
         );
     };
 
@@ -368,24 +447,37 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToParentElement]}
                 >
-                    <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                    <SortableContext
+                        items={localItems}
+                        strategy={rectSortingStrategy}
+                    >
                         <div
                             data-test-id="dos-donts-block"
                             ref={wrapperRef}
-                            className={joinClassNames(['tw-grid', gridClassName])}
+                            className={joinClassNames([
+                                "tw-grid",
+                                gridClassName,
+                            ])}
                             style={{
                                 columnGap,
                                 rowGap,
                             }}
                         >
                             {localItems.map((item) => (
-                                <SortableDoDontItem key={item.id} {...getDoDontItemProps(item)} />
+                                <SortableDoDontItem
+                                    key={item.id}
+                                    {...getDoDontItemProps(item)}
+                                />
                             ))}
                         </div>
                     </SortableContext>
                     {activeItem ? (
                         <DragOverlay>
-                            <DoDontItem key={activeItem.id} isDragging {...getDoDontItemProps(activeItem)} />
+                            <DoDontItem
+                                key={activeItem.id}
+                                isDragging
+                                {...getDoDontItemProps(activeItem)}
+                            />
                         </DragOverlay>
                     ) : null}
                 </DndContext>
@@ -404,11 +496,17 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 />
                             </div>
                         )}
-                        <AddDoDontButtons isContainerSmall={isContainerSmall} onAddItem={addItem} />
+                        <AddDoDontButtons
+                            isContainerSmall
+                            onAddItem={addItem}
+                        />
                     </div>
                 )}
                 <Dialog.Root
-                    open={(!!selectedAssets?.[0] || !!selectedFiles) && !selectedType}
+                    open={
+                        (!!selectedAssets?.[0] || !!selectedFiles) &&
+                        !selectedType
+                    }
                     onOpenChange={(isOpen) => {
                         if (!isOpen) {
                             closeDialog();
@@ -426,21 +524,37 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                             </div>
                         </Dialog.SideContent>
                         <Dialog.Header>
-                            <span className="tw-font-bold">What should be the type of those images?</span>
+                            <span className="tw-font-bold">
+                                What should be the type of those images?
+                            </span>
                         </Dialog.Header>
                         <Dialog.Body>
-                            <div>You can always change the type later on each item.</div>
+                            <div>
+                                You can always change the type later on each
+                                item.
+                            </div>
                         </Dialog.Body>
                         <Dialog.Footer>
                             <div className="tw-flex tw-gap-3 tw-flex-wrap">
                                 <Button onPress={closeDialog} emphasis="weak">
                                     Cancel
                                 </Button>
-                                <Button onPress={() => setSelectedType(DoDontType.Do)} emphasis="default">
+                                <Button
+                                    onPress={() =>
+                                        setSelectedType(DoDontType.Do)
+                                    }
+                                    emphasis="default"
+                                >
                                     <IconCheckMarkCircle size={20} /> Add as Do
                                 </Button>
-                                <Button onPress={() => setSelectedType(DoDontType.Dont)} emphasis="default">
-                                    <IconCrossCircle size={20} /> Add as Don&apos;t
+                                <Button
+                                    onPress={() =>
+                                        setSelectedType(DoDontType.Dont)
+                                    }
+                                    emphasis="default"
+                                >
+                                    <IconCrossCircle size={20} /> Add as
+                                    Don&apos;t
                                 </Button>
                             </div>
                         </Dialog.Footer>
