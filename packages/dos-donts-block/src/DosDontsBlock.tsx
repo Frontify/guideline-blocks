@@ -44,7 +44,6 @@ import {
     StyleProvider,
     useDndSensors,
 } from "@frontify/guideline-blocks-shared";
-import throttle from "lodash-es/throttle";
 import {
     type FC,
     useCallback,
@@ -58,11 +57,7 @@ import blockScope from "../block-scope.json";
 
 import { AssetsContext, AssetsProvider } from "./AssetsProvider";
 import { AddDoDontButtons } from "./components/AddDoDontButtons";
-import {
-    CONTAINER_SMALL_LIMIT,
-    DONT_ICON_ASSET_KEY,
-    DO_ICON_ASSET_KEY,
-} from "./const";
+import { DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from "./const";
 import { DoDontItem, SortableDoDontItem } from "./DoDontItem";
 import { getDoDontContainerStyle } from "./helpers/getDoDontContainerStyle";
 import { getDoDontGridStyle } from "./helpers/getDoDontGridStyle";
@@ -176,8 +171,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [localItems, setLocalItems] = useState<Item[]>(
         items.length === 0 ? placeholderItems : items,
     );
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isContainerSmall, setIsContainerSmall] = useState<boolean>(false);
 
     const saveItems = useCallback(
         (newItems: Item[]) => {
@@ -260,30 +253,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             batchAddItems(uploadResults);
         }
     }, [doneAll, uploadResults, batchAddItems]);
-
-    useEffect(() => {
-        const container = containerRef.current;
-
-        if (!container) {
-            return;
-        }
-
-        const throttledFn = throttle((entries: ResizeObserverEntry[]) => {
-            const lastEntry = entries[entries.length - 1];
-            const isSmall =
-                lastEntry?.contentRect?.width < CONTAINER_SMALL_LIMIT;
-
-            setIsContainerSmall(isSmall);
-        }, 200);
-
-        const observer = new ResizeObserver(throttledFn);
-
-        observer.observe(container);
-
-        return () => {
-            observer.unobserve(container);
-        };
-    }, [containerRef, isEditing]);
 
     const addItem = (type: DoDontType) => {
         const newItems: Item[] = [
@@ -439,7 +408,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <StyleProvider scope={blockScope.scope}>
-            <div ref={containerRef} className="tw-@container">
+            <div className="tw-@container">
                 <DndContext
                     sensors={sensors}
                     collisionDetection={closestCenter}
