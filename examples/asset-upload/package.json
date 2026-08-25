@@ -16,7 +16,7 @@
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.67",
         "@frontify/fondue": "13.7.0",
-        "@frontify/guideline-blocks-settings": "2.1.15",
+        "@frontify/guideline-blocks-settings": "3.0.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
