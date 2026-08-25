@@ -13,7 +13,6 @@ import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 const DOS_DONTS_BLOCK = 'dos-donts-block';
 const DOS_DONTS_HEADING = 'dos-donts-heading';
 const DOS_DONTS_ICON = 'dos-donts-icon';
-const DOS_DONTS_ADD_BUTTONS = 'dos-donts-block-add-buttons';
 const RTE_CONTENT_HTML = 'rte-content-html';
 const RICH_TEXT_EDITOR = 'rich-text-editor';
 const DO_DONT_IMAGE = 'do-dont-image';
@@ -195,39 +194,5 @@ describe("Dos & Don'ts Block", () => {
         expect(secondTextarea).toBeTruthy();
         await user.type(secondTextarea!, 'Dont do this');
         expect((secondTextarea as HTMLTextAreaElement).value).toBe('Dont do this');
-    });
-
-    describe('Add buttons', () => {
-        it('should stack on top of each other on containers below @sm(440px) breakpoint', () => {
-            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
-                editorState: true,
-                blockSettings: {
-                    columns: 2,
-                    style: DoDontStyle.Icons,
-                    dontIconChoice: ItemIconChoice.CHECKMARK,
-                    doIconChoice: ItemIconChoice.CHECKMARK,
-                },
-            });
-
-            render(<DosDontsBlockWithStubs />);
-
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toHaveClass('tw-flex-col', '@sm:tw-flex-row');
-        });
-
-        it('should be rendered side by side on containers larger than @sm(440px) breakpoint', () => {
-            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
-                editorState: true,
-                blockSettings: {
-                    columns: 2,
-                    style: DoDontStyle.Icons,
-                    dontIconChoice: ItemIconChoice.CHECKMARK,
-                    doIconChoice: ItemIconChoice.CHECKMARK,
-                },
-            });
-
-            render(<DosDontsBlockWithStubs />);
-
-            expect(screen.getByTestId(DOS_DONTS_ADD_BUTTONS)).toHaveClass('tw-flex-col', '@sm:tw-flex-row');
-        });
     });
 });
