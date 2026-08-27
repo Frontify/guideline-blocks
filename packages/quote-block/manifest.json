@@ -1,8 +1,184 @@
 {
     "appId": "cl5wcp42a00010jw8t6x51t6n",
-    "i18nFields": ["content"],
-    "searchFields": [
-        { "settingId": "authorName", "type": "string" },
-        { "settingId": "content", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            }
+        },
+        "required": [
+            "type",
+            "isCustomQuoteStyleLeft",
+            "isCustomQuoteStyleRight",
+            "quoteStyleLeft",
+            "quoteStyleRight",
+            "showAuthor",
+            "textAlignment",
+            "quotationMarksAnchoring",
+            "isCustomSize",
+            "sizeChoice",
+            "showAccentLine",
+            "lineType",
+            "lineWidthValue"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "content": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "type": {
+                "type": "string",
+                "enum": ["QuotationMarks", "Indentation"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomQuoteStyleLeft": {
+                "type": "boolean",
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomQuoteStyleRight": {
+                "type": "boolean",
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "quoteStyleLeft": {
+                "type": "string",
+                "enum": [
+                    "DoubleUp",
+                    "DoubleDown",
+                    "SingleUp",
+                    "SingleDown",
+                    "DoubleChevronLeft",
+                    "DoubleChevronRight",
+                    "SingleChevronLeft",
+                    "SingleChevronRight",
+                    "HookBracketLeft",
+                    "HookBracketRight",
+                    "None",
+                    "Custom"
+                ],
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "quoteStyleRight": {
+                "type": "string",
+                "enum": [
+                    "DoubleUp",
+                    "DoubleDown",
+                    "SingleUp",
+                    "SingleDown",
+                    "DoubleChevronLeft",
+                    "DoubleChevronRight",
+                    "SingleChevronLeft",
+                    "SingleChevronRight",
+                    "HookBracketLeft",
+                    "HookBracketRight",
+                    "None",
+                    "Custom"
+                ],
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "showAuthor": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "authorName": {
+                "type": "string",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "textAlignment": {
+                "type": "string",
+                "enum": ["left", "center", "right"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "quotationMarksAnchoring": {
+                "type": "string",
+                "enum": ["fullWidth", "hugText"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomSize": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "sizeChoice": {
+                "type": "string",
+                "enum": ["SmallSize", "MediumSize", "LargeSize"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "sizeValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomQuotesColor": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "quotesColor": { "$ref": "#/$defs/color" },
+            "showAccentLine": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "lineType": {
+                "type": "string",
+                "enum": ["solid", "dashed", "dotted"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "lineWidthValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomLineColor": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "accentLineColor": { "$ref": "#/$defs/color" }
+        }
+    }
 }
