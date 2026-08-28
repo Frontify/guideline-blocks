@@ -28,6 +28,7 @@ import { type FC, useCallback, useContext, useEffect, useRef, useState } from 'r
 import blockScope from '../block-scope.json';
 
 import { AssetsContext, AssetsProvider } from './AssetsProvider';
+import { AddDoDontButtons } from './components/AddDoDontButtons';
 import { CONTAINER_SMALL_LIMIT, DONT_ICON_ASSET_KEY, DO_ICON_ASSET_KEY } from './const';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
 import { getDoDontContainerStyle } from './helpers/getDoDontContainerStyle';
@@ -76,7 +77,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [selectedType, setSelectedType] = useState<DoDontType | undefined>();
     const [selectedAssets, setSelectedAssets] = useState<Asset[] | undefined>();
-    const [openFileDialog, { selectedFiles: filesFromInput }] = useFileInput({ multiple: true, accept: 'image/*' });
+    const [openFileDialog, { selectedFiles: filesFromInput }] = useFileInput({
+        multiple: true,
+        accept: 'image/*',
+    });
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(filesFromInput);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
@@ -403,25 +407,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                                 />
                             </div>
                         )}
-                        <div
-                            data-test-id="dos-donts-block-add-buttons"
-                            className="tw-flex tw-w-full tw-flex-col @sm:tw-flex-row"
-                        >
-                            <BlockInjectButton
-                                verticalLayout={isContainerSmall}
-                                label="Add do"
-                                withMenu={false}
-                                icon={<IconCheckMarkCircle size={20} />}
-                                onClick={() => addItem(DoDontType.Do)}
-                            />
-                            <BlockInjectButton
-                                verticalLayout={isContainerSmall}
-                                label="Add don't"
-                                withMenu={false}
-                                icon={<IconCrossCircle size={20} />}
-                                onClick={() => addItem(DoDontType.Dont)}
-                            />
-                        </div>
+                        <AddDoDontButtons isContainerSmall={isContainerSmall} onAddItem={addItem} />
                     </div>
                 )}
                 <Dialog.Root
