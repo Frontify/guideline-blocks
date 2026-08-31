@@ -1,8 +1,223 @@
 {
     "appId": "clmg9pqj300010our91kww0h2",
-    "i18nFields": ["title", "description", "buttonText"],
-    "searchFields": [
-        { "settingId": "title", "type": "fondueRte" },
-        { "settingId": "description", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dotted", "Dashed"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "sizeChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "pixelValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "anchoring": {
+                "type": "string",
+                "enum": ["start", "center", "end"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        },
+        "required": [
+            "preview",
+            "templateEditing",
+            "hasPageCount",
+            "hasCustomPaddingValue_blockCard",
+            "paddingChoice_blockCard",
+            "textPositioning",
+            "textRatio",
+            "textAnchoringVertical",
+            "textAnchoringHorizontal",
+            "isPreviewHeightCustom",
+            "previewHeightSimple",
+            "previewDisplay",
+            "buttonStyle",
+            "hasBackground",
+            "hasBorder_blockCard",
+            "borderStyle_blockCard",
+            "borderWidth_blockCard",
+            "hasRadius_blockCard",
+            "radiusChoice_blockCard",
+            "hasBackgroundTemplatePreview",
+            "hasBorder_templatePreview",
+            "borderStyle_templatePreview",
+            "borderWidth_templatePreview",
+            "hasRadius_templatePreview",
+            "radiusChoice_templatePreview"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "title": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "description": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "buttonText": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "altText": { "type": "string", "frontify-api-read": true, "frontify-api-write": true },
+            "template": {
+                "type": ["null", "object"],
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true
+            },
+            "templateId": {
+                "type": "integer",
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true
+            },
+            "preview": {
+                "type": "string",
+                "enum": ["none", "template", "custom"],
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "templateEditing": {
+                "type": "string",
+                "enum": ["simple", "advanced"],
+                "frontify-translatable": true,
+                "frontify-machine-translatable": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasPageCount": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "hasCustomPaddingValue_blockCard": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "paddingChoice_blockCard": { "$ref": "#/$defs/sizeChoice" },
+            "paddingValue_blockCard": { "$ref": "#/$defs/pixelValue" },
+            "textPositioning": {
+                "type": "string",
+                "enum": ["bottom", "top", "right", "left"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "textRatio": {
+                "type": "string",
+                "enum": ["25", "33.3333", "50", "66.6666", "75"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "textAnchoringVertical": { "$ref": "#/$defs/anchoring" },
+            "textAnchoringHorizontal": { "$ref": "#/$defs/anchoring" },
+            "isPreviewHeightCustom": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "previewHeightCustom": {
+                "type": "string",
+                "pattern": "^([0-9]+px|auto)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "previewHeightSimple": {
+                "type": "string",
+                "enum": ["auto", "small", "medium", "large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "previewDisplay": {
+                "type": "string",
+                "enum": ["fit", "fill"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "previewImageAnchoring": { "$ref": "#/$defs/anchoring" },
+            "buttonStyle": {
+                "type": "string",
+                "enum": ["primary", "secondary", "tertiary"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasBackground": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "backgroundColor": { "$ref": "#/$defs/color" },
+            "hasBorder_blockCard": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle_blockCard": { "$ref": "#/$defs/borderStyle" },
+            "borderWidth_blockCard": { "$ref": "#/$defs/pixelValue" },
+            "borderColor_blockCard": { "$ref": "#/$defs/color" },
+            "hasRadius_blockCard": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "radiusChoice_blockCard": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue_blockCard": { "$ref": "#/$defs/pixelValue" },
+            "hasBackgroundTemplatePreview": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "backgroundColorTemplatePreview": { "$ref": "#/$defs/color" },
+            "hasBorder_templatePreview": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle_templatePreview": { "$ref": "#/$defs/borderStyle" },
+            "borderWidth_templatePreview": { "$ref": "#/$defs/pixelValue" },
+            "borderColor_templatePreview": { "$ref": "#/$defs/color" },
+            "hasRadius_templatePreview": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "radiusChoice_templatePreview": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue_templatePreview": { "$ref": "#/$defs/pixelValue" }
+        }
+    }
 }
