@@ -8,7 +8,6 @@ import { CaptionPosition, type Ratio, type Settings, textRatioValues } from '../
 import { getCaptionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
-    blockId: string;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
     titleKey: string;
@@ -21,7 +20,6 @@ type ImageCaptionProps = {
 
 export const ImageCaption = ({
     isEditing,
-    blockId,
     appBridge,
     titleKey,
     description,
@@ -48,7 +46,6 @@ export const ImageCaption = ({
             <div className="tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
                 <RichTextEditor
                     key={titleKey}
-                    id={`${blockId}_title`}
                     isEditing={isEditing}
                     plugins={titlePlugins}
                     placeholder="Asset name"
@@ -57,7 +54,6 @@ export const ImageCaption = ({
                     onTextChange={(name) => setBlockSettings({ name })}
                 />
                 <RichTextEditor
-                    id={`${blockId}_description`}
                     isEditing={isEditing}
                     plugins={getCaptionPlugins(appBridge)}
                     onTextChange={(description) => setBlockSettings({ description })}

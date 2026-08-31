@@ -18,7 +18,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
-    const plugins = useMemo(() => getPlugins(appBridge, parseInt(columnNumber), gap), [appBridge, columnNumber, gap]);
+    const plugins = useMemo(() => getPlugins(appBridge, Number.parseInt(columnNumber), gap), [appBridge, columnNumber, gap]);
 
     const handleTextChange = useCallback((content: string) => setBlockSettings({ content }), [setBlockSettings]);
 
@@ -26,10 +26,9 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
         <StyleProvider scope={blockScope.scope}>
             <div data-test-id="text-block-wrapper" className={merge([isEditing && 'tw-min-h-9'])}>
                 <RichTextEditor
-                    id={String(appBridge.context('blockId').get())}
                     isEditing={isEditing}
                     value={content}
-                    columns={parseInt(columnNumber)}
+                    columns={Number.parseInt(columnNumber)}
                     gap={gap}
                     plugins={plugins}
                     placeholder={PLACEHOLDER}

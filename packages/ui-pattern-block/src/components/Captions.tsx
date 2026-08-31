@@ -37,7 +37,6 @@ export const Captions = ({
     return (
         <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1 tw-w-full'])}>
             <RichTextEditor
-                id={`${String(appBridge.context('blockId').get())}_title`}
                 value={title ?? convertToRteValue(TextStyles.imageTitle, '')}
                 onTextChange={onTitleChange}
                 showSerializedText={hasRichTextValue(title)}
@@ -45,7 +44,6 @@ export const Captions = ({
                 {...commonProps}
             />
             <RichTextEditor
-                id={`${String(appBridge.context('blockId').get())}_description`}
                 value={description ?? convertToRteValue(TextStyles.imageCaption, '')}
                 onTextChange={onDescriptionChange}
                 showSerializedText={hasRichTextValue(description)}

@@ -127,7 +127,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
                             }}
                         >
                             <RichTextEditor
-                                id={`asset-kit-block-download-button-text-${appBridge.context('blockId').get()}`}
                                 value={
                                     hasRichTextValue(buttonText)
                                         ? buttonText

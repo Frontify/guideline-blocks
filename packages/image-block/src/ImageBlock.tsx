@@ -47,7 +47,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
-    const blockId = String(appBridge.context('blockId').get());
     const {
         altText,
         name,
@@ -269,7 +268,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                         </div>
                         <ImageCaption
                             titleKey={titleKey}
-                            blockId={blockId}
                             isEditing={isEditing}
                             description={description}
                             name={name}

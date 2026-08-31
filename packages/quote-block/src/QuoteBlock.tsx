@@ -151,7 +151,6 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             ])}
                         >
                             <RichTextEditor
-                                id={String(appBridge.context('blockId').get())}
                                 placeholder={isEditing ? 'Add your quote text here' : undefined}
                                 value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                                 onTextChange={onChangeContent}
