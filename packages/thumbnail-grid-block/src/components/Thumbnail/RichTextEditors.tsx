@@ -10,14 +10,13 @@ import { type Thumbnail } from '../../types';
 type RichTextEditorsProps = {
     isEditing: boolean;
     updateItem: (key: keyof Thumbnail, value: string) => void;
-    id?: string;
     title?: string;
     description?: string;
     appBridge: AppBridgeBlock;
 };
 
 export const RichTextEditors = memo((props: RichTextEditorsProps) => {
-    const { isEditing, updateItem, id, title, description, appBridge } = props;
+    const { isEditing, updateItem, title, description, appBridge } = props;
 
     const memoizedTitle = useMemo(
         () => (
@@ -31,7 +30,7 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
                 />
             </div>
         ),
-        [id, title, isEditing, updateItem]
+        [title, isEditing, updateItem]
     );
     const memoizedDescription = useMemo(
         () => (
@@ -43,7 +42,7 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
                 placeholder="Add a description"
             />
         ),
-        [id, description, isEditing, updateItem, appBridge]
+        [description, isEditing, updateItem, appBridge]
     );
 
     return (

@@ -185,7 +185,6 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                         />
                         {(image || isEditing) && (
                             <RichTextEditors
-                                id={id}
                                 title={title}
                                 isEditing={isEditing}
                                 description={description}
