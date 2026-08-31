@@ -112,7 +112,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
     const memoizedRichTextEditor = useMemo(
         () => (
             <RichTextEditor
-                id={`${appBridge.context("blockId").get()}-${id}-editor`}
                 isEditing={editing}
                 value={body}
                 onTextChange={onBodyTextChange}
@@ -120,7 +119,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        [appBridge, body, editing, id, onBodyTextChange, plugins],
+        [body, editing, onBodyTextChange, plugins],
     );
 
     return (

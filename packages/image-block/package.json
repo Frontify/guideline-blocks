@@ -15,9 +15,9 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^4.0.0-alpha.67",
+        "@frontify/app-bridge": "^4.0.0-alpha.68",
         "@frontify/fondue": "13.7.5",
-        "@frontify/guideline-blocks-settings": "3.0.3",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/live-announcer": "^3.4.4",
         "react": "^18.3.1",

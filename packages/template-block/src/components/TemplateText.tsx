@@ -35,7 +35,6 @@ export const TemplateText = ({
     hasTitleOnly,
     templateTextKey,
 }: TemplateTextProps) => {
-    const blockId = appBridge.context('blockId').get();
     const pageCountStyles = BlockStyles[TextStyles.imageCaption];
     const pageCountLabel = pageCount === 1 ? 'page' : 'pages';
 
@@ -67,7 +66,6 @@ export const TemplateText = ({
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
-                id={`title-${blockId}`}
                 value={title ?? convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onTextChange={saveTitle}
@@ -77,13 +75,12 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [blockId, customTitlePlugins, isEditing, saveTitle, title, templateTextKey]
+        [customTitlePlugins, isEditing, saveTitle, title, templateTextKey]
     );
 
     const memoDescriptionRte = useMemo(
         () => (
             <RichTextEditor
-                id={`description-${blockId}`}
                 value={description}
                 placeholder="Add a description for your template"
                 onTextChange={saveDescription}
@@ -93,7 +90,7 @@ export const TemplateText = ({
                 key={templateTextKey}
             />
         ),
-        [appBridge, blockId, description, isEditing, saveDescription, templateTextKey]
+        [appBridge, description, isEditing, saveDescription, templateTextKey]
     );
 
     const getOverwrittenThemeSettings = (): CSSProperties => {

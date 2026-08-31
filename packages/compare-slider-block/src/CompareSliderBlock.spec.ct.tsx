@@ -15,6 +15,9 @@ const StrikethroughWrapperSelector = '[data-test-id="compare-slider-block-strike
 const FirstAssetSelector = '[data-test-id="slider-item-first"]';
 const SecondAssetSelector = '[data-test-id="slider-item-second"]';
 
+const DUMMY_PREVIEW_URL =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+
 describe('Compare Slider Block', () => {
     it('should render compare slider block', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {});
@@ -32,7 +35,7 @@ describe('Compare Slider Block', () => {
 
     it('should render upload buttons if there are is only one asset uploaded', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
-            blockAssets: { firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }] },
+            blockAssets: { firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }] },
             editorState: true,
         });
 
@@ -43,8 +46,8 @@ describe('Compare Slider Block', () => {
     it('should render the compare slider if there are two assets uploaded', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             editorState: true,
         });
@@ -55,8 +58,8 @@ describe('Compare Slider Block', () => {
     it('should render label in view mode if content exists', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             blockSettings: {
                 firstAssetLabel: convertToRteValue(undefined, 'first Asset Label'),
@@ -70,8 +73,8 @@ describe('Compare Slider Block', () => {
     it('should render 2 labels in view mode if content exists', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             blockSettings: {
                 firstAssetLabel: convertToRteValue(undefined, 'Test'),
@@ -86,8 +89,8 @@ describe('Compare Slider Block', () => {
     it('should render 2 labels in edit mode', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             editorState: true,
         });
@@ -98,8 +101,8 @@ describe('Compare Slider Block', () => {
     it('should render a strikethrough line', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             blockSettings: {
                 firstAssetHasStrikethrough: true,
@@ -112,8 +115,8 @@ describe('Compare Slider Block', () => {
     it('should render the alt texts', () => {
         const [CompareSliderBlockWithStubs] = withAppBridgeBlockStubs(CompareSliderBlock, {
             blockAssets: {
-                firstAsset: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/200/200' }],
-                secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
+                firstAsset: [{ ...AssetDummy.with(1), previewUrl: DUMMY_PREVIEW_URL }],
+                secondAsset: [{ ...AssetDummy.with(2), previewUrl: DUMMY_PREVIEW_URL }],
             },
             blockSettings: {
                 firstAssetAlt: 'First alt text',

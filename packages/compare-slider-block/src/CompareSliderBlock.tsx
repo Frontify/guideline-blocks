@@ -341,7 +341,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 borderRadius={getBorderRadius()}
             >
                 <Label
-                    blockId={appBridge.context('blockId').get().toString()}
                     isEditing={isEditing}
                     value={label}
                     onBlur={(newValue: string) => setBlockSettings({ [key]: newValue })}

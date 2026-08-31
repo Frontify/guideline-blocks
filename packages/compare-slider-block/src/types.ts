@@ -130,7 +130,6 @@ export enum Handle {
 
 export type LabelProps = {
     isEditing: boolean;
-    blockId: string;
     value: string;
     onBlur: (newValue: string) => void;
 };

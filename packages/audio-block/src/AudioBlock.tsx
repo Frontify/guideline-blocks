@@ -48,7 +48,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-    const blockId = appBridge.context('blockId').get();
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
@@ -157,7 +156,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             <div data-test-id="block-title">
                                 <RichTextEditor
                                     key={titleKey}
-                                    id={`${blockId}-title`}
                                     plugins={titlePlugins}
                                     isEditing={isEditing}
                                     onTextChange={onTitleChange}
@@ -169,7 +167,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
                             <div data-test-id="block-description">
                                 <RichTextEditor
-                                    id={`${blockId}-description`}
                                     plugins={getDescriptionPlugins(appBridge)}
                                     isEditing={isEditing}
                                     onTextChange={onDescriptionChange}
