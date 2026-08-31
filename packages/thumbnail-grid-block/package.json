@@ -19,9 +19,9 @@
         "@dnd-kit/modifiers": "^9.0.0",
         "@dnd-kit/sortable": "^10.0.0",
         "@dnd-kit/utilities": "^3.2.2",
-        "@frontify/app-bridge": "^4.0.0-alpha.67",
+        "@frontify/app-bridge": "^4.0.0-alpha.68",
         "@frontify/fondue": "13.7.5",
-        "@frontify/guideline-blocks-settings": "3.0.3",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
