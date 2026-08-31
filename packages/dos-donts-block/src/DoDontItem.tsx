@@ -119,7 +119,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                 placeholder="Add a description"
             />
         ),
-        [body, editing, id, onBodyTextChange, plugins],
+        [body, editing, onBodyTextChange, plugins],
     );
 
     return (
