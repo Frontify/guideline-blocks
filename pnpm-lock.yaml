@@ -560,12 +560,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.23)
-      cypress:
-        specifier: ^15.13.0
-        version: 15.13.1
-      cypress-real-events:
-        specifier: ^1.15.0
-        version: 1.15.0(cypress@15.13.1)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
