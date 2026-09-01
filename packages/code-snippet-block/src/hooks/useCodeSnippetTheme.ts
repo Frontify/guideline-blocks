@@ -12,7 +12,7 @@ type CodeSnippetTheme = {
     editorTheme: ReactCodeMirrorProps['theme'];
     headerStyle: CSSProperties;
     headerButtonStyle: CSSProperties;
-    headerSelectStyle: CSSProperties & Record<`--${string}`, string | undefined>;
+    headerSelectStyle: CSSProperties;
 };
 
 export const useCodeSnippetTheme = (theme: Theme): CodeSnippetTheme =>
@@ -30,6 +30,6 @@ export const useCodeSnippetTheme = (theme: Theme): CodeSnippetTheme =>
                 '--base-color': headerStyle.backgroundColor,
                 '--text-color': headerStyle.color,
                 '--line-color-xx-strong': setAlpha(0.8, headerStyle.color),
-            },
+            } as CSSProperties,
         };
     }, [theme]);
