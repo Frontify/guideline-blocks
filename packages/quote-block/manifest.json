@@ -75,15 +75,11 @@
             },
             "isCustomQuoteStyleLeft": {
                 "type": "boolean",
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
             "isCustomQuoteStyleRight": {
                 "type": "boolean",
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
@@ -103,8 +99,6 @@
                     "None",
                     "Custom"
                 ],
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
@@ -124,8 +118,6 @@
                     "None",
                     "Custom"
                 ],
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
