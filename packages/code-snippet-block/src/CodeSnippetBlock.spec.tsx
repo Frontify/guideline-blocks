@@ -9,10 +9,16 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
+import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
+
 vi.mock('./styles.css', () => ({}));
-vi.mock('@frontify/guideline-blocks-shared', () => ({
-    StyleProvider: ({ children }: { children: ReactNode }) => children,
-}));
+vi.mock('@frontify/guideline-blocks-shared', async () => {
+    const actual = await vi.importActual<typeof GuidelineBlocksShared>('@frontify/guideline-blocks-shared');
+    return {
+        ...actual,
+        StyleProvider: ({ children }: { children: ReactNode }) => children,
+    };
+});
 
 const CODE_SNIPPET_BLOCK_TEST_ID = 'code-snippet-block';
 const CODE_SNIPPET_HEADER_TEST_ID = 'code-snippet-header';
@@ -172,11 +178,11 @@ describe('Code Snippet Block', () => {
     it('should copy the content using the copy button without a header', async () => {
         const user = userEvent.setup();
         const content = `const counter = function() {
-        let count = 0;
-        return function() {
-            return ++count;
-        }
-    };`;
+         let count = 0;
+            return function() {
+               return ++count;
+            }
+        };`;
         renderCodeSnippetBlock({
             editorState: true,
             blockSettings: { language: 'javascript', content },

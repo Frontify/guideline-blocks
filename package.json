@@ -27,6 +27,7 @@
         "@4tw/cypress-drag-drop": "^2.3.1",
         "@babel/core": "^7.29.0",
         "@cypress/vite-dev-server": "^7.2.1",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.1",
         "@testing-library/jest-dom": "^6.9.1",
         "@testing-library/react": "^16.3.2",
         "@testing-library/user-event": "^14.6.6",
