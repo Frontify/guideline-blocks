@@ -4,8 +4,8 @@
 
 ### Requirements:
 
-- Node 24
-- [pnpm 10](https://pnpm.io/installation)
+- Node 26
+- [pnpm 11](https://pnpm.io/installation)
 - Access to a Frontify guideline
 
 ### Setup
