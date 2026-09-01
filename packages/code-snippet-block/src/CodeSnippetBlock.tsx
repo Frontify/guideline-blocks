@@ -10,7 +10,7 @@ import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
-import { type FC, useEffect, useMemo, useState } from 'react';
+import { type FC, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -24,14 +24,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
-    const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
+    const [pendingLanguage, setPendingLanguage] = useState<Language>();
+    const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
     const extensions = useCodeMirrorExtensions(selectedLanguage);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
-
-    useEffect(() => {
-        // oxlint-disable-next-line @eslint-react/set-state-in-effect
-        setSelectedLanguage(blockSettings.language ?? 'plain');
-    }, [blockSettings.language]);
 
     const {
         borderStyle,
@@ -60,10 +56,24 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
-    const handleLanguageChange = (value: Language) => {
-        setSelectedLanguage(value);
-        // oxlint-disable-next-line typescript/no-floating-promises
-        setBlockSettings({ language: value });
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(blockSettings.content || '');
+        setIsCopied(true);
+        setIsCopyTooltipOpen(true);
+        window.dispatchEvent(new Event('resize')); // trigger resize event to update alignment of the tooltip
+        debounce(() => {
+            setIsCopied(false);
+            window.dispatchEvent(new Event('resize'));
+        }, 2000)();
+    };
+
+    const handleLanguageChange = async (value: Language) => {
+        setPendingLanguage(value);
+        try {
+            await setBlockSettings({ language: value });
+        } finally {
+            setPendingLanguage(undefined);
+        }
     };
 
     return (
