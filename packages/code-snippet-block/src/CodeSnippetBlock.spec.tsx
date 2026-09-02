@@ -31,6 +31,7 @@ const TOOLTIP_CONTENT_TEST_ID = 'fondue-tooltip-content';
 const EDITOR_SELECTOR = '.cm-editor';
 const LINE_NUMBERS_SELECTOR = '.cm-lineNumbers';
 const LINE_TOKEN_SELECTOR = '.cm-line span';
+const LINE_SELECTOR = '.cm-line';
 
 const EXAMPLE_COLOR: Color = { red: 22, green: 181, blue: 181, name: 'Java' };
 
@@ -134,6 +135,28 @@ describe('Code Snippet Block', () => {
 
         expect(getComputedStyle(tokens[0]).color).toBe('#708');
         expect(getComputedStyle(tokens[1]).color).toBe('#00f');
+    });
+
+    it('should paint untokenized text in the foreground of the selected dark theme', () => {
+        const { container } = renderCodeSnippetBlock({
+            blockSettings: { theme: 'dracula', content: 'some plain text' },
+        });
+
+        const line = container.querySelector(LINE_SELECTOR);
+
+        expect(line).not.toBeNull();
+        expect(getComputedStyle(line as Element).color).toBe('#f8f8f2');
+    });
+
+    it('should paint untokenized text in black when the default theme is selected', () => {
+        const { container } = renderCodeSnippetBlock({
+            blockSettings: { theme: 'default', content: 'some plain text' },
+        });
+
+        const line = container.querySelector(LINE_SELECTOR);
+
+        expect(line).not.toBeNull();
+        expect(getComputedStyle(line as Element).color).toBe('#000000');
     });
 
     it('should switch the language from the dropdown inside the block', async () => {
