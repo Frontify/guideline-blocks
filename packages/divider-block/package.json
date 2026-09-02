@@ -30,13 +30,13 @@
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
-        "autoprefixer": "^10.4.27",
+        "autoprefixer": "^10.5.4",
         "eslint-plugin-tailwindcss": "^3.18.3",
         "oxfmt": "^0.52.0",
-        "oxlint": "^1.74.0",
-        "oxlint-tsgolint": "^0.24.0",
-        "postcss": "^8.5.8",
+        "oxlint": "^1.80.0",
+        "oxlint-tsgolint": "^7.0.2001",
+        "postcss": "^8.5.26",
         "tailwindcss": "^3.4.17",
-        "typescript": "^6.0.2"
+        "typescript": "^6.0.3"
     }
 }
