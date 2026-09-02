@@ -16,9 +16,7 @@ export const useCodeMirrorExtensions = (selectedLanguage: Language, selectedThem
             extensions.push(langs[selectedLanguage]());
         }
 
-        // Shields the editor from typography inherited from the guideline theme. The colour has to be
-        // the selected scheme's own foreground: `initial` would resolve to black and make every dark
-        // scheme unreadable, while leaving it out lets the guideline's body colour bleed in.
+        // Prevent inherited typography from overriding CodeMirror token styling.
         extensions.push(
             EditorView.theme({
                 '&.cm-editor': {

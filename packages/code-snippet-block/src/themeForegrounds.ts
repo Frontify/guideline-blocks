@@ -22,16 +22,8 @@ import {
 
 import { type Theme } from './types';
 
-/**
- * CodeMirror's built-in light theme sets no foreground of its own, so the "Default theme" choice
- * falls back to the same black the browser would paint.
- */
 const DEFAULT_THEME_FOREGROUND = '#000000';
 
-/**
- * The foreground each colour scheme paints its code in. Taken from the theme packages themselves so
- * the values cannot drift away from what CodeMirror actually renders.
- */
 export const themeForegrounds: Record<Theme, string> = {
     default: DEFAULT_THEME_FOREGROUND,
     abcdef: defaultSettingsAbcdef.foreground ?? DEFAULT_THEME_FOREGROUND,
