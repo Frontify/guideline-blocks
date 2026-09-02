@@ -21,7 +21,7 @@
         "@dnd-kit/utilities": "^3.2.2",
         "@frontify/app-bridge": "^4.0.0-alpha.68",
         "@frontify/fondue": "13.7.8",
-        "@frontify/guideline-blocks-settings": "4.0.0-alpha.1",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"

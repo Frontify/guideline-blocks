@@ -26,3 +26,5 @@ allowBuilds:
   es5-ext: false
   esbuild: true
   msw: true
+minimumReleaseAgeExclude:
+  - '@frontify/guideline-blocks-settings@4.0.0-alpha.2'
