@@ -32,7 +32,6 @@
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
-        "@types/sinon": "^21.0.0",
         "autoprefixer": "^10.5.4",
         "eslint-plugin-tailwindcss": "^3.18.3",
         "oxfmt": "^0.52.0",

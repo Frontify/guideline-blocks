@@ -19,6 +19,7 @@
         "@frontify/fondue": "13.7.8",
         "@frontify/guideline-blocks-settings": "4.0.0-alpha.1",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "@react-aria/interactions": "^3.28.1",
         "lodash-es": "^4.18.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
@@ -28,7 +29,6 @@
         "@frontify/frontify-cli": "^6.2.6",
         "@frontify/oxfmt-config": "^0.0.2",
         "@frontify/oxlint-config-react": "^0.0.2",
-        "@react-aria/interactions": "^3.27.1",
         "@testing-library/user-event": "^14.6.6",
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/lodash-es": "^4.17.12",

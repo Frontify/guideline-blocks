@@ -17,6 +17,7 @@
         "@frontify/app-bridge": "^4.0.0-alpha.68",
         "@frontify/fondue": "13.7.8",
         "@frontify/guideline-blocks-settings": "4.0.0-alpha.1",
+        "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
@@ -25,7 +26,6 @@
         "@frontify/frontify-cli": "^6.2.6",
         "@frontify/oxfmt-config": "^0.0.2",
         "@frontify/oxlint-config-react": "^0.0.2",
-        "@frontify/guideline-blocks-shared": "workspace:*",
         "@tony.ganchev/eslint-plugin-header": "^3.4.4",
         "@types/react": "^18.3.27",
         "@types/react-dom": "^18.3.7",
@@ -36,7 +36,6 @@
         "oxlint": "^1.80.0",
         "oxlint-tsgolint": "^7.0.2001",
         "postcss": "^8.5.26",
-        "sinon": "^21.0.3",
         "tailwindcss": "^3.4.17",
         "typescript": "^6.0.3"
     }
