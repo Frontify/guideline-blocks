@@ -25,7 +25,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [contentValue] = useState(blockSettings.content);
     const [pendingLanguage, setPendingLanguage] = useState<Language>();
     const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
-    const extensions = useCodeMirrorExtensions(selectedLanguage);
     const [isCopied, setIsCopied] = useState(false);
     const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
