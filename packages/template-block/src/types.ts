@@ -45,15 +45,6 @@ export type Settings = {
     hasBackground: boolean;
     backgroundColor: Color | null;
 
-    hasColor_title: boolean;
-    colorValue_title: Color;
-
-    hasColor_description: boolean;
-    colorValue_description: Color;
-
-    hasColor_pages: boolean;
-    colorValue_pages: Color;
-
     hasBorder_blockCard: boolean;
     borderWidth_blockCard: string;
     borderStyle_blockCard: BorderStyle;
