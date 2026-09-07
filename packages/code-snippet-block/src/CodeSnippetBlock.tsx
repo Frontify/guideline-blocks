@@ -40,6 +40,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
+    const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
 
     const getCopyButtonText = () =>
         isCopied ? (
