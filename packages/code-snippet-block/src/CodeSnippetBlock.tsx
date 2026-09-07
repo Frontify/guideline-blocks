@@ -24,8 +24,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
-    const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
-    const extensions = useCodeMirrorExtensions(selectedLanguage);
+    const [pendingLanguage, setPendingLanguage] = useState<Language>();
+    const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
+    const [isCopied, setIsCopied] = useState(false);
+    const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
     
     useEffect(() => {
@@ -43,6 +45,8 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         theme = 'default',
     } = blockSettings;
 
+    const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
+
     const getTheme = () => {
         if (theme !== 'default' && Object.keys(themes).includes(theme)) {
             return themes[theme];
@@ -50,7 +54,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         return 'light';
     };
 
-    const getStyle = () => headerThemes[blockSettings.theme ?? 'default'];
+    const getStyle = () => headerThemes[theme];
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius

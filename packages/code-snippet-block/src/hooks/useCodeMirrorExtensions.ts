@@ -5,9 +5,10 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import { type Extension } from '@uiw/react-codemirror';
 import { useMemo } from 'react';
 
-import { type Language } from '../types';
+import { themeForegrounds } from '../themeForegrounds';
+import { type Language, type Theme } from '../types';
 
-export const useCodeMirrorExtensions = (selectedLanguage: Language): Extension[] =>
+export const useCodeMirrorExtensions = (selectedLanguage: Language, selectedTheme: Theme): Extension[] =>
     useMemo(() => {
         const extensions: Extension[] = [];
 
@@ -23,10 +24,10 @@ export const useCodeMirrorExtensions = (selectedLanguage: Language): Extension[]
                 },
                 '.cm-content, .cm-line': {
                     letterSpacing: 'normal',
-                    color: 'initial',
+                    color: themeForegrounds[selectedTheme],
                 },
             })
         );
 
         return extensions;
-    }, [selectedLanguage]);
+    }, [selectedLanguage, selectedTheme]);
