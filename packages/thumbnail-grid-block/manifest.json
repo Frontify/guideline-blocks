@@ -1,14 +1,198 @@
 {
     "appId": "cle7bmsg70001c1w4wmz5c5j3",
-    "i18nFields": ["items"],
-    "searchFields": [
-        {
-            "settingId": "items.title",
-            "type": "fondueRte"
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dotted", "Dashed"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "sizeChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "gutterChoice": {
+                "type": "string",
+                "enum": ["Auto", "S", "M", "L"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "pixelValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "percentValue": {
+                "type": "string",
+                "pattern": "^([0-9]+%|auto)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
         },
-        {
-            "settingId": "items.description",
-            "type": "fondueRte"
+        "required": [
+            "columnCount",
+            "hasCustomSpacing",
+            "spacingChoice",
+            "imagePosition",
+            "hasCustomImageWidth",
+            "imageWidthPreset",
+            "verticalImageAlignment",
+            "horizontalImageAlignment",
+            "hasBackground",
+            "hasBorder",
+            "borderStyle",
+            "borderWidth",
+            "hasRadius",
+            "radiusChoice",
+            "security",
+            "assetViewerEnabled",
+            "items"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "columnCount": {
+                "type": "string",
+                "enum": ["1", "2", "3", "4", "5"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "hasCustomSpacing": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "spacingCustom": { "$ref": "#/$defs/pixelValue" },
+            "spacingChoice": { "$ref": "#/$defs/gutterChoice" },
+
+            "imagePosition": {
+                "type": "string",
+                "enum": ["Below", "Above", "Right", "Left"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "hasCustomImageWidth": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "customImageWidth": { "$ref": "#/$defs/percentValue" },
+            "imageWidthPreset": {
+                "type": "string",
+                "enum": ["25%", "33%", "50%", "75%"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "verticalImageAlignment": {
+                "type": "string",
+                "enum": ["start", "center", "end"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "horizontalImageAlignment": {
+                "type": "string",
+                "enum": ["left", "center", "right"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "hasBackground": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "backgroundColor": { "$ref": "#/$defs/color" },
+
+            "hasBorder": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle": { "$ref": "#/$defs/borderStyle" },
+            "borderWidth": { "$ref": "#/$defs/pixelValue" },
+            "borderColor": { "$ref": "#/$defs/color" },
+
+            "hasRadius": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "radiusChoice": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue": { "$ref": "#/$defs/pixelValue" },
+
+            "security": {
+                "type": "string",
+                "enum": ["Global", "Custom"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "assetViewerEnabled": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["id"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "frontify-api-read": true,
+                            "frontify-api-write": true,
+                            "frontify-translatable": true,
+                            "frontify-machine-translatable": false
+                        },
+                        "title": {
+                            "type": "string",
+                            "frontify-type": "fondueRte",
+                            "frontify-serializable": true,
+                            "frontify-serialization-index": 1,
+                            "frontify-translatable": true,
+                            "frontify-api-read": true,
+                            "frontify-api-write": true
+                        },
+                        "description": {
+                            "type": "string",
+                            "frontify-type": "fondueRte",
+                            "frontify-serializable": true,
+                            "frontify-serialization-index": 2,
+                            "frontify-translatable": true,
+                            "frontify-api-read": true,
+                            "frontify-api-write": true
+                        },
+                        "altText": {
+                            "type": "string",
+                            "frontify-translatable": true,
+                            "frontify-api-read": true,
+                            "frontify-api-write": true
+                        }
+                    }
+                }
+            }
         }
-    ]
+    }
 }
