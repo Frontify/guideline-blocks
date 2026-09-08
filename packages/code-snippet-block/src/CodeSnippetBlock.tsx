@@ -39,17 +39,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
 
-    const getCopyButtonText = () =>
-        isCopied ? (
-            <>
-                <IconCheckMark size={16} /> Copied
-            </>
-        ) : (
-            <>
-                <IconClipboard size={16} /> Copy
-            </>
-        );
-
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
@@ -109,10 +98,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 testId="header-copy-button"
                                 className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                                 style={headerButtonStyle}
-                                onClick={handleCopy}
-                            >
-                                {getCopyButtonText()}
-                            </button>
+                            />
                         </div>
                     )}
                     <CodeMirror
@@ -138,34 +124,19 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     {!withHeading && (
                         <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                             {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
-                                <Tooltip.Root
-                                    open={isCopyTooltipOpen}
-                                    onOpenChange={setIsCopyTooltipOpen}
-                                    enterDelay={0}
-                                >
-                                    <Tooltip.Trigger>
-                                        <button
-                                            type="button"
-                                            data-test-id="copy-button"
-                                            className="tw-p-2 tw-rounded-md"
-                                            style={headerStyle}
-                                            onClick={handleCopy}
-                                        >
-                                            {isCopied ? <IconCheckMark /> : <IconClipboard />}
-                                        </button>
-                                    </Tooltip.Trigger>
-                                    <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
-                                </Tooltip.Root>
+                                <CopyButton
+                                    content={blockSettings.content}
+                                    testId="copy-button"
+                                    className="tw-p-2 tw-rounded-md"
+                                    style={headerStyle}
+                                    withTooltip
+                                />
                             ) : (
                                 <CopyButton
                                     content={blockSettings.content || ''}
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
                                     style={headerStyle}
-                                    onClick={handleCopy}
-                                    aria-live="assertive"
-                                >
-                                    {getCopyButtonText()}
-                                </button>
+                                />
                             )}
                         </div>
                     )}
