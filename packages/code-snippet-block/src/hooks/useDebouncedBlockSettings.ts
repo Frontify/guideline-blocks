@@ -4,6 +4,7 @@ import debounce from 'lodash-es/debounce';
 import { useEffect, useMemo, useRef } from 'react';
 
 const DEFAULT_DEBOUNCE_DELAY = 500;
+
 type SetBlockSettings<T> = (newSettings: Partial<T>) => Promise<void>;
 
 export const useDebouncedBlockSettings = <T>(setBlockSettings: SetBlockSettings<T>, delay = DEFAULT_DEBOUNCE_DELAY) => {
