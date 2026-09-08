@@ -1,25 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { type Palette } from '@frontify/fondue';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Divider } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type MouseEvent, type ReactElement, useEffect, useRef, useState } from 'react';
+import { type MouseEvent, type ReactElement, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss, toHex6or8String } from './helpers';
-import { mapAppBridgeColorPalettesToFonduePalettes } from './helpers/mapColorPalettes';
 import { type GradientColor, type Settings, gradientHeightValues, gradientOrientationValues } from './types';
 
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const {
         gradientColors,
         isOrientationCustom,
@@ -35,10 +31,6 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState<number>(0);
     const [showAddButton, setShowAddButton] = useState<boolean>(false);
     const [showColorModal, setShowColorModal] = useState<boolean>(false);
-
-    useEffect(() => {
-        setColorPickerPalettes(mapAppBridgeColorPalettesToFonduePalettes(colorPalettes));
-    }, [colorPalettes, appBridge]);
 
     if (!gradientColors) {
         // oxlint-disable-next-line typescript/no-floating-promises
@@ -115,7 +107,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                         {showColorModal && gradientColors !== undefined && (
                             <ColorFlyout
-                                colorPalettes={colorPickerPalettes}
+                                appBridge={appBridge}
                                 currentlyEditingPosition={currentlyEditingPosition}
                                 gradientColors={gradientColors}
                                 showColorModal={showColorModal}
