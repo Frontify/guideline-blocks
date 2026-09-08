@@ -39,10 +39,26 @@ describe('useCodeSnippetTheme', () => {
         expect(result.current.headerButtonStyle).toEqual({ backgroundColor: '#282a36', color: '#f8f8f2' });
     });
 
+    it('should return the header style of the default theme', () => {
+        const { result } = renderCodeSnippetTheme('default');
+
+        expect(result.current.headerStyle).toEqual({ backgroundColor: '#f5f5f5', color: '#6c6c6c' });
+    });
+
     it('should paint the header button black when the default theme is selected', () => {
         const { result } = renderCodeSnippetTheme('default');
 
         expect(result.current.headerButtonStyle).toEqual({ backgroundColor: '#f5f5f5', color: '#000000' });
+    });
+
+    it('should expose the default header colors as custom properties for the select', () => {
+        const { result } = renderCodeSnippetTheme('default');
+
+        expect(result.current.headerSelectStyle).toEqual({
+            '--base-color': '#f5f5f5',
+            '--text-color': '#6c6c6c',
+            '--line-color-xx-strong': 'rgba(108, 108, 108, 0.8)',
+        });
     });
 
     it('should expose the header colors as custom properties for the select', () => {
