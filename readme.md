@@ -33,3 +33,22 @@
 7. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
 8. Choose port (default is 5600) and click OK
+
+## Releasing
+
+Merging to `main` deploys and publishes every affected block to the Frontify Marketplace.
+There are no version numbers to bump -- the marketplace tracks its own version per app, and
+this repo tracks only what was last published, as one `released/<block>` git tag each.
+
+Most merges need nothing from you: change detection picks the blocks up and falls back to
+the commit subjects for the changelog. Add an entry when you want to write the changelog
+yourself, or force blocks into the release that the diff would miss:
+
+```sh
+cd packages/audio-block && pnpm release   # this block
+pnpm release                              # repo root: one changelog, every block
+pnpm release:plan                         # preview what the next merge would publish
+```
+
+See [`.releases/README.md`](./.releases/README.md) for the entry format and the full
+selection rules.
