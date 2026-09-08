@@ -8,6 +8,7 @@ export { ResponsiveImage } from './components/ResponsiveImage/ResponsiveImage';
 export { DownloadButton } from './components/DownloadButton/DownloadButton';
 export { ImageFormat } from './types';
 
+export { useCopy } from './hooks/useCopy';
 export { useImageContainer } from './hooks/useImageContainer';
 export { generateRandomId } from './utils/generateRandomId';
 export { useDndSensors } from './hooks/useDndSensors';

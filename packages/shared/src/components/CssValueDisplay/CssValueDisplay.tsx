@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { css } from '@codemirror/lang-css';
-import { useCopy } from '@frontify/fondue';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import CodeMirror from '@uiw/react-codemirror';
 // oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
+
+import { useCopy } from '../../hooks/useCopy';
 
 import { type CssValueDisplayProps } from './types';
 
