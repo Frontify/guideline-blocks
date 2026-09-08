@@ -18,6 +18,7 @@ import blockScope from '../block-scope.json';
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { headerThemes } from './headerThemes';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
+import { useDebouncedBlockSettings } from './hooks/useDebouncedBlockSettings';
 import { type Language, type Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -41,6 +42,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
+    const debouncedSetBlockSettings = useDebouncedBlockSettings(setBlockSettings);
 
     const getTheme = () => {
         if (theme !== 'default' && Object.keys(themes).includes(theme)) {
@@ -68,7 +70,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
-    const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
+    const handleChange = (value: string) => debouncedSetBlockSettings({ content: value });
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(blockSettings.content || '');
