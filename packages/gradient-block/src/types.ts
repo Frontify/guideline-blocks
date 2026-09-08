@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Color, type Palette } from '@frontify/fondue';
+import { type AppBridgeBlock } from '@frontify/app-bridge';
+import { type Color } from '@frontify/fondue';
 
 export enum GradientHeight {
     Small = 's',
@@ -61,7 +62,7 @@ export type SquareBadgeProps = {
 };
 
 export type ColorFlyoutProps = {
-    colorPalettes: Palette[];
+    appBridge: AppBridgeBlock;
     gradientColors: GradientColor[];
     currentlyEditingPosition: number;
     showColorModal: boolean;

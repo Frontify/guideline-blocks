@@ -3,17 +3,38 @@
 import { SegmentedControl, TextInput } from '@frontify/fondue/components';
 import { IconCheckMark, IconGridRegular, IconMagnifier, IconStackVertical } from '@frontify/fondue/icons';
 import debounce from 'lodash-es/debounce';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { type Palette, type RgbaColorWithName } from '../types';
 
 import { areColorsEqual, fromGraphQLColorToCssColor, isColorLight, toRgbFunction } from './utils';
+
+const SEARCH_DEBOUNCE_MS = 200;
 
 type BrandColorView = 'grid' | 'list';
 type BrandColorPickerProps = {
     palettes?: Palette[];
     currentColor?: RgbaColorWithName;
     onColorChange?: (color: RgbaColorWithName) => void;
+};
+
+const filterPalettes = (palettes: Palette[], query: string): Palette[] => {
+    if (query === '') {
+        return palettes;
+    }
+
+    const normalizedQuery = query.toLowerCase();
+    return palettes
+        .map((palette) => {
+            if (palette.title.toLowerCase().includes(normalizedQuery)) {
+                return palette;
+            }
+            return {
+                ...palette,
+                colors: palette.colors.filter((color) => color.name?.toLowerCase().includes(normalizedQuery)),
+            };
+        })
+        .filter((palette) => palette.colors.length > 0);
 };
 
 export const BrandColorPicker = ({
@@ -23,29 +44,15 @@ export const BrandColorPicker = ({
     ...props
 }: BrandColorPickerProps) => {
     const [view, setView] = useState<BrandColorView>('grid');
-    const [filteredPalettes, setFilteredPalettes] = useState(palettes);
+    const [query, setQuery] = useState('');
+    const filteredPalettes = useMemo(() => filterPalettes(palettes, query), [palettes, query]);
 
     // oxlint-disable-next-line @eslint-react/exhaustive-deps
     const handleQueryChange = useCallback(
         debounce((event: React.ChangeEvent<HTMLInputElement>) => {
-            const query = event.target.value;
-            setFilteredPalettes(
-                palettes
-                    .map((palette) => {
-                        if (palette.title.toLowerCase().includes(query.toLowerCase())) {
-                            return palette;
-                        }
-                        return {
-                            ...palette,
-                            colors: palette.colors.filter((color) =>
-                                color.name?.toLowerCase().includes(query.toLowerCase())
-                            ),
-                        };
-                    })
-                    .filter((palette) => palette.colors.length > 0)
-            );
-        }, 200),
-        [palettes, setFilteredPalettes]
+            setQuery(event.target.value);
+        }, SEARCH_DEBOUNCE_MS),
+        []
     );
 
     return (

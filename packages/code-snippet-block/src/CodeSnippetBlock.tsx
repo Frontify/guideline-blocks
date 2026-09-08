@@ -3,11 +3,10 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Select } from '@frontify/fondue/components';
 import { merge } from '@frontify/fondue/rte';
-import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import './styles.css';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
 import { type FC, useMemo, useState } from 'react';
@@ -16,8 +15,8 @@ import blockScope from '../block-scope.json';
 
 import { CopyButton } from './components/CopyButton';
 import { DEFAULT_BORDER_COLOR } from './constants';
-import { headerThemes } from './headerThemes';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
+import { useCodeSnippetTheme } from './hooks/useCodeSnippetTheme';
 import { type Language, type Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -37,16 +36,19 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         theme = 'default',
     } = blockSettings;
 
+    const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
 
-    const getTheme = () => {
-        if (theme !== 'default' && Object.keys(themes).includes(theme)) {
-            return themes[theme];
-        }
-        return 'light';
-    };
-
-    const getStyle = () => headerThemes[theme];
+    const getCopyButtonText = () =>
+        isCopied ? (
+            <>
+                <IconCheckMark size={16} /> Copied
+            </>
+        ) : (
+            <>
+                <IconClipboard size={16} /> Copy
+            </>
+        );
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -84,20 +86,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         <div
                             data-test-id="code-snippet-header"
                             className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
-                            style={{ ...getStyle(), letterSpacing: 'normal' }}
+                            style={{ ...headerStyle, letterSpacing: 'normal' }}
                         >
                             {isEditing ? (
-                                <div
-                                    id={labelId}
-                                    className="tw-max-w-[150px]"
-                                    style={
-                                        {
-                                            '--base-color': getStyle().backgroundColor,
-                                            '--text-color': getStyle().color,
-                                            '--line-color-xx-strong': setAlpha(0.8, getStyle().color),
-                                        } as React.CSSProperties
-                                    }
-                                >
+                                <div id={labelId} className="tw-max-w-[150px]" style={headerSelectStyle}>
                                     <Select
                                         value={selectedLanguage}
                                         onSelect={(value) => handleLanguageChange(value as Language)}
@@ -116,15 +108,15 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 content={blockSettings.content || ''}
                                 testId="header-copy-button"
                                 className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                                style={{
-                                    ...getStyle(),
-                                    color: blockSettings.theme === 'default' ? '#000000' : getStyle().color,
-                                }}
-                            />
+                                style={headerButtonStyle}
+                                onClick={handleCopy}
+                            >
+                                {getCopyButtonText()}
+                            </button>
                         </div>
                     )}
                     <CodeMirror
-                        theme={getTheme()}
+                        theme={editorTheme}
                         value={contentValue}
                         extensions={extensions}
                         onChange={handleChange}
@@ -146,19 +138,34 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     {!withHeading && (
                         <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                             {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
-                                <CopyButton
-                                    content={blockSettings.content || ''}
-                                    testId="copy-button"
-                                    className="tw-p-2 tw-rounded-md"
-                                    style={getStyle()}
-                                    withTooltip
-                                />
+                                <Tooltip.Root
+                                    open={isCopyTooltipOpen}
+                                    onOpenChange={setIsCopyTooltipOpen}
+                                    enterDelay={0}
+                                >
+                                    <Tooltip.Trigger>
+                                        <button
+                                            type="button"
+                                            data-test-id="copy-button"
+                                            className="tw-p-2 tw-rounded-md"
+                                            style={headerStyle}
+                                            onClick={handleCopy}
+                                        >
+                                            {isCopied ? <IconCheckMark /> : <IconClipboard />}
+                                        </button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
+                                </Tooltip.Root>
                             ) : (
                                 <CopyButton
                                     content={blockSettings.content || ''}
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
-                                    style={getStyle()}
-                                />
+                                    style={headerStyle}
+                                    onClick={handleCopy}
+                                    aria-live="assertive"
+                                >
+                                    {getCopyButtonText()}
+                                </button>
                             )}
                         </div>
                     )}
