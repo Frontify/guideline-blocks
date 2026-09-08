@@ -24,7 +24,7 @@ export const CopyButton: FC<CopyButtonProps> = ({ content, className, style, wit
         await navigator.clipboard.writeText(content);
         setIsCopied(true);
         setIsTooltipOpen(true);
-        window.dispatchEvent(new Event('resize')); // trigger resize event to update alignment of the tooltip
+        window.dispatchEvent(new Event('resize')); 
         debounce(() => {
             setIsCopied(false);
             window.dispatchEvent(new Event('resize'));

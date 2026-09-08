@@ -147,7 +147,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                             {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
                                 <CopyButton
-                                    content={blockSettings.content}
+                                    content={blockSettings.content || ''}
                                     testId="copy-button"
                                     className="tw-p-2 tw-rounded-md"
                                     style={getStyle()}
