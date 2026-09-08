@@ -27,7 +27,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [pendingLanguage, setPendingLanguage] = useState<Language>();
     const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
-
     const {
         borderStyle,
         borderWidth,
