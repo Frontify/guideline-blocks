@@ -1,20 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join, relative, sep } from 'node:path';
-
-import { git } from './git.mjs';
+import { dirname, join, relative, sep } from 'node:path';
 
 export const PACKAGES_DIR = 'packages';
-export const SHARED_PATH = 'packages/shared';
 
-/**
- * Paths outside any workspace package that still end up in every block bundle.
- * pnpm's dependency graph cannot see these, so they are tracked explicitly.
- */
-export const GLOBAL_TRIGGER_PATHS = ['postcss/', 'pnpm-workspace.yaml', 'tailwind.config.js', 'postcss.config.js'];
+/** Walks up from `startPath` to the directory holding the pnpm workspace file. */
+export const findRepoRoot = (startPath) => {
+    let current = startPath;
 
-export const findRepoRoot = () => git(['rev-parse', '--show-toplevel']);
+    while (!existsSync(join(current, 'pnpm-workspace.yaml'))) {
+        const parent = dirname(current);
+        if (parent === current) {
+            throw new Error('Could not find the repository root (no pnpm-workspace.yaml in any parent directory).');
+        }
+        current = parent;
+    }
+
+    return current;
+};
 
 /**
  * A block is any package under `packages/` carrying a marketplace manifest with an `appId`.
@@ -41,8 +45,8 @@ export const discoverBlocks = (repoRoot) => {
 };
 
 /**
- * Resolve the block the caller is standing in, so `pnpm release` inside a block
- * package needs no arguments.
+ * Resolve the block the caller is standing in, so `pnpm release` inside a block package
+ * needs no arguments.
  *
  * @returns {string | undefined}
  */

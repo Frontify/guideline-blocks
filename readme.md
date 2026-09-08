@@ -36,19 +36,18 @@
 
 ## Releasing
 
-Merging to `main` deploys and publishes every affected block to the Frontify Marketplace.
-There are no version numbers to bump -- the marketplace tracks its own version per app, and
-this repo tracks only what was last published, as one `released/<block>` git tag each.
-
-Most merges need nothing from you: change detection picks the blocks up and falls back to
-the commit subjects for the changelog. Add an entry when you want to write the changelog
-yourself, or force blocks into the release that the diff would miss:
+Merging to `main` publishes exactly the blocks that have a release entry in
+[`.releases`](./.releases/README.md), and nothing else. No entry, no release.
 
 ```sh
 cd packages/audio-block && pnpm release   # this block
 pnpm release                              # repo root: one changelog, every block
-pnpm release:plan                         # preview what the next merge would publish
+pnpm release:plan                         # preview what the next merge publishes
 ```
 
-See [`.releases/README.md`](./.releases/README.md) for the entry format and the full
-selection rules.
+`pnpm release` asks for the changelog text and writes a small file to `.releases`, which you
+commit with your change. CI reads it on merge, deploys and publishes each block named, and
+deletes the file.
+
+There are no version numbers to bump -- the marketplace assigns its own version per app on
+every deploy.
