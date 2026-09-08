@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Asset, type TemplateLegacy } from '@frontify/app-bridge';
+import { type Asset } from '@frontify/app-bridge';
 import { type Color } from '@frontify/fondue';
 import { type BorderStyle, Padding, type Radius, type RichTextButtonStyle } from '@frontify/guideline-blocks-settings';
 
@@ -9,8 +9,6 @@ export type Settings = {
     description: string;
 
     // Basics
-    template?: TemplateLegacy;
-    templateId?: number;
     templateEditing: TemplateEditing;
     preview: PreviewType;
     previewCustom?: Asset;

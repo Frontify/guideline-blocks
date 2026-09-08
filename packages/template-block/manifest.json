@@ -120,18 +120,6 @@
                 "frontify-api-write": true
             },
             "altText": { "type": "string", "frontify-api-read": true, "frontify-api-write": true },
-            "template": {
-                "type": ["null", "object"],
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
-                "frontify-api-read": true
-            },
-            "templateId": {
-                "type": "integer",
-                "frontify-translatable": true,
-                "frontify-machine-translatable": false,
-                "frontify-api-read": true
-            },
             "preview": {
                 "type": "string",
                 "enum": ["none", "template", "custom"],
