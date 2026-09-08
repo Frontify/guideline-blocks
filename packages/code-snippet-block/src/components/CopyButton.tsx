@@ -2,10 +2,8 @@
 
 import { Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
-import debounce from 'lodash-es/debounce';
-import { type CSSProperties, type FC, useState } from 'react';
-
-const COPIED_STATE_DURATION = 2000;
+import { useCopy } from '@frontify/guideline-blocks-shared';
+import { type CSSProperties, type FC, useEffect, useState } from 'react';
 
 type CopyButtonProps = {
     content: string;
@@ -17,18 +15,21 @@ type CopyButtonProps = {
 };
 
 export const CopyButton: FC<CopyButtonProps> = ({ content, className, style, withTooltip = false, testId }) => {
-    const [isCopied, setIsCopied] = useState(false);
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+    const { copy, status } = useCopy();
+    const isCopied = status === 'success';
+
+    useEffect(() => {
+        if (!isTooltipOpen) {
+            return;
+        }
+
+        window.dispatchEvent(new Event('resize'));
+    }, [isCopied, isTooltipOpen]);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(content);
-        setIsCopied(true);
+        await copy(content);
         setIsTooltipOpen(true);
-        window.dispatchEvent(new Event('resize')); 
-        debounce(() => {
-            setIsCopied(false);
-            window.dispatchEvent(new Event('resize'));
-        }, COPIED_STATE_DURATION)();
     };
 
     if (withTooltip) {
