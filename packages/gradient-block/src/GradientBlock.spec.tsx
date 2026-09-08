@@ -38,8 +38,7 @@ const HORIZONTAL_GRADIENT = 'linear-gradient(90deg, #ffffff 0%, #000000 25%, #ff
 const HORIZONTAL_GRADIENT_WITH_OPACITY = 'linear-gradient(90deg, #ffffff 0%, #00000080 25%, #ffffff 100%)';
 const HORIZONTAL_GRADIENT_AFTER_DELETE = 'linear-gradient(90deg, #ffffff 0%, #ffffff 100%)';
 const VERTICAL_GRADIENT = 'linear-gradient(0deg, #ffffff 0%, #000000 25%, #ffffff 100%)';
-const CUSTOM_ORIENTATION_GRADIENT =
-    'linear-gradient(45deg, #ffffff 0%, #000000 25%, #ffffff 100%)';
+const CUSTOM_ORIENTATION_GRADIENT = 'linear-gradient(45deg, #ffffff 0%, #000000 25%, #ffffff 100%)';
 
 const gradientColors = [
     {
@@ -125,9 +124,7 @@ describe('Gradient Block', () => {
             blockSettings: { gradientColors },
         });
 
-        expect(screen.getByTestId(GRADIENT_BLOCK_DISPLAY_TEST_ID)).toHaveStyle(
-            expectedBackground(HORIZONTAL_GRADIENT)
-        );
+        expect(screen.getByTestId(GRADIENT_BLOCK_DISPLAY_TEST_ID)).toHaveStyle(expectedBackground(HORIZONTAL_GRADIENT));
     });
 
     it('should render three square badges', async () => {
@@ -203,6 +200,14 @@ describe('Gradient Block', () => {
         await waitFor(() => {
             expect(badge.querySelector(`[data-test-id="${SQUARE_BADGE_CHECKMARK_TEST_ID}"]`)).toBeInTheDocument();
         });
+    });
+
+    it('should not load color palettes in view mode', () => {
+        const { appBridge } = renderGradientBlock({
+            blockSettings: { gradientColors },
+        });
+
+        expect(appBridge.getColorPalettesWithColors.called).toBe(false);
     });
 
     it('should not load color palettes on render', () => {
@@ -323,9 +328,7 @@ describe('Gradient Block', () => {
             },
         });
 
-        expect(screen.getByTestId(GRADIENT_BLOCK_DISPLAY_TEST_ID)).toHaveStyle(
-            expectedBackground(HORIZONTAL_GRADIENT)
-        );
+        expect(screen.getByTestId(GRADIENT_BLOCK_DISPLAY_TEST_ID)).toHaveStyle(expectedBackground(HORIZONTAL_GRADIENT));
     });
 
     it('should use a vertical gradient orientation', async () => {
