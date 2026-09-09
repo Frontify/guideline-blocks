@@ -4,36 +4,30 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Select, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
-import { type BlockProps, radiusStyleMap, setAlpha, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import './styles.css';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
-import { type FC, useEffect, useMemo, useState } from 'react';
+import { type FC, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
 import { DEFAULT_BORDER_COLOR } from './constants';
-import { headerThemes } from './headerThemes';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
+import { useCodeSnippetTheme } from './hooks/useCodeSnippetTheme';
 import { type Language, type Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
-    const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
-    const extensions = useCodeMirrorExtensions(selectedLanguage);
+    const [pendingLanguage, setPendingLanguage] = useState<Language>();
+    const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
     const [isCopied, setIsCopied] = useState(false);
     const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
-
-    useEffect(() => {
-        // oxlint-disable-next-line @eslint-react/set-state-in-effect
-        setSelectedLanguage(blockSettings.language ?? 'plain');
-    }, [blockSettings.language]);
 
     const {
         borderStyle,
@@ -45,14 +39,8 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         theme = 'default',
     } = blockSettings;
 
-    const getTheme = () => {
-        if (theme !== 'default' && Object.keys(themes).includes(theme)) {
-            return themes[theme];
-        }
-        return 'light';
-    };
-
-    const getStyle = () => headerThemes[blockSettings.theme ?? 'default'];
+    const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
+    const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
 
     const getCopyButtonText = () =>
         isCopied ? (
@@ -84,10 +72,13 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         }, 2000)();
     };
 
-    const handleLanguageChange = (value: Language) => {
-        setSelectedLanguage(value);
-        // oxlint-disable-next-line typescript/no-floating-promises
-        setBlockSettings({ language: value });
+    const handleLanguageChange = async (value: Language) => {
+        setPendingLanguage(value);
+        try {
+            await setBlockSettings({ language: value });
+        } finally {
+            setPendingLanguage(undefined);
+        }
     };
 
     return (
@@ -109,20 +100,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         <div
                             data-test-id="code-snippet-header"
                             className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
-                            style={{ ...getStyle(), letterSpacing: 'normal' }}
+                            style={{ ...headerStyle, letterSpacing: 'normal' }}
                         >
                             {isEditing ? (
-                                <div
-                                    id={labelId}
-                                    className="tw-max-w-[150px]"
-                                    style={
-                                        {
-                                            '--base-color': getStyle().backgroundColor,
-                                            '--text-color': getStyle().color,
-                                            '--line-color-xx-strong': setAlpha(0.8, getStyle().color),
-                                        } as React.CSSProperties
-                                    }
-                                >
+                                <div id={labelId} className="tw-max-w-[150px]" style={headerSelectStyle}>
                                     <Select
                                         value={selectedLanguage}
                                         onSelect={(value) => handleLanguageChange(value as Language)}
@@ -141,10 +122,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 type="button"
                                 data-test-id="header-copy-button"
                                 className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                                style={{
-                                    ...getStyle(),
-                                    color: blockSettings.theme === 'default' ? '#000000' : getStyle().color,
-                                }}
+                                style={headerButtonStyle}
                                 onClick={handleCopy}
                             >
                                 {getCopyButtonText()}
@@ -152,7 +130,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         </div>
                     )}
                     <CodeMirror
-                        theme={getTheme()}
+                        theme={editorTheme}
                         value={contentValue}
                         extensions={extensions}
                         onChange={handleChange}
@@ -184,7 +162,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                             type="button"
                                             data-test-id="copy-button"
                                             className="tw-p-2 tw-rounded-md"
-                                            style={getStyle()}
+                                            style={headerStyle}
                                             onClick={handleCopy}
                                         >
                                             {isCopied ? <IconCheckMark /> : <IconClipboard />}
@@ -196,7 +174,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <button
                                     type="button"
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
-                                    style={getStyle()}
+                                    style={headerStyle}
                                     onClick={handleCopy}
                                     aria-live="assertive"
                                 >

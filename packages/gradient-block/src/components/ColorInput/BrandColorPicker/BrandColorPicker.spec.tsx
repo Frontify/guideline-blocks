@@ -102,6 +102,16 @@ describe('BrandColorPicker', () => {
         expect(checkMarkIcon).toBeVisible();
     });
 
+    it('should render palettes when they load after mount', () => {
+        const { getByTestId, rerender } = render(<BrandColorPicker palettes={[]} />);
+
+        expect(getByTestId(PALLETTE_LIST_TEST_ID)).toHaveTextContent('No colors found');
+
+        rerender(<BrandColorPicker palettes={palettes} />);
+
+        expect(getByTestId(PALLETTE_LIST_TEST_ID)).toHaveTextContent('Palette 1');
+    });
+
     it('Should call onColorChange when color is clicked', async () => {
         const onColorChange = vi.fn();
         const { getByTestId } = render(<BrandColorPicker palettes={palettes} onColorChange={onColorChange} />);

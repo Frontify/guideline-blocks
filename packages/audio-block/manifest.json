@@ -1,8 +1,46 @@
 {
     "appId": "clepuuziz00010iw1zvjzlvme",
-    "i18nFields": ["title", "description"],
-    "searchFields": [
-        { "settingId": "title", "type": "fondueRte" },
-        { "settingId": "description", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "required": ["positioning", "security", "downloadable"],
+        "additionalProperties": false,
+        "properties": {
+            "title": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "description": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "positioning": {
+                "type": "string",
+                "enum": ["Above", "Below"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "security": {
+                "type": "string",
+                "enum": ["Global", "Custom"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "downloadable": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        }
+    }
 }
