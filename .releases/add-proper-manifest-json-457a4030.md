@@ -1,5 +1,5 @@
 ---
-blocks: [quote-block]
+blocks: [audio-block]
 ---
 
 add proper manifest.json
