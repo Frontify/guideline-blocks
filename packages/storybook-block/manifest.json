@@ -1,3 +1,135 @@
 {
-    "appId": "cl5wd1za500010sw8g3onl5ly"
+    "appId": "cl5wd1za500010sw8g3onl5ly",
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            }
+        },
+        "required": [
+            "style",
+            "isCustomHeight",
+            "heightChoice",
+            "positioning",
+            "hasBorder",
+            "borderColor",
+            "borderStyle",
+            "borderWidth",
+            "hasRadius",
+            "radiusChoice"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "style": {
+                "type": "string",
+                "enum": ["Default", "WithAddons"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "url": {
+                "type": "string",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isCustomHeight": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightChoice": {
+                "type": "string",
+                "enum": ["Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightValue": {
+                "type": "string",
+                "pattern": "^(auto|[0-9]+px)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "positioning": {
+                "type": "string",
+                "enum": ["Vertical", "Horizontal"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasBorder": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderColor": {
+                "$ref": "#/$defs/color"
+            },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dotted", "Dashed"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderWidth": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "hasRadius": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "radiusChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "radiusValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        }
+    }
 }
