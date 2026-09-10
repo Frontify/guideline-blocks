@@ -40,6 +40,9 @@ importers:
       '@cypress/vite-dev-server':
         specifier: ^7.2.1
         version: 7.3.4(cypress@15.21.1)(supports-color@8.1.1)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:packages/release-cli
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -204,6 +207,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -277,6 +283,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -353,6 +362,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -429,6 +441,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -514,6 +529,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -596,6 +614,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -666,6 +687,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -754,6 +778,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -836,6 +863,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -903,6 +933,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -979,6 +1012,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1058,6 +1094,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1128,6 +1167,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1170,6 +1212,24 @@ importers:
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
+
+  packages/release-cli:
+    devDependencies:
+      '@frontify/oxfmt-config':
+        specifier: ^0.0.2
+        version: 0.0.2(oxfmt@0.52.0)
+      '@frontify/oxlint-config-basic':
+        specifier: ^0.0.2
+        version: 0.0.2(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))(oxlint@1.80.0(oxlint-tsgolint@7.0.2001))
+      '@tony.ganchev/eslint-plugin-header':
+        specifier: ^3.4.4
+        version: 3.4.4(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
+      oxfmt:
+        specifier: ^0.52.0
+        version: 0.52.0
+      oxlint:
+        specifier: ^1.80.0
+        version: 1.80.0(oxlint-tsgolint@7.0.2001)
 
   packages/shared:
     dependencies:
@@ -1283,6 +1343,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1353,6 +1416,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1423,6 +1489,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1490,6 +1559,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1569,6 +1641,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1651,6 +1726,9 @@ importers:
       '@frontify/frontify-cli':
         specifier: ^6.2.6
         version: 6.2.6(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      '@frontify/guideline-blocks-release':
+        specifier: workspace:*
+        version: link:../release-cli
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -2878,12 +2956,6 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
-  '@eslint-community/eslint-utils@4.9.1':
-    resolution: {integrity: sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
-
   '@eslint-community/regexpp@4.12.2':
     resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
@@ -2958,10 +3030,6 @@ packages:
 
   '@eslint/object-schema@3.0.5':
     resolution: {integrity: sha512-vqTaUEgxzm+YDSdElad6PiRoX4t8VGDjCtt05zn4nU810UIx/uNEV7/lZJ6KwFThKZOzOxzXy48da+No7HZaMw==}
-    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
-
-  '@eslint/plugin-kit@0.7.1':
-    resolution: {integrity: sha512-rZAP3aVgB9ds9KOeUSL+zZ21hPmo8dh6fnIFwRQj5EAZl9gzR7wxYbYXYysAM8CTqGmUGyp2S4kUdV17MnGuWQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   '@eslint/plugin-kit@0.7.2':
@@ -5009,10 +5077,6 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/types@8.58.1':
-    resolution: {integrity: sha512-io/dV5Aw5ezwzfPBBWLoT+5QfVtP8O7q4Kftjn5azJ88bYyp/ZMCsyW1lpKK46EXJcaYMZ1JtYj+s/7TdzmQMw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/types@8.65.0':
     resolution: {integrity: sha512-JSSwWNy+H0E/01jJEM+hrX6N0OFDzFzeIhHFSAS01tlVaevpG8cFyYRPhS5yjGOvBUx3sqQHVMjCL1CAZZMxBg==}
@@ -10795,11 +10859,6 @@ snapshots:
       eslint: 10.3.0(jiti@2.7.0)(supports-color@8.1.1)
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/eslint-utils@4.9.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))':
-    dependencies:
-      eslint: 10.3.0(jiti@2.7.0)(supports-color@8.1.1)
-      eslint-visitor-keys: 3.4.3
-
   '@eslint-community/regexpp@4.12.2': {}
 
   '@eslint-react/ast@5.17.3(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
@@ -10918,11 +10977,6 @@ snapshots:
       '@types/json-schema': 7.0.15
 
   '@eslint/object-schema@3.0.5': {}
-
-  '@eslint/plugin-kit@0.7.1':
-    dependencies:
-      '@eslint/core': 1.2.1
-      levn: 0.4.1
 
   '@eslint/plugin-kit@0.7.2':
     dependencies:
@@ -12981,8 +13035,8 @@ snapshots:
 
   '@stylistic/eslint-plugin@5.10.0(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
-      '@typescript-eslint/types': 8.58.1
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
+      '@typescript-eslint/types': 8.65.0
       eslint: 10.3.0(jiti@2.7.0)(supports-color@8.1.1)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -13216,8 +13270,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/types@8.58.1': {}
-
   '@typescript-eslint/types@8.65.0': {}
 
   '@typescript-eslint/typescript-estree@8.65.0(supports-color@8.1.1)(typescript@6.0.3)':
@@ -13237,7 +13289,7 @@ snapshots:
 
   '@typescript-eslint/utils@8.65.0(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
       '@typescript-eslint/scope-manager': 8.65.0
       '@typescript-eslint/types': 8.65.0
       '@typescript-eslint/typescript-estree': 8.65.0(supports-color@8.1.1)(typescript@6.0.3)
@@ -15192,9 +15244,9 @@ snapshots:
 
   eslint-plugin-jsonc@3.3.0(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1))
       '@eslint/core': 1.2.1
-      '@eslint/plugin-kit': 0.7.1
+      '@eslint/plugin-kit': 0.7.2
       '@ota-meshi/ast-token-store': 0.3.0
       diff-sequences: 29.6.3
       eslint: 10.3.0(jiti@2.7.0)(supports-color@8.1.1)
@@ -15312,7 +15364,7 @@ snapshots:
   eslint-plugin-yml@3.6.0(eslint@10.3.0(jiti@2.7.0)(supports-color@8.1.1)):
     dependencies:
       '@eslint/core': 1.2.1
-      '@eslint/plugin-kit': 0.7.1
+      '@eslint/plugin-kit': 0.7.2
       '@ota-meshi/ast-token-store': 0.3.0
       diff-sequences: 29.6.3
       escape-string-regexp: 5.0.0
