@@ -121,19 +121,13 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: Generate GitHub App token
-        id: generate-token
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ secrets.FRONTIFY_RELEASE_APP_CLIENT_ID }}
-          private-key: ${{ secrets.FRONTIFY_RELEASE_APP_PRIVATE_KEY }}
-          repositories: guideline-blocks
-          permission-contents: write
-
+      # A personal access token, not GITHUB_TOKEN: main requires a pull request and signed
+      # commits, and only a repository admin bypasses those (the branch leaves "include
+      # administrators" off). The token has to belong to an admin for the push below to land.
       - name: Checkout current commit
         uses: actions/checkout@v6
         with:
-          token: ${{ steps.generate-token.outputs.token }}
+          token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Use pnpm
         uses: pnpm/action-setup@v6
@@ -158,8 +152,8 @@ jobs:
             exit 0
           fi
 
-          git config user.name "frontify-release[bot]"
-          git config user.email "frontify-release[bot]@users.noreply.github.com"
+          git config user.name "Daniel Fulop"
+          git config user.email "30796791+fulopdaniel@users.noreply.github.com"
           git add .releases
           git commit -m "chore: clear published release entries [skip ci]"
           git push origin HEAD:main
