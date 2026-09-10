@@ -1,0 +1,165 @@
+name: Continuous Deployment
+
+# Only one release in flight at a time, and never cancel one halfway: a cancelled matrix
+# leaves some blocks published and some not, with the entry files still in place.
+concurrency:
+  group: continuous-deployment
+  cancel-in-progress: false
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    outputs:
+      blocks: ${{ steps.plan.outputs.blocks }}
+      count: ${{ steps.plan.outputs.count }}
+
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Read the release entries
+        id: plan
+        run: |
+          pnpm exec blocks-release plan --json > plan.json
+          echo "blocks=$(jq -c '.blocks' plan.json)" >> "$GITHUB_OUTPUT"
+          echo "count=$(jq '.blocks | length' plan.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Summarise
+        run: pnpm exec blocks-release plan >> "$GITHUB_STEP_SUMMARY"
+
+  publish:
+    needs: plan
+    if: needs.plan.outputs.count != '0'
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      # One block failing must not strand the rest.
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        block: ${{ fromJson(needs.plan.outputs.blocks) }}
+
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Uploads the bundle and sources as a new DRAFT version of the app.
+      # --no-verify: the CI workflow already linted and typechecked this commit.
+      - name: Deploy ${{ matrix.block.name }}
+        working-directory: ${{ matrix.block.path }}
+        env:
+          FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
+          FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
+        run: |
+          pnpm exec frontify-cli deploy \
+            --entryPath src/index.ts \
+            --no-verify \
+            --token="$FRONTIFY_TOKEN" \
+            --instance="$FRONTIFY_INSTANCE"
+
+      # Sets availability, writes the changelog, and moves the draft out of DRAFT.
+      # RELEASE_NOTES goes through the environment, never the command line -- the notes are
+      # free text and would otherwise need quoting.
+      - name: Publish ${{ matrix.block.name }}
+        working-directory: ${{ matrix.block.path }}
+        env:
+          FRONTIFY_TOKEN: ${{ secrets.FRONTIFY_ACCESS_TOKEN }}
+          FRONTIFY_INSTANCE: ${{ secrets.FRONTIFY_INSTANCE_URL }}
+          RELEASE_NOTES: ${{ matrix.block.notes }}
+        run: |
+          pnpm exec frontify-cli publish \
+            --release-notes="$RELEASE_NOTES" \
+            --availability=COMMUNITY \
+            --token="$FRONTIFY_TOKEN" \
+            --instance="$FRONTIFY_INSTANCE"
+
+  clean:
+    needs: [plan, publish]
+    # Only clear the entries when every block made it. A partial release keeps them, so a
+    # re-run still has the notes.
+    if: needs.plan.outputs.count != '0' && !contains(needs.publish.result, 'failure')
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Generate GitHub App token
+        id: generate-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.FRONTIFY_RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.FRONTIFY_RELEASE_APP_PRIVATE_KEY }}
+          repositories: guideline-blocks
+          permission-contents: write
+
+      - name: Checkout current commit
+        uses: actions/checkout@v6
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Clear the published release entries
+        run: |
+          pnpm exec blocks-release clean
+
+          if git diff --quiet -- .releases; then
+            echo "No entries to clear."
+            exit 0
+          fi
+
+          git config user.name "frontify-release[bot]"
+          git config user.email "frontify-release[bot]@users.noreply.github.com"
+          git add .releases
+          git commit -m "chore: clear published release entries [skip ci]"
+          git push origin HEAD:main
