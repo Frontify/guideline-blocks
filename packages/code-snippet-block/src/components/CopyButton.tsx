@@ -3,13 +3,12 @@
 import { Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { useCopy } from '@frontify/guideline-blocks-shared';
-import { type CSSProperties, type FC, useEffect, useState } from 'react';
+import { type CSSProperties, type FC, useEffect, useRef, useState } from 'react';
 
 type CopyButtonProps = {
     content: string;
     className?: string;
     style?: CSSProperties;
-    /** Renders an icon-only button wrapped in a tooltip instead of an icon with a visible label. */
     withTooltip?: boolean;
     testId?: string;
 };
@@ -18,18 +17,23 @@ export const CopyButton: FC<CopyButtonProps> = ({ content, className, style, wit
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
+    const wasCopiedRef = useRef(false);
 
     useEffect(() => {
-        if (!isTooltipOpen) {
+        if (!withTooltip || (!isCopied && !wasCopiedRef.current)) {
             return;
         }
 
+        wasCopiedRef.current = isCopied;
         window.dispatchEvent(new Event('resize'));
-    }, [isCopied, isTooltipOpen]);
+    }, [isCopied, withTooltip]);
 
     const handleCopy = async () => {
         await copy(content);
-        setIsTooltipOpen(true);
+
+        if (withTooltip) {
+            setIsTooltipOpen(true);
+        }
     };
 
     if (withTooltip) {
