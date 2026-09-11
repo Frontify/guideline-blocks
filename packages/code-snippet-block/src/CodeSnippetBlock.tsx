@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Select, Tooltip } from '@frontify/fondue/components';
-import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
+import { Select } from '@frontify/fondue/components';
 import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
@@ -14,6 +13,7 @@ import { type FC, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
+import { CopyButton } from './components/CopyButton';
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
 import { useCodeSnippetTheme } from './hooks/useCodeSnippetTheme';
@@ -25,10 +25,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [contentValue] = useState(blockSettings.content);
     const [pendingLanguage, setPendingLanguage] = useState<Language>();
     const selectedLanguage = pendingLanguage ?? blockSettings.language ?? 'plain';
-    const [isCopied, setIsCopied] = useState(false);
-    const [isCopyTooltipOpen, setIsCopyTooltipOpen] = useState(false);
     const labelId = useMemo(() => `${appBridge.context('blockId').get()}-header`, [appBridge]);
-
     const {
         borderStyle,
         borderWidth,
@@ -42,17 +39,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
 
-    const getCopyButtonText = () =>
-        isCopied ? (
-            <>
-                <IconCheckMark size={16} /> Copied
-            </>
-        ) : (
-            <>
-                <IconClipboard size={16} /> Copy
-            </>
-        );
-
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
@@ -60,17 +46,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
-
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(blockSettings.content || '');
-        setIsCopied(true);
-        setIsCopyTooltipOpen(true);
-        window.dispatchEvent(new Event('resize')); // trigger resize event to update alignment of the tooltip
-        debounce(() => {
-            setIsCopied(false);
-            window.dispatchEvent(new Event('resize'));
-        }, 2000)();
-    };
 
     const handleLanguageChange = async (value: Language) => {
         setPendingLanguage(value);
@@ -118,15 +93,12 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                             ) : (
                                 <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
                             )}
-                            <button
-                                type="button"
-                                data-test-id="header-copy-button"
+                            <CopyButton
+                                content={blockSettings.content || ''}
+                                testId="header-copy-button"
                                 className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                                 style={headerButtonStyle}
-                                onClick={handleCopy}
-                            >
-                                {getCopyButtonText()}
-                            </button>
+                            />
                         </div>
                     )}
                     <CodeMirror
@@ -152,34 +124,19 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     {!withHeading && (
                         <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                             {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
-                                <Tooltip.Root
-                                    open={isCopyTooltipOpen}
-                                    onOpenChange={setIsCopyTooltipOpen}
-                                    enterDelay={0}
-                                >
-                                    <Tooltip.Trigger>
-                                        <button
-                                            type="button"
-                                            data-test-id="copy-button"
-                                            className="tw-p-2 tw-rounded-md"
-                                            style={headerStyle}
-                                            onClick={handleCopy}
-                                        >
-                                            {isCopied ? <IconCheckMark /> : <IconClipboard />}
-                                        </button>
-                                    </Tooltip.Trigger>
-                                    <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
-                                </Tooltip.Root>
+                                <CopyButton
+                                    content={blockSettings.content}
+                                    testId="copy-button"
+                                    className="tw-p-2 tw-rounded-md"
+                                    style={headerStyle}
+                                    withTooltip
+                                />
                             ) : (
-                                <button
-                                    type="button"
+                                <CopyButton
+                                    content={blockSettings.content || ''}
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
                                     style={headerStyle}
-                                    onClick={handleCopy}
-                                    aria-live="assertive"
-                                >
-                                    {getCopyButtonText()}
-                                </button>
+                                />
                             )}
                         </div>
                     )}
