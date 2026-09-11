@@ -1,3 +1,101 @@
 {
-    "appId": "clexy16s300010pw1gf0c4bne"
+    "appId": "clexy16s300010pw1gf0c4bne",
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": "object",
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            }
+        },
+        "required": [
+            "displayCss",
+            "gradientColors",
+            "isHeightCustom",
+            "heightSimple",
+            "isOrientationCustom",
+            "orientationSimple"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "displayCss": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "gradientColors": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["color", "position"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "color": { "$ref": "#/$defs/color" },
+                        "position": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100,
+                            "frontify-api-read": true,
+                            "frontify-api-write": true
+                        }
+                    }
+                }
+            },
+            "isHeightCustom": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "heightCustom": {
+                "type": "string",
+                "pattern": "^([0-9]+px|auto)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightSimple": {
+                "type": "string",
+                "enum": ["s", "m", "l"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "isOrientationCustom": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "orientationCustom": {
+                "type": "string",
+                "pattern": "^([0-9]|[1-8][0-9]|90)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "orientationSimple": {
+                "type": "string",
+                "enum": ["0", "90"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        }
+    }
 }
