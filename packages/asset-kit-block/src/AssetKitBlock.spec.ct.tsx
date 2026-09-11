@@ -381,9 +381,6 @@ describe('AssetKit Block', () => {
 
     it('should announce the download to screen readers if download happened', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                downloadUrlBlock: 'dummy-download-url',
-            },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1)],
             },
