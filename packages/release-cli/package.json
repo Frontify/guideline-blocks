@@ -1,0 +1,23 @@
+{
+    "name": "@frontify/guideline-blocks-release",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "author": "Frontify Developers <developers@frontify.com>",
+    "bin": {
+        "blocks-release": "bin/blocks-release.mjs"
+    },
+    "scripts": {
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check"
+    },
+    "devDependencies": {
+        "@frontify/oxfmt-config": "^0.0.2",
+        "@frontify/oxlint-config-basic": "^0.0.2",
+        "@tony.ganchev/eslint-plugin-header": "^3.4.4",
+        "oxfmt": "^0.52.0",
+        "oxlint": "^1.80.0"
+    }
+}
