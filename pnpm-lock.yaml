@@ -69,7 +69,7 @@ importers:
         version: 15.21.1
       cypress-real-events:
         specifier: ^1.15.0
-        version: 1.15.0(cypress@15.21.1)
+        version: 1.15.1(cypress@15.21.1)
       glob:
         specifier: ^13.0.6
         version: 13.0.6
@@ -233,7 +233,7 @@ importers:
         version: 15.21.1
       cypress-real-events:
         specifier: ^1.15.0
-        version: 1.15.0(cypress@15.21.1)
+        version: 1.15.1(cypress@15.21.1)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -312,7 +312,7 @@ importers:
         version: 15.21.1
       cypress-real-events:
         specifier: ^1.15.0
-        version: 1.15.0(cypress@15.21.1)
+        version: 1.15.1(cypress@15.21.1)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -388,7 +388,7 @@ importers:
         version: 15.21.1
       cypress-real-events:
         specifier: ^1.15.0
-        version: 1.15.0(cypress@15.21.1)
+        version: 1.15.1(cypress@15.21.1)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -6283,10 +6283,10 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  cypress-real-events@1.15.0:
-    resolution: {integrity: sha512-in98xxTnnM9Z7lZBvvVozm99PBT2eEOjXRG5LKWyYvQnj9mGWXMiPNpfw7e7WiraBFh7XlXIxnE9Cu5o+52kQQ==}
+  cypress-real-events@1.15.1:
+    resolution: {integrity: sha512-BiTyqYcNHiIFWfSLRn3H+TgTvpnTGOKfl4Brz51yeSGKMxBbD60wtRQw31nII00yQ67Xg3C18mU8lqUxDN3OUA==}
     peerDependencies:
-      cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x || ^14.x || ^15.x
+      cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x || ^14.x || ^15.x || ^16.x
 
   cypress@15.21.1:
     resolution: {integrity: sha512-ogHpHMj0XNlZA5MGzjg8SWHf0eMw9lTwVQRKjpcT1GzNTxNUjwnHA8YCG6nOJ8ThU+XZaUxJgpMYZnJ//8aDaw==}
@@ -14860,7 +14860,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  cypress-real-events@1.15.0(cypress@15.21.1):
+  cypress-real-events@1.15.1(cypress@15.21.1):
     dependencies:
       cypress: 15.21.1
 
