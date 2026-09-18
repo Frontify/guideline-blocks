@@ -61,6 +61,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
 
     const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
     const hexValue = toHex6or8String(gradientColor.color);
+    const colorLabel = gradientColor.color?.name ? `${gradientColor.color.name} ${hexValue}` : hexValue;
 
     return (
         <div
@@ -80,6 +81,9 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                 onClick={() => copy(hexValue)}
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
+                    <span data-test-id="square-badge-copy-label" className="tw-sr-only">
+                        Copy color
+                    </span>
                     <div
                         className={joinClassNames([
                             'tw-inline-flex tw-w-4 tw-h-4 tw-rounded-medium',
@@ -108,6 +112,9 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                     )}
                 </div>
             </button>
+            <span data-test-id="square-badge-live-region" role="status" aria-live="polite" className="tw-sr-only">
+                {isCopied ? `Copied color ${colorLabel} to clipboard` : ''}
+            </span>
         </div>
     );
 };
