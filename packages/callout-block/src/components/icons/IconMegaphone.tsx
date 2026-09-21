@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type IconProps } from './type';
-
-export const IconMegaphone = ({ title }: IconProps) => {
+export const IconMegaphone = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -11,9 +9,7 @@ export const IconMegaphone = ({ title }: IconProps) => {
             className="tw-flex tw-items-center tw-justify-center tw-fill-current"
             name="IconMegaphone20"
             aria-hidden="true"
-            aria-labelledby="megaphoneTitle"
         >
-            <title id="megaphoneTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"
