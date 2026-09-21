@@ -29,6 +29,7 @@ const GRADIENT_BLOCK_DIVIDER_TEST_ID = 'gradient-block-divider';
 const SQUARE_BADGE_TEST_ID = 'square-badge';
 const SQUARE_BADGE_CHECKMARK_TEST_ID = 'square-badge-checkmark';
 const SQUARE_BADGE_CLIPBOARD_TEST_ID = 'square-badge-clipboard';
+const SQUARE_BADGE_LIVE_REGION_TEST_ID = 'square-badge-live-region';
 const EDIT_COLOR_LABEL = 'Edit color';
 const DELETE_COLOR_LABEL = 'Delete color';
 const BLOCK_WIDTH = 800;
@@ -51,6 +52,17 @@ const gradientColors = [
     },
     {
         color: { red: 255, green: 255, blue: 255, alpha: 1 },
+        position: 100,
+    },
+];
+
+const namedGradientColors = [
+    {
+        color: { red: 255, green: 255, blue: 255, alpha: 1, name: 'White' },
+        position: 0,
+    },
+    {
+        color: { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' },
         position: 100,
     },
 ];
@@ -199,6 +211,36 @@ describe('Gradient Block', () => {
 
         await waitFor(() => {
             expect(badge.querySelector(`[data-test-id="${SQUARE_BADGE_CHECKMARK_TEST_ID}"]`)).toBeInTheDocument();
+        });
+    });
+
+    it('should announce the copy action on the square badge', async () => {
+        renderGradientBlock({
+            blockSettings: { gradientColors: namedGradientColors },
+        });
+
+        const badges = await screen.findAllByTestId(SQUARE_BADGE_TEST_ID);
+        const button = badges[0].querySelector('button') as HTMLElement;
+
+        expect(button).toHaveAccessibleName('Copy color White #ffffff');
+    });
+
+    it('should announce the copied color in a live region', async () => {
+        renderGradientBlock({
+            blockSettings: { gradientColors: namedGradientColors },
+        });
+
+        const badges = await screen.findAllByTestId(SQUARE_BADGE_TEST_ID);
+        const badge = badges[0];
+        const liveRegion = badge.querySelector(`[data-test-id="${SQUARE_BADGE_LIVE_REGION_TEST_ID}"]`) as HTMLElement;
+
+        expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+        expect(liveRegion).toBeEmptyDOMElement();
+
+        await userEvent.click(badge.querySelector('button') as HTMLElement);
+
+        await waitFor(() => {
+            expect(liveRegion).toHaveTextContent('Copied color White #ffffff to clipboard');
         });
     });
 
