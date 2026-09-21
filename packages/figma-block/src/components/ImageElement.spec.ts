@@ -5,18 +5,18 @@ import { describe, expect, it } from 'vitest';
 import { ImageElement } from './ImageElement';
 
 describe('ImageElement', () => {
-    it('return the correct height', () => {
+    it('return the intrinsic height', () => {
         const imageElement = {
-            height: 1,
+            naturalHeight: 1,
         } as HTMLImageElement;
 
         const result = new ImageElement(imageElement).height;
         expect(result).toEqual(1);
     });
 
-    it('return the correct width', () => {
+    it('return the intrinsic width', () => {
         const imageElement = {
-            width: 1,
+            naturalWidth: 1,
         } as HTMLImageElement;
 
         const result = new ImageElement(imageElement).width;
@@ -47,8 +47,8 @@ describe('ImageElement', () => {
 
     it('give the correct aspectRatio', () => {
         const imageElement = {
-            width: 1,
-            height: 2,
+            naturalWidth: 1,
+            naturalHeight: 2,
         } as HTMLImageElement;
 
         const result = new ImageElement(imageElement).aspectRatio();
@@ -57,18 +57,32 @@ describe('ImageElement', () => {
 
     it('give the correct aspectRatio when width is 0', () => {
         const imageElement = {
-            width: 0,
-            height: 2,
+            naturalWidth: 0,
+            naturalHeight: 2,
         } as HTMLImageElement;
 
         const result = new ImageElement(imageElement).aspectRatio();
         expect(result).toEqual(0);
     });
 
+    it('ignores the rendered size so a collapsed container cannot latch the image at zero', () => {
+        const imageElement = {
+            width: 0,
+            height: 0,
+            naturalWidth: 1200,
+            naturalHeight: 800,
+        } as HTMLImageElement;
+
+        const result = new ImageElement(imageElement);
+        expect(result.width).toEqual(1200);
+        expect(result.height).toEqual(800);
+        expect(result.aspectRatio()).toEqual(1.5);
+    });
+
     it('give the correct aspectRatio when height is 0', () => {
         const imageElement = {
-            width: 1,
-            height: 0,
+            naturalWidth: 1,
+            naturalHeight: 0,
         } as HTMLImageElement;
 
         const result = new ImageElement(imageElement).aspectRatio();
