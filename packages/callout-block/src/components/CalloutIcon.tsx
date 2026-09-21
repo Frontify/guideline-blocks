@@ -4,7 +4,7 @@ import { type Asset } from '@frontify/app-bridge';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { type ReactNode } from 'react';
 
-import { type Icon, type Type } from '../types';
+import { type Icon } from '../types';
 
 import { CustomCalloutIcon } from './CustomCalloutIcon';
 import { IconInfo, IconLightbulb, IconMegaphone } from './icons/';
@@ -14,10 +14,9 @@ type CalloutIconProps = {
     isActive: boolean;
     customIcon: Asset | undefined;
     color?: string;
-    type: Type;
 };
-export const CalloutIcon = ({ iconType, isActive, customIcon, color, type }: CalloutIconProps) => {
-    const icon = calloutIconMap(customIcon, type)[iconType];
+export const CalloutIcon = ({ iconType, isActive, customIcon, color }: CalloutIconProps) => {
+    const icon = calloutIconMap(customIcon)[iconType];
 
     return (
         <div
@@ -35,10 +34,10 @@ export const CalloutIcon = ({ iconType, isActive, customIcon, color, type }: Cal
     );
 };
 
-const calloutIconMap = (customIcon: Asset | undefined, type: Type): Record<Icon, ReactNode> => ({
+const calloutIconMap = (customIcon: Asset | undefined): Record<Icon, ReactNode> => ({
     none: null,
-    info: <IconInfo title={type} />,
-    lightbulb: <IconLightbulb title={type} />,
-    megaphone: <IconMegaphone title={type} />,
-    custom: <CustomCalloutIcon customIcon={customIcon} type={type} />,
+    info: <IconInfo />,
+    lightbulb: <IconLightbulb />,
+    megaphone: <IconMegaphone />,
+    custom: <CustomCalloutIcon customIcon={customIcon} />,
 });

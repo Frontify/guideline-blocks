@@ -145,7 +145,8 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutIconWrapperSelector).should('exist');
         cy.get(CalloutIconCustomSelector).should('exist');
-        cy.get(CalloutIconCustomSelector).should('have.attr', 'alt', 'note');
+        cy.get(CalloutIconCustomSelector).should('have.attr', 'alt', '');
+        cy.get(CalloutIconCustomSelector).should('have.attr', 'aria-hidden', 'true');
     });
 
     it('renders a callout block without icon', () => {

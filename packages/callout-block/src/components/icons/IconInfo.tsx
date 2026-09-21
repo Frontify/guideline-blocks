@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type IconProps } from './type';
-
-export const IconInfo = ({ title }: IconProps) => {
+export const IconInfo = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -12,9 +10,7 @@ export const IconInfo = ({ title }: IconProps) => {
             name="IconInfo20"
             aria-hidden="true"
             data-test-id="callout-icon-info"
-            aria-labelledby="infoTitle"
         >
-            <title id="infoTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"

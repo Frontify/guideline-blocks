@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type IconProps } from './type';
-
-export const IconLightbulb = ({ title }: IconProps) => {
+export const IconLightbulb = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -11,9 +9,7 @@ export const IconLightbulb = ({ title }: IconProps) => {
             className="tw-flex tw-items-center tw-justify-center tw-fill-current"
             name="IconLightbulb20"
             aria-hidden="true"
-            aria-labelledby="lightbulbTitle"
         >
-            <title id="lightbulbTitle">{title}</title>
             <path
                 fill="currentColor"
                 fillRule="evenodd"
