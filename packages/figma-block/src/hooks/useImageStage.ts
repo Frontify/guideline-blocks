@@ -8,6 +8,7 @@ import { VectorContainerOperator } from '../components/ContainerOperator/VectorC
 import { ImageContainer } from '../components/ImageContainer';
 import { ImageElement } from '../components/ImageElement';
 import { ImageStage } from '../components/ImageStage';
+import { isStageRendered } from '../helpers/isStageRendered';
 import { getHeightOfBlock } from '../helpers/mapCommonStyle';
 import { type UseImageStageProps, Zoom } from '../types';
 
@@ -67,7 +68,11 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
             return;
         }
 
-        const resizeObserver = new ResizeObserver(() => {
+        const resizeObserver = new ResizeObserver(([entry]) => {
+            if (!isStageRendered(entry)) {
+                return;
+            }
+
             if (imageRef.current && containerRef.current && imageStageRef.current) {
                 containerOperatorRef.current?.destroy();
 
