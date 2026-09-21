@@ -1,22 +1,26 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { useColorPalettes } from '@frontify/app-bridge';
 import { type Color, FormControl, FormControlStyle, Validation } from '@frontify/fondue';
 import { Button, Flyout, TextInput } from '@frontify/fondue/components';
 import { IconCheckMark } from '@frontify/fondue/icons';
 import { useState } from 'react';
 
+import { mapAppBridgeColorPalettesToFonduePalettes } from '../helpers/mapColorPalettes';
 import { type ColorFlyoutProps, type GradientColor } from '../types';
 
 import { ColorPickerFlyout } from './ColorInput/ColorPickerFlyout';
 
 export const ColorFlyout = ({
-    colorPalettes,
+    appBridge,
     currentlyEditingPosition,
     gradientColors,
     showColorModal,
     setColors,
     setShowColorModal,
 }: ColorFlyoutProps) => {
+    const { colorPalettes } = useColorPalettes(appBridge);
+    const palettes = mapAppBridgeColorPalettesToFonduePalettes(colorPalettes);
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(Math.round(currentlyEditingPosition).toString());
@@ -81,7 +85,7 @@ export const ColorFlyout = ({
                         >
                             <ColorPickerFlyout
                                 currentColor={color}
-                                palettes={colorPalettes}
+                                palettes={palettes}
                                 onColorChange={(color) => color && setColor(color)}
                             />
                         </FormControl>

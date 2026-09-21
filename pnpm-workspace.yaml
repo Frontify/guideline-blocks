@@ -19,4 +19,4 @@ allowBuilds:
   esbuild: true
   msw: true
 minimumReleaseAgeExclude:
-  - '@frontify/guideline-blocks-settings@4.0.0-alpha.2'
+  - '@frontify/guideline-blocks-settings@4.0.0-alpha.4'
