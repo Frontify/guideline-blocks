@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCopy } from '@frontify/fondue';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
+import { useCopy } from '@frontify/guideline-blocks-shared';
 import { useRef } from 'react';
 
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
