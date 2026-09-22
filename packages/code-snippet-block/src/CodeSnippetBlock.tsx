@@ -6,14 +6,13 @@ import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import './styles.css';
-import { StyleProvider } from '@frontify/guideline-blocks-shared';
+import { CopyButton, StyleProvider } from '@frontify/guideline-blocks-shared';
 import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
 import { type FC, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
-import { CopyButton } from './components/CopyButton';
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
 import { useCodeSnippetTheme } from './hooks/useCodeSnippetTheme';
@@ -34,7 +33,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         withHeading = false,
         withRowNumbers = false,
         theme = 'default',
+        content = '',
     } = blockSettings;
+
+    const isMultiline = (content.match(/\n/g) || []).length > 1;
 
     const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
@@ -94,7 +96,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
                             )}
                             <CopyButton
-                                content={blockSettings.content || ''}
+                                content={content}
                                 testId="header-copy-button"
                                 className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                                 style={headerButtonStyle}
@@ -123,9 +125,9 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     />
                     {!withHeading && (
                         <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
-                            {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
+                            {isMultiline ? (
                                 <CopyButton
-                                    content={blockSettings.content}
+                                    content={content}
                                     testId="copy-button"
                                     className="tw-p-2 tw-rounded-md"
                                     style={headerStyle}
@@ -133,7 +135,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 />
                             ) : (
                                 <CopyButton
-                                    content={blockSettings.content || ''}
+                                    content={content}
                                     className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
                                     style={headerStyle}
                                 />

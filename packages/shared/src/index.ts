@@ -6,6 +6,7 @@ export { EditAltTextFlyout } from './components/EditAltTextFlyout/EditAltTextFly
 export { getEditAltTextToolbarButton } from './components/EditAltTextFlyout/EditAltTextToolbarButton';
 export { ResponsiveImage } from './components/ResponsiveImage/ResponsiveImage';
 export { DownloadButton } from './components/DownloadButton/DownloadButton';
+export { CopyButton } from './components/CopyButton/CopyButton';
 export { ImageFormat } from './types';
 
 export { useCopy } from './hooks/useCopy';

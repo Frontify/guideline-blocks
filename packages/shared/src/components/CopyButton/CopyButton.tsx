@@ -2,8 +2,11 @@
 
 import { Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
-import { useCopy } from '@frontify/guideline-blocks-shared';
+// oxlint-disable-next-line no-restricted-syntax
+import * as React from 'react';
 import { type CSSProperties, type FC, useState } from 'react';
+
+import { useCopy } from '../../hooks/useCopy';
 
 type CopyButtonProps = {
     content: string;
