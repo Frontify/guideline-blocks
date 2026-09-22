@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Select, Tooltip } from '@frontify/fondue/components';
+import { Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import { type BlockProps, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-settings';
@@ -14,10 +14,12 @@ import { type FC, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
+import { CodeSnippetHeader } from './components/CodeSnippetHeader';
+import { CopyButtonLabel } from './components/CopyButtonLabel';
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
 import { useCodeSnippetTheme } from './hooks/useCodeSnippetTheme';
-import { type Language, type Settings, languageNameMap } from './types';
+import { type Language, type Settings } from './types';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -41,17 +43,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const { editorTheme, headerStyle, headerButtonStyle, headerSelectStyle } = useCodeSnippetTheme(theme);
     const extensions = useCodeMirrorExtensions(selectedLanguage, theme);
-
-    const getCopyButtonText = () =>
-        isCopied ? (
-            <>
-                <IconCheckMark size={16} /> Copied
-            </>
-        ) : (
-            <>
-                <IconClipboard size={16} /> Copy
-            </>
-        );
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -97,37 +88,17 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
             >
                 <div className={merge(['tw-relative tw-group/copy', !isEditing && 'CodeMirror-readonly'])}>
                     {withHeading && (
-                        <div
-                            data-test-id="code-snippet-header"
-                            className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-small tw-flex tw-justify-between tw-items-center"
-                            style={{ ...headerStyle, letterSpacing: 'normal' }}
-                        >
-                            {isEditing ? (
-                                <div id={labelId} className="tw-max-w-[150px]" style={headerSelectStyle}>
-                                    <Select
-                                        value={selectedLanguage}
-                                        onSelect={(value) => handleLanguageChange(value as Language)}
-                                    >
-                                        {Object.entries(languageNameMap).map(([value, label]) => (
-                                            <Select.Item value={value} key={value}>
-                                                {label}
-                                            </Select.Item>
-                                        ))}
-                                    </Select>
-                                </div>
-                            ) : (
-                                <span id={labelId}>{languageNameMap[selectedLanguage]}</span>
-                            )}
-                            <button
-                                type="button"
-                                data-test-id="header-copy-button"
-                                className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                                style={headerButtonStyle}
-                                onClick={handleCopy}
-                            >
-                                {getCopyButtonText()}
-                            </button>
-                        </div>
+                        <CodeSnippetHeader
+                            labelId={labelId}
+                            language={selectedLanguage}
+                            isEditing={isEditing}
+                            isCopied={isCopied}
+                            headerStyle={headerStyle}
+                            headerButtonStyle={headerButtonStyle}
+                            headerSelectStyle={headerSelectStyle}
+                            onLanguageChange={handleLanguageChange}
+                            onCopy={handleCopy}
+                        />
                     )}
                     <CodeMirror
                         theme={editorTheme}
@@ -178,7 +149,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                     onClick={handleCopy}
                                     aria-live="assertive"
                                 >
-                                    {getCopyButtonText()}
+                                    <CopyButtonLabel isCopied={isCopied} />
                                 </button>
                             )}
                         </div>
