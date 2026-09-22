@@ -3,7 +3,7 @@
 import { Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { useCopy } from '@frontify/guideline-blocks-shared';
-import { type CSSProperties, type FC, useEffect, useRef, useState } from 'react';
+import { type CSSProperties, type FC, useState } from 'react';
 
 type CopyButtonProps = {
     content: string;
@@ -17,16 +17,6 @@ export const CopyButton: FC<CopyButtonProps> = ({ content, className, style, wit
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
-    const wasCopiedRef = useRef(false);
-
-    useEffect(() => {
-        if (!withTooltip || (!isCopied && !wasCopiedRef.current)) {
-            return;
-        }
-
-        wasCopiedRef.current = isCopied;
-        window.dispatchEvent(new Event('resize'));
-    }, [isCopied, withTooltip]);
 
     const handleCopy = async () => {
         await copy(content);
@@ -37,20 +27,23 @@ export const CopyButton: FC<CopyButtonProps> = ({ content, className, style, wit
     };
 
     if (withTooltip) {
+        const label = isCopied ? 'Copied' : 'Copy to clipboard';
+
         return (
             <Tooltip.Root open={isTooltipOpen} onOpenChange={setIsTooltipOpen} enterDelay={0}>
-                <Tooltip.Trigger>
+                <Tooltip.Trigger asChild>
                     <button
                         type="button"
                         data-test-id={testId}
                         className={className}
                         style={style}
                         onClick={handleCopy}
+                        aria-label={label}
                     >
                         {isCopied ? <IconCheckMark /> : <IconClipboard />}
                     </button>
                 </Tooltip.Trigger>
-                <Tooltip.Content>{isCopied ? 'Copied' : 'Copy to clipboard'}</Tooltip.Content>
+                <Tooltip.Content>{label}</Tooltip.Content>
             </Tooltip.Root>
         );
     }
