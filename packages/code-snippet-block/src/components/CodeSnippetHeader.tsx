@@ -1,34 +1,31 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Select } from '@frontify/fondue/components';
+import { CopyButton } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties } from 'react';
 
 import { type Language, languageNameMap } from '../types';
 
-import { CopyButtonLabel } from './CopyButtonLabel';
-
 type CodeSnippetHeaderProps = {
     labelId: string;
     language: Language;
+    content: string;
     isEditing: boolean;
-    isCopied: boolean;
     headerStyle: CSSProperties;
     headerButtonStyle: CSSProperties;
     headerSelectStyle: CSSProperties;
     onLanguageChange: (language: Language) => void;
-    onCopy: () => void;
 };
 
 export const CodeSnippetHeader = ({
     labelId,
     language,
+    content,
     isEditing,
-    isCopied,
     headerStyle,
     headerButtonStyle,
     headerSelectStyle,
     onLanguageChange,
-    onCopy,
 }: CodeSnippetHeaderProps) => (
     <div
         data-test-id="code-snippet-header"
@@ -48,14 +45,11 @@ export const CodeSnippetHeader = ({
         ) : (
             <span id={labelId}>{languageNameMap[language]}</span>
         )}
-        <button
-            type="button"
-            data-test-id="header-copy-button"
+        <CopyButton
+            content={content}
+            testId="header-copy-button"
             className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
             style={headerButtonStyle}
-            onClick={onCopy}
-        >
-            <CopyButtonLabel isCopied={isCopied} />
-        </button>
+        />
     </div>
 );
