@@ -43,7 +43,6 @@
         },
         "required": [
             "displayCss",
-            "gradientColors",
             "isHeightCustom",
             "heightSimple",
             "isOrientationCustom",
