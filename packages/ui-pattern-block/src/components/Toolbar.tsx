@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
-import { FOCUS_VISIBLE_STYLE, useCopy } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
+import { useCopy } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
 import { getToolbarButtons } from '../helpers';

@@ -147,7 +147,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 iconType={iconType}
                                 customIcon={customIcon}
                                 color={textColor}
-                                type={type}
                             />
                         )}
                         <RichTextEditor

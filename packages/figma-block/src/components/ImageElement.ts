@@ -4,11 +4,11 @@ export class ImageElement {
     constructor(protected imageElement: HTMLImageElement) {}
 
     get height(): number {
-        return this.imageElement.height;
+        return this.imageElement.naturalHeight;
     }
 
     get width(): number {
-        return this.imageElement.width;
+        return this.imageElement.naturalWidth;
     }
 
     public show() {

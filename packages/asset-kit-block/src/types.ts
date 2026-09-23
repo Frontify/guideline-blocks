@@ -26,7 +26,6 @@ export type Settings = {
     radiusValue_thumbnails?: number;
     description?: string;
     title?: string;
-    downloadUrlBlock?: string;
     showThumbnails?: boolean;
     showCount?: boolean;
     assetCountColor?: 'inherit' | 'override';

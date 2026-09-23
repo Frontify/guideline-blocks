@@ -1,8 +1,135 @@
 {
     "appId": "cle6w2ie00001c0w4oq99llxh",
-    "i18nFields": ["title", "description", "buttonText"],
-    "searchFields": [
-        { "settingId": "title", "type": "fondueRte" },
-        { "settingId": "description", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dotted", "Dashed"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "sizeChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "pixelValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        },
+        "required": [
+            "showThumbnails",
+            "showCount",
+            "assetCountColor",
+            "hasBackgroundBlocks",
+            "hasBorder_blocks",
+            "borderStyle_blocks",
+            "borderWidth_blocks",
+            "hasRadius_blocks",
+            "radiusChoice_blocks",
+            "hasBackgroundThumbnails",
+            "hasBorder_thumbnails",
+            "borderStyle_thumbnails",
+            "borderWidth_thumbnails",
+            "hasRadius_thumbnails",
+            "radiusChoice_thumbnails"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "title": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "description": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "buttonText": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "showThumbnails": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "showCount": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "assetCountColor": {
+                "type": "string",
+                "enum": ["inherit", "override"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "countCustomColor": { "$ref": "#/$defs/color" },
+            "hasBackgroundBlocks": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "backgroundColorBlocks": { "$ref": "#/$defs/color" },
+            "hasBorder_blocks": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle_blocks": { "$ref": "#/$defs/borderStyle" },
+            "borderWidth_blocks": { "$ref": "#/$defs/pixelValue" },
+            "borderColor_blocks": { "$ref": "#/$defs/color" },
+            "hasRadius_blocks": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "radiusChoice_blocks": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue_blocks": { "$ref": "#/$defs/pixelValue" },
+            "hasBackgroundThumbnails": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "backgroundColorThumbnails": { "$ref": "#/$defs/color" },
+            "hasBorder_thumbnails": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle_thumbnails": { "$ref": "#/$defs/borderStyle" },
+            "borderWidth_thumbnails": { "$ref": "#/$defs/pixelValue" },
+            "borderColor_thumbnails": { "$ref": "#/$defs/color" },
+            "hasRadius_thumbnails": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "radiusChoice_thumbnails": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue_thumbnails": { "$ref": "#/$defs/pixelValue" }
+        }
+    }
 }

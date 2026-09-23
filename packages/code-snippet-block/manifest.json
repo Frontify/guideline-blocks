@@ -1,5 +1,172 @@
 {
     "appId": "cl7gar8ts00013muqwzjp8j9c",
-    "i18nFields": ["content"],
-    "searchFields": [{ "settingId": "content", "type": "string" }]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": { "type": "string", "frontify-api-read": true, "frontify-api-write": true }
+                }
+            }
+        },
+        "required": [
+            "language",
+            "theme",
+            "withHeading",
+            "withRowNumbers",
+            "hasBorder",
+            "borderStyle",
+            "borderWidth",
+            "borderColor",
+            "hasExtendedCustomRadius",
+            "extendedRadiusChoice"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "content": {
+                "type": "string",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "language": {
+                "type": "string",
+                "enum": [
+                    "c",
+                    "coffeescript",
+                    "cpp",
+                    "csharp",
+                    "css",
+                    "go",
+                    "html",
+                    "java",
+                    "javascript",
+                    "json",
+                    "jsx",
+                    "kotlin",
+                    "livescript",
+                    "markdown",
+                    "php",
+                    "plain",
+                    "python",
+                    "sass",
+                    "shell",
+                    "sql",
+                    "swift",
+                    "tsx",
+                    "typescript",
+                    "xml",
+                    "yaml"
+                ],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "theme": {
+                "type": "string",
+                "enum": [
+                    "abcdef",
+                    "androidstudio",
+                    "atomone",
+                    "bbedit",
+                    "bespin",
+                    "darcula",
+                    "default",
+                    "dracula",
+                    "duotoneDark",
+                    "duotoneLight",
+                    "eclipse",
+                    "githubDark",
+                    "githubLight",
+                    "gruvboxDark",
+                    "okaidia",
+                    "sublime",
+                    "xcodeDark",
+                    "xcodeLight"
+                ],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "withHeading": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "withRowNumbers": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "hasBorder": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dashed", "Dotted"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderWidth": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderColor": { "$ref": "#/$defs/color" },
+            "hasExtendedCustomRadius": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
+            "extendedRadiusChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusTopLeft": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusTopRight": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusBottomLeft": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "extendedRadiusBottomRight": {
+                "type": "string",
+                "pattern": "^([0-9]+px)?$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            }
+        }
+    }
 }

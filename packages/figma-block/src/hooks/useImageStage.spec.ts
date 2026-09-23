@@ -7,9 +7,13 @@ import { type UseImageStageProps } from '../types';
 
 import { useImageStage } from './useImageStage';
 
+const resizeEntry = (width: number, height: number) =>
+    [{ contentRect: { width, height } }] as unknown as ResizeObserverEntry[];
+
 describe('useImageStage', () => {
     let mockDisconnect: ReturnType<typeof vi.fn>;
     let mockObserve: ReturnType<typeof vi.fn>;
+    let notifyResize: (entries: ResizeObserverEntry[]) => void;
 
     beforeEach(() => {
         vi.unstubAllGlobals();
@@ -18,7 +22,9 @@ describe('useImageStage', () => {
         mockDisconnect = vi.fn();
         mockObserve = vi.fn();
 
-        const MockResizeObserver = vi.fn(function () {
+        const MockResizeObserver = vi.fn(function (callback: ResizeObserverCallback) {
+            notifyResize = (entries) => callback(entries, {} as ResizeObserver);
+
             return {
                 observe: mockObserve,
                 disconnect: mockDisconnect,
@@ -77,5 +83,42 @@ describe('useImageStage', () => {
 
         rerender({ height: '800px', hasLimitedOptions: true, isMobile: false });
         expect(div.style.height).toBe('auto');
+    });
+
+    it('does not lay out the image while the stage has no layout box', () => {
+        const stage = document.createElement('div');
+        const container = document.createElement('div');
+        const image = document.createElement('img');
+
+        container.append(image);
+        stage.append(container);
+
+        const { result } = renderHook(() => {
+            const hookResult = useImageStage({ height: '400px', hasLimitedOptions: false, isMobile: false });
+
+            (hookResult.stageRef as React.MutableRefObject<HTMLDivElement>).current = stage;
+            (hookResult.containerRef as React.MutableRefObject<HTMLDivElement>).current = container;
+            (hookResult.imageRef as React.MutableRefObject<HTMLImageElement>).current = image;
+
+            return hookResult;
+        });
+
+        act(() => {
+            result.current.setIsImageLoaded(true);
+        });
+
+        // An inactive tab panel is `display: none`, so the stage is reported without a box.
+        act(() => {
+            notifyResize(resizeEntry(0, 0));
+        });
+
+        expect(container.style.position).toBe('');
+
+        // Switching to the tab gives the stage a box and the observer fires again.
+        act(() => {
+            notifyResize(resizeEntry(900, 400));
+        });
+
+        expect(container.style.position).toBe('absolute');
     });
 });
