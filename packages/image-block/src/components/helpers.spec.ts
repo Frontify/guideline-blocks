@@ -39,6 +39,18 @@ describe('getImageObjectFitValue()', () => {
     it('should return scale-down for autosizing=none', () => {
         expect(getImageObjectFitValue({ autosizing: 'none' } as Settings)).toEqual('scale-down');
     });
+
+    it('should return scale-down for autosizing=none and a raster extension', () => {
+        expect(getImageObjectFitValue({ autosizing: 'none' } as Settings, 'png')).toEqual('scale-down');
+    });
+
+    it('should return contain for autosizing=none and svg extension', () => {
+        expect(getImageObjectFitValue({ autosizing: 'none' } as Settings, 'svg')).toEqual('contain');
+    });
+
+    it('should return cover for autosizing=fill and svg extension', () => {
+        expect(getImageObjectFitValue({ autosizing: 'fill' } as Settings, 'svg')).toEqual('cover');
+    });
 });
 
 describe('getImageObjectPositionValue()', () => {
