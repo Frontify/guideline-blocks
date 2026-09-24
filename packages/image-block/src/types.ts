@@ -138,4 +138,5 @@ export type ImageInformation = {
     height: number;
     focalPointX: number;
     focalPointY: number;
+    extension?: string;
 };

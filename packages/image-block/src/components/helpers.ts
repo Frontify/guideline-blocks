@@ -147,10 +147,10 @@ export const getImageWrapperStyle = (blockSettings: Settings): CSSProperties => 
 };
 
 export const getImageStyle = (blockSettings: Settings, imageInformation: ImageInformation): CSSProperties => {
-    const { height, focalPointX, focalPointY } = imageInformation;
+    const { height, focalPointX, focalPointY, extension } = imageInformation;
     return {
         aspectRatio: getImageRatioValue(blockSettings),
-        objectFit: getImageObjectFitValue(blockSettings),
+        objectFit: getImageObjectFitValue(blockSettings, extension),
         objectPosition: getImageObjectPositionValue(blockSettings, { focalPointX, focalPointY }),
         maxHeight: getMaxHeightValue(blockSettings, height),
     };
@@ -179,14 +179,26 @@ export const getImageRatioValue = (blockSettings: Settings): CSSProperties['aspe
     return aspectRatioValue;
 };
 
-export const getImageObjectFitValue = ({ autosizing = Autosizing.None }: Settings): CSSProperties['objectFit'] => {
+export const getImageObjectFitValue = (
+    { autosizing = Autosizing.None }: Settings,
+    extension?: string
+): CSSProperties['objectFit'] => {
     const map: Record<Autosizing, CSSProperties['objectFit']> = {
         [Autosizing.None]: 'scale-down',
         [Autosizing.Fit]: 'contain',
         [Autosizing.Fill]: 'cover',
     };
 
-    return map[autosizing];
+    const objectFit = map[autosizing];
+
+    // 'scale-down' relies on an intrinsic size, which SVGs without width/height attributes lack;
+    // Safari then paints them at the spec's default object size (300x150) instead of filling the
+    // box. Vectors upscale losslessly, so 'contain' is equivalent and renders consistently.
+    if (objectFit === 'scale-down' && extension === 'svg') {
+        return 'contain';
+    }
+
+    return objectFit;
 };
 
 export const getImageObjectPositionValue = (

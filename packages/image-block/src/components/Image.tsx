@@ -119,6 +119,7 @@ export const Image = ({
         focalPointX: image.focalPointX,
         // oxlint-disable-next-line typescript/no-unsafe-assignment
         focalPointY: image.focalPointY,
+        extension: image.extension,
     });
 
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link ? blockSettings?.linkObject : null;
