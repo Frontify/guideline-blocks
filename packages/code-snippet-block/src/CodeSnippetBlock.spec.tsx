@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { EditorView } from '@codemirror/view';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { type Color, Radius } from '@frontify/guideline-blocks-settings';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { type ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
@@ -29,6 +30,7 @@ const SELECT_ITEM_TEST_ID = 'fondue-select-item';
 const TOOLTIP_CONTENT_TEST_ID = 'fondue-tooltip-content';
 
 const EDITOR_SELECTOR = '.cm-editor';
+const EDITOR_CONTENT_SELECTOR = '.cm-content';
 const LINE_NUMBERS_SELECTOR = '.cm-lineNumbers';
 const LINE_TOKEN_SELECTOR = '.cm-line span';
 const LINE_SELECTOR = '.cm-line';
@@ -159,6 +161,45 @@ describe('Code Snippet Block', () => {
         expect(getComputedStyle(line as Element).color).toBe('#000000');
     });
 
+    it('should label the editor with the header language', () => {
+        const { container } = renderCodeSnippetBlock({
+            blockSettings: { withHeading: true, language: 'typescript' },
+        });
+
+        const label = screen.getByText('TypeScript');
+
+        expect(label.id).not.toBe('');
+        expect(container.querySelector(EDITOR_CONTENT_SELECTOR)).toHaveAttribute('aria-labelledby', label.id);
+    });
+
+    it('should mark the editor as read-only in view mode', () => {
+        const { container } = renderCodeSnippetBlock({
+            editorState: false,
+            blockSettings: { content: 'const a = 1;' },
+        });
+
+        expect(container.querySelector(EDITOR_CONTENT_SELECTOR)).toHaveAttribute('aria-readonly', 'true');
+    });
+
+    it('should save the edited content to the block settings', async () => {
+        const { container, appBridge } = renderCodeSnippetBlock({
+            editorState: true,
+            blockSettings: { content: '' },
+        });
+
+        const editor = EditorView.findFromDOM(container.querySelector(EDITOR_SELECTOR) as HTMLElement);
+        expect(editor).not.toBeNull();
+
+        // Happy DOM cannot reliably emulate CodeMirror's contenteditable selection while typing.
+        act(() => {
+            editor!.dispatch({ changes: { from: 0, insert: 'const a = 1;' } });
+        });
+
+        await waitFor(() => {
+            expect(appBridge.updateBlockSettings.calledWithMatch({ content: 'const a = 1;' })).toBe(true);
+        });
+    });
+
     it('should switch the language from the dropdown inside the block', async () => {
         const user = userEvent.setup();
         renderCodeSnippetBlock({
@@ -195,7 +236,9 @@ describe('Code Snippet Block', () => {
         await waitFor(() => {
             expect(screen.getByTestId(HEADER_COPY_BUTTON_TEST_ID)).toHaveTextContent('Copied');
         });
-        expect(await navigator.clipboard.readText()).toBe(content);
+        await waitFor(async () => {
+            expect(await navigator.clipboard.readText()).toBe(content);
+        });
     });
 
     it('should copy the content using the copy button without a header', async () => {
@@ -221,9 +264,30 @@ describe('Code Snippet Block', () => {
 
         await user.click(copyButton);
 
-        expect(await navigator.clipboard.readText()).toBe(content);
+        await waitFor(async () => {
+            expect(await navigator.clipboard.readText()).toBe(content);
+        });
         await waitFor(() => {
             expect(screen.getByTestId(TOOLTIP_CONTENT_TEST_ID)).toHaveTextContent('Copied');
+        });
+    });
+
+    it('should label the copy button instead of showing a tooltip for short content', async () => {
+        const user = userEvent.setup();
+        const content = 'const a = 1;';
+        renderCodeSnippetBlock({
+            editorState: true,
+            blockSettings: { language: 'javascript', content },
+        });
+
+        const copyButton = screen.getByRole('button', { name: 'Copy' });
+
+        await user.hover(copyButton);
+        await user.click(copyButton);
+
+        expect(screen.queryByTestId(TOOLTIP_CONTENT_TEST_ID)).not.toBeInTheDocument();
+        await waitFor(async () => {
+            expect(await navigator.clipboard.readText()).toBe(content);
         });
     });
 });
