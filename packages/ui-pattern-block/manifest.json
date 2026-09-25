@@ -1,8 +1,325 @@
 {
     "appId": "clncxpkhl00014muq6fm3u7i0",
-    "i18nFields": ["title", "description"],
-    "searchFields": [
-        { "settingId": "title", "type": "fondueRte" },
-        { "settingId": "description", "type": "fondueRte" }
-    ]
+    "settingsSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$defs": {
+            "color": {
+                "type": ["null", "object"],
+                "required": ["red", "green", "blue"],
+                "additionalProperties": false,
+                "properties": {
+                    "red": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "green": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "blue": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            },
+            "sizeChoice": {
+                "type": "string",
+                "enum": ["None", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightChoice": {
+                "type": "string",
+                "enum": ["Auto", "Small", "Medium", "Large"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "pixelValue": {
+                "type": "string",
+                "pattern": "^[0-9]+px$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "switch": {
+                "type": "boolean",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "fileContent": {
+                "type": "string",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "templateDependencies": {
+                "type": "object",
+                "additionalProperties": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true,
+                "properties": {
+                    "npm": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    },
+                    "external": {
+                        "type": "string",
+                        "frontify-api-read": true,
+                        "frontify-api-write": true
+                    }
+                }
+            }
+        },
+        "required": [
+            "sandpackTemplate",
+            "preprocessor",
+            "showResponsivePreview",
+            "showResetButton",
+            "showSandboxLink",
+            "showCode",
+            "isCodeEditable",
+            "shouldCollapseCodeByDefault",
+            "showNpmDependencies",
+            "showExternalDependencies",
+            "shouldCollapseDependenciesByDefault",
+            "labelPosition",
+            "alignment",
+            "hasCustomPadding",
+            "paddingChoice",
+            "isCustomHeight",
+            "customHeightValue",
+            "heightChoice",
+            "sandpackTheme",
+            "hasBackground",
+            "hasBorder",
+            "borderStyle",
+            "borderWidth",
+            "hasRadius",
+            "radiusChoice"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "title": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 1,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "description": {
+                "type": "string",
+                "frontify-type": "fondueRte",
+                "frontify-serializable": true,
+                "frontify-serialization-index": 2,
+                "frontify-translatable": true,
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "sandpackTemplate": {
+                "type": "string",
+                "enum": [
+                    "vanilla",
+                    "static",
+                    "react",
+                    "angular",
+                    "svelte",
+                    "vue"
+                ],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "preprocessor": {
+                "type": "string",
+                "enum": ["None", "SCSS", "LESS"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "showResponsivePreview": { "$ref": "#/$defs/switch" },
+            "showResetButton": { "$ref": "#/$defs/switch" },
+            "showSandboxLink": { "$ref": "#/$defs/switch" },
+            "showCode": { "$ref": "#/$defs/switch" },
+            "isCodeEditable": { "$ref": "#/$defs/switch" },
+            "shouldCollapseCodeByDefault": { "$ref": "#/$defs/switch" },
+            "showNpmDependencies": { "$ref": "#/$defs/switch" },
+            "showExternalDependencies": { "$ref": "#/$defs/switch" },
+            "shouldCollapseDependenciesByDefault": { "$ref": "#/$defs/switch" },
+
+            "labelPosition": {
+                "type": "string",
+                "enum": ["Top", "Bottom"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "alignment": {
+                "type": "string",
+                "enum": ["Left", "Center"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "hasCustomPadding": { "$ref": "#/$defs/switch" },
+            "paddingCustom": { "$ref": "#/$defs/pixelValue" },
+            "paddingChoice": { "$ref": "#/$defs/sizeChoice" },
+
+            "isCustomHeight": { "$ref": "#/$defs/switch" },
+            "customHeightValue": {
+                "type": "string",
+                "pattern": "^([0-9]+px|auto)$",
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "heightChoice": { "$ref": "#/$defs/heightChoice" },
+
+            "sandpackTheme": {
+                "type": "string",
+                "enum": [
+                    "Dark",
+                    "Light",
+                    "Amethyst",
+                    "AquaBlue",
+                    "AtomDark",
+                    "Cobalt2",
+                    "Cyberpunk",
+                    "Dracula",
+                    "EcoLight",
+                    "FreeCodeCampDark",
+                    "GithubLight",
+                    "GruvboxDark",
+                    "GruvboxLight",
+                    "LevelUp",
+                    "MonokaiPro",
+                    "NeoCyan",
+                    "NightOwl",
+                    "SandpackDark"
+                ],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+
+            "hasBackground": { "$ref": "#/$defs/switch" },
+            "backgroundColor": { "$ref": "#/$defs/color" },
+
+            "hasBorder": { "$ref": "#/$defs/switch" },
+            "borderStyle": {
+                "type": "string",
+                "enum": ["Solid", "Dashed", "Dotted"],
+                "frontify-api-read": true,
+                "frontify-api-write": true
+            },
+            "borderWidth": { "$ref": "#/$defs/pixelValue" },
+            "borderColor": { "$ref": "#/$defs/color" },
+
+            "hasRadius": { "$ref": "#/$defs/switch" },
+            "radiusChoice": { "$ref": "#/$defs/sizeChoice" },
+            "radiusValue": { "$ref": "#/$defs/pixelValue" },
+
+            "files": {
+                "type": "object",
+                "additionalProperties": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true,
+                "properties": {
+                    "vanilla": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/index.html": { "$ref": "#/$defs/fileContent" },
+                            "/index.js": { "$ref": "#/$defs/fileContent" },
+                            "/app.js": { "$ref": "#/$defs/fileContent" },
+                            "/styles.css": { "$ref": "#/$defs/fileContent" },
+                            "/styles.scss": { "$ref": "#/$defs/fileContent" },
+                            "/styles.less": { "$ref": "#/$defs/fileContent" }
+                        }
+                    },
+                    "static": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/index.html": { "$ref": "#/$defs/fileContent" },
+                            "/index.js": { "$ref": "#/$defs/fileContent" },
+                            "/style.css": { "$ref": "#/$defs/fileContent" }
+                        }
+                    },
+                    "react": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/App.js": { "$ref": "#/$defs/fileContent" },
+                            "/styles.css": { "$ref": "#/$defs/fileContent" }
+                        }
+                    },
+                    "angular": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/src/app/app.component.html": {
+                                "$ref": "#/$defs/fileContent"
+                            },
+                            "/src/app/app.component.css": {
+                                "$ref": "#/$defs/fileContent"
+                            },
+                            "/src/app/app.component.ts": {
+                                "$ref": "#/$defs/fileContent"
+                            }
+                        }
+                    },
+                    "svelte": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/App.svelte": { "$ref": "#/$defs/fileContent" },
+                            "/styles.css": { "$ref": "#/$defs/fileContent" }
+                        }
+                    },
+                    "vue": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "/src/App.vue": { "$ref": "#/$defs/fileContent" },
+                            "/src/styles.css": { "$ref": "#/$defs/fileContent" }
+                        }
+                    }
+                }
+            },
+            "dependencies": {
+                "type": "object",
+                "additionalProperties": false,
+                "frontify-api-read": true,
+                "frontify-api-write": true,
+                "properties": {
+                    "vanilla": { "$ref": "#/$defs/templateDependencies" },
+                    "static": { "$ref": "#/$defs/templateDependencies" },
+                    "react": { "$ref": "#/$defs/templateDependencies" },
+                    "angular": { "$ref": "#/$defs/templateDependencies" },
+                    "svelte": { "$ref": "#/$defs/templateDependencies" },
+                    "vue": { "$ref": "#/$defs/templateDependencies" }
+                }
+            }
+        }
+    }
 }
