@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
-import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -72,7 +71,7 @@ export const Toolbar = ({
                         data-test-id="toolbar-tab-btn"
                         className={joinClassNames([
                             'tw-px-2 tw-h-full tw-text-small tw-text-secondary hover:tw-text-secondary tw-font-primary tw-relative focus-visible:tw-z-20',
-                            FOCUS_VISIBLE_STYLE,
+                            'focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none',
                         ])}
                         key={button.file}
                         onClick={() => toggleFile(button.file)}
