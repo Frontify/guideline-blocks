@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type AppBridgeBlock, type Asset, useAssetViewer } from '@frontify/app-bridge';
-import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties, type ReactNode } from 'react';
 
@@ -51,10 +50,8 @@ const ImageWrapper = ({
     const { open } = useAssetViewer(appBridge);
 
     const sharedProps = {
-        className: joinClassNames([
-            'tw-flex tw-overflow-hidden tw-w-full',
-            'focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none',
-        ]),
+        className:
+            'tw-flex tw-overflow-hidden tw-w-full focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none',
         style,
         ref: setContainerRef,
     };
