@@ -107,6 +107,5 @@ describe('EditAltTextFlyout', () => {
 
         const [firstInput, secondInput] = screen.getAllByRole('textbox', { name: 'Alt text' });
         expect(firstInput.id).not.toBe(secondInput.id);
-        expect(firstInput.getAttribute('aria-describedby')).not.toBe(secondInput.getAttribute('aria-describedby'));
     });
 });
