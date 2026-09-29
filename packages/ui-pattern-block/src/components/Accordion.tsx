@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_VISIBLE_STYLE_INSET } from '@frontify/fondue';
 import { IconCaretDown } from '@frontify/fondue/icons';
-import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { type PropsWithChildren, type ReactElement } from 'react';
 
 interface Props {
@@ -27,11 +25,7 @@ export const Accordion = ({
             <button
                 type="button"
                 aria-expanded={isOpen}
-                className={joinClassNames([
-                    'tw-relative focus:tw-z-20 tw-body-small tw-gap-2 tw-w-[calc(100%-32px)] tw-text-secondary tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center',
-                    isOpen && 'tw-border-b tw-border-b-line',
-                    FOCUS_VISIBLE_STYLE_INSET,
-                ])}
+                className={`tw-relative focus:tw-z-20 tw-body-small tw-gap-2 tw-w-[calc(100%-32px)] tw-text-secondary tw-box-content tw-bg-white tw-h-10 tw-px-4 tw-flex tw-items-center focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none tw-ring-inset ${isOpen ? 'tw-border-b tw-border-b-line' : ''}`}
                 style={{
                     borderBottomLeftRadius: !isOpen ? borderRadius : undefined,
                     borderBottomRightRadius: !isOpen ? borderRadius : undefined,
@@ -39,7 +33,7 @@ export const Accordion = ({
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {label}
-                <div className={joinClassNames([isOpen ? 'tw-rotate-180' : ''])}>
+                <div className={isOpen ? 'tw-rotate-180' : undefined}>
                     <IconCaretDown size={12} />
                 </div>
             </button>
