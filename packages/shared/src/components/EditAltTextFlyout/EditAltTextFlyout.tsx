@@ -4,6 +4,7 @@ import { Button, Flyout, Label, Text, TextInput } from '@frontify/fondue/compone
 import { IconCheckMark } from '@frontify/fondue/icons';
 // oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
+import { useId } from 'react';
 
 import {
     type EditAltTextFlyoutFooterProps,
@@ -26,7 +27,7 @@ export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFly
 );
 
 export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => {
-    const id = React.useId();
+    const id = useId();
     const inputId = `${id}-input`;
     const descriptionId = `${id}-description`;
 
