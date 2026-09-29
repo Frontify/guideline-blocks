@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { SandpackPreview } from '@codesandbox/sandpack-react';
-import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { Button } from '@frontify/fondue/components';
 import { IconCross } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
@@ -86,7 +85,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                         key={device.label}
                                         className={joinClassNames([
                                             'tw-h-full tw-text-primary tw-rounded-medium tw-px-2 tw-border hover:tw-bg-container-secondary-hover active:tw-bg-container-secondary-active',
-                                            FOCUS_VISIBLE_STYLE,
+                                            'focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none',
                                             width === device.width
                                                 ? 'tw-border-primary tw-bg-container-secondary-active hover:tw-bg-container-secondary-active'
                                                 : 'tw-border-transparent',
