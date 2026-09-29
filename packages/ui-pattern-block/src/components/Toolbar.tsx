@@ -3,7 +3,6 @@
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { Button } from '@frontify/fondue/components';
 import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
-import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useCopy } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
@@ -59,20 +58,14 @@ export const Toolbar = ({
     return (
         <div
             data-test-id="ui-pattern-files-toolbar"
-            className={joinClassNames([
-                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10  tw-px-2 tw-bg-white tw-border-t tw-border-line-mid',
-                !isEditorCollapsed && 'tw-border-b',
-            ])}
+            className={`tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10 tw-px-2 tw-bg-white tw-border-t tw-border-line-mid ${!isEditorCollapsed ? 'tw-border-b' : ''}`}
         >
             <div className="tw-flex tw-h-full">
                 {getToolbarButtons(preprocessor)[template].map((button) => (
                     <button
                         type="button"
                         data-test-id="toolbar-tab-btn"
-                        className={joinClassNames([
-                            'tw-px-2 tw-h-full tw-text-small tw-text-secondary hover:tw-text-secondary tw-font-primary tw-relative focus-visible:tw-z-20',
-                            'focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none',
-                        ])}
+                        className="tw-px-2 tw-h-full tw-text-small tw-text-secondary hover:tw-text-secondary tw-font-primary tw-relative focus-visible:tw-z-20 focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none"
                         key={button.file}
                         onClick={() => toggleFile(button.file)}
                     >
