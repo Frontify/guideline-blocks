@@ -12,7 +12,6 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import { FrontifyPattern, PatternDesign, PatternScale, PatternTheme } from '@frontify/fondue';
 import { Button, Dialog } from '@frontify/fondue/components';
 import { IconCheckMarkCircle, IconCrossCircle, IconPlus } from '@frontify/fondue/icons';
 import {
@@ -420,13 +419,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 >
                     <Dialog.Content padding="comfortable" showUnderlay>
                         <Dialog.SideContent>
-                            <div className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden">
-                                <FrontifyPattern
-                                    scale={PatternScale.XXL}
-                                    pattern={PatternDesign.Typography}
-                                    foregroundColor={PatternTheme.Green}
-                                />
-                            </div>
+                            <div
+                                aria-hidden="true"
+                                className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden tw-bg-[radial-gradient(circle_at_1px_1px,#00875A_1px,transparent_0)] tw-bg-[length:16px_16px]"
+                            />
                         </Dialog.SideContent>
                         <Dialog.Header>
                             <span className="tw-font-bold">What should be the type of those images?</span>
