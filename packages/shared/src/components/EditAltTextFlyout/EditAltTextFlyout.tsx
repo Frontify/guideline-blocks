@@ -25,22 +25,28 @@ export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFly
     </div>
 );
 
-export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => (
-    <div className="tw-flex tw-flex-col tw-gap-y-2" data-test-id="flyout-menu">
-        <Label htmlFor="alt-text-input">Alt text</Label>
-        <TextInput
-            value={localAltText}
-            onChange={(event) => setLocalAltText(event.target.value)}
-            id="alt-text-input"
-            placeholder="Enter alt text"
-            data-test-id="alt-text-input"
-            aria-describedby="alt-text-helper"
-        />
-        <Text as="p" id="alt-text-helper" size="small" color="weak">
-            The best alt text describes the most relevant content of the image.
-        </Text>
-    </div>
-);
+export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => {
+    const id = React.useId();
+    const inputId = `${id}-input`;
+    const descriptionId = `${id}-description`;
+
+    return (
+        <div className="tw-flex tw-flex-col tw-gap-y-2" data-test-id="flyout-menu">
+            <Label htmlFor={inputId}>Alt text</Label>
+            <TextInput
+                value={localAltText}
+                onChange={(event) => setLocalAltText(event.target.value)}
+                id={inputId}
+                placeholder="Enter alt text"
+                data-test-id="alt-text-input"
+                aria-describedby={descriptionId}
+            />
+            <Text as="p" id={descriptionId} size="small" color="weak">
+                The best alt text describes the most relevant content of the image.
+            </Text>
+        </div>
+    );
+};
 
 export const EditAltTextFlyout = ({
     setShowAltTextMenu,
