@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormControl, HelperPosition } from '@frontify/fondue';
-import { Button, Flyout, TextInput } from '@frontify/fondue/components';
+import { Button, Flyout, Label, Text, TextInput } from '@frontify/fondue/components';
 import { IconCheckMark } from '@frontify/fondue/icons';
 // oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
+import { useId } from 'react';
 
 import {
     type EditAltTextFlyoutFooterProps,
@@ -26,28 +26,28 @@ export const BaseEditAltTextFlyoutFooter = ({ onCancel, onSave }: EditAltTextFly
     </div>
 );
 
-export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => (
-    <div className="tw-flex tw-flex-col" data-test-id="flyout-menu">
-        <FormControl
-            label={{
-                children: 'Alt text',
-                htmlFor: 'alt-text-input',
-            }}
-            helper={{
-                text: 'The best alt text describes the most relevant content of the image.',
-                position: HelperPosition.After,
-            }}
-        >
+export const EditAltTextFlyoutScreen = ({ setLocalAltText, localAltText }: EditAltTextFlyoutScreenProps) => {
+    const id = useId();
+    const inputId = `${id}-input`;
+    const descriptionId = `${id}-description`;
+
+    return (
+        <div className="tw-flex tw-flex-col tw-gap-y-2" data-test-id="flyout-menu">
+            <Label htmlFor={inputId}>Alt text</Label>
             <TextInput
                 value={localAltText}
                 onChange={(event) => setLocalAltText(event.target.value)}
-                id="alt-text-input"
+                id={inputId}
                 placeholder="Enter alt text"
                 data-test-id="alt-text-input"
+                aria-describedby={descriptionId}
             />
-        </FormControl>
-    </div>
-);
+            <Text as="p" id={descriptionId} size="small" color="weak">
+                The best alt text describes the most relevant content of the image.
+            </Text>
+        </div>
+    );
+};
 
 export const EditAltTextFlyout = ({
     setShowAltTextMenu,

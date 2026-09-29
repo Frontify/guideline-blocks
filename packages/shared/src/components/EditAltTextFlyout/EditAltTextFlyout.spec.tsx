@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { EditAltTextFlyout } from './EditAltTextFlyout';
+import { EditAltTextFlyout, EditAltTextFlyoutScreen } from './EditAltTextFlyout';
 
 const FLYOUT_MENU_TEST_ID = 'flyout-menu';
 const SAVE_BUTTON_TEST_ID = 'save-button';
@@ -86,5 +86,26 @@ describe('EditAltTextFlyout', () => {
 
         await userEvent.type(screen.getByRole('textbox'), 'N');
         expect(setLocalAltText).toHaveBeenCalledWith('N');
+    });
+
+    it('should label the input and describe it with the helper text', () => {
+        render(<EditAltTextFlyoutScreen setLocalAltText={vi.fn()} localAltText="" />);
+
+        const input = screen.getByRole('textbox', { name: 'Alt text' });
+        expect(input).toHaveAccessibleDescription(
+            'The best alt text describes the most relevant content of the image.'
+        );
+    });
+
+    it('should not share input ids between multiple instances', () => {
+        render(
+            <>
+                <EditAltTextFlyoutScreen setLocalAltText={vi.fn()} localAltText="" />
+                <EditAltTextFlyoutScreen setLocalAltText={vi.fn()} localAltText="" />
+            </>
+        );
+
+        const [firstInput, secondInput] = screen.getAllByRole('textbox', { name: 'Alt text' });
+        expect(firstInput.id).not.toBe(secondInput.id);
     });
 });
