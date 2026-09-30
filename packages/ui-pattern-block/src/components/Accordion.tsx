@@ -33,7 +33,7 @@ export const Accordion = ({
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {label}
-                <div className={isOpen ? 'tw-rotate-180' : undefined}>
+                <div className={isOpen ? 'tw-rotate-180' : ''}>
                     <IconCaretDown size={12} />
                 </div>
             </button>
