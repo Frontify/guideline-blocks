@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type Asset } from '@frontify/app-bridge';
-import { FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
-import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
 import { type ReactElement } from 'react';
 
 type AudioPlayerProps = {
@@ -59,7 +58,7 @@ export const AudioPlayer = ({
                     data-test-id="audio-block-audio-tag"
                     key={audio.id}
                     controls
-                    className={joinClassNames(['tw-w-full tw-outline-none', FOCUS_VISIBLE_STYLE])}
+                    className="tw-w-full tw-outline-none focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none"
                     controlsList="nodownload"
                     preload="metadata"
                 >
