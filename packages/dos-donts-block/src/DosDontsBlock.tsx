@@ -419,10 +419,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 >
                     <Dialog.Content padding="comfortable" showUnderlay>
                         <Dialog.SideContent>
-                        
                             <div
                                 aria-hidden="true"
-                                className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden tw-bg-[radial-gradient(circle_at_1px_1px,#00875A_1px,transparent_0)] tw-bg-[length:16px_16px]"
+                                className="tw-h-full sm:tw-max-w-60 tw-overflow-hidden tw-bg-[radial-gradient(circle_at_1px_1px,var(the_real_token)1px,transparent_0)] tw-bg-[length:16px_16px]"
                             />
                         </Dialog.SideContent>
                         <Dialog.Header>
