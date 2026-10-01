@@ -21,7 +21,7 @@ export const ColorTooltip = ({
     const { hoverProps, isHovered } = useHover({});
 
     return (
-        <div className="tw-absolute tw-z-[11]" style={{ left }} {...hoverProps}>
+        <div className="tw-absolute tw-z-[8]" style={{ left }} {...hoverProps}>
             <div
                 data-test-id="color-points"
                 className={joinClassNames([
