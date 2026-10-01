@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle } from '@frontify/fondue';
 import { Button, TextInput, Text } from '@frontify/fondue/components';
 import { IconLinkBox } from '@frontify/fondue/icons';
 import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
@@ -178,10 +177,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <IconLinkBox size={32} />
                             </div>
                             <div className="tw-w-full tw-max-w-sm">
-                                <FormControl
-                                    helper={inputError ? { text: SKETCHFAB_RULE_ERROR } : undefined}
-                                    style={inputError ? FormControlStyle.Danger : FormControlStyle.Primary}
-                                >
+                                <div className="tw-flex tw-flex-col tw-gap-y-2">
                                     <TextInput
                                         value={localUrl}
                                         onChange={(event) => setLocalUrl(event.target.value)}
@@ -191,8 +187,14 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                                             }
                                         }}
                                         placeholder={URL_INPUT_PLACEHOLDER}
+                                        status={inputError ? 'error' : 'neutral'}
                                     />
-                                </FormControl>
+                                    {inputError && (
+                                        <Text as="p" size="small" color="negative">
+                                            {SKETCHFAB_RULE_ERROR}
+                                        </Text>
+                                    )}
+                                </div>
                             </div>
                             <Button onPress={saveLink}>Confirm</Button>
                         </div>
