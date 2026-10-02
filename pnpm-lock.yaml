@@ -126,8 +126,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -205,8 +205,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -281,8 +281,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -360,8 +360,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -439,8 +439,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.1
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -527,8 +527,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -612,8 +612,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -685,8 +685,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -776,8 +776,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -861,8 +861,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -931,8 +931,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1010,8 +1010,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1092,8 +1092,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1165,8 +1165,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1341,8 +1341,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1414,8 +1414,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1487,8 +1487,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1557,8 +1557,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1639,8 +1639,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1724,8 +1724,8 @@ importers:
         specifier: ^7.29.0
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
-        specifier: ^6.2.6
-        version: 6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        specifier: ^6.2.8
+        version: 6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -2998,8 +2998,8 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/frontify-cli@6.2.7':
-    resolution: {integrity: sha512-X8emeOmQePjo3tzIF9Rbit1hGwiyikySkdBk+VWAXwt/w0Ke/5ByYfxTW9OF1NZq1dfP4XWUExd9qZEjLmp9nQ==}
+  '@frontify/frontify-cli@6.2.8':
+    resolution: {integrity: sha512-Fx8HZLE8N57kveajo/45qaa23iTcEiJpAH6L15sasXqYzvt24OZBx8l/3D3DJLMX+r7PRFhYLNoAVW82+o7QbQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -5780,14 +5780,14 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  brace-expansion@1.1.18:
-    resolution: {integrity: sha512-Edep/X9fGqVNmzKBVsDYIOtD+z1tuezV70LBjdCst9Tqu76lsnvRiZ6oTic1n+/BIwX6QDGAO94PN4N2SADvtw==}
+  brace-expansion@1.1.21:
+    resolution: {integrity: sha512-9zeA+KLZNNzglF2TPKRQEDyx6Yby7daAkuy8MiPzpXPsYDWi/DRM8jmwUDxokQjYqBpv5DgPiwD4h4ZZSy1Ujw==}
 
-  brace-expansion@2.1.4:
-    resolution: {integrity: sha512-hGfVzPxthbf3+2yjg/RBs60cB0FhqBS/zvdV/4wn4/BmN0bNMMHPc4V/BbFieqf1TKAGGAHnY4eSjajCl0f2Xg==}
+  brace-expansion@2.1.7:
+    resolution: {integrity: sha512-uZbew1NqdmPDTMJ8ah1y+b+9QEJrfkXFk3RcTQw3X0jW/xRUvFKsg1CfQdSYGdTbXZWExtU3J3ccxtnfw1Fi0g==}
 
-  brace-expansion@5.0.9:
-    resolution: {integrity: sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==}
+  brace-expansion@5.0.12:
+    resolution: {integrity: sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==}
     engines: {node: 20 || >=22}
 
   braces@3.0.3:
@@ -6537,11 +6537,11 @@ packages:
   fast-string-width@3.0.2:
     resolution: {integrity: sha512-gX8LrtNEI5hq8DVUfRQMbr5lpaS4nMIWV+7XEbXk2b8kiQIizgnlr12B4dA3ZEx3308ze0O4Q1R+cHts8kyUJg==}
 
-  fast-uri@3.1.6:
-    resolution: {integrity: sha512-7Ical1vFEMr0onbVzEDIreM22I4khW+fzyQPwvAFWBp1iwdshSZRsL4jjRvPG9JP1uiqMHRto+YU6R2/CzDz5Q==}
+  fast-uri@3.1.8:
+    resolution: {integrity: sha512-GZMtZUTNRpOVIECoXwLNZS5xUGE+mVNbTB8h/7Rwh2TFWcBQiPzTgyZi05BF9UMZKkLJv8XBRJTlU7zg8+ZfMg==}
 
-  fast-uri@4.1.2:
-    resolution: {integrity: sha512-TyGmBcbDTZXcb2cj5MV89DrF42DKvb3y5DDUNh95iO+IMeAzMkVSxK1PZRrRIpc9yg8U2GhGdbofNa0LS/a4Bw==}
+  fast-uri@4.2.1:
+    resolution: {integrity: sha512-TmHQgewjHtMq1E5QKA0tOE0yeYGQs25KZC/ziJpubRtWI15W92e6vPFydWOeZBVROSHBYw/QhD9d5OefdD6LDg==}
 
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
@@ -7389,10 +7389,6 @@ packages:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
     hasBin: true
 
-  minimatch@10.2.4:
-    resolution: {integrity: sha512-oRjTw/97aTBN0RHbYCdtF1MQfvusSIBQM0IZEgzl6426+8jSC0nF1a/GmnVLpfB9yyr6g6FTqWqiZVbxrtaCIg==}
-    engines: {node: 18 || 20 || >=22}
-
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
     engines: {node: 18 || 20 || >=22}
@@ -7795,9 +7791,6 @@ packages:
   process-warning@4.0.1:
     resolution: {integrity: sha512-3c2LzQ3rY9d0hc1emcsHhfT9Jwz0cChib/QN89oME2R451w5fy3f0afAhERFZAwrbDU43wk12d0ORBpDVME50Q==}
 
-  process-warning@5.0.0:
-    resolution: {integrity: sha512-a39t9ApHNx2L4+HBnQKqxxHNs1r7KF+Intd8Q/g1bUh6q0WIp9voPXJ/x0j+ZL45KF1pJd9+q2jLIRMfvEshkA==}
-
   process-warning@5.1.0:
     resolution: {integrity: sha512-jQSaVHsPgtyw60e1rQ/A+/ArPEj/S8pS/vFnyGa/gYFXrKk/6RuDkoqVDQ5NI5MmS01698ltlAk0NoDBNLujRw==}
 
@@ -7825,8 +7818,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  qs@6.15.3:
-    resolution: {integrity: sha512-O9gl3zCl5h5blw1KGUzQKhA5oUXSl8rwUIM5o0S3nCXMliSvy5Dzx7/DJcI+SwgICv+IneSZwhBh1oSyEHA71A==}
+  qs@6.16.0:
+    resolution: {integrity: sha512-h6fhOIaRrID2CbEY2fqs+7t+UXZo+MLAnU5gRIq85uFtdiUPCdsApMlHhXogKVM4HM2DVbIjGNTTYH2OcmP1vA==}
     engines: {node: '>=0.6'}
 
   quansync@0.2.10:
@@ -10189,7 +10182,7 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.15.3
+      qs: 6.16.0
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
@@ -10533,7 +10526,7 @@ snapshots:
     dependencies:
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
-      fast-uri: 3.1.6
+      fast-uri: 3.1.8
 
   '@fastify/cors@11.3.0':
     dependencies:
@@ -10867,7 +10860,7 @@ snapshots:
       - tailwindcss
       - zustand
 
-  '@frontify/frontify-cli@6.2.7(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)':
+  '@frontify/frontify-cli@6.2.8(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)':
     dependencies:
       '@fastify/cors': 11.3.0
       '@vitejs/plugin-react': 6.0.4(vite@8.3.0(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))
@@ -13858,7 +13851,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.6
+      fast-uri: 3.1.8
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -14004,16 +13997,16 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  brace-expansion@1.1.18:
+  brace-expansion@1.1.21:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
-  brace-expansion@2.1.4:
+  brace-expansion@2.1.7:
     dependencies:
       balanced-match: 1.0.2
 
-  brace-expansion@5.0.9:
+  brace-expansion@5.0.12:
     dependencies:
       balanced-match: 4.0.4
 
@@ -14884,7 +14877,7 @@ snapshots:
       '@fastify/merge-json-schemas': 0.2.1
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
-      fast-uri: 4.1.2
+      fast-uri: 4.2.1
       json-schema-ref-resolver: 3.0.0
       rfdc: 1.4.1
 
@@ -14902,9 +14895,9 @@ snapshots:
       fast-string-truncated-width: 3.0.3
     optional: true
 
-  fast-uri@3.1.6: {}
+  fast-uri@3.1.8: {}
 
-  fast-uri@4.1.2: {}
+  fast-uri@4.2.1: {}
 
   fast-wrap-ansi@0.2.2:
     dependencies:
@@ -15088,7 +15081,7 @@ snapshots:
 
   glob@13.0.6:
     dependencies:
-      minimatch: 10.2.4
+      minimatch: 10.2.6
       minipass: 7.1.3
       path-scurry: 2.0.2
 
@@ -15858,21 +15851,17 @@ snapshots:
 
   mini-svg-data-uri@1.4.4: {}
 
-  minimatch@10.2.4:
-    dependencies:
-      brace-expansion: 5.0.9
-
   minimatch@10.2.6:
     dependencies:
-      brace-expansion: 5.0.9
+      brace-expansion: 5.0.12
 
   minimatch@3.1.5:
     dependencies:
-      brace-expansion: 1.1.18
+      brace-expansion: 1.1.21
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.1.4
+      brace-expansion: 2.1.7
 
   minimist@1.2.8: {}
 
@@ -16168,7 +16157,7 @@ snapshots:
       on-exit-leak-free: 2.1.2
       pino-abstract-transport: 3.0.0
       pino-std-serializers: 7.1.0
-      process-warning: 5.0.0
+      process-warning: 5.1.0
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
       safe-stable-stringify: 2.5.0
@@ -16253,8 +16242,6 @@ snapshots:
 
   process-warning@4.0.1: {}
 
-  process-warning@5.0.0: {}
-
   process-warning@5.1.0: {}
 
   process@0.11.10: {}
@@ -16281,7 +16268,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qs@6.15.3:
+  qs@6.16.0:
     dependencies:
       es-define-property: 1.0.1
       side-channel: 1.1.1
