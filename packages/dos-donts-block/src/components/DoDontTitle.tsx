@@ -1,20 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
-import autosize from 'autosize';
-import { useLayoutEffect, useRef } from 'react';
+import { useRef } from 'react';
 
+import { useAutoGrowTextarea } from '../hooks/useAutoGrowTextarea';
 import { type DoDontTitleProps } from '../types';
 
 const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
     const titleRef = useRef<HTMLTextAreaElement>(null);
 
-    useLayoutEffect(() => {
-        if (titleRef.current) {
-            autosize(titleRef.current);
-            autosize.update(titleRef.current);
-        }
-    });
+    useAutoGrowTextarea(titleRef, title, editing);
 
     const styles = {
         ...BlockStyles.heading3,
@@ -36,7 +31,7 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
                 value={title}
                 aria-label="Title"
                 placeholder="Add a title"
-                className="tw-text-small tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                className="tw-text-small tw-w-full tw-[field-sizing:content] tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
             />
         );
     }

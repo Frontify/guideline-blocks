@@ -218,9 +218,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         observer.observe(container);
 
         return () => {
-            observer.unobserve(container);
+            observer.disconnect();
+            throttledFn.cancel();
         };
-    }, [containerRef, isEditing]);
+    }, []);
 
     const addItem = (type: DoDontType) => {
         const newItems: Item[] = [...localItems, { id: generateRandomId(), body: '', title: '', type }];
