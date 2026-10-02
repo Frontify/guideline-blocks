@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 
 import { ImageFormat } from '../../types';
 
-import { ResponsiveImage } from './ResponsiveImage';
+import { PLACEHOLDER_SOURCE, ResponsiveImage } from './ResponsiveImage';
 
 const ResponsiveImageSelector = 'responsive-image';
 
@@ -163,5 +163,31 @@ describe('ResponsiveImage', () => {
     it('should have lazy loading enabled', () => {
         const { getByTestId } = render(<ResponsiveImage image={AssetDummy.with(1)} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('loading')).toBe('lazy');
+    });
+
+    it('should use a placeholder source and reserve the image size until the container is measured', () => {
+        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={undefined} alt="" />);
+        const image = getByTestId(ResponsiveImageSelector);
+        expect(image.getAttribute('src')).toBe(PLACEHOLDER_SOURCE);
+        expect(image.getAttribute('width')).toBe('2000');
+        expect(image.getAttribute('height')).toBe('1000');
+    });
+
+    it('should set the source of a gif before the container is measured', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage
+                image={{ ...HIGH_RES_ASSET, extension: 'gif', originUrl: 'https://origin.url' }}
+                containerWidth={undefined}
+                alt=""
+            />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe('https://origin.url');
+    });
+
+    it('should keep the loading background while the placeholder source is shown', () => {
+        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={undefined} alt="" />);
+        const image = getByTestId(ResponsiveImageSelector);
+        fireEvent.load(image);
+        expect(image.className).toContain('tw-bg-container-secondary');
     });
 });

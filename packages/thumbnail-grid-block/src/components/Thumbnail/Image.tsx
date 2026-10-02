@@ -39,7 +39,7 @@ export const Image = ({
 
     const getImageComponent = () => {
         const ImageComponent =
-            image && containerWidth ? (
+            image ? (
                 <ResponsiveImage
                     style={thumbnailStyles.imageStyles}
                     testId="thumbnail-image"

@@ -1,52 +1,68 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import debounce from 'lodash-es/debounce';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
+
+const RESIZE_DEBOUNCE_MS = 100;
 
 const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;
 
+const getWidthToRequest = (entry: ResizeObserverEntry) => {
+    const borderBoxWidth = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
+    const contentBoxWidth = entry.contentBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
+    const shouldRequestLargerImage = borderBoxWidth - contentBoxWidth > 0;
+
+    return roundToNextHundred(entry.contentRect.width + (shouldRequestLargerImage ? 100 : 0));
+};
+
+/**
+ * Measures the container through a ResizeObserver only, so mounting never forces a synchronous layout.
+ * The first observation is committed with `flushSync`: ResizeObserver callbacks run after layout but
+ * before paint, so the image is painted at the right width without an intermediate frame.
+ * The width only ever grows, to avoid re-requesting smaller images when the container shrinks.
+ */
 export const useImageContainer = () => {
-    const containerRef = useRef<HTMLElement | null>(null);
+    const [container, setContainer] = useState<HTMLElement | null>(null);
     const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
 
     useEffect(() => {
-        if (!containerRef.current) {
+        if (!container) {
             return;
         }
 
-        const containerObserver = new ResizeObserver(
-            debounce((entries) => {
-                // oxlint-disable-next-line typescript/no-unsafe-member-access
-                const container = entries[0] as ResizeObserverEntry;
-                const borderWidth = container.borderBoxSize[0].inlineSize - container.contentBoxSize[0].inlineSize;
-                const shouldRequestLargerImage = borderWidth > 0;
-                const newImageWidth = container.contentRect.width + (shouldRequestLargerImage ? 100 : 0);
+        const updateContainerWidth = (entry: ResizeObserverEntry) => {
+            const newContainerWidth = getWidthToRequest(entry);
+            setContainerWidth((currentWidth) =>
+                currentWidth === undefined || currentWidth < newContainerWidth ? newContainerWidth : currentWidth
+            );
+        };
+        const debouncedUpdateContainerWidth = debounce(updateContainerWidth, RESIZE_DEBOUNCE_MS);
 
-                const newContainerWidth = roundToNextHundred(newImageWidth);
-                const oldContainerWidth = roundToNextHundred(containerWidth ?? 0);
-                const containerWidthHasGrown = oldContainerWidth < newContainerWidth;
-                if (containerWidthHasGrown) {
-                    setContainerWidth(newContainerWidth);
-                }
-            }, 100)
-        );
+        let isFirstObservation = true;
+        const containerObserver = new ResizeObserver((entries) => {
+            const entry = entries[0];
+            if (!entry) {
+                return;
+            }
 
-        containerObserver.observe(containerRef.current);
-        return () => containerObserver.disconnect();
-    }, [containerWidth]);
+            if (isFirstObservation) {
+                isFirstObservation = false;
+                // Commit before paint so the first frame already has the right width (see above).
+                // oxlint-disable-next-line @eslint-react/dom-no-flush-sync
+                flushSync(() => updateContainerWidth(entry));
+                return;
+            }
 
-    const setContainerRef = (container: HTMLElement | null) => {
-        if (!containerRef.current) {
-            containerRef.current = container;
-            const clientWidth = container?.clientWidth || 0;
-            const offsetWidth = container?.offsetWidth || 0;
-            const borderWidth = offsetWidth - clientWidth;
-            const shouldRequestLargerImage = borderWidth > 0;
-            const imageWidthToRequest = offsetWidth + (shouldRequestLargerImage ? 100 : 0);
+            debouncedUpdateContainerWidth(entry);
+        });
 
-            setContainerWidth(roundToNextHundred(imageWidthToRequest));
-        }
-    };
+        containerObserver.observe(container);
+        return () => {
+            containerObserver.disconnect();
+            debouncedUpdateContainerWidth.cancel();
+        };
+    }, [container]);
 
-    return { containerWidth, setContainerRef };
+    return { containerWidth, setContainerRef: setContainer };
 };
