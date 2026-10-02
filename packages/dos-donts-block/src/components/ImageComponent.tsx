@@ -49,23 +49,21 @@ const ImageComponent = ({
                 isEditing && (isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab'),
             ])}
         >
-            {containerWidth !== undefined && containerWidth > 0 && (
-                <ResponsiveImage
-                    containerWidth={containerWidth}
-                    image={image}
-                    className={joinClassNames([
-                        'tw-h-full',
-                        (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                            imageDisplay === ImageFitChoice.FILL &&
-                            'tw-object-cover',
-                        (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
-                            imageDisplay === ImageFitChoice.FIT &&
-                            'tw-object-contain',
-                    ])}
-                    alt={alt || ''}
-                    testId="do-dont-image"
-                />
-            )}
+            <ResponsiveImage
+                containerWidth={containerWidth}
+                image={image}
+                className={joinClassNames([
+                    'tw-h-full',
+                    (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                        imageDisplay === ImageFitChoice.FILL &&
+                        'tw-object-cover',
+                    (imageHeightChoice !== DoDontImageHeight.Auto || isCustomImageHeight) &&
+                        imageDisplay === ImageFitChoice.FIT &&
+                        'tw-object-contain',
+                ])}
+                alt={alt || ''}
+                testId="do-dont-image"
+            />
             {hasStrikethrough && (
                 <div
                     style={{ backgroundColor: toRgbaString(dontColor) }}

@@ -8,6 +8,8 @@ import { type CSSProperties, useCallback, useMemo, useState } from 'react';
 
 import { ImageFormat } from '../../types';
 
+export const PLACEHOLDER_SOURCE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
+
 type ResponsiveImageProps = {
     image: Asset;
     containerWidth: number | undefined;
@@ -48,7 +50,11 @@ export const ResponsiveImage = ({
         image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
 
     const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
-    const sourceOptimised = `${sourceWithWidth}${conversionParams}`;
+    // Until the container is measured, use a placeholder without intrinsic size: the width/height attributes
+    // still reserve the final box, so swapping in the real source neither shifts the layout nor requests a
+    // zero-width image. A missing src would not work, as browsers collapse an <img alt=""> without a source.
+    const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
+    const sourceOptimised = hasMeasuredContainer ? `${sourceWithWidth}${conversionParams}` : PLACEHOLDER_SOURCE;
 
     // oxlint-disable-next-line typescript/no-unsafe-assignment
     const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
@@ -70,7 +76,7 @@ export const ResponsiveImage = ({
             className={joinClassNames(['tw-flex tw-w-full', !isLoaded && 'tw-bg-container-secondary', className])}
             loading="lazy"
             decoding="async"
-            onLoad={handleImageLoaded}
+            onLoad={hasMeasuredContainer ? handleImageLoaded : undefined}
             src={sourceOptimised}
             style={stylesToApply}
             alt={alt}
