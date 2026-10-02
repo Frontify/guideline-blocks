@@ -6,8 +6,6 @@ import { IconCross } from '@frontify/fondue/icons';
 import { Fragment, type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import blockScope from '../../block-scope.json';
-
 interface Props {
     onClose: () => void;
 }
@@ -65,7 +63,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
     }, [onPreviewClose]);
 
     return createPortal(
-        <div ref={modalRef} data-test-id="ui-pattern-responsive-preview" className={blockScope.scope}>
+        <div ref={modalRef} data-test-id="ui-pattern-responsive-preview">
             <div className="tw-fixed tw-z-[5000] tw-box-border tw-w-full tw-h-full tw-top-0 tw-left-0 tw-p-6 tw-pb-12">
                 <div className="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8 tw-items-center">
                     <button

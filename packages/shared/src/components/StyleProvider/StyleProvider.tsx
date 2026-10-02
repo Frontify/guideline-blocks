@@ -7,10 +7,6 @@ import { type ReactNode } from 'react';
 
 import './styles.css';
 
-export const StyleProvider = ({ children, scope }: { children: ReactNode; scope: string }) => {
-    return (
-        <ThemeProvider className={scope} theme="light">
-            {children}
-        </ThemeProvider>
-    );
+export const StyleProvider = ({ children }: { children: ReactNode }) => {
+    return <ThemeProvider theme="light">{children}</ThemeProvider>;
 };

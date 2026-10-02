@@ -19,8 +19,6 @@ import {
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useRef, useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
@@ -91,7 +89,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     }
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div
                 data-test-id="asset-kit-block"
                 className={joinClassNames([

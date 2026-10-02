@@ -6,8 +6,6 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type MouseEvent, type ReactElement, useRef, useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss, toHex6or8String } from './helpers';
@@ -73,7 +71,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div data-test-id="gradient-block" ref={gradientBlockRef}>
                 <div className="tw-border tw-border-line-strong tw-rounded-medium tw-p-0.5">
                     <div

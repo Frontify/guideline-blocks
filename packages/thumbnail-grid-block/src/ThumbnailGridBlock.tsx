@@ -15,8 +15,6 @@ import { type BlockProps, Security, gutterSpacingStyleMap } from '@frontify/guid
 import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { Grid, Item, SortableItem } from './components/';
 import { getThumbnailStyles } from './helper';
 import { type Settings, type Thumbnail } from './types';
@@ -182,7 +180,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}

@@ -8,8 +8,6 @@ import { type BlockProps, gutterSpacingStyleMap } from '@frontify/guideline-bloc
 import { StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { BlankSlate, Card, SortableCard } from './components';
 import { gridClasses } from './constants';
 import { type AnimationCurve, type AnimationCurvePatch, type Settings } from './types';
@@ -58,7 +56,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div className="tw-@container">
                 <DndContext
                     sensors={sensors}

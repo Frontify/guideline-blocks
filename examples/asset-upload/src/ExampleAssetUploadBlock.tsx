@@ -6,8 +6,6 @@ import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useEffect, useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -68,7 +66,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     };
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div className="tw-flex tw-flex-col tw-gap-4">
                 <div className="tw-flex tw-gap-4">
                     <Button onPress={onOpenAssetChooser}>Open asset chooser</Button>

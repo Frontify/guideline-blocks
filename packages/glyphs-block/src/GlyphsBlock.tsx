@@ -5,8 +5,6 @@ import { toRgbaString } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { getRadiusValue } from './helpers';
 import { BLACK_COLOR, DEFAULT_CHARS, WHITE_COLOR } from './settings';
 import { type BlockProps, type Settings } from './types';
@@ -71,7 +69,7 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     });
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <ul
                 data-test-id="glyphs-block"
                 className="tw-grid tw-grid-cols-6"

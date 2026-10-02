@@ -10,8 +10,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import debounce from 'lodash-es/debounce';
 import { type FC, useMemo, useState } from 'react';
 
-import blockScope from '../block-scope.json';
-
 import { CodeSnippetHeader } from './components/CodeSnippetHeader';
 import { DEFAULT_BORDER_COLOR } from './constants';
 import { useCodeMirrorExtensions } from './hooks/useCodeMirrorExtensions';
@@ -59,7 +57,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div
                 data-test-id="code-snippet-block"
                 className="tw-overflow-hidden"

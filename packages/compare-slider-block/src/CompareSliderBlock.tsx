@@ -15,8 +15,6 @@ import { ResponsiveImage, StyleProvider, useImageContainer } from '@frontify/gui
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactCompareSlider } from 'react-compare-slider';
 
-import blockScope from '../block-scope.json';
-
 import {
     EditorOverlay,
     Label,
@@ -373,7 +371,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     }
     return (
-        <StyleProvider scope={blockScope.scope}>
+        <StyleProvider>
             <div
                 data-test-id="compare-slider-block"
                 ref={setContainerRef}
