@@ -291,6 +291,33 @@ describe('Gradient Block', () => {
         expect(screen.getByTestId(COLOR_PICKER_FORM_TEST_ID)).toBeInTheDocument();
     });
 
+    it('should label the stop input in the color flyout', async () => {
+        renderGradientBlock({
+            editorState: true,
+            blockSettings: { gradientColors },
+        });
+
+        await userEvent.click(screen.getAllByLabelText(EDIT_COLOR_LABEL)[0]);
+
+        expect(await screen.findByRole('spinbutton', { name: 'Stop' })).toHaveValue(0);
+    });
+
+    it('should show the error helper text when the stop input is cleared', async () => {
+        renderGradientBlock({
+            editorState: true,
+            blockSettings: { gradientColors },
+        });
+
+        await userEvent.click(screen.getAllByLabelText(EDIT_COLOR_LABEL)[0]);
+        const stopInput = await screen.findByRole('spinbutton', { name: 'Stop' });
+
+        expect(screen.queryByText('Add unique color stops from 0-100.')).not.toBeInTheDocument();
+
+        await userEvent.clear(stopInput);
+
+        expect(screen.getByText('Add unique color stops from 0-100.')).toBeInTheDocument();
+    });
+
     // TODO(vitest-migration): picking a brand/custom color inside the nested Fondue flyout needs Cypress real events.
 
     it('should show a tooltip on a color point', () => {
