@@ -22,8 +22,8 @@ importers:
   .:
     dependencies:
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -107,11 +107,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -186,11 +186,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -262,11 +262,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -341,11 +341,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -417,11 +417,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -496,11 +496,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -590,11 +590,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -666,11 +666,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -751,11 +751,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -842,11 +842,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -912,11 +912,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -985,11 +985,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1070,11 +1070,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1146,11 +1146,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1243,11 +1243,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@uiw/react-codemirror':
         specifier: 4.24.2
         version: 4.24.2(@babel/runtime@7.29.7)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.12.4)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.7.1)(@codemirror/theme-one-dark@6.1.3)(@codemirror/view@6.43.9)(codemirror@6.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1322,11 +1322,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1395,11 +1395,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1468,11 +1468,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1538,11 +1538,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1620,11 +1620,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1699,11 +1699,11 @@ importers:
         specifier: ^4.0.0-alpha.68
         version: 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
       '@frontify/fondue':
-        specifier: 13.7.8
-        version: 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 13.7.10
+        version: 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-settings':
-        specifier: 4.0.0-alpha.5
-        version: 4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+        specifier: 4.0.0-alpha.6
+        version: 4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -2892,14 +2892,8 @@ packages:
   '@fastify/proxy-addr@5.1.0':
     resolution: {integrity: sha512-INS+6gh91cLUjB+PVHfu1UqcB76Sqtpyp7bnL+FYojhjygvOPA9ctiD/JDKsyD9Xgu4hUhCSJBPig/w7duNajw==}
 
-  '@floating-ui/core@1.7.2':
-    resolution: {integrity: sha512-wNB5ooIKHQc+Kui96jE/n69rHFWAVoxn5CAzL1Xdd8FG03cgY3MLO+GF9U3W737fYDSgPWA6MReKhBQBop6Pcw==}
-
   '@floating-ui/core@1.8.0':
     resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
-
-  '@floating-ui/dom@1.7.2':
-    resolution: {integrity: sha512-7cfaOQuCS27HD7DX+6ib2OrnW+b4ZBwDNnCcT0uTyidcmyWb03FnQqJybDBoCnpdxwBSfA94UAYlRCt7mV+TbA==}
 
   '@floating-ui/dom@1.8.0':
     resolution: {integrity: sha512-yXSrzeHZBTZadLOlfyhCkJHNeLJnHRnRInwdZ40L7ZiaAtrBwoYlsDrX3v5zB1Utk7CLfzcOVnVVWoXEky7Ceg==}
@@ -2965,17 +2959,17 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/fondue-components@32.0.2':
-    resolution: {integrity: sha512-bYR3EFu2rXNZ2tXop2SkpJnTeJVNupzsmvKggeFKR+B0O0t7sCvlFwpJ0McZr9R6tzL4Qx8x+aHIB5pIt0Calw==}
+  '@frontify/fondue-components@32.1.0':
+    resolution: {integrity: sha512-INuf+FZsrBkhO9bv0Ply5UfrPMR+WQHeFk5BTQ/CDvySm/7HX8hOibG730YCVHjYVSAEemS4eBL/036wAdyIIg==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@frontify/fondue-icons': ^0.28.1
+      '@frontify/fondue-icons': ^0.28.2
       '@frontify/fondue-tokens': ^5.1.2
       react: ^18
       react-dom: ^18
 
-  '@frontify/fondue-icons@0.28.1':
-    resolution: {integrity: sha512-idLr2luDLKlJUFGyJPPWdCSJexxBecJHb2k0hRy/uuF2gms4A5krvVx2uzgh4WZXPF16Kt52h2/tRc5bA1xcGA==}
+  '@frontify/fondue-icons@0.28.2':
+    resolution: {integrity: sha512-W8mTBSGrgvIJRHjiTDKXyykOMOGmiTzwlnVCt2XPWZp0Ws9P5Qjls5YETXKkBqcoKbDFV5xVlXJxzQaqS93Pjw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18
@@ -2987,8 +2981,8 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/fondue-sdk@0.2.1':
-    resolution: {integrity: sha512-+soc/n4Cj5L/WOeYE517+4Ye4PIAQnXp7rQhqHBXiYc0PAdlx8YLdd1DL//rVDhuwWZQfKHOYPrqM+rRUMQ3Lw==}
+  '@frontify/fondue-sdk@0.2.2':
+    resolution: {integrity: sha512-hR35XLCD8Q0OsVYlwJ+JrDHCb0qhdGpC8J2GUY+tsmVEPHHwnDYnq8+mE29EVjg8g1sQebPAil1jFXSQTQa78g==}
     engines: {node: '>=20'}
 
   '@frontify/fondue-tokens@5.1.2':
@@ -2996,8 +2990,8 @@ packages:
     peerDependencies:
       tailwindcss: ^3.4.17
 
-  '@frontify/fondue@13.7.8':
-    resolution: {integrity: sha512-Jpeh2Wp5rgpSFq6X1gb2S2mltCujj/uNKh2sC2I4a1dTPJbjClbao4qFU0gvfHv17K1RK+R6ac+j4MqzJEZzRQ==}
+  '@frontify/fondue@13.7.10':
+    resolution: {integrity: sha512-C0v7zBilYm3JlYvTxRBlj0TZPAqDWTRzQROQYNspiaksDnz0EtXjueS68Vi1QwOz3F0Gl8ErwSbj5wE3MfdzPQ==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -3009,8 +3003,8 @@ packages:
     engines: {node: '>=22'}
     hasBin: true
 
-  '@frontify/guideline-blocks-settings@4.0.0-alpha.5':
-    resolution: {integrity: sha512-3/fQ2pLKUCC6lOfVNRtszykoSA7jrsx6uUR6Rt1sWL0OiBKNH4eeO9oPcevPdfcnVBPpS2YbiBbI1K4P124pcQ==}
+  '@frontify/guideline-blocks-settings@4.0.0-alpha.6':
+    resolution: {integrity: sha512-30BdRSBPZJyE5lvUwawUtuLrVH9jRC635Bbp1EZda53+Sq21V9rqzrNWiRNYlK9qI+lROfYurRmjnMaI4g8ItA==}
     peerDependencies:
       '@frontify/app-bridge': ^4.0.0-alpha.0
       react: ^18
@@ -10556,18 +10550,9 @@ snapshots:
       '@fastify/forwarded': 3.0.1
       ipaddr.js: 2.4.0
 
-  '@floating-ui/core@1.7.2':
-    dependencies:
-      '@floating-ui/utils': 0.2.10
-
   '@floating-ui/core@1.8.0':
     dependencies:
       '@floating-ui/utils': 0.2.12
-
-  '@floating-ui/dom@1.7.2':
-    dependencies:
-      '@floating-ui/core': 1.7.2
-      '@floating-ui/utils': 0.2.10
 
   '@floating-ui/dom@1.8.0':
     dependencies:
@@ -10582,7 +10567,7 @@ snapshots:
 
   '@floating-ui/react-dom@2.1.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@floating-ui/dom': 1.7.2
+      '@floating-ui/dom': 1.8.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -10664,11 +10649,11 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@frontify/fondue-components@32.0.2(@frontify/fondue-icons@0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@frontify/fondue-components@32.1.0(@frontify/fondue-icons@0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@dnd-kit/abstract': 0.3.2
       '@dnd-kit/react': 0.3.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-icons': 0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
+      '@frontify/fondue-icons': 0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
       '@frontify/fondue-tokens': 5.1.2(tailwindcss@3.4.19(yaml@2.8.3))
       '@headless-tree/core': 1.7.0
       '@headless-tree/react': 1.7.0(@headless-tree/core@1.7.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10699,7 +10684,7 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@frontify/fondue-icons@0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))':
+  '@frontify/fondue-icons@0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))':
     dependencies:
       '@frontify/fondue-tokens': 5.1.2(tailwindcss@3.4.19(yaml@2.8.3))
       react: 18.3.1
@@ -10714,8 +10699,8 @@ snapshots:
       '@dnd-kit/sortable': 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@frontify/fondue-charts': 8.0.2(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-components': 32.0.2(@frontify/fondue-icons@0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-icons': 0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
+      '@frontify/fondue-components': 32.1.0(@frontify/fondue-icons@0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@frontify/fondue-icons': 0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
       '@frontify/fondue-tokens': 5.1.2(tailwindcss@3.4.19(yaml@2.8.3))
       '@popperjs/core': 2.11.8
       '@radix-ui/react-popover': 1.1.23(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10799,13 +10784,13 @@ snapshots:
       - tailwindcss
       - zustand
 
-  '@frontify/fondue-sdk@0.2.1': {}
+  '@frontify/fondue-sdk@0.2.2': {}
 
   '@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3))':
     dependencies:
       tailwindcss: 3.4.19(yaml@2.8.3)
 
-  '@frontify/fondue@13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))':
+  '@frontify/fondue@13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))':
     dependencies:
       '@ctrl/tinycolor': 4.2.1
       '@dnd-kit/core': 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10814,10 +10799,10 @@ snapshots:
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@floating-ui/dom': 1.8.0
       '@frontify/fondue-charts': 8.0.2(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-components': 32.0.2(@frontify/fondue-icons@0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@frontify/fondue-icons': 0.28.1(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
+      '@frontify/fondue-components': 32.1.0(@frontify/fondue-icons@0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3)))(@frontify/fondue-tokens@5.1.2(tailwindcss@3.4.19(yaml@2.8.3)))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@frontify/fondue-icons': 0.28.2(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.3))
       '@frontify/fondue-rte': 0.1.10(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
-      '@frontify/fondue-sdk': 0.2.1
+      '@frontify/fondue-sdk': 0.2.2
       '@frontify/fondue-tokens': 5.1.2(tailwindcss@3.4.19(yaml@2.8.3))
       '@popperjs/core': 2.11.8
       '@react-aria/accordion': 3.0.0-alpha.37(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10906,14 +10891,14 @@ snapshots:
       - tsx
       - yaml
 
-  '@frontify/guideline-blocks-settings@4.0.0-alpha.5(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))':
+  '@frontify/guideline-blocks-settings@4.0.0-alpha.6(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@frontify/app-bridge@4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3))(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))':
     dependencies:
       '@ctrl/tinycolor': 4.2.1
       '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/modifiers': 9.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@frontify/app-bridge': 4.0.0-alpha.69(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sinon@21.0.3)
-      '@frontify/fondue': 13.7.8(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
+      '@frontify/fondue': 13.7.10(@babel/preset-env@7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@emotion/is-prop-valid@0.8.8)(@types/node@25.6.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@udecode/plate-common@36.5.9(@types/react@18.3.31)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(slate-react@0.102.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.102.0))(slate@0.102.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-history@0.113.1(slate@0.102.0))(slate-hyperscript@0.100.0(slate@0.102.0))(supports-color@8.1.1)(tailwindcss@3.4.19(yaml@2.8.3))(zustand@4.5.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1))
       '@frontify/sidebar-settings': 0.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.19(yaml@2.8.3))
       react: 18.3.1
@@ -13809,7 +13794,7 @@ snapshots:
 
   '@vue/compiler-core@3.5.17':
     dependencies:
-      '@babel/parser': 7.29.7
+      '@babel/parser': 7.29.8
       '@vue/shared': 3.5.17
       entities: 4.5.0
       estree-walker: 2.0.2
