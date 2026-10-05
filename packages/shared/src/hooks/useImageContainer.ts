@@ -24,34 +24,25 @@ export const useImageContainer = () => {
             return;
         }
 
-        const updateContainerWidth = (entry: ResizeObserverEntry) => {
-            const newContainerWidth = getWidthToRequest(entry);
-            setContainerWidth((currentWidth) =>
-                currentWidth === undefined || currentWidth < newContainerWidth ? newContainerWidth : currentWidth
-            );
-        };
-        const debouncedUpdateContainerWidth = debounce(updateContainerWidth, RESIZE_DEBOUNCE_MS);
+        const updateContainerWidth = debounce(
+            (entry: ResizeObserverEntry) => {
+                const newContainerWidth = getWidthToRequest(entry);
+                setContainerWidth((currentWidth) => Math.max(currentWidth ?? 0, newContainerWidth));
+            },
+            RESIZE_DEBOUNCE_MS,
+            { leading: true }
+        );
 
-        let isFirstObservation = true;
-        const containerObserver = new ResizeObserver((entries) => {
-            const entry = entries[0];
-            if (!entry) {
-                return;
-            }
-
-            if (isFirstObservation) {
-                isFirstObservation = false;
+        const containerObserver = new ResizeObserver(([entry]) => {
+            if (entry) {
                 updateContainerWidth(entry);
-                return;
             }
-
-            debouncedUpdateContainerWidth(entry);
         });
 
         containerObserver.observe(container);
         return () => {
             containerObserver.disconnect();
-            debouncedUpdateContainerWidth.cancel();
+            updateContainerWidth.cancel();
         };
     }, [container]);
 
