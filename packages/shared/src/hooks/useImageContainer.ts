@@ -8,11 +8,11 @@ const RESIZE_DEBOUNCE_MS = 100;
 const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;
 
 const getWidthToRequest = (entry: ResizeObserverEntry) => {
-    const borderBoxWidth = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
-    const contentBoxWidth = entry.contentBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
-    const shouldRequestLargerImage = borderBoxWidth - contentBoxWidth > 0;
+    const borderBoxWidth = entry.borderBoxSize?.[0]?.inlineSize;
+    const contentBoxWidth = entry.contentBoxSize?.[0]?.inlineSize;
+    const hasBorder = borderBoxWidth !== undefined && contentBoxWidth !== undefined && borderBoxWidth > contentBoxWidth;
 
-    return roundToNextHundred(entry.contentRect.width + (shouldRequestLargerImage ? 100 : 0));
+    return roundToNextHundred(entry.contentRect.width + (hasBorder ? 100 : 0));
 };
 
 export const useImageContainer = () => {
