@@ -1,21 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
-import autosize from 'autosize';
-import { useLayoutEffect, useRef } from 'react';
 
 import { type DoDontTitleProps } from '../types';
 
 const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
-    const titleRef = useRef<HTMLTextAreaElement>(null);
-
-    useLayoutEffect(() => {
-        if (titleRef.current) {
-            autosize(titleRef.current);
-            autosize.update(titleRef.current);
-        }
-    });
-
     const styles = {
         ...BlockStyles.heading3,
         marginBottom: 0,
@@ -29,14 +18,13 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
         return (
             <textarea
                 rows={1}
-                ref={titleRef}
                 onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
                 onBlur={() => onChangeItem(id, { title })}
                 style={styles}
                 value={title}
                 aria-label="Title"
                 placeholder="Add a title"
-                className="tw-text-small tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
             />
         );
     }
