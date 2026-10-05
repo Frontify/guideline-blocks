@@ -50,9 +50,6 @@ export const ResponsiveImage = ({
         image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
 
     const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
-    // Until the container is measured, use a placeholder without intrinsic size: the width/height attributes
-    // still reserve the final box, so swapping in the real source neither shifts the layout nor requests a
-    // zero-width image. A missing src would not work, as browsers collapse an <img alt=""> without a source.
     const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
     const sourceOptimised = hasMeasuredContainer ? `${sourceWithWidth}${conversionParams}` : PLACEHOLDER_SOURCE;
 
