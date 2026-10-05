@@ -145,7 +145,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -227,7 +227,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -306,7 +306,7 @@ importers:
         version: 21.0.1
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -382,7 +382,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -461,7 +461,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -558,7 +558,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -634,7 +634,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -710,7 +710,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -810,7 +810,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -883,7 +883,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -953,7 +953,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1041,7 +1041,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -1117,7 +1117,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -1187,7 +1187,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1363,7 +1363,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1436,7 +1436,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1509,7 +1509,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
@@ -1579,7 +1579,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1661,7 +1661,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -1749,7 +1749,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       autoprefixer:
         specifier: ^10.5.4
-        version: 10.5.4(postcss@8.5.28)
+        version: 10.6.1(postcss@8.5.28)
       cypress:
         specifier: ^15.21.1
         version: 15.21.1
@@ -5701,8 +5701,8 @@ packages:
   atomically@2.1.1:
     resolution: {integrity: sha512-P4w9o2dqARji6P7MHprklbfiArZAWvo07yW7qs3pdljb3BWr12FIB7W+p0zJiuiVsUpRO0iZn1kFFcpPegg0tQ==}
 
-  autoprefixer@10.5.4:
-    resolution: {integrity: sha512-MaU0U/za7N3r6brxD4YB/l4NSrFzLPlANv6wEuQVaIPlD3L4W9rFcQPbL/EilY9BHhHvhfcz3gInDLrEtWT4EA==}
+  autoprefixer@10.6.1:
+    resolution: {integrity: sha512-cL1Qz6ADZhcEbny/8HPfe99J6HhNoYtpX2LFLIbhgGE7Q1hlQVkYFdetDN7Id3KiQxhDrHwzlHr/YQCnZ8+xSA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -5761,6 +5761,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.11.27:
+    resolution: {integrity: sha512-ElY12DaROGuan+lMmZ8Cvo/ZUbXPe7Enc/9VU/b1T3Kp4dwytRcNdR8DoSJN5SNJT/CuvcCA0DHDVmMOCePdRQ==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   bcrypt-pbkdf@1.0.2:
     resolution: {integrity: sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w==}
 
@@ -5796,6 +5801,11 @@ packages:
 
   browserslist@4.28.8:
     resolution: {integrity: sha512-V2NpofLblG64mfOtSgDhOJESZEGogzDMBv/q+W6oc4LXWP/q75eOXoOaaOu1EOadB9U4Bwx/e0yzbvwKH8zalA==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
+  browserslist@4.29.3:
+    resolution: {integrity: sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -5838,6 +5848,9 @@ packages:
 
   caniuse-lite@1.0.30001810:
     resolution: {integrity: sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg==}
+
+  caniuse-lite@1.0.30001814:
+    resolution: {integrity: sha512-/Uaf1lAzr59XcMpW0o96WoEfr+VXK2OX4U9AgFoiSHsVJ4HppnIFUjtYzsyDH2+tgANaQb2/oxYGwCPapN1FpA==}
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -6242,6 +6255,9 @@ packages:
 
   electron-to-chromium@1.5.417:
     resolution: {integrity: sha512-4T+DTDWuMPM4aHlHwWdAVCVWwp7LDilnhzkj+c/Lbj91XSQrLuOmZSLtS9Q4iIqjlPUbPOnC624zDVVHCHaolQ==}
+
+  electron-to-chromium@1.5.444:
+    resolution: {integrity: sha512-5ss/uJfoDYDHT0lfJzT6FbcskIzROIOPf0BbbFkGcvDzoJU7i//9GDrwwIHQVmIsrAGiF3ihpADBRIsrEFt1rQ==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -7492,6 +7508,10 @@ packages:
     resolution: {integrity: sha512-YHs7BmmcsdAI5Ozuf8JZo6PT0mv2GIWC9vMfvUC3dp65M8hn7Ux8CPL+2oBI7juNuj9d0ndhTcznq2ODBps9cQ==}
     engines: {node: '>=18'}
 
+  node-releases@2.0.57:
+    resolution: {integrity: sha512-kQK9LGGFiHtrWiNhZtA7Qbw17AQz+dmsEKODRIVTXA9+e5MS/2gZEBhYJt13GrAz5/IOZKddH/0Z3TP/Zgo+yw==}
+    engines: {node: '>=18'}
+
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -8619,6 +8639,12 @@ packages:
 
   update-browserslist-db@1.3.2:
     resolution: {integrity: sha512-UQ+MSxlhRm1bzjhU+DcuXfjFO1FzNtqhK5+9Yvlp90ItDLk5vT932A0rFu619nf7RVS+Y/VeaUW1jaRDqZ8VJw==}
+    hasBin: true
+    peerDependencies:
+      browserslist: ^4.28.8
+
+  update-browserslist-db@1.3.3:
+    resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
     hasBin: true
     peerDependencies:
       browserslist: ^4.28.8
@@ -13923,9 +13949,9 @@ snapshots:
       stubborn-fs: 2.0.0
       when-exit: 2.1.5
 
-  autoprefixer@10.5.4(postcss@8.5.28):
+  autoprefixer@10.6.1(postcss@8.5.28):
     dependencies:
-      browserslist: 4.28.8
+      browserslist: 4.29.3
       caniuse-lite: 1.0.30001810
       fraction.js: 5.3.4
       picocolors: 1.1.1
@@ -13983,6 +14009,8 @@ snapshots:
 
   baseline-browser-mapping@2.11.20: {}
 
+  baseline-browser-mapping@2.11.27: {}
+
   bcrypt-pbkdf@1.0.2:
     dependencies:
       tweetnacl: 0.14.5
@@ -14022,6 +14050,14 @@ snapshots:
       node-releases: 2.0.54
       update-browserslist-db: 1.3.2(browserslist@4.28.8)
 
+  browserslist@4.29.3:
+    dependencies:
+      baseline-browser-mapping: 2.11.27
+      caniuse-lite: 1.0.30001814
+      electron-to-chromium: 1.5.444
+      node-releases: 2.0.57
+      update-browserslist-db: 1.3.3(browserslist@4.29.3)
+
   buffer-from@1.1.2: {}
 
   buffer-image-size@0.6.4:
@@ -14060,6 +14096,8 @@ snapshots:
   camelcase-css@2.0.1: {}
 
   caniuse-lite@1.0.30001810: {}
+
+  caniuse-lite@1.0.30001814: {}
 
   caseless@0.12.0: {}
 
@@ -14481,6 +14519,8 @@ snapshots:
       safer-buffer: 2.1.2
 
   electron-to-chromium@1.5.417: {}
+
+  electron-to-chromium@1.5.444: {}
 
   emoji-regex@10.6.0: {}
 
@@ -15955,6 +15995,8 @@ snapshots:
 
   node-releases@2.0.54: {}
 
+  node-releases@2.0.57: {}
+
   normalize-path@3.0.0: {}
 
   npm-run-path@4.0.1:
@@ -17127,6 +17169,12 @@ snapshots:
   update-browserslist-db@1.3.2(browserslist@4.28.8):
     dependencies:
       browserslist: 4.28.8
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.3.3(browserslist@4.29.3):
+    dependencies:
+      browserslist: 4.29.3
       escalade: 3.2.0
       picocolors: 1.1.1
 
