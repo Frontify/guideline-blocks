@@ -24,7 +24,7 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
                 value={title}
                 aria-label="Title"
                 placeholder="Add a title"
-                className="tw-text-small tw-w-full tw-[field-sizing:content] tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
             />
         );
     }
