@@ -1080,7 +1080,7 @@ importers:
         version: link:../shared
       '@react-aria/live-announcer':
         specifier: ^3.4.4
-        version: 3.4.4
+        version: 3.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4156,8 +4156,11 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
-  '@react-aria/live-announcer@3.4.4':
-    resolution: {integrity: sha512-PTTBIjNRnrdJOIRTDGNifY2d//kA7GUAwRFJNOEwSNG4FW+Bq9awqLiflw0JkpyB0VNIwou6lqKPHZVLsGWOXA==}
+  '@react-aria/live-announcer@3.5.1':
+    resolution: {integrity: sha512-kLvwHjM3D7KgdquiAhUpRnMLKFrvl2r8naDXqPUlSWGRG15wsJRLhQOHLxGp0Umyg7KcSA+OD1mhQV5aRv0P1w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
   '@react-aria/menu@3.22.1':
     resolution: {integrity: sha512-ASP2u11+jg4OQh+QaDlWb7upMgsMITBQTjPFPbUJp6eE4q/cddLPYf4/9yfxh/bwTg0iDdzoDrgdtbwNGYNSfg==}
@@ -12093,9 +12096,12 @@ snapshots:
       react-aria: 3.49.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom: 18.3.1(react@18.3.1)
 
-  '@react-aria/live-announcer@3.4.4':
+  '@react-aria/live-announcer@3.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@swc/helpers': 0.5.17
+      react: 18.3.1
+      react-aria: 3.49.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
 
   '@react-aria/menu@3.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
