@@ -1,16 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
-import { useRef } from 'react';
 
-import { useAutoGrowTextarea } from '../hooks/useAutoGrowTextarea';
 import { type DoDontTitleProps } from '../types';
 
 const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
-    const titleRef = useRef<HTMLTextAreaElement>(null);
-
-    useAutoGrowTextarea(titleRef, title, editing);
-
     const styles = {
         ...BlockStyles.heading3,
         marginBottom: 0,
@@ -24,7 +18,6 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
         return (
             <textarea
                 rows={1}
-                ref={titleRef}
                 onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
                 onBlur={() => onChangeItem(id, { title })}
                 style={styles}
