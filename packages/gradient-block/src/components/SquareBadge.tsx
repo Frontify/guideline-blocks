@@ -3,16 +3,42 @@
 import { IconCheckMark, IconClipboard } from '@frontify/fondue/icons';
 import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useCopy } from '@frontify/guideline-blocks-shared';
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent, toHex6or8String } from '../helpers';
 import { type GradientColor, type SquareBadgeProps } from '../types';
 
+const getLeftPercent = (
+    gradientColor: GradientColor,
+    gradientOrientation: number,
+    blockWidth: number,
+    isLast: boolean
+): number => {
+    if (gradientOrientation !== 90) {
+        return 0;
+    }
+
+    if (isLast) {
+        return 100;
+    }
+
+    if (gradientColor.isReverse) {
+        const badgeWidthInPercent = calculateBadgeWidthInPercent(gradientColor, blockWidth);
+        const copyButtonInPercent = calculateCopyButtonWidthInPercent(blockWidth);
+
+        return gradientColor.position - (badgeWidthInPercent - copyButtonInPercent) + 2;
+    }
+
+    return gradientColor.position;
+};
+
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth, isLast }: SquareBadgeProps) => {
     const badgeRef = useRef<HTMLDivElement>(null);
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
+    const hexValue = toHex6or8String(gradientColor.color);
+    const [isOutOfBounds, setIsOutOfBounds] = useState(false);
 
     const getBadgeClasses = (isLeft: boolean) => {
         return joinClassNames(['tw-flex tw-gap-1', isLeft && gradientOrientation === 90 && 'tw-flex-row-reverse']);
@@ -40,27 +66,16 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         }
     };
 
-    const getLeft = (gradientColor: GradientColor) => {
-        if (gradientOrientation !== 90) {
-            return '0%';
-        }
+    const leftPercent = getLeftPercent(gradientColor, gradientOrientation, blockWidth, isLast);
 
-        if (isLast) {
-            return '100%';
-        }
+    // Measured after layout rather than read from the ref during render, where it is still null.
+    // The badge's own width is independent of where it is pinned, so this cannot flip-flop.
+    useLayoutEffect(() => {
+        const badgeWidth = badgeRef.current?.offsetWidth ?? 0;
+        // oxlint-disable-next-line @eslint-react/set-state-in-effect
+        setIsOutOfBounds(badgeWidth + (leftPercent / 100) * blockWidth > blockWidth);
+    }, [leftPercent, blockWidth, hexValue, gradientColor.color?.name]);
 
-        if (gradientColor.isReverse) {
-            const badgeWidthInPercent = calculateBadgeWidthInPercent(gradientColor, blockWidth);
-            const copyButtonInPercent = calculateCopyButtonWidthInPercent(blockWidth);
-
-            return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent) + 2}%`;
-        } else {
-            return `${gradientColor.position}%`;
-        }
-    };
-
-    const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
-    const hexValue = toHex6or8String(gradientColor.color);
     const colorLabel = gradientColor.color?.name ? `${gradientColor.color.name} ${hexValue}` : hexValue;
 
     return (
@@ -71,7 +86,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             className="tw-absolute tw-mt-2"
             style={{
                 top: getTop(gradientColor, index),
-                left: isOutOfBounds ? 'auto' : getLeft(gradientColor),
+                left: isOutOfBounds ? 'auto' : `${leftPercent}%`,
                 right: isOutOfBounds ? '0%' : 'auto',
             }}
         >

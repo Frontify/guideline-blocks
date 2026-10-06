@@ -3,8 +3,8 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Divider } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
-import { CssValueDisplay, StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type MouseEvent, type ReactElement, useRef, useState } from 'react';
+import { CssValueDisplay, StyleProvider, useElementWidth } from '@frontify/guideline-blocks-shared';
+import { type MouseEvent, type ReactElement, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -26,7 +26,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         heightSimple,
         displayCss,
     } = blockSettings;
-    const gradientBlockRef = useRef<HTMLDivElement>(null);
+    const { ref: gradientBlockRef, width: blockWidth } = useElementWidth<HTMLDivElement>();
     const [addButtonPositionLeft, setAddButtonPositionLeft] = useState<number>(0);
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState<number>(0);
     const [showAddButton, setShowAddButton] = useState<boolean>(false);
@@ -94,10 +94,9 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 onMouseLeave={() => setShowAddButton(false)}
                             >
                                 <Divider />
-                                {}
-                                {showAddButton && gradientBlockRef.current && (
+                                {showAddButton && blockWidth > 0 && (
                                     <AddColorButton
-                                        blockWidth={gradientBlockRef.current.clientWidth}
+                                        blockWidth={blockWidth}
                                         positionLeft={addButtonPositionLeft}
                                         setShowColorModal={setShowColorModal}
                                         setCurrentlyEditingPosition={setCurrentlyEditingPosition}
@@ -129,10 +128,10 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                         ))}
                     </div>
                 ) : (
-                    gradientBlockRef.current &&
+                    blockWidth > 0 &&
                     gradientColors && (
                         <SquareBadgesRow
-                            blockWidth={gradientBlockRef.current.clientWidth}
+                            blockWidth={blockWidth}
                             gradientColors={gradientColors}
                             gradientOrientation={gradientOrientation}
                         />
