@@ -8,7 +8,7 @@ export const parseGradientColorsToCss = (gradientColors: GradientColor[] | undef
         return '';
     } else {
         let colorsAsString = '';
-        for (const color of gradientColors.sort((a, b) => a.position - b.position)) {
+        for (const color of [...gradientColors].sort((a, b) => a.position - b.position)) {
             colorsAsString += `, ${toHex6or8String(color.color)} ${color.position}%`;
         }
 

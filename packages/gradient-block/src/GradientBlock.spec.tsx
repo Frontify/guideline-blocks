@@ -96,10 +96,11 @@ const multiLevelGradientColors = [
 
 const targetForMultiLevelGradient = [0, 1, 2, 3, 4, 0, 1, 0, 1];
 
+// Renders once on purpose: the badges used to be gated on `ref.current`, which is null during the
+// first render, so a second render here would hide that regression from every test below.
 const renderGradientBlock = (appBridgeProps: Parameters<typeof withAppBridgeBlockStubs>[1] = {}) => {
     const [GradientBlockWithStubs, appBridge] = withAppBridgeBlockStubs(GradientBlock, appBridgeProps);
     const utils = render(<GradientBlockWithStubs />);
-    utils.rerender(<GradientBlockWithStubs />);
     return { ...utils, appBridge };
 };
 
@@ -151,6 +152,17 @@ describe('Gradient Block', () => {
         expect(screen.getByTestId(GRADIENT_BLOCK_DISPLAY_TEST_ID)).toHaveStyle(
             expectedBackground(HORIZONTAL_GRADIENT_WITH_OPACITY)
         );
+    });
+
+    it('should pin a square badge that would overflow the block to the right edge', async () => {
+        vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(200);
+        renderGradientBlock({
+            blockSettings: { gradientColors: gradientColorsWithOpacity },
+        });
+
+        const badges = await screen.findAllByTestId(SQUARE_BADGE_TEST_ID);
+        expect(badges[0]).toHaveStyle({ left: '0%' });
+        expect(badges[2]).toHaveStyle({ left: 'auto', right: '0%' });
     });
 
     it('should stack square badges on multiple levels', async () => {

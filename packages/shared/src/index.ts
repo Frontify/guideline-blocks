@@ -10,6 +10,7 @@ export { CopyButton } from './components/CopyButton/CopyButton';
 export { ImageFormat } from './types';
 
 export { useCopy } from './hooks/useCopy';
+export { useElementWidth } from './hooks/useElementWidth';
 export { useImageContainer } from './hooks/useImageContainer';
 export { generateRandomId } from './utils/generateRandomId';
 export { useDndSensors } from './hooks/useDndSensors';

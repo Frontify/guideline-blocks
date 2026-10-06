@@ -3,11 +3,18 @@
 import { type GradientColor } from '../types';
 
 export const prepareGradientColors = (gradientColors: GradientColor[], width: number): GradientColor[] => {
-    for (const [index, color] of gradientColors.entries()) {
-        color.isReverse = isBadgeLeft(color, width);
-        color.level = getTopLevel(gradientColors, index, width, 0);
+    const prepared = gradientColors.map((gradientColor) => ({ ...gradientColor }));
+    if (prepared.length === 0) {
+        return prepared;
     }
-    return gradientColors;
+
+    for (const [index, color] of prepared.entries()) {
+        color.isReverse = isBadgeLeft(color, width);
+        color.level = getTopLevel(prepared, index, width, 0);
+    }
+    prepared[prepared.length - 1].level = calculateLevelOfLast(prepared);
+
+    return prepared;
 };
 
 export const calculateLevelOfLast = (gradientColors: GradientColor[]) => {

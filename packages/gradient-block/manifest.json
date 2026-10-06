@@ -41,13 +41,7 @@
                 }
             }
         },
-        "required": [
-            "displayCss",
-            "isHeightCustom",
-            "heightSimple",
-            "isOrientationCustom",
-            "orientationSimple"
-        ],
+        "required": [],
         "additionalProperties": false,
         "properties": {
             "displayCss": { "type": "boolean", "frontify-api-read": true, "frontify-api-write": true },
