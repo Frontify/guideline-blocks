@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type ColorPalette } from '@frontify/app-bridge';
-
 import { type Palette } from '../components/ColorInput/types';
 
 type Nullable<T> = T | null;
