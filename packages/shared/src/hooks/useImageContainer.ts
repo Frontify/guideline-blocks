@@ -1,52 +1,50 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import debounce from 'lodash-es/debounce';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const RESIZE_DEBOUNCE_MS = 100;
 
 const roundToNextHundred = (value: number) => Math.ceil(value / 100) * 100;
 
+const getWidthToRequest = (entry: ResizeObserverEntry) => {
+    const borderBoxWidth = entry.borderBoxSize?.[0]?.inlineSize;
+    const contentBoxWidth = entry.contentBoxSize?.[0]?.inlineSize;
+    const hasBorder = borderBoxWidth !== undefined && contentBoxWidth !== undefined && borderBoxWidth > contentBoxWidth;
+
+    return roundToNextHundred(entry.contentRect.width + (hasBorder ? 100 : 0));
+};
+
 export const useImageContainer = () => {
-    const containerRef = useRef<HTMLElement | null>(null);
+    const [container, setContainer] = useState<HTMLElement | null>(null);
     const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
 
     useEffect(() => {
-        if (!containerRef.current) {
+        if (!container) {
             return;
         }
 
-        const containerObserver = new ResizeObserver(
-            debounce((entries) => {
-                // oxlint-disable-next-line typescript/no-unsafe-member-access
-                const container = entries[0] as ResizeObserverEntry;
-                const borderWidth = container.borderBoxSize[0].inlineSize - container.contentBoxSize[0].inlineSize;
-                const shouldRequestLargerImage = borderWidth > 0;
-                const newImageWidth = container.contentRect.width + (shouldRequestLargerImage ? 100 : 0);
-
-                const newContainerWidth = roundToNextHundred(newImageWidth);
-                const oldContainerWidth = roundToNextHundred(containerWidth ?? 0);
-                const containerWidthHasGrown = oldContainerWidth < newContainerWidth;
-                if (containerWidthHasGrown) {
-                    setContainerWidth(newContainerWidth);
-                }
-            }, 100)
+        const updateContainerWidth = debounce(
+            (entry: ResizeObserverEntry) => {
+                const newContainerWidth = getWidthToRequest(entry);
+                setContainerWidth((currentWidth) => Math.max(currentWidth ?? 0, newContainerWidth));
+            },
+            RESIZE_DEBOUNCE_MS,
+            { leading: true }
         );
 
-        containerObserver.observe(containerRef.current);
-        return () => containerObserver.disconnect();
-    }, [containerWidth]);
+        const containerObserver = new ResizeObserver(([entry]) => {
+            if (entry) {
+                updateContainerWidth(entry);
+            }
+        });
 
-    const setContainerRef = (container: HTMLElement | null) => {
-        if (!containerRef.current) {
-            containerRef.current = container;
-            const clientWidth = container?.clientWidth || 0;
-            const offsetWidth = container?.offsetWidth || 0;
-            const borderWidth = offsetWidth - clientWidth;
-            const shouldRequestLargerImage = borderWidth > 0;
-            const imageWidthToRequest = offsetWidth + (shouldRequestLargerImage ? 100 : 0);
+        containerObserver.observe(container);
+        return () => {
+            containerObserver.disconnect();
+            updateContainerWidth.cancel();
+        };
+    }, [container]);
 
-            setContainerWidth(roundToNextHundred(imageWidthToRequest));
-        }
-    };
-
-    return { containerWidth, setContainerRef };
+    return { containerWidth, setContainerRef: setContainer };
 };
