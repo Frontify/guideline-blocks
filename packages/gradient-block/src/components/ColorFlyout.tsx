@@ -27,6 +27,10 @@ export const ColorFlyout = ({
     const [colorPosition, setColorPosition] = useState(Math.round(currentlyEditingPosition).toString());
     const [color, setColor] = useState<Color>(actualColor?.color ?? defaultColor);
     const [colorPositionValidation, setColorPositionValidation] = useState<Validation>(Validation.Default);
+    const id = useId();
+    const colorInputId = `${id}-color`;
+    const positionInputId = `${id}-position`;
+    const hasPositionError = colorPositionValidation === Validation.Error;
 
     const editColor = () => {
         if (colorPositionValidation === Validation.Error) {
@@ -78,43 +82,42 @@ export const ColorFlyout = ({
                 </Flyout.Header>
                 <Flyout.Body>
                     <div className="tw-w-full tw-flex tw-flex-col tw-gap-6" data-test-id="color-picker-form">
-                        <FormControl
-                            label={{
-                                htmlFor: 'GRADIENT_COLOR_COLOR',
-                                children: 'Color',
-                            }}
-                        >
+                        <div className="tw-flex tw-flex-col tw-gap-y-2">
+                            <Label htmlFor={colorInputId}>Color</Label>
                             <ColorPickerFlyout
+                                id={colorInputId}
                                 currentColor={color}
                                 palettes={palettes}
                                 onColorChange={(color) => color && setColor(color)}
                             />
-                        </FormControl>
-                        <FormControl
-                            helper={
-                                colorPositionValidation === Validation.Error
-                                    ? { text: 'Add unique color stops from 0-100.' }
-                                    : undefined
-                            }
-                            style={
-                                colorPositionValidation === Validation.Error
-                                    ? FormControlStyle.Danger
-                                    : FormControlStyle.Primary
-                            }
-                            label={{
-                                tooltip: {
-                                    content: 'To customize the gradient, color-stop points from 0-100 can be added.',
-                                },
-                                htmlFor: 'GRADIENT_COLOR_POSITION',
-                                children: 'Stop',
-                            }}
-                        >
+                        </div>
+                        <div className="tw-flex tw-flex-col tw-gap-y-2">
+                            <div className="tw-flex tw-items-center tw-gap-x-1">
+                                <Label htmlFor={positionInputId}>Stop</Label>
+                                <Tooltip.Root>
+                                    <Tooltip.Trigger asChild>
+                                        <button type="button" aria-label="More information about stops">
+                                            <IconQuestionMarkCircle size={16} />
+                                        </button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>
+                                        To customize the gradient, color-stop points from 0-100 can be added.
+                                    </Tooltip.Content>
+                                </Tooltip.Root>
+                            </div>
                             <TextInput
+                                id={positionInputId}
                                 value={colorPosition}
                                 type="number"
+                                status={hasPositionError ? 'error' : 'neutral'}
                                 onChange={(event) => setValidColorPosition(event.target.value)}
                             />
-                        </FormControl>
+                            {hasPositionError && (
+                                <Text as="p" size="small" color="negative">
+                                    Add unique color stops from 0-100.
+                                </Text>
+                            )}
+                        </div>
                     </div>
                 </Flyout.Body>
                 <Flyout.Footer>
