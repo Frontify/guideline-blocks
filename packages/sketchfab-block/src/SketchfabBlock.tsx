@@ -1,12 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle } from '@frontify/fondue';
 import { Button, TextInput, Text } from '@frontify/fondue/components';
 import { IconLinkBox } from '@frontify/fondue/icons';
 import { type BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useId, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -20,6 +19,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
     const [inputError, setInputError] = useState(false);
+    const errorId = useId();
 
     const saveLink = () => {
         const embedUrl = generateSketchfabEmbedUrl(localUrl);
@@ -177,22 +177,25 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                             <div className="tw-flex-none tw-mt-[2px]">
                                 <IconLinkBox size={32} />
                             </div>
-                            <div className="tw-w-full tw-max-w-sm">
-                                <FormControl
-                                    helper={inputError ? { text: SKETCHFAB_RULE_ERROR } : undefined}
-                                    style={inputError ? FormControlStyle.Danger : FormControlStyle.Primary}
-                                >
-                                    <TextInput
-                                        value={localUrl}
-                                        onChange={(event) => setLocalUrl(event.target.value)}
-                                        onKeyDown={(event) => {
-                                            if (event.key === 'Enter') {
-                                                saveLink();
-                                            }
-                                        }}
-                                        placeholder={URL_INPUT_PLACEHOLDER}
-                                    />
-                                </FormControl>
+                            <div className="tw-w-full tw-max-w-sm tw-flex tw-flex-col tw-gap-y-2">
+                                <TextInput
+                                    value={localUrl}
+                                    onChange={(event) => setLocalUrl(event.target.value)}
+                                    onKeyDown={(event) => {
+                                        if (event.key === 'Enter') {
+                                            saveLink();
+                                        }
+                                    }}
+                                    placeholder={URL_INPUT_PLACEHOLDER}
+                                    aria-label="Sketchfab model URL"
+                                    status={inputError ? 'error' : 'neutral'}
+                                    aria-describedby={inputError ? errorId : undefined}
+                                />
+                                {inputError && (
+                                    <Text as="p" id={errorId} size="small" color="negative">
+                                        {SKETCHFAB_RULE_ERROR}
+                                    </Text>
+                                )}
                             </div>
                             <Button onPress={saveLink}>Confirm</Button>
                         </div>
