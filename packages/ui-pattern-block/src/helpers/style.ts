@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Color } from '@frontify/fondue';
 import { type Radius, getBackgroundColorStyles } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-shared';
 
 import { type Height, type Padding, heightValues, paddingValues, radiusValues } from '../types';
 
