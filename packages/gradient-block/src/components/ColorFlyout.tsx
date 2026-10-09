@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useColorPalettes } from '@frontify/app-bridge';
-import { FormControl, FormControlStyle, Validation } from '@frontify/fondue';
-import { Button, Flyout, TextInput } from '@frontify/fondue/components';
-import { IconCheckMark } from '@frontify/fondue/icons';
+import { Validation } from '@frontify/fondue';
+import { Button, Flyout, Label, Text, TextInput, Tooltip } from '@frontify/fondue/components';
+import { IconCheckMark, IconQuestionMarkCircle } from '@frontify/fondue/icons';
 import { type Color } from '@frontify/guideline-blocks-shared';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 import { mapAppBridgeColorPalettesToFonduePalettes } from '../helpers/mapColorPalettes';
 import { type ColorFlyoutProps, type GradientColor } from '../types';
