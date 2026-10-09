@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type Asset } from '@frontify/app-bridge';
-import { type Color } from '@frontify/fondue';
+import { type Color } from '@frontify/guideline-blocks-shared';
 import { type CSSProperties } from 'react';
 
 export type Settings = {
