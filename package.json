@@ -37,7 +37,6 @@
         "@vitest/ui": "^4.1.11",
         "cypress": "^15.21.1",
         "cypress-real-events": "^1.15.0",
-        "glob": "^13.0.6",
         "happy-dom": "^20.8.9",
         "oxlint": "^1.80.0",
         "oxlint-tsgolint": "^7.0.2001",
