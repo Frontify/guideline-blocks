@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Color } from '@frontify/fondue';
 import { type Security } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-shared';
 
 export type Link = { link: { link: string }; openInNewTab: boolean };
 

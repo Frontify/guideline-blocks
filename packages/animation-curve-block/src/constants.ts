@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Color } from '@frontify/fondue';
+import { type Color } from '@frontify/guideline-blocks-shared';
 
 import { AnimationCurveType, type AnimationFunction, type Size, defaultAnimationCurveTypeValues } from './types';
 

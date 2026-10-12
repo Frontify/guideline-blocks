@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type Asset } from '@frontify/app-bridge';
-import { type Color } from '@frontify/fondue';
 import { type BorderStyle, Padding, type Radius, type RichTextButtonStyle } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-shared';
 
 export type Settings = {
     title: string;

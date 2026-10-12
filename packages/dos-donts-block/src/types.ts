@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type AppBridgeBlock, type Asset } from '@frontify/app-bridge';
-import { type Color } from '@frontify/fondue';
 import { type BorderStyle, type Radius } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-shared';
 
 export type Settings = {
     mode: BlockMode;
