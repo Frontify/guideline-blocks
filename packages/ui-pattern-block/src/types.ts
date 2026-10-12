@@ -168,3 +168,4 @@ export const radiusValues: Record<Radius, number> = {
 
 export type TemplateFiles = Partial<Record<SandpackTemplate, Record<string, string>>>;
 export type TemplateDependencies = Partial<Record<SandpackTemplate, { npm: string; external: string }>>;
+export type ToolbarTab = { file: string; label: string };

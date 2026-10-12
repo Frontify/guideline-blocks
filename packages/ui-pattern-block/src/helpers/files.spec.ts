@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { describe, expect, it } from 'vitest';
+
 import { Preprocessor } from '../types';
 
 import { getCssExtension } from './files';
@@ -22,10 +24,10 @@ describe('files helpers', () => {
         ];
 
         for (const testItem of testItems) {
-            it(`generates the correct output for preprocessor: ${testItem.input}`, () => {
+            it(`should generate the correct output for preprocessor: ${testItem.input}`, () => {
                 const result = getCssExtension(testItem.input);
-                cy.wrap(result.extension).should('eq', testItem.output.extension);
-                cy.wrap(result.label).should('eq', testItem.output.label);
+                expect(result.extension).toBe(testItem.output.extension);
+                expect(result.label).toBe(testItem.output.label);
             });
         }
     });

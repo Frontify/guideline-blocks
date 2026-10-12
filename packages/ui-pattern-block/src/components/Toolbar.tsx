@@ -2,13 +2,15 @@
 
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { Button } from '@frontify/fondue/components';
-import { IconArrowExpand, IconArrowRoundAntiClockwise, IconClipboard } from '@frontify/fondue/icons';
+import { IconArrowExpand, IconArrowRoundAntiClockwise, IconCaretDown, IconClipboard } from '@frontify/fondue/icons';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { useCopy } from '@frontify/guideline-blocks-shared';
 import { type ReactElement } from 'react';
 
-import { getToolbarButtons } from '../helpers';
+import { getFilePanelId, getToolbarButtons } from '../helpers';
 import { type Preprocessor, type SandpackTemplate } from '../types';
 
+import { FileTabs } from './FileTabs';
 import { OpenInSandboxButton } from './OpenInSandboxButton';
 import { ToolbarButton } from './ToolbarButton';
 
@@ -25,6 +27,7 @@ interface Props {
     isCodeEditable: boolean;
     hasCodeChanges: boolean;
     preprocessor: Preprocessor;
+    tabsId: string;
 }
 
 export const Toolbar = ({
@@ -40,42 +43,35 @@ export const Toolbar = ({
     isCodeEditable,
     hasCodeChanges,
     preprocessor,
+    tabsId,
 }: Props): ReactElement => {
     const { copy, status } = useCopy(3000);
     const { sandpack } = useSandpack();
     const { code } = useActiveCode();
     const { openFile, activeFile } = sandpack;
 
-    const toggleFile = (file: string) => {
-        if (activeFile === file) {
-            setIsEditorCollapsed(!isEditorCollapsed);
-        } else {
-            openFile(file);
-            setIsEditorCollapsed(false);
-        }
+    const panelId = getFilePanelId(tabsId);
+
+    const selectFile = (file: string) => {
+        openFile(file);
+        setIsEditorCollapsed(false);
     };
 
     return (
         <div
             data-test-id="ui-pattern-files-toolbar"
-            className={`tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10 tw-px-2 tw-bg-white tw-border-t tw-border-line-mid ${!isEditorCollapsed ? 'tw-border-b' : ''}`}
+            className={joinClassNames([
+                'tw-flex tw-justify-between tw-box-content tw-items-center tw-h-10 tw-px-2 tw-bg-white tw-border-t tw-border-line-mid',
+                !isEditorCollapsed && 'tw-border-b',
+            ])}
         >
-            <div className="tw-flex tw-h-full">
-                {getToolbarButtons(preprocessor)[template].map((button) => (
-                    <button
-                        type="button"
-                        data-test-id="toolbar-tab-btn"
-                        className="tw-px-2 tw-h-full tw-text-small tw-text-secondary hover:tw-text-secondary tw-font-primary tw-relative focus-visible:tw-z-20 focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none"
-                        key={button.file}
-                        onClick={() => toggleFile(button.file)}
-                    >
-                        {button.label}
-                        {activeFile === button.file && !isEditorCollapsed && (
-                            <div className="tw-w-full tw-h-0.5 tw-absolute tw-bottom-0 tw-left-0 tw-bg-[#2180EF]" />
-                        )}
-                    </button>
-                ))}
-            </div>
+            <FileTabs
+                tabs={getToolbarButtons(preprocessor)[template]}
+                activeFile={activeFile}
+                tabsId={tabsId}
+                panelId={panelId}
+                onSelect={selectFile}
+            />
             <div className="tw-flex tw-items-center tw-gap-3 tw-h-full">
                 <div className="tw-flex tw-gap-0.5 tw-items-center">
                     {showSandboxLink && (
@@ -94,6 +90,13 @@ export const Toolbar = ({
                             onClick={onResponsivePreviewOpen}
                         />
                     )}
+                    <ToolbarButton
+                        icon={<IconCaretDown size={16} className={isEditorCollapsed ? '' : 'tw-rotate-180'} />}
+                        tooltip={isEditorCollapsed ? 'Show code' : 'Hide code'}
+                        onClick={() => setIsEditorCollapsed(!isEditorCollapsed)}
+                        ariaExpanded={!isEditorCollapsed}
+                        ariaControls={panelId}
+                    />
                 </div>
                 {showResetButton && (
                     <>

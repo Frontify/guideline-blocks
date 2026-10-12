@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { type Color } from '@frontify/guideline-blocks-shared';
+import { describe, expect, it } from 'vitest';
 
 import { getBackgroundCss, getCssToInject, getScriptToInject } from './style';
 
@@ -10,7 +11,7 @@ const clean = (str: string) => {
 
 describe('style helpers', () => {
     describe('getCssToInject', () => {
-        it('generates the correct css for the inputs', () => {
+        it('should generate the correct css for the inputs', () => {
             const testItems = [
                 {
                     input: [true] as const,
@@ -84,15 +85,14 @@ describe('style helpers', () => {
                 },
             ];
             for (const testItem of testItems) {
-                cy.wrap(clean(getCssToInject(testItem.input[0], ...(testItem.input.slice(1) as string[])))).should(
-                    'eq',
+                expect(clean(getCssToInject(testItem.input[0], ...(testItem.input.slice(1) as string[])))).toBe(
                     clean(testItem.output)
                 );
             }
         });
     });
     describe('getBackgroundCss', () => {
-        it('generates the correct css for the inputs', () => {
+        it('should generate the correct css for the inputs', () => {
             const testItems = [
                 {
                     input: { red: 0, green: 0, blue: 255, alpha: 1 } as Color,
@@ -114,12 +114,12 @@ describe('style helpers', () => {
                 },
             ];
             for (const testItem of testItems) {
-                cy.wrap(clean(getBackgroundCss(testItem.input))).should('eq', clean(testItem.output));
+                expect(clean(getBackgroundCss(testItem.input))).toBe(clean(testItem.output));
             }
         });
     });
     describe('getScriptToInject', () => {
-        it('generates the correct script for the inputs', () => {
+        it('should generate the correct script for the inputs', () => {
             const testItems = [
                 {
                     input: 'h1 { color: red; }',
@@ -141,7 +141,7 @@ h2 { color: blue; }\`;
                 },
             ];
             for (const testItem of testItems) {
-                cy.wrap(clean(getScriptToInject(testItem.input))).should('eq', clean(testItem.output));
+                expect(clean(getScriptToInject(testItem.input))).toBe(clean(testItem.output));
             }
         });
     });

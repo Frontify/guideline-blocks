@@ -1,8 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SandpackCodeEditor, useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
-import { type ReactElement, useEffect, useState } from 'react';
+import {
+    CodeEditor as SandpackCodeMirror,
+    SandpackStack,
+    useActiveCode,
+    useClassNames,
+    useSandpack,
+} from '@codesandbox/sandpack-react';
+import { type ReactElement, useEffect, useId, useState } from 'react';
 
+import { getFilePanelId, getFileTabId } from '../helpers';
 import { type Preprocessor, type SandpackTemplate } from '../types';
 
 import { Toolbar } from './Toolbar';
@@ -36,10 +43,13 @@ export const CodeEditor = ({
     hasCodeChanges,
     preprocessor,
 }: Props): ReactElement => {
-    const { code } = useActiveCode();
+    const { code, updateCode, readOnly: isReadOnlyFile } = useActiveCode();
     const { sandpack } = useSandpack();
     const { activeFile } = sandpack;
+    const sandpackClassNames = useClassNames();
     const [isEditorCollapsed, setIsEditorCollapsed] = useState(shouldCollapseCodeByDefault);
+    const tabsId = useId();
+    const isEmptyReadOnlyFile = !isCodeEditable && code.trim() === '';
 
     useEffect(() => {
         onCodeChange(activeFile, code);
@@ -61,15 +71,48 @@ export const CodeEditor = ({
                 showSandboxLink={showSandboxLink}
                 showResponsivePreview={showResponsivePreview}
                 preprocessor={preprocessor}
+                tabsId={tabsId}
             />
-            {!isEditorCollapsed && (
-                <SandpackCodeEditor
-                    showReadOnly={false}
-                    readOnly={!isCodeEditable}
-                    showRunButton={false}
-                    showTabs={false}
-                />
-            )}
+            <div
+                id={getFilePanelId(tabsId)}
+                data-test-id="ui-pattern-code-panel"
+                role="tabpanel"
+                aria-labelledby={getFileTabId(tabsId, activeFile)}
+                // The editor is focusable, the empty message isn't
+                tabIndex={isEmptyReadOnlyFile ? 0 : undefined}
+                hidden={isEditorCollapsed}
+                className="focus-visible:tw-ring-4 focus-visible:tw-ring-inset focus-visible:tw-ring-blue focus-visible:tw-outline-none"
+            >
+                {!isEditorCollapsed &&
+                    (isEmptyReadOnlyFile ? (
+                        <p
+                            data-test-id="ui-pattern-empty-file"
+                            className="tw-m-0 tw-px-4 tw-py-3 tw-text-small tw-text-secondary"
+                        >
+                            This file is empty.
+                        </p>
+                    ) : (
+                        // Mirrors SandpackCodeEditor, minus its own role="tabpanel" that would nest in ours
+                        <SandpackStack className={sandpackClassNames('editor')}>
+                            <div
+                                className={sandpackClassNames('code-editor', [
+                                    'tw-relative tw-flex-1 tw-overflow-auto tw-bg-[var(--sp-colors-surface1)] [&_.cm-scroller]:tw-py-[var(--sp-space-4)] [&_.sp-pre-placeholder]:tw-py-[var(--sp-space-4)]',
+                                ])}
+                            >
+                                <SandpackCodeMirror
+                                    key={activeFile}
+                                    code={code}
+                                    filePath={activeFile}
+                                    editorState={sandpack.editorState}
+                                    initMode={sandpack.initMode}
+                                    onCodeUpdate={(newCode) => updateCode(newCode, sandpack.autoReload ?? true)}
+                                    readOnly={!isCodeEditable || isReadOnlyFile}
+                                    showReadOnly={false}
+                                />
+                            </div>
+                        </SandpackStack>
+                    ))}
+            </div>
         </div>
     );
 };
