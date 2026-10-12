@@ -66,7 +66,7 @@ There is no root `pnpm build` despite what `readme.md` says — `@frontify/guide
 Two suites coexist while the repo migrates off Cypress:
 
 - **Vitest + happy-dom** (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`) — the target. `testIdAttribute` is configured as `data-test-id`.
-- **Cypress component** (`*.spec.ct.{ts,tsx}`) — legacy, still run in CI, sharded across 7 runners.
+- **Cypress component** (`*.spec.ct.{ts,tsx}`) — legacy, still run in CI on a single runner.
 
 Migrating a package's `.ct` specs is a defined workflow — use the `migrate-tests-to-vitest` skill rather than improvising. Test descriptions start with `should` / `should not`.
 
