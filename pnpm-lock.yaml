@@ -1408,9 +1408,6 @@ importers:
       autoprefixer:
         specifier: ^10.5.4
         version: 10.6.1(postcss@8.5.29)
-      cypress:
-        specifier: ^15.21.1
-        version: 15.21.1
       eslint-plugin-tailwindcss:
         specifier: ^3.18.3
         version: 3.18.3(tailwindcss@3.4.19(yaml@2.8.3))
