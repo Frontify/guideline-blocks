@@ -15,7 +15,7 @@
         "sourceMap": true,
         "strict": true,
         "target": "ES2020",
-        "types": ["cypress", "cypress-real-events"]
+        "types": ["@testing-library/jest-dom"]
     },
     "exclude": [
         "node_modules",
