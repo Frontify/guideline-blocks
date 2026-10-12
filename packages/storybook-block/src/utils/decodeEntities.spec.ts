@@ -1,22 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { describe, expect, it } from 'vitest';
+
 import { decodeEntities } from './decodeEntities';
 
 describe('decodeEntities', () => {
-    it('decodes URL', () => {
+    it('should decode a URL', () => {
         const encodedUrl = 'https://fondue-components.frontify.com/?path&#61;/story/tokens--alias-tokens';
         const decodedUrl = 'https://fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
-        expect(decodedUrl).to.equal(decodeEntities(encodedUrl));
+        expect(decodeEntities(encodedUrl)).toBe(decodedUrl);
     });
 
-    it('does nothing with already decoded URL', () => {
+    it('should not change an already decoded URL', () => {
         const decodedUrl = 'https://fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
-        expect(decodedUrl).to.equal(decodeEntities(decodedUrl));
+        expect(decodeEntities(decodedUrl)).toBe(decodedUrl);
     });
 
-    it('decodes characters', () => {
+    it('should decode characters', () => {
         const encodedChars = '&#162;this&#38;&#174;&#60;is&#62;&#38;&#34&#39;awesome&#162;&#163;';
-        const decodedChats = '¢this&®<is>&"\'awesome¢£';
-        expect(decodedChats).to.equal(decodeEntities(encodedChars));
+        const decodedChars = '¢this&®<is>&"\'awesome¢£';
+        expect(decodeEntities(encodedChars)).toBe(decodedChars);
     });
 });
