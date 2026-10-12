@@ -330,7 +330,7 @@ describe('Gradient Block', () => {
         expect(screen.getByText('Add unique color stops from 0-100.')).toBeInTheDocument();
     });
 
-    // TODO(vitest-migration): picking a brand/custom color inside the nested Fondue flyout needs Cypress real events.
+    // TODO(vitest-migration): picking a brand/custom color inside the nested Fondue flyout needs real browser events, which happy-dom can't simulate.
 
     it('should show a tooltip on a color point', () => {
         renderGradientBlock({
