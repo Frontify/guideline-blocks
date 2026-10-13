@@ -38,6 +38,9 @@ export const FileTabs = ({ tabs, activeFile, tabsId, panelId, onSelect }: Props)
     const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
     const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+            return;
+        }
         const nextIndex = getNextIndex(event.key, index, tabs.length - 1);
         if (nextIndex === undefined) {
             return;
