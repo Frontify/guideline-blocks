@@ -92,7 +92,7 @@ export const Toolbar = ({
                     )}
                     <ToolbarButton
                         icon={<IconCaretDown size={16} className={isEditorCollapsed ? '' : 'tw-rotate-180'} />}
-                        tooltip={isEditorCollapsed ? 'Show code' : 'Hide code'}
+                        tooltip="Code"
                         onClick={() => setIsEditorCollapsed(!isEditorCollapsed)}
                         ariaExpanded={!isEditorCollapsed}
                         ariaControls={panelId}
