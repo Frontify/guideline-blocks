@@ -67,7 +67,7 @@ export const Toolbar = ({
         >
             <FileTabs
                 tabs={getToolbarButtons(preprocessor)[template]}
-                activeFile={activeFile}
+                activeFile={isEditorCollapsed ? undefined : activeFile}
                 tabsId={tabsId}
                 panelId={panelId}
                 onSelect={selectFile}
