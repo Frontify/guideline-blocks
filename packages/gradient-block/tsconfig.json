@@ -17,6 +17,6 @@
         "target": "ES2020",
         "types": ["@testing-library/jest-dom"]
     },
-    "exclude": ["node_modules", "dist", "../shared/src/**/*.spec.ct.ts", "../shared/src/**/*.spec.ct.tsx"],
+    "exclude": ["node_modules", "dist"],
     "include": ["src/**/*", "../shared/src/**/*", "tsconfig.node.json"]
 }

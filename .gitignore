@@ -4,7 +4,3 @@
 **/.DS_Store
 
 .pnpm-debug.log
-
-cypress/fixtures/example.json
-cypress/videos
-cypress/screenshots
