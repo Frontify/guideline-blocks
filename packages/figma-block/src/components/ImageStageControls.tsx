@@ -1,30 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button } from "@frontify/fondue/components";
-import {
-    IconArrowExpand,
-    IconCross,
-    IconMinus,
-    IconPlus,
-} from "@frontify/fondue/icons";
-import { joinClassNames } from "@frontify/guideline-blocks-settings";
+import { Button } from '@frontify/fondue/components';
+import { IconArrowExpand, IconCross, IconMinus, IconPlus } from '@frontify/fondue/icons';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 
-import {
-    type DrawFullScreenActionButtonProps,
-    type DrawZoomInOutButtonsProps,
-} from "../types";
+import { type DrawFullScreenActionButtonProps, type DrawZoomInOutButtonsProps } from '../types';
 
-export const DrawFullScreenActionButton = ({
-    isFullScreen = false,
-    onClick,
-}: DrawFullScreenActionButtonProps) => (
+export const DrawFullScreenActionButton = ({ isFullScreen = false, onClick }: DrawFullScreenActionButtonProps) => (
     <div className="tw-invisible group-hover:tw-visible tw-absolute tw-top-4 tw-right-4">
         <Button emphasis="default" onPress={onClick} aspect="square">
-            {isFullScreen ? (
-                <IconCross size={16} />
-            ) : (
-                <IconArrowExpand size={16} />
-            )}
+            {isFullScreen ? <IconCross size={16} /> : <IconArrowExpand size={16} />}
         </Button>
     </div>
 );
@@ -36,8 +21,8 @@ export const DrawZoomInOutButtons = ({
 }: DrawZoomInOutButtonsProps) => (
     <div
         className={joinClassNames([
-            "tw-invisible group-hover:tw-visible tw-absolute tw-right-4 tw-rounded-[4px] tw-cursor-pointer tw-border tw-border-[rgba(255,255,255,0.2)] tw-bg-[#222]",
-            isFullScreen ? " tw-bottom-[50%]" : "tw-bottom-4",
+            'tw-invisible group-hover:tw-visible tw-absolute tw-right-4 tw-rounded-[4px] tw-cursor-pointer tw-border tw-border-[rgba(255,255,255,0.2)] tw-bg-[#222]',
+            isFullScreen ? ' tw-bottom-[50%]' : 'tw-bottom-4',
         ])}
     >
         <button

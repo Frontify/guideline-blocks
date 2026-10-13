@@ -38,16 +38,15 @@ export const Image = ({
     const { containerWidth, setContainerRef } = useImageContainer();
 
     const getImageComponent = () => {
-        const ImageComponent =
-            image ? (
-                <ResponsiveImage
-                    style={thumbnailStyles.imageStyles}
-                    testId="thumbnail-image"
-                    image={image}
-                    containerWidth={containerWidth}
-                    alt={altText || ''}
-                />
-            ) : null;
+        const ImageComponent = image ? (
+            <ResponsiveImage
+                style={thumbnailStyles.imageStyles}
+                testId="thumbnail-image"
+                image={image}
+                containerWidth={containerWidth}
+                alt={altText || ''}
+            />
+        ) : null;
 
         if (isEditing) {
             return renderEditModeComponent(ImageComponent);

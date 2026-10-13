@@ -1,33 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    type Asset,
-    useAssetChooser,
-    useAssetUpload,
-    useFileInput,
-} from "@frontify/app-bridge";
-import {
-    AssetChooserObjectType,
-    FileExtensionSets,
-    toRgbaString,
-} from "@frontify/guideline-blocks-settings";
-import { useEffect, useState } from "react";
+import { type Asset, useAssetChooser, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { AssetChooserObjectType, FileExtensionSets, toRgbaString } from '@frontify/guideline-blocks-settings';
+import { useEffect, useState } from 'react';
 
-import { type DoDontItemProps, DoDontType } from "../types";
+import { type DoDontItemProps, DoDontType } from '../types';
 
 type UseDoDontAssetsProps = Pick<
     DoDontItemProps,
-    | "id"
-    | "appBridge"
-    | "alt"
-    | "onChangeItem"
-    | "updateAssetIdsFromKey"
-    | "type"
-    | "hasStrikethrough"
-    | "hasBorder"
-    | "borderWidth"
-    | "borderStyle"
-    | "borderColor"
+    | 'id'
+    | 'appBridge'
+    | 'alt'
+    | 'onChangeItem'
+    | 'updateAssetIdsFromKey'
+    | 'type'
+    | 'hasStrikethrough'
+    | 'hasBorder'
+    | 'borderWidth'
+    | 'borderStyle'
+    | 'borderColor'
 >;
 
 export const useDoDontAssets = ({
@@ -45,16 +36,13 @@ export const useDoDontAssets = ({
 }: UseDoDontAssetsProps) => {
     const [localAltText, setLocalAltText] = useState<string | undefined>(alt);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const border = hasBorder
-        ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}`
-        : "";
-    const hasStrikethrough =
-        type === DoDontType.Dont && shouldHaveStrikethrough;
+    const border = hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : '';
+    const hasStrikethrough = type === DoDontType.Dont && shouldHaveStrikethrough;
 
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({
         multiple: false,
-        accept: "image/*",
+        accept: 'image/*',
     });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
@@ -67,7 +55,7 @@ export const useDoDontAssets = ({
                 setIsUploadLoading(true);
                 const asset = result[0];
                 // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? "";
+                const imageAlt = alt ?? asset.alternativeText ?? '';
                 // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
@@ -83,7 +71,7 @@ export const useDoDontAssets = ({
                 multiSelection: false,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
                 extensions: FileExtensionSets.Images,
-            },
+            }
         );
     };
 
@@ -105,7 +93,7 @@ export const useDoDontAssets = ({
             (async (uploadResults) => {
                 const asset = uploadResults?.[0];
                 // oxlint-disable-next-line typescript/no-unsafe-assignment
-                const imageAlt = alt ?? asset.alternativeText ?? "";
+                const imageAlt = alt ?? asset.alternativeText ?? '';
                 // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
