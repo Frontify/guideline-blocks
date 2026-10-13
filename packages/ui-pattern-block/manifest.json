@@ -141,14 +141,7 @@
 
             "sandpackTemplate": {
                 "type": "string",
-                "enum": [
-                    "vanilla",
-                    "static",
-                    "react",
-                    "angular",
-                    "svelte",
-                    "vue"
-                ],
+                "enum": ["vanilla", "static", "react", "angular", "svelte", "vue"],
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },

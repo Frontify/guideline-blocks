@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { act, renderHook, waitFor } from '@testing-library/react';
 import { type BorderStyle } from '@frontify/guideline-blocks-settings';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { useDoDontAssets } from './useDoDontAssets';
 import { DoDontType } from '../types';
+
+import { useDoDontAssets } from './useDoDontAssets';
 
 const mocks = vi.hoisted(() => ({
     openAssetChooser: vi.fn(),
@@ -121,9 +122,7 @@ describe('useDoDontAssets', () => {
 
     it('should keep an existing alt text when choosing an asset', async () => {
         const onChangeItem = vi.fn();
-        const { result } = renderHook(() =>
-            useDoDontAssets({ ...defaultProps, alt: 'Existing alt', onChangeItem })
-        );
+        const { result } = renderHook(() => useDoDontAssets({ ...defaultProps, alt: 'Existing alt', onChangeItem }));
 
         act(() => result.current.onOpenAssetChooser());
         const chooseAsset = mocks.openAssetChooser.mock.calls[0]?.[0] as (

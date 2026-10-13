@@ -73,7 +73,7 @@ describe('getOverwrittenThemeSettings', () => {
             for (const token of marginTokens) {
                 expect(result[`${THEME_PREFIX}${token}`]).toBe('0px');
             }
-        },
+        }
     );
 
     it('should keep the text color untouched when resetting margins', () => {
