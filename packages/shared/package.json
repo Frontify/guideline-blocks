@@ -40,8 +40,6 @@
         "postcss": "^8.5.26",
         "react-dom": "^18.3.1",
         "tailwindcss": "^3.4.17",
-        "typescript": "^6.0.3",
-        "vite": "^7.3.2",
-        "vitest": "^4.1.11"
+        "typescript": "^6.0.3"
     }
 }

@@ -61,7 +61,7 @@ There is no root `pnpm build` despite what `readme.md` says — `@frontify/guide
 
 ## Tests
 
-Vitest + happy-dom + Testing Library (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`), configured in the root `vite.config.ts` / `vitest.setup.ts`. `testIdAttribute` is configured as `data-test-id`. Test descriptions start with `should` / `should not`.
+Vitest + happy-dom + Testing Library (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`), configured in the root `vite.config.mts` / `vitest.setup.ts`. `testIdAttribute` is configured as `data-test-id`. Test descriptions start with `should` / `should not`.
 
 ## Conventions
 
