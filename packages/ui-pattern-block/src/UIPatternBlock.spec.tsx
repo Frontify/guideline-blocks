@@ -248,8 +248,24 @@ describe('UI Pattern Block', () => {
         expect(getCodePanel()).toBeVisible();
     });
 
-    // TODO(vitest-migration): CodeMirror doesn't initialise in happy-dom, so the code-typing tests (edit in view
-    // mode, discard changes button in view/edit mode) were dropped.
+    // TODO(vitest-migration): CodeMirror doesn't initialise in happy-dom, so the code-typing tests (discard changes
+    // button in view/edit mode) were dropped.
+
+    it('should allow code edit in view mode if set in the settings', () => {
+        renderUIPatternBlock({
+            editorState: false,
+            blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
+        });
+        expect(within(getCodePanel()).getByRole('textbox', { name: 'Code Editor for index.html' })).toBeInTheDocument();
+        expect(getCodePanel()).not.toHaveAttribute('tabindex');
+    });
+
+    it('should not allow code edit in view mode if not set in the settings', () => {
+        renderUIPatternBlock({ editorState: false, blockSettings: { ...DEFAULT_BLOCK_SETTINGS } });
+        expect(getCodePanel()).toHaveTextContent('Hello world!');
+        expect(within(getCodePanel()).queryByRole('textbox')).not.toBeInTheDocument();
+        expect(getCodePanel()).toHaveAttribute('tabindex', '0');
+    });
 
     it('should show the code editor instead of the empty file message in view mode if code edit is allowed', async () => {
         renderUIPatternBlock({
