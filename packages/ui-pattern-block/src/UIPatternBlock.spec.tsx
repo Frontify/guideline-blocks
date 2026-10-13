@@ -60,7 +60,7 @@ const renderUIPatternBlock = (appBridgeProps: Parameters<typeof withAppBridgeBlo
 
 const getCodePanel = () => screen.getByTestId(CODE_PANEL_TEST_ID);
 
-const getCodeToggleButton = () => screen.getByRole('button', { name: /^(Show|Hide) code$/ });
+const getCodeToggleButton = () => screen.getByRole('button', { name: 'Code' });
 
 const expectTabToControlPanel = (tab: HTMLElement) => {
     const panel = getCodePanel();
