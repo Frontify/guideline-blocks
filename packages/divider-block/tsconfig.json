@@ -15,7 +15,7 @@
         "sourceMap": true,
         "strict": true,
         "target": "es2017",
-        "types": ["@testing-library/jest-dom", "cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
+        "types": ["@testing-library/jest-dom"]
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src/**/*", "../shared/src/**/*"]

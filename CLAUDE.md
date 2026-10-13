@@ -18,10 +18,9 @@ pnpm lint:fix
 pnpm format          # oxfmt
 pnpm format:check
 pnpm typecheck       # tsc --noEmit per package
-pnpm test            # unit + component
-pnpm test:unit       # vitest run
+pnpm test            # vitest run
+pnpm test:unit       # same as above
 pnpm test:unit:watch
-pnpm test:components # cypress run --component
 ```
 
 Single test / single package:
@@ -30,7 +29,6 @@ Single test / single package:
 npx vitest run packages/image-block                    # one package
 npx vitest run packages/image-block/src/ImageBlock.spec.tsx
 npx vitest run -t "should render the caption"          # one test by name
-pnpm test:components --spec packages/audio-block/src/AudioBlock.spec.ct.tsx
 ```
 
 Per package:
@@ -63,12 +61,7 @@ There is no root `pnpm build` despite what `readme.md` says — `@frontify/guide
 
 ## Tests
 
-Two suites coexist while the repo migrates off Cypress:
-
-- **Vitest + happy-dom** (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`) — the target. `testIdAttribute` is configured as `data-test-id`.
-- **Cypress component** (`*.spec.ct.{ts,tsx}`) — legacy, still run in CI on a single runner.
-
-Migrating a package's `.ct` specs is a defined workflow — use the `migrate-tests-to-vitest` skill rather than improvising. Test descriptions start with `should` / `should not`.
+Vitest + happy-dom + Testing Library (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`), configured in the root `vite.config.ts` / `vitest.setup.ts`. `testIdAttribute` is configured as `data-test-id`. Test descriptions start with `should` / `should not`.
 
 ## Conventions
 

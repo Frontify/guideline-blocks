@@ -2,7 +2,7 @@
 
 import { type SandpackFiles } from '@codesandbox/sandpack-react';
 
-import { Preprocessor, SandpackTemplate } from '../types';
+import { Preprocessor, SandpackTemplate, type ToolbarTab } from '../types';
 
 export const getCssExtension = (preprocessor: Preprocessor) => {
     if (preprocessor === Preprocessor.SCSS) {
@@ -68,9 +68,7 @@ export const getDefaultFilesOfTemplate = (template: SandpackTemplate, preprocess
     }
 };
 
-export const getToolbarButtons = (
-    preprocessor: Preprocessor
-): Record<SandpackTemplate, { file: string; label: string }[]> => {
+export const getToolbarButtons = (preprocessor: Preprocessor): Record<SandpackTemplate, ToolbarTab[]> => {
     const { extension, label } = getCssExtension(preprocessor);
 
     return {
@@ -109,7 +107,7 @@ export const getToolbarButtons = (
             },
             {
                 file: '/src/app/app.component.ts',
-                label: 'Typescript',
+                label: 'TypeScript',
             },
         ],
         [SandpackTemplate.Svelte]: [
@@ -143,7 +141,7 @@ export const getToolbarButtons = (
             },
             {
                 file: '/app.js',
-                label: 'Javascript',
+                label: 'JavaScript',
             },
         ],
     };
@@ -157,3 +155,7 @@ export const initialActiveFile: Record<SandpackTemplate, string> = {
     [SandpackTemplate.Vanilla]: '/index.html',
     [SandpackTemplate.Static]: '/index.html',
 };
+
+export const getFileTabId = (tabsId: string, file: string) => `${tabsId}-tab-${file}`;
+
+export const getFilePanelId = (tabsId: string) => `${tabsId}-panel`;
