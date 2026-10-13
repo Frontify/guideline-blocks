@@ -78,8 +78,8 @@ export const CodeEditor = ({
                 data-test-id="ui-pattern-code-panel"
                 role="tabpanel"
                 aria-labelledby={getFileTabId(tabsId, activeFile)}
-                // The editor is focusable, the empty message isn't
-                tabIndex={isEmptyReadOnlyFile ? 0 : undefined}
+                // A read-only editor renders a static <pre> that can't take focus, so the panel does
+                tabIndex={!isCodeEditable || isReadOnlyFile ? 0 : undefined}
                 hidden={isEditorCollapsed}
                 className="focus-visible:tw-ring-4 focus-visible:tw-ring-inset focus-visible:tw-ring-blue focus-visible:tw-outline-none"
             >
