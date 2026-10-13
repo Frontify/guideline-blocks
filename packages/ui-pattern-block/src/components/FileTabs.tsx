@@ -8,7 +8,7 @@ import { type ToolbarTab } from '../types';
 
 interface Props {
     tabs: ToolbarTab[];
-    activeFile: string;
+    activeFile?: string;
     tabsId: string;
     panelId: string;
     onSelect: (file: string) => void;
