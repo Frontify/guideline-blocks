@@ -10,10 +10,8 @@ import { ImageFormat } from '../../types';
 
 export const PLACEHOLDER_SOURCE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
 
-// Beyond 2x the extra pixels are barely visible but roughly double the bytes again
 export const MAX_DEVICE_PIXEL_RATIO = 2;
 export const DEFAULT_QUALITY = 80;
-// High-density screens hide compression artifacts, so they can get away with a lower quality
 export const DEFAULT_HIGH_DENSITY_QUALITY = 75;
 
 type ResponsiveImageProps = {
@@ -40,7 +38,6 @@ export const ResponsiveImage = ({
     const [isLoaded, setIsLoaded] = useState(false);
     const devicePixelRatio = Math.min(MAX_DEVICE_PIXEL_RATIO, Math.max(1, window?.devicePixelRatio ?? 1));
     const qualityToRequest = quality ?? (devicePixelRatio >= 2 ? DEFAULT_HIGH_DENSITY_QUALITY : DEFAULT_QUALITY);
-    // A width of 0 means the asset dimensions are unknown
     // oxlint-disable-next-line typescript/no-unsafe-assignment
     const imageWidth = image.width || containerWidth;
     // oxlint-disable-next-line typescript/no-unsafe-assignment
