@@ -215,7 +215,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             borderRadius,
                         }}
                         className={joinClassNames([
-                            'tw-rounded-medium tw-bg-white tw-overflow-hidden tw-group',
+                            'tw-rounded-medium tw-bg-surface tw-overflow-hidden tw-group',
                             // Used to hide border-bottom of last elements in component from also applying a border (eg. Accordion.tsx).
                             hasBorder && 'bordered',
                         ])}
@@ -251,7 +251,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                                     }}
                                     showRefreshButton={false}
                                     showOpenInCodeSandbox={false}
-                                    className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-white [&>div>iframe]:!tw-max-h-none"
+                                    className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-[#fff] [&>div>iframe]:!tw-max-h-none"
                                 />
                                 {(isEditing || showCode) && (
                                     <CodeEditor
