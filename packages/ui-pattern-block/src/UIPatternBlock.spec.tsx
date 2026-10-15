@@ -360,6 +360,14 @@ describe('UI Pattern Block', () => {
         expect(screen.getAllByTestId(TOOLBAR_ICON_BUTTON_TEST_ID)).toHaveLength(3);
     });
 
+    it('should render the CodeSandbox control as a single named link that is not nested in a button', () => {
+        renderUIPatternBlock({ editorState: false, blockSettings: { ...DEFAULT_BLOCK_SETTINGS } });
+        const link = screen.getByRole('link', { name: 'Open in CodeSandbox (opens in a new tab)' });
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).not.toHaveAttribute('title');
+        expect(link.closest('button')).toBeNull();
+    });
+
     it('should open the responsive preview on button click and change the preview width', async () => {
         renderUIPatternBlock({
             editorState: false,
