@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DoDontItem } from './DoDontItem';
-import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, ItemIconChoice } from './types';
+import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
 import type * as GuidelineBlocksSettings from '@frontify/guideline-blocks-settings';
 
