@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEditorState } from '@frontify/app-bridge';
 import { IconArrowSync, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import { BlockItemWrapper, type MenuToolbarItem } from '@frontify/guideline-blocks-settings';
@@ -12,7 +11,7 @@ import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '
 import { type PreviewImageProps } from './types';
 
 export const PreviewImage = ({
-    appBridge,
+    isEditing,
     blockSettings,
     template,
     previewCustom,
@@ -20,7 +19,6 @@ export const PreviewImage = ({
     onOpenTemplateChooser,
     handleDeleteCustomPreview,
 }: PreviewImageProps) => {
-    const isEditing = useEditorState(appBridge);
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
     const hasCustomPreview = preview === PreviewType.Custom && previewCustom;

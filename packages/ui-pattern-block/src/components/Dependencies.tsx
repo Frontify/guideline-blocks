@@ -27,6 +27,14 @@ export const Dependencies = ({
 }: Props): ReactElement => {
     const [isOpen, setIsOpen] = useState(!shouldCollapseByDefault);
     const [innerValue, setInnerValue] = useState(value);
+    const [prevReadOnly, setPrevReadOnly] = useState(readOnly);
+
+    // Reset to the defaults when edit mode toggles instead of remounting the editor
+    if (readOnly !== prevReadOnly) {
+        setPrevReadOnly(readOnly);
+        setIsOpen(!shouldCollapseByDefault);
+        setInnerValue(value);
+    }
 
     return (
         <Accordion borderRadius={borderRadius} label={label} isOpen={isOpen} setIsOpen={setIsOpen}>

@@ -17,7 +17,7 @@ export type CtaButtonProps = {
 };
 
 export type PreviewImageProps = {
-    appBridge: AppBridgeBlock;
+    isEditing: boolean;
     blockSettings: Settings;
     template: Template | null;
     previewCustom: Asset | null;
@@ -27,7 +27,7 @@ export type PreviewImageProps = {
 };
 
 export type TemplatePreviewProps = {
-    appBridge: AppBridgeBlock;
+    isEditing: boolean;
     blockSettings: Settings;
     template: Template | null;
     previewCustom: Asset | null;
