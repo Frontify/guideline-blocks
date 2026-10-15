@@ -119,7 +119,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                 showOpenInCodeSandbox={false}
                                 showRestartButton={false}
                                 showRefreshButton={false}
-                                className="tw-w-full tw-h-full tw-rounded-medium tw-overflow-hidden tw-bg-[#fff] tw-bg-none"
+                                className="tw-w-full tw-h-full tw-rounded-medium tw-overflow-hidden tw-bg-surface tw-bg-none"
                             />
                         </div>
                     </div>
