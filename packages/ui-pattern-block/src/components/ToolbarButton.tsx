@@ -22,8 +22,10 @@ export const ToolbarButton = ({
 }: Props): ReactElement => {
     return (
         <Tooltip.Root>
-            <Tooltip.Trigger data-test-id="toolbar-icon-btn" asChild={!triggerElement}>
-                {triggerElement ?? (
+            <Tooltip.Trigger data-test-id="toolbar-icon-btn" asChild>
+                {triggerElement ? (
+                    <span className="tw-flex">{triggerElement}</span>
+                ) : (
                     <Button
                         aria-label={tooltip}
                         aria-expanded={ariaExpanded}
