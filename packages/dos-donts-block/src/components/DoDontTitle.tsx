@@ -2,9 +2,16 @@
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
 
-import { type DoDontTitleProps } from '../types';
+import { DoDontType, type DoDontTitleProps } from '../types';
 
-const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
+const TYPE_LABELS: Record<DoDontType, string> = {
+    [DoDontType.Do]: 'Do',
+    [DoDontType.Dont]: "Don't",
+};
+
+const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
+    const typeLabel = TYPE_LABELS[type];
+
     const styles = {
         ...BlockStyles.heading3,
         marginBottom: 0,
@@ -22,7 +29,7 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
                 onBlur={() => onChangeItem(id, { title })}
                 style={styles}
                 value={title}
-                aria-label="Title"
+                aria-label={`${typeLabel} title`}
                 placeholder="Add a title"
                 className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
             />
@@ -31,6 +38,7 @@ const DoDontTitle = ({ id, title, editing, headingColor, onChangeItem, onChangeL
 
     return (
         <h3 data-test-id="do-dont-heading" style={styles} className="tw-w-full tw-break-words tw-whitespace-pre-wrap">
+            <span className="tw-sr-only">{typeLabel}: </span>
             {title}
         </h3>
     );

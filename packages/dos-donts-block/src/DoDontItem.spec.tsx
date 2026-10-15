@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DoDontItem } from './DoDontItem';
-import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType } from './types';
+import { BlockMode, type DoDontItemProps, DoDontStyle, DoDontType, ItemIconChoice } from './types';
 
 import type * as GuidelineBlocksSettings from '@frontify/guideline-blocks-settings';
 
@@ -69,5 +69,17 @@ describe('DoDontItem', () => {
         renderDoDontItem({ mode: BlockMode.TEXT });
 
         expect(screen.queryByTestId(DOS_DONTS_ASSETS)).toBeNull();
+    });
+
+    it('should announce a do item as such in the heading', () => {
+        renderDoDontItem({ type: DoDontType.Do });
+
+        expect(screen.getByRole('heading', { name: 'Do: Title' })).toBeInTheDocument();
+    });
+
+    it("should announce a don't item as such in the heading", () => {
+        renderDoDontItem({ type: DoDontType.Dont });
+
+        expect(screen.getByRole('heading', { name: "Don't: Title" })).toBeInTheDocument();
     });
 });
