@@ -71,10 +71,10 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                     <button
                         type="button"
                         onClick={onPreviewClose}
-                        className="tw-w-full tw-h-full tw-bg-black tw-opacity-90 tw-absolute tw-top-0 tw-left-0"
+                        className="tw-w-full tw-h-full tw-bg-[rgba(0,0,0,0.9)] tw-absolute tw-top-0 tw-left-0"
                     />
                     <div className="tw-flex tw-justify-center tw-w-full tw-relative">
-                        <div className=" tw-bg-white tw-h-10 tw-p-0.5 tw-rounded-medium tw-flex tw-gap-0.5">
+                        <div className="tw-bg-surface tw-h-10 tw-p-0.5 tw-rounded-medium tw-flex tw-gap-0.5">
                             {devices.map((device, i) => (
                                 <Fragment key={device.label}>
                                     <button
@@ -119,7 +119,7 @@ export const ResponsivePreview = ({ onClose }: Props): ReactElement => {
                                 showOpenInCodeSandbox={false}
                                 showRestartButton={false}
                                 showRefreshButton={false}
-                                className="tw-w-full tw-h-full tw-rounded-medium tw-overflow-hidden tw-bg-white tw-bg-none "
+                                className="tw-w-full tw-h-full tw-rounded-medium tw-overflow-hidden tw-bg-surface tw-bg-none"
                             />
                         </div>
                     </div>
