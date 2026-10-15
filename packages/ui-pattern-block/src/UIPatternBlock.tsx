@@ -251,7 +251,7 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                                     }}
                                     showRefreshButton={false}
                                     showOpenInCodeSandbox={false}
-                                    className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-[#fff] [&>div>iframe]:!tw-max-h-none"
+                                    className="tw-rounded-none tw-shadow-none tw-ml-0 tw-bg-surface [&>div>iframe]:!tw-max-h-none"
                                 />
                                 {(isEditing || showCode) && (
                                     <CodeEditor
