@@ -87,8 +87,7 @@
             "hasRadius",
             "radiusChoice",
             "security",
-            "assetViewerEnabled",
-            "items"
+            "assetViewerEnabled"
         ],
         "additionalProperties": false,
         "properties": {
