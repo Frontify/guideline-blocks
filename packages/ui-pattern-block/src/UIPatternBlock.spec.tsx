@@ -43,6 +43,11 @@ vi.mock('@codesandbox/sandpack-react', async () => {
     };
 });
 
+// The app bridge stubs share one global emitter, so a debounced save left over from one test would land in the next
+vi.mock('./hooks', () => ({
+    useDebounce: () => ({ debounce: (callback: () => void) => callback() }),
+}));
+
 const templates = [
     SandpackTemplate.Vanilla,
     SandpackTemplate.Angular,
@@ -83,7 +88,7 @@ describe('UI Pattern Block', () => {
     it('should render an empty ui pattern block with default settings in edit mode', async () => {
         renderUIPatternBlock({ editorState: true, blockSettings: { ...DEFAULT_BLOCK_SETTINGS } });
         expectDefaultSettings();
-        expect(await screen.findAllByTestId(RICH_TEXT_EDITOR_TEST_ID)).toHaveLength(2);
+        await waitFor(() => expect(screen.getAllByTestId(RICH_TEXT_EDITOR_TEST_ID)).toHaveLength(2));
         expect(screen.getAllByTestId(DEPENDENCY_ACCORDION_CHILDREN_TEST_ID)).toHaveLength(2);
     });
 
@@ -256,8 +261,16 @@ describe('UI Pattern Block', () => {
             editorState: false,
             blockSettings: { ...DEFAULT_BLOCK_SETTINGS, isCodeEditable: true },
         });
-        expect(within(getCodePanel()).getByRole('textbox', { name: 'Code Editor for index.html' })).toBeInTheDocument();
+        expect(getCodePanel().querySelector('.cm-content')).toHaveAttribute('contenteditable', 'true');
         expect(getCodePanel()).not.toHaveAttribute('tabindex');
+    });
+
+    it('should keep a file editable after switching tabs even if the editor never scrolls into view', async () => {
+        // happy-dom never reports an intersection, just like a file too long to ever get 20% of itself on screen
+        renderUIPatternBlock({ editorState: true, blockSettings: { ...DEFAULT_BLOCK_SETTINGS } });
+        await userEvent.click(screen.getByRole('tab', { name: 'CSS' }));
+        await userEvent.click(screen.getByRole('tab', { name: 'HTML' }));
+        expect(getCodePanel().querySelector('.cm-content')).toHaveAttribute('contenteditable', 'true');
     });
 
     it('should not allow code edit in view mode if not set in the settings', () => {

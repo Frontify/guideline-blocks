@@ -104,7 +104,8 @@ export const CodeEditor = ({
                                     code={code}
                                     filePath={activeFile}
                                     editorState={sandpack.editorState}
-                                    initMode={sandpack.initMode}
+                                    // Lazy init waits for 20% of the editor to be on screen, which a long file never reaches
+                                    initMode="immediate"
                                     onCodeUpdate={(newCode) => updateCode(newCode, sandpack.autoReload ?? true)}
                                     readOnly={!isCodeEditable || isReadOnlyFile}
                                     showReadOnly={false}
