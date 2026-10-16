@@ -70,4 +70,16 @@ describe('DoDontItem', () => {
 
         expect(screen.queryByTestId(DOS_DONTS_ASSETS)).toBeNull();
     });
+
+    it('should announce a do item as such in the heading', () => {
+        renderDoDontItem({ type: DoDontType.Do });
+
+        expect(screen.getByRole('heading', { name: 'Do: Title' })).toBeInTheDocument();
+    });
+
+    it("should announce a don't item as such in the heading", () => {
+        renderDoDontItem({ type: DoDontType.Dont });
+
+        expect(screen.getByRole('heading', { name: "Don't: Title" })).toBeInTheDocument();
+    });
 });

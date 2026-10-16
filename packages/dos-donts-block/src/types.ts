@@ -153,6 +153,7 @@ export type ImageComponentProps = {
 
 export type DoDontTitleProps = {
     id: string;
+    type: DoDontType;
     title: string;
     editing: boolean;
     headingColor: string;
