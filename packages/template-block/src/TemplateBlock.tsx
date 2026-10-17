@@ -79,7 +79,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <div data-test-id="content" className={contentClasses}>
                         {hasPreview && (
                             <TemplatePreview
-                                appBridge={appBridge}
+                                isEditing={isEditing}
                                 blockSettings={blockSettings}
                                 template={selectedTemplate}
                                 previewCustom={previewCustom}

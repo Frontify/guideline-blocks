@@ -9,7 +9,7 @@ import {
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { type CSSProperties, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { type CSSProperties, memo, useCallback, useMemo, useState } from 'react';
 
 import { DoDontItemWrapper } from './components/DoDontItemWrapper';
 import DoDontTitle from './components/DoDontTitle';
@@ -216,20 +216,21 @@ export const SortableDoDontItem = memo((props: SortableDoDontItemProps) => {
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
-    const [draggableProps, setDraggableProps] = useState<Record<string, unknown>>(
-        editing ? { ...attributes, ...listeners } : {}
+    const nextDraggableProps = useMemo<Record<string, unknown>>(
+        () => (editing ? { ...attributes, ...listeners } : {}),
+        [editing, attributes, listeners]
     );
+    const [draggableProps, setDraggableProps] = useState(nextDraggableProps);
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
         transition,
         zIndex: isDragging ? 2 : 1,
     };
 
-    useEffect(() => {
-        if (!isDragging) {
-            queueMicrotask(() => setDraggableProps(editing ? { ...attributes, ...listeners } : {}));
-        }
-    }, [isDragging, attributes, listeners, editing]);
+    // Keep the props frozen while dragging; update during render to avoid a second commit per item
+    if (!isDragging && draggableProps !== nextDraggableProps) {
+        setDraggableProps(nextDraggableProps);
+    }
 
     return (
         <div style={transformStyle} ref={setNodeRef}>

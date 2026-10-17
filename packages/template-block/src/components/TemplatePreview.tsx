@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEditorState } from '@frontify/app-bridge';
 import { IconPlus } from '@frontify/fondue/icons';
 import {
     BlockInjectButton,
@@ -16,7 +15,7 @@ import { PreviewImage } from './PreviewImage';
 import { type TemplatePreviewProps } from './types';
 
 export const TemplatePreview = ({
-    appBridge,
+    isEditing,
     blockSettings,
     template,
     previewCustom,
@@ -26,8 +25,6 @@ export const TemplatePreview = ({
     handleNewPublication,
     handleDeleteCustomPreview,
 }: TemplatePreviewProps) => {
-    const isEditing = useEditorState(appBridge);
-
     const {
         backgroundColorTemplatePreview,
         borderColor_templatePreview,
@@ -72,7 +69,7 @@ export const TemplatePreview = ({
                     aria-label="Use this template"
                 >
                     <PreviewImage
-                        appBridge={appBridge}
+                        isEditing={isEditing}
                         blockSettings={blockSettings}
                         template={template}
                         previewCustom={previewCustom}

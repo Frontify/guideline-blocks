@@ -255,7 +255,6 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                                 />
                                 {(isEditing || showCode) && (
                                     <CodeEditor
-                                        key={`editor_${isEditing.toString()}`}
                                         isCodeEditable={isEditing || isCodeEditable}
                                         showResetButton={showResetButton}
                                         showSandboxLink={showSandboxLink}
@@ -275,7 +274,6 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
 
                         {(isEditing || showNpmDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
                             <NPMDependencies
-                                key={`npm_${isEditing.toString()}`}
                                 npmDependencies={npmDependencies}
                                 shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
                                 onNpmDependenciesChanged={(newDependencies) =>
@@ -287,7 +285,6 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                         )}
                         {(isEditing || showExternalDependencies) && sandpackTemplate !== SandpackTemplate.Static && (
                             <ExternalDependencies
-                                key={`external_${isEditing.toString()}`}
                                 externalDependencies={externalDependencies}
                                 shouldCollapseByDefault={!isEditing && shouldCollapseDependenciesByDefault}
                                 onExternalDependenciesChanged={(newDependencies) =>

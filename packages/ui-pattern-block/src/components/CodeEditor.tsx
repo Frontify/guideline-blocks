@@ -48,6 +48,13 @@ export const CodeEditor = ({
     const { activeFile } = sandpack;
     const sandpackClassNames = useClassNames();
     const [isEditorCollapsed, setIsEditorCollapsed] = useState(shouldCollapseCodeByDefault);
+    const [prevShouldCollapseCodeByDefault, setPrevShouldCollapseCodeByDefault] = useState(shouldCollapseCodeByDefault);
+
+    // Re-apply the default when it changes (e.g. on edit mode toggle) instead of remounting the editor
+    if (shouldCollapseCodeByDefault !== prevShouldCollapseCodeByDefault) {
+        setPrevShouldCollapseCodeByDefault(shouldCollapseCodeByDefault);
+        setIsEditorCollapsed(shouldCollapseCodeByDefault);
+    }
     const tabsId = useId();
     const isEmptyReadOnlyFile = !isCodeEditable && code.trim() === '';
 
