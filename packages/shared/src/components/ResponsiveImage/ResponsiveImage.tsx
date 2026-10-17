@@ -10,6 +10,10 @@ import { ImageFormat } from '../../types';
 
 export const PLACEHOLDER_SOURCE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
 
+export const MAX_DEVICE_PIXEL_RATIO = 2;
+export const DEFAULT_QUALITY = 80;
+export const DEFAULT_HIGH_DENSITY_QUALITY = 75;
+
 type ResponsiveImageProps = {
     image: Asset;
     containerWidth: number | undefined;
@@ -28,13 +32,14 @@ export const ResponsiveImage = ({
     format = ImageFormat.WEBP,
     className = '',
     style,
-    quality = 100,
+    quality,
     testId = 'responsive-image',
 }: ResponsiveImageProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const devicePixelRatio = Math.max(1, window?.devicePixelRatio ?? 1);
+    const devicePixelRatio = Math.min(MAX_DEVICE_PIXEL_RATIO, Math.max(1, window?.devicePixelRatio ?? 1));
+    const qualityToRequest = quality ?? (devicePixelRatio >= 2 ? DEFAULT_HIGH_DENSITY_QUALITY : DEFAULT_QUALITY);
     // oxlint-disable-next-line typescript/no-unsafe-assignment
-    const imageWidth = image.width ?? containerWidth;
+    const imageWidth = image.width || containerWidth;
     // oxlint-disable-next-line typescript/no-unsafe-assignment
     const imageHeight = image.height ?? 0;
     // oxlint-disable-next-line typescript/no-unsafe-argument
@@ -49,7 +54,7 @@ export const ResponsiveImage = ({
     const sourceWithWidth =
         image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
 
-    const conversionParams = allowConversions ? `&format=${format}&quality=${quality}` : '';
+    const conversionParams = allowConversions ? `&format=${format}&quality=${qualityToRequest}` : '';
     const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
     const sourceOptimised = hasMeasuredContainer ? `${sourceWithWidth}${conversionParams}` : PLACEHOLDER_SOURCE;
 
