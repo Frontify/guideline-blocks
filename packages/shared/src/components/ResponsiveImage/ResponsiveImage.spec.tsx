@@ -4,7 +4,7 @@ import { type Asset, AssetDummy } from '@frontify/app-bridge';
 import { fireEvent, render } from '@testing-library/react';
 // oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import { ImageFormat } from '../../types';
 
@@ -20,7 +20,15 @@ const HIGH_RES_ASSET: Asset = {
     height: 1000,
 };
 
+const setDevicePixelRatio = (value: number) => {
+    Object.defineProperty(window, 'devicePixelRatio', { value, writable: true, configurable: true });
+};
+
 describe('ResponsiveImage', () => {
+    afterEach(() => {
+        setDevicePixelRatio(1);
+    });
+
     it('should render an image block', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector)).toBeTruthy();
@@ -29,7 +37,7 @@ describe('ResponsiveImage', () => {
     it('should add the webp format and quality by default', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=800&format=webp&quality=100'
+            'https://preview.url?width=800&format=webp&quality=80'
         );
     });
 
@@ -43,7 +51,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, previewUrl: '' }} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=800&format=webp&quality=100'
+            'https://generic.url?width=800&format=webp&quality=80'
         );
     });
 
@@ -59,7 +67,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage format={ImageFormat.JPG} image={HIGH_RES_ASSET} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=800&format=jpg&quality=100'
+            'https://preview.url?width=800&format=jpg&quality=80'
         );
     });
 
@@ -75,18 +83,42 @@ describe('ResponsiveImage', () => {
     it('should request the image width to match the container width', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=600&format=webp&quality=100'
+            'https://preview.url?width=600&format=webp&quality=80'
         );
     });
 
-    it('should take device pixel ratio into account', () => {
-        Object.defineProperty(window, 'devicePixelRatio', {
-            value: 2,
-            writable: true,
-        });
+    it('should take device pixel ratio into account and lower the default quality on high-density screens', () => {
+        setDevicePixelRatio(2);
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
+            'https://preview.url?width=1200&format=webp&quality=75'
+        );
+    });
+
+    it('should cap the device pixel ratio at 2', () => {
+        setDevicePixelRatio(3);
+        const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
+            'https://preview.url?width=1200&format=webp&quality=75'
+        );
+    });
+
+    it('should keep the provided quality on high-density screens', () => {
+        setDevicePixelRatio(2);
+        const { getByTestId } = render(
+            <ResponsiveImage quality={100} image={HIGH_RES_ASSET} containerWidth={600} alt="" />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
             'https://preview.url?width=1200&format=webp&quality=100'
+        );
+    });
+
+    it('should treat an image width of 0 as unknown and request the container width', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage image={{ ...HIGH_RES_ASSET, width: 0, height: 0 }} containerWidth={600} alt="" />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
+            'https://preview.url?width=600&format=webp&quality=80'
         );
     });
 
@@ -95,7 +127,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, width: 200, height: 200 }} containerWidth={600} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=200&format=webp&quality=100'
+            'https://preview.url?width=200&format=webp&quality=80'
         );
     });
 

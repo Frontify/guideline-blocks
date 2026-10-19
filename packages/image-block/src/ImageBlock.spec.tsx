@@ -123,7 +123,7 @@ describe('Image Block', () => {
         });
         expect(screen.getByTestId(IMAGE_COMPONENT_TEST_ID)).toHaveAttribute(
             'src',
-            'https://preview.url?width=300&format=webp&quality=100'
+            'https://preview.url?width=300&format=webp&quality=80'
         );
     });
 
@@ -143,7 +143,7 @@ describe('Image Block', () => {
         });
         expect(screen.getByTestId(IMAGE_COMPONENT_TEST_ID)).toHaveAttribute(
             'src',
-            'https://preview.url?width=400&format=webp&quality=100'
+            'https://preview.url?width=400&format=webp&quality=80'
         );
     });
 
