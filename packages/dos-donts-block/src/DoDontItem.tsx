@@ -152,6 +152,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
                         <div
                             data-test-id="dos-donts-icon"
+                            aria-hidden="true"
                             style={{
                                 lineHeight: 'var(--f-theme-settings-heading3-line-height)',
                                 fontSize: 'var(--f-theme-settings-heading3-font-size)',
@@ -181,6 +182,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                     >
                         <DoDontTitle
                             id={id}
+                            type={type}
                             title={title}
                             editing={editing}
                             headingColor={headingColor}
