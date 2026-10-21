@@ -4,7 +4,6 @@ import { BlockStyles } from '@frontify/guideline-blocks-settings';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
-
 const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
     const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
