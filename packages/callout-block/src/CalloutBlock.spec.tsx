@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { readability } from '@ctrl/tinycolor';
-import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

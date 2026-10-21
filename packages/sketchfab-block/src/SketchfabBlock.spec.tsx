@@ -3,7 +3,7 @@
 // Keep happy-dom from fetching the real Sketchfab embed for every rendered iframe.
 // @vitest-environment-options {"settings":{"disableIframePageLoading":true}}
 
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { BorderStyle } from '@frontify/guideline-blocks-settings';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

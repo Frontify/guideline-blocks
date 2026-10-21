@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

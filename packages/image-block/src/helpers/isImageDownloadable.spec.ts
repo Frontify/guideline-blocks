@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy } from '@frontify/app-bridge';
+import { AssetDummy } from '@frontify/app-bridge/testing';
 import { describe, expect, test } from 'vitest';
 
 import { isImageDownloadable } from './isImageDownloadable';
