@@ -4,13 +4,9 @@ import { BlockStyles } from '@frontify/guideline-blocks-settings';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
-const TYPE_LABELS: Record<DoDontType, string> = {
-    [DoDontType.Do]: 'Do',
-    [DoDontType.Dont]: "Don't",
-};
 
 const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
-    const typeLabel = TYPE_LABELS[type];
+    const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
     const styles = {
         ...BlockStyles.heading3,
@@ -29,11 +25,15 @@ const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onC
                 onBlur={() => onChangeItem(id, { title })}
                 style={styles}
                 value={title}
-                aria-label={`${typeLabel} title`}
+                aria-label={`Title of ${typeLabel.toLocaleLowerCase()} item `}
                 placeholder="Add a title"
                 className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
             />
         );
+    }
+
+    if (!title) {
+        return <span className="tw-sr-only">{typeLabel}: </span>;
     }
 
     return (
