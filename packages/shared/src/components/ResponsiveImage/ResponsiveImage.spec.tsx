@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type Asset, AssetDummy } from '@frontify/app-bridge';
+import { type Asset } from '@frontify/app-bridge';
+import { AssetDummy } from '@frontify/app-bridge/testing';
 import { fireEvent, render } from '@testing-library/react';
 // oxlint-disable-next-line no-restricted-syntax
 import * as React from 'react';

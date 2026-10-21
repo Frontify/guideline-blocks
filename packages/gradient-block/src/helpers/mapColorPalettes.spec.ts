@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ColorDummy } from '@frontify/app-bridge';
+import { ColorDummy } from '@frontify/app-bridge/testing';
 import { describe, expect, it } from 'vitest';
 
 import { mapAppBridgeColorPalettesToFonduePalettes } from './mapColorPalettes';

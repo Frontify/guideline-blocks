@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { EditorView } from '@codemirror/view';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { type Color, Radius } from '@frontify/guideline-blocks-settings';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { BorderStyle } from '@frontify/guideline-blocks-settings';
 import { type Color } from '@frontify/guideline-blocks-shared';
 import { render, screen, waitFor, within } from '@testing-library/react';
