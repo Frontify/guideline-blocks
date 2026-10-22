@@ -99,7 +99,8 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
             containerOperatorRef.current?.destroy();
             containerOperatorRef.current = undefined;
         };
-    }, []);
+        // FullscreenOverlay swaps between inline and a portal, which remounts the stage, container and image nodes.
+    }, [isFullScreen]);
 
     useEffect(() => {
         hasLimitedOptionsRef.current = hasLimitedOptions;
