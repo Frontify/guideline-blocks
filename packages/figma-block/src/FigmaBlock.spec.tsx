@@ -79,6 +79,22 @@ describe('Figma Block', () => {
         expect(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).toBeInTheDocument();
     });
 
+    it('should only load the Figma Live iframe once it gets near the viewport', () => {
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
+            blockAssets: {
+                [ASSET_ID]: [{ ...AssetDummy.with(345), externalUrl: 'https://picsum.photos/200/200' }],
+            },
+            blockSettings: { figmaPreviewId: BlockPreview.Live },
+        });
+
+        render(<FigmaBlockWithStubs />);
+
+        expect(within(screen.getByTestId(LIVE_PREVIEW_TEST_ID)).getByTitle('figma-iframe')).toHaveAttribute(
+            'loading',
+            'lazy'
+        );
+    });
+
     it('toggles Figma Live preview Full screen', async () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
