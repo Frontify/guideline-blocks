@@ -10,6 +10,13 @@ import { useCopy } from '../../hooks/useCopy';
 
 import { type CssValueDisplayProps } from './types';
 
+// Created once: CodeMirror reconfigures the whole editor whenever it gets new extensions or basicSetup objects.
+const extensions = [css()];
+const basicSetup = {
+    highlightActiveLineGutter: false,
+    highlightActiveLine: false,
+};
+
 export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
@@ -45,12 +52,9 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
                 </div>
                 <CodeMirror
                     value={cssValue}
-                    extensions={[css()]}
+                    extensions={extensions}
                     readOnly
-                    basicSetup={{
-                        highlightActiveLineGutter: false,
-                        highlightActiveLine: false,
-                    }}
+                    basicSetup={basicSetup}
                     onCreateEditor={(view) => view.dom.querySelector('.cm-content')?.setAttribute('aria-label', 'CSS')}
                     placeholder={cssValue ? '' : placeholder}
                 />
