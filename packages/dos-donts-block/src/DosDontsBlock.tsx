@@ -184,20 +184,29 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setSelectedFiles(filesFromInput);
     }, [filesFromInput]);
 
+    // uploadFile and batchAddItems change identity on every render. Keep them out of the effect deps below,
+    // otherwise any re-render while uploading sends the same files to the uploader again.
+    const uploadFileRef = useRef(uploadFile);
+    const batchAddItemsRef = useRef(batchAddItems);
+    useEffect(() => {
+        uploadFileRef.current = uploadFile;
+        batchAddItemsRef.current = batchAddItems;
+    });
+
     useEffect(() => {
         if (selectedFiles && selectedType) {
             setIsUploadLoading(true);
-            uploadFile(selectedFiles);
+            uploadFileRef.current(selectedFiles);
         } else if (selectedAssets && selectedType) {
-            batchAddItems(selectedAssets);
+            batchAddItemsRef.current(selectedAssets);
         }
-    }, [selectedFiles, selectedType, selectedAssets, batchAddItems, uploadFile]);
+    }, [selectedFiles, selectedType, selectedAssets]);
 
     useEffect(() => {
         if (doneAll) {
-            batchAddItems(uploadResults);
+            batchAddItemsRef.current(uploadResults);
         }
-    }, [doneAll, uploadResults, batchAddItems]);
+    }, [doneAll, uploadResults]);
 
     useEffect(() => {
         const container = containerRef.current;
