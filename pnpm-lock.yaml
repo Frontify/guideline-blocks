@@ -58,7 +58,7 @@ importers:
         version: 6.1.2(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
       '@vitest/ui':
         specifier: ^5.0.4
-        version: 5.0.4(vitest@5.0.4)
+        version: 5.0.5(vitest@5.0.4)
       happy-dom:
         specifier: ^20.8.9
         version: 20.8.9
@@ -85,7 +85,7 @@ importers:
         version: 8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3)
       vitest:
         specifier: ^5.0.4
-        version: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.4)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
+        version: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.5)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
 
   examples/asset-upload:
     dependencies:
@@ -5045,19 +5045,19 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@5.0.4':
-    resolution: {integrity: sha512-kh/bp0oLr6w18kt4MFn5/zS+Hpc5k3bsf6S2m2Qksj7sKHrnc7Tu90UVYyiXnRvkYruN6kSCHQ3RR+SBE6FinA==}
+  '@vitest/pretty-format@5.0.5':
+    resolution: {integrity: sha512-24sSdIlMA9DVPXnYiB9siwU0bTd887Y9jX3+vabztCSsvHwo7ipvJ/a2L3Rljw8+2rK1f5fCj3h5U9I/Jsqgbw==}
 
   '@vitest/spy@5.0.4':
     resolution: {integrity: sha512-MZKk/gSkm2q+ICobMxCpH1mA+cCAWm8WV7UhxlqGjq/sJ3AGc1BqFOs5CRVXxH78wQtme9q/NAAgBquj4AcyMw==}
 
-  '@vitest/ui@5.0.4':
-    resolution: {integrity: sha512-L40ToOGwFgeZ+JVPMKHb7T0b671mqcmCpMUh9P68xq9YZ+TXM72rkDf9ljuv02e5Y1zj8ww0CnWIUnqs3FEWKQ==}
+  '@vitest/ui@5.0.5':
+    resolution: {integrity: sha512-dCoGUOdgmCaSB2g+WQ/spPCBkytAWdNUkFSXY4z+eYp2d8JEOY8v0uDRaJTG9qf/kTlTVZ4CuYMYMz/f1HS/qQ==}
     peerDependencies:
-      vitest: 5.0.4
+      vitest: 5.0.5
 
-  '@vitest/utils@5.0.4':
-    resolution: {integrity: sha512-hgpnyMuMqCz2PARmk3v62FxUr8jHIkY13ygvUeh8s+dmQxfnvkB/sgtoZFzG4lMitnEdnrg/lCvDbtVzuAsGWQ==}
+  '@vitest/utils@5.0.5':
+    resolution: {integrity: sha512-/rBu7gzLDQI/SC79Tn98b5DwOgaHU/Gt4I9OVeP3YofzNaYtbImRCOJQmT1S6vOJg9gEIlWC+r3QxKkjuSa1nQ==}
 
   abstract-logging@2.0.1:
     resolution: {integrity: sha512-2BjRTZxTPvheOvGbBslFSYOUkr+SjPtOnrLP33f+VIWLzezQpZcqVg7ja3L4dBXmzzgwT+a029jRx5PCi3JuiA==}
@@ -11100,7 +11100,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.4)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
+      vitest: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.5)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -12244,25 +12244,25 @@ snapshots:
       msw: 2.15.0(@types/node@25.6.0)(typescript@6.0.3)
       vite: 8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3)
 
-  '@vitest/pretty-format@5.0.4':
+  '@vitest/pretty-format@5.0.5':
     dependencies:
       tinyrainbow: 3.2.0
 
   '@vitest/spy@5.0.4': {}
 
-  '@vitest/ui@5.0.4(vitest@5.0.4)':
+  '@vitest/ui@5.0.5(vitest@5.0.4)':
     dependencies:
-      '@vitest/utils': 5.0.4
+      '@vitest/utils': 5.0.5
       fflate: 0.8.3
       flatted: 3.4.4
       pathe: 2.0.3
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.4)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
+      vitest: 5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.5)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
 
-  '@vitest/utils@5.0.4':
+  '@vitest/utils@5.0.5':
     dependencies:
-      '@vitest/pretty-format': 5.0.4
+      '@vitest/pretty-format': 5.0.5
       convert-source-map: 2.0.0
       tinyrainbow: 3.2.0
 
@@ -15006,7 +15006,7 @@ snapshots:
       terser: 5.51.2
       yaml: 2.8.3
 
-  vitest@5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.4)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3)):
+  vitest@5.0.4(@types/node@25.6.0)(@vitest/ui@5.0.5)(happy-dom@20.8.9)(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.0.4(msw@2.15.0(@types/node@25.6.0)(typescript@6.0.3))(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3))
@@ -15024,7 +15024,7 @@ snapshots:
       why-is-node-running: 3.2.1
     optionalDependencies:
       '@types/node': 25.6.0
-      '@vitest/ui': 5.0.4(vitest@5.0.4)
+      '@vitest/ui': 5.0.5(vitest@5.0.4)
       happy-dom: 20.8.9
     transitivePeerDependencies:
       - msw
