@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { EditorView } from '@codemirror/view';
-import { langs } from '@uiw/codemirror-extensions-langs';
 import { type Extension } from '@uiw/react-codemirror';
 import { useMemo } from 'react';
 
+import { languageExtensions } from '../languageExtensions';
 import { themeForegrounds } from '../themeForegrounds';
 import { type Language, type Theme } from '../types';
 
@@ -12,8 +12,8 @@ export const useCodeMirrorExtensions = (selectedLanguage: Language, selectedThem
     useMemo(() => {
         const extensions: Extension[] = [];
 
-        if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
-            extensions.push(langs[selectedLanguage]());
+        if (selectedLanguage !== 'plain' && Object.keys(languageExtensions).includes(selectedLanguage)) {
+            extensions.push(languageExtensions[selectedLanguage]());
         }
 
         // Prevent inherited typography from overriding CodeMirror token styling.
