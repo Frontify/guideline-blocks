@@ -7,5 +7,6 @@ module.exports = {
         require('tailwindcss'),
         require('autoprefixer'),
         require('../../postcss/scope')({ scope: blockScope.scope }),
+        require('../../postcss/dedupe'),
     ],
 };
