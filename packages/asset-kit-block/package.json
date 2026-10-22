@@ -16,9 +16,9 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^4.0.0-alpha.70",
+        "@frontify/app-bridge": "^4.0.0-alpha.71",
         "@frontify/fondue": "13.7.10",
-        "@frontify/guideline-blocks-settings": "4.0.0-alpha.7",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.8",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
