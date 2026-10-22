@@ -36,6 +36,7 @@ export const FigmaLivePreview = ({
 
         <iframe
             src={assetExternalUrl}
+            loading="lazy"
             className="tw-h-full tw-w-full tw-border-none"
             title="figma-iframe"
             // oxlint-disable-next-line @eslint-react/dom-no-unsafe-iframe-sandbox

@@ -160,6 +160,7 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
                             }}
                             height={isCustomHeight ? customHeight : heights[height]}
                             src={iframeUrl.toString()}
+                            loading="lazy"
                             frameBorder="0"
                             data-test-id="sketchfab-iframe"
                             title="3D model from Sketchfab"

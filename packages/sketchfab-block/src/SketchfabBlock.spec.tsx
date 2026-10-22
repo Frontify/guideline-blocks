@@ -150,6 +150,17 @@ describe('Sketchfab Block', () => {
         expect(screen.getByTestId(IFRAME_TEST_ID)).toHaveAttribute('height', CUSTOM_HEIGHT);
     });
 
+    it('should only load the Sketchfab viewer once it gets near the viewport', () => {
+        renderSketchfabBlock({
+            blockSettings: {
+                ...defaultBlockSettings,
+                [SketchfabSettings.URL]: SKETCHFAB_URL,
+            },
+        });
+
+        expect(screen.getByTestId(IFRAME_TEST_ID)).toHaveAttribute('loading', 'lazy');
+    });
+
     it('should append the parameters to the url', () => {
         renderSketchfabBlock({
             editorState: true,
