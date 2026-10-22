@@ -9,6 +9,12 @@
  */
 
 /**
+ * At-rules whose position doesn't matter. Others like @layer, @import, @charset and @namespace are order-sensitive,
+ * so keeping only their last copy would change the cascade.
+ */
+const DEDUPABLE_AT_RULES = new Set(["media", "supports", "container", "font-face", "keyframes", "property"]);
+
+/**
  * @type {import('postcss').PluginCreator}
  */
 module.exports = () => {
@@ -19,7 +25,9 @@ module.exports = () => {
 
             for (let index = root.nodes.length - 1; index >= 0; index--) {
                 const node = root.nodes[index];
-                if (node.type !== "rule" && node.type !== "atrule") {
+                const isDedupable =
+                    node.type === "rule" || (node.type === "atrule" && DEDUPABLE_AT_RULES.has(node.name));
+                if (!isDedupable) {
                     continue;
                 }
 

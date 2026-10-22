@@ -2,4 +2,4 @@
 blocks: all
 ---
 
-The block loads faster because its stylesheet is about 30% smaller.
+The block's stylesheet no longer contains duplicate rules, so the browser has less CSS to process.
