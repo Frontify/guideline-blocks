@@ -1,14 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type Asset } from '@frontify/app-bridge';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { DosDontsBlock, DosDontsBlockWrapper } from './DosDontsBlock';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './helpers/Color';
 import { BlockMode, DoDontSpacing, DoDontStyle, DoDontType, ItemIconChoice } from './types';
 
+import type * as AppBridge from '@frontify/app-bridge';
 import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 const DOS_DONTS_BLOCK = 'dos-donts-block';
 const DOS_DONTS_HEADING = 'dos-donts-heading';
@@ -16,6 +18,30 @@ const DOS_DONTS_ICON = 'dos-donts-icon';
 const RTE_CONTENT_HTML = 'rte-content-html';
 const RICH_TEXT_EDITOR = 'rich-text-editor';
 const DO_DONT_IMAGE = 'do-dont-image';
+
+const uploadMocks = vi.hoisted(() => ({
+    uploadFile: vi.fn<(files: FileList) => void>(),
+    selectedFiles: null as FileList | null,
+    results: [] as Asset[],
+    doneAll: false,
+}));
+
+vi.mock('@frontify/app-bridge', async (importOriginal) => {
+    const actual = await importOriginal<typeof AppBridge>();
+    return {
+        ...actual,
+        // Only the block-level picker accepts multiple files; the per-item pickers stay empty.
+        useFileInput: ({ multiple }: { multiple?: boolean }) => [
+            vi.fn(),
+            { selectedFiles: multiple ? uploadMocks.selectedFiles : null },
+        ],
+        // Like the real hook, hand out a new upload function on every render.
+        useAssetUpload: () => [
+            (files: FileList) => uploadMocks.uploadFile(files),
+            { results: uploadMocks.results, doneAll: uploadMocks.doneAll },
+        ],
+    };
+});
 
 vi.mock('./helpers/Color', async (importOriginal) => {
     return {
@@ -194,5 +220,39 @@ describe("Dos & Don'ts Block", () => {
         expect(secondTextarea).toBeTruthy();
         await user.type(secondTextarea!, 'Dont do this');
         expect((secondTextarea as HTMLTextAreaElement).value).toBe('Dont do this');
+    });
+
+    describe('uploading images', () => {
+        beforeEach(() => {
+            uploadMocks.uploadFile.mockReset();
+            uploadMocks.selectedFiles = null;
+            uploadMocks.results = [];
+            uploadMocks.doneAll = false;
+        });
+
+        it('should upload dropped images only once and add them as items when the upload is done', async () => {
+            const user = userEvent.setup();
+            const files = [new File([''], 'image.png', { type: 'image/png' })] as unknown as FileList;
+            uploadMocks.selectedFiles = files;
+
+            const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlockWrapper, {
+                editorState: true,
+                blockSettings: { columns: 2, mode: BlockMode.TEXT_AND_IMAGE },
+            });
+
+            const { rerender } = render(<DosDontsBlockWithStubs />);
+
+            await user.click(screen.getByRole('button', { name: /add as do$/i }));
+
+            expect(uploadMocks.uploadFile).toHaveBeenCalledOnce();
+            expect(uploadMocks.uploadFile).toHaveBeenCalledWith(files);
+
+            uploadMocks.results = [AssetDummy.with(1)];
+            uploadMocks.doneAll = true;
+            rerender(<DosDontsBlockWithStubs />);
+
+            expect(uploadMocks.uploadFile).toHaveBeenCalledOnce();
+            expect(screen.getAllByPlaceholderText('Add a title')).toHaveLength(3);
+        });
     });
 });
