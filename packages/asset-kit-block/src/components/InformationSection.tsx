@@ -19,7 +19,7 @@ import {
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
 } from '@frontify/guideline-blocks-settings';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { type InformationSectionProps } from '../types';
 
@@ -37,17 +37,15 @@ export const InformationSection = ({
             .setPlugin([new ResetFormattingPlugin(), new AutoformatPlugin()]);
     }, []);
 
-    const saveDescription = (newDescription: string) => {
-        if (description !== newDescription) {
-            setBlockSettings({ description: newDescription });
-        }
-    };
+    const descriptionPlugins = useMemo(() => getDefaultPluginsWithLinkChooser(appBridge), [appBridge]);
 
-    const saveTitle = (newTitle: string) => {
-        if (title !== newTitle) {
-            setBlockSettings({ title: newTitle });
-        }
-    };
+    // RichTextEditor only reports changed values, so these don't need to compare against the current settings.
+    const saveDescription = useCallback(
+        (newDescription: string) => setBlockSettings({ description: newDescription }),
+        [setBlockSettings]
+    );
+
+    const saveTitle = useCallback((newTitle: string) => setBlockSettings({ title: newTitle }), [setBlockSettings]);
 
     return (
         <div className="tw-flex-1 tw-space-y-2">
@@ -68,7 +66,7 @@ export const InformationSection = ({
                     placeholder="Add a description here ..."
                     showSerializedText={hasRichTextValue(description)}
                     value={description}
-                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                    plugins={descriptionPlugins}
                 />
             </div>
         </div>

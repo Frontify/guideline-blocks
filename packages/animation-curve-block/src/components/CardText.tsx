@@ -21,6 +21,9 @@ export const CardText = ({
     setTitle,
     setDescription,
 }: CardTextProps) => {
+    const titlePlugins = useMemo(() => getTitlePlugin(), []);
+    const descriptionPlugins = useMemo(() => getDefaultPluginsWithLinkChooser(appBridge), [appBridge]);
+
     const memoTitleRte = useMemo(() => {
         return (
             <RichTextEditor
@@ -28,10 +31,10 @@ export const CardText = ({
                 placeholder="Add a title"
                 onTextChange={setTitle}
                 isEditing={isEditing}
-                plugins={getTitlePlugin()}
+                plugins={titlePlugins}
             />
         );
-    }, [title, isEditing, setTitle]);
+    }, [title, isEditing, setTitle, titlePlugins]);
 
     const memoDescriptionRte = useMemo(() => {
         return (
@@ -40,10 +43,10 @@ export const CardText = ({
                 placeholder="Add a description"
                 onTextChange={setDescription}
                 isEditing={isEditing}
-                plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                plugins={descriptionPlugins}
             />
         );
-    }, [description, isEditing, setDescription, appBridge]);
+    }, [description, isEditing, setDescription, descriptionPlugins]);
     return (
         <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>
             {memoTitleRte}

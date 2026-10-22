@@ -8,7 +8,7 @@ import {
     hasRichTextValue,
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
-import { type ReactElement } from 'react';
+import { type ReactElement, useMemo } from 'react';
 
 import { getCaptionPlugins } from '../helpers/plugins';
 
@@ -29,10 +29,8 @@ export const Captions = ({
     onTitleChange,
     title,
 }: Props): ReactElement => {
-    const commonProps = {
-        isEditing,
-        plugins: getCaptionPlugins(appBridge),
-    };
+    const plugins = useMemo(() => getCaptionPlugins(appBridge), [appBridge]);
+    const commonProps = { isEditing, plugins };
 
     return (
         <div className={joinClassNames(['tw-flex tw-flex-col tw-gap-1 tw-w-full'])}>

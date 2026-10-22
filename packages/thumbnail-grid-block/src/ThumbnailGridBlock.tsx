@@ -95,23 +95,14 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [itemsState]);
 
-    const addItems = useCallback(
-        (items: Thumbnail[]) => {
-            setItemsState([...itemsState, ...items]);
-        },
-        [itemsState, setItemsState]
-    );
+    // Functional updates keep these callbacks stable, so editing one item doesn't re-render every item's editors.
+    const addItems = useCallback((items: Thumbnail[]) => {
+        setItemsState((prev) => [...prev, ...items]);
+    }, []);
 
-    const updateItems = useCallback(
-        (updatedItems: Thumbnail[]) => {
-            const newItemsState = itemsState.map((item) => {
-                const updatedItem = updatedItems.find((i) => i.id === item.id);
-                return updatedItem ?? item;
-            });
-            setItemsState(newItemsState);
-        },
-        [itemsState]
-    );
+    const updateItems = useCallback((updatedItems: Thumbnail[]) => {
+        setItemsState((prev) => prev.map((item) => updatedItems.find((i) => i.id === item.id) ?? item));
+    }, []);
 
     const updateItem = useCallback(
         (item: Thumbnail) => {

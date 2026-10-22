@@ -2,6 +2,7 @@
 
 import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { RichTextEditor, TextStyles, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
+import { useCallback, useMemo } from 'react';
 
 import { CaptionPosition, type Ratio, type Settings, textRatioValues } from '../types';
 
@@ -30,6 +31,12 @@ export const ImageCaption = ({
 }: ImageCaptionProps) => {
     const hasTitle = hasRichTextValue(name);
     const hasDescription = hasRichTextValue(description);
+    const captionPlugins = useMemo(() => getCaptionPlugins(appBridge), [appBridge]);
+    const onNameChange = useCallback((name: string) => setBlockSettings({ name }), [setBlockSettings]);
+    const onDescriptionChange = useCallback(
+        (description: string) => setBlockSettings({ description }),
+        [setBlockSettings]
+    );
 
     if (!isEditing && !hasTitle && !hasDescription) {
         return null;
@@ -51,12 +58,12 @@ export const ImageCaption = ({
                     placeholder="Asset name"
                     showSerializedText={hasTitle}
                     value={name ?? convertToRteValue(TextStyles.imageTitle, '', 'center')}
-                    onTextChange={(name) => setBlockSettings({ name })}
+                    onTextChange={onNameChange}
                 />
                 <RichTextEditor
                     isEditing={isEditing}
-                    plugins={getCaptionPlugins(appBridge)}
-                    onTextChange={(description) => setBlockSettings({ description })}
+                    plugins={captionPlugins}
+                    onTextChange={onDescriptionChange}
                     placeholder="Add a description here"
                     showSerializedText={hasDescription}
                     value={description ?? convertToRteValue(TextStyles.imageCaption, '', 'center')}

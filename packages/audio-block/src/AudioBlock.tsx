@@ -24,7 +24,7 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { DownloadButton, generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -90,14 +90,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         }
     };
 
-    const onTitleChange = async (title: string) => {
-        if (title !== blockSettings.title) {
-            await setBlockSettings({ title });
-        }
-    };
+    // RichTextEditor only reports changed values, so these don't need to compare against the current settings.
+    const onTitleChange = useCallback((title: string) => setBlockSettings({ title }), [setBlockSettings]);
 
-    const onDescriptionChange = (description: string) =>
-        description !== blockSettings.description && setBlockSettings({ description });
+    const onDescriptionChange = useCallback(
+        (description: string) => setBlockSettings({ description }),
+        [setBlockSettings]
+    );
+
+    const descriptionPlugins = useMemo(() => getDescriptionPlugins(appBridge), [appBridge]);
 
     useEffect(() => {
         if (selectedFiles) {
@@ -167,7 +168,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
                             <div data-test-id="block-description">
                                 <RichTextEditor
-                                    plugins={getDescriptionPlugins(appBridge)}
+                                    plugins={descriptionPlugins}
                                     isEditing={isEditing}
                                     onTextChange={onDescriptionChange}
                                     value={descriptionValue}

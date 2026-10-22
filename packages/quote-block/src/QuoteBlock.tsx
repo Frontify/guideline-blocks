@@ -22,7 +22,7 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type FC, useEffect } from 'react';
+import { type FC, useCallback, useEffect } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -105,7 +105,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
     const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
-    const onChangeContent = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
+    const onChangeContent = useCallback((value: string) => setBlockSettings({ content: value }), [setBlockSettings]);
 
     const getWrapperClasses = () => {
         if (isFullWidth) {

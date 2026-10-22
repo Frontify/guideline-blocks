@@ -63,6 +63,8 @@ export const TemplateText = ({
             .setPlugin([new ResetFormattingPlugin(), new AutoformatPlugin()]);
     }, []);
 
+    const descriptionPlugins = useMemo(() => getDefaultPluginsWithLinkChooser(appBridge), [appBridge]);
+
     const memoTitleRte = useMemo(
         () => (
             <RichTextEditor
@@ -86,11 +88,11 @@ export const TemplateText = ({
                 onTextChange={saveDescription}
                 showSerializedText={hasRichTextValue(description)}
                 isEditing={isEditing}
-                plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                plugins={descriptionPlugins}
                 key={templateTextKey}
             />
         ),
-        [appBridge, description, isEditing, saveDescription, templateTextKey]
+        [descriptionPlugins, description, isEditing, saveDescription, templateTextKey]
     );
 
     const getOverwrittenThemeSettings = (): CSSProperties => {
