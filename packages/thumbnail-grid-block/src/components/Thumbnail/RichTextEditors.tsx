@@ -32,17 +32,18 @@ export const RichTextEditors = memo((props: RichTextEditorsProps) => {
         ),
         [title, isEditing, updateItem]
     );
+    const captionPlugins = useMemo(() => getCaptionPlugins(appBridge), [appBridge]);
     const memoizedDescription = useMemo(
         () => (
             <RichTextEditor
                 isEditing={isEditing}
                 value={description ?? convertToRteValue()}
-                plugins={getCaptionPlugins(appBridge)}
+                plugins={captionPlugins}
                 onTextChange={(value) => updateItem('description', value)}
                 placeholder="Add a description"
             />
         ),
-        [description, isEditing, updateItem, appBridge]
+        [description, isEditing, updateItem, captionPlugins]
     );
 
     return (

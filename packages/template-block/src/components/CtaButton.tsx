@@ -2,11 +2,13 @@
 
 import { PluginComposer } from '@frontify/fondue/rte';
 import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { PreviewType } from '../types';
 
 import { type CtaButtonProps } from './types';
+
+const buttonPlugins = new PluginComposer({ noToolbar: true }).setPlugin();
 
 export const CtaButton = ({
     blockSettings,
@@ -17,6 +19,11 @@ export const CtaButton = ({
 }: CtaButtonProps) => {
     const [buttonHover, setButtonHover] = useState<boolean>(false);
     const { buttonText, preview, buttonStyle } = blockSettings;
+
+    const onButtonTextChange = useCallback(
+        (newButtonText: string) => updateBlockSettings({ buttonText: newButtonText }),
+        [updateBlockSettings]
+    );
 
     const marginOverwrites = preview === PreviewType.None ? '!tw-m-0' : '!tw-mb-0';
 
@@ -50,8 +57,8 @@ export const CtaButton = ({
             <RichTextEditor
                 value={hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Use this Template')}
                 isEditing={isEditing}
-                plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
-                onTextChange={(newButtonText) => updateBlockSettings({ buttonText: newButtonText })}
+                plugins={buttonPlugins}
+                onTextChange={onButtonTextChange}
             />
         </button>
     );

@@ -15,7 +15,7 @@ import {
     withAttachmentsProvider,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type ReactElement, useMemo, useRef, useState } from 'react';
+import { type ReactElement, useCallback, useMemo, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -125,6 +125,12 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
         previewRef.current?.getClient()?.dispatch({ type: 'refresh' });
     };
 
+    const onTitleChange = useCallback((title: string) => setBlockSettings({ title }), [setBlockSettings]);
+    const onDescriptionChange = useCallback(
+        (description: string) => setBlockSettings({ description }),
+        [setBlockSettings]
+    );
+
     const onCodeChange = (filename: string, code: string) => {
         if (!isEditing) {
             const existingFiles = {
@@ -200,8 +206,8 @@ export const UIPatternBlock = withAttachmentsProvider(({ appBridge }: BlockProps
                             appBridge={appBridge}
                             title={title}
                             description={description}
-                            onTitleChange={(newValue) => setBlockSettings({ title: newValue })}
-                            onDescriptionChange={(newValue) => setBlockSettings({ description: newValue })}
+                            onTitleChange={onTitleChange}
+                            onDescriptionChange={onDescriptionChange}
                             isEditing={isEditing}
                         />
                         <AttachmentsButton appBridge={appBridge} />

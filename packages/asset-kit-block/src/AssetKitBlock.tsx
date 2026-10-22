@@ -17,7 +17,7 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type ReactElement, useEffect, useRef, useState } from 'react';
+import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -25,6 +25,8 @@ import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from '
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { type Settings } from './types';
+
+const buttonPlugins = new PluginComposer({ noToolbar: true }).setPlugin();
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
@@ -53,6 +55,11 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
     // oxlint-disable-next-line typescript/no-unsafe-assignment
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
+
+    const onButtonTextChange = useCallback(
+        (buttonText: string) => setBlockSettings({ buttonText }),
+        [setBlockSettings]
+    );
 
     const startDownload = () => {
         // oxlint-disable-next-line typescript/no-floating-promises
@@ -133,8 +140,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
                                         : convertToRteValue('p', 'Download package')
                                 }
                                 isEditing={isEditing}
-                                plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
-                                onTextChange={(buttonText) => setBlockSettings({ buttonText })}
+                                plugins={buttonPlugins}
+                                onTextChange={onButtonTextChange}
                             />
                             <span
                                 data-test-id="asset-kit-block-screen-reader"
