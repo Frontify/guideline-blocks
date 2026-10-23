@@ -4,7 +4,7 @@ import { useEditorState } from '@frontify/app-bridge';
 import { IconArrowSync, IconSpeechBubbleQuote, IconTrashBin } from '@frontify/fondue/icons';
 import { merge } from '@frontify/fondue/rte';
 import { BlockItemWrapper, type MenuToolbarItem } from '@frontify/guideline-blocks-settings';
-import { EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import { EditAltTextFlyout, ResponsiveImage, useImageContainer } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 
 import { PreviewType, previewDisplayValues, previewImageAnchoringValues } from '../types';
@@ -24,20 +24,23 @@ export const PreviewImage = ({
     const { preview, previewImageAnchoring, previewDisplay } = blockSettings;
 
     const hasCustomPreview = preview === PreviewType.Custom && previewCustom;
-    // oxlint-disable-next-line typescript/no-unsafe-assignment
-    const { previewSrc, width, height } = hasCustomPreview
-        ? {
-              previewSrc: previewCustom.previewUrl,
-              // oxlint-disable-next-line typescript/no-unsafe-assignment
-              width: previewCustom.width,
-              // oxlint-disable-next-line typescript/no-unsafe-assignment
-              height: previewCustom.height,
-          }
-        : {
-              previewSrc: template?.previewUrl,
-              width: 'auto',
-              height: 'auto',
+    // Template previews aren't block assets, but their preview URL takes a width just like an asset's does.
+    const previewImage = hasCustomPreview
+        ? previewCustom
+        : template && {
+              previewUrl: template.previewUrl,
+              genericUrl: template.previewUrl,
+              originUrl: template.previewUrl,
+              extension: '',
+              width: null,
+              height: null,
           };
+    const { containerWidth, setContainerRef } = useImageContainer();
+    const imageAlt = blockSettings.altText ?? 'Template preview';
+    const imageClassName = merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]]);
+    const imageStyle = {
+        objectPosition: previewImageAnchoring ? previewImageAnchoringValues[previewImageAnchoring] : 'center',
+    };
 
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
@@ -71,23 +74,23 @@ export const PreviewImage = ({
 
     return (
         <>
-            <img
-                data-test-id="preview-img"
-                src={previewSrc}
-                className={merge(['tw-relative tw-w-full tw-h-full', previewDisplayValues[previewDisplay]])}
-                style={{
-                    objectPosition: previewImageAnchoring
-                        ? previewImageAnchoringValues[previewImageAnchoring]
-                        : 'center',
-                }}
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                width={width}
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
-                height={height}
-                alt={blockSettings.altText ?? 'Template preview'}
+            <span
+                ref={setContainerRef}
+                className="tw-block tw-w-full tw-h-full"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-            />
+            >
+                {previewImage && (
+                    <ResponsiveImage
+                        image={previewImage}
+                        containerWidth={containerWidth}
+                        alt={imageAlt}
+                        className={imageClassName}
+                        style={imageStyle}
+                        testId="preview-img"
+                    />
+                )}
+            </span>
             {isEditing && (
                 <div className="tw-absolute tw-top-5 tw-right-0 tw-flex tw-justify-end tw-pt-3 tw-mx-3">
                     <BlockItemWrapper
