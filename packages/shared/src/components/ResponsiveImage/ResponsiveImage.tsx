@@ -14,8 +14,11 @@ export const MAX_DEVICE_PIXEL_RATIO = 2;
 export const DEFAULT_QUALITY = 80;
 export const DEFAULT_HIGH_DENSITY_QUALITY = 75;
 
+// Only the fields the component reads, so images that aren't block assets (like template previews) can use it too.
+type ResponsiveImageSource = Pick<Asset, 'extension' | 'genericUrl' | 'height' | 'originUrl' | 'previewUrl' | 'width'>;
+
 type ResponsiveImageProps = {
-    image: Asset;
+    image: ResponsiveImageSource;
     containerWidth: number | undefined;
     alt: string;
     format?: ImageFormat;

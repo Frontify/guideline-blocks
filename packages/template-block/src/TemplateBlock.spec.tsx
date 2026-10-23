@@ -1,6 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetDummy, TemplateDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
+import {
+    AssetDummy,
+    TemplateDummy,
+    getAppBridgeBlockStub,
+    withAppBridgeBlockStubs,
+} from '@frontify/app-bridge/testing';
 import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -23,6 +28,8 @@ import {
     textRatioToInverseFlexBasis,
     verticalAlignmentToItemAlign,
 } from './types';
+
+import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 
 const CONTAINER_TEST_ID = 'container';
 const CARD_TEST_ID = 'card';
@@ -64,6 +71,13 @@ const getTemplateDummyWithPages = () => {
     ];
     return templateDummy;
 };
+
+const CONTAINER_WIDTH = 300;
+
+vi.mock('@frontify/guideline-blocks-shared', async (importOriginal) => ({
+    ...(await importOriginal<typeof GuidelineBlocksShared>()),
+    useImageContainer: () => ({ containerWidth: CONTAINER_WIDTH, setContainerRef: vi.fn() }),
+}));
 
 const renderTemplateBlock = (appBridgeProps: Parameters<typeof withAppBridgeBlockStubs>[1] = {}) => {
     const [TemplateBlockWithStubs, appBridge] = withAppBridgeBlockStubs(TemplateBlock, appBridgeProps);
@@ -161,24 +175,27 @@ describe('Template Block', () => {
         expect(screen.getByTestId(PAGE_COUNT_TEST_ID)).toHaveTextContent('0 pages');
     });
 
-    it("should render a template's preview if preview mode is set to template", async () => {
-        const templateDummy = getTemplateDummyWithPages();
-        const expectedPreviewUrl = templateDummy.previewUrl;
-        renderTemplateBlock({
-            editorState: true,
-            blockTemplates: {
-                template: [templateDummy],
-            },
-            blockSettings: {
-                preview: PREVIEW_MODE_TEMPLATE,
-            },
+    it("should render the template's preview in the size it is displayed at if preview mode is set to template", async () => {
+        const templateDummy = { ...getTemplateDummyWithPages(), previewUrl: 'https://preview.url?width={width}' };
+        const appBridge = getAppBridgeBlockStub({
+            blockTemplates: { template: [templateDummy] },
+            blockSettings: { preview: PREVIEW_MODE_TEMPLATE },
         });
-        expect(await screen.findByTestId(PREVIEW_IMAGE_TEST_ID)).toHaveAttribute('src', expectedPreviewUrl);
+        // The stub picks a template of its own as soon as the block subscribes to the template chooser.
+        appBridge.subscribe.callsFake(() => () => {});
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        const previewImage = await screen.findByTestId(PREVIEW_IMAGE_TEST_ID);
+        expect(previewImage).toHaveAttribute(
+            'src',
+            `https://preview.url?width=${CONTAINER_WIDTH}&format=webp&quality=80`
+        );
+        expect(previewImage).toHaveAttribute('loading', 'lazy');
     });
 
-    it('should render a custom preview image if preview mode is set to custom', async () => {
-        const asset = AssetDummy.with(ASSET_ID);
-        const expectedPreviewUrl = asset.previewUrl;
+    it('should render a custom preview image in the size it is displayed at if preview mode is set to custom', async () => {
+        const asset = { ...AssetDummy.with(ASSET_ID), previewUrl: 'https://preview.url?width={width}', width: 1200 };
+        const expectedPreviewUrl = `https://preview.url?width=${CONTAINER_WIDTH}&format=webp&quality=80`;
         renderTemplateBlock({
             editorState: true,
             blockSettings: {
@@ -188,7 +205,9 @@ describe('Template Block', () => {
                 [PREVIEW_CUSTOM_SETTING_ID]: [asset],
             },
         });
-        expect(await screen.findByTestId(PREVIEW_IMAGE_TEST_ID)).toHaveAttribute('src', expectedPreviewUrl);
+        const previewImage = await screen.findByTestId(PREVIEW_IMAGE_TEST_ID);
+        expect(previewImage).toHaveAttribute('src', expectedPreviewUrl);
+        expect(previewImage).toHaveAttribute('loading', 'lazy');
     });
 
     it('should not render a preview but lay out text and CTA side by side if preview is set to none', async () => {
