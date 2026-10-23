@@ -17,7 +17,7 @@
     "dependencies": {
         "@codemirror/lang-css": "^6.3.1",
         "@dnd-kit/core": "^6.3.1",
-        "@frontify/app-bridge": "^4.0.0-alpha.71",
+        "@frontify/app-bridge": "^4.0.0-alpha.72",
         "@frontify/fondue": "13.7.10",
         "@frontify/guideline-blocks-settings": "4.0.0-alpha.8",
         "@uiw/react-codemirror": "4.24.2",
