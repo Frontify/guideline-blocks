@@ -20,4 +20,4 @@ allowBuilds:
   msw: true
 minimumReleaseAgeExclude:
   - '@frontify/guideline-blocks-settings@4.0.0-alpha.8'
-  - '@frontify/app-bridge@4.0.0-alpha.72'
+  - '@frontify/app-bridge@4.0.0-alpha.73'

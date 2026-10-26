@@ -1,12 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type TemplateLegacy } from '@frontify/app-bridge';
 import {
     AssetDummy,
     TemplateDummy,
     getAppBridgeBlockStub,
     withAppBridgeBlockStubs,
 } from '@frontify/app-bridge/testing';
-import { BorderStyle, Padding, Radius, toRgbaString } from '@frontify/guideline-blocks-settings';
+import {
+    BorderStyle,
+    Padding,
+    Radius,
+    TextStyles,
+    convertToRteValue,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -191,6 +199,33 @@ describe('Template Block', () => {
             `https://preview.url?width=${CONTAINER_WIDTH}&format=webp&quality=80`
         );
         expect(previewImage).toHaveAttribute('loading', 'lazy');
+    });
+
+    it('should save an empty description if the chosen template has none', async () => {
+        const template: TemplateLegacy = {
+            id: TEMPLATE_ID,
+            title: 'Template without description',
+            description: null,
+            previewUrl: 'https://preview.url',
+            projectId: 1,
+            height: 1080,
+            width: 1920,
+            published: true,
+        };
+        const appBridge = getAppBridgeBlockStub({ editorState: true });
+        appBridge.subscribe.callsFake((eventName, callback) => {
+            if (eventName === 'templateChosen') {
+                (callback as (event: { template: TemplateLegacy }) => void)({ template });
+            }
+            return () => {};
+        });
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        await waitFor(() => {
+            expect(
+                appBridge.updateBlockSettings.calledWithMatch({ description: convertToRteValue(TextStyles.p, '') })
+            ).toBe(true);
+        });
     });
 
     it('should render a custom preview image in the size it is displayed at if preview mode is set to custom', async () => {

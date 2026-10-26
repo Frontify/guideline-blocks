@@ -156,12 +156,12 @@ export const getImageStyle = (blockSettings: Settings, imageInformation: ImageIn
     };
 };
 
-export const getMaxHeightValue = (blockSettings: Settings, height: number): CSSProperties['maxHeight'] => {
+export const getMaxHeightValue = (blockSettings: Settings, height: number | null): CSSProperties['maxHeight'] => {
     const aspectRatio = getImageRatioValue(blockSettings);
     const objectFit = getImageObjectFitValue(blockSettings);
 
     if (aspectRatio === 'auto' && objectFit === 'scale-down') {
-        return height;
+        return height ?? undefined;
     }
     return undefined;
 };
@@ -208,7 +208,7 @@ export const getImageObjectPositionValue = (
         useFocalPoint,
         autosizing = Autosizing.None,
     }: Settings,
-    { focalPointX, focalPointY }: { focalPointX: number; focalPointY: number }
+    { focalPointX, focalPointY }: Pick<ImageInformation, 'focalPointX' | 'focalPointY'>
 ) => {
     if (useFocalPoint && autosizing === Autosizing.Fill) {
         return `${(focalPointX ?? 0.5) * 100}% ${(focalPointY ?? 0.5) * 100}%`;

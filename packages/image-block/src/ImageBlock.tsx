@@ -83,9 +83,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         if (isFirstImageUpload) {
             const defaultImageName = newImage?.title ?? newImage?.fileName ?? '';
 
-            // oxlint-disable-next-line typescript/no-unsafe-assignment
             settings.altText = newImage?.alternativeText ?? '';
-            // oxlint-disable-next-line typescript/no-unsafe-argument
             setLocalAltText(newImage?.alternativeText ?? '');
 
             const hasManuallyEditedName = hasRichTextValue(name);

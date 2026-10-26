@@ -53,7 +53,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const hasAssets = currentAssets.length > 0;
     const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
-    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const onButtonTextChange = useCallback(
@@ -82,7 +81,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
 
     useEffect(() => {
         if (status === AssetBulkDownloadState.Ready && downloadUrl) {
-            // oxlint-disable-next-line typescript/no-unsafe-argument
             downloadAssets(downloadUrl);
         }
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
