@@ -41,11 +41,8 @@ export const ResponsiveImage = ({
     const [isLoaded, setIsLoaded] = useState(false);
     const devicePixelRatio = Math.min(MAX_DEVICE_PIXEL_RATIO, Math.max(1, window?.devicePixelRatio ?? 1));
     const qualityToRequest = quality ?? (devicePixelRatio >= 2 ? DEFAULT_HIGH_DENSITY_QUALITY : DEFAULT_QUALITY);
-    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const imageWidth = image.width || containerWidth;
-    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const imageHeight = image.height ?? 0;
-    // oxlint-disable-next-line typescript/no-unsafe-argument
     const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, imageWidth);
 
     const allowConversions = !['gif', 'svg'].includes(image.extension);
@@ -61,7 +58,6 @@ export const ResponsiveImage = ({
     const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
     const sourceOptimised = hasMeasuredContainer ? `${sourceWithWidth}${conversionParams}` : PLACEHOLDER_SOURCE;
 
-    // oxlint-disable-next-line typescript/no-unsafe-assignment
     const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
 
     const stylesToApply = useMemo(() => {

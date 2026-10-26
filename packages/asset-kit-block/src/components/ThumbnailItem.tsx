@@ -100,7 +100,6 @@ export const ThumbnailItem = ({
                         className="tw-object-cover tw-w-full tw-aspect-square"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
-                        // oxlint-disable-next-line typescript/no-unsafe-assignment
                         alt={asset.alternativeText ?? asset.title}
                     />
                 )}

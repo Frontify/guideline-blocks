@@ -112,11 +112,8 @@ export const Image = ({
 
     const imageWrapperStyle = getImageWrapperStyle(blockSettings);
     const imageStyle = getImageStyle(blockSettings, {
-        // oxlint-disable-next-line typescript/no-unsafe-assignment
         height: image.height,
-        // oxlint-disable-next-line typescript/no-unsafe-assignment
         focalPointX: image.focalPointX,
-        // oxlint-disable-next-line typescript/no-unsafe-assignment
         focalPointY: image.focalPointY,
         extension: image.extension,
     });
@@ -139,7 +136,6 @@ export const Image = ({
                     style={imageStyle}
                     containerWidth={containerWidth}
                     image={image}
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                     alt={blockSettings.altText ?? image.alternativeText ?? ''}
                 />
             </ImageWrapper>

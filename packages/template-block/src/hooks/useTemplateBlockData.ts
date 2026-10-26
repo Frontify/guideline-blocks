@@ -89,8 +89,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
                     title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    // oxlint-disable-next-line typescript/no-unsafe-argument
-                    description: convertToRteValue(TextStyles.p, result.template.description),
+                    description: convertToRteValue(TextStyles.p, result.template.description ?? undefined),
                 });
                 setTemplateTextKey(templateTextKey + 1);
             } catch (error) {

@@ -135,8 +135,8 @@ export enum HorizontalAlignment {
 }
 
 export type ImageInformation = {
-    height: number;
-    focalPointX: number;
-    focalPointY: number;
+    height: number | null;
+    focalPointX: number | null;
+    focalPointY: number | null;
     extension?: string;
 };

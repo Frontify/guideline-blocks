@@ -54,13 +54,10 @@ export const useDoDontAssets = ({
             async (result: Asset[]) => {
                 setIsUploadLoading(true);
                 const asset = result[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                     setIsUploadLoading(false);
                 }
@@ -92,14 +89,11 @@ export const useDoDontAssets = ({
             // oxlint-disable-next-line typescript/no-floating-promises
             (async (uploadResults) => {
                 const asset = uploadResults?.[0];
-                // oxlint-disable-next-line typescript/no-unsafe-assignment
                 const imageAlt = alt ?? asset.alternativeText ?? '';
-                // oxlint-disable-next-line typescript/no-unsafe-argument
                 setLocalAltText(imageAlt);
                 if (updateAssetIdsFromKey) {
                     await updateAssetIdsFromKey(id, [asset.id]);
                     setIsUploadLoading(false);
-                    // oxlint-disable-next-line typescript/no-unsafe-assignment
                     onChangeItem(id, { alt: imageAlt });
                 }
             })(uploadResults);
