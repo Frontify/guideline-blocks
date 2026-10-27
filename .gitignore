@@ -4,3 +4,6 @@
 **/.DS_Store
 
 .pnpm-debug.log
+
+# Storybook
+**/storybook-static

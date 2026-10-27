@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": ["ES2021", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "noUnusedLocals": true,
+        "resolveJsonModule": true,
+        "noUncheckedSideEffectImports": false,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ES2020",
+        "types": ["vite/client"]
+    },
+    "exclude": ["node_modules", "storybook-static"],
+    "include": ["src/**/*", ".storybook/**/*"]
+}
