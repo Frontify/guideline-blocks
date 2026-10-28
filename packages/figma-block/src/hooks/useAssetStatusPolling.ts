@@ -53,8 +53,9 @@ export const useAssetStatusPolling = (
             }
         };
 
-        intervalId = setInterval(async () => {
-            await poll();
+        intervalId = setInterval(() => {
+            // oxlint-disable-next-line typescript/no-floating-promises
+            poll();
         }, POLLING_INTERVAL_MS);
 
         return () => clearInterval(intervalId);
