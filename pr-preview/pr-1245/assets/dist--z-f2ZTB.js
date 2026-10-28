@@ -1,0 +1,1 @@
+import{A as e,D as t,E as n,F as r,I as i,L as a,M as o,N as s,O as c,P as l,R as u,j as d,k as f}from"./CodeSnippetBlock.stories-DXu3Xyeh.js";r();export{n as Cassandra,t as MSSQL,c as MariaSQL,f as MySQL,e as PLSQL,d as PostgreSQL,o as SQLDialect,s as SQLite,l as StandardSQL,i as keywordCompletionSource,a as schemaCompletionSource,u as sql};
