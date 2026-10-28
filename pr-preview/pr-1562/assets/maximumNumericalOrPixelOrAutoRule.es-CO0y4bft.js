@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{i as t,r as n}from"./presetCustomValue.es-LpTSp2Lg.js";var r;function i(){return(i=e((()=>{t(),r=e=>({errorMessage:`Please use a value smaller than ${e}`,validate:t=>t===`auto`||n.validate(t)&&Number(t.replace(/px/,``))<=e})})))()}export{r as n,i as t};
