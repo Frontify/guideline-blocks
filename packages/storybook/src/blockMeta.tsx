@@ -30,7 +30,6 @@ export const blockMeta = ({ block, settings }: BlockConfigExport): Omit<Meta, 't
     return {
         args: getDefaultBlockSettings(settings),
         argTypes: getBlockArgTypes(settings),
-        parameters: { layout: 'padded' },
         // `useArgs` is a Storybook hook and has to be called from the story render function itself.
         render: function Render(args, { globals, parameters }) {
             const [, updateArgs] = useArgs();

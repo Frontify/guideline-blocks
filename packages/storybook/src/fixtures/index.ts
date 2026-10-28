@@ -69,6 +69,22 @@ export const AssetFixture = {
         const fileName = `${title.toLowerCase().replaceAll(/\s+/g, '-')}.jpg`;
         return withImageUrl({ ...AssetDummy.with(id), title, fileName, extension: 'jpg', width, height }, url);
     },
+    /**
+     * A Lorem Picsum photo, seeded by `id` so the same asset always shows the same photo. Unlike the
+     * bundled images this needs network access; it stands in for assets picked in the preview's chooser.
+     */
+    photo: (id: number): Asset =>
+        withImageUrl(
+            {
+                ...AssetDummy.with(id),
+                title: `Photo ${id}`,
+                fileName: `photo-${id}.jpg`,
+                extension: 'jpg',
+                width: 1600,
+                height: 1200,
+            },
+            `https://picsum.photos/seed/frontify-${id}/1600/1200`
+        ),
     /** `count` different images with unique ids, cycling through the sample images. */
     images: (count: number, firstId = 3000): Asset[] =>
         Array.from({ length: count }, (_, index) => AssetFixture.image(index, firstId + index)),

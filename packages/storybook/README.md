@@ -21,7 +21,7 @@ pnpm build-storybook  # static build into packages/storybook/storybook-static
 ## What a preview can't show
 
 - The guideline theme is a fixed stand-in (`.storybook/guidelineTheme.ts`), not a real brand's theme. It's set from JS rather than CSS because the CSS minifier rewrites `rgba()` colours to hex, and blocks parse these values.
-- CSS isn't scoped per block the way deploys are (`/postcss/scope.js`), so specificity can differ slightly.
-- The asset chooser, uploads and templates come from the stub. Opening a chooser picks a fixture, but once the block saves it the stub swaps in a placeholder whose URL doesn't load.
+- CSS isn't scoped per block the way deploys are (`/postcss/scope.js`), and all blocks share one Tailwind build, so a utility generated for one block applies to all of them.
+- The asset chooser, uploads and templates come from the stub. "Browse asset" picks a Lorem Picsum photo (or the sample audio for audio choosers), which needs network access; uploads don't produce a usable asset.
 - UI Pattern (CodeSandbox) and Sketchfab need network access to render their embeds.
 - Blocks with async `settings` don't get generated controls yet.

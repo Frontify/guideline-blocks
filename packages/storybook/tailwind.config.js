@@ -8,7 +8,14 @@ import guidelineBlockSettings from '@frontify/guideline-blocks-settings/tailwind
  */
 export default {
     presets: [guidelineBlockSettings],
-    content: ['../*-block/src/**/*.{ts,tsx}', '../shared/src/**/*.{ts,tsx}'],
+    // Tests are skipped: they mention classes like `hover:tw-outline` in comments, and generating those here
+    // overrides the variants that guideline-blocks-settings' prebuilt CSS ships (e.g. BlockItemWrapper's outline).
+    content: [
+        '../*-block/src/**/*.{ts,tsx}',
+        '../shared/src/**/*.{ts,tsx}',
+        '!../*-block/src/**/*.{spec,test}.{ts,tsx}',
+        '!../shared/src/**/*.{spec,test}.{ts,tsx}',
+    ],
     corePlugins: {
         preflight: false,
     },
