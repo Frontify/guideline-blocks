@@ -117,13 +117,13 @@ describe('Image Block', () => {
         mockContainerWidth = 300;
         renderImageBlock({
             blockAssets: {
-                [IMAGE_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://preview.url?width={width}' }],
+                [IMAGE_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://preview.url/?width={width}' }],
             },
             blockSettings: { positioning: CaptionPosition.Above },
         });
         expect(screen.getByTestId(IMAGE_COMPONENT_TEST_ID)).toHaveAttribute(
             'src',
-            'https://preview.url?width=300&format=webp&quality=80'
+            'https://preview.url/?width=300&format=webp&quality=80'
         );
     });
 
@@ -131,7 +131,7 @@ describe('Image Block', () => {
         mockContainerWidth = 400;
         renderImageBlock({
             blockAssets: {
-                [IMAGE_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://preview.url?width={width}' }],
+                [IMAGE_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://preview.url/?width={width}' }],
             },
             blockSettings: {
                 positioning: CaptionPosition.Above,
@@ -143,7 +143,7 @@ describe('Image Block', () => {
         });
         expect(screen.getByTestId(IMAGE_COMPONENT_TEST_ID)).toHaveAttribute(
             'src',
-            'https://preview.url?width=400&format=webp&quality=80'
+            'https://preview.url/?width=400&format=webp&quality=80'
         );
     });
 

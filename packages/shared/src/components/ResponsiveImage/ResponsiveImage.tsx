@@ -28,6 +28,13 @@ type ResponsiveImageProps = {
     testId?: string;
 };
 
+const withConversionParams = (source: string, format: ImageFormat, quality: number) => {
+    const url = new URL(source, document.baseURI);
+    url.searchParams.set('format', format);
+    url.searchParams.set('quality', quality.toString());
+    return url.toString();
+};
+
 export const ResponsiveImage = ({
     image,
     containerWidth = 0,
@@ -54,9 +61,11 @@ export const ResponsiveImage = ({
     const sourceWithWidth =
         image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
 
-    const conversionParams = allowConversions ? `&format=${format}&quality=${qualityToRequest}` : '';
+    const sourceWithConversions = allowConversions
+        ? withConversionParams(sourceWithWidth, format, qualityToRequest)
+        : sourceWithWidth;
     const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
-    const sourceOptimised = hasMeasuredContainer ? `${sourceWithWidth}${conversionParams}` : PLACEHOLDER_SOURCE;
+    const sourceOptimised = hasMeasuredContainer ? sourceWithConversions : PLACEHOLDER_SOURCE;
 
     const dimensions = image.width && image.height ? { width: imageWidth, height: imageHeight } : {};
 

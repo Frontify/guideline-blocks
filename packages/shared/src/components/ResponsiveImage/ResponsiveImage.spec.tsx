@@ -15,8 +15,8 @@ const ResponsiveImageSelector = 'responsive-image';
 
 const HIGH_RES_ASSET: Asset = {
     ...AssetDummy.with(1),
-    previewUrl: 'https://preview.url?width={width}',
-    genericUrl: 'https://generic.url?width={width}',
+    previewUrl: 'https://preview.url/?width={width}',
+    genericUrl: 'https://generic.url/?width={width}',
     width: 2000,
     height: 1000,
 };
@@ -38,7 +38,33 @@ describe('ResponsiveImage', () => {
     it('should add the webp format and quality by default', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={800} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=800&format=webp&quality=80'
+            'https://preview.url/?width=800&format=webp&quality=80'
+        );
+    });
+
+    it('should replace the format and quality the source url already requests', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage
+                image={{ ...HIGH_RES_ASSET, previewUrl: 'https://preview.url/image?width=2400&format=jpg&quality=90' }}
+                containerWidth={800}
+                alt=""
+            />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
+            'https://preview.url/image?width=2400&format=webp&quality=80'
+        );
+    });
+
+    it('should add the format and quality to a relative source url', () => {
+        const { getByTestId } = render(
+            <ResponsiveImage
+                image={{ ...HIGH_RES_ASSET, previewUrl: '/image?width={width}' }}
+                containerWidth={800}
+                alt=""
+            />
+        );
+        expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
+            `${window.location.origin}/image?width=800&format=webp&quality=80`
         );
     });
 
@@ -52,7 +78,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, previewUrl: '' }} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://generic.url?width=800&format=webp&quality=80'
+            'https://generic.url/?width=800&format=webp&quality=80'
         );
     });
 
@@ -68,7 +94,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage format={ImageFormat.JPG} image={HIGH_RES_ASSET} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=800&format=jpg&quality=80'
+            'https://preview.url/?width=800&format=jpg&quality=80'
         );
     });
 
@@ -77,14 +103,14 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage quality={50} image={HIGH_RES_ASSET} containerWidth={800} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=800&format=webp&quality=50'
+            'https://preview.url/?width=800&format=webp&quality=50'
         );
     });
 
     it('should request the image width to match the container width', () => {
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=600&format=webp&quality=80'
+            'https://preview.url/?width=600&format=webp&quality=80'
         );
     });
 
@@ -92,7 +118,7 @@ describe('ResponsiveImage', () => {
         setDevicePixelRatio(2);
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=1200&format=webp&quality=75'
+            'https://preview.url/?width=1200&format=webp&quality=75'
         );
     });
 
@@ -100,7 +126,7 @@ describe('ResponsiveImage', () => {
         setDevicePixelRatio(3);
         const { getByTestId } = render(<ResponsiveImage image={HIGH_RES_ASSET} containerWidth={600} alt="" />);
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=1200&format=webp&quality=75'
+            'https://preview.url/?width=1200&format=webp&quality=75'
         );
     });
 
@@ -110,7 +136,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage quality={100} image={HIGH_RES_ASSET} containerWidth={600} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=1200&format=webp&quality=100'
+            'https://preview.url/?width=1200&format=webp&quality=100'
         );
     });
 
@@ -119,7 +145,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, width: 0, height: 0 }} containerWidth={600} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=600&format=webp&quality=80'
+            'https://preview.url/?width=600&format=webp&quality=80'
         );
     });
 
@@ -128,7 +154,7 @@ describe('ResponsiveImage', () => {
             <ResponsiveImage image={{ ...HIGH_RES_ASSET, width: 200, height: 200 }} containerWidth={600} alt="" />
         );
         expect(getByTestId(ResponsiveImageSelector).getAttribute('src')).toBe(
-            'https://preview.url?width=200&format=webp&quality=80'
+            'https://preview.url/?width=200&format=webp&quality=80'
         );
     });
 

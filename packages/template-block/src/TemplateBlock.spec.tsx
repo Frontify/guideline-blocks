@@ -184,7 +184,7 @@ describe('Template Block', () => {
     });
 
     it("should render the template's preview in the size it is displayed at if preview mode is set to template", async () => {
-        const templateDummy = { ...getTemplateDummyWithPages(), previewUrl: 'https://preview.url?width={width}' };
+        const templateDummy = { ...getTemplateDummyWithPages(), previewUrl: 'https://preview.url/?width={width}' };
         const appBridge = getAppBridgeBlockStub({
             blockTemplates: { template: [templateDummy] },
             blockSettings: { preview: PREVIEW_MODE_TEMPLATE },
@@ -196,7 +196,7 @@ describe('Template Block', () => {
         const previewImage = await screen.findByTestId(PREVIEW_IMAGE_TEST_ID);
         expect(previewImage).toHaveAttribute(
             'src',
-            `https://preview.url?width=${CONTAINER_WIDTH}&format=webp&quality=80`
+            `https://preview.url/?width=${CONTAINER_WIDTH}&format=webp&quality=80`
         );
         expect(previewImage).toHaveAttribute('loading', 'lazy');
     });
@@ -229,8 +229,8 @@ describe('Template Block', () => {
     });
 
     it('should render a custom preview image in the size it is displayed at if preview mode is set to custom', async () => {
-        const asset = { ...AssetDummy.with(ASSET_ID), previewUrl: 'https://preview.url?width={width}', width: 1200 };
-        const expectedPreviewUrl = `https://preview.url?width=${CONTAINER_WIDTH}&format=webp&quality=80`;
+        const asset = { ...AssetDummy.with(ASSET_ID), previewUrl: 'https://preview.url/?width={width}', width: 1200 };
+        const expectedPreviewUrl = `https://preview.url/?width=${CONTAINER_WIDTH}&format=webp&quality=80`;
         renderTemplateBlock({
             editorState: true,
             blockSettings: {
