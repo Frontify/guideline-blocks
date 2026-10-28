@@ -4,6 +4,7 @@ import { getAppBridgeBlockStub, type getAppBridgeBlockStubProps } from '@frontif
 import { type BlockConfigExport } from '@frontify/guideline-blocks-settings';
 import { type ReactElement, useEffect, useMemo, useRef } from 'react';
 
+import { deferChooserEvents } from './deferChooserEvents';
 import { applySettingChangeHandlers, type getSettingChangeHandlers } from './settingsToArgs';
 
 const BLOCK_SETTINGS_UPDATED = 'AppBridge:BlockSettingsUpdated';
@@ -49,15 +50,15 @@ export const BlockPreview = ({
     const lastSyncedRef = useRef(JSON.stringify(blockSettings));
 
     // The stub reads editor state and assets once, so a new stub (and a remount) is needed when they change.
-    const appBridgeStub = useMemo(
-        () =>
-            getAppBridgeBlockStub({
-                ...appBridge,
-                blockSettings: structuredClone(latestSettingsRef.current),
-                editorState: isEditing,
-            }),
-        [appBridge, isEditing]
-    );
+    const appBridgeStub = useMemo(() => {
+        const stub = getAppBridgeBlockStub({
+            ...appBridge,
+            blockSettings: structuredClone(latestSettingsRef.current),
+            editorState: isEditing,
+        });
+        deferChooserEvents(stub);
+        return stub;
+    }, [appBridge, isEditing]);
     const blockId = appBridgeStub.context('blockId').get();
 
     useEffect(() => {

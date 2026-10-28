@@ -29,6 +29,7 @@
         "@babel/core": "^7.29.0",
         "@frontify/frontify-cli": "^6.4.0",
         "@frontify/guideline-blocks-release": "workspace:*",
+        "@frontify/guideline-blocks-storybook": "workspace:*",
         "@frontify/oxfmt-config": "^0.0.2",
         "@frontify/oxlint-config-react": "^0.0.2",
         "@testing-library/react": "^16.3.2",

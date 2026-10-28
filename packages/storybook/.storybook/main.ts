@@ -16,6 +16,8 @@ const config: StorybookConfig = {
         ...viteConfig,
         css: { ...viteConfig.css, postcss: { plugins: [tailwindcss({ config: tailwindConfig }), autoprefixer()] } },
         server: { ...viteConfig.server, fs: { strict: false } },
+        // Fixture URLs get Frontify-style `?width=` params appended, which breaks inlined `data:` URLs.
+        build: { ...viteConfig.build, assetsInlineLimit: 0 },
     }),
 };
 

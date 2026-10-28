@@ -83,6 +83,7 @@ const toControl = (entry: SettingEntry): ArgTypes[string]['control'] | undefined
             return 'text';
         case 'dropdown':
         case 'segmentedControls':
+        case 'slider':
         case 'checklist':
             return getChoices(entry) ? (entry.type === 'checklist' ? 'check' : 'select') : undefined;
         default:

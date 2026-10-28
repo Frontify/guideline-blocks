@@ -10,16 +10,18 @@ pnpm build-storybook  # static build into packages/storybook/storybook-static
 ## Adding a block
 
 1. Add `"@frontify/guideline-blocks-storybook": "workspace:*"` to the block's `devDependencies`.
-2. Create `src/<Name>Block.stories.tsx`. See `audio-block` and `callout-block` for examples.
+2. Create `src/<Name>Block.stories.tsx`. Every block has one to copy from.
 
 - `blockMeta(definition)` takes the block's `defineBlock` export. Defaults from `settings.ts` become the initial args, and switches, inputs, dropdowns and segmented controls become controls grouped by sidebar section.
 - Story `args` are block settings, which is also where rich-text values such as `title` or `textValue` go.
-- `parameters.appBridge` is passed to the stub (`blockAssets`, `privacySettings`, `blockTemplates`, …). Use `AssetFixture` for assets that actually load.
+- `parameters.appBridge` is passed to the stub (`blockAssets`, `privacySettings`, `blockTemplates`, …). Use `AssetFixture` (`image(n)`, `images(count)`, `audio()`, `svgIcon()`, …) for assets that actually load.
 - Settings changed inside the block, for example by typing in edit mode, are written back to the controls panel.
+- Changing a control runs the setting's `onChange` hooks like the sidebar does (`appendUnit`, `presetCustomValue`, …).
 
 ## What a preview can't show
 
-- The guideline theme is a fixed stand-in (`.storybook/guideline-theme.css`), not a real brand's theme.
+- The guideline theme is a fixed stand-in (`.storybook/guidelineTheme.ts`), not a real brand's theme. It's set from JS rather than CSS because the CSS minifier rewrites `rgba()` colours to hex, and blocks parse these values.
 - CSS isn't scoped per block the way deploys are (`/postcss/scope.js`), so specificity can differ slightly.
-- The asset chooser, uploads and templates come from the stub. Choosing an asset returns a placeholder whose URL doesn't load.
+- The asset chooser, uploads and templates come from the stub. Opening a chooser picks a fixture, but once the block saves it the stub swaps in a placeholder whose URL doesn't load.
+- UI Pattern (CodeSandbox) and Sketchfab need network access to render their embeds.
 - Blocks with async `settings` don't get generated controls yet.

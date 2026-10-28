@@ -200,6 +200,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -270,6 +273,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -552,6 +558,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -631,6 +640,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -716,6 +728,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -795,6 +810,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -865,6 +883,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -941,6 +962,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1023,6 +1047,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1096,6 +1123,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1260,6 +1290,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1400,6 +1433,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1470,6 +1506,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1549,6 +1588,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -1631,6 +1673,9 @@ importers:
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
+      '@frontify/guideline-blocks-storybook':
+        specifier: workspace:*
+        version: link:../storybook
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)

@@ -3,6 +3,9 @@
 import { type Preview } from '@storybook/react-vite';
 
 import './guideline-theme.css';
+import { applyGuidelineTheme } from './guidelineTheme';
+
+applyGuidelineTheme();
 
 const WIDTHS: Record<string, string> = {
     full: '100%',
