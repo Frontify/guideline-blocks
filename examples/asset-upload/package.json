@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^4.0.0-alpha.74",
+        "@frontify/app-bridge": "^4.0.0-alpha.75",
         "@frontify/fondue": "13.11.0",
         "@frontify/guideline-blocks-settings": "4.0.0-alpha.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
