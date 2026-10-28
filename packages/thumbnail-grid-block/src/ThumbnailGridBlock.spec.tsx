@@ -21,7 +21,7 @@ const BLOCK_ITEM_WRAPPER_TEST_ID = 'block-item-wrapper';
 const BLOCK_ITEM_WRAPPER_BUTTON_TEST_ID = 'block-item-wrapper-toolbar-btn';
 const ASSET_VIEWER_BUTTON_TEST_ID = 'thumbnail-grid-block-asset-viewer-button';
 
-const IMAGE_SOURCE = 'https://preview.url&format=webp&quality=80';
+const IMAGE_SOURCE = 'https://preview.url/?format=webp&quality=80';
 
 vi.mock('@frontify/guideline-blocks-shared', async () => {
     const actual = await vi.importActual<typeof GuidelineBlocksShared>('@frontify/guideline-blocks-shared');
