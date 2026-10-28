@@ -68,6 +68,9 @@ const preview: Preview = {
                             margin: '0 auto',
                             padding: `48px ${CONTENT_AREA_PADDING}px`,
                             backgroundColor: 'var(--f-theme-settings-background-color)',
+                            // Like the guideline, keep the block's own z-indexes (e.g. sortable items) from
+                            // stacking above portalled flyouts such as the item toolbar menu.
+                            isolation: 'isolate',
                         }}
                     >
                         <Story />
