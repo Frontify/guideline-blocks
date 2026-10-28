@@ -1,0 +1,45 @@
+{
+    "name": "@frontify/guideline-blocks-storybook",
+    "version": "1.0.0",
+    "private": true,
+    "author": "Frontify Developers <developers@frontify.com>",
+    "type": "module",
+    "sideEffects": false,
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "storybook": "storybook dev --port 6006",
+        "build-storybook": "storybook build --output-dir storybook-static",
+        "lint": "oxlint --type-aware",
+        "lint:fix": "oxlint --type-aware --fix",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "^4.0.0-alpha.74",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.11",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@frontify/oxfmt-config": "^0.0.2",
+        "@frontify/oxlint-config-react": "^0.0.2",
+        "@storybook/react-vite": "^10.6.4",
+        "@tony.ganchev/eslint-plugin-header": "^3.4.4",
+        "@types/react": "^18.3.27",
+        "@types/react-dom": "^18.3.7",
+        "@vitejs/plugin-react": "^6.1.2",
+        "autoprefixer": "^10.5.4",
+        "eslint-plugin-tailwindcss": "^3.18.3",
+        "oxfmt": "^0.52.0",
+        "oxlint": "^1.87.0",
+        "oxlint-tsgolint": "^7.0.2004",
+        "postcss": "^8.5.26",
+        "sinon": "^22.1.0",
+        "storybook": "^10.6.4",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^6.0.3",
+        "vite": "^8.3.4"
+    }
+}

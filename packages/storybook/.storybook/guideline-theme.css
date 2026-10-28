@@ -1,0 +1,178 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+/**
+ * Stand-in for the theme settings a guideline injects into the page.
+ * Blocks read these through `var(--f-theme-settings-*)` and getComputedStyle.
+ */
+:root {
+    --f-theme-settings-background-color: rgb(255, 255, 255);
+
+    /* Text styles: deliberately distinct from each other so it's obvious which style a text uses. */
+    --f-theme-settings-heading1-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-heading1-font-size: 40px;
+    --f-theme-settings-heading1-font-weight: 800;
+    --f-theme-settings-heading1-font-style: normal;
+    --f-theme-settings-heading1-line-height: 1.15;
+    --f-theme-settings-heading1-letter-spacing: -0.02em;
+    --f-theme-settings-heading1-text-transform: none;
+    --f-theme-settings-heading1-text-decoration: none;
+    --f-theme-settings-heading1-color: rgb(30, 34, 40);
+    --f-theme-settings-heading1-margin-top: 0px;
+    --f-theme-settings-heading1-margin-bottom: 24px;
+
+    --f-theme-settings-heading2-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-heading2-font-size: 30px;
+    --f-theme-settings-heading2-font-weight: 700;
+    --f-theme-settings-heading2-font-style: normal;
+    --f-theme-settings-heading2-line-height: 1.2;
+    --f-theme-settings-heading2-letter-spacing: -0.01em;
+    --f-theme-settings-heading2-text-transform: none;
+    --f-theme-settings-heading2-text-decoration: none;
+    --f-theme-settings-heading2-color: rgb(30, 34, 40);
+    --f-theme-settings-heading2-margin-top: 32px;
+    --f-theme-settings-heading2-margin-bottom: 16px;
+
+    --f-theme-settings-heading3-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-heading3-font-size: 22px;
+    --f-theme-settings-heading3-font-weight: 600;
+    --f-theme-settings-heading3-font-style: normal;
+    --f-theme-settings-heading3-line-height: 1.3;
+    --f-theme-settings-heading3-letter-spacing: 0;
+    --f-theme-settings-heading3-text-transform: none;
+    --f-theme-settings-heading3-text-decoration: none;
+    --f-theme-settings-heading3-color: rgb(30, 34, 40);
+    --f-theme-settings-heading3-margin-top: 24px;
+    --f-theme-settings-heading3-margin-bottom: 12px;
+
+    --f-theme-settings-heading4-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-heading4-font-size: 13px;
+    --f-theme-settings-heading4-font-weight: 700;
+    --f-theme-settings-heading4-font-style: normal;
+    --f-theme-settings-heading4-line-height: 1.4;
+    --f-theme-settings-heading4-letter-spacing: 0.08em;
+    --f-theme-settings-heading4-text-transform: uppercase;
+    --f-theme-settings-heading4-text-decoration: none;
+    --f-theme-settings-heading4-color: rgb(79, 70, 229);
+    --f-theme-settings-heading4-margin-top: 20px;
+    --f-theme-settings-heading4-margin-bottom: 8px;
+
+    --f-theme-settings-custom1-font-family: Georgia, 'Times New Roman', serif;
+    --f-theme-settings-custom1-font-size: 20px;
+    --f-theme-settings-custom1-font-weight: 400;
+    --f-theme-settings-custom1-font-style: italic;
+    --f-theme-settings-custom1-line-height: 1.5;
+    --f-theme-settings-custom1-letter-spacing: 0;
+    --f-theme-settings-custom1-text-transform: none;
+    --f-theme-settings-custom1-text-decoration: none;
+    --f-theme-settings-custom1-color: rgb(79, 70, 229);
+    --f-theme-settings-custom1-margin-top: 16px;
+    --f-theme-settings-custom1-margin-bottom: 12px;
+
+    --f-theme-settings-custom2-font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --f-theme-settings-custom2-font-size: 14px;
+    --f-theme-settings-custom2-font-weight: 500;
+    --f-theme-settings-custom2-font-style: normal;
+    --f-theme-settings-custom2-line-height: 1.6;
+    --f-theme-settings-custom2-letter-spacing: 0;
+    --f-theme-settings-custom2-text-transform: none;
+    --f-theme-settings-custom2-text-decoration: none;
+    --f-theme-settings-custom2-color: rgb(190, 60, 100);
+    --f-theme-settings-custom2-margin-top: 12px;
+    --f-theme-settings-custom2-margin-bottom: 12px;
+
+    --f-theme-settings-custom3-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-custom3-font-size: 12px;
+    --f-theme-settings-custom3-font-weight: 600;
+    --f-theme-settings-custom3-font-style: normal;
+    --f-theme-settings-custom3-line-height: 1.4;
+    --f-theme-settings-custom3-letter-spacing: 0.12em;
+    --f-theme-settings-custom3-text-transform: uppercase;
+    --f-theme-settings-custom3-text-decoration: none;
+    --f-theme-settings-custom3-color: rgb(95, 102, 112);
+    --f-theme-settings-custom3-margin-top: 8px;
+    --f-theme-settings-custom3-margin-bottom: 8px;
+
+    --f-theme-settings-body-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-body-font-size: 15px;
+    --f-theme-settings-body-font-weight: 400;
+    --f-theme-settings-body-font-style: normal;
+    --f-theme-settings-body-line-height: 1.6;
+    --f-theme-settings-body-letter-spacing: 0;
+    --f-theme-settings-body-text-transform: none;
+    --f-theme-settings-body-text-decoration: none;
+    --f-theme-settings-body-color: rgb(45, 50, 50);
+    --f-theme-settings-body-margin-top: 0px;
+    --f-theme-settings-body-margin-bottom: 12px;
+
+    --f-theme-settings-quote-font-family: Georgia, 'Times New Roman', serif;
+    --f-theme-settings-quote-font-size: 24px;
+    --f-theme-settings-quote-font-weight: 400;
+    --f-theme-settings-quote-font-style: italic;
+    --f-theme-settings-quote-line-height: 1.45;
+    --f-theme-settings-quote-letter-spacing: 0;
+    --f-theme-settings-quote-text-transform: none;
+    --f-theme-settings-quote-text-decoration: none;
+    --f-theme-settings-quote-color: rgb(30, 34, 40);
+    --f-theme-settings-quote-margin-top: 16px;
+    --f-theme-settings-quote-margin-bottom: 16px;
+
+    --f-theme-settings-link-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-link-font-size: 15px;
+    --f-theme-settings-link-font-weight: 500;
+    --f-theme-settings-link-font-style: normal;
+    --f-theme-settings-link-line-height: 1.6;
+    --f-theme-settings-link-letter-spacing: 0;
+    --f-theme-settings-link-text-transform: none;
+    --f-theme-settings-link-text-decoration: underline;
+    --f-theme-settings-link-color: rgb(26, 115, 232);
+    --f-theme-settings-link-margin-top: 0px;
+    --f-theme-settings-link-margin-bottom: 0px;
+
+    --f-theme-settings-image-title-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-image-title-font-size: 17px;
+    --f-theme-settings-image-title-font-weight: 600;
+    --f-theme-settings-image-title-font-style: normal;
+    --f-theme-settings-image-title-line-height: 1.4;
+    --f-theme-settings-image-title-letter-spacing: 0;
+    --f-theme-settings-image-title-text-transform: none;
+    --f-theme-settings-image-title-text-decoration: none;
+    --f-theme-settings-image-title-color: rgb(30, 34, 40);
+    --f-theme-settings-image-title-margin-top: 12px;
+    --f-theme-settings-image-title-margin-bottom: 4px;
+
+    --f-theme-settings-image-caption-font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-theme-settings-image-caption-font-size: 13px;
+    --f-theme-settings-image-caption-font-weight: 400;
+    --f-theme-settings-image-caption-font-style: italic;
+    --f-theme-settings-image-caption-line-height: 1.45;
+    --f-theme-settings-image-caption-letter-spacing: 0.01em;
+    --f-theme-settings-image-caption-text-transform: none;
+    --f-theme-settings-image-caption-text-decoration: none;
+    --f-theme-settings-image-caption-color: rgb(95, 102, 112);
+    --f-theme-settings-image-caption-margin-top: 4px;
+    --f-theme-settings-image-caption-margin-bottom: 12px;
+
+    --f-theme-settings-accent-color-info-color: rgba(26, 199, 211, 1);
+    --f-theme-settings-accent-color-note-color: rgba(246, 216, 56, 1);
+    --f-theme-settings-accent-color-tip-color: rgba(42, 191, 24, 1);
+    --f-theme-settings-accent-color-warning-color: rgba(222, 27, 27, 1);
+}
+
+/**
+ * Preview-only: the guideline-blocks-settings Tailwind preset ships `* { box-sizing: content-box }`
+ * with every block, and deployed blocks keep that. `html *` outranks the bare `*` while still
+ * losing to class-based box-sizing such as `tw-box-content`.
+ */
+html *,
+html *::before,
+html *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--f-theme-settings-background-color);
+    color: var(--f-theme-settings-body-color);
+    font-family: var(--f-theme-settings-body-font-family);
+    font-size: var(--f-theme-settings-body-font-size);
+    line-height: var(--f-theme-settings-body-line-height);
+}

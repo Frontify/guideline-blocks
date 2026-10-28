@@ -1,0 +1,169 @@
+name: Storybook
+
+# Builds the block Storybook on every PR and publishes it to GitHub Pages:
+# - PRs get a preview at /pr-preview/pr-<number>/ and a sticky comment with the link;
+#   the preview is removed again when the PR is closed.
+# - main is published at the site root.
+#
+# One-time setup: Settings → Pages → Source "Deploy from a branch", branch `gh-pages` / root.
+# Only actions from the org allowlist are used (actions/*, peaceiris/actions-gh-pages,
+# thollander/actions-comment-pull-request).
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+  PREVIEW_DIR: pr-preview/pr-${{ github.event.pull_request.number }}
+
+jobs:
+  build:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: ${{ github.workflow }}-build-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v6
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Upload Storybook
+        uses: actions/upload-artifact@v7
+        with:
+          name: storybook
+          path: packages/storybook/storybook-static
+          retention-days: 1
+
+  # Fork PRs get a read-only token, so for them only the build runs.
+  deploy-preview:
+    needs: build
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    # Every deploy pushes to the same branch, so run them one at a time and never cancel one midway.
+    concurrency:
+      group: ${{ github.workflow }}-gh-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Download Storybook
+        uses: actions/download-artifact@v8
+        with:
+          name: storybook
+          path: storybook-static
+
+      - name: Publish preview
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: storybook-static
+          destination_dir: ${{ env.PREVIEW_DIR }}
+          keep_files: true
+          commit_message: "chore: deploy Storybook preview for #${{ github.event.pull_request.number }} [skip ci]"
+
+      - name: Comment preview link
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          comment-tag: storybook-preview
+          mode: upsert
+          message: |
+            📖 **Storybook preview:** ${{ env.PAGES_URL }}/${{ env.PREVIEW_DIR }}/
+
+            Built from ${{ github.event.pull_request.head.sha }}. Blocks render against the mocked app bridge; use the toolbar to switch between view and edit mode. It can take a minute for GitHub Pages to pick up a new deploy.
+
+  remove-preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    concurrency:
+      group: ${{ github.workflow }}-gh-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout gh-pages
+        id: checkout
+        continue-on-error: true
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+
+      - name: Remove preview
+        if: steps.checkout.outcome == 'success'
+        run: |
+          if [ -d "$PREVIEW_DIR" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git rm -rq "$PREVIEW_DIR"
+            git commit -m "chore: remove Storybook preview for #${{ github.event.pull_request.number }} [skip ci]"
+            git push
+          fi
+
+      - name: Update preview comment
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          comment-tag: storybook-preview
+          mode: upsert
+          create-if-not-exists: false
+          message: |
+            📖 **Storybook preview** removed because this PR was closed.
+
+  deploy-main:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-gh-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Download Storybook
+        uses: actions/download-artifact@v8
+        with:
+          name: storybook
+          path: storybook-static
+
+      # keep_files preserves pr-preview/; old hashed assets at the root are kept too, which is harmless.
+      - name: Publish main
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: storybook-static
+          keep_files: true
+          commit_message: "chore: deploy Storybook for ${{ github.sha }} [skip ci]"
