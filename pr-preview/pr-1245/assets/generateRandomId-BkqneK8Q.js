@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-BCiCTKAo.js";var t,n;function r(){return(r=e((()=>{t=()=>`id-${n()}`,n=()=>Number(crypto.getRandomValues(new Uint32Array(1)).join(``))})))()}export{r as n,t};
