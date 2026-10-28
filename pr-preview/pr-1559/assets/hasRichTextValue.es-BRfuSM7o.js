@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";var t;function n(){return(n=e((()=>{t=e=>{if(!e)return!1;let t=e=>e.some(e=>e.text?e.text!==``:e.children?t(e.children):!1);try{return t(JSON.parse(e))}catch{return!1}}})))()}export{n,t};
