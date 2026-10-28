@@ -14,7 +14,9 @@
         "deploy": "pnpm --stream --filter {packages/**} deploy",
         "release": "blocks-release add --all",
         "release:plan": "blocks-release plan",
-        "ci": "pnpm install --frozen-lockfile"
+        "ci": "pnpm install --frozen-lockfile",
+        "storybook": "pnpm --filter @frontify/guideline-blocks-storybook storybook",
+        "build-storybook": "pnpm --filter @frontify/guideline-blocks-storybook build-storybook"
     },
     "dependencies": {
         "@frontify/fondue": "13.11.0",

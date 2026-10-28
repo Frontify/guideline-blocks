@@ -63,6 +63,23 @@ There is no root `pnpm build` despite what `readme.md` says — `@frontify/guide
 
 Vitest + happy-dom + Testing Library (`*.spec.{ts,tsx}`, `*.test.{ts,tsx}`), configured in the root `vite.config.mts` / `vitest.setup.ts`. `testIdAttribute` is configured as `data-test-id`. Test descriptions start with `should` / `should not`.
 
+## Storybook previews
+
+`packages/storybook` renders blocks against the app-bridge test stub; every PR gets a preview on GitHub Pages (`.github/workflows/storybook.yml`). Stories live next to the block as `src/<Name>Block.stories.tsx`:
+
+```tsx
+import { AssetFixture, type BlockStory, blockMeta } from '@frontify/guideline-blocks-storybook';
+import definition from './index';
+
+export default { title: 'Blocks/Audio', ...blockMeta(definition) }; // title must stay a literal
+export const WithAudio: BlockStory = {
+    args: { title },                                                      // args = block settings
+    parameters: { appBridge: { blockAssets: { audio: [AssetFixture.audio()] } } },
+};
+```
+
+`blockMeta` derives default args and controls from `settings.ts`; the toolbar toggles view/edit mode and column width. Use `AssetFixture` rather than `AssetDummy` so assets actually load. A block needs `@frontify/guideline-blocks-storybook: workspace:*` in its devDependencies. Run locally with `pnpm storybook` (port 6006).
+
 ## Conventions
 
 - Every source file starts with `/* (c) Copyright Frontify Ltd., all rights reserved. */` followed by two blank lines — enforced by oxlint, not optional.
