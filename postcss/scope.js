@@ -8,6 +8,8 @@
  * block's `block-scope.json`, which is the single source of truth shared with the block itself.
  */
 
+const selectorParser = require("postcss-selector-parser");
+
 /**
  * @type {import('postcss').PluginCreator}
  */
@@ -31,13 +33,9 @@ module.exports = (opts = {}) => {
                 ) {
                     return;
                 }
-                rule.selectors = rule.selectors.map((originalSelector) =>
-                    originalSelector
-                        .split(/(?<!\\),\s*/g)
-                        .map((individualSelector) =>
-                            getScopedSelector(individualSelector, scopeSelector)
-                        )
-                        .join(", ")
+                // `rule.selectors` only splits on top-level commas, so `:is(a, b)` stays intact
+                rule.selectors = rule.selectors.map((selector) =>
+                    getScopedSelector(selector, scopeSelector)
                 );
             });
         },
@@ -46,7 +44,16 @@ module.exports = (opts = {}) => {
 
 module.exports.postcss = true;
 
-const tagSelectorRegex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
+const hasClass = (selector) => {
+    let found = false;
+    selectorParser((root) => root.walkClasses(() => (found = true))).processSync(selector);
+    return found;
+};
+
+// Selectors without any class (`*`, `:before`, `input::placeholder`, `[hidden]`, … e.g. Tailwind base styles)
+// would otherwise style the whole host page. Selectors with a class only target their own components
+// (e.g. Fondue's hashed classes) and stay unscoped so portalled overlays outside the block keep their styles.
+const isGlobalSelector = (selector) => !hasClass(selector);
 
 const getScopedSelector = (selector, scope) => {
     // Replace :root with .selector, so variables are only applied to the block
@@ -55,7 +62,7 @@ const getScopedSelector = (selector, scope) => {
     }
 
     // Prefix all rules with .selector that match the condition
-    if (selector.includes("tw-") || tagSelectorRegex.test(selector)) {
+    if (selector.includes("tw-") || isGlobalSelector(selector)) {
         return `${scope} ${selector}`;
     }
 
