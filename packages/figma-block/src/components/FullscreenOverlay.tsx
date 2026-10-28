@@ -3,6 +3,8 @@
 import { type ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
+import blockScope from '../../block-scope.json';
+
 const FOCUSABLE_SELECTORS =
     'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -84,5 +86,5 @@ export const FullscreenOverlay = ({ isFullScreen, onClose, children }: Fullscree
         </div>
     );
 
-    return isFullScreen ? createPortal(content, document.body) : content;
+    return isFullScreen ? createPortal(<div className={blockScope.scope}>{content}</div>, document.body) : content;
 };
