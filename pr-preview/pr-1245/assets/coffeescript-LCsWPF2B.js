@@ -1,0 +1,1 @@
+import{l as e,u as t}from"./CodeSnippetBlock.stories-U0q33cV6.js";t();export{e as coffeeScript};
