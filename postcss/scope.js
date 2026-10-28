@@ -61,9 +61,15 @@ const getScopedSelector = (selector, scope) => {
         return scope;
     }
 
-    // Prefix all rules with .selector that match the condition
-    if (selector.includes("tw-") || isGlobalSelector(selector)) {
+    // Prefix Tailwind utilities with .selector so they win over styles from outside the block
+    if (selector.includes("tw-")) {
         return `${scope} ${selector}`;
+    }
+
+    // Confine global selectors to the block without adding specificity, so they still lose against
+    // class-based component styles (e.g. Fondue's hashed classes) like they would unscoped
+    if (isGlobalSelector(selector)) {
+        return `:where(${scope}) ${selector}`;
     }
 
     // Return the original rule
