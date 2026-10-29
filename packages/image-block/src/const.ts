@@ -31,6 +31,5 @@ export const DEFAULT_IMAGE_BLOCK_SETTINGS = {
     autosizing: Autosizing.None,
     alignment: VerticalAlignment.Center,
     horizontalAlignment: HorizontalAlignment.Center,
-    assetViewerEnabled: true,
     hasLink: false,
 };

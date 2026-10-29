@@ -11,7 +11,6 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
-    usePrivacySettings,
 } from '@frontify/app-bridge';
 import {
     AttachmentOperationsProvider,
@@ -20,8 +19,8 @@ import {
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
-    isDownloadable,
     joinClassNames,
+    useBlockPrivacySettings,
 } from '@frontify/guideline-blocks-settings';
 import { DownloadButton, generateRandomId, StyleProvider } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -46,7 +45,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const blockAssetsBundle = useBlockAssets(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = blockAssetsBundle;
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
-    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
+    const { assetDownloadEnabled } = useBlockPrivacySettings(appBridge, { downloadableId: 'downloadable' });
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -179,11 +178,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         </div>
                         {audio && !isEditing && (
                             <div className="tw-flex tw-gap-2 tw-leading-normal" data-test-id="view-mode-addons">
-                                {isDownloadable(
-                                    blockSettings.security,
-                                    blockSettings.downloadable,
-                                    assetDownloadEnabled
-                                ) && (
+                                {assetDownloadEnabled && (
                                     <DownloadButton
                                         onDownload={() => appBridge.dispatch({ name: 'downloadAsset', payload: audio })}
                                     />
