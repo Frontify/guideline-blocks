@@ -7,19 +7,6 @@ import { type ReactElement, useEffect, useMemo, useRef } from 'react';
 import { preparePreviewAppBridge } from './previewAppBridge';
 import { applySettingChangeHandlers, type getSettingChangeHandlers } from './settingsToArgs';
 
-const BLOCK_SETTINGS_UPDATED = 'AppBridge:BlockSettingsUpdated';
-
-type BlockSettingsUpdatedEvent = { blockId: number; blockSettings: Record<string, unknown> };
-
-type Emitter = {
-    on: (event: string, handler: (payload: BlockSettingsUpdatedEvent) => void) => void;
-    off: (event: string, handler: (payload: BlockSettingsUpdatedEvent) => void) => void;
-    emit: (event: string, payload: BlockSettingsUpdatedEvent) => void;
-};
-
-/** The app-bridge stub keeps block settings on a global mitt emitter, same as the real host. */
-const getEmitter = () => (window as unknown as { emitter: Emitter }).emitter;
-
 export type AppBridgeStubOptions = Omit<getAppBridgeBlockStubProps, 'blockSettings' | 'editorState'>;
 
 type BlockPreviewProps = {
@@ -59,7 +46,6 @@ export const BlockPreview = ({
         preparePreviewAppBridge(stub);
         return stub;
     }, [appBridge, isEditing]);
-    const blockId = appBridgeStub.context('blockId').get();
 
     useEffect(() => {
         if (JSON.stringify(blockSettings) === lastSyncedRef.current) {
@@ -72,21 +58,21 @@ export const BlockPreview = ({
             // Reflect the hooks' writes (e.g. an appended `px`) in the controls panel too.
             onBlockSettingsChange(settled);
         }
-        getEmitter().emit(BLOCK_SETTINGS_UPDATED, { blockId, blockSettings: structuredClone(settled) });
-    }, [appBridgeStub, blockId, blockSettings, onBlockSettingsChange, settingChangeHandlers]);
+        appBridgeStub.updateBlockSettings(structuredClone(settled)).catch(console.error);
+    }, [appBridgeStub, blockSettings, onBlockSettingsChange, settingChangeHandlers]);
 
-    useEffect(() => {
-        const handleUpdate = (event: BlockSettingsUpdatedEvent) => {
-            const serialized = JSON.stringify(event.blockSettings);
-            if (event.blockId === blockId && serialized !== lastSyncedRef.current) {
-                lastSyncedRef.current = serialized;
-                onBlockSettingsChange(event.blockSettings);
-            }
-        };
-        const emitter = getEmitter();
-        emitter.on(BLOCK_SETTINGS_UPDATED, handleUpdate);
-        return () => emitter.off(BLOCK_SETTINGS_UPDATED, handleUpdate);
-    }, [appBridgeStub, blockId, onBlockSettingsChange]);
+    // The stub keeps block settings in its `settings` context, same as the real host.
+    useEffect(
+        () =>
+            appBridgeStub.context('settings').subscribe((settings) => {
+                const serialized = JSON.stringify(settings);
+                if (serialized !== lastSyncedRef.current) {
+                    lastSyncedRef.current = serialized;
+                    onBlockSettingsChange(settings);
+                }
+            }),
+        [appBridgeStub, onBlockSettingsChange]
+    );
 
     return <Block key={`${isEditing}-${JSON.stringify(appBridge)}`} appBridge={appBridgeStub} />;
 };
