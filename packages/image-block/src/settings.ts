@@ -2,11 +2,11 @@
 
 import {
     FileExtensionSets,
-    Security,
     appendUnit,
     defineSettings,
     getBorderRadiusSettings,
     getBorderSettings,
+    getSecurityAssetViewerSetting,
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
     numericalOrPixelRule,
@@ -56,7 +56,6 @@ const {
     hasBackground,
     backgroundColor,
     borderColor,
-    assetViewerEnabled,
 } = DEFAULT_IMAGE_BLOCK_SETTINGS;
 
 export const settings = defineSettings({
@@ -293,13 +292,8 @@ export const settings = defineSettings({
     security: [
         ...getSecurityGlobalControlSetting(),
         {
-            id: 'assetViewerEnabled',
-            label: 'Asset viewer',
+            ...getSecurityAssetViewerSetting(),
             info: "When disabled, viewers won't be able to open the image in the asset detail view.",
-            type: 'switch',
-            defaultValue: assetViewerEnabled,
-            // oxlint-disable-next-line typescript/no-base-to-string
-            show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
         getSecurityDownloadableSetting(),
     ],

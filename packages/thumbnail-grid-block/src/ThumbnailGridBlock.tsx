@@ -3,15 +3,8 @@
 import { DndContext, type DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import {
-    type Asset,
-    useAssetViewer,
-    useBlockAssets,
-    useBlockSettings,
-    useEditorState,
-    usePrivacySettings,
-} from '@frontify/app-bridge';
-import { type BlockProps, Security, gutterSpacingStyleMap } from '@frontify/guideline-blocks-settings';
+import { type Asset, useAssetViewer, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { type BlockProps, gutterSpacingStyleMap, useBlockPrivacySettings } from '@frontify/guideline-blocks-settings';
 import { generateRandomId, StyleProvider, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -28,9 +21,9 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const [uploadingItemIds, setUploadingItemIds] = useState<Record<string, string[]>>({});
-    const { assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
-    const { assetViewerEnabled, security } = blockSettings;
-    const isAssetViewerEnabled = security === Security.Custom ? assetViewerEnabled : globalAssetViewerEnabled;
+    const { assetViewerEnabled: isAssetViewerEnabled } = useBlockPrivacySettings(appBridge, {
+        assetViewerId: 'assetViewerEnabled',
+    });
     const { open: openAssetInAssetViewer } = useAssetViewer(appBridge);
 
     const addNewItemsIfNeeded = (assetsToAdd: Asset[] | FileList) => {

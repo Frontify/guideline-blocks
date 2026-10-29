@@ -9,7 +9,6 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
-    usePrivacySettings,
 } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
@@ -18,12 +17,11 @@ import {
     AttachmentOperationsProvider,
     BlockItemWrapper,
     type BlockProps,
-    Security,
     TextStyles,
     convertToRteValue,
     hasRichTextValue,
-    isDownloadable,
     toColorObject,
+    useBlockPrivacySettings,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider, generateRandomId, getEditAltTextToolbarButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
@@ -40,34 +38,21 @@ import { ALLOWED_EXTENSIONS, ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import { CaptionPosition, type Settings, imageRatioValues, mapCaptionPositionClasses } from './types';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
-    const { assetDownloadEnabled, assetViewerEnabled: globalAssetViewerEnabled } = usePrivacySettings(appBridge);
+    const { assetViewerEnabled: isAssetViewerEnabled, assetDownloadEnabled: isAssetDownloadable } =
+        useBlockPrivacySettings(appBridge, { assetViewerId: 'assetViewerEnabled', downloadableId: 'downloadable' });
     const [_blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const blockSettings = { ...DEFAULT_IMAGE_BLOCK_SETTINGS, ..._blockSettings };
     // oxlint-disable-next-line @eslint-react/use-state
     const [titleKey, setTitleKey] = useState(generateRandomId());
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const isEditing = useEditorState(appBridge);
-    const {
-        altText,
-        name,
-        positioning,
-        ratio,
-        description,
-        hasLink,
-        assetViewerEnabled: blockAssetViewerEnabled,
-        security,
-    } = blockSettings;
+    const { altText, name, positioning, ratio, description, hasLink } = blockSettings;
     const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
     const [isLoading, setIsLoading] = useState(false);
     const blockAssetsBundle = useBlockAssets(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = blockAssetsBundle;
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const attachmentCount = blockAssets[ATTACHMENTS_ASSET_ID]?.length || 0;
-    const isAssetDownloadable = isDownloadable(
-        blockSettings.security,
-        blockSettings.downloadable,
-        assetDownloadEnabled
-    );
 
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
@@ -155,7 +140,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
-    const isAssetViewerEnabled = security === Security.Custom ? blockAssetViewerEnabled : globalAssetViewerEnabled;
     const ariaLabel = getDownloadAriaLabel(isAssetViewerEnabled, hasLink, altText, image?.title);
 
     const shouldHideBlock = !isEditing && !image && attachmentCount === 0;
