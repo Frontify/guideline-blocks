@@ -1,0 +1,1 @@
+import{lt as e,ut as t}from"./CodeSnippetBlock.stories-DR8DA1GB.js";e();export{t as java};
