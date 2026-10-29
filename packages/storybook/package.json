@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^4.0.0-alpha.76",
-        "@frontify/guideline-blocks-settings": "4.0.0-alpha.11",
+        "@frontify/guideline-blocks-settings": "4.0.0-alpha.12",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },

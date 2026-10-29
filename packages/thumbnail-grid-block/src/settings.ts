@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Security,
     appendUnit,
     defineSettings,
     getBackgroundSettings,
     getBorderRadiusSettings,
     getBorderSettings,
     getGutterSettings,
+    getSecurityAssetViewerSetting,
     getSecurityGlobalControlSetting,
     maximumNumericalOrPercentOrAutoRule,
     minimumNumericalOrPercentRule,
@@ -207,13 +207,8 @@ export const settings = defineSettings({
     security: [
         ...getSecurityGlobalControlSetting(),
         {
-            id: 'assetViewerEnabled',
-            label: 'Asset viewer',
+            ...getSecurityAssetViewerSetting(),
             info: "When disabled, viewers won't be able to open the item image in the asset detail view.",
-            type: 'switch',
-            defaultValue: true,
-            // oxlint-disable-next-line typescript/no-base-to-string
-            show: (bundle) => bundle.getBlock('security')?.value?.toString() === Security.Custom,
         },
     ],
 });
