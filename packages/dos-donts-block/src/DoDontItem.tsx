@@ -26,7 +26,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
         doColor,
         dontColor,
         onChangeItem,
-        onChangeLocalItem,
         title = '',
         body = '',
         editing = false,
@@ -187,7 +186,6 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             editing={editing}
                             headingColor={headingColor}
                             onChangeItem={onChangeItem}
-                            onChangeLocalItem={onChangeLocalItem}
                         />
                     </span>
                 </div>
