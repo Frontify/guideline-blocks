@@ -1,13 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useColorPalettes } from '@frontify/app-bridge';
 import { Validation } from '@frontify/fondue';
 import { Button, Flyout, Label, Text, TextInput, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconQuestionMarkCircle } from '@frontify/fondue/icons';
 import { type Color } from '@frontify/guideline-blocks-shared';
 import { useId, useState } from 'react';
 
-import { mapAppBridgeColorPalettesToFonduePalettes } from '../helpers/mapColorPalettes';
 import { type ColorFlyoutProps, type GradientColor } from '../types';
 
 import { ColorPickerFlyout } from './ColorInput/ColorPickerFlyout';
@@ -20,8 +18,6 @@ export const ColorFlyout = ({
     setColors,
     setShowColorModal,
 }: ColorFlyoutProps) => {
-    const { colorPalettes } = useColorPalettes(appBridge);
-    const palettes = mapAppBridgeColorPalettesToFonduePalettes(colorPalettes);
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(Math.round(currentlyEditingPosition).toString());
@@ -85,9 +81,9 @@ export const ColorFlyout = ({
                         <div className="tw-flex tw-flex-col tw-gap-y-2">
                             <Label htmlFor={colorInputId}>Color</Label>
                             <ColorPickerFlyout
+                                appBridge={appBridge}
                                 id={colorInputId}
                                 currentColor={color}
-                                palettes={palettes}
                                 onColorChange={(color) => color && setColor(color)}
                             />
                         </div>

@@ -1,29 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ColorPicker, Flyout } from '@frontify/fondue/components';
 import { IconCheckMark } from '@frontify/fondue/icons';
+import { ColorChooser } from '@frontify/guideline-blocks-settings';
+import { type Color } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 
-import { ColorInputContent } from './ColorInputContent';
-import { type Palette, type RgbaColorWithName, type ShowPickerUnion } from './types';
-
 type ColorPickerFlyoutProps = {
-    palettes?: Palette[];
-    currentColor?: RgbaColorWithName;
-    onColorChange: (color?: RgbaColorWithName) => void;
+    appBridge: AppBridgeBlock;
+    currentColor?: Color;
+    onColorChange: (color?: Color) => void;
     onClear?: () => void;
-    showPicker?: ShowPickerUnion;
-    defaultColorFormat?: 'HEX' | 'RGBA';
     disabled?: boolean;
     id?: string;
 };
 
-const getColorWithName = (color?: RgbaColorWithName, format?: 'HEX' | 'RGBA') => {
+const getColorWithName = (color?: Color) => {
     if (!color) {
         return undefined;
     }
 
-    if (format === 'HEX' && !color.name) {
+    if (!color.name) {
         return {
             ...color,
             name: `#${color.red.toString(16).padStart(2, '0')}${color.green.toString(16).padStart(2, '0')}${color.blue.toString(16).padStart(2, '0')}`,
@@ -33,23 +31,19 @@ const getColorWithName = (color?: RgbaColorWithName, format?: 'HEX' | 'RGBA') =>
 };
 
 export const ColorPickerFlyout = ({
+    appBridge,
     id,
-    palettes = [],
     currentColor,
     onColorChange,
     onClear,
-    showPicker,
-    defaultColorFormat,
     disabled = false,
 }: ColorPickerFlyoutProps) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeColor, setActiveColor] = useState<RgbaColorWithName | undefined>(() =>
-        getColorWithName(currentColor, defaultColorFormat)
-    );
+    const [activeColor, setActiveColor] = useState<Color | undefined>(() => getColorWithName(currentColor));
 
     useEffect(() => {
         // oxlint-disable-next-line @eslint-react/set-state-in-effect
-        setActiveColor(getColorWithName(currentColor, defaultColorFormat));
+        setActiveColor(getColorWithName(currentColor));
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, [currentColor, isOpen]);
 
@@ -82,15 +76,13 @@ export const ColorPickerFlyout = ({
                 />
             </Flyout.Trigger>
             <Flyout.Content width="400px">
-                <Flyout.Body>
-                    <ColorInputContent
-                        palettes={palettes}
-                        currentColor={activeColor}
-                        onColorChange={setActiveColor}
-                        showPicker={showPicker}
-                        defaultColorFormat={defaultColorFormat}
+                {isOpen ? (
+                    <ColorChooser
+                        appBridge={appBridge}
+                        color={getColorWithName(currentColor)}
+                        onColorSelect={(color) => setActiveColor(getColorWithName(color))}
                     />
-                </Flyout.Body>
+                ) : null}
                 <Flyout.Footer>
                     <Button emphasis="default" onPress={() => setIsOpen(false)}>
                         Cancel
