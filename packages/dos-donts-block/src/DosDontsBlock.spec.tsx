@@ -2,7 +2,7 @@
 
 import { type Asset } from '@frontify/app-bridge';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
-import { render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -18,6 +18,8 @@ const DOS_DONTS_ICON = 'dos-donts-icon';
 const RTE_CONTENT_HTML = 'rte-content-html';
 const RICH_TEXT_EDITOR = 'rich-text-editor';
 const DO_DONT_IMAGE = 'do-dont-image';
+const BLOCK_ITEM_WRAPPER = 'block-item-wrapper';
+const BLOCK_ITEM_WRAPPER_BUTTON = 'block-item-wrapper-toolbar-btn';
 
 const uploadMocks = vi.hoisted(() => ({
     uploadFile: vi.fn<(files: FileList) => void>(),
@@ -220,6 +222,63 @@ describe("Dos & Don'ts Block", () => {
         expect(secondTextarea).toBeTruthy();
         await user.type(secondTextarea!, 'Dont do this');
         expect((secondTextarea as HTMLTextAreaElement).value).toBe('Dont do this');
+    });
+
+    describe('saving items', () => {
+        const items = [
+            { id: '1', title: 'Saved title', body: '', type: DoDontType.Do },
+            { id: '2', title: '', body: '', type: DoDontType.Dont },
+        ];
+
+        const renderEditableBlock = () => {
+            const [DosDontsBlockWithStubs, appBridge] = withAppBridgeBlockStubs(DosDontsBlock, {
+                editorState: true,
+                blockSettings: { columns: 2, items },
+            });
+            render(<DosDontsBlockWithStubs />);
+            appBridge.updateBlockSettings.resetHistory();
+            return appBridge;
+        };
+
+        it('should not save when a title is blurred without changes', async () => {
+            const user = userEvent.setup();
+            const appBridge = renderEditableBlock();
+
+            await user.click(screen.getByDisplayValue('Saved title'));
+            await user.tab();
+
+            expect(appBridge.updateBlockSettings.called).toBe(false);
+        });
+
+        it('should save the title once when it is blurred after typing', async () => {
+            const user = userEvent.setup();
+            const appBridge = renderEditableBlock();
+
+            await user.type(screen.getByDisplayValue('Saved title'), ' changed');
+
+            expect(appBridge.updateBlockSettings.called).toBe(false);
+
+            await user.tab();
+
+            expect(appBridge.updateBlockSettings.calledOnce).toBe(true);
+            expect(appBridge.updateBlockSettings.getCall(0).args[0]).toMatchObject({
+                items: [{ id: '1', title: 'Saved title changed' }, { id: '2' }],
+            });
+        });
+
+        it('should not save when a drag starts', async () => {
+            const appBridge = renderEditableBlock();
+
+            const [dragHandle] = within(screen.getAllByTestId(BLOCK_ITEM_WRAPPER)[0]).getAllByTestId(
+                BLOCK_ITEM_WRAPPER_BUTTON
+            );
+            dragHandle.focus();
+            fireEvent.keyDown(dragHandle, { code: 'Enter', key: 'Enter' });
+            await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+
+            expect(screen.getAllByDisplayValue('Saved title')).toHaveLength(2);
+            expect(appBridge.updateBlockSettings.called).toBe(false);
+        });
     });
 
     describe('uploading images', () => {
