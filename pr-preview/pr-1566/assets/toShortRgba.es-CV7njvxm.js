@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";var t;function n(){return(n=e((()=>{t=e=>(e=>typeof e==`object`&&[`red`,`green`,`blue`].every(t=>e.hasOwnProperty(t)))(e)?(e=>{let t=typeof e.alpha==`number`?e.alpha:1;return{r:e.red,g:e.green,b:e.blue,a:t}})(e):e})))()}export{n,t};

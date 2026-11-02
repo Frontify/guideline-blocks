@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{n as t,t as n}from"./toRgbaString.es-CeoayZf7.js";import{a as r,l as i,r as a}from"./types.es-CXpHWNfM.js";import{i as o,o as s}from"./border.es-CTTLYVkJ.js";var c;function l(){return(l=e((()=>{n(),o(),r(),c=(e=a.Solid,n=`1px`,r=s)=>({borderStyle:i[e],borderWidth:n,borderColor:t(r)})})))()}export{l as n,c as t};
