@@ -32,6 +32,7 @@ const SQUARE_BADGE_CLIPBOARD_TEST_ID = 'square-badge-clipboard';
 const SQUARE_BADGE_LIVE_REGION_TEST_ID = 'square-badge-live-region';
 const EDIT_COLOR_LABEL = 'Edit color';
 const DELETE_COLOR_LABEL = 'Delete color';
+const SELECT_COLOR_LABEL = 'Select Color';
 const BLOCK_WIDTH = 800;
 const ADD_COLOR_MOUSE_X = 400;
 
@@ -98,6 +99,9 @@ const targetForMultiLevelGradient = [0, 1, 2, 3, 4, 0, 1, 0, 1];
 
 // Renders once on purpose: the badges used to be gated on `ref.current`, which is null during the
 // first render, so a second render here would hide that regression from every test below.
+const isColorChooserOpened = (appBridge: ReturnType<typeof renderGradientBlock>['appBridge']): boolean =>
+    appBridge.dispatch.getCalls().some((call) => call.args[0]?.name === 'openColorChooser');
+
 const renderGradientBlock = (appBridgeProps: Parameters<typeof withAppBridgeBlockStubs>[1] = {}) => {
     const [GradientBlockWithStubs, appBridge] = withAppBridgeBlockStubs(GradientBlock, appBridgeProps);
     const utils = render(<GradientBlockWithStubs />);
@@ -256,21 +260,21 @@ describe('Gradient Block', () => {
         });
     });
 
-    it('should not load color palettes in view mode', () => {
+    it('should not open the color chooser in view mode', () => {
         const { appBridge } = renderGradientBlock({
             blockSettings: { gradientColors },
         });
 
-        expect(appBridge.getColorPalettesWithColors.called).toBe(false);
+        expect(isColorChooserOpened(appBridge)).toBe(false);
     });
 
-    it('should not load color palettes on render', () => {
+    it('should not open the color chooser on render', () => {
         const { appBridge } = renderGradientBlock({
             editorState: true,
             blockSettings: { gradientColors },
         });
 
-        expect(appBridge.getColorPalettesWithColors.called).toBe(false);
+        expect(isColorChooserOpened(appBridge)).toBe(false);
     });
 
     it('should show the add color button on hover', () => {
@@ -287,20 +291,21 @@ describe('Gradient Block', () => {
         expect(screen.getByTestId(ADD_COLOR_BUTTON_TEST_ID)).toBeInTheDocument();
     });
 
-    it('should load color palettes when the color flyout is opened', async () => {
+    it('should open the color chooser when the color input in the color flyout is opened', async () => {
         const { appBridge } = renderGradientBlock({
             editorState: true,
             blockSettings: { gradientColors },
         });
 
-        expect(appBridge.getColorPalettesWithColors.called).toBe(false);
-
         await userEvent.click(screen.getAllByLabelText(EDIT_COLOR_LABEL)[0]);
+        expect(screen.getByTestId(COLOR_PICKER_FORM_TEST_ID)).toBeInTheDocument();
+        expect(isColorChooserOpened(appBridge)).toBe(false);
+
+        await userEvent.click(screen.getByLabelText(SELECT_COLOR_LABEL));
 
         await waitFor(() => {
-            expect(appBridge.getColorPalettesWithColors.called).toBe(true);
+            expect(isColorChooserOpened(appBridge)).toBe(true);
         });
-        expect(screen.getByTestId(COLOR_PICKER_FORM_TEST_ID)).toBeInTheDocument();
     });
 
     it('should label the stop input in the color flyout', async () => {
