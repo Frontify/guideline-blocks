@@ -123,7 +123,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/oxfmt-config':
         specifier: ^0.0.2
         version: 0.0.2(oxfmt@0.52.0)
@@ -199,7 +199,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -272,7 +272,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -348,7 +348,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -424,7 +424,7 @@ importers:
         version: 4.2.1
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -557,7 +557,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -639,7 +639,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -727,7 +727,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -809,7 +809,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -882,7 +882,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -961,7 +961,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1046,7 +1046,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1122,7 +1122,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1289,7 +1289,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1432,7 +1432,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1505,7 +1505,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1587,7 +1587,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -1672,7 +1672,7 @@ importers:
         version: 7.29.7(supports-color@8.1.1)
       '@frontify/frontify-cli':
         specifier: ^6.4.0
-        version: 6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+        version: 6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
       '@frontify/guideline-blocks-release':
         specifier: workspace:*
         version: link:../release-cli
@@ -2887,8 +2887,8 @@ packages:
       react: ^18
       react-dom: ^18
 
-  '@frontify/frontify-cli@6.4.2':
-    resolution: {integrity: sha512-4fPNLhSZtwe+k0hQB69amalGHjUkXzNDnLwcfOiKsqX6zGPRIEbmw/DRpFo6NcmT7lkFoePLvyenbgAcL/TPTQ==}
+  '@frontify/frontify-cli@6.4.3':
+    resolution: {integrity: sha512-2XUjJeC9qgpcmpMrpkdosTzZtlLEn+6I+WjO+WIpM8ADZEX7yIjxtfTnATypTL+/Np0thRZc9FYr5ut4J6lHpg==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -3265,6 +3265,9 @@ packages:
 
   '@oxc-project/types@0.153.0':
     resolution: {integrity: sha512-jSNrRIyvPVLL5E1z/tS5zLAprosGz/FuI1PWwEOz59j3E4TTTzSpqKb/RDGqJhhW0QHYISGXxq582wGx6T11Tw==}
+
+  '@oxc-project/types@0.156.0':
+    resolution: {integrity: sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw==}
 
   '@oxc-resolver/binding-android-arm-eabi@11.21.2':
     resolution: {integrity: sha512-xQoCRv+gKax9KTdwdaQNnAFOai8neay7g3jExDIORzhbrejwGSJaZNTdOJHR5ziLg2joMxOCMOFMo4zuxza2uQ==}
@@ -4447,8 +4450,20 @@ packages:
     cpu: [arm]
     os: [android]
 
+  '@rolldown/binding-android-arm-eabi@1.2.16':
+    resolution: {integrity: sha512-ia3DwAs0OsMGS7+IConptSiyk9pEXkOx/AbJ2n/lAGxH3QkWQus1t8d7gnAT38FCU2sQu8lUbeR6AiZFv4JxaA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [android]
+
   '@rolldown/binding-android-arm64@1.2.13':
     resolution: {integrity: sha512-6LEoIrGy5vvCd2boNnv2soPSUZj/PRvhp8R/t9KlX+mIZxThIE/ZqxrGXxmuNX0FuvQFvLdZr7S4HrYpYBVhEQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [android]
+
+  '@rolldown/binding-android-arm64@1.2.16':
+    resolution: {integrity: sha512-kx5wBiMB6E7TEvpl2B9gjLU004BkvEm2Dr941BFjx/SontPwSzNuQUIoVKxHHoSjpFIfHMmcguyLOtyn0hObRg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [android]
@@ -4459,8 +4474,20 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@rolldown/binding-darwin-arm64@1.2.16':
+    resolution: {integrity: sha512-qslZrXnKJU4cUpjoAmtAo/KQM9e2IRMlmpig6Zpwj+8KWxW8v+nkAf9216Bsek9lOC1jvg2yCjygCFo2f83msQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rolldown/binding-darwin-x64@1.2.13':
     resolution: {integrity: sha512-e4r340I5hxSzJkD3YJBxgzq/rJ3wwxwdLLb2FPt1Zpyem20nrQPT11DDEEkazwxaHumH8wpglsp/Ozgj/wT6mw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rolldown/binding-darwin-x64@1.2.16':
+    resolution: {integrity: sha512-FdF+y48ND13eAyM2mQn+85kvAqNlvRWROy2rhgA463X/0Gv4vGtazZtfaF1mRBLscYvtOlh4QnLjOWiFzX69OQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [darwin]
@@ -4471,14 +4498,33 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
+  '@rolldown/binding-freebsd-x64@1.2.16':
+    resolution: {integrity: sha512-ddjqFM5e95AgLbUPtKIS7V1KTVlA0RUgCVr5mn+/IEhsdy3pr+Vuj/HZ7nlMN2FyxIwUktOH1LEPIQXO1v9y1Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [freebsd]
+
   '@rolldown/binding-linux-arm-gnueabihf@1.2.13':
     resolution: {integrity: sha512-oF9fZu3vTWnTiVAkDFxU9PJLt1nh20K9RRpuHsR7ZnE2L7XookBbDBVLojCVSLGbvtSlxeUNnjAj6DbNsKyzbg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
+  '@rolldown/binding-linux-arm-gnueabihf@1.2.16':
+    resolution: {integrity: sha512-tHdKWbFkFBI687iim3LIyIvyL7j66VvQYkDPss5Stn/qyE2tWkR1YD0dXmXPFKKqT/o5ZEJVsaRsWS2meQwGOA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
   '@rolldown/binding-linux-arm64-gnu@1.2.13':
     resolution: {integrity: sha512-DTpb/+jMiqWMPgphn4ksW1zW+XLJ6dJJ9FMvnIk9I291LhCctMPhMYJrP5t9p6C9qa3KXadDdUEZHBaPh3kNxQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-arm64-gnu@1.2.16':
+    resolution: {integrity: sha512-FJiLGAblPBMlBEdbOqw6kW6QcXDWAf/oJu7gYs9ZJZwmg+K+/zjFLxPTIY9izJUzxzc24FHvmseyA0IvJSl17w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
@@ -4491,8 +4537,22 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@rolldown/binding-linux-arm64-musl@1.2.16':
+    resolution: {integrity: sha512-hrJpblMsrQ58U9veWpbXzkhV5zStunds6HWLprqq1qauvgBr1E6P+24kLj6lSLI9vjRn/RYpjprhkHQPKGWpNg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
   '@rolldown/binding-linux-ppc64-gnu@1.2.13':
     resolution: {integrity: sha512-XMk/hnhh25oQ756Lclb1Q11h4ll0xC0Esa5w4Vzp+mAE2S3AGJgeM0SonrIgY8fHhjarb6hcoTuwoFG0VVP2ig==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-ppc64-gnu@1.2.16':
+    resolution: {integrity: sha512-qJd/dC6j6CwLG9/s/RP2nb1RZ0GIgj7Ioj7x/SYa3RzjVrlzrmH0fhIOpfvqQDeIsdP0loi+kHaMhJzY1PBIaA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
@@ -4505,8 +4565,22 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rolldown/binding-linux-s390x-gnu@1.2.16':
+    resolution: {integrity: sha512-Vx7Xg5uUJuNcujJjI70OICaH0EYj80BtOLZTSN7uOYg8QOLlyKnaG0IW7Fn/J0IpJsaKzmDKMhOQv1JBM9m9vg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
   '@rolldown/binding-linux-x64-gnu@1.2.13':
     resolution: {integrity: sha512-J4cm80Pc6wEwV5AZ42o62sIQgDk+Y7R2s646jIwuvO+4V46QB58N4vVuMPWCBaNgursXLpmUWJV//WQAkPvHBQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-x64-gnu@1.2.16':
+    resolution: {integrity: sha512-TNKhgE3uJTsTzatUSSYt0Kgo+Oa2uSlSjz4r1aEIea7HX6ULBym4fAlYUhG1i6pjNf2njfCUAfKwr6C3E9Xg1w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
@@ -4519,8 +4593,21 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@rolldown/binding-linux-x64-musl@1.2.16':
+    resolution: {integrity: sha512-7chXdpjXZ8qG0+mIxECN3cT9kvhZ3/oZhMX6Pp876P7CDrIy8nJswva6Mq357JR7eYXfuskwZxMeV1SzoZdHrA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
   '@rolldown/binding-openharmony-arm64@1.2.13':
     resolution: {integrity: sha512-do/AF/4n9MRshia3a5aXoy8xM2c6mgfT6D7H/dY6my5z+hfCIR4ab7mk4IRj++nsEQpKy39kd0DQnDq+r692tw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@rolldown/binding-openharmony-arm64@1.2.16':
+    resolution: {integrity: sha512-Kwjt+7uNTJK5/MDkGWGVO2KQPnj8yAV75dMpfwyHZrJSXWHrniOB0aUEWlVYf3H1hOqFLIStLdM5QXq6bnKmOQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [openharmony]
@@ -4531,8 +4618,20 @@ packages:
     cpu: [arm64]
     os: [win32]
 
+  '@rolldown/binding-win32-arm64-msvc@1.2.16':
+    resolution: {integrity: sha512-/LH6WfjDRXXJz/p5xl4TmU+jpcnwcxbKEQBW/GZE0JHfN0lGIyTtsUEGaQ/q/GikkGJ2yLKe6pwm7AnEWO8pdw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
+
   '@rolldown/binding-win32-x64-msvc@1.2.13':
     resolution: {integrity: sha512-UKhFaZTeTcbKrb3iU82m17jVcPEAoqDkCN5MBqgPyZSwp/cQmib21crTS0DdH7T1B7wZRWEI89YQAOJMet5yhg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@rolldown/binding-win32-x64-msvc@1.2.16':
+    resolution: {integrity: sha512-1lv1KvX0Z871zfk7vw+dnXMMnHNyDwMzWG8Kv3HxDXMOhzCX4SHc7HK319fInP0i+0p9D8brkfzL7pJOaGl+tw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
@@ -7267,6 +7366,10 @@ packages:
     resolution: {integrity: sha512-49cGhUbXj8Qenv0iTMxA1cFBzxXoctpC9Ujd77t1WcbJIr6nF/eI7g/8MgxrYldFRuAXvja7xQRwavoW7kgrxQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.32:
+    resolution: {integrity: sha512-LJlKCCAUFKOuZxipUdYw1NzIITEsPcgyOG9LkvRJvuKj/bRzbuRY0ARXvL0pWGpsZvn8jku+LMep2eU0seHp8g==}
+    engines: {node: ^10 || ^12 || >=14}
+
   powershell-utils@0.1.0:
     resolution: {integrity: sha512-dM0jVuXJPsDN6DvRpea484tCUaMiXWjuCn++HGTqUWzGDjv5tZkEZldAJ/UMlqRYGFrD/etByo4/xOuC/snX2A==}
     engines: {node: '>=20'}
@@ -7590,6 +7693,11 @@ packages:
 
   rolldown@1.2.13:
     resolution: {integrity: sha512-/5apOkwWxtACcQtZ5WlrAsKS4JwXVThQPJZ3RqIruRY9UG9M8e0VlXN068xum/JRKA4aIUoJ13ghe/kGCvidiQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+
+  rolldown@1.2.16:
+    resolution: {integrity: sha512-bWvlMpFKiTfDKfnK7FC2MPgPeWCf/Kpwsq49ApdW+FQaBZb6O6dZ4MAPbPUjp7hYQrw/RobqCzn64BRrQecGHw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -8124,6 +8232,49 @@ packages:
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
       '@vitejs/devtools': ^0.7.1
+      esbuild: ^0.27.0 || ^0.28.0
+      jiti: '>=1.21.0'
+      less: ^4.0.0
+      sass: ^1.70.0
+      sass-embedded: ^1.70.0
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      '@vitejs/devtools':
+        optional: true
+      esbuild:
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
+  vite@8.3.5:
+    resolution: {integrity: sha512-z1YpjieJ9g0ebTmQpLBv/oq9E3F9EIlOe+7LahW8SrE3LTiG3udBRUXQOlYXP9b+IC2q2phHeVxj9xGlw34OEQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^20.19.0 || >=22.12.0
+      '@vitejs/devtools': ^0.7.1 || ^0.8.0
       esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
@@ -10141,10 +10292,10 @@ snapshots:
       - tailwindcss
       - zustand
 
-  '@frontify/frontify-cli@6.4.2(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)':
+  '@frontify/frontify-cli@6.4.3(@types/node@25.6.0)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)':
     dependencies:
       '@fastify/cors': 11.3.0
-      '@vitejs/plugin-react': 6.1.2(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))
+      '@vitejs/plugin-react': 6.1.2(vite@8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))
       cac: 7.0.0
       conf: 15.1.0
       esbuild: 0.28.2
@@ -10154,8 +10305,8 @@ snapshots:
       open: 11.0.4
       picocolors: 1.1.1
       prompts: 2.4.2
-      vite: 8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
-      vite-plugin-externals: 0.6.2(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))
+      vite: 8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      vite-plugin-externals: 0.6.2(vite@8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))
       zod: 4.6.7
     transitivePeerDependencies:
       - '@rolldown/plugin-babel'
@@ -10573,6 +10724,8 @@ snapshots:
   '@oxc-project/types@0.127.0': {}
 
   '@oxc-project/types@0.153.0': {}
+
+  '@oxc-project/types@0.156.0': {}
 
   '@oxc-resolver/binding-android-arm-eabi@11.21.2':
     optional: true
@@ -11645,46 +11798,91 @@ snapshots:
   '@rolldown/binding-android-arm-eabi@1.2.13':
     optional: true
 
+  '@rolldown/binding-android-arm-eabi@1.2.16':
+    optional: true
+
   '@rolldown/binding-android-arm64@1.2.13':
+    optional: true
+
+  '@rolldown/binding-android-arm64@1.2.16':
     optional: true
 
   '@rolldown/binding-darwin-arm64@1.2.13':
     optional: true
 
+  '@rolldown/binding-darwin-arm64@1.2.16':
+    optional: true
+
   '@rolldown/binding-darwin-x64@1.2.13':
+    optional: true
+
+  '@rolldown/binding-darwin-x64@1.2.16':
     optional: true
 
   '@rolldown/binding-freebsd-x64@1.2.13':
     optional: true
 
+  '@rolldown/binding-freebsd-x64@1.2.16':
+    optional: true
+
   '@rolldown/binding-linux-arm-gnueabihf@1.2.13':
+    optional: true
+
+  '@rolldown/binding-linux-arm-gnueabihf@1.2.16':
     optional: true
 
   '@rolldown/binding-linux-arm64-gnu@1.2.13':
     optional: true
 
+  '@rolldown/binding-linux-arm64-gnu@1.2.16':
+    optional: true
+
   '@rolldown/binding-linux-arm64-musl@1.2.13':
+    optional: true
+
+  '@rolldown/binding-linux-arm64-musl@1.2.16':
     optional: true
 
   '@rolldown/binding-linux-ppc64-gnu@1.2.13':
     optional: true
 
+  '@rolldown/binding-linux-ppc64-gnu@1.2.16':
+    optional: true
+
   '@rolldown/binding-linux-s390x-gnu@1.2.13':
+    optional: true
+
+  '@rolldown/binding-linux-s390x-gnu@1.2.16':
     optional: true
 
   '@rolldown/binding-linux-x64-gnu@1.2.13':
     optional: true
 
+  '@rolldown/binding-linux-x64-gnu@1.2.16':
+    optional: true
+
   '@rolldown/binding-linux-x64-musl@1.2.13':
+    optional: true
+
+  '@rolldown/binding-linux-x64-musl@1.2.16':
     optional: true
 
   '@rolldown/binding-openharmony-arm64@1.2.13':
     optional: true
 
+  '@rolldown/binding-openharmony-arm64@1.2.16':
+    optional: true
+
   '@rolldown/binding-win32-arm64-msvc@1.2.13':
     optional: true
 
+  '@rolldown/binding-win32-arm64-msvc@1.2.16':
+    optional: true
+
   '@rolldown/binding-win32-x64-msvc@1.2.13':
+    optional: true
+
+  '@rolldown/binding-win32-x64-msvc@1.2.16':
     optional: true
 
   '@rolldown/pluginutils@1.0.1': {}
@@ -12951,6 +13149,11 @@ snapshots:
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+
+  '@vitejs/plugin-react@6.1.2(vite@8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3))':
+    dependencies:
+      '@rolldown/pluginutils': 1.0.1
+      vite: 8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
 
   '@vitest/expect@3.2.4':
     dependencies:
@@ -14997,6 +15200,12 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.2
 
+  postcss@8.5.32:
+    dependencies:
+      nanoid: 3.3.20
+      picocolors: 1.1.1
+      source-map-js: 1.2.2
+
   powershell-utils@0.1.0: {}
 
   powershell-utils@0.2.1: {}
@@ -15364,6 +15573,27 @@ snapshots:
       '@rolldown/binding-openharmony-arm64': 1.2.13
       '@rolldown/binding-win32-arm64-msvc': 1.2.13
       '@rolldown/binding-win32-x64-msvc': 1.2.13
+
+  rolldown@1.2.16:
+    dependencies:
+      '@oxc-project/types': 0.156.0
+      '@rolldown/pluginutils': 1.0.1
+    optionalDependencies:
+      '@rolldown/binding-android-arm-eabi': 1.2.16
+      '@rolldown/binding-android-arm64': 1.2.16
+      '@rolldown/binding-darwin-arm64': 1.2.16
+      '@rolldown/binding-darwin-x64': 1.2.16
+      '@rolldown/binding-freebsd-x64': 1.2.16
+      '@rolldown/binding-linux-arm-gnueabihf': 1.2.16
+      '@rolldown/binding-linux-arm64-gnu': 1.2.16
+      '@rolldown/binding-linux-arm64-musl': 1.2.16
+      '@rolldown/binding-linux-ppc64-gnu': 1.2.16
+      '@rolldown/binding-linux-s390x-gnu': 1.2.16
+      '@rolldown/binding-linux-x64-gnu': 1.2.16
+      '@rolldown/binding-linux-x64-musl': 1.2.16
+      '@rolldown/binding-openharmony-arm64': 1.2.16
+      '@rolldown/binding-win32-arm64-msvc': 1.2.16
+      '@rolldown/binding-win32-x64-msvc': 1.2.16
 
   run-applescript@7.1.0: {}
 
@@ -15883,13 +16113,13 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite-plugin-externals@0.6.2(vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)):
+  vite-plugin-externals@0.6.2(vite@8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)):
     dependencies:
       acorn: 8.18.0
       es-module-lexer: 0.4.1
       fs-extra: 10.1.0
       magic-string: 0.25.9
-      vite: 8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
+      vite: 8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3)
 
   vite@8.3.4(@types/node@25.6.0)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.51.2)(yaml@2.8.3):
     dependencies:
@@ -15912,6 +16142,21 @@ snapshots:
       picomatch: 4.0.7
       postcss: 8.5.29
       rolldown: 1.2.13
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@types/node': 25.6.0
+      esbuild: 0.28.2
+      fsevents: 2.3.3
+      jiti: 2.7.0
+      terser: 5.51.2
+      yaml: 2.8.3
+
+  vite@8.3.5(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.8.3):
+    dependencies:
+      lightningcss: 1.33.0
+      picomatch: 4.0.7
+      postcss: 8.5.32
+      rolldown: 1.2.16
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 25.6.0
