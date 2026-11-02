@@ -7,17 +7,9 @@ settings:
 overrides:
   '@udecode/plate-common': 36.5.9
   zustand: 4.5.7
-  ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   immer: ^10.2.0
-  minimatch@^3: ^3.1.4
-  lodash@^4: ^4.18.1
-  browserslist@<4.28.7: ^4.28.8
   postcss-selector-parser@>=6.1.0 <6.1.3: ^7.0.0
   tinypool@<2.1.2: ^2.1.2
-  fast-uri@>=3.0.0 <3.1.9: ^3.1.9
-  fast-uri@>=4.0.0 <4.2.3: ^4.2.3
-  fastify@<5.12.6: ^5.12.6
-  zod@<4.6.6: ^4.6.6
 
 patchedDependencies:
   '@udecode/plate-emoji@31.4.0': b9cbec3851d21cef9bc25842006005e958383b4d35acccbb0caeb128ef012262
@@ -5616,7 +5608,7 @@ packages:
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
     peerDependencies:
-      ajv: ^8.18.0
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -8124,13 +8116,13 @@ packages:
     resolution: {integrity: sha512-UQ+MSxlhRm1bzjhU+DcuXfjFO1FzNtqhK5+9Yvlp90ItDLk5vT932A0rFu619nf7RVS+Y/VeaUW1jaRDqZ8VJw==}
     hasBin: true
     peerDependencies:
-      browserslist: ^4.28.8
+      browserslist: '>= 4.21.0'
 
   update-browserslist-db@1.3.3:
     resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
     hasBin: true
     peerDependencies:
-      browserslist: ^4.28.8
+      browserslist: '>= 4.21.0'
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
