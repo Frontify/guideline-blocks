@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{n as t,t as n}from"./toRgbaString.es-CeoayZf7.js";var r;function i(){return(i=e((()=>{n(),r=e=>({backgroundColor:t(e)})})))()}export{r as n,i as t};
