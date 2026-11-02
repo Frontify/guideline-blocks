@@ -57,6 +57,7 @@
         "properties": {
             "content": {
                 "type": "string",
+                "frontify-type": "code",
                 "frontify-serializable": true,
                 "frontify-serialization-index": 1,
                 "frontify-translatable": true,
