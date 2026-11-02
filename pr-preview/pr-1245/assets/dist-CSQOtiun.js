@@ -1,0 +1,1 @@
+import{K as e,W as t}from"./CodeSnippetBlock.stories-CfGfE60v.js";t();export{e as python};
