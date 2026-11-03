@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy } from '@frontify/app-bridge/testing';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DoDontItem } from './DoDontItem';
@@ -80,5 +80,15 @@ describe('DoDontItem', () => {
         renderDoDontItem({ type: DoDontType.Dont });
 
         expect(screen.getByRole('heading', { name: "Don't: Title" })).toBeInTheDocument();
+    });
+
+    it('should save a title typed without blurring when editing is turned off', () => {
+        const onChangeItem = vi.fn();
+        const { rerender } = renderDoDontItem({ editing: true, onChangeItem });
+
+        fireEvent.change(screen.getByDisplayValue('Title'), { target: { value: 'Typed title' } });
+        rerender(<DoDontItem {...defaultProps} onChangeItem={onChangeItem} editing={false} />);
+
+        expect(onChangeItem).toHaveBeenCalledExactlyOnceWith('item-1', { title: 'Typed title' });
     });
 });

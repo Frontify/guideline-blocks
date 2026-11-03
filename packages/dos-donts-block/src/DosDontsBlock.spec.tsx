@@ -278,6 +278,45 @@ describe("Dos & Don'ts Block", () => {
 
             expect(screen.getAllByDisplayValue('Saved title')).toHaveLength(2);
             expect(appBridge.updateBlockSettings.called).toBe(false);
+            fireEvent.keyDown(document, { code: 'Escape', key: 'Escape' });
+        });
+
+        it('should save a title typed without blurring when a drag starts', async () => {
+            const appBridge = renderEditableBlock();
+
+            fireEvent.change(screen.getByDisplayValue('Saved title'), { target: { value: 'Typed title' } });
+
+            const [dragHandle] = within(screen.getAllByTestId(BLOCK_ITEM_WRAPPER)[0]).getAllByTestId(
+                BLOCK_ITEM_WRAPPER_BUTTON
+            );
+            fireEvent.keyDown(dragHandle, { code: 'Enter', key: 'Enter' });
+            await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+
+            expect(screen.getAllByDisplayValue('Typed title')).toHaveLength(2);
+            expect(appBridge.updateBlockSettings.calledOnce).toBe(true);
+            expect(appBridge.updateBlockSettings.getCall(0).args[0]).toMatchObject({
+                items: [{ id: '1', title: 'Typed title' }, { id: '2' }],
+            });
+            fireEvent.keyDown(document, { code: 'Escape', key: 'Escape' });
+        });
+        it('should save a title typed without blurring when a pointer drag starts', async () => {
+            const appBridge = renderEditableBlock();
+
+            fireEvent.change(screen.getByDisplayValue('Saved title'), { target: { value: 'Typed title' } });
+
+            const [dragHandle] = within(screen.getAllByTestId(BLOCK_ITEM_WRAPPER)[0]).getAllByTestId(
+                BLOCK_ITEM_WRAPPER_BUTTON
+            );
+            fireEvent.pointerDown(dragHandle, { isPrimary: true, button: 0, clientX: 0, clientY: 0 });
+            await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+
+            expect(appBridge.updateBlockSettings.calledOnce).toBe(true);
+            expect(appBridge.updateBlockSettings.getCall(0).args[0]).toMatchObject({
+                items: [{ id: '1', title: 'Typed title' }, { id: '2' }],
+            });
+            fireEvent.keyDown(document, { code: 'Escape', key: 'Escape' });
+            // dnd-kit keeps a click-swallowing listener on document for 50ms after a pointer drag ends.
+            await act(() => new Promise((resolve) => setTimeout(resolve, 60)));
         });
     });
 

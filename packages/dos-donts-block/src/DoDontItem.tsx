@@ -145,7 +145,7 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
 
                 <div
                     data-test-id="dos-donts-heading"
-                    className="tw-flex tw-items-start tw-font-semibold"
+                    className="tw-group tw-flex tw-items-start tw-font-semibold"
                     style={{ color: headingColor }}
                 >
                     {style === DoDontStyle.Icons && (title || hasRichTextValue(body) || editing) && (
@@ -158,7 +158,8 @@ export const DoDontItem = memo((props: DoDontItemProps) => {
                             }}
                             className={joinClassNames([
                                 'tw-mr-2 tw-w-auto tw-flex tw-items-center tw-h-[1lh] tw-flex-shrink-0',
-                                !title ? 'tw-opacity-70' : '',
+                                !editing && !title ? 'tw-opacity-70' : '',
+                                editing ? 'group-has-[textarea:placeholder-shown]:tw-opacity-70' : '',
                             ])}
                         >
                             <IconComponent
