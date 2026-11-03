@@ -10,6 +10,9 @@ overrides:
   immer: ^10.2.0
   "postcss-selector-parser@>=6.1.0 <6.1.3": ^7.0.0
   "tinypool@<2.1.2": ^2.1.2
+  "minimatch@>=10.0.0 <11.0.1": ^11.0.1
+  "glob@>=9.0.0 <14.0.2": ^14.0.2
+  "@frontify/fondue>jscodeshift": ^17.4.0
 allowBuilds:
   es5-ext: false
   esbuild: true
