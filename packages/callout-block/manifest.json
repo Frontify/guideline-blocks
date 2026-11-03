@@ -100,6 +100,7 @@
             "type": {
                 "type": "string",
                 "enum": ["tip", "info", "warning", "note"],
+                "frontify-labels": { "tip": "Tip", "info": "Info", "warning": "Warning", "note": "Note" },
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },

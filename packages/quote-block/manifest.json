@@ -126,6 +126,7 @@
                 "type": "string",
                 "frontify-serializable": true,
                 "frontify-serialization-index": 1,
+                "frontify-role": "attribution",
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
