@@ -1,10 +1,22 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
-const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
+const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem }: DoDontTitleProps) => {
+    // Starting a drag or leaving edit mode remounts the title without a blur, so an unsaved draft is also saved on unmount.
+    const unsavedTitleRef = useRef<string | null>(null);
+    const saveDraft = useCallback(() => {
+        if (unsavedTitleRef.current !== null) {
+            onChangeItem(id, { title: unsavedTitleRef.current });
+            unsavedTitleRef.current = null;
+        }
+    }, [id, onChangeItem]);
+
+    useEffect(() => saveDraft, [saveDraft]);
+
     const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
     const styles = {
@@ -19,11 +31,14 @@ const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onC
     if (editing) {
         return (
             <textarea
+                key={title}
                 rows={1}
-                onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                onBlur={() => onChangeItem(id, { title })}
+                defaultValue={title}
+                onChange={(event) => {
+                    unsavedTitleRef.current = event.target.value === title ? null : event.target.value;
+                }}
+                onBlur={saveDraft}
                 style={styles}
-                value={title}
                 aria-label={`Title of ${typeLabel.toLocaleLowerCase()} item `}
                 placeholder="Add a title"
                 className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
