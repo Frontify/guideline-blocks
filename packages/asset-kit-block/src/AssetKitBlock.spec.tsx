@@ -90,6 +90,16 @@ describe('AssetKit Block', () => {
         );
     });
 
+    it('should fit the whole asset into its thumbnail instead of cropping it', () => {
+        renderAssetKitBlock({
+            blockAssets: { [ASSET_SETTINGS_ID]: [{ ...AssetDummy.with(1), width: 2000, height: 250 }] },
+        });
+
+        const thumbnailImage = screen.getByTestId(BLOCK_THUMBNAIL_IMAGE_TEST_ID);
+        expect(thumbnailImage).toHaveClass('tw-object-contain');
+        expect(thumbnailImage).not.toHaveClass('tw-object-cover');
+    });
+
     it('should not display thumbnails in view mode if showThumbnails is set to false', () => {
         renderAssetKitBlock({ blockSettings: { showThumbnails: false }, blockAssets: TWO_ASSETS });
 
