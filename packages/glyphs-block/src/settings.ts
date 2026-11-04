@@ -31,7 +31,7 @@ export const settings = defineSettings({
             info: 'Select a font family from the project.',
             choices: async ({ getAppBridge }): Promise<Choice[]> => {
                 const appBridge = getAppBridge();
-                const fonts = await getFonts(appBridge.getProjectId());
+                const fonts = await getFonts(appBridge.context('projectId').get());
                 fonts.unshift({ label: 'Default', value: 'inherit' });
                 return fonts;
             },
@@ -59,7 +59,7 @@ export const settings = defineSettings({
                     choices: async (bundle): Promise<Choice[]> => {
                         const appBridge = bundle.getAppBridge();
                         const selectedFont = bundle.getBlock(FONT_FAMILY_ID)?.value as string;
-                        const fontWeights = await getFontWeights(appBridge.getProjectId(), selectedFont);
+                        const fontWeights = await getFontWeights(appBridge.context('projectId').get(), selectedFont);
                         fontWeights.unshift({ label: 'Normal', value: 'normal' });
                         return fontWeights;
                     },
