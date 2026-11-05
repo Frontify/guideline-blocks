@@ -57,7 +57,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({
         accept: getMimeType(ALLOWED_EXTENSIONS).join(','),
     });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 

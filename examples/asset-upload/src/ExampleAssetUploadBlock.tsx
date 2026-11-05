@@ -17,7 +17,7 @@ export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !loading && setLoading(true),
     });
 

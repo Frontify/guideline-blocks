@@ -21,7 +21,7 @@ export const ThumbnailItem = ({
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isUploading && setIsUploading(true),
     });
 
