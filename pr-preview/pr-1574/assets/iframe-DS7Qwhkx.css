@@ -1,1 +1,0 @@
-html *,html :before,html :after{box-sizing:border-box}body{background-color:var(--f-theme-settings-background-color);color:var(--f-theme-settings-body-color);font-family:var(--f-theme-settings-body-font-family);font-size:var(--f-theme-settings-body-font-size);line-height:var(--f-theme-settings-body-line-height)}

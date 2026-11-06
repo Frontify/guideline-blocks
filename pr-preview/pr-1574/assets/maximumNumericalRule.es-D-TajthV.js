@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";var t;function n(){return(n=e((()=>{t=e=>({errorMessage:`Value must be smaller than or equal to ${e}`,validate:t=>!!t&&!Number.isNaN(Number(t))&&Number(t)<=e})})))()}export{n,t};
