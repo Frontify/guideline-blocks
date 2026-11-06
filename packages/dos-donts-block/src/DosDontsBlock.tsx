@@ -81,7 +81,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         accept: 'image/*',
     });
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(filesFromInput);
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
     const [activeId, setActiveId] = useState<string | undefined>(undefined);

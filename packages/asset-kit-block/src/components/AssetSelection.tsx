@@ -18,7 +18,7 @@ export const AssetSelection = ({
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true });
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isUploadingAssets && setIsUploadingAssets(true),
     });
 

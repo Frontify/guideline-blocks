@@ -44,7 +44,7 @@ export const useDoDontAssets = ({
         multiple: false,
         accept: 'image/*',
     });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
 

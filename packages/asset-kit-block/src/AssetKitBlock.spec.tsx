@@ -5,6 +5,7 @@ import { BorderStyle } from '@frontify/guideline-blocks-settings';
 import { type Color } from '@frontify/guideline-blocks-shared';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import sinon from 'sinon';
 import { describe, expect, it } from 'vitest';
 
 import { AssetKitBlock } from './AssetKitBlock';
@@ -246,7 +247,7 @@ describe('AssetKit Block', () => {
             blockSettings: DOTTED_WHITE_BLOCK_BORDER,
             blockAssets: TWO_ASSETS,
         });
-        appBridge.getBulkDownloadByToken.onCall(0).resolves({ downloadUrl: '', signature: '' });
+        appBridge.api.withArgs(sinon.match({ name: 'createAssetBulkDownload' })).returns(new Promise<never>(() => {}));
         render(<AssetKitBlock appBridge={appBridge} />);
 
         await userEvent.click(screen.getByTestId(DOWNLOAD_BTN_TEST_ID));
@@ -263,7 +264,9 @@ describe('AssetKit Block', () => {
             blockSettings: DOTTED_WHITE_BLOCK_BORDER,
             blockAssets: TWO_ASSETS,
         });
-        appBridge.getBulkDownloadByToken.rejects(new Error('Something went wrong'));
+        appBridge.api
+            .withArgs(sinon.match({ name: 'createAssetBulkDownload' }))
+            .rejects(new Error('Something went wrong'));
         render(<AssetKitBlock appBridge={appBridge} />);
 
         await userEvent.click(screen.getByTestId(DOWNLOAD_BTN_TEST_ID));

@@ -48,7 +48,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { assetDownloadEnabled } = useBlockPrivacySettings(appBridge, { downloadableId: 'downloadable' });
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 

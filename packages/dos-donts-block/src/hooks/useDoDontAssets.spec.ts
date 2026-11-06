@@ -27,7 +27,7 @@ vi.mock('@frontify/app-bridge', () => ({
         closeAssetChooser: mocks.closeAssetChooser,
     }),
     useFileInput: () => [mocks.openFileDialog, { selectedFiles: uploadState.selectedFiles }],
-    useAssetUpload: ({ onUploadProgress }: { onUploadProgress: () => void }) => {
+    useAssetUpload: (_appBridge: unknown, { onUploadProgress }: { onUploadProgress: () => void }) => {
         mocks.uploadFile.mockImplementation(() => onUploadProgress());
         return [mocks.uploadFile, { results: uploadState.results, doneAll: uploadState.doneAll }];
     },

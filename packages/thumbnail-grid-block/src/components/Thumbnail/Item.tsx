@@ -55,7 +55,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const { id, title, description, altText } = item;
         const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
         const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
-        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
+        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge);
 
         const onOpenAssetChooser = () => {
             // oxlint-disable-next-line typescript/no-floating-promises
