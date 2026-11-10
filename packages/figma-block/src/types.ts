@@ -73,7 +73,7 @@ export type UseImageStageProps = {
 
 export type ImageStageProps = {
     title: string | undefined;
-    url: string;
+    url: string | undefined;
     hasLimitedOptions?: boolean;
     height?: string;
     hasBorder?: boolean;
