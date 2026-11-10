@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-CpSv_5s2.js";e();
