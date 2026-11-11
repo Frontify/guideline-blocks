@@ -2,4 +2,4 @@
 blocks: [template-block]
 ---
 
-The block now only reacts to a chosen template while its own template chooser is open.
+The title and description now follow the connected template, so choosing one in the block and choosing one in the block settings fill them in the same way.

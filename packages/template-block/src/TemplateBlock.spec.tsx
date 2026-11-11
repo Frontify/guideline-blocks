@@ -15,7 +15,7 @@ import {
     convertToRteValue,
     toRgbaString,
 } from '@frontify/guideline-blocks-settings';
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -199,20 +199,22 @@ describe('Template Block', () => {
         expect(previewImage).toHaveAttribute('loading', 'lazy');
     });
 
-    it('should save an empty description if the chosen template has none', async () => {
+    it('should fill the title and description from the template chosen in the block', async () => {
         const template: TemplateLegacy = {
             id: TEMPLATE_ID,
-            title: 'Template without description',
-            description: null,
+            title: 'A template',
+            description: 'A description',
             previewUrl: 'https://preview.url',
             projectId: 1,
             height: 1080,
             width: 1920,
             published: true,
         };
+        const assignedTemplate = TemplateDummy.with(TEMPLATE_ID);
         const appBridge = getAppBridgeBlockStub({
             editorState: true,
             blockSettings: { preview: PREVIEW_MODE_NONE },
+            blockTemplates: { template: [] },
         });
         const unsubscribe = vi.fn();
         appBridge.subscribe.callsFake((eventName, callback) => {
@@ -229,12 +231,54 @@ describe('Template Block', () => {
 
         await waitFor(() => {
             expect(
-                appBridge.updateBlockSettings.calledWithMatch({ description: convertToRteValue(TextStyles.p, '') })
+                appBridge.updateBlockSettings.calledWithMatch({
+                    title: convertToRteValue(TextStyles.heading3, assignedTemplate.name),
+                    description: convertToRteValue(TextStyles.p, assignedTemplate.description),
+                })
             ).toBe(true);
         });
         await waitFor(() => {
             expect(unsubscribe).toHaveBeenCalled();
         });
+    });
+
+    it('should fill the title and description when the template is assigned from outside the block', async () => {
+        const assignedTemplate = TemplateDummy.with(TEMPLATE_ID);
+        const appBridge = getAppBridgeBlockStub({
+            editorState: true,
+            blockSettings: { preview: PREVIEW_MODE_NONE },
+            blockTemplates: { template: [] },
+        });
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        // The settings sidebar assigns the template itself, without the block's chooser.
+        await act(async () => {
+            await appBridge.addTemplateIdsToBlockTemplateKey('template', [TEMPLATE_ID]);
+        });
+
+        await waitFor(() => {
+            expect(
+                appBridge.updateBlockSettings.calledWithMatch({
+                    title: convertToRteValue(TextStyles.heading3, assignedTemplate.name),
+                    description: convertToRteValue(TextStyles.p, assignedTemplate.description),
+                })
+            ).toBe(true);
+        });
+    });
+
+    it('should not overwrite the title and description of a template that is already assigned on mount', async () => {
+        const appBridge = getAppBridgeBlockStub({
+            editorState: true,
+            blockSettings: { preview: PREVIEW_MODE_NONE },
+            blockTemplates: { template: [TemplateDummy.with(TEMPLATE_ID)] },
+        });
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        await waitFor(() => {
+            expect(screen.getByTestId(CONTAINER_TEST_ID)).toBeTruthy();
+        });
+
+        expect(appBridge.updateBlockSettings.called).toBe(false);
     });
 
     it('should render a custom preview image in the size it is displayed at if preview mode is set to custom', async () => {

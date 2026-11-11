@@ -48,6 +48,8 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [templateTextKey, setTemplateTextKey] = useState(0);
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState(false);
     const isSelectingTemplateRef = useRef(false);
+    const hasReadBlockTemplatesRef = useRef(false);
+    const lastTemplateIdRef = useRef<number | null>(null);
     const isEditing = useEditorState(appBridge);
     const { openTemplateChooser, closeTemplateChooser } = useTemplateChooser(appBridge);
 
@@ -88,11 +90,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
             isSelectingTemplateRef.current = true;
             try {
                 await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [template.id]);
-                await updateBlockSettings({
-                    title: convertToRteValue(TextStyles.heading3, template.title),
-                    description: convertToRteValue(TextStyles.p, template.description ?? undefined),
-                });
-                setTemplateTextKey((key) => key + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             } finally {
@@ -100,7 +97,24 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
                 closeTemplateChooser();
             }
         },
-        [closeTemplateChooser, updateBlockSettings, updateTemplateIdsFromKey]
+        [closeTemplateChooser, updateTemplateIdsFromKey]
+    );
+
+    // The title and description follow the assigned template, not the chooser, so that choosing
+    // from the block and choosing from the settings sidebar fill them in the same way.
+    const fillTextFromTemplate = useCallback(
+        async (template: Template) => {
+            try {
+                await updateBlockSettings({
+                    title: convertToRteValue(TextStyles.heading3, template.name),
+                    description: convertToRteValue(TextStyles.p, template.description),
+                });
+                setTemplateTextKey((key) => key + 1);
+            } catch (error) {
+                setLastErrorMessage(error as string);
+            }
+        },
+        [updateBlockSettings]
     );
 
     const handleOpenTemplateChooser = useCallback(
@@ -131,16 +145,25 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
 
     useEffect(() => {
         const templates = blockTemplates[TEMPLATE_BLOCK_SETTING_ID];
-        if (!templates || templates.length === 0) {
-            return;
-        }
+        const lastTemplate = templates && templates.length > 0 ? templates[templates.length - 1] : null;
 
-        const lastTemplate = templates[templates.length - 1];
         if (lastTemplate) {
             // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setSelectedTemplate(lastTemplate);
         }
-    }, [blockTemplates]);
+
+        const isFirstRun = !hasReadBlockTemplatesRef.current;
+        const previousTemplateId = lastTemplateIdRef.current;
+        hasReadBlockTemplatesRef.current = true;
+        lastTemplateIdRef.current = lastTemplate?.id ?? null;
+
+        // Adopt whatever is already assigned on mount, so a reload never overwrites edited text.
+        if (isFirstRun || !lastTemplate || previousTemplateId === lastTemplate.id) {
+            return;
+        }
+
+        fillTextFromTemplate(lastTemplate).catch((error: unknown) => setLastErrorMessage(String(error)));
+    }, [blockTemplates, fillTextFromTemplate]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
