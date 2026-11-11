@@ -2,12 +2,11 @@
 
 import {
     type Template,
-    type TemplateLegacy,
-    closeTemplateChooser,
     useBlockAssets,
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
+    useTemplateChooser,
 } from '@frontify/app-bridge';
 import {
     type BlockProps,
@@ -43,15 +42,19 @@ import {
 
 export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const [lastErrorMessage, setLastErrorMessage] = useState('');
     const [templateTextKey, setTemplateTextKey] = useState(0);
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState(false);
-    const isSelectingTemplateRef = useRef(false);
+    // `undefined` until the host has delivered the block's templates, `null` while none is assigned.
+    const previousTemplateIdRef = useRef<number | null | undefined>(undefined);
     const isEditing = useEditorState(appBridge);
+    const { openTemplateChooser, closeTemplateChooser } = useTemplateChooser(appBridge);
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
+
+    const templates = blockTemplates[TEMPLATE_BLOCK_SETTING_ID];
+    const selectedTemplate: Template | null = templates?.[templates.length - 1] ?? null;
 
     const {
         backgroundColor,
@@ -79,27 +82,30 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasPreview = preview !== PreviewType.None;
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
-    const onTemplateSelected = useCallback(
-        async (result: { template: TemplateLegacy }) => {
-            if (isSelectingTemplateRef.current) {
-                return;
-            }
-            isSelectingTemplateRef.current = true;
+    // Closing first releases the `templateChosen` subscription, so a pick can't be handled twice.
+    // `updateTemplateIdsFromKey` reports failures through `error` instead of rejecting.
+    const handleOpenTemplateChooser = useCallback(
+        () =>
+            openTemplateChooser((template) => {
+                closeTemplateChooser();
+                updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [template.id]).catch(console.error);
+            }),
+        [openTemplateChooser, closeTemplateChooser, updateTemplateIdsFromKey]
+    );
+
+    const fillTextFromTemplate = useCallback(
+        async (template: Template) => {
             try {
-                await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
                 await updateBlockSettings({
-                    title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    description: convertToRteValue(TextStyles.p, result.template.description ?? undefined),
+                    title: convertToRteValue(TextStyles.heading3, template.name),
+                    description: convertToRteValue(TextStyles.p, template.description),
                 });
-                setTemplateTextKey(templateTextKey + 1);
+                setTemplateTextKey((key) => key + 1);
             } catch (error) {
-                setLastErrorMessage(error as string);
-            } finally {
-                isSelectingTemplateRef.current = false;
-                await appBridge.dispatch(closeTemplateChooser());
+                setLastErrorMessage(error instanceof Error ? error.message : String(error));
             }
         },
-        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
+        [updateBlockSettings]
     );
 
     const handleDeleteCustomPreview = useCallback(
@@ -114,35 +120,33 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     );
 
     useEffect(() => {
-        // oxlint-disable-next-line typescript/no-misused-promises
-        const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
-
-        return () => {
-            if (typeof unsubscribeTemplateChooser === 'function') {
-                unsubscribeTemplateChooser();
-            }
-        };
-    }, [appBridge, onTemplateSelected]);
-
-    useEffect(() => {
         if (error !== null) {
             // oxlint-disable-next-line @eslint-react/set-state-in-effect
             setLastErrorMessage(error);
         }
     }, [error]);
 
+    // The title and description follow the assigned template, not the chooser, so that choosing from the
+    // block and choosing from the settings sidebar fill them in the same way. Whatever is assigned when the
+    // templates first arrive is adopted as is, so a reload never overwrites edited text.
     useEffect(() => {
-        const templates = blockTemplates[TEMPLATE_BLOCK_SETTING_ID];
-        if (!templates || templates.length === 0) {
+        if (appBridge.context('templates').get() === undefined) {
+            return;
+        }
+        const previousTemplateId = previousTemplateIdRef.current;
+        previousTemplateIdRef.current = selectedTemplate?.id ?? null;
+
+        if (
+            !isEditing ||
+            previousTemplateId === undefined ||
+            selectedTemplate === null ||
+            previousTemplateId === selectedTemplate.id
+        ) {
             return;
         }
 
-        const lastTemplate = templates[templates.length - 1];
-        if (lastTemplate) {
-            // oxlint-disable-next-line @eslint-react/set-state-in-effect
-            setSelectedTemplate(lastTemplate);
-        }
-    }, [blockTemplates]);
+        fillTextFromTemplate(selectedTemplate).catch(console.error);
+    }, [appBridge, selectedTemplate, isEditing, fillTextFromTemplate]);
 
     useEffect(() => {
         const isAuthenticated = appBridge.context('isAuthenticated').get();
@@ -170,6 +174,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         handleDeleteCustomPreview,
+        handleOpenTemplateChooser,
         hasAuthenticatedUser,
         hasPreview,
         hasTitleOnly,
