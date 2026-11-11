@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type OpenNewPublicationPayload, openNewPublication, openTemplateChooser } from '@frontify/app-bridge';
+import { type OpenNewPublicationPayload, openNewPublication } from '@frontify/app-bridge';
 import { Text, Button } from '@frontify/fondue/components';
 import { type BlockProps } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
@@ -23,6 +23,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         ctaClasses,
         description,
         handleDeleteCustomPreview,
+        handleOpenTemplateChooser,
         hasAuthenticatedUser,
         hasPreview,
         hasTitleOnly,
@@ -63,8 +64,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
             await appBridge.dispatch(openNewPublication(options));
         }
     };
-
-    const handleOpenTemplateChooser = () => appBridge.dispatch(openTemplateChooser());
 
     if (!isEditing && (!selectedTemplate || !hasAuthenticatedUser)) {
         return <div data-test-id="container" className={blockScope.scope}></div>;

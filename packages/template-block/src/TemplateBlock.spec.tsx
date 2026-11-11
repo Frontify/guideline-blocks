@@ -189,8 +189,6 @@ describe('Template Block', () => {
             blockTemplates: { template: [templateDummy] },
             blockSettings: { preview: PREVIEW_MODE_TEMPLATE },
         });
-        // The stub picks a template of its own as soon as the block subscribes to the template chooser.
-        appBridge.subscribe.callsFake(() => () => {});
         render(<TemplateBlock appBridge={appBridge} />);
 
         const previewImage = await screen.findByTestId(PREVIEW_IMAGE_TEST_ID);
@@ -212,19 +210,30 @@ describe('Template Block', () => {
             width: 1920,
             published: true,
         };
-        const appBridge = getAppBridgeBlockStub({ editorState: true });
+        const appBridge = getAppBridgeBlockStub({
+            editorState: true,
+            blockSettings: { preview: PREVIEW_MODE_NONE },
+        });
+        const unsubscribe = vi.fn();
         appBridge.subscribe.callsFake((eventName, callback) => {
             if (eventName === 'templateChosen') {
                 (callback as (event: { template: TemplateLegacy }) => void)({ template });
             }
-            return () => {};
+            return unsubscribe;
         });
         render(<TemplateBlock appBridge={appBridge} />);
+
+        expect(appBridge.subscribe.calledWith('templateChosen')).toBe(false);
+
+        await userEvent.click(screen.getByRole('button', { name: 'Choose existing template' }));
 
         await waitFor(() => {
             expect(
                 appBridge.updateBlockSettings.calledWithMatch({ description: convertToRteValue(TextStyles.p, '') })
             ).toBe(true);
+        });
+        await waitFor(() => {
+            expect(unsubscribe).toHaveBeenCalled();
         });
     });
 

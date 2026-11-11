@@ -3,11 +3,11 @@
 import {
     type Template,
     type TemplateLegacy,
-    closeTemplateChooser,
     useBlockAssets,
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
+    useTemplateChooser,
 } from '@frontify/app-bridge';
 import {
     type BlockProps,
@@ -49,6 +49,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const [hasAuthenticatedUser, setHasAuthenticatedUser] = useState(false);
     const isSelectingTemplateRef = useRef(false);
     const isEditing = useEditorState(appBridge);
+    const { openTemplateChooser, closeTemplateChooser } = useTemplateChooser(appBridge);
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { blockTemplates, updateTemplateIdsFromKey, error } = useBlockTemplates(appBridge);
@@ -80,26 +81,34 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
     const hasTitleOnly = !hasPreview && !hasPageCount && !hasRichTextValue(description);
 
     const onTemplateSelected = useCallback(
-        async (result: { template: TemplateLegacy }) => {
+        async (template: TemplateLegacy) => {
             if (isSelectingTemplateRef.current) {
                 return;
             }
             isSelectingTemplateRef.current = true;
             try {
-                await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [result.template.id]);
+                await updateTemplateIdsFromKey(TEMPLATE_BLOCK_SETTING_ID, [template.id]);
                 await updateBlockSettings({
-                    title: convertToRteValue(TextStyles.heading3, result.template.title),
-                    description: convertToRteValue(TextStyles.p, result.template.description ?? undefined),
+                    title: convertToRteValue(TextStyles.heading3, template.title),
+                    description: convertToRteValue(TextStyles.p, template.description ?? undefined),
                 });
-                setTemplateTextKey(templateTextKey + 1);
+                setTemplateTextKey((key) => key + 1);
             } catch (error) {
                 setLastErrorMessage(error as string);
             } finally {
                 isSelectingTemplateRef.current = false;
-                await appBridge.dispatch(closeTemplateChooser());
+                closeTemplateChooser();
             }
         },
-        [appBridge, templateTextKey, updateBlockSettings, updateTemplateIdsFromKey]
+        [closeTemplateChooser, updateBlockSettings, updateTemplateIdsFromKey]
+    );
+
+    const handleOpenTemplateChooser = useCallback(
+        () =>
+            openTemplateChooser((template) => {
+                onTemplateSelected(template).catch(console.error);
+            }),
+        [openTemplateChooser, onTemplateSelected]
     );
 
     const handleDeleteCustomPreview = useCallback(
@@ -112,17 +121,6 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         },
         [deleteAssetIdsFromKey, updateBlockSettings]
     );
-
-    useEffect(() => {
-        // oxlint-disable-next-line typescript/no-misused-promises
-        const unsubscribeTemplateChooser = appBridge.subscribe('templateChosen', onTemplateSelected);
-
-        return () => {
-            if (typeof unsubscribeTemplateChooser === 'function') {
-                unsubscribeTemplateChooser();
-            }
-        };
-    }, [appBridge, onTemplateSelected]);
 
     useEffect(() => {
         if (error !== null) {
@@ -170,6 +168,7 @@ export const useTemplateBlockData = (appBridge: BlockProps['appBridge']) => {
         ctaClasses: getCtaClasses(hasPreview, hasTitleOnly, textPositioning, textAnchoringHorizontal),
         description,
         handleDeleteCustomPreview,
+        handleOpenTemplateChooser,
         hasAuthenticatedUser,
         hasPreview,
         hasTitleOnly,
