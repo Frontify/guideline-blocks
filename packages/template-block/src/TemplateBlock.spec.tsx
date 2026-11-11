@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { type TemplateLegacy } from '@frontify/app-bridge';
+import { type Template, type TemplateLegacy } from '@frontify/app-bridge';
 import {
     AssetDummy,
     TemplateDummy,
@@ -86,6 +86,44 @@ vi.mock('@frontify/guideline-blocks-shared', async (importOriginal) => ({
     ...(await importOriginal<typeof GuidelineBlocksShared>()),
     useImageContainer: () => ({ containerWidth: CONTAINER_WIDTH, setContainerRef: vi.fn() }),
 }));
+
+type BlockTemplates = Record<string, Template[]>;
+
+/**
+ * Replaces the stub's `templates` context with one whose value this test controls, including
+ * `undefined` for a host that hasn't delivered the templates yet. Returns a setter that notifies subscribers.
+ */
+const stubTemplatesContext = (
+    appBridge: ReturnType<typeof getAppBridgeBlockStub>,
+    initial: BlockTemplates | undefined
+) => {
+    let current = initial;
+    const subscribers = new Set<(templates: BlockTemplates | undefined) => void>();
+    const originalContext = appBridge.context;
+    const context = (key: string) =>
+        key === 'templates'
+            ? {
+                  get: () => current,
+                  subscribe: (subscriber: (templates: BlockTemplates | undefined) => void) => {
+                      subscribers.add(subscriber);
+                      return () => subscribers.delete(subscriber);
+                  },
+              }
+            : originalContext(key as Parameters<typeof originalContext>[0]);
+    appBridge.context = context as unknown as typeof appBridge.context;
+
+    return (next: BlockTemplates) => {
+        current = next;
+        for (const subscriber of subscribers) {
+            subscriber(next);
+        }
+    };
+};
+
+const templateText = (template: Template) => ({
+    title: convertToRteValue(TextStyles.heading3, template.name),
+    description: convertToRteValue(TextStyles.p, template.description),
+});
 
 const renderTemplateBlock = (appBridgeProps: Parameters<typeof withAppBridgeBlockStubs>[1] = {}) => {
     const [TemplateBlockWithStubs, appBridge] = withAppBridgeBlockStubs(TemplateBlock, appBridgeProps);
@@ -219,7 +257,8 @@ describe('Template Block', () => {
         const unsubscribe = vi.fn();
         appBridge.subscribe.callsFake((eventName, callback) => {
             if (eventName === 'templateChosen') {
-                (callback as (event: { template: TemplateLegacy }) => void)({ template });
+                // The host answers after the subscription is set up, never during it.
+                setTimeout(() => (callback as (event: { template: TemplateLegacy }) => void)({ template }));
             }
             return unsubscribe;
         });
@@ -230,16 +269,10 @@ describe('Template Block', () => {
         await userEvent.click(screen.getByRole('button', { name: 'Choose existing template' }));
 
         await waitFor(() => {
-            expect(
-                appBridge.updateBlockSettings.calledWithMatch({
-                    title: convertToRteValue(TextStyles.heading3, assignedTemplate.name),
-                    description: convertToRteValue(TextStyles.p, assignedTemplate.description),
-                })
-            ).toBe(true);
+            expect(appBridge.updateBlockSettings.calledWithMatch(templateText(assignedTemplate))).toBe(true);
         });
-        await waitFor(() => {
-            expect(unsubscribe).toHaveBeenCalled();
-        });
+        expect(appBridge.dispatch.calledWithMatch({ name: 'closeTemplateChooser' })).toBe(true);
+        expect(unsubscribe).toHaveBeenCalled();
     });
 
     it('should fill the title and description when the template is assigned from outside the block', async () => {
@@ -257,13 +290,69 @@ describe('Template Block', () => {
         });
 
         await waitFor(() => {
-            expect(
-                appBridge.updateBlockSettings.calledWithMatch({
-                    title: convertToRteValue(TextStyles.heading3, assignedTemplate.name),
-                    description: convertToRteValue(TextStyles.p, assignedTemplate.description),
-                })
-            ).toBe(true);
+            expect(appBridge.updateBlockSettings.calledWithMatch(templateText(assignedTemplate))).toBe(true);
         });
+    });
+
+    it('should save an empty description if the assigned template has none', async () => {
+        const template = { ...TemplateDummy.with(TEMPLATE_ID), description: '' };
+        const appBridge = getAppBridgeBlockStub({ editorState: true, blockSettings: { preview: PREVIEW_MODE_NONE } });
+        const setTemplates = stubTemplatesContext(appBridge, { template: [] });
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        act(() => setTemplates({ template: [template] }));
+
+        await waitFor(() => {
+            expect(appBridge.updateBlockSettings.calledWithMatch(templateText(template))).toBe(true);
+        });
+    });
+
+    it('should not overwrite the title and description when the templates arrive after the block mounted', async () => {
+        const appBridge = getAppBridgeBlockStub({ editorState: true, blockSettings: { preview: PREVIEW_MODE_NONE } });
+        const setTemplates = stubTemplatesContext(appBridge, undefined);
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        act(() => setTemplates({ template: [TemplateDummy.with(TEMPLATE_ID)] }));
+
+        expect(await screen.findByText('A template')).toBeInTheDocument();
+        expect(appBridge.updateBlockSettings.called).toBe(false);
+
+        // A later change is still a change.
+        const replacement = { ...TemplateDummy.with(TEMPLATE_ID + 1), name: 'Another template' };
+        act(() => setTemplates({ template: [replacement] }));
+
+        await waitFor(() => {
+            expect(appBridge.updateBlockSettings.calledWithMatch(templateText(replacement))).toBe(true);
+        });
+    });
+
+    it('should not write the title and description while not editing', async () => {
+        const appBridge = getAppBridgeBlockStub({ editorState: false, blockTemplates: { template: [] } });
+        render(<TemplateBlock appBridge={appBridge} />);
+
+        await act(async () => {
+            await appBridge.addTemplateIdsToBlockTemplateKey('template', [TEMPLATE_ID]);
+        });
+
+        expect(await screen.findByTestId(CARD_TEST_ID)).toBeInTheDocument();
+        expect(appBridge.updateBlockSettings.called).toBe(false);
+    });
+
+    it('should show no connected template once it is removed', async () => {
+        const appBridge = getAppBridgeBlockStub({
+            editorState: true,
+            blockSettings: { preview: PREVIEW_MODE_NONE },
+            blockTemplates: { template: [TemplateDummy.with(TEMPLATE_ID)] },
+        });
+        render(<TemplateBlock appBridge={appBridge} />);
+        expect(screen.getByText('A template')).toBeInTheDocument();
+
+        await act(async () => {
+            await appBridge.deleteTemplateIdsFromBlockTemplateKey('template', [TEMPLATE_ID]);
+        });
+
+        expect(await screen.findByText('None')).toBeInTheDocument();
+        expect(appBridge.updateBlockSettings.called).toBe(false);
     });
 
     it('should not overwrite the title and description of a template that is already assigned on mount', async () => {
