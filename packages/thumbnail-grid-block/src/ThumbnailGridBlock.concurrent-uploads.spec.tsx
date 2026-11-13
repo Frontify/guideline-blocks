@@ -5,6 +5,10 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
+import { type SortableThumbnailItemProps } from './types';
+
+import type * as Components from './components/';
+import type * as AppBridge from '@frontify/app-bridge';
 
 const { updateAssetIdsFromKey, resolveUpload, pendingUploads } = vi.hoisted(() => {
     const pending: Record<string, () => void> = {};
@@ -16,7 +20,7 @@ const { updateAssetIdsFromKey, resolveUpload, pendingUploads } = vi.hoisted(() =
 });
 
 vi.mock('@frontify/app-bridge', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('@frontify/app-bridge')>();
+    const actual = await importOriginal<typeof AppBridge>();
     return {
         ...actual,
         useBlockAssets: () => ({
@@ -28,14 +32,17 @@ vi.mock('@frontify/app-bridge', async (importOriginal) => {
 });
 
 vi.mock('./components/', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('./components/')>();
+    const actual = await importOriginal<typeof Components>();
     return {
         ...actual,
-        SortableItem: ({ item, isLoading, onFilesSelected, onFilesUploaded }: any) => (
+        SortableItem: ({ item, isLoading, onFilesSelected, onFilesUploaded }: SortableThumbnailItemProps) => (
             <div>
-                <span data-testid={`loading-${item.id}`}>{isLoading ? 'loading' : 'ready'}</span>
-                <button onClick={() => onFilesSelected([] as unknown as FileList, item.id)}>start {item.id}</button>
+                <span data-test-id={`loading-${item.id}`}>{isLoading ? 'loading' : 'ready'}</span>
+                <button type="button" onClick={() => onFilesSelected([] as unknown as FileList, item.id)}>
+                    start {item.id}
+                </button>
                 <button
+                    type="button"
                     onClick={() =>
                         onFilesUploaded(
                             [{ ...AssetDummy.with(Number(item.id)), title: `Uploaded ${item.id}` }],
