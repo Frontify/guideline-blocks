@@ -315,7 +315,6 @@ describe("Dos & Don'ts Block", () => {
                 items: [{ id: '1', title: 'Typed title' }, { id: '2' }],
             });
             fireEvent.keyDown(document, { code: 'Escape', key: 'Escape' });
-            // dnd-kit keeps a click-swallowing listener on document for 50ms after a pointer drag ends.
             await act(() => new Promise((resolve) => setTimeout(resolve, 60)));
         });
     });

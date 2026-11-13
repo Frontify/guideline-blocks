@@ -1,21 +1,29 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
-import { useCallback, useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
 const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem }: DoDontTitleProps) => {
-    // Starting a drag or leaving edit mode remounts the title without a blur, so an unsaved draft is also saved on unmount.
-    const unsavedTitleRef = useRef<string | null>(null);
-    const saveDraft = useCallback(() => {
-        if (unsavedTitleRef.current !== null) {
-            onChangeItem(id, { title: unsavedTitleRef.current });
-            unsavedTitleRef.current = null;
-        }
-    }, [id, onChangeItem]);
+    const [draftTitle, setDraftTitle] = useState(title);
+    const [syncedTitle, setSyncedTitle] = useState(title);
+    if (title !== syncedTitle) {
+        setSyncedTitle(title);
+        setDraftTitle(title);
+    }
 
-    useEffect(() => saveDraft, [saveDraft]);
+    const saveDraft = () => {
+        if (draftTitle !== title) {
+            onChangeItem(id, { title: draftTitle });
+        }
+    };
+
+    const saveDraftRef = useRef(saveDraft);
+    useLayoutEffect(() => {
+        saveDraftRef.current = saveDraft;
+    });
+    useLayoutEffect(() => () => saveDraftRef.current(), [editing]);
 
     const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
@@ -31,12 +39,9 @@ const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem }: D
     if (editing) {
         return (
             <textarea
-                key={title}
                 rows={1}
-                defaultValue={title}
-                onChange={(event) => {
-                    unsavedTitleRef.current = event.target.value === title ? null : event.target.value;
-                }}
+                value={draftTitle}
+                onChange={(event) => setDraftTitle(event.target.value)}
                 onBlur={saveDraft}
                 style={styles}
                 aria-label={`Title of ${typeLabel.toLocaleLowerCase()} item `}
