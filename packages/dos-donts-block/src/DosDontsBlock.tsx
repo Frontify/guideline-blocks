@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DndContext, type DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
+import { DndContext, type DragEndEvent, DragOverlay, type DragStartEvent, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import {
@@ -259,12 +259,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
     );
 
-    const onChangeLocalItem = useCallback((itemId: string, value: ValueType, type: ChangeType) => {
-        setLocalItems((previousItems) =>
-            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
-        );
-    }, []);
-
     const onChangeItem = useCallback(
         (itemId: string, change: Partial<Record<ChangeType, ValueType>>) => {
             setLocalItems((previousItems) => {
@@ -282,11 +276,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         [setBlockSettings]
     );
 
-    const handleDragStart = (event: DragEndEvent) => {
-        const { active } = event;
-
-        saveItems(localItems);
-        setActiveId(active.id as string);
+    const handleDragStart = (event: DragStartEvent) => {
+        setActiveId(event.active.id as string);
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -310,7 +301,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const getDoDontItemProps = (item: Item) => ({
         id: item.id,
         onChangeItem,
-        onChangeLocalItem,
         onRemoveSelf: removeItemById,
         title: item.title,
         body: item.body,
@@ -345,7 +335,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue,
         borderWidth,
         updateAssetIdsFromKey,
-        activeId,
     });
 
     const onOpenAssetChooser = () => {
