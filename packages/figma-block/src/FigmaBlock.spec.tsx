@@ -3,19 +3,31 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview } from './types';
+
+import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 
 const MAIN_BLOCK_TEST_ID = 'figma-block';
 const EMPTY_BLOCK_TEST_ID = 'figma-empty-block';
 const IMAGE_PREVIEW_TEST_ID = 'figma-image-preview';
 const LIVE_PREVIEW_TEST_ID = 'figma-live-preview';
 const FULL_SCREEN_TEST_ID = 'figma-full-screen';
+const CONTAINER_WIDTH = 400;
+
+vi.mock('@frontify/guideline-blocks-shared', async (importOriginal) => ({
+    ...(await importOriginal<typeof GuidelineBlocksShared>()),
+    useImageContainer: () => ({ containerWidth: CONTAINER_WIDTH, setContainerRef: vi.fn() }),
+}));
 
 describe('Figma Block', () => {
+    afterEach(() => {
+        vi.unstubAllGlobals();
+    });
+
     it('renders a Figma block', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock);
 
@@ -63,6 +75,28 @@ describe('Figma Block', () => {
         render(<FigmaBlockWithStubs />);
 
         expect(screen.getByTestId(IMAGE_PREVIEW_TEST_ID)).toBeInTheDocument();
+    });
+
+    it('should load the Figma image preview lazily in the size the block is displayed at', () => {
+        vi.stubGlobal('devicePixelRatio', 2);
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
+            blockAssets: {
+                [ASSET_ID]: [
+                    {
+                        ...AssetDummy.with(345),
+                        externalUrl: 'https://picsum.photos/200/200',
+                        previewUrl: 'https://preview.url/frame?width={width}',
+                    },
+                ],
+            },
+            blockSettings: { hasLimitedOptions: true },
+        });
+
+        render(<FigmaBlockWithStubs />);
+
+        const image = within(screen.getByTestId(IMAGE_PREVIEW_TEST_ID)).getByRole('img');
+        expect(image).toHaveAttribute('src', 'https://preview.url/frame?width=800&format=webp&quality=75');
+        expect(image).toHaveAttribute('loading', 'lazy');
     });
 
     it('renders a Figma Live iframe preview', () => {

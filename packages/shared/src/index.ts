@@ -12,4 +12,5 @@ export { useCopy } from './hooks/useCopy';
 export { useElementWidth } from './hooks/useElementWidth';
 export { useImageContainer } from './hooks/useImageContainer';
 export { generateRandomId } from './utils/generateRandomId';
+export { getDevicePixelRatio, getOptimisedImageUrl } from './utils/getOptimisedImageUrl';
 export { useDndSensors } from './hooks/useDndSensors';

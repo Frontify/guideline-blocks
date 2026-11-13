@@ -4,6 +4,7 @@ import { toHex8String, radiusStyleMap } from '@frontify/guideline-blocks-setting
 
 import { FullscreenOverlay } from './components/FullscreenOverlay';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components/ImageStageControls';
+import { isZoomable } from './helpers/isZoomable';
 import { getBorderOfBlock } from './helpers/mapCommonStyle';
 import { useImageStage } from './hooks/useImageStage';
 import { DEFAULT_HEIGHT } from './settings';
@@ -60,6 +61,8 @@ export const ImageStage = ({
                                 className="tw-relative"
                                 width="100%"
                                 height="100%"
+                                loading="lazy"
+                                decoding="async"
                                 onLoad={() => setIsImageLoaded(true)}
                             />
                         </div>
@@ -72,7 +75,7 @@ export const ImageStage = ({
                             }}
                         />
                     </div>
-                    {!hasLimitedOptions && (
+                    {isZoomable({ hasLimitedOptions, allowZooming, allowFullScreen }) && (
                         <>
                             {allowFullScreen && (
                                 <DrawFullScreenActionButton
