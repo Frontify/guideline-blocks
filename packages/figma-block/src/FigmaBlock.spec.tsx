@@ -3,12 +3,13 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview } from './types';
+
+import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 
 const MAIN_BLOCK_TEST_ID = 'figma-block';
 const EMPTY_BLOCK_TEST_ID = 'figma-empty-block';
