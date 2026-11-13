@@ -2,13 +2,14 @@
 
 import { type AppBridgeBlock } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue/components';
-import { useElementWidth } from '@frontify/guideline-blocks-shared';
+import { getOptimisedImageUrl, useImageContainer } from '@frontify/guideline-blocks-shared';
 
+import { isZoomable } from '../helpers/isZoomable';
 import { useAssetStatusPolling } from '../hooks/useAssetStatusPolling';
 import { ImageStage } from '../ImageStage';
 import { type ImageStageProps } from '../types';
 import { extractUrlParameterFromUriQueries } from '../utilities/extractUrlParameterFromUriQueries';
-import { getPreviewUrl, getPreviewWidth } from '../utilities/getPreviewUrl';
+import { getPreviewWidth } from '../utilities/getPreviewWidth';
 
 import { FigmaLink } from './FigmaLink';
 
@@ -30,15 +31,15 @@ export const FigmaImagePreview = ({
     ...imageStageProps
 }: FigmaImagePreviewProps) => {
     const { isReady } = useAssetStatusPolling(appBridge, assetId, assetStatus);
-    const { ref, width: blockWidth } = useElementWidth<HTMLDivElement>();
-    const { hasLimitedOptions = true, allowZooming, allowFullScreen } = imageStageProps;
-    const isZoomable = !hasLimitedOptions && (allowZooming || allowFullScreen);
+    const { containerWidth, setContainerRef } = useImageContainer();
     // Until the block is measured there's no width to request, and loading the full-size image is what we avoid.
-    const previewUrl = url && blockWidth > 0 ? getPreviewUrl(url, getPreviewWidth(blockWidth, isZoomable)) : undefined;
+    const previewUrl = containerWidth
+        ? getOptimisedImageUrl(url, getPreviewWidth(containerWidth, isZoomable(imageStageProps)))
+        : undefined;
 
     return (
-        <div ref={ref} data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-            {isReady ? (
+        <div ref={setContainerRef} data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
+            {isReady && previewUrl ? (
                 <ImageStage {...imageStageProps} url={previewUrl} />
             ) : (
                 <div

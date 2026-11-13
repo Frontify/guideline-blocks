@@ -6,13 +6,10 @@ import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import * as React from 'react';
 import { type CSSProperties, useCallback, useMemo, useState } from 'react';
 
-import { ImageFormat } from '../../types';
+import { type ImageFormat } from '../../types';
+import { getDevicePixelRatio, getOptimisedImageUrl } from '../../utils/getOptimisedImageUrl';
 
 export const PLACEHOLDER_SOURCE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
-
-export const MAX_DEVICE_PIXEL_RATIO = 2;
-export const DEFAULT_QUALITY = 80;
-export const DEFAULT_HIGH_DENSITY_QUALITY = 75;
 
 // Only the fields the component reads, so images that aren't block assets (like template previews) can use it too.
 type ResponsiveImageSource = Pick<Asset, 'extension' | 'genericUrl' | 'height' | 'originUrl' | 'previewUrl' | 'width'>;
@@ -28,42 +25,38 @@ type ResponsiveImageProps = {
     testId?: string;
 };
 
-const withConversionParams = (source: string, format: ImageFormat, quality: number) => {
-    const url = new URL(source, document.baseURI);
-    url.searchParams.set('format', format);
-    url.searchParams.set('quality', quality.toString());
-    return url.toString();
+const getSource = (image: ResponsiveImageSource, widthToRequest: number, format?: ImageFormat, quality?: number) => {
+    // Gif images can have a loop count property
+    // Which is lost during our image processing
+    if (image.extension === 'gif') {
+        return image.originUrl;
+    }
+
+    const source = image.previewUrl || image.genericUrl;
+
+    if (image.extension === 'svg') {
+        return source.replace('{width}', widthToRequest.toString());
+    }
+
+    return getOptimisedImageUrl(source, widthToRequest, { format, quality });
 };
 
 export const ResponsiveImage = ({
     image,
     containerWidth = 0,
     alt,
-    format = ImageFormat.WEBP,
+    format,
     className = '',
     style,
     quality,
     testId = 'responsive-image',
 }: ResponsiveImageProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const devicePixelRatio = Math.min(MAX_DEVICE_PIXEL_RATIO, Math.max(1, window?.devicePixelRatio ?? 1));
-    const qualityToRequest = quality ?? (devicePixelRatio >= 2 ? DEFAULT_HIGH_DENSITY_QUALITY : DEFAULT_QUALITY);
     const imageWidth = image.width || containerWidth;
     const imageHeight = image.height ?? 0;
-    const imageWidthToRequest = Math.min(containerWidth * devicePixelRatio, imageWidth);
+    const imageWidthToRequest = Math.min(containerWidth * getDevicePixelRatio(), imageWidth);
 
-    const allowConversions = !['gif', 'svg'].includes(image.extension);
-
-    const source = image.previewUrl || image.genericUrl;
-
-    // Gif images can have a loop count property
-    // Which is lost during our image processing
-    const sourceWithWidth =
-        image.extension === 'gif' ? image.originUrl : source.replace('{width}', imageWidthToRequest.toString());
-
-    const sourceWithConversions = allowConversions
-        ? withConversionParams(sourceWithWidth, format, qualityToRequest)
-        : sourceWithWidth;
+    const sourceWithConversions = getSource(image, imageWidthToRequest, format, quality);
     const hasMeasuredContainer = image.extension === 'gif' || containerWidth > 0;
     const sourceOptimised = hasMeasuredContainer ? sourceWithConversions : PLACEHOLDER_SOURCE;
 
