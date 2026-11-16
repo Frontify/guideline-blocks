@@ -1,5 +1,8 @@
 # Guideline Blocks
 
+Conventions, commands and the guide for agents and contributors live in [AGENTS.md](./AGENTS.md); reference
+material is in [docs/](./docs/).
+
 ## Local block development
 
 ### Requirements:
@@ -18,21 +21,17 @@
     ```
     $ pnpm install
     ```
-3. Create a build of the utilities
-    ```
-    $ pnpm build
-    ```
-4. Serve a block
+3. Serve a block
     ```
     $ cd packages/<block name>
     $ pnpm serve
     ```
-5. Go to your Frontify guideline
-6. Switch to edit mode
+4. Go to your Frontify guideline
+5. Switch to edit mode
    ![Guideline Edit mode](./docs/guideline-edit-mode.png)
-7. Click on the plus icon and add a "Local Block Development" block
+6. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
-8. Choose port (default is 5600) and click OK
+7. Choose port (default is 5600) and click OK
 
 ## Releasing
 
