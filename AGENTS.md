@@ -11,12 +11,12 @@ Rules, commands and conventions are here. Reference material lives in `docs/`; r
 | `docs/host.md`       | need to know what the host does: loading, when context changes, error boundary, sidebar, local dev   |
 | `docs/styling.md`    | write CSS or Tailwind: scoping mechanics, Fondue, theme variables, responsive images                  |
 | `docs/testing.md`    | write a spec or story: stub options and quirks, dummies, Storybook                                    |
-| `docs/upgrading.md`  | bump brand-sdk packages, or hit a difference between the pinned and the documented versions           |
+| `docs/upgrading.md`  | bump `@frontify/app-bridge`, `@frontify/guideline-blocks-settings` or `@frontify/fondue`                   |
 
-**Version baseline.** Written for the brand-sdk `dev` branch: `@frontify/app-bridge` 4.0.0-alpha.83,
-`@frontify/guideline-blocks-settings` 4.0.0-alpha.17 (sidebar-settings 0.12, Fondue 14.0.0-rc.0), `frontify-cli`
-6.4.3. The `package.json` files may still pin alpha.81 / alpha.15 / Fondue 13.11; `docs/upgrading.md` lists the
-differences. Source of truth for the APIs is `../brand-sdk` (`dev` branch) when it is checked out next to this
+**Version baseline.** `@frontify/app-bridge` 4.0.0-alpha.83, `@frontify/guideline-blocks-settings` 4.0.0-alpha.18
+(sidebar-settings 0.12; Fondue 14.0.0-rc.0 is its peer dependency, so every block pins Fondue itself) and
+`frontify-cli` ^6.4, as pinned in the `package.json` files. `docs/upgrading.md` is the bump procedure. Source of
+truth for the APIs is `../brand-sdk` (`dev` branch) when it is checked out next to this
 repo, otherwise the installed types in
 `packages/<block>/node_modules/@frontify/{app-bridge,guideline-blocks-settings}/dist/index.d.ts`.
 

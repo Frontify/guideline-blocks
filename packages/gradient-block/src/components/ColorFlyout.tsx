@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Validation } from '@frontify/fondue';
 import { Button, Flyout, Label, Text, TextInput, Tooltip } from '@frontify/fondue/components';
 import { IconCheckMark, IconQuestionMarkCircle } from '@frontify/fondue/icons';
 import { type Color } from '@frontify/guideline-blocks-shared';
@@ -22,14 +21,14 @@ export const ColorFlyout = ({
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(Math.round(currentlyEditingPosition).toString());
     const [color, setColor] = useState<Color>(actualColor?.color ?? defaultColor);
-    const [colorPositionValidation, setColorPositionValidation] = useState<Validation>(Validation.Default);
+    const [colorPositionValidation, setColorPositionValidation] = useState<'error' | 'neutral'>('neutral');
     const id = useId();
     const colorInputId = `${id}-color`;
     const positionInputId = `${id}-position`;
-    const hasPositionError = colorPositionValidation === Validation.Error;
+    const hasPositionError = colorPositionValidation === 'error';
 
     const editColor = () => {
-        if (colorPositionValidation === Validation.Error) {
+        if (hasPositionError) {
             return;
         }
         const newGradientColors = gradientColors.map((item) => {
@@ -59,10 +58,10 @@ export const ColorFlyout = ({
             valueAsNumber <= 100 &&
             gradientColors.every((item) => item.position !== valueAsNumber)
         ) {
-            setColorPositionValidation(Validation.Default);
+            setColorPositionValidation('neutral');
             setColorPosition(valueAsNumber.toString());
         } else if (value === '') {
-            setColorPositionValidation(Validation.Error);
+            setColorPositionValidation('error');
             setColorPosition(value);
         }
     };
@@ -105,7 +104,7 @@ export const ColorFlyout = ({
                                 id={positionInputId}
                                 value={colorPosition}
                                 type="number"
-                                status={hasPositionError ? 'error' : 'neutral'}
+                                status={colorPositionValidation}
                                 onChange={(event) => setValidColorPosition(event.target.value)}
                             />
                             {hasPositionError && (

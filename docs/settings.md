@@ -1,7 +1,8 @@
 # Settings sidebar and `@frontify/guideline-blocks-settings`
 
-Reference for `@frontify/guideline-blocks-settings` 4.0.0-alpha.17 and the `@frontify/sidebar-settings` 0.12 it
-re-exports. Rules and conventions are in [`../AGENTS.md`](../AGENTS.md). Source:
+Reference for `@frontify/guideline-blocks-settings` 4.0.0-alpha.18 and the `@frontify/sidebar-settings` 0.12 it
+re-exports. Since alpha.18 `@frontify/fondue` is a peer dependency, so every block pins Fondue itself and only one
+copy is installed. Rules and conventions are in [`../AGENTS.md`](../AGENTS.md). Source:
 `../brand-sdk/packages/guideline-blocks-settings/src` and `../brand-sdk/packages/sidebar-settings/src`, or the
 installed `packages/<block>/node_modules/@frontify/guideline-blocks-settings/dist/index.d.ts`.
 
@@ -119,8 +120,8 @@ helper does the same by hand; prefer the hook. `manifest.json` lists `security` 
   `plugins` once with `useMemo` (`LinkPlugin`/`ButtonPlugin` need `appBridge`) and keep handlers in
   `useCallback`; re-creating them re-mounts the editor. To push a value change into a mounted editor (e.g. a
   title derived from a chosen asset), change its `key` (`titleKey` pattern). Plugins and props are typed
-  against Fondue 14's `@frontify/fondue/rte`; a block's own `PluginComposer` must come from the same Fondue
-  major. Helpers: `convertToRteValue(textStyle, text, align?)`, `hasRichTextValue(value)`, `TextStyles` enum,
+  against Fondue 14's `@frontify/fondue/rte`; with Fondue as a peer dependency there is one copy, so a block's own
+  `PluginComposer` type-checks against them. Helpers: `convertToRteValue(textStyle, text, align?)`, `hasRichTextValue(value)`, `TextStyles` enum,
   `AllTextStylePlugins`, `AllTextStyles`, `defaultPluginsWithLinkChooser`, `BlockStyles` (inline styles bound to
   the guideline theme's `--f-theme-settings-*` variables, including `buttonPrimary`/`buttonSecondary`/`buttonTertiary` with `hover`).
 - **`BlockItemWrapper`** draws the hover outline and the floating toolbar in edit mode. `toolbarItems` is an
