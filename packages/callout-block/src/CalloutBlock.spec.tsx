@@ -3,7 +3,7 @@
 import { readability } from '@ctrl/tinycolor';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { render, screen, waitFor } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, onTestFinished, vi } from 'vitest';
 
 import { CalloutBlock } from './CalloutBlock';
 import { getEffectiveBackgroundColor } from './helpers/color';
@@ -294,6 +294,31 @@ describe('Callout Block', () => {
         expect(block).toHaveStyle({ backgroundColor: 'rgba(50, 40, 145, 1)' });
         await waitFor(() => {
             expect(block).toHaveStyle({ color: 'rgb(255, 255, 255)' });
+        });
+    });
+
+    it('should update its colors when the theme styles of its section change', async () => {
+        mockThemeSettings({ '--f-theme-settings-accent-color-note-color': 'rgba(50, 40, 145, 1)' });
+        const section = document.createElement('div');
+        section.dataset.section = 'true';
+        const sectionStyle = document.createElement('style');
+        section.append(sectionStyle);
+        document.body.append(section);
+        onTestFinished(() => section.remove());
+
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: { textValue: 'This is a note', type: Type.Note, appearance: Appearance.Strong },
+        });
+        render(<CalloutBlockWithStubs />, { container: section.appendChild(document.createElement('div')) });
+
+        const block = screen.getByTestId(CALLOUT_BLOCK_TEST_ID);
+        expect(block).toHaveStyle({ backgroundColor: 'rgba(50, 40, 145, 1)' });
+
+        mockThemeSettings({ '--f-theme-settings-accent-color-note-color': 'rgba(222, 27, 27, 1)' });
+        sectionStyle.setAttribute('data-updated', 'true');
+
+        await waitFor(() => {
+            expect(block).toHaveStyle({ backgroundColor: 'rgba(222, 27, 27, 1)' });
         });
     });
 

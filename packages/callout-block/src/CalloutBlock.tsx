@@ -16,7 +16,6 @@ import blockScope from '../block-scope.json';
 
 import { CalloutIcon } from './components/CalloutIcon';
 import { computeStyles } from './helpers/color';
-import { isThemeEnabled } from './helpers/theme';
 import { getOverwrittenThemeSettings } from './helpers/theme-settings';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, type BlockSettings, Icon, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
@@ -28,18 +27,15 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { type, appearance } = blockSettings;
     const isEditing = useEditorState(appBridge);
     const hostElement = useRef<HTMLDivElement>(null);
-    const isTheme = isThemeEnabled();
 
     const { blockAssets, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const customIcon = blockAssets?.[ICON_ASSET_ID]?.[0];
 
-    const designSettingsStyleTagRef = useRef<HTMLElement | null>(null);
+    const sectionStyleTagRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         if (hostElement.current) {
-            designSettingsStyleTagRef.current = isTheme
-                ? (hostElement.current?.closest('[data-section]')?.firstChild as HTMLElement)
-                : document.getElementById('design-settings');
+            sectionStyleTagRef.current = hostElement.current.closest('[data-section]')?.firstChild as HTMLElement;
         }
         // oxlint-disable-next-line @eslint-react/exhaustive-deps
     }, []);
@@ -65,16 +61,13 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     useEffect(() => {
         updateStyles();
 
-        if (!designSettingsStyleTagRef.current) {
+        if (!sectionStyleTagRef.current) {
             return;
         }
 
         const styleChangeObserver = new MutationObserver(() => updateStyles());
 
-        styleChangeObserver.observe(designSettingsStyleTagRef.current, {
-            childList: !isTheme,
-            attributes: true,
-        });
+        styleChangeObserver.observe(sectionStyleTagRef.current, { attributes: true });
 
         return () => {
             styleChangeObserver.disconnect();
