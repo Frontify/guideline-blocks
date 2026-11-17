@@ -38,6 +38,9 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
+        if (selectedAssets.length === 0) {
+            return;
+        }
         const newItemsToAdd = addNewItemsIfNeeded(selectedAssets);
         const uploadingIdsForItem = [itemId, ...newItemsToAdd.map((item) => item.id)];
         setUploadingItemIds((previous) => ({ ...previous, [itemId]: uploadingIdsForItem }));
@@ -54,7 +57,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onFilesSelected = (files: FileList, itemId: string) => {
-        if (files) {
+        if (files.length > 0) {
             const newItemsToAdd = addNewItemsIfNeeded(files);
             setUploadingItemIds((previous) => ({
                 ...previous,
@@ -65,6 +68,10 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
 
     const onFilesUploaded = async (uploadedAssets: Asset[], itemId: string) => {
         if (!uploadingItemIds[itemId]) {
+            return;
+        }
+        if (uploadedAssets.length === 0) {
+            setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
             return;
         }
 
@@ -112,7 +119,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             );
         }
         setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
-        setItemsState(itemsState.filter((item) => item.id !== itemId));
+        setItemsState((prev) => prev.filter((item) => item.id !== itemId));
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
