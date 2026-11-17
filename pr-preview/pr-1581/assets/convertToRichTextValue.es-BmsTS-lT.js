@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{n as t,t as n}from"./hasRichTextValue.es-BRfuSM7o.js";var r;function i(){return(i=e((()=>{t(),r=(e=`p`,t=``,r)=>n(t)?t:JSON.stringify([{type:e,children:[{text:t,textStyle:e}],align:r}])})))()}export{r as n,i as t};
