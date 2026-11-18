@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-DoIGuC7-.js";e();
