@@ -1,10 +1,30 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
-const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onChangeLocalItem }: DoDontTitleProps) => {
+const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem }: DoDontTitleProps) => {
+    const [draftTitle, setDraftTitle] = useState(title);
+    const [syncedTitle, setSyncedTitle] = useState(title);
+    if (title !== syncedTitle) {
+        setSyncedTitle(title);
+        setDraftTitle(title);
+    }
+
+    const saveDraft = () => {
+        if (draftTitle !== title) {
+            onChangeItem(id, { title: draftTitle });
+        }
+    };
+
+    const saveDraftRef = useRef(saveDraft);
+    useLayoutEffect(() => {
+        saveDraftRef.current = saveDraft;
+    });
+    useLayoutEffect(() => () => saveDraftRef.current(), [editing]);
+
     const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
     const styles = {
@@ -20,10 +40,10 @@ const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem, onC
         return (
             <textarea
                 rows={1}
-                onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
-                onBlur={() => onChangeItem(id, { title })}
+                value={draftTitle}
+                onChange={(event) => setDraftTitle(event.target.value)}
+                onBlur={saveDraft}
                 style={styles}
-                value={title}
                 aria-label={`Title of ${typeLabel.toLocaleLowerCase()} item `}
                 placeholder="Add a title"
                 className="tw-text-small tw-w-full [field-sizing:content] tw-overflow-hidden tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-70 tw-bg-transparent tw-resize-none tw-text-secondary tw-break-words tw-outline-none tw-whitespace-pre-wrap"
