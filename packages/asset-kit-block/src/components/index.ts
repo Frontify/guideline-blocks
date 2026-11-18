@@ -4,5 +4,6 @@ export * from './AssetCount';
 export * from './AssetGrid';
 export * from './AssetSelection';
 export * from './DownloadMessage';
+export * from './DownloadPackageButton';
 export * from './InformationSection';
 export * from './ThumbnailItem';

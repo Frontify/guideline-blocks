@@ -3,7 +3,7 @@
 import { type AppBridgeBlock, type Asset, type AssetBulkDownloadState } from '@frontify/app-bridge';
 import { type BorderStyle, type Radius } from '@frontify/guideline-blocks-settings';
 import { type Color } from '@frontify/guideline-blocks-shared';
-import { type CSSProperties } from 'react';
+import { type CSSProperties, type RefObject } from 'react';
 
 export type Settings = {
     hasBackgroundBlocks?: boolean;
@@ -55,6 +55,15 @@ export type AssetSelectionProps = {
 export type DownloadMessageProps = {
     blockStyle: CSSProperties;
     status: AssetBulkDownloadState;
+};
+
+export type DownloadPackageButtonProps = {
+    buttonText?: string;
+    isDisabled: boolean;
+    isEditing: boolean;
+    onButtonTextChange: (buttonText: string) => void;
+    onDownload: () => void;
+    screenReaderRef: RefObject<HTMLSpanElement>;
 };
 
 export type InformationSectionProps = {

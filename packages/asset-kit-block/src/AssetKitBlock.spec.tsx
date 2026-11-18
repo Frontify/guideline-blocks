@@ -1,15 +1,30 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
-import { BorderStyle } from '@frontify/guideline-blocks-settings';
+import { BlockStyles, BorderStyle } from '@frontify/guideline-blocks-settings';
 import { type Color } from '@frontify/guideline-blocks-shared';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import sinon from 'sinon';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetKitBlock } from './AssetKitBlock';
 import { ASSET_SETTINGS_ID } from './settings';
+
+import type * as AssetGridModule from './components/AssetGrid';
+
+const assetGridRenderSpy = vi.hoisted(() => vi.fn());
+
+vi.mock('./components/AssetGrid', async (importOriginal) => {
+    const actual = await importOriginal<typeof AssetGridModule>();
+    return {
+        ...actual,
+        AssetGrid: (props: Parameters<typeof actual.AssetGrid>[0]) => {
+            assetGridRenderSpy();
+            return actual.AssetGrid(props);
+        },
+    };
+});
 
 const BLOCK_TEST_ID = 'asset-kit-block';
 const BLOCK_TITLE_TEST_ID = 'block-title';
@@ -52,6 +67,10 @@ const renderAssetKitBlock = (appBridgeProps: Parameters<typeof withAppBridgeBloc
 };
 
 describe('AssetKit Block', () => {
+    beforeEach(() => {
+        assetGridRenderSpy.mockClear();
+    });
+
     it('should render an AssetKit block', () => {
         renderAssetKitBlock({ blockSettings: { title: TITLE_DUMMY } });
 
@@ -285,5 +304,29 @@ describe('AssetKit Block', () => {
         await waitFor(() => {
             expect(screen.getByTestId(DOWNLOAD_ANNOUNCEMENT_TEST_ID)).toHaveTextContent('downloaded');
         });
+    });
+
+    it('should apply the hover style to the download button while it is hovered', async () => {
+        renderAssetKitBlock({ blockAssets: TWO_ASSETS });
+        const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
+
+        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
+
+        await userEvent.hover(button);
+        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.hover?.backgroundColor);
+
+        await userEvent.unhover(button);
+        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
+    });
+
+    it('should not re-render the asset grid when the download button is hovered', async () => {
+        renderAssetKitBlock({ blockAssets: TWO_ASSETS });
+        const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
+        const renderCount = assetGridRenderSpy.mock.calls.length;
+
+        await userEvent.hover(button);
+        await userEvent.unhover(button);
+
+        expect(assetGridRenderSpy).toHaveBeenCalledTimes(renderCount);
     });
 });
