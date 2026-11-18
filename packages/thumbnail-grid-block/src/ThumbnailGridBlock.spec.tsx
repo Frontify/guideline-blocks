@@ -7,8 +7,15 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
-import { CaptionPosition, HorizontalAlignment, type Thumbnail, VerticalAlignment } from './types';
+import {
+    CaptionPosition,
+    HorizontalAlignment,
+    type SortableThumbnailItemProps,
+    type Thumbnail,
+    VerticalAlignment,
+} from './types';
 
+import type * as Components from './components/';
 import type * as GuidelineBlocksShared from '@frontify/guideline-blocks-shared';
 
 const THUMBNAIL_GRID_BLOCK_TEST_ID = 'thumbnail-grid-block';
@@ -571,5 +578,80 @@ describe('Thumbnail Grid Block', () => {
 
         expect(screen.getAllByTestId(THUMBNAIL_IMAGE_TEST_ID).length).toBeGreaterThan(0);
         expect(screen.queryByTestId(ASSET_VIEWER_BUTTON_TEST_ID)).not.toBeInTheDocument();
+    });
+});
+
+describe('Thumbnail Grid Block uploads', () => {
+    afterEach(() => {
+        vi.doUnmock('./components/');
+        vi.resetModules();
+    });
+
+    it('should clear both loading states when concurrent uploads finish one after the other', async () => {
+        vi.resetModules();
+        vi.doMock('./components/', async (importOriginal) => {
+            const actual = await importOriginal<typeof Components>();
+            return {
+                ...actual,
+                SortableItem: ({ item, isLoading, onFilesSelected, onFilesUploaded }: SortableThumbnailItemProps) => (
+                    <div>
+                        <span data-test-id={`loading-${item.id}`}>{isLoading ? 'loading' : 'ready'}</span>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                onFilesSelected([new File([''], `${item.id}.png`)] as unknown as FileList, item.id)
+                            }
+                        >
+                            start {item.id}
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                onFilesUploaded(
+                                    [{ ...AssetDummy.with(Number(item.id)), title: `Uploaded ${item.id}` }],
+                                    item.id
+                                )
+                            }
+                        >
+                            finish {item.id}
+                        </button>
+                    </div>
+                ),
+            };
+        });
+        const { ThumbnailGridBlock: ThumbnailGridBlockWithMockedItems } = await import('./ThumbnailGridBlock');
+        const [BlockWithStubs, appBridge] = withAppBridgeBlockStubs(ThumbnailGridBlockWithMockedItems, {
+            editorState: true,
+            blockSettings: {
+                ...defaultSettings,
+                items: [
+                    { id: '1', title: 'One' },
+                    { id: '2', title: 'Two' },
+                ],
+            },
+        });
+        const pendingAssetUpdates: Record<string, () => void> = {};
+        const api = vi.fn(
+            ({ payload }: { payload: { key: string } }) =>
+                new Promise<void>((resolve) => {
+                    pendingAssetUpdates[payload.key] = resolve;
+                })
+        );
+        appBridge.api = api as unknown as typeof appBridge.api;
+
+        render(<BlockWithStubs />);
+        fireEvent.click(screen.getByRole('button', { name: 'start 1' }));
+        fireEvent.click(screen.getByRole('button', { name: 'start 2' }));
+        fireEvent.click(screen.getByRole('button', { name: 'finish 1' }));
+        fireEvent.click(screen.getByRole('button', { name: 'finish 2' }));
+
+        await waitFor(() => expect(api).toHaveBeenCalledTimes(2));
+        pendingAssetUpdates['1']();
+        await waitFor(() => expect(screen.getByTestId('loading-1')).toHaveTextContent('ready'));
+        pendingAssetUpdates['2']();
+        await waitFor(() => {
+            expect(screen.getByTestId('loading-1')).toHaveTextContent('ready');
+            expect(screen.getByTestId('loading-2')).toHaveTextContent('ready');
+        });
     });
 });
