@@ -113,8 +113,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 >
                     <div
                         data-test-id="animation-curve-card"
-                        onMouseEnter={!isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
-                        onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
+                        onMouseEnter={hasMotion && !isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
+                        onMouseLeave={hasMotion && !isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (textShown || hasParameter) && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative',

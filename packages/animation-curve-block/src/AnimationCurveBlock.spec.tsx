@@ -4,7 +4,8 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { Profiler } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
 import { type AnimationCurve, AnimationCurveType, defaultAnimationCurveTypeValues } from './types';
@@ -284,6 +285,27 @@ describe('AnimationCurve Block', () => {
         await userEvent.hover(screen.getByTestId(CARD_TEST_ID));
 
         expect(path).toHaveAttribute('style', expect.stringContaining('animateDash'));
+    });
+
+    it('should not re-render or animate on hover when motion is off', async () => {
+        const [AnimationCurveBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: { content: [AnimationCurveDummy.with()], hasMotion: false },
+        });
+        const onRender = vi.fn();
+        render(
+            <Profiler id="animation-curve-block" onRender={onRender}>
+                <AnimationCurveBlockWithStubs />
+            </Profiler>
+        );
+        const card = screen.getByTestId(CARD_TEST_ID);
+        await waitFor(() => expect(card).toBeInTheDocument());
+        onRender.mockClear();
+
+        await userEvent.hover(card);
+        await userEvent.unhover(card);
+
+        expect(onRender).not.toHaveBeenCalled();
+        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).not.toHaveAttribute('style');
     });
 
     it('should render in edit mode with the blank slate button height of 82px', () => {
