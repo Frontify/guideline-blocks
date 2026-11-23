@@ -10,7 +10,7 @@ import {
     radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
-import { type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
@@ -33,13 +33,6 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const sectionStyleTagRef = useRef<HTMLElement | null>(null);
 
-    useEffect(() => {
-        if (hostElement.current) {
-            sectionStyleTagRef.current = hostElement.current.closest('[data-section]')?.firstChild as HTMLElement;
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, []);
-
     const updateStyles = useCallback(() => {
         const { backgroundColor: newBgColor, textColor: newTextColor } = computeStyles(
             type,
@@ -58,7 +51,11 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, [blockSettings.iconSwitch, customIcon, deleteAssetIdsFromKey, isEditing]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        if (!sectionStyleTagRef.current && hostElement.current) {
+            sectionStyleTagRef.current = hostElement.current.closest('[data-section]')?.firstChild as HTMLElement;
+        }
+
         updateStyles();
 
         if (!sectionStyleTagRef.current) {
