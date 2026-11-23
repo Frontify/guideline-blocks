@@ -120,12 +120,7 @@
                 "frontify-api-read": true,
                 "frontify-api-write": true
             },
-            "altText": {
-                "type": "string",
-                "frontify-role": "alt",
-                "frontify-api-read": true,
-                "frontify-api-write": true
-            },
+            "altText": { "type": "string", "frontify-api-read": true, "frontify-api-write": true },
             "preview": {
                 "type": "string",
                 "enum": ["none", "template", "custom"],

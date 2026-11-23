@@ -47,7 +47,6 @@
             },
             "altText": {
                 "type": "string",
-                "frontify-role": "alt",
                 "frontify-translatable": true,
                 "frontify-api-read": true,
                 "frontify-api-write": true

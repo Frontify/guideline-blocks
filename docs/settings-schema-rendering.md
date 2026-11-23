@@ -1,23 +1,59 @@
 # Settings schema keywords for rendering
 
-A block's `settingsSchema` already tells the platform which settings are content
-(`frontify-serializable`, `frontify-serialization-index`) and which values are rich text
-(`frontify-type: "fondueRte"`). The platform will render that content as Markdown for search, the
-Brand Assistant, the public API and the Frontify MCP server. Three keywords let a schema say what
-the content *means*, so a block renders with its structure instead of as a run of text.
+The platform will render a block's content as Markdown for search, the Brand Assistant, the public
+API and the Frontify MCP server. A block's `settingsSchema` already says which settings are content
+and in what order (`frontify-serializable`, `frontify-serialization-index`). Two more keywords say
+what that content means, so a block renders with its structure instead of as one run of text.
 
-| Keyword | Where | Value | Rendering |
+| Keyword | On | Value | Rendering |
 | --- | --- | --- | --- |
-| `frontify-role` | a text or rich text field | `title` | A heading for the block, a bold lead inside a list item. |
+| `frontify-role` | a text field | `title` | A heading for the block, a bold lead inside a list item. |
 | `frontify-role` | a text field | `attribution` | An attribution line after the body, for example a quote's author. |
-| `frontify-role` | a text field | `alt` | Alt text of the images bound to the same block or item. Not emitted as text. |
-| `frontify-labels` | an `enum` field | `{ "<enum value>": "<label>" }` | Marks the field as a discriminator. In a list, items are grouped under the label of their value, in the order of the map. On the block itself, the label leads the content. |
-| `frontify-asset-key` | the `items` object schema of an array | a field name | The item's block assets are stored under the setting named by that field's value, typically `id`. |
-| `frontify-type` | a text field | `code` | The value is source code and renders as a fenced code block. |
+| `frontify-kinds` | an `enum` field of a list item | `{ "<enum value>": "<kind>" }` | The field tells the items of the list apart. Items are grouped by kind, in the order of the map, under a label that the platform provides. |
 
-Everything a schema cannot express stays with the platform's per-block-type rendering, keyed by
-app id: a callout is a blockquote, a divider is a thematic break, a palette comes from the brand's
-colors.
+## Type and role
 
-Labels are plain strings and are not translated. A guideline in another language shows the
-label as written here.
+`frontify-type` and `frontify-role` answer different questions, and a field can carry both.
+
+| | `frontify-type` | `frontify-role` |
+| --- | --- | --- |
+| Says | how the stored value is encoded | what the field is for in the block |
+| Read by | saving, which validates the value, and every reader that has to decode it | rendering only |
+| Values | `fondueRte` | `title`, `attribution` |
+
+The Image block's `name` carries both: its value is a Fondue rich text document, and it is the title
+of the block. A role never changes how a value is stored or validated.
+
+## Kinds
+
+A kind is a meaning that the platform knows, not a word. The platform owns the words and renders
+them in the language of the guideline, so a manifest never carries a label.
+
+| Kind | Meaning |
+| --- | --- |
+| `do` | The item shows what to do. |
+| `dont` | The item shows what not to do. |
+
+```json
+"type": {
+    "type": "string",
+    "enum": ["Do", "Dont"],
+    "frontify-kinds": { "Do": "do", "Dont": "dont" }
+}
+```
+
+## Placement
+
+Like every `frontify-*` keyword, both sit on the field they describe: a string for a role, an enum
+for kinds. A keyword on an object or an array is ignored.
+
+## What a schema does not say
+
+- **Block assets.** A schema describes the settings, and assets are stored beside them under keys
+  that blocks form in several ways: a fixed key, the id of a list item, a prefix plus an id or an
+  index. Some keys hold content and some hold decoration, such as a custom icon. Until a schema can
+  declare that, the platform places the images of Frontify's own blocks itself and renders no asset
+  of any other block.
+- **Shape that belongs to one block type.** A callout is a Markdown alert, a divider is a thematic
+  break, a code snippet is a fenced block with its language. The platform renders these per block
+  type, by app id.

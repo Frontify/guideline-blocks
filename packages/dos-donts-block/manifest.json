@@ -199,7 +199,6 @@
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "frontify-asset-key": "id",
                     "required": ["id", "type", "title", "body"],
                     "additionalProperties": false,
                     "properties": {
@@ -214,7 +213,7 @@
                         "type": {
                             "type": "string",
                             "enum": ["Do", "Dont"],
-                            "frontify-labels": { "Do": "Do", "Dont": "Don't" },
+                            "frontify-kinds": { "Do": "do", "Dont": "dont" },
                             "frontify-api-read": true,
                             "frontify-api-write": true,
                             "frontify-translatable": true,
@@ -242,8 +241,7 @@
                             "type": "string",
                             "frontify-api-read": true,
                             "frontify-api-write": true,
-                            "frontify-translatable": true,
-                            "frontify-role": "alt"
+                            "frontify-translatable": true
                         }
                     }
                 }
