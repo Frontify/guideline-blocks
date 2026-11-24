@@ -275,21 +275,17 @@ describe('AnimationCurve Block', () => {
         }
     });
 
-    it('should render one animation with motions', async () => {
+    it('should render one animation with motions', () => {
         renderAnimationCurveBlock({
             blockSettings: { content: [AnimationCurveDummy.with()], hasMotion: true },
         });
-        const path = screen.getByTestId(CANVAS_PATH_TEST_ID);
-        expect(path).not.toHaveAttribute('style');
-
-        await userEvent.hover(screen.getByTestId(CARD_TEST_ID));
-
-        expect(path).toHaveAttribute('style', expect.stringContaining('animateDash'));
+        expect(screen.getByTestId(CARD_TEST_ID)).toHaveAttribute('data-motion');
+        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).toHaveClass('animated');
     });
 
-    it('should not re-render or animate on hover when motion is off', async () => {
+    it.each([true, false])('should not re-render on hover when hasMotion is %s', async (hasMotion) => {
         const [AnimationCurveBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
-            blockSettings: { content: [AnimationCurveDummy.with()], hasMotion: false },
+            blockSettings: { content: [AnimationCurveDummy.with()], hasMotion },
         });
         const onRender = vi.fn();
         render(
@@ -298,14 +294,18 @@ describe('AnimationCurve Block', () => {
             </Profiler>
         );
         const card = screen.getByTestId(CARD_TEST_ID);
-        await waitFor(() => expect(card).toBeInTheDocument());
+        await screen.findAllByTestId('rte-content-html');
         onRender.mockClear();
 
         await userEvent.hover(card);
         await userEvent.unhover(card);
 
         expect(onRender).not.toHaveBeenCalled();
-        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).not.toHaveAttribute('style');
+        if (hasMotion) {
+            expect(card).toHaveAttribute('data-motion');
+        } else {
+            expect(card).not.toHaveAttribute('data-motion');
+        }
     });
 
     it('should render in edit mode with the blank slate button height of 82px', () => {

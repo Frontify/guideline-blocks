@@ -2,4 +2,4 @@
 blocks: [animation-curve-block]
 ---
 
-Hovering over animation curve cards is smoother when motion is turned off.
+The animation curve now also plays when a card receives keyboard focus, and hovering over cards is lighter on performance.

@@ -43,7 +43,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         },
         ref
     ) => {
-        const [isHovered, setIsHovered] = useState(false);
         const [isEditFlyoutOpen, setIsEditFlyoutOpen] = useState(false);
         const initialAnimationCurve = animationCurve;
         const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(initialAnimationCurve);
@@ -113,9 +112,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 >
                     <div
                         data-test-id="animation-curve-card"
-                        onMouseEnter={hasMotion && !isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
-                        onMouseLeave={hasMotion && !isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
+                        data-motion={hasMotion && !isEditFlyoutOpen ? '' : undefined}
                         className={joinClassNames([
+                            'animation-curve-card',
                             (textShown || hasParameter) && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative',
                         ])}
@@ -132,19 +131,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
                                 setIsEditFlyoutOpen(false);
-                                setIsHovered(false);
                             }}
                             onCancel={() => {
                                 setLocalAnimationCurve(initialAnimationCurve);
                                 setIsEditFlyoutOpen(false);
-                                setIsHovered(false);
                             }}
-                            onOpenChange={(isOpen) => {
-                                setIsEditFlyoutOpen(isOpen);
-                                if (!isOpen) {
-                                    setIsHovered(false);
-                                }
-                            }}
+                            onOpenChange={setIsEditFlyoutOpen}
                             onAnimationCurveChange={setLocalAnimationCurve}
                         />
                         <div
@@ -168,7 +160,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 endpointColor={endpointsColor || DEFAULT_LINE_COLOR}
                                 gridColor={gridColor || DEFAULT_GRID_COLOR}
                                 viewBox={DEFAULT_ANIMATION_CANVAS_VIEWBOX}
-                                shouldAnimate={isHovered && hasMotion}
                                 setCanvasHeight={setCanvasHeight}
                                 title={
                                     // oxlint-disable-next-line typescript/no-unsafe-assignment

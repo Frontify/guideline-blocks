@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { toHexString } from '@frontify/guideline-blocks-settings';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { type CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_LINE_COLOR } from '../constants';
 import {
@@ -32,7 +32,6 @@ export const AnimationCanvas = ({
     showEndPoints,
     showHandles = false,
     viewBox,
-    shouldAnimate = false,
     title,
     setCanvasHeight,
     setAnimationFunction,
@@ -61,8 +60,11 @@ export const AnimationCanvas = ({
     });
 
     const cubicBezier = `M ${startPoint.x}, ${startPoint.y} C ${startHandlePoint.x},${startHandlePoint.y} ${endHandlePoint.x},${endHandlePoint.y} ${endPoint.x}, ${endPoint.y}`;
-    const animationCurvePathAnimation = `animateDash ${animationFunction.duration}s cubic-bezier(${animationFunction.parameters.x1}, ${animationFunction.parameters.y1}, ${animationFunction.parameters.x2}, ${animationFunction.parameters.y2}) forwards`;
-    const animationCurvePathStyle = shouldAnimate ? { animation: animationCurvePathAnimation } : {};
+    const animationCurvePathStyle = {
+        '--curve-length': animationCurvePathLength,
+        '--curve-duration': `${animationFunction.duration}s`,
+        '--curve-easing': `cubic-bezier(${animationFunction.parameters.x1}, ${animationFunction.parameters.y1}, ${animationFunction.parameters.x2}, ${animationFunction.parameters.y2})`,
+    } as CSSProperties;
 
     const updateScale = useCallback(() => {
         const svg = svgRef.current;
@@ -194,13 +196,11 @@ export const AnimationCanvas = ({
                 data-test-id="animation-curves-canvas-path"
                 ref={animationCurvePathRef}
                 className="animated"
-                style={shouldAnimate ? animationCurvePathStyle : {}}
+                style={animationCurvePathStyle}
                 d={cubicBezier}
                 fill="none"
                 stroke={toHexString(lineColor || DEFAULT_LINE_COLOR)}
                 strokeWidth={2}
-                strokeDasharray={shouldAnimate ? animationCurvePathLength : 0}
-                strokeDashoffset={shouldAnimate ? animationCurvePathLength : 0}
                 vectorEffect="non-scaling-stroke"
             />
 

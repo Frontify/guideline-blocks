@@ -176,7 +176,6 @@ export type AnimationCanvasProps = {
     showEndPoints: boolean;
     showHandles?: boolean;
     viewBox: Size;
-    shouldAnimate?: boolean;
     title?: string;
     setCanvasHeight?: (height: number) => void;
     setAnimationFunction?: (animationFunction: AnimationFunction) => void;
