@@ -4,106 +4,103 @@ import { useAssetChooser, useAssetUpload, useBlockSettings, useFileInput } from 
 import { LoadingCircle } from '@frontify/fondue/components';
 import { IconArrowCircleUp, IconImageStack, IconTrashBin } from '@frontify/fondue/icons';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-settings';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
 import { type Settings, type ThumbnailItemProps } from '../types';
 
-export const ThumbnailItem = ({
-    asset,
-    currentAssetsIds,
-    isEditing,
-    appBridge,
-    onRemoveAsset,
-    onReplaceAsset,
-}: ThumbnailItemProps) => {
-    const [isUploading, setIsUploading] = useState(false);
-    const [blockSettings] = useBlockSettings<Settings>(appBridge);
-    const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
-    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
-        onUploadProgress: () => !isUploading && setIsUploading(true),
-    });
+export const ThumbnailItem = memo(
+    ({ asset, currentAssetsIds, isEditing, appBridge, onRemoveAsset, onReplaceAsset }: ThumbnailItemProps) => {
+        const [isUploading, setIsUploading] = useState(false);
+        const [blockSettings] = useBlockSettings<Settings>(appBridge);
+        const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
+        const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
+        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
+            onUploadProgress: () => !isUploading && setIsUploading(true),
+        });
 
-    const onOpenAssetChooser = () => {
-        openAssetChooser(
-            // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
-            async (result) => {
-                // oxlint-disable-next-line typescript/no-floating-promises
-                onReplaceAsset(asset.id, result[0].id);
-                closeAssetChooser();
-            },
-            {
-                multiSelection: false,
-                selectedValueIds: currentAssetsIds,
+        const onOpenAssetChooser = () => {
+            openAssetChooser(
+                // oxlint-disable-next-line typescript/no-misused-promises, typescript/require-await
+                async (result) => {
+                    // oxlint-disable-next-line typescript/no-floating-promises
+                    onReplaceAsset(asset.id, result[0].id);
+                    closeAssetChooser();
+                },
+                {
+                    multiSelection: false,
+                    selectedValueIds: currentAssetsIds,
+                }
+            );
+        };
+
+        useEffect(() => {
+            if (selectedFiles) {
+                uploadFile(selectedFiles);
             }
-        );
-    };
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
+        }, [selectedFiles]);
 
-    useEffect(() => {
-        if (selectedFiles) {
-            uploadFile(selectedFiles);
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [selectedFiles]);
+        useEffect(() => {
+            if (doneAll && uploadResults) {
+                // oxlint-disable-next-line typescript/no-floating-promises
+                onReplaceAsset(asset.id, uploadResults[0].id);
+            }
+            // oxlint-disable-next-line @eslint-react/exhaustive-deps
+        }, [doneAll, uploadResults]);
 
-    useEffect(() => {
-        if (doneAll && uploadResults) {
-            // oxlint-disable-next-line typescript/no-floating-promises
-            onReplaceAsset(asset.id, uploadResults[0].id);
-        }
-        // oxlint-disable-next-line @eslint-react/exhaustive-deps
-    }, [doneAll, uploadResults]);
-
-    return (
-        <BlockItemWrapper
-            shouldHideWrapper={!isEditing}
-            toolbarItems={[
-                {
-                    type: 'button',
-                    icon: <IconTrashBin size={16} />,
-                    tooltip: 'Delete Item',
-                    // oxlint-disable-next-line typescript/no-misused-promises
-                    onClick: () => onRemoveAsset(asset.id),
-                },
-                {
-                    type: 'menu',
-                    items: [
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp size={20} />,
-                                onClick: openFileDialog,
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack size={20} />,
-                                onClick: onOpenAssetChooser,
-                            },
+        return (
+            <BlockItemWrapper
+                shouldHideWrapper={!isEditing}
+                toolbarItems={[
+                    {
+                        type: 'button',
+                        icon: <IconTrashBin size={16} />,
+                        tooltip: 'Delete Item',
+                        // oxlint-disable-next-line typescript/no-misused-promises
+                        onClick: () => onRemoveAsset(asset.id),
+                    },
+                    {
+                        type: 'menu',
+                        items: [
+                            [
+                                {
+                                    title: 'Replace with upload',
+                                    icon: <IconArrowCircleUp size={20} />,
+                                    onClick: openFileDialog,
+                                },
+                                {
+                                    title: 'Replace with asset',
+                                    icon: <IconImageStack size={20} />,
+                                    onClick: onOpenAssetChooser,
+                                },
+                            ],
                         ],
-                    ],
-                },
-            ]}
-        >
-            <div data-test-id="block-thumbnail" className="tw-aspect-square">
-                {isUploading ? (
-                    <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle(blockSettings)}>
-                        <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
-                            <LoadingCircle />
+                    },
+                ]}
+            >
+                <div data-test-id="block-thumbnail" className="tw-aspect-square">
+                    {isUploading ? (
+                        <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle(blockSettings)}>
+                            <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
+                                <LoadingCircle />
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <img
-                        loading="lazy"
-                        decoding="async"
-                        data-test-id="block-thumbnail-image"
-                        className="tw-object-contain tw-w-full tw-aspect-square"
-                        src={getSmallPreviewUrl(asset.previewUrl)}
-                        style={thumbnailStyle(blockSettings)}
-                        alt={asset.alternativeText ?? asset.title}
-                    />
-                )}
-            </div>
-        </BlockItemWrapper>
-    );
-};
+                    ) : (
+                        <img
+                            loading="lazy"
+                            decoding="async"
+                            data-test-id="block-thumbnail-image"
+                            className="tw-object-contain tw-w-full tw-aspect-square"
+                            src={getSmallPreviewUrl(asset.previewUrl)}
+                            style={thumbnailStyle(blockSettings)}
+                            alt={asset.alternativeText ?? asset.title}
+                        />
+                    )}
+                </div>
+            </BlockItemWrapper>
+        );
+    }
+);
+
+ThumbnailItem.displayName = 'ThumbnailItem';

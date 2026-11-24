@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    type Asset,
     AssetBulkDownloadState,
     useAssetBulkDownload,
     useBlockAssets,
@@ -17,6 +18,8 @@ import { AssetGrid, AssetSelection, DownloadMessage, DownloadPackageButton, Info
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { type Settings } from './types';
+
+const NO_ASSETS: Asset[] = [];
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null => {
     const screenReaderRef = useRef<HTMLSpanElement>(null);
@@ -39,7 +42,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
     const hasTitle = title && hasRichTextValue(title);
     const hasDescription = description && hasRichTextValue(description);
 
-    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? NO_ASSETS;
     const hasAssets = currentAssets.length > 0;
     const shouldDisplayComponent = isEditing || hasTitle || hasDescription || hasAssets;
     const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);

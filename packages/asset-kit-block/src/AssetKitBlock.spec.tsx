@@ -19,9 +19,12 @@ vi.mock('./components/AssetGrid', async (importOriginal) => {
     const actual = await importOriginal<typeof AssetGridModule>();
     return {
         ...actual,
-        AssetGrid: (props: Parameters<typeof actual.AssetGrid>[0]) => {
-            assetGridRenderSpy();
-            return actual.AssetGrid(props);
+        AssetGrid: {
+            ...actual.AssetGrid,
+            type: (props: Parameters<typeof actual.AssetGrid.type>[0]) => {
+                assetGridRenderSpy();
+                return actual.AssetGrid.type(props);
+            },
         },
     };
 });
@@ -306,17 +309,16 @@ describe('AssetKit Block', () => {
         });
     });
 
-    it('should apply the hover style to the download button while it is hovered', async () => {
+    it('should style the download button with the theme primary button and its hover colours', () => {
         renderAssetKitBlock({ blockAssets: TWO_ASSETS });
         const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
 
         expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
-
-        await userEvent.hover(button);
-        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.hover?.backgroundColor);
-
-        await userEvent.unhover(button);
-        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
+        expect(button).toHaveClass(
+            'hover:!tw-bg-[color:var(--f-theme-settings-button-primary-background-color-hover)]',
+            'hover:!tw-border-[color:var(--f-theme-settings-button-primary-border-color-hover)]',
+            'hover:!tw-text-[color:var(--f-theme-settings-button-primary-color-hover)]'
+        );
     });
 
     it('should not re-render the asset grid when the download button is hovered', async () => {
