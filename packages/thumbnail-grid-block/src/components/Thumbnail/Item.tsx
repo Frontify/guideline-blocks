@@ -55,7 +55,17 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
         const { id, title, description, altText } = item;
         const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
         const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: true });
-        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge);
+        const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload(appBridge, {
+            onUploadFail: () => onFilesUploaded([], id),
+        });
+
+        const startUpload = (files: FileList) => {
+            if (isLoading || files.length === 0) {
+                return;
+            }
+            onFilesSelected(files, id);
+            uploadFile(files);
+        };
 
         const onOpenAssetChooser = () => {
             // oxlint-disable-next-line typescript/no-floating-promises
@@ -77,8 +87,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
 
         useEffect(() => {
             if (selectedFiles) {
-                onFilesSelected(selectedFiles, id);
-                uploadFile(selectedFiles);
+                startUpload(selectedFiles);
             }
             // oxlint-disable-next-line @eslint-react/exhaustive-deps
         }, [selectedFiles]);
@@ -179,7 +188,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                             thumbnailStyles={thumbnailStyles}
                             altText={altText}
                             onOpenFileDialog={openFileDialog}
-                            onFilesDrop={(fileList) => onFilesSelected(fileList, id)}
+                            onFilesDrop={startUpload}
                             onAssetChooserClick={onOpenAssetChooser}
                             openAssetInAssetViewer={openAssetInAssetViewer}
                         />

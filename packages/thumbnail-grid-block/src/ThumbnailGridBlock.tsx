@@ -38,13 +38,13 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onAssetsSelected = async (selectedAssets: Asset[], itemId: string) => {
+        if (selectedAssets.length === 0) {
+            return;
+        }
         const newItemsToAdd = addNewItemsIfNeeded(selectedAssets);
-        const newUploadingItemIds = {
-            ...uploadingItemIds,
-            [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)],
-        };
-        setUploadingItemIds(newUploadingItemIds);
-        const updateAssetIdPromises = newUploadingItemIds[itemId].map((uploadingItemId, i) =>
+        const uploadingIdsForItem = [itemId, ...newItemsToAdd.map((item) => item.id)];
+        setUploadingItemIds((previous) => ({ ...previous, [itemId]: uploadingIdsForItem }));
+        const updateAssetIdPromises = uploadingIdsForItem.map((uploadingItemId, i) =>
             updateAssetIdsFromKey(uploadingItemId, [selectedAssets[i].id])
         );
         await Promise.all(updateAssetIdPromises);
@@ -53,18 +53,25 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 item.id === itemId ? { ...item, altText: selectedAssets[0].title || selectedAssets[0].fileName } : item
             )
         );
-        setUploadingItemIds({ ...newUploadingItemIds, [itemId]: [] });
+        setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
     };
 
     const onFilesSelected = (files: FileList, itemId: string) => {
-        if (files) {
+        if (files.length > 0) {
             const newItemsToAdd = addNewItemsIfNeeded(files);
-            setUploadingItemIds({ ...uploadingItemIds, [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)] });
+            setUploadingItemIds((previous) => ({
+                ...previous,
+                [itemId]: [itemId, ...newItemsToAdd.map((item) => item.id)],
+            }));
         }
     };
 
     const onFilesUploaded = async (uploadedAssets: Asset[], itemId: string) => {
         if (!uploadingItemIds[itemId]) {
+            return;
+        }
+        if (uploadedAssets.length === 0) {
+            setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
             return;
         }
 
@@ -77,7 +84,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 item.id === itemId ? { ...item, altText: uploadedAssets[0].title || uploadedAssets[0].fileName } : item
             )
         );
-        setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
+        setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
     };
 
     useEffect(() => {
@@ -111,8 +118,8 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 blockAssets[itemId].map((asset) => asset.id)
             );
         }
-        setUploadingItemIds({ ...uploadingItemIds, [itemId]: [] });
-        setItemsState(itemsState.filter((item) => item.id !== itemId));
+        setUploadingItemIds((previous) => ({ ...previous, [itemId]: [] }));
+        setItemsState((prev) => prev.filter((item) => item.id !== itemId));
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
