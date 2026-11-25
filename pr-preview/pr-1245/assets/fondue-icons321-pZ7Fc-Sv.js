@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-BCiCTKAo.js";import{_a as t,ga as n}from"./StyleProvider-Cg1Jr39K.js";var r;function i(){return(i=e((()=>{n(),r=t(`Plus`,[[`path`,{fill:`currentColor`,"fill-rule":`evenodd`,d:`M11 12.5v7.25a.75.75 0 001.5 0V12.5h7.25a.75.75 0 000-1.5H12.5V3.75a.75.75 0 00-1.5 0V11H3.75a.75.75 0 100 1.5z`,"clip-rule":`evenodd`}]])})))()}export{r as n,i as t};
