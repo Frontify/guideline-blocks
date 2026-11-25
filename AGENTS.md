@@ -14,7 +14,7 @@ Rules, commands and conventions are here. Reference material lives in `docs/`; r
 | `docs/upgrading.md`  | bump `@frontify/app-bridge`, `@frontify/guideline-blocks-settings` or `@frontify/fondue`                   |
 
 **Version baseline.** `@frontify/app-bridge` 4.0.0-alpha.83, `@frontify/guideline-blocks-settings` 4.0.0-alpha.18
-(sidebar-settings 0.12; Fondue 14.0.0-rc.0 is its peer dependency, so every block pins Fondue itself) and
+(sidebar-settings 0.12; Fondue 14.0.0-rc.3 is its peer dependency, so every block pins Fondue itself) and
 `frontify-cli` ^6.4, as pinned in the `package.json` files. `docs/upgrading.md` is the bump procedure. Source of
 truth for the APIs is `../brand-sdk` (`dev` branch) when it is checked out next to this
 repo, otherwise the installed types in
