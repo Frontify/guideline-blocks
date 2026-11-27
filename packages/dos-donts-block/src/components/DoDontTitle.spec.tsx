@@ -17,16 +17,6 @@ const defaultProps: DoDontTitleProps = {
 };
 
 describe('DoDontTitle', () => {
-    it('should save a title typed without blurring when editing is turned off without a remount', () => {
-        const onChangeItem = vi.fn();
-        const { rerender } = render(<DoDontTitle {...defaultProps} onChangeItem={onChangeItem} />);
-
-        fireEvent.change(screen.getByDisplayValue('Title'), { target: { value: 'Typed title' } });
-        rerender(<DoDontTitle {...defaultProps} onChangeItem={onChangeItem} editing={false} />);
-
-        expect(onChangeItem).toHaveBeenCalledExactlyOnceWith('item-1', { title: 'Typed title' });
-    });
-
     it('should keep the same focused textarea after a blur saves a changed title', () => {
         const onChangeItem = vi.fn();
         const { rerender } = render(<DoDontTitle {...defaultProps} onChangeItem={onChangeItem} />);

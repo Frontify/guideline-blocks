@@ -259,19 +259,19 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         [blockAssets, deleteAssetIdsFromKey, setBlockSettings]
     );
 
+    const localItemsRef = useRef(localItems);
+    useEffect(() => {
+        localItemsRef.current = localItems;
+    });
+
     const onChangeItem = useCallback(
         (itemId: string, change: Partial<Record<ChangeType, ValueType>>) => {
-            setLocalItems((previousItems) => {
-                const newItems = previousItems.map((item) =>
-                    item.id === itemId ? ({ ...item, ...change } as Item) : item
-                );
-
-                setBlockSettings({
-                    items: newItems,
-                }).catch(console.error);
-
-                return newItems;
-            });
+            const newItems = localItemsRef.current.map((item) =>
+                item.id === itemId ? ({ ...item, ...change } as Item) : item
+            );
+            localItemsRef.current = newItems;
+            setLocalItems(newItems);
+            setBlockSettings({ items: newItems }).catch(console.error);
         },
         [setBlockSettings]
     );

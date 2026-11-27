@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockStyles } from '@frontify/guideline-blocks-settings';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { DoDontType, type DoDontTitleProps } from '../types';
 
@@ -18,12 +18,6 @@ const DoDontTitle = ({ id, type, title, editing, headingColor, onChangeItem }: D
             onChangeItem(id, { title: draftTitle });
         }
     };
-
-    const saveDraftRef = useRef(saveDraft);
-    useLayoutEffect(() => {
-        saveDraftRef.current = saveDraft;
-    });
-    useLayoutEffect(() => () => saveDraftRef.current(), [editing]);
 
     const typeLabel = type === DoDontType.Do ? 'Do' : "Don't";
 
