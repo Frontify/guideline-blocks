@@ -27,9 +27,9 @@ const buttonClassNames = joinClassNames([
     'enabled:hover:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
     'enabled:hover:!tw-border-[color:var(--asset-kit-button-hover-border)]',
     'enabled:hover:!tw-text-[color:var(--asset-kit-button-hover-color)]',
-    'focus-visible:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
-    'focus-visible:!tw-border-[color:var(--asset-kit-button-hover-border)]',
-    'focus-visible:!tw-text-[color:var(--asset-kit-button-hover-color)]',
+    'enabled:focus-visible:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+    'enabled:focus-visible:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+    'enabled:focus-visible:!tw-text-[color:var(--asset-kit-button-hover-color)]',
 ]);
 
 export const DownloadPackageButton = ({
