@@ -77,7 +77,6 @@ export type SortableDoDontItemProps = {
     doColor: Color;
     dontColor: Color;
     onChangeItem: (id: string, change: Partial<Record<ChangeType, ValueType>>) => void;
-    onChangeLocalItem: (id: string, value: ValueType, type: ChangeType) => void;
     title?: string;
     body?: string;
     editing: boolean;
@@ -158,7 +157,6 @@ export type DoDontTitleProps = {
     editing: boolean;
     headingColor: string;
     onChangeItem: (id: string, change: Partial<Record<ChangeType, ValueType>>) => void;
-    onChangeLocalItem: (id: string, value: ValueType, type: ChangeType) => void;
 };
 
 export type Item = {

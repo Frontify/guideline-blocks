@@ -40,7 +40,6 @@ const defaultProps = {
     doColor: { red: 0, green: 200, blue: 165, alpha: 1 },
     dontColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     onChangeItem: vi.fn(),
-    onChangeLocalItem: vi.fn(),
     title: 'Title',
     body: 'Body',
     editing: false,

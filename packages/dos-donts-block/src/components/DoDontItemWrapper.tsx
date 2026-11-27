@@ -51,7 +51,7 @@ export const DoDontItemWrapper = ({
     return (
         <BlockItemWrapper
             isDragging={isDragging}
-            shouldHideWrapper={replaceWithPlaceholder || !editing}
+            shouldHideWrapper={!editing}
             shouldHideComponent={replaceWithPlaceholder}
             shouldBeShown={isDragging}
             toolbarItems={[
