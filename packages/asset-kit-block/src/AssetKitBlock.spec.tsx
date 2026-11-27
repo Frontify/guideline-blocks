@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
-import { BorderStyle } from '@frontify/guideline-blocks-settings';
+import { BlockStyles, BorderStyle } from '@frontify/guideline-blocks-settings';
 import { type Color } from '@frontify/guideline-blocks-shared';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -285,5 +285,23 @@ describe('AssetKit Block', () => {
         await waitFor(() => {
             expect(screen.getByTestId(DOWNLOAD_ANNOUNCEMENT_TEST_ID)).toHaveTextContent('downloaded');
         });
+    });
+
+    it('should style the download button with the theme primary button and derive its hover colours from it', () => {
+        renderAssetKitBlock({ blockAssets: TWO_ASSETS });
+        const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
+
+        expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
+        expect(button.style.getPropertyValue('--asset-kit-button-hover-background')).toBe(
+            BlockStyles.buttonPrimary.hover?.backgroundColor
+        );
+        expect(button).toHaveClass(
+            'enabled:hover:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+            'enabled:hover:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+            'enabled:hover:!tw-text-[color:var(--asset-kit-button-hover-color)]',
+            'enabled:focus-visible:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+            'enabled:focus-visible:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+            'enabled:focus-visible:!tw-text-[color:var(--asset-kit-button-hover-color)]'
+        );
     });
 });

@@ -7,34 +7,23 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { PluginComposer } from '@frontify/fondue/rte';
-import {
-    type BlockProps,
-    BlockStyles,
-    RichTextEditor,
-    convertToRteValue,
-    hasRichTextValue,
-    joinClassNames,
-} from '@frontify/guideline-blocks-settings';
+import { type BlockProps, hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-settings';
 import { StyleProvider } from '@frontify/guideline-blocks-shared';
 import { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import blockScope from '../block-scope.json';
 
-import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
+import { AssetGrid, AssetSelection, DownloadMessage, DownloadPackageButton, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { type Settings } from './types';
 
-const buttonPlugins = new PluginComposer({ noToolbar: true }).setPlugin();
-
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null => {
-    const screenReaderRef = useRef<HTMLDivElement>(null);
+    const screenReaderRef = useRef<HTMLSpanElement>(null);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
-    const [buttonHover, setButtonHover] = useState<boolean>(false);
     const {
         title,
         description,
@@ -116,38 +105,14 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement | null =>
                         appBridge={appBridge}
                     />
                     <div className="tw-flex-none">
-                        <button
-                            type="button"
-                            data-test-id="asset-kit-block-download-button"
-                            className="[&>div]:!tw-@container-normal"
-                            disabled={isButtonDisabled}
-                            onClick={isEditing ? undefined : startDownload}
-                            onMouseEnter={() => setButtonHover(true)}
-                            onMouseLeave={() => setButtonHover(false)}
-                            style={{
-                                ...BlockStyles.buttonPrimary,
-                                ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
-                                ...(isButtonDisabled ? { opacity: 0.5 } : null),
-                                overflow: 'visible',
-                            }}
-                        >
-                            <RichTextEditor
-                                value={
-                                    hasRichTextValue(buttonText)
-                                        ? buttonText
-                                        : convertToRteValue('p', 'Download package')
-                                }
-                                isEditing={isEditing}
-                                plugins={buttonPlugins}
-                                onTextChange={onButtonTextChange}
-                            />
-                            <span
-                                data-test-id="asset-kit-block-screen-reader"
-                                ref={screenReaderRef}
-                                role="status"
-                                className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 tw-overflow-hidden"
-                            />
-                        </button>
+                        <DownloadPackageButton
+                            buttonText={buttonText}
+                            isDisabled={isButtonDisabled}
+                            isEditing={isEditing}
+                            onButtonTextChange={onButtonTextChange}
+                            onDownload={startDownload}
+                            screenReaderRef={screenReaderRef}
+                        />
                     </div>
                 </div>
 
