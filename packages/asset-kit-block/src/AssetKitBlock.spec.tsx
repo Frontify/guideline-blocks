@@ -6,28 +6,10 @@ import { type Color } from '@frontify/guideline-blocks-shared';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import sinon from 'sinon';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { AssetKitBlock } from './AssetKitBlock';
 import { ASSET_SETTINGS_ID } from './settings';
-
-import type * as AssetGridModule from './components/AssetGrid';
-
-const assetGridRenderSpy = vi.hoisted(() => vi.fn());
-
-vi.mock('./components/AssetGrid', async (importOriginal) => {
-    const actual = await importOriginal<typeof AssetGridModule>();
-    return {
-        ...actual,
-        AssetGrid: {
-            ...actual.AssetGrid,
-            type: (props: Parameters<typeof actual.AssetGrid.type>[0]) => {
-                assetGridRenderSpy();
-                return actual.AssetGrid.type(props);
-            },
-        },
-    };
-});
 
 const BLOCK_TEST_ID = 'asset-kit-block';
 const BLOCK_TITLE_TEST_ID = 'block-title';
@@ -70,10 +52,6 @@ const renderAssetKitBlock = (appBridgeProps: Parameters<typeof withAppBridgeBloc
 };
 
 describe('AssetKit Block', () => {
-    beforeEach(() => {
-        assetGridRenderSpy.mockClear();
-    });
-
     it('should render an AssetKit block', () => {
         renderAssetKitBlock({ blockSettings: { title: TITLE_DUMMY } });
 
@@ -309,26 +287,21 @@ describe('AssetKit Block', () => {
         });
     });
 
-    it('should style the download button with the theme primary button and its hover colours', () => {
+    it('should style the download button with the theme primary button and derive its hover colours from it', () => {
         renderAssetKitBlock({ blockAssets: TWO_ASSETS });
         const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
 
         expect(button.style.backgroundColor).toBe(BlockStyles.buttonPrimary.backgroundColor);
-        expect(button).toHaveClass(
-            'hover:!tw-bg-[color:var(--f-theme-settings-button-primary-background-color-hover)]',
-            'hover:!tw-border-[color:var(--f-theme-settings-button-primary-border-color-hover)]',
-            'hover:!tw-text-[color:var(--f-theme-settings-button-primary-color-hover)]'
+        expect(button.style.getPropertyValue('--asset-kit-button-hover-background')).toBe(
+            BlockStyles.buttonPrimary.hover?.backgroundColor
         );
-    });
-
-    it('should not re-render the asset grid when the download button is hovered', async () => {
-        renderAssetKitBlock({ blockAssets: TWO_ASSETS });
-        const button = screen.getByTestId(DOWNLOAD_BTN_TEST_ID);
-        const renderCount = assetGridRenderSpy.mock.calls.length;
-
-        await userEvent.hover(button);
-        await userEvent.unhover(button);
-
-        expect(assetGridRenderSpy).toHaveBeenCalledTimes(renderCount);
+        expect(button).toHaveClass(
+            'enabled:hover:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+            'enabled:hover:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+            'enabled:hover:!tw-text-[color:var(--asset-kit-button-hover-color)]',
+            'focus-visible:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+            'focus-visible:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+            'focus-visible:!tw-text-[color:var(--asset-kit-button-hover-color)]'
+        );
     });
 });

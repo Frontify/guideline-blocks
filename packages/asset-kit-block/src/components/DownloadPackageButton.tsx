@@ -1,11 +1,36 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PluginComposer } from '@frontify/fondue/rte';
-import { BlockStyles, RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
+import {
+    BlockStyles,
+    RichTextEditor,
+    convertToRteValue,
+    hasRichTextValue,
+    joinClassNames,
+} from '@frontify/guideline-blocks-settings';
+import { type CSSProperties } from 'react';
 
 import { type DownloadPackageButtonProps } from '../types';
 
 const buttonPlugins = new PluginComposer({ noToolbar: true }).setPlugin();
+
+const { hover: buttonPrimaryHover, ...buttonPrimaryStyles } = BlockStyles.buttonPrimary ?? {};
+
+const buttonHoverVariables = {
+    '--asset-kit-button-hover-background': buttonPrimaryHover?.backgroundColor ?? buttonPrimaryStyles.backgroundColor,
+    '--asset-kit-button-hover-border': buttonPrimaryHover?.borderColor ?? buttonPrimaryStyles.borderColor,
+    '--asset-kit-button-hover-color': buttonPrimaryHover?.color ?? buttonPrimaryStyles.color,
+} as CSSProperties;
+
+const buttonClassNames = joinClassNames([
+    '[&>div]:!tw-@container-normal',
+    'enabled:hover:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+    'enabled:hover:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+    'enabled:hover:!tw-text-[color:var(--asset-kit-button-hover-color)]',
+    'focus-visible:!tw-bg-[color:var(--asset-kit-button-hover-background)]',
+    'focus-visible:!tw-border-[color:var(--asset-kit-button-hover-border)]',
+    'focus-visible:!tw-text-[color:var(--asset-kit-button-hover-color)]',
+]);
 
 export const DownloadPackageButton = ({
     buttonText,
@@ -15,17 +40,16 @@ export const DownloadPackageButton = ({
     onDownload,
     screenReaderRef,
 }: DownloadPackageButtonProps) => {
-    const { hover: _hover, ...buttonPrimaryStyles } = BlockStyles.buttonPrimary;
-
     return (
         <button
             type="button"
             data-test-id="asset-kit-block-download-button"
-            className="[&>div]:!tw-@container-normal hover:!tw-bg-[color:var(--f-theme-settings-button-primary-background-color-hover)] hover:!tw-border-[color:var(--f-theme-settings-button-primary-border-color-hover)] hover:!tw-text-[color:var(--f-theme-settings-button-primary-color-hover)]"
+            className={buttonClassNames}
             disabled={isDisabled}
             onClick={isEditing ? undefined : onDownload}
             style={{
                 ...buttonPrimaryStyles,
+                ...buttonHoverVariables,
                 ...(isDisabled ? { opacity: 0.5 } : null),
                 overflow: 'visible',
             }}
