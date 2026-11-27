@@ -31,6 +31,7 @@
                 "frontify-type": "fondueRte",
                 "frontify-serializable": true,
                 "frontify-serialization-index": 1,
+                "frontify-role": "title",
                 "frontify-translatable": true,
                 "frontify-api-read": true,
                 "frontify-api-write": true

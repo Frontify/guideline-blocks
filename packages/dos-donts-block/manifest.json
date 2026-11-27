@@ -213,6 +213,7 @@
                         "type": {
                             "type": "string",
                             "enum": ["Do", "Dont"],
+                            "frontify-kinds": { "Do": "do", "Dont": "dont" },
                             "frontify-api-read": true,
                             "frontify-api-write": true,
                             "frontify-translatable": true,
@@ -224,7 +225,8 @@
                             "frontify-api-write": true,
                             "frontify-translatable": true,
                             "frontify-serializable": true,
-                            "frontify-serialization-index": 1
+                            "frontify-serialization-index": 1,
+                            "frontify-role": "title"
                         },
                         "body": {
                             "type": "string",
