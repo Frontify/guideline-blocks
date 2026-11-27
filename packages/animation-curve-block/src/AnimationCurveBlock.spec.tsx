@@ -4,7 +4,8 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge/testing';
 import { BorderStyle, GutterSpacing, Radius, TextStyles, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { Profiler } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
 import { type AnimationCurve, AnimationCurveType, defaultAnimationCurveTypeValues } from './types';
@@ -274,16 +275,37 @@ describe('AnimationCurve Block', () => {
         }
     });
 
-    it('should render one animation with motions', async () => {
+    it('should render one animation with motions', () => {
         renderAnimationCurveBlock({
             blockSettings: { content: [AnimationCurveDummy.with()], hasMotion: true },
         });
-        const path = screen.getByTestId(CANVAS_PATH_TEST_ID);
-        expect(path).not.toHaveAttribute('style');
+        expect(screen.getByTestId(CARD_TEST_ID)).toHaveAttribute('data-motion');
+        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).toHaveClass('animation-curve-path');
+    });
 
-        await userEvent.hover(screen.getByTestId(CARD_TEST_ID));
+    it.each([true, false])('should not re-render on hover when hasMotion is %s', async (hasMotion) => {
+        const [AnimationCurveBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: { content: [AnimationCurveDummy.with()], hasMotion },
+        });
+        const onRender = vi.fn();
+        render(
+            <Profiler id="animation-curve-block" onRender={onRender}>
+                <AnimationCurveBlockWithStubs />
+            </Profiler>
+        );
+        const card = screen.getByTestId(CARD_TEST_ID);
+        await screen.findAllByTestId('rte-content-html');
+        onRender.mockClear();
 
-        expect(path).toHaveAttribute('style', expect.stringContaining('animateDash'));
+        await userEvent.hover(card);
+        await userEvent.unhover(card);
+
+        expect(onRender).not.toHaveBeenCalled();
+        if (hasMotion) {
+            expect(card).toHaveAttribute('data-motion');
+        } else {
+            expect(card).not.toHaveAttribute('data-motion');
+        }
     });
 
     it('should render in edit mode with the blank slate button height of 82px', () => {

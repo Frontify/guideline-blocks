@@ -155,7 +155,6 @@ export const AnimationCurveFlyout = ({
                                         width: 450,
                                         height: 200,
                                     }}
-                                    shouldAnimate={false}
                                 />
                             </div>
                         </div>

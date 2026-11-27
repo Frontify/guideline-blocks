@@ -12,7 +12,7 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
-import { forwardRef, useState } from 'react';
+import { type CSSProperties, forwardRef, useState } from 'react';
 
 import {
     DEFAULT_ANIMATION_CANVAS_VIEWBOX,
@@ -43,7 +43,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         },
         ref
     ) => {
-        const [isHovered, setIsHovered] = useState(false);
         const [isEditFlyoutOpen, setIsEditFlyoutOpen] = useState(false);
         const initialAnimationCurve = animationCurve;
         const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(initialAnimationCurve);
@@ -113,17 +112,21 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                 >
                     <div
                         data-test-id="animation-curve-card"
-                        onMouseEnter={!isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
-                        onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
+                        data-motion={hasMotion && !isEditFlyoutOpen ? '' : undefined}
                         className={joinClassNames([
+                            'animation-curve-card',
                             (textShown || hasParameter) && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative',
                         ])}
-                        style={{
-                            ...(hasBorder &&
-                                getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR)),
-                            ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
-                        }}
+                        style={
+                            {
+                                '--curve-duration': `${duration}s`,
+                                '--curve-easing': `cubic-bezier(${parametersString})`,
+                                ...(hasBorder &&
+                                    getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR)),
+                                ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
+                            } as CSSProperties
+                        }
                     >
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
@@ -132,19 +135,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
                                 setIsEditFlyoutOpen(false);
-                                setIsHovered(false);
                             }}
                             onCancel={() => {
                                 setLocalAnimationCurve(initialAnimationCurve);
                                 setIsEditFlyoutOpen(false);
-                                setIsHovered(false);
                             }}
-                            onOpenChange={(isOpen) => {
-                                setIsEditFlyoutOpen(isOpen);
-                                if (!isOpen) {
-                                    setIsHovered(false);
-                                }
-                            }}
+                            onOpenChange={setIsEditFlyoutOpen}
                             onAnimationCurveChange={setLocalAnimationCurve}
                         />
                         <div
@@ -168,7 +164,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 endpointColor={endpointsColor || DEFAULT_LINE_COLOR}
                                 gridColor={gridColor || DEFAULT_GRID_COLOR}
                                 viewBox={DEFAULT_ANIMATION_CANVAS_VIEWBOX}
-                                shouldAnimate={isHovered && hasMotion}
                                 setCanvasHeight={setCanvasHeight}
                                 title={
                                     // oxlint-disable-next-line typescript/no-unsafe-assignment
