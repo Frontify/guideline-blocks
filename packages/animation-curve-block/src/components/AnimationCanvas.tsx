@@ -60,11 +60,7 @@ export const AnimationCanvas = ({
     });
 
     const cubicBezier = `M ${startPoint.x}, ${startPoint.y} C ${startHandlePoint.x},${startHandlePoint.y} ${endHandlePoint.x},${endHandlePoint.y} ${endPoint.x}, ${endPoint.y}`;
-    const animationCurvePathStyle = {
-        '--curve-length': animationCurvePathLength,
-        '--curve-duration': `${animationFunction.duration}s`,
-        '--curve-easing': `cubic-bezier(${animationFunction.parameters.x1}, ${animationFunction.parameters.y1}, ${animationFunction.parameters.x2}, ${animationFunction.parameters.y2})`,
-    } as CSSProperties;
+    const animationCurvePathStyle = { '--curve-length': animationCurvePathLength } as CSSProperties;
 
     const updateScale = useCallback(() => {
         const svg = svgRef.current;
@@ -195,7 +191,7 @@ export const AnimationCanvas = ({
             <path
                 data-test-id="animation-curves-canvas-path"
                 ref={animationCurvePathRef}
-                className="animated"
+                className="animation-curve-path"
                 style={animationCurvePathStyle}
                 d={cubicBezier}
                 fill="none"

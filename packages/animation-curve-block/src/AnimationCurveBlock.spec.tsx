@@ -280,7 +280,7 @@ describe('AnimationCurve Block', () => {
             blockSettings: { content: [AnimationCurveDummy.with()], hasMotion: true },
         });
         expect(screen.getByTestId(CARD_TEST_ID)).toHaveAttribute('data-motion');
-        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).toHaveClass('animated');
+        expect(screen.getByTestId(CANVAS_PATH_TEST_ID)).toHaveClass('animation-curve-path');
     });
 
     it.each([true, false])('should not re-render on hover when hasMotion is %s', async (hasMotion) => {

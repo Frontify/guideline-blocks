@@ -4,8 +4,7 @@
     }
 }
 
-.animation-curve-card[data-motion]:hover .animated,
-.animation-curve-card[data-motion]:focus-within .animated {
+.animation-curve-card[data-motion]:hover .animation-curve-path {
     stroke-dasharray: var(--curve-length);
     stroke-dashoffset: var(--curve-length);
     animation: animateDash var(--curve-duration) var(--curve-easing) forwards;

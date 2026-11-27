@@ -12,7 +12,7 @@ import {
     joinClassNames,
 } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
-import { forwardRef, useState } from 'react';
+import { type CSSProperties, forwardRef, useState } from 'react';
 
 import {
     DEFAULT_ANIMATION_CANVAS_VIEWBOX,
@@ -118,11 +118,15 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             (textShown || hasParameter) && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative',
                         ])}
-                        style={{
-                            ...(hasBorder &&
-                                getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR)),
-                            ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
-                        }}
+                        style={
+                            {
+                                '--curve-duration': `${duration}s`,
+                                '--curve-easing': `cubic-bezier(${parametersString})`,
+                                ...(hasBorder &&
+                                    getBorderStyles(borderStyle, borderWidth, borderColor || DEFAULT_BORDER_COLOR)),
+                                ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
+                            } as CSSProperties
+                        }
                     >
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
